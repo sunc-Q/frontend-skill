@@ -1,0 +1,40 @@
+PASS A1 零外部 http(s) 链接 | 外链 0
+PASS A2 无根绝对路径（file:// 与根托管同时可用）
+PASS A3 无目录式 URL 假设（全部显式 index.html 文件链接）
+PASS A4 所有内部链接指向真实文件 | 缺链 无，共 123 条链接
+PASS A5 未占用平台保留命名空间
+PASS B 首页 BFS 可达全部 4 页（每风格）
+PASS C 内联 <script> 语法检查（行首匹配正则，2 页 × 3 风格 = 6 段） | 段数 6
+PASS D1 目录数据 6 张
+PASS D2 流派筛选「氛围」→2 张且全对
+PASS D3 旧→新排序首尾正确
+PASS D4 新→旧排序首尾正确
+PASS D5 同年份按编号稳定次级排序
+PASS D6 未知流派→空集
+PASS D7 render 输出 6 张卡
+PASS D8 仅精选唱片有详情链接（显式文件链接）
+PASS D9 空态文案存在
+PASS D10 曲目 8 段
+PASS D11 总长自证：逐行求和一致且为 41:31 | got 41:31
+PASS D12 renderTracks 8 行
+PASS E 每页三风格 DOM+内联 JS 逐字节一致（风格全在 CSS 层）
+PASS F2 acid-gfx 去 :root 后 CSS 不出现裸十六进制色（色板全部走变量）
+PASS F2 art-nouveau 去 :root 后 CSS 不出现裸十六进制色（色板全部走变量）
+PASS F2 dark-academia 去 :root 后 CSS 不出现裸十六进制色（色板全部走变量）
+PASS F1 每风格色板 ≥8 色 | acid-gfx:9 art-nouveau:8 dark-academia:8
+PASS F3 色板互斥 acid-gfx∩art-nouveau ≤2 色 | 交集: ∅
+PASS F3 色板互斥 acid-gfx∩dark-academia ≤2 色 | 交集: ∅
+PASS F3 色板互斥 art-nouveau∩dark-academia ≤2 色 | 交集: ∅
+PASS F4 HTML 结构层零内联样式零颜色值
+PASS G 每页脚注声明内容为虚构样例（不把 fixture 呈现为真实）
+PASS H 每页单 h1 / 单 aria-current / lang / title / meta description
+PASS I1 文件数 15（3 风格 × (4 页 + 1 CSS)） | 15 files
+PASS I2 总量与单文件均远低于打包上限 | 总 80507 B，最大单文件 8764 B
+PASS J1 标准静态语义(spa:false+目录索引关)下 13 个真实路径全 200
+PASS J2 危险实锤：目录 URL /acid-gfx/releases/ 在目录索引禁用时 404（必须显式文件链接） | code=404
+PASS J3 标准静态站缺失路径 →404（spa:false 语义） | code=404
+PASS J4 SPA fallback 对缺失路径返回 200+首页 HTML（文档「200 不证明加载正确」实演） | code=200
+PASS J5 本地 python http.server 对 /releases/ 返回 200 —— 本地预览会掩盖生产「目录索引禁用」的 404，验收必须以显式文件链接为准 | code=200
+
+== 37 PASS / 0 FAIL ==
+per-style bytes: {"acid-gfx":26347,"art-nouveau":27544,"dark-academia":26616} total: 80507

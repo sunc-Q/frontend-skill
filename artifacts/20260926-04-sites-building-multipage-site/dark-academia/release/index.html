@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="YZ-006《潮汐图鉴》唱片页：八段曲目与总长、制作信息与唱片用纸说明。">
+<title>潮汐图鉴 YZ-006 · 林听 · 云泽唱片</title>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body class="page-release">
+<header class="site-head">
+  <a class="brand" href="../index.html"><span class="brand-mark">泽</span><span class="brand-name">云泽唱片<em>YUNZE RECORDS</em></span></a>
+  <nav aria-label="主导航">
+    <ul>
+            <li><a href="../index.html">首页<span class="nav-en">Home</span></a></li>
+      <li><a href="../releases/index.html">全部唱片<span class="nav-en">Catalog</span></a></li>
+      <li><a href="../release/index.html" aria-current="page">本季新声<span class="nav-en">New Release</span></a></li>
+      <li><a href="../about/index.html">关于厂牌<span class="nav-en">About</span></a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+<section class="album">
+    <div class="cover" aria-hidden="true"><span class="cover-mark">潮</span><span class="cover-line"></span></div>
+    <div class="album-info">
+      <p class="card-no">YZ-006 · 2025 · 氛围</p>
+      <h1>潮汐图鉴 <span class="card-en">A Tide Atlas</span></h1>
+      <p class="album-artist">林听 <span>Lin Ting</span></p>
+      <p class="album-note">按 2024 年某海湾的实测潮汐表写作八段，每张唱片附手绘潮位折线海报。</p>
+      <p class="fixture-note">本站为静态演示：曲目与时长为设计样例，页面不托管音频。</p>
+    </div>
+  </section>
+
+  <section class="tracks" aria-labelledby="tracks-h">
+    <h2 id="tracks-h">曲目 <output id="total" class="total" role="status"></output></h2>
+    <ol id="tracklist"></ol>
+  </section>
+
+  <section class="credits">
+    <h2>制作信息</h2>
+    <dl>
+      <div><dt>录制</dt><dd>潮位站旁一间改作录音室的值守房，2024-11 — 2025-03</dd></div>
+      <div><dt>混音 / 母带</dt><dd>骆沨</dd></div>
+      <div><dt>封面与潮位折线</dt><dd>丘小路（手绘后转矢量）</dd></div>
+      <div><dt>唱片用纸</dt><dd>未漂白灰卡，四色单面，随盒附 1:1 潮位海报</dd></div>
+    </dl>
+  </section>
+
+  <nav class="adjacent" aria-label="相邻唱片">
+    <a href="../releases/index.html">← 返回全目录（上一张：YZ-005 旧海报）</a>
+    <a href="../about/index.html">了解这张唱片的诞生地 →</a>
+  </nav>
+<script>
+(function () {
+  'use strict';
+  /*PURE-BEGIN*/
+  const TRACKS = [
+    {
+      "n": 1,
+      "title": "高潮线以上",
+      "sec": 312
+    },
+    {
+      "n": 2,
+      "title": "退潮的贝",
+      "sec": 248
+    },
+    {
+      "n": 3,
+      "title": "灯塔间歇",
+      "sec": 366
+    },
+    {
+      "n": 4,
+      "title": "盐与铁",
+      "sec": 291
+    },
+    {
+      "n": 5,
+      "title": "无人AIS",
+      "sec": 402
+    },
+    {
+      "n": 6,
+      "title": "海带森林",
+      "sec": 275
+    },
+    {
+      "n": 7,
+      "title": "午夜潮位 0.4m",
+      "sec": 339
+    },
+    {
+      "n": 8,
+      "title": "回流",
+      "sec": 258
+    }
+  ];
+  function totalSec(list) { return list.reduce((s, t) => s + t.sec, 0); }
+  function fmt(sec) {
+    const m = Math.floor(sec / 60), s = sec % 60;
+    return m + ':' + String(s).padStart(2, '0');
+  }
+  function renderTracks(list) {
+    return list.map(t =>
+      '<li><span class="tn">' + t.n + '</span><span class="tt">' + t.title +
+      '</span><span class="td">' + fmt(t.sec) + '</span></li>').join('\n');
+  }
+  /*PURE-END*/
+  document.getElementById('tracklist').innerHTML = renderTracks(TRACKS);
+  document.getElementById('total').value = '8 段 · 总长 ' + fmt(totalSec(TRACKS));
+})();
+</script>
+</main>
+  <footer class="site-foot">
+    <p>云泽唱片 · 独立民谣与氛围音乐厂牌 · 目录 2019—2025</p>
+    <p class="foot-note">本站为虚构演示内容，所有唱片、艺人与数据均为设计样例，不代表任何真实发行。</p>
+    <p><a href="mailto:hello@example.com">hello@example.com</a> · 城市一隅 · 潮位站旁</p>
+  </footer>
+</body>
+</html>

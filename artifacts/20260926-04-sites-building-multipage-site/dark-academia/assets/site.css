@@ -1,0 +1,97 @@
+/* 主题层 · 暗学院 dark-academia：深棕底，牛血红与旧纸金，衬线书卷排印与首字下沉 */
+:root{
+  --bg:#20160f; --panel:#2b1f16; --ink:#d9c8a6; --ox:#7c3626; --brass:#b08d4f;
+  --dim:#96805f; --line:#4a3524; --paper:#f2e6cd;
+  --font-display:"Times New Roman","Songti SC",Georgia,serif;
+  --font-body:Georgia,"Songti SC","Times New Roman",serif;
+  --font-mono:ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.85;
+  background-image:repeating-linear-gradient(0deg,rgba(0,0,0,.16) 0 2px,transparent 2px 5px),
+  radial-gradient(46rem 30rem at 85% 0%,rgba(176,141,79,.08),transparent 60%)}
+main{max-width:980px;margin:0 auto;padding:0 26px}
+a{color:var(--brass);text-decoration:none}
+a:hover{text-decoration:underline;text-decoration-color:var(--ox)}
+.site-head{max-width:980px;margin:0 auto;padding:24px 26px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;border-bottom:3px double var(--line)}
+.brand{display:flex;align-items:center;gap:14px;color:var(--ink)}
+.brand-mark{width:44px;height:44px;display:grid;place-items:center;font-family:var(--font-display);font-size:21px;border:1px solid var(--ox);background:var(--panel);color:var(--brass)}
+.brand-name{font-family:var(--font-display);font-size:19px;letter-spacing:.1em}
+.brand-name em{display:block;font-style:normal;font-size:10px;letter-spacing:.34em;color:var(--dim);font-family:var(--font-mono)}
+.site-head nav ul{display:flex;gap:8px;list-style:none;flex-wrap:wrap}
+.site-head nav a{font-size:14px;letter-spacing:.12em;padding:6px 12px;color:var(--dim)}
+.site-head nav a:hover{color:var(--ink)}
+.site-head nav a[aria-current]{color:var(--ink);border-bottom:2px solid var(--ox)}
+.nav-en{display:none}
+.hero{padding:84px 0 64px;max-width:72ch}
+.hero-kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:.34em;color:var(--ox)}
+h1{font-family:var(--font-display);font-size:clamp(38px,6vw,62px);font-weight:400;line-height:1.15;margin:16px 0 26px;letter-spacing:.01em}
+h1 em{font-style:italic;color:var(--brass)}
+.hero-lede{color:var(--dim);font-size:17px}
+.hero-lede::first-letter{font-size:1.5em;color:var(--brass)}
+.hero-cta{margin-top:32px;display:flex;gap:16px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 26px;font-size:15px;letter-spacing:.14em;border:1px solid var(--line)}
+.btn-primary{background:var(--ox);border-color:var(--ox);color:var(--paper)}
+.btn-ghost{color:var(--brass)}
+h2{font-family:var(--font-display);font-weight:400;font-size:24px;letter-spacing:.14em;margin:60px 0 22px;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:8px}
+.card-row,.grid,.team-row{list-style:none;display:grid;gap:20px}
+.card-row{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.grid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);padding:24px;box-shadow:inset 0 0 0 4px rgba(176,141,79,.06)}
+.card-no{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;color:var(--ox)}
+.card h3{font-family:var(--font-display);font-size:21px;font-weight:400;margin:8px 0 4px}
+.card-en{font-size:12px;font-style:italic;color:var(--dim);font-weight:400}
+.card-artist{color:var(--brass);font-size:14px;letter-spacing:.16em}
+.card-blurb{color:var(--dim);font-size:14.5px;margin:10px 0 14px}
+.card-link{font-size:13px;letter-spacing:.1em}
+.card-dim{font-size:13px;color:var(--line)}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border:1px solid var(--line);background:var(--panel);margin:8px 0}
+.stat>div{padding:22px;text-align:center;border-right:1px solid var(--line)}
+.stat>div:last-child{border-right:none}
+.stat dt{font-family:var(--font-display);font-size:34px;color:var(--brass)}
+.stat dd{color:var(--dim);font-size:13px;letter-spacing:.14em}
+.teaser p{max-width:64ch;color:var(--dim);font-size:16.5px;text-indent:2em}
+.list-head h1,.about-head h1{margin:0 0 12px}
+.list-head,.about-head{padding:58px 0 6px}
+.list-sub,.lede{color:var(--dim);max-width:60ch;font-style:italic}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin:24px 0 30px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-family:var(--font-body);font-size:14px;padding:7px 16px;background:transparent;color:var(--dim);border:1px solid transparent;cursor:pointer;letter-spacing:.12em}
+.chip:hover{border-color:var(--line);color:var(--ink)}
+.chip.is-on{background:var(--ox);color:var(--paper)}
+.toolbar-side{display:flex;gap:14px;align-items:center}
+.count{font-family:var(--font-mono);color:var(--brass);font-size:12.5px;letter-spacing:.1em}
+.empty{color:var(--dim);font-style:italic;padding:44px 0;text-align:center}
+.album{display:grid;grid-template-columns:300px 1fr;gap:42px;padding:60px 0 24px;align-items:start}
+.cover{aspect-ratio:1;background:var(--panel);border:1px solid var(--brass);outline:1px solid var(--line);outline-offset:8px;display:grid;place-items:center;position:relative}
+.cover-mark{font-family:var(--font-display);font-size:80px;color:var(--brass)}
+.cover-line{position:absolute;left:12%;right:12%;bottom:20%;height:1px;background:var(--ox)}
+.album-info h1{text-align:left;font-size:clamp(32px,4.6vw,52px)}
+.album-artist{color:var(--brass);letter-spacing:.2em;font-size:15px}
+.album-artist span{color:var(--dim);font-style:italic;letter-spacing:.04em}
+.album-note{color:var(--dim);margin-top:14px;max-width:52ch}
+.fixture-note{margin-top:22px;font-family:var(--font-mono);font-size:11.5px;color:var(--ox);border:1px dashed var(--ox);padding:8px 12px;display:inline-block}
+.tracks ol{list-style:none;border-top:1px solid var(--line);max-width:64ch}
+.tracks li{display:flex;gap:20px;padding:10px 4px;border-bottom:1px solid rgba(74,53,36,.55);font-size:15px}
+.tn{color:var(--ox);width:2em;font-family:var(--font-mono)}
+.tt{flex:1;letter-spacing:.06em}
+.td{font-family:var(--font-mono);color:var(--dim)}
+.total{font-family:var(--font-mono);color:var(--brass);margin-left:16px;font-size:13px}
+.credits dl{display:grid;grid-template-columns:170px 1fr;gap:8px 24px;max-width:68ch}
+.credits dt{color:var(--ox);font-size:14px;letter-spacing:.12em}
+.credits dd{color:var(--dim)}
+.adjacent{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:58px 0;padding-top:20px;border-top:3px double var(--line);font-size:14px}
+.timeline ol{list-style:none;max-width:66ch;margin:22px 0;counter-reset:yr}
+.timeline li{margin-bottom:24px;padding-left:24px;border-left:1px solid var(--line);position:relative}
+.timeline li::before{content:"§";position:absolute;left:-9px;top:0;background:var(--bg);color:var(--ox);font-family:var(--font-display)}
+.tl-year{font-family:var(--font-display);color:var(--brass);font-size:19px;letter-spacing:.18em}
+.timeline li p:last-child{color:var(--dim);max-width:60ch}
+.member{background:var(--panel);border:1px solid var(--line);padding:20px}
+.avatar{width:54px;height:54px;display:grid;place-items:center;font-family:var(--font-display);font-size:22px;background:var(--ox);color:var(--paper);margin-bottom:10px}
+.member h3{font-family:var(--font-display);font-weight:400;font-size:18px}
+.member p{color:var(--dim);font-size:14px}
+.contact p{max-width:62ch;color:var(--dim);font-size:16px}
+.back-home{margin:52px 0;font-size:14px;font-style:italic}
+.site-foot{max-width:980px;margin:64px auto 0;padding:26px;border-top:3px double var(--line);font-size:13px;color:var(--dim);text-align:center;letter-spacing:.1em}
+.foot-note{color:var(--ox);margin:6px 0;font-size:12px;font-style:italic}
+@media(max-width:720px){.album{grid-template-columns:1fr}.credits dl{grid-template-columns:1fr}.hero{padding:58px 0 44px}}

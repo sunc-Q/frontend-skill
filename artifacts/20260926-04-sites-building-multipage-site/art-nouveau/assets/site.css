@@ -1,0 +1,103 @@
+/* 主题层 · 新艺术 art-nouveau：奶油纸底，墨绿描金，拱形与曲线边框，衬线大字 */
+:root{
+  --bg:#f4ecd9; --paper:#faf4e4; --ink:#1d3a2c; --gold:#a8792a; --blush:#c88d72;
+  --line:#cdb98c; --soft:#5d7a64; --frame:#e7d6ac;
+  --font-display:Georgia,"Songti SC","Times New Roman",serif;
+  --font-body:"Songti SC",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.9;
+  background-image:radial-gradient(48rem 30rem at 95% -5%,rgba(168,121,42,.10),transparent 65%),
+  radial-gradient(40rem 30rem at -5% 100%,rgba(93,122,100,.12),transparent 60%)}
+main{max-width:1020px;margin:0 auto;padding:0 28px}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:4px}
+.site-head{max-width:1020px;margin:0 auto;padding:26px 28px 18px;
+  border-bottom:1px double var(--gold);display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:14px;color:var(--ink)}
+.brand-mark{width:46px;height:46px;display:grid;place-items:center;font-family:var(--font-display);font-size:22px;
+  color:var(--paper);background:var(--ink);border-radius:50% 50% 50% 8px}
+.brand-name{font-family:var(--font-display);font-size:20px;letter-spacing:.12em}
+.brand-name em{display:block;font-style:normal;font-size:11px;letter-spacing:.42em;color:var(--gold)}
+.site-head nav ul{display:flex;gap:26px;list-style:none;flex-wrap:wrap}
+.site-head nav a{font-size:15px;letter-spacing:.14em;color:var(--soft);padding-bottom:4px}
+.site-head nav a:hover{color:var(--ink)}
+.site-head nav a[aria-current]{color:var(--ink);border-bottom:2px solid var(--gold);text-decoration:none}
+.nav-en{display:block;font-size:10px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase}
+.hero{padding:92px 0 70px;position:relative}
+.hero-kicker{text-align:center;font-size:12px;letter-spacing:.5em;color:var(--gold)}
+h1{font-family:var(--font-display);font-size:clamp(40px,6.5vw,68px);text-align:center;line-height:1.2;margin:20px 0 30px;font-weight:400}
+h1 em{font-style:normal;position:relative;color:var(--blush)}
+h1 em::after{content:"";position:absolute;left:-4%;right:-4%;bottom:6px;height:8px;border-top:1px solid var(--gold);border-radius:50%}
+.hero-lede{max-width:56ch;margin:0 auto;text-align:center;color:var(--soft);font-size:16px}
+.hero-cta{margin:38px 0 0;display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:13px 32px;font-size:15px;letter-spacing:.2em;border-radius:999px 999px 999px 12px}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-ghost{border:1px solid var(--gold);color:var(--ink)}
+h2{font-family:var(--font-display);font-weight:400;font-size:26px;text-align:center;margin:66px 0 10px;letter-spacing:.2em}
+h2::after{content:"❦";display:block;text-align:center;color:var(--gold);font-size:16px;margin-top:8px}
+.card-row,.grid,.team-row{list-style:none;display:grid;gap:22px;margin-top:30px}
+.card-row{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.grid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:140px 12px 12px 12px;padding:26px 22px 20px;position:relative;box-shadow:0 1px 0 var(--frame)}
+.card::after{content:"";position:absolute;inset:5px 5px auto auto;width:14px;height:14px;border-right:1px solid var(--gold);border-bottom:1px solid var(--gold)}
+.card-no{font-size:12px;letter-spacing:.3em;color:var(--gold);text-align:right}
+.card h3{font-family:var(--font-display);font-size:22px;font-weight:400;margin:10px 0 2px}
+.card-en{font-size:13px;color:var(--soft);font-style:italic}
+.card-artist{color:var(--ink);font-size:14px;letter-spacing:.18em}
+.card-blurb{color:var(--soft);font-size:14px;margin:12px 0 14px}
+.card-link{font-size:13px;letter-spacing:.14em}
+.card-dim{font-size:13px;color:var(--line)}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;border:1px solid var(--line);background:var(--paper);margin:10px 0}
+.stat>div{padding:22px;text-align:center;border-right:1px solid var(--line)}
+.stat>div:last-child{border-right:none}
+.stat dt{font-family:var(--font-display);font-size:36px;color:var(--gold)}
+.stat dd{color:var(--soft);font-size:13px;letter-spacing:.2em}
+.teaser p{max-width:60ch;margin:0 auto;text-align:center;font-size:16px;color:var(--soft)}
+.list-head h1,.about-head h1{margin:0 0 14px}
+.list-head,.about-head{padding:64px 0 6px}
+.list-sub,.lede{color:var(--soft);text-align:center;max-width:56ch;margin:0 auto}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin:28px 0 8px;padding:14px 18px;border:1px solid var(--line);border-radius:999px;background:var(--paper)}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-family:var(--font-body);font-size:14px;padding:7px 18px;background:transparent;color:var(--soft);
+  border:1px solid transparent;border-radius:999px;cursor:pointer;letter-spacing:.12em}
+.chip:hover{color:var(--ink);border-color:var(--gold)}
+.chip.is-on{background:var(--ink);color:var(--paper)}
+.toolbar-side{display:flex;gap:14px;align-items:center}
+.count{color:var(--gold);font-size:13px;letter-spacing:.2em}
+.empty{color:var(--soft);padding:44px 0;text-align:center;list-style:none}
+.album{display:grid;grid-template-columns:300px 1fr;gap:44px;padding:66px 0 26px;align-items:start}
+.cover{aspect-ratio:1;border-radius:150px 150px 14px 14px;background:var(--ink);display:grid;place-items:center;position:relative;box-shadow:0 0 0 1px var(--gold),0 0 0 6px var(--paper),0 0 0 7px var(--line)}
+.cover-mark{font-family:var(--font-display);font-size:84px;color:var(--paper)}
+.cover-line{position:absolute;left:14%;right:14%;bottom:24%;height:0;border-top:1px solid var(--gold);border-radius:50% 50% 0 0/100% 100% 0 0;transform:scaleY(3)}
+.album-info h1{text-align:left;font-size:clamp(34px,5vw,54px)}
+.album-artist{color:var(--gold);letter-spacing:.24em;font-size:15px}
+.album-artist span{color:var(--soft);font-style:italic;letter-spacing:.06em}
+.album-note{color:var(--soft);margin-top:16px;max-width:52ch}
+.fixture-note{margin-top:22px;font-size:12px;color:var(--blush);border:1px dashed var(--blush);border-radius:999px;padding:6px 16px;display:inline-block;letter-spacing:.1em}
+.tracks ol{list-style:none;border-top:1px double var(--gold);max-width:64ch;margin:0 auto;counter-reset:none}
+.tracks li{display:flex;gap:22px;padding:11px 6px;border-bottom:1px solid var(--line);font-size:15px}
+.tn{color:var(--gold);width:1.6em;font-family:var(--font-display)}
+.tt{flex:1;letter-spacing:.1em}
+.td{color:var(--soft)}
+.total{color:var(--gold);margin-left:18px;font-size:14px;letter-spacing:.2em}
+.credits dl{display:grid;grid-template-columns:170px 1fr;gap:8px 26px;max-width:68ch;margin:0 auto}
+.credits dt{color:var(--gold);font-size:14px;letter-spacing:.18em}
+.credits dd{color:var(--soft)}
+.adjacent{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:62px 0;padding-top:22px;border-top:1px double var(--gold);font-size:14px;letter-spacing:.1em}
+.timeline ol{list-style:none;max-width:66ch;margin:26px auto 0;position:relative;padding-left:34px}
+.timeline ol::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;border-left:1px solid var(--gold)}
+.timeline li{margin-bottom:26px;position:relative}
+.timeline li::before{content:"";position:absolute;left:-32px;top:.7em;width:11px;height:11px;border:1px solid var(--gold);background:var(--paper);transform:rotate(45deg)}
+.tl-year{font-family:var(--font-display);color:var(--gold);font-size:19px;letter-spacing:.2em}
+.timeline li p:last-child{color:var(--soft);max-width:60ch}
+.team-row{margin-top:26px}
+.member{background:var(--paper);border:1px solid var(--line);border-radius:12px 12px 120px 12px;padding:22px;text-align:center}
+.avatar{width:58px;height:58px;margin:0 auto 12px;display:grid;place-items:center;font-family:var(--font-display);font-size:24px;background:var(--bg);color:var(--ink);border:1px solid var(--gold);border-radius:50% 50% 50% 10px}
+.member h3{font-family:var(--font-display);font-weight:400;font-size:19px}
+.member p{color:var(--soft);font-size:14px}
+.contact p{max-width:62ch;margin:0 auto;text-align:center;color:var(--soft)}
+.back-home{margin:52px 0;text-align:center;font-size:14px;letter-spacing:.14em}
+.site-foot{max-width:1020px;margin:70px auto 0;padding:28px;text-align:center;border-top:1px double var(--gold);font-size:13px;color:var(--soft);letter-spacing:.12em}
+.foot-note{color:var(--blush);margin:6px 0;font-size:12px}
+@media(max-width:720px){.album{grid-template-columns:1fr}.credits dl{grid-template-columns:1fr}.hero{padding:60px 0 44px}}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="云泽唱片全目录：六张民谣与氛围唱片的年份、流派与简介，可按流派筛选、按年份排序。">
+<title>全部唱片 · 云泽唱片</title>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body class="page-releases">
+<header class="site-head">
+  <a class="brand" href="../index.html"><span class="brand-mark">泽</span><span class="brand-name">云泽唱片<em>YUNZE RECORDS</em></span></a>
+  <nav aria-label="主导航">
+    <ul>
+            <li><a href="../index.html">首页<span class="nav-en">Home</span></a></li>
+      <li><a href="../releases/index.html" aria-current="page">全部唱片<span class="nav-en">Catalog</span></a></li>
+      <li><a href="../release/index.html">本季新声<span class="nav-en">New Release</span></a></li>
+      <li><a href="../about/index.html">关于厂牌<span class="nav-en">About</span></a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+<section class="list-head">
+    <h1>全部唱片</h1>
+    <p class="list-sub">目录按编号排列，2019—2025 共六张。可用流派筛选，或按年份切换排序。</p>
+  </section>
+
+  <section class="toolbar" aria-label="目录筛选">
+    <div class="filters" role="group" aria-label="按流派筛选">
+      <button type="button" class="chip is-on" data-tag="全部" aria-pressed="true">全部</button>
+      <button type="button" class="chip" data-tag="民谣" aria-pressed="false">民谣</button>
+      <button type="button" class="chip" data-tag="氛围" aria-pressed="false">氛围</button>
+      <button type="button" class="chip" data-tag="爵士" aria-pressed="false">爵士</button>
+      <button type="button" class="chip" data-tag="电子" aria-pressed="false">电子</button>
+    </div>
+    <p class="toolbar-side">
+      <button type="button" id="sortBtn" class="chip chip-sort" aria-pressed="false">按年份：旧→新</button>
+      <output id="count" class="count" role="status" aria-live="polite"></output>
+    </p>
+  </section>
+
+  <section>
+    <ul id="catalog" class="grid" aria-label="唱片列表"></ul>
+  </section>
+
+  <p class="back-home"><a href="../index.html">← 回到首页</a></p>
+<script>
+(function () {
+  'use strict';
+  /*PURE-BEGIN*/
+  const RELEASES = [
+    {
+      "id": "YZ-001",
+      "no": 1,
+      "title": "远山若有似无",
+      "en": "Hills, Almost",
+      "artist": "邱野",
+      "year": 2019,
+      "tag": "民谣",
+      "note": "录于滇西北一间改造成排练室的旧粮仓，人声里留有木门轴的声音。"
+    },
+    {
+      "id": "YZ-002",
+      "no": 2,
+      "title": "夜航西飞",
+      "en": "Westward by Night",
+      "artist": "林听",
+      "year": 2021,
+      "tag": "氛围",
+      "note": "三架合成器、一台磁带机，与一份 1947 年的航线图。"
+    },
+    {
+      "id": "YZ-003",
+      "no": 3,
+      "title": "蒸汽花园",
+      "en": "Steam Garden",
+      "artist": "无看三重奏",
+      "year": 2022,
+      "tag": "爵士",
+      "note": "钢琴、贝斯与一支录错了线路的萨克斯，一次「事故」式的现场。"
+    },
+    {
+      "id": "YZ-004",
+      "no": 4,
+      "title": "信号雪",
+      "en": "Signal Snow",
+      "artist": "骆沨",
+      "year": 2023,
+      "tag": "电子",
+      "note": "短波电台底噪采样集，冬夜里从天线接收到的白色噪音。"
+    },
+    {
+      "id": "YZ-005",
+      "no": 5,
+      "title": "旧海报",
+      "en": "Old Posters",
+      "artist": "丘小路",
+      "year": 2024,
+      "tag": "民谣",
+      "note": "关于拆迁广告与童年海报的九首歌，木吉他为主，几乎无鼓。"
+    },
+    {
+      "id": "YZ-006",
+      "no": 6,
+      "title": "潮汐图鉴",
+      "en": "A Tide Atlas",
+      "artist": "林听",
+      "year": 2025,
+      "tag": "氛围",
+      "featured": true,
+      "note": "按 2024 年某海湾的实测潮汐表写作八段，每张唱片附手绘潮位折线海报。"
+    }
+  ];
+  function applyFilters(list, tag, newestFirst) {
+    const rows = tag === '全部' ? list.slice() : list.filter(r => r.tag === tag);
+    rows.sort((a, b) => newestFirst ? b.year - a.year || a.no - b.no : a.year - b.year || a.no - b.no);
+    return rows;
+  }
+  function render(rows) {
+    if (rows.length === 0) {
+      return '<li class="empty">该流派下暂无唱片，试试「全部」。</li>';
+    }
+    return rows.map(r => {
+      const link = r.featured
+        ? '<a class="card-link" href="../release/index.html">进入唱片页 →</a>'
+        : '<span class="card-dim">唱片页制作中</span>';
+      return '<li class="card">' +
+        '<p class="card-no">' + r.id + ' · ' + r.year + ' · ' + r.tag + '</p>' +
+        '<h3>' + r.title + ' <span class="card-en">' + r.en + '</span></h3>' +
+        '<p class="card-artist">' + r.artist + '</p>' +
+        '<p class="card-blurb">' + r.note + '</p>' + link + '</li>';
+    }).join('\n');
+  }
+  /*PURE-END*/
+  let tag = '全部', newestFirst = false;
+  const catalog = document.getElementById('catalog');
+  const count = document.getElementById('count');
+  const sortBtn = document.getElementById('sortBtn');
+  function paint() {
+    const rows = applyFilters(RELEASES, tag, newestFirst);
+    catalog.innerHTML = render(rows);
+    count.value = '共 ' + rows.length + ' 张' + (tag === '全部' ? '' : ' · ' + tag);
+  }
+  document.querySelectorAll('.filters .chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filters .chip').forEach(b => {
+        b.classList.toggle('is-on', b === btn);
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      tag = btn.dataset.tag;
+      paint();
+    });
+  });
+  sortBtn.addEventListener('click', () => {
+    newestFirst = !newestFirst;
+    sortBtn.setAttribute('aria-pressed', String(newestFirst));
+    sortBtn.textContent = newestFirst ? '按年份：新→旧' : '按年份：旧→新';
+    paint();
+  });
+  paint();
+})();
+</script>
+</main>
+  <footer class="site-foot">
+    <p>云泽唱片 · 独立民谣与氛围音乐厂牌 · 目录 2019—2025</p>
+    <p class="foot-note">本站为虚构演示内容，所有唱片、艺人与数据均为设计样例，不代表任何真实发行。</p>
+    <p><a href="mailto:hello@example.com">hello@example.com</a> · 城市一隅 · 潮位站旁</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,43 @@
+PASS V1 acid-gfx CSS 已应用 | rules=87
+PASS V2 acid-gfx body 底色=主题黑/纸色 | rgb(11, 11, 16)
+PASS V3 acid-gfx 真实浏览器渲染出 6 卡 | cards=6 count=共 6 张
+PASS V4 acid-gfx 1280 宽无横向溢出
+PASS V5 acid-gfx aria-current 唯一
+PASS V6 acid-gfx 点击筛选→2 张 | {"n":2,"c":"共 2 张 · 氛围"}
+PASS V7 acid-gfx 点击排序后首卡 YZ-006 | YZ-006 · 2025 · 氛围
+PASS V8 acid-gfx 跨目录导航到详情+总长 | {"total":"8 段 · 总长 41:31","tracks":8,"h1":true}
+PASS V9 acid-gfx 首页渲染+无溢出 | {"hero":true,"overflow":false,"brand":"42px"}
+PASS V10 acid-gfx 零 pageerror
+PASS V1 art-nouveau CSS 已应用 | rules=92
+PASS V2 art-nouveau body 底色=主题黑/纸色 | rgb(244, 236, 217)
+PASS V3 art-nouveau 真实浏览器渲染出 6 卡 | cards=6 count=共 6 张
+PASS V4 art-nouveau 1280 宽无横向溢出
+PASS V5 art-nouveau aria-current 唯一
+PASS V6 art-nouveau 点击筛选→2 张 | {"n":2,"c":"共 2 张 · 氛围"}
+PASS V7 art-nouveau 点击排序后首卡 YZ-006 | YZ-006 · 2025 · 氛围
+PASS V8 art-nouveau 跨目录导航到详情+总长 | {"total":"8 段 · 总长 41:31","tracks":8,"h1":true}
+PASS V9 art-nouveau 首页渲染+无溢出 | {"hero":true,"overflow":false,"brand":"46px"}
+PASS V10 art-nouveau 零 pageerror
+PASS V1 dark-academia CSS 已应用 | rules=88
+PASS V2 dark-academia body 底色=主题黑/纸色 | rgb(32, 22, 15)
+PASS V3 dark-academia 真实浏览器渲染出 6 卡 | cards=6 count=共 6 张
+PASS V4 dark-academia 1280 宽无横向溢出
+PASS V5 dark-academia aria-current 唯一
+PASS V6 dark-academia 点击筛选→2 张 | {"n":2,"c":"共 2 张 · 氛围"}
+PASS V7 dark-academia 点击排序后首卡 YZ-006 | YZ-006 · 2025 · 氛围
+PASS V8 dark-academia 跨目录导航到详情+总长 | {"total":"8 段 · 总长 41:31","tracks":8,"h1":true}
+PASS V9 dark-academia 首页渲染+无溢出 | {"hero":true,"overflow":false,"brand":"44px"}
+PASS V10 dark-academia 零 pageerror
+PASS H1' acid-gfx contrast 网页版（p99.5-p0.5≥100 且 σ≥18） | {"mean":20.46,"sigma":36.1,"darkPct":0.02,"clipPct":0,"midPct":2.71,"p5":11,"p95":41,"spread":30,"p2":11,"p98":228,"spread298":217,"p05":11,"p995":237,"spreadExtreme":226}
+PASS H1b acid-gfx 主题兑现（暗底 mean<80 / 纸底 mean>180） | mean=20.46
+PASS H2 acid-gfx exposureEnds（clip/dark 两端 <10，未糊死）
+PASS H1' art-nouveau contrast 网页版（p99.5-p0.5≥100 且 σ≥18） | {"mean":233.39,"sigma":23.04,"darkPct":0,"clipPct":0,"midPct":3.23,"p5":230,"p95":244,"spread":14,"p2":149,"p98":244,"spread298":95,"p05":51,"p995":244,"spreadExtreme":193}
+PASS H1b art-nouveau 主题兑现（暗底 mean<80 / 纸底 mean>180） | mean=233.39
+PASS H2 art-nouveau exposureEnds（clip/dark 两端 <10，未糊死）
+PASS H1' dark-academia contrast 网页版（p99.5-p0.5≥100 且 σ≥18） | {"mean":27.4,"sigma":18.23,"darkPct":0,"clipPct":0,"midPct":3.67,"p5":20,"p95":33,"spread":13,"p2":20,"p98":82,"spread298":62,"p05":20,"p995":177,"spreadExtreme":157}
+PASS H1b dark-academia 主题兑现（暗底 mean<80 / 纸底 mean>180） | mean=27.4
+PASS H2 dark-academia exposureEnds（clip/dark 两端 <10，未糊死）
+PASS H3 三风格截图逐帧互异 | 3c73295a0bfc811f,ca01144d3ced679b,d166291fb514a05c
+
+== visual: 40 PASS / 0 FAIL ==
+stats: {"acid-gfx":{"mean":20.46,"sigma":36.1,"darkPct":0.02,"clipPct":0,"midPct":2.71,"p5":11,"p95":41,"spread":30,"p2":11,"p98":228,"spread298":217,"p05":11,"p995":237,"spreadExtreme":226},"art-nouveau":{"mean":233.39,"sigma":23.04,"darkPct":0,"clipPct":0,"midPct":3.23,"p5":230,"p95":244,"spread":14,"p2":149,"p98":244,"spread298":95,"p05":51,"p995":244,"spreadExtreme":193},"dark-academia":{"mean":27.4,"sigma":18.23,"darkPct":0,"clipPct":0,"midPct":3.67,"p5":20,"p95":33,"spread":13,"p2":20,"p98":82,"spread298":62,"p05":20,"p995":177,"spreadExtreme":157}}

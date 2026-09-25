@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T03:00+08:00",
+  "updated": "2026-09-26T04:00+08:00",
   "tried": [
     {
       "skill": "sites:sites-building",
@@ -203,6 +203,20 @@
       "conclusion": "留用（3D/游戏化交互产物唯一路径）。两条技能文档常数在真实渲染下是错的：①graphics-quality.md 的后期链缺 OutputPass ⇒ 成品比修复版暗 3–6 倍（消融实测 文档链 15.06/brightPct 0 vs +OutputPass 65.95/80.40；游戏内三风格比值 0.306/0.247/0.163）；②SSAO 写死 16/0.005/0.1 在技能自己建议的正交顶视机位（near .1/far 2000）下整帧纯黑，按深度缩到 2/2e-4/4e-3 才可见、但一个像素都不改变（121.71 vs 121.71）且多花 1.59× 三角面——合规但无收益，两条方向式断言已钉住。真实缺陷 7 处：themes.js 模块作用域引用未导入的 THREE（白屏零日志）、对象池 Mesh 与数据记录混用、isOnPath 拿格坐标比世界折线（96 格里 53 格误判成路径、左半场一格建不了）、pathMesh.scale.y 连 y 偏移一起压把路面埋进底板、索敌用三维距离使视觉走路抖动经 theme.seed 泄漏进玩法（F 组跨风格等价当场抓住，改 xzDist 后三风格 400 秒全通逐字段相等）、曜岩夜景 meanLuma 18.68/darkPct 51.38、lives 扣成 -1",
       "artifacts": "artifacts/20260926-03-build-game-tower-defense/（6.0MB：3 离线单文件 756,500/756,502/756,501B + cdn/ 三形态 75,5xxB + index.html 对照入口 + previews/ 12 PNG + src/ 4 件 + scripts/ 10 件含 check-result.json 220 条逐条结果）",
       "report": "reports/20260926-03-build-game-tower-defense.md"
+    },
+    {
+      "skill": "sites:sites-building",
+      "scenario": "多页站点（虚构「云泽唱片」厂牌橱窗：首页/全目录(JS筛选排序空态)/唱片详情(求和总长)/关于 四页目录式静态导出，4页×3风格=12HTML+3CSS，80.5KB）",
+      "styles": [
+        "酸性平面 acid-gfx",
+        "新艺术 art-nouveau",
+        "暗学院 dark-academia"
+      ],
+      "time": "2026-09-26T04:00+08:00",
+      "reason": "★排队项：references/static-site.md 的静态导出与路由条款（目录式多页/spa:false 语义/SPA fallback 陷阱/打包限制/保留命名空间）前 4 轮全是单页从未实测；零安装零网络可自主完成",
+      "conclusion": "留用（第 5 次通过）。静态 37 + 真浏览器 40 断言全绿。三风格 DOM+内联JS 逐字节一致（sha 断言），风格 100% 在 CSS 层且色板两两零交集。路由探针组最有价值：自建目录索引禁用服务器实锤 /releases/ 目录URL→404 而站内 13 个显式文件链接全 200；python http.server 对同一目录URL返回200——本地预览会给多页站发假绿灯，验收必须用显式文件链接+探针服务器。缺陷3处由断言抓出：D11 口算期望 43:31 实为 41:31（改双向核对）、F2 抓到 8 处裸十六进制违反色板全走变量（修补时 ;/} 两种终结符致 replace 漏网 1 处，grep 复查抓到）、H/contrast 游戏式子(σ>30&&mid%>10)在扁平网页三风格全假失败（墨色像素<5%，p5-p95 只量到背景噪声13-41），最终重定义为 p99.5-p0.5≥100 && σ≥18 + 主题兑现分支（实测 226/193/157 全过）。未验：prepare_site 真实 spa 参数（属 hosting 链路需授权）",
+      "artifacts": "artifacts/20260926-04-sites-building-multipage-site/",
+      "report": "reports/20260926-04-sites-building-multipage-site.md"
     }
   ],
   "skills_seen": [
@@ -216,7 +230,7 @@
       "name": "sites:sites-building",
       "source": "Qoder 内置插件 qoder.sites",
       "path": "/Applications/Qoder CN.app/Contents/Resources/extensions/qoder.sites/cli/sites/skills/sites-building/SKILL.md",
-      "status": "已用于 14:00 落地页、15:00 仪表盘、19:00 定价页（与 vercel 叠加）、23:00 个人主页，四次均留用。属「设计主张型 + 设计纪律型」：无色板库/组件/图模板，三种风格全靠现写（本轮三页 37,928 字符）；Simple site 路径（单路由、无持久数据、无鉴权、无外部服务）= 纯 HTML/CSS/JS、零构建、零依赖、单文件 14-16KB，是内容型单页当前最优解；references 里 Capability 五篇 50,529B 与 Simple site 无关（只用到 visual-design 4,181B + static-site 4,678B）；「Polished 不授权额外路由/表单/搜索/分享/鉴权/持久化」是全实验室唯一能把产物做小的条款，与 vercel 系列取向相反，叠加时必须先定谁让步"
+      "status": "已用于 14:00 落地页、15:00 仪表盘、19:00 定价页（与 vercel 叠加）、23:00 个人主页、04:00 多页站点，五次均留用。属「设计主张型 + 设计纪律型」：无色板库/组件/图模板，三种风格全靠现写（本轮三页 37,928 字符）；Simple site 路径（单路由、无持久数据、无鉴权、无外部服务）= 纯 HTML/CSS/JS、零构建、零依赖、单文件 14-16KB，是内容型单页当前最优解；04:00 证实扩展到目录式多页(4页×3风格80KB)仍零依赖，但链接必须显式 xxx/index.html（目录索引禁用），且「Polished 不授权额外路由」只禁自作主张加页不禁用户点名要多页；references 里 Capability 五篇 50,529B 与 Simple site 无关（只用到 visual-design 4,181B + static-site 4,678B）；「Polished 不授权额外路由/表单/搜索/分享/鉴权/持久化」是全实验室唯一能把产物做小的条款，与 vercel 系列取向相反，叠加时必须先定谁让步"
     },
     {
       "name": "frontend-development",
@@ -442,9 +456,22 @@
       "artifact_size": "6.0MB（限额 50MB；单文件 756KB < 1MB 上限已由 J 组断言）",
       "cleanup": "删 LAB/.tmp（build/node_modules 56MB + 13 个探针脚本，内容已抄进报告 §9）与 /tmp 临时 PNG；无 dist/构建缓存留在场景目录；未起 http.server；技能目录零写入",
       "push": "已提交并推送：git@github.com:sunc-Q/frontend-skill.git main 分支 41f499e..f13e1c7（SSH 走 ssh.github.com:443，本次 known_hosts 已有条目、无需新建 LAB/.tmp；命令与文件零 token，未动全局 git 配置）。提交物=3 份单文件游戏（inline 形态 756KB×3）+ cdn/ 形态 3 份 + index.html + previews 12 张 PNG 与两份 shots JSON + src 四件 + scripts 全套（build/make-index/check + check-result.json 220/220 + build-sizes.json + ledger-snapshot.json + cdn-form-probe 与其 JSON）+ report（13 节，含 §9 探针抄录）+ work-log 行 + state 台账，共 37 文件 24576 插入；随后补记本条推送结果"
+    },
+    {
+      "time": "2026-09-26T04:00+08:00",
+      "skill": "sites:sites-building",
+      "scenario": "多页站点",
+      "result": "success",
+      "artifact_size": "80.5KB（15 文件，最大单文件 8.7KB）",
+      "cleanup": "删 .tmp 全部（build/check/visual 三脚本+截图+输出已先抄送 reports/20260926-04-.../；playwright-core node_modules 一并删）；4317/4318/4319 三探针服务器均由脚本自关，ps 复查无残留监听；场景目录内零 node_modules/dist；未改技能目录",
+      "push": "待补"
     }
   ],
   "next_candidates": [
+    "★ 把网页版曝光口径（p99.5-p0.5≥100 && σ≥18 + 主题兑现）移植回 graphic-gif 与 ppt-generator 轮横检：它们同样是平色块主导媒介，游戏版 mid% 口径此前可能一直在假失败或假通过",
+    "★ 用「目录索引禁用探针+零根绝对路径」式子复查 23:00 个人主页与 14:00 落地页历史产物（低成本回归）",
+    "ascii-project-dashboard × 项目进度看板（唯一未试装的本地页面类技能，纯 ASCII 看板，与 work-log 真实形态自指）",
+    "sites:sites-building × 活动报名页（与 20:00 React 轮同场景零框架对照，排队中）",
     "★ build-game × 第三人称动作/RPG（验 game-systems.md 的状态机/对话/任务系统；把本轮 pass.label + material.type + getHex(SRGBColorSpace) 三件取证配方直接移植过去，避免重踩压缩后类名与线性色空间）",
     "★ build-game × 参考图驱动（SKILL.md 宣称支持 reference images，本轮未用；第一问=位图如何被转成程序化材质，以及能否断言「参考图的色板出现在产物里」）",
     "★ 把 H/contrast（帧 σ>30 且 mid%>10）+ H/exposureEnds（clipped/dark<10）两条式子移植回 graphic-gif 与 ppt-generator 轮做横检：本轮极冠首版 meanLuma 216.8/σ23 整屏泛白只有这条式子抓得到，历轮 GIF/PPT 同样有「亮但糊」的风险",
@@ -456,7 +483,6 @@
     "ppt-generator × charts_index bestFor/avoidFor 选图决策断言",
     "ppt-generator × svg_quality_checker.py/batch_validate.py 黑盒对垒",
     "★ 三条式子（色板封闭+七指纹+零交集）移植回 14/16/17/18 轮历史产物横检",
-    "★ sites:sites-building × 多页站点（references/static-site.md 静态导出与 SPA 路由条款至今未验）",
     "三技能叠加 sites-building+vercel-react+drafter：反膨胀条款 vs 分包懒加载条款是否互斥",
     "vercel-react × 真 Next.js 工程吃 RSC 专属 server-*（3 条）",
     "跨技能：graphic-gif 产出的 GIF 作为 sites-building 落地页素材（动图入静态站，验证两技能产物互喂）",
@@ -524,7 +550,10 @@
     "黄黑硬框跑马灯 brutalist-gif",
     "日光苔原 sunlit-moss",
     "曜岩熔脉 obsidian-lava",
-    "极冠晶塔 arctic-glass"
+    "极冠晶塔 arctic-glass",
+    "酸性平面 acid-gfx",
+    "新艺术 art-nouveau",
+    "暗学院 dark-academia"
   ],
   "environment_notes": [
     "本机无法直连 GitHub raw 与 skills.sh（curl exit 35 / WebFetch fetch failed），外部落地技能持续不可用",
@@ -606,6 +635,10 @@
     "mesh.scale 会连同顶点偏移一起缩放：TubeGeometry 顶点在 y=0.45、scale.y=0.12 ⇒ 路面沉到 0.054±0.132 被底板（顶 0.4）整条埋掉，三个主题的路面材质（含自发光熔缝）白写。几何要放在 y=0，高度用 mesh.position.y 表达；配「路面顶 > 底板顶 + 0.05 且 < +0.35」断言",
     "格点/世界两套坐标混用是静默缺陷：isOnPath(cx,cz) 拿格坐标与世界空间折线比、阈值还是世界单位 CELL*0.95 ⇒ 96 格里 53 格误判成路径、可建造格 43 个全在右半场（leftBuild=0、覆盖列 6/12），缩略图上只表现为「左边有点空」。防线：把走廊写成可机检式子（走廊格数 15–35 && 左右两半各 >5 格可建 && 覆盖列数==GRID_W && 垫块实例数==总格数−走廊格数）",
     "readPixels 前必须先 render：同一 JS 任务里 composer.render() 紧跟 readPixels 才拿得到帧，否则整屏 0 值会被当成「画面全黑」；探针里 Vector3.project(camera) 把世界点投到帧坐标再取色，是判定「某物件到底看不看得见」的最省事手段（本轮用它证伪了一次「左半场没有垫块」的误读——真实原因只是我把缩放后的缩略图看成空白）",
-    "台账类断言一律写成「快照 + 增量 == 现值」（沿用 00:00 轮定式，本轮 G 组 8 条再次验证写回前 7 红 / 写回后全绿）；skills_seen 用「同名先删后插」更新，避免同一技能累积多条 status:未试 的过期条目"
+    "台账类断言一律写成「快照 + 增量 == 现值」（沿用 00:00 轮定式，本轮 G 组 8 条再次验证写回前 7 红 / 写回后全绿）；skills_seen 用「同名先删后插」更新，避免同一技能累积多条 status:未试 的过期条目",
+    "browser-use 面板 hidden 时连纯同步 evaluate_script（document.URL）也 15s 超时；静态页面复核可靠路径=本机 playwright-core(npmmirror 装)+chromium-1148 缓存 --allow-file-access-from-files，30 秒完成 3 风格×4 页点击交互+全页截图",
+    "H/contrast 式子移植结论：游戏帧 σ>30&&mid%>10 在扁平网页必假失败（背景面积主导、墨色像素<5%，p5-p95 跨度仅 13-41 全是背景噪声）；网页版=p99.5-p0.5≥100 && σ≥18，另列主题兑现（暗底 mean<80/纸底 mean>180）。GIF/PPT 等平色块产物同理，别直接搬游戏口径",
+    "多页静态站验收默认项：自建「目录索引禁用」探针服务器断言站内全部真实路径 200 且目录URL 404；python http.server 会给目录URL发 200 假绿灯（掩盖生产语义），SPA fallback 模式则对缺失路径返回 200+首页HTML（200≠加载正确）",
+    "断言期望值防口算：求和类断言用「独立 reduce == 被测函数 == 字面量」双向核对（本轮口算 43:31 实为 41:31）；CSS 字面量修补注意 ;/} 两种终结符，replace 后必须 grep 复查"
   ]
 }
