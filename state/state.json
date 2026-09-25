@@ -1,10 +1,14 @@
 {
-  "updated": "2026-09-25T16:40:00+08:00",
+  "updated": "2026-09-25T17:45:00+08:00",
   "tried": [
     {
       "skill": "sites:sites-building",
       "scenario": "落地页（landing page）",
-      "styles": ["瑞士极简", "玻璃极光", "新粗野主义"],
+      "styles": [
+        "瑞士极简",
+        "玻璃极光",
+        "新粗野主义"
+      ],
       "time": "2026-09-25T14:00+08:00",
       "reason": "内置技能，唯一可在无网络安装、无用户确认前提下走通的页面构建路径；Simple site 分支零依赖零构建",
       "conclusion": "留用。产物 72KB/4 文件全自包含，本地预览校验通过；发现并修复共用 Markdown 渲染器的引用行分支缺陷（esc 先行导致 /^>/ 永不匹配）",
@@ -14,7 +18,11 @@
     {
       "skill": "sites:sites-building",
       "scenario": "仪表盘（订阅收入看板，working surface）",
-      "styles": ["深色密集分析", "报纸排版", "复古终端"],
+      "styles": [
+        "深色密集分析",
+        "报纸排版",
+        "复古终端"
+      ],
       "time": "2026-09-25T15:00+08:00",
       "reason": "台账排队项；市场 9 个仪表盘技能全部未安装且 install_extension 强制用户确认，GitHub/skills.sh 仍不可达，故沿用唯一可自主调用的内置技能换新场景",
       "conclusion": "继续留用。同一 DOM + 逐字节相同的 JS 换三套 CSS 即得三种成立风格；交互（范围/区域/排序/搜索/悬停读数）实测生效。自查修复 3 处：JS 语法错误致整页空白（vm.Script 定位）、月流失率 12 个月窗口算出 111.8% 的口径失真、交易表未跟随时间范围过滤。限制：IDE 浏览器面板 hidden 导致无像素级截图，仅用计算样式断言替代",
@@ -24,15 +32,39 @@
     {
       "skill": "frontend-development",
       "scenario": "数据报表（个人站流量与作品表现月报：KPI + 趋势 + 渠道表 + 页面明细 + 洞察）",
-      "styles": ["暖纸数据新闻 editorial", "冷灰对账单 statement", "暗色霓虹 cyber"],
+      "styles": [
+        "暖纸数据新闻 editorial",
+        "冷灰对账单 statement",
+        "暗色霓虹 cyber"
+      ],
       "time": "2026-09-25T16:00+08:00",
       "reason": "台账 next_candidates 首项；用户已把该技能装入 ~/.qoder-cn/skills/ 故无需安装与确认；与前两轮构成跨 skill 对照（真框架工程 vs 零依赖单文件）。工具链靠 registry.npmmirror.com 打通（Vite 8.3.1 + Vue 3.5 + Pinia 3 + TS 5.9 strict）",
       "conclusion": "留用（该技能第 1 次通过）。属「规范型」技能：features/{api,components,hooks,helpers,types} 结构、strict TS 无 any、shallowRef、350ms 防抖、typed props/emits、不用早期 return 等条款在 Vue 3 上全部可直接落地；strict + noUncheckedIndexedAccess 直接暴露并修掉 12 处真实缺陷。但它不提供任何视觉主张（唯一样式指引绑定 MUI sx/theme.palette），React 专属条款约占 70% 篇幅（React.FC/useSuspenseQuery/SuspenseLoader/useMuiSnackbar/~features 别名/MUI v7 Grid）需逐条判为不适用——三风格仍须自行定主张，建议与 sites-building 或 vercel-react-best-practices 组合使用。产物 552KB；数据口径 36 项断言全 PASS（渠道合计=日合计、加权跳出率=KPI、ratio-of-sums、跨区间同日数值一致），KPI 与表格交叉核对一致",
       "artifacts": "artifacts/20260925-16-frontend-development-report/",
       "report": "reports/20260925-16-frontend-development-report.md"
+    },
+    {
+      "skill": "vercel-react-best-practices",
+      "scenario": "管理后台（虚构「Beacon 信标」短链服务运营后台：总览 KPI+14 日趋势+Top5+事件流 / 60 行短链表：搜索+状态筛选+三向排序+行展开+停用+两步删除 / API 密钥脱敏显隐复制吊销 / 服务设置表单校验+localStorage 持久化）",
+      "styles": [
+        "商务白 business",
+        "单色暗 mono",
+        "95 桌面 win95"
+      ],
+      "time": "2026-09-25T17:00+08:00",
+      "reason": "台账 next_candidates 首项（★）。React 栈是该 skill 主场，与 frontend-development 叠加验证「两个规范型技能是否互补」。工具链 React 19.3 + Vite 7.3.6 + TS 5.9.3 strict + vite-plugin-singlefile 2.3.3，全走 registry.npmmirror.com",
+      "conclusion": "留用（第 1 次通过，可判定型）。13/57 条规则能在纯 React+Vite 静态产物上直接落地并核对到文件（js-index-maps / js-combine-iterations / js-tosorted-immutable / js-min-max-loop / js-hoist-regexp / rendering-hoist-jsx / client-localstorage-schema + js-cache-storage / rerender-functional-setstate / rerender-transitions / rerender-memo / rerender-dependencies / rerender-lazy-state-init / rendering-conditional-render / advanced-event-handler-refs / bundle-barrel-imports）；async-*/server-*/client-swr-dedup/bundle-dynamic-imports 绑定 Next.js+RSC+SWR，纯静态产物下不适用，已显式标注。4 个真实缺陷：(1) Vite build.lib 的 IIFE 不注入 process.env.NODE_ENV define，浏览器顶层 ReferenceError 致页面静默全白且控制台零报错，vm 桩执行才定位；修 define 后 bundle 676KB→245KB；(2) inline 模板漏 BeaconAdmin.mount（lib-IIFE 不自挂载）；(3) 主题 CSS 误排在 base.css 之前，同特异性被反向覆盖，mono 的 radius:0 与 win95 整套斜角边框全部失效——只有真实浏览器 getComputedStyle 能发现，jsdom 不做样式层叠（实测返回 rgba(0,0,0,0)），已加拼接顺序回归断言；(4) 自己违反 skill 精神把 setTimeout/onConfirm 写进 state updater，改为纯 updater + confirmRef。产物三页 243,433 字节 JS 逐字节相同、仅换 CSS，980KB，jsdom 39 断言 ×3 + 风格/级联 24 断言全绿，删 node_modules+dist 后 verify.sh 从零 33s 复现。关键冲突：本 skill 的 js-early-exit 与 frontend-development 的「禁早期 return」直接互斥，两规范型 skill 叠加前必须先解冲突。",
+      "artifacts": "artifacts/20260925-17-vercel-react-best-practices-admin/",
+      "report": "reports/20260925-17-vercel-react-admin.md"
     }
   ],
   "skills_seen": [
+    {
+      "name": "vercel-react-best-practices",
+      "source": "用户 2026-09-25 15 时段装入 ~/.qoder-cn/skills/（上游 vercel-labs/agent-skills）",
+      "path": "/Users/apple/.qoder-cn/skills/vercel-react-best-practices/SKILL.md",
+      "status": "已用于 17:00 管理后台并留用。缺陷：安装目录只有 SKILL.md，文中引用的 rules/*.md 与 AGENTS.md 均不存在，57 条只有一行摘要可用；纯性能规范、零视觉主张；js-early-exit 与 frontend-development 的「禁早期 return」直接冲突"
+    },
     {
       "name": "sites:sites-building",
       "source": "Qoder 内置插件 qoder.sites",
@@ -130,17 +162,39 @@
       "artifact_size": "552KB（3 页双击版各 114KB + 源码 128KB + 配置/lock）",
       "cleanup": "删 node_modules 75MB、dist/、.single/、.preview.log、.tmp/{probe,single,kh,inline.mjs}；8098/8099 两个 http.server 已按端口 PID 核对后 kill；check-consistency.mjs 内容已抄进 reports 文档后再删临时目录；实验室合计约 740KB，单场景 552KB ≪ 50MB",
       "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（HTTPS 被 TLS 重置，改走 ssh.github.com:443 + 127.0.0.1:7897 代理；空仓库首推，无 token 出现在命令中）"
+    },
+    {
+      "time": "2026-09-25T17:00+08:00",
+      "skill": "vercel-react-best-practices",
+      "scenario": "管理后台",
+      "result": "success",
+      "artifact_size": "980KB（3 页各 248KB + 源码 92KB + 校验脚本 28KB + 配置）",
+      "cleanup": "删 node_modules 102MB（含临时 --no-save 的 jsdom）+ dist/ + .npm-install.log + .jsdom.log；8123 端口 python3 -m http.server 先 ps 核对命令行再 kill，端口已关；实验室合计约 1.7MB，单场景 980KB ≪ 50MB",
+      "push": "待填"
     }
   ],
   "next_candidates": [
-    "★ vercel-react-best-practices × 管理后台（React 栈，与 frontend-development 叠加验证「规范型技能组合」）",
-    "frontend-development × 管理后台（同 skill 换场景，检验其在多表单/权限界面上是否仍够具体）",
-    "frontend-development × 数据报表（React 版，与本轮 Vue 版做同 skill 跨框架对照）",
-    "sites:sites-building × 个人主页（杂志排版 / 极简黑白 / 赛博霓虹之外，避开已用 9 种风格）",
-    "sites:sites-building × 定价页（玻璃拟态 / 复古像素 / 瑞士极简）",
-    "（需用户授权）市场技能 ui-ux-pro-max × 数据报表"
+    "★ vercel-react-best-practices × 落地页（内容型页面检验它是否只剩 bundle-* 可用；与首轮 sites-building 落地页做同场景跨 skill 对照）",
+    "vercel-react-best-practices + sites:sites-building 叠加 × 定价页（验证「性能规范 + 设计规范」是否互补无冲突，风格避开已用 12 种）",
+    "frontend-development × 管理后台（同场景换 skill，与本轮做正面对照：同一后台谁给的条款更可落地）",
+    "sites:sites-building × 个人主页（杂志排版 / 极简黑白 / 赛博霓虹之外，避开已用 12 种风格）",
+    "（需用户授权）市场技能 ui-ux-pro-max × 数据报表",
+    "（待解）js-early-exit vs frontend-development「禁早期 return」冲突：下一轮若再叠加两者，需在报告里明确择一并说明"
   ],
-  "used_styles": ["瑞士极简", "玻璃极光", "新粗野主义", "深色密集分析", "报纸排版", "复古终端", "暖纸数据新闻", "冷灰对账单", "暗色霓虹"],
+  "used_styles": [
+    "瑞士极简",
+    "玻璃极光",
+    "新粗野主义",
+    "深色密集分析",
+    "报纸排版",
+    "复古终端",
+    "暖纸数据新闻",
+    "冷灰对账单",
+    "暗色霓虹",
+    "商务白 business",
+    "单色暗 mono",
+    "95 桌面 win95"
+  ],
   "environment_notes": [
     "本机无法直连 GitHub raw 与 skills.sh（curl exit 35 / WebFetch fetch failed），外部落地技能持续不可用",
     "extension-market 的 install_extension 强制用户确认，定时无人值守运行不得安装；用户本人亦持「装技能须逐项确认」偏好",
@@ -152,6 +206,11 @@
     "Vite 多入口产物是 ES Module，file:// 下不执行（前两轮单文件产物双击可用，这轮不行）：另建 vite.single.config.ts 用 inlineDynamicImports 单入口构建，再把 JS/CSS 内联成单文件版",
     "把 JS/CSS 内联进 HTML 时，String.replace 的替换串里 $' / $& / $` 会被展开——必须传 replacer 函数，否则文档自我复制且页面静默不渲染（无控制台报错）",
     "browser-use evaluate_script 内含 await 的调用常 15s 超时（页面侧其实已执行）：断言写成同步、交互与读结果分两次调用",
-    "github.com 的 HTTPS 被 TLS 重置，但 SSH 可用：~/.ssh/config 已让 github.com 经 ssh.github.com:443 + 127.0.0.1:7897 代理，id_ed25519 认证为 sunc-Q；known_hosts 写到实验室内 .tmp/kh 以免越界改文件"
+    "github.com 的 HTTPS 被 TLS 重置，但 SSH 可用：~/.ssh/config 已让 github.com 经 ssh.github.com:443 + 127.0.0.1:7897 代理，id_ed25519 认证为 sunc-Q；known_hosts 写到实验室内 .tmp/kh 以免越界改文件",
+    "Vite build.lib 的 IIFE 产物不会自动替换 process.env.NODE_ENV：React/react-dom 为 CJS 双构建时会留裸 process 引用，浏览器里顶层 ReferenceError 使整页静默空白且控制台零报错（list_console_messages 也拿不到）。必须显式 define: { process.env.NODE_ENV: \"production\" }，bundle 还能再瘦 2/3。定位手段：node -e vm.runInContext(内联脚本) 配桩 DOM",
+    "build.lib IIFE 只暴露全局对象（var BeaconAdmin=…），不会自挂载：内联模板必须自己追加 <script>BeaconAdmin.mount(document.getElementById(\"root\"))</script>，否则 root 为空",
+    "多份 CSS 拼进同一个 <style> 时顺序即层叠优先级：主题层必须在结构层之后，否则同特异性的 .kpi/.avatar 等规则被反向覆盖。jsdom 的 getComputedStyle 不做样式层叠（返回 rgba(0,0,0,0)），此类缺陷只能靠真实浏览器计算样式或「拼接顺序」显式断言发现",
+    "IDE 内置浏览器面板 hidden 时（document.visibilityState=hidden / innerWidth=0）：evaluate_script 里 dispatchEvent 触发的 React 更新不会 flush 到 DOM，click 工具报 NATIVE_BROWSER_VIEWPORT_UNAVAILABLE，连 getComputedStyle 都可能 15s 超时——不是应用 bug。交互验证一律改走 jsdom（runScripts:dangerously + pretendToBeVisual + 等 rAF tick），浏览器只留给不需要事件的计算样式复核；恢复办法是重新 navigate_page（不带 ignoreCache）",
+    "jsdom 版交互断言范式：input 赋值须用 Object.getOwnPropertyDescriptor(win.HTMLInputElement.prototype,\"value\").set.call(el,v) 再 dispatchEvent(new win.Event(\"input\",{bubbles:true}))；React 提交要等帧，统一 await tick(n)（requestAnimationFrame 递归）；toast 取最后一个（querySelectorAll 末尾），面板类选择器要限定作用域避免命中隐藏的其他分区"
   ]
 }

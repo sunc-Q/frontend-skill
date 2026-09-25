@@ -1,0 +1,40 @@
+/* 风格 1 · 商务白：浅色企业风，蓝色强调，12px 栅格感 */
+:root {
+  --bg: #eef1f6;
+  --panel: #ffffff;
+  --panel-side: #1b2537;
+  --ink: #17212f;
+  --muted: #5b6a80;
+  --faint: #93a1b5;
+  --accent: #2563eb;
+  --on-accent: #ffffff;
+  --good: #15803d;
+  --bad: #b91c1c;
+  --warn: #b45309;
+  --hover: #e6ebf3;
+  --hair: 1px solid #e2e8f0;
+  --card-border: 1px solid #d7dfea;
+  --btn-border: 1px solid #c4cfdd;
+  --side-border: 1px solid #0f1621;
+  --detail-bg: #f6f8fb;
+  --input-bg: #ffffff;
+  --toast-bg: #17212f;
+  --toast-ink: #f5f8ff;
+  --toast-shadow: 0 8px 24px rgb(23 33 47 / 0.28);
+  --btn-bg: #f4f6fa;
+  --radius: 6px;
+  --side-w: 228px;
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 28px;
+  --font-sans: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --fs-xs: 11.5px; --fs-sm: 13px; --fs-base: 14px; --fs-h1: 18px; --fs-h2: 15px; --fs-kpi: 26px;
+  --ls-h1: 0.01em; --ls-caps: 0.08em; --ls-brand: 0.02em;
+  --kpi-caps: uppercase;
+}
+.side .brand-name, .side .nav-btn { color: #dbe4f0; }
+.side .brand-name { color: #ffffff; }
+.side .nav-btn:hover { background: #263450; color: #ffffff; }
+.side .nav-btn--on { background: var(--accent); color: #ffffff; }
+.side .theme-badge { color: #7ea6ff; }
+.side .dim { color: #6d7f9c; }
+.env-pill { border-style: dashed; }

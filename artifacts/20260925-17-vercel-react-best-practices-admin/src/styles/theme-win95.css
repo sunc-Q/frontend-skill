@@ -1,0 +1,63 @@
+/* 风格 3 · 95 桌面：灰底凸起边框、蓝标题条、MS 风格配色、像素感 */
+:root {
+  --bg: #c0c0c0;
+  --panel: #dcdcdc;
+  --panel-side: #c0c0c0;
+  --ink: #111111;
+  --muted: #3c3c3c;
+  --faint: #6f6f6f;
+  --accent: #000080;
+  --on-accent: #ffffff;
+  --good: #006400;
+  --bad: #7f0000;
+  --warn: #8a5a00;
+  --hover: #d4d0c8;
+  --hair: 1px solid #9a9a9a;
+  --card-border: 2px solid;
+  --btn-border: 2px solid;
+  --side-border: 2px solid;
+  --detail-bg: #d0d0d0;
+  --input-bg: #ffffff;
+  --toast-bg: #ffffe1;
+  --toast-ink: #111111;
+  --toast-shadow: 2px 2px 0 #000000;
+  --btn-bg: #c9c9c9;
+  --radius: 0;
+  --side-w: 212px;
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px;
+  --font-sans: Tahoma, 'Microsoft YaHei', 'SimSun', 'Pixel MS Sans Serif', sans-serif;
+  --font-mono: 'Courier New', ui-monospace, monospace;
+  --fs-xs: 11px; --fs-sm: 12px; --fs-base: 12.5px; --fs-h1: 15px; --fs-h2: 13px; --fs-kpi: 22px;
+  --ls-h1: 0; --ls-caps: 0; --ls-brand: 0.03em;
+  --kpi-caps: none;
+}
+.panel, .kpi, .table, .search, .seg, .form {
+  border-color: #ffffff #404040 #404040 #ffffff;
+  box-shadow: inset -1px -1px 0 #808080, inset 1px 1px 0 #dfdfdf;
+}
+.btn, .nav-btn, .seg-btn {
+  border-color: #ffffff #404040 #404040 #ffffff;
+  box-shadow: inset -1px -1px 0 #808080;
+}
+.btn:active, .nav-btn:active { border-color: #404040 #ffffff #ffffff #404040; box-shadow: none; }
+.field input:not([type='checkbox']) {
+  border: 2px solid;
+  border-color: #404040 #ffffff #ffffff #404040;
+  box-shadow: inset 1px 1px 0 #808080;
+}
+.topbar {
+  background: linear-gradient(90deg, #000080 0%, #1084d0 100%);
+  color: #ffffff;
+  border-bottom: 2px solid #404040;
+}
+.topbar h1 { color: #ffffff; }
+.env-pill { border-color: #ffffff; color: #ffffff; background: #000080; }
+.avatar { background: #c0c0c0; color: #000080; border: 2px solid; border-color: #ffffff #404040 #404040 #ffffff; }
+.side .brand-name { color: #000020; }
+.nav-btn { color: #1c1c1c; background: #c9c9c9; }
+.nav-btn--on { background: #000080; color: #ffffff; border-color: #ffffff #404040 #404040 #ffffff; }
+.nav-btn:hover { background: #d8d8d8; }
+.side .dim, .side .theme-badge { color: #383870; }
+.table th { background: #c9c9c9; }
+.pill { background: #c9c9c9; }
+.toast { border: 1px solid #000000; }

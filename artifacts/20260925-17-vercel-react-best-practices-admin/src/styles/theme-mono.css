@@ -1,0 +1,42 @@
+/* 风格 2 · 单色暗：纯黑白灰，等宽标签，直角细线，零彩色（状态靠字重/符号） */
+:root {
+  --bg: #0d0d0d;
+  --panel: #141414;
+  --panel-side: #0a0a0a;
+  --ink: #e8e8e8;
+  --muted: #8a8a8a;
+  --faint: #5c5c5c;
+  --accent: #e8e8e8;
+  --on-accent: #0d0d0d;
+  --good: #b7b7b7;
+  --bad: #f2f2f2;
+  --warn: #9a9a9a;
+  --hover: #1f1f1f;
+  --hair: 1px solid #262626;
+  --card-border: 1px solid #2e2e2e;
+  --btn-border: 1px solid #3a3a3a;
+  --side-border: 1px solid #262626;
+  --detail-bg: #101010;
+  --input-bg: #0d0d0d;
+  --toast-bg: #e8e8e8;
+  --toast-ink: #0d0d0d;
+  --toast-shadow: 0 0 0 1px #e8e8e8;
+  --btn-bg: #171717;
+  --radius: 0;
+  --side-w: 216px;
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 18px; --sp-5: 32px;
+  --font-sans: ui-monospace, 'SF Mono', Menlo, Consolas, 'Courier New', monospace;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --fs-xs: 11px; --fs-sm: 12.5px; --fs-base: 13.5px; --fs-h1: 15px; --fs-h2: 13px; --fs-kpi: 30px;
+  --ls-h1: 0.14em; --ls-caps: 0.16em; --ls-brand: 0.2em;
+  --kpi-caps: uppercase;
+}
+.topbar { text-transform: lowercase; }
+.pill, .env-pill, .scope { border-radius: 0; }
+.spark { color: #ffffff; opacity: 0.75; }
+.bar { background: #d4d4d4; }
+.bar:hover { background: #ffffff; }
+.kpi { border-left: 2px solid #3a3a3a; }
+.row--on { box-shadow: inset 3px 0 0 #ffffff; }
+.avatar { border-radius: 0; }
+.btn--primary { letter-spacing: 0.08em; }

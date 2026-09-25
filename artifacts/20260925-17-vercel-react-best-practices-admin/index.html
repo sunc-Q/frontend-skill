@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Beacon 运营后台 · 三风格对照</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; padding: 40px 24px 64px; font: 15px/1.7 -apple-system, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; background: #f7f7f8; color: #1c1c1e; }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  h1 { font-size: 24px; margin: 0 0 6px; letter-spacing: .01em; }
+  .lead { color: #6b6b70; margin: 0 0 28px; }
+  .card { display: block; text-decoration: none; color: inherit; background: #fff; border: 1px solid #e3e3e6; border-radius: 12px; padding: 18px 20px; margin-bottom: 14px; }
+  .card:hover { border-color: #2563eb; box-shadow: 0 6px 20px rgba(20,20,30,.07); }
+  .row { display: flex; align-items: baseline; gap: 12px; }
+  .name { font-size: 17px; font-weight: 650; }
+  .sw { display: inline-flex; gap: 4px; margin-left: auto; }
+  .sw i { width: 26px; height: 26px; border-radius: 6px; border: 1px solid rgba(0,0,0,.12); display: block; }
+  p { margin: 8px 0 0; color: #55555c; font-size: 14px; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; background: #f0f0f2; padding: 1px 5px; border-radius: 4px; }
+  .note { margin-top: 26px; font-size: 13px; color: #6b6b70; border-top: 1px dashed #dcdce0; padding-top: 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Beacon 短链服务 · 运营后台</h1>
+  <p class="lead">同一份 React 19 构建产物（IIFE bundle 逐字节相同），只替换 CSS 变量与主题层，得到三种彼此不混淆的风格。</p>
+
+  <a class="card" href="preview/admin-business.html">
+    <span class="row"><span class="name">1 · 商务白</span>
+      <span class="sw"><i style="background:#eef1f6"></i><i style="background:#1b2537"></i><i style="background:#2563eb"></i></span></span>
+    <p>浅色企业风：深藏青侧栏 + 白面板 + 蓝强调，6px 圆角、大写小标签，<code>--fs-kpi:26px</code>。</p>
+  </a>
+
+  <a class="card" href="preview/admin-mono.html">
+    <span class="row"><span class="name">2 · 单色暗</span>
+      <span class="sw"><i style="background:#0d0d0d"></i><i style="background:#141414"></i><i style="background:#e8e8e8"></i></span></span>
+    <p>零彩色终端感：全站等宽字体、直角（radius 0）、大写字距 0.16em，状态只靠字重与符号表达。</p>
+  </a>
+
+  <a class="card" href="preview/admin-win95.html">
+    <span class="row"><span class="name">3 · 95 桌面</span>
+      <span class="sw"><i style="background:#c0c0c0"></i><i style="background:#000080"></i><i style="background:#ffffe1"></i></span></span>
+    <p>复古系统风：灰底斜角边框（凸起/凹陷两套）、蓝渐变标题条、Tahoma、取消大写、气泡提示为淡黄。</p>
+  </a>
+
+  <div class="note">
+    页面均可直接双击打开（<code>file://</code> 下可交互），或在本目录执行 <code>python3 -m http.server</code> 预览。<br />
+    四个分区（总览 / 短链管理 / API 密钥 / 服务设置）共用同一组件树，含搜索、筛选、排序、行展开、两步删除、密钥显隐与复制、表单校验。
+  </div>
+</div>
+</body>
+</html>
