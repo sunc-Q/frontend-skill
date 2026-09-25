@@ -1,0 +1,139 @@
+# SQLite-Database-Expert 验证日志   2026-09-25 18:45 +08:00
+
+$ df -k . | tail -1
+/dev/disk1s2   118284248 78278988  20319912    80% 1235732 203199120    1%   /System/Volumes/Data
+
+$ node -v  (node:sqlite 提供 FTS5+JSON1)
+v22.23.2
+
+【为什么不用 sqlite3 CLI】本机唯一 sqlite3 = /Users/apple/Android/Sdk/platform-tools/sqlite3 (3.50.6)，精简构建：
+  CREATE VIRTUAL TABLE t USING fts5(x)  ->  Error: stepping, no such module: fts5
+  PRAGMA compile_options                ->  空输出（连编译选项都不暴露）
+  => 技能 §4.4 的 FTS5 路线在该 CLI 上直接不可用；改用 Node 内置 node:sqlite (SQLite 3.51.3, FTS5 可用)
+
+===== 生成前 =====
+build-db.mjs
+lab.db
+lab.db-shm
+lab.db-wal
+output.log
+query.mjs
+verify-report.txt
+verify.mjs
+
+===== node build-db.mjs =====
+applied 001_runs
+applied 002_notes_fts
+seeded runs = 3
+seeded notes = 181 / rows = 181
+journal_mode = wal
+BUILD OK
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+===== 生成后：lab.db 落盘 =====
+-rw-r--r--  1 apple  staff  299008 Sep 25 18:41 lab.db
+
+===== sqlite_master 结构 =====
+  index   idx_runs_skill
+  index   sqlite_autoindex__migrations_1
+  index   sqlite_autoindex_notes_1
+  index   sqlite_autoindex_runs_1
+  table   _migrations
+  table   notes
+  table   notes_tri
+  table   notes_tri_config
+  table   notes_tri_data
+  table   notes_tri_docsize
+  table   notes_tri_idx
+  table   notes_u61
+  table   notes_u61_config
+  table   notes_u61_data
+  table   notes_u61_docsize
+  table   notes_u61_idx
+  table   runs
+  table   sqlite_sequence
+  trigger notes_ad
+  trigger notes_ai
+  trigger notes_au
+
+===== node verify.mjs (14 项断言) =====
+sqlite = 3.51.3   notes = 181   runs = 3
+
+=== E1  FTS5 vs LIKE  (skill §8: "LIKE for Search" is a mistake, FTS5 MATCH is correct) ===
+query        | LIKE | u61(MATCH) | trigram(MATCH) | plan(LIKE)
+安全闸门         | 4    | 3          | 4
+known        | 1    | 1          | 1
+p5           | 13   | 12         | 0
+ab           | 21   | 0          | 0
+安全           | 5    | 0          | 0
+evidence  unicode61 misses on '安全闸门': ["row 22 (reports/20260925-1723-drafter.md:17) \"## 安全闸门结论\""]
+evidence  unicode61 misses on 'p5': ["row 139 (reports/20260925-1810-algorithmic-art.md:35) \"mkdir -p $LAB/.tmp/p5x\""]
+PASS | E1.1 LIKE full-scans the table; FTS5 MATCH goes through the index (skill §8 claim) | LIKE plan=[SCAN notes]  MATCH plan=[SCAN notes_tri VIRTUAL TABLE INDEX 0:M1]
+PASS | E1.2 unicode61 (the skill default) matches WHOLE TOKENS ONLY: embedded hits silently lost | '安全闸门': LIKE=4 MATCH=3 (1 漏);  'p5': LIKE=13 MATCH=12 (漏 p5x) — 中文整段连成一个 token，嵌在长串里的词一律查不到
+PASS | E1.3 trigram MATCH == LIKE for phrases of >=3 chars | trigram=4 LIKE=4
+PASS | E1.4 trigram cannot match queries shorter than 3 chars (its own limit) | '安全'(2 chars): LIKE=5 trigram=0 — trigram 需 ≥3 字符
+
+=== E1b external-content FTS needs triggers or a rebuild (skill §4.4 trigger pattern) ===
+PASS | E1b triggerless insert desyncs index (MATCH=0 while table has 1) | before=0 after=0 table=1
+PASS | E1b REBUILD resyncs the index | after rebuild MATCH=1
+
+=== E2  Parameterized vs concatenated SQL (skill §2.1 / §4.2 / §5.3) ===
+PASS | E2.1 parameterized malicious input: 0 rows, schema intact | rows=0 runsTableExists=1
+PASS | E2.2 concatenated input really drops the table (so the rule is not cargo-cult) | sqlite_master rows for runs after concat = 0
+
+=== E3  PRAGMA foreign_keys default is OFF (skill §2.2 / §8) ===
+PASS | E3.1 FK OFF accepts an orphan run_id | inserted 1 orphan
+PASS | E3.2 FK ON rejects the same row | rejected: FOREIGN KEY constraint failed
+PASS | E3.3 declared FK actually exists on notes.run_id | ["run_id->runs.id"]
+
+=== E4  "Commit per row (100x slower)" (skill §7.1 Pattern 2) ===
+PASS | E4 one transaction is far faster than autocommit per row (and >=1x, claim direction holds) | per-statement=103.0ms  single-tx=6.3ms  speedup=16.2x  rows=4000
+  note: node:sqlite has no per-row COMMIT knob here, so this measures transaction batching, not literally the 100x claim
+
+=== E5  Persistent PRAGMAs (skill §4.1 / §7.1 Pattern 1) ===
+PASS | E5.1 WAL survives reopening the file (journal_mode is persistent) | journal_mode=wal on a read-only reopen
+PASS | E5.2 file mode / size sane for a records db | 299008 bytes, page_size=4096
+
+SUMMARY: 14 assertions, 0 FAIL
+(node:15591) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+
+===== 产物即工具：node query.mjs <关键词> <条数> (FTS5 trigram + bm25 + highlight) =====
+$ node query.mjs "安全闸门" 3
+query="安全闸门"  engine=FTS5 trigram + bm25  hits=3
+  reports/20260925-1737-ascii-project-dashboard.md:15  ## [安全闸门]
+  reports/20260925-1723-drafter.md:17  ## [安全闸门]结论
+  reports/20260925-1723-drafter.md:23  （三条 cron 时间槽 + 10 步单轮执行流 + [安全闸门] + 文件化记忆台账 + 去重契约 + 分支隔离与推送约束）。
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+$ node query.mjs "TLS 重置" 3
+query="TLS 重置"  engine=FTS5 trigram + bm25  hits=1
+  reports/20260925-1810-algorithmic-art.md:36  curl -sSL -o $LAB/.tmp/p5.tgz https://registry.npmmirror.com/p5/-/p5-1.7.0.tgz   # cdnjs 被 [TLS 重置]，只能走 npm 镜像
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+$ node query.mjs "known-hosts" 3
+query="known-hosts"  engine=FTS5 trigram + bm25  hits=0
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+===== 落盘核对 =====
+build-db.mjs
+lab.db
+lab.db-shm
+lab.db-wal
+output.log
+query.mjs
+verify-report.txt
+verify.mjs
+360K	.
+
+===== node maintain.mjs （技能 §7.1 Pattern 5 空闲期维护，作用在最终产物 lab.db 上） =====
+size 299008 -> 299008 bytes, freelist_count=0, journal_mode 重新确认为 WAL
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+===== 收尾：干净关闭后 -wal/-shm 已删除，产物只留 lab.db =====
+build-db.mjs
+lab.db
+maintain.mjs
+output.log
+query.mjs
+verify.mjs
+328K	.

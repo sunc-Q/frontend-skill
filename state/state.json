@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T18:25:00+08:00",
+  "updated": "2026-09-25T18:42+08:00:00",
   "tried": [
     {
       "skill": "drafter",
@@ -36,6 +36,17 @@
       "time": "2026-09-25T18:10+08:00",
       "artifact": "demos/20260925-1810-algorithmic-art/art-index.html",
       "report": "reports/20260925-1810-algorithmic-art.md",
+      "installed_by_this_task": []
+    },
+    {
+      "skill": "SQLite-Database-Expert",
+      "source": "来源③本机已装：~/.qoder-cn/skills/SQLite-Database-Expert/SKILL.md (v2.0.0, 963 行, 无脚本无网络) —— 本轮零安装零联网",
+      "skill_path": "/Users/apple/.qoder-cn/skills/SQLite-Database-Expert/SKILL.md",
+      "task": "按它的设计意图（本地数据持久化 + FTS5 全文检索 + TDD 验证）把本流水线自己的台账建成可检索库：runs 表←state.json(tried×runs 3 行)、notes 表←work-log+reports 逐行 181 行、_migrations 迁移表 + 2 个 up/down、两张并列 FTS5 外部内容表(notes_u61 默认 unicode61 / notes_tri trigram) 各带 ai/ad/au 触发器，再产出 query.mjs 检索 CLI（bm25 + highlight + 源文件:行号）",
+      "verdict": "留用。价值不在代码样板（Rust/Python/@libsql-client 三套在本机一套都跑不了：无 pip、无 better-sqlite3、sqlite3 CLI 无 FTS5），而在**可证伪的工程纪律**：14/14 断言全 PASS 并给出查询计划/触发器实验/注入对照/FK 开关/事务计时的真实数字，其中两条被证伪夸大或补全：(a) §7.1「逐行提交慢 100x」实测 108.6ms vs 8.2ms = 13.2x（node:sqlite 根本没有逐行 COMMIT 开关，100x 无从复现）；(b) 它建 FTS5 表**只字不提 tokenizer**，实测默认 unicode61 对中文是「整段一个 token」→ 静默漏检（'安全闸门' LIKE=4 MATCH=3，漏的是 '## 安全闸门结论'；'ab' LIKE=21 MATCH=0），trigram 能补但 <3 字符失效（'安全' 两字词 0 命中）。缺陷：§0 强制必读的 references/advanced-patterns.md 与 references/security-examples.md **包内根本不存在**（死链，第 2 轮 muscle script 同类问题）；frontmatter risk_level HIGH 与正文 Risk Level MEDIUM 自相矛盾。",
+      "time": "2026-09-25T18:42+08:00",
+      "artifact": "demos/20260925-1845-sqlite-database-expert/lab.db",
+      "report": "reports/20260925-1845-sqlite-database-expert.md",
       "installed_by_this_task": []
     }
   ],
@@ -100,8 +111,8 @@
       "name": "本机已装未试（后端向）",
       "source": "~/.qoder-cn/skills/",
       "url": "",
-      "status": "candidate",
-      "note": "sec-audit-cn / SQLite-Database-Expert / golang-testing / golang-gin-api / nodejs-best-practices / express-nodejs-expert / Golang-Backend-Development / golangci-lint-strict / vercel-react-best-practices / skill-push —— 产物类型偏「命令输出/审计报告」，与本轮图表类、兄弟实验室页面类互补"
+      "status": "candidate(部分已用)",
+      "note": "已试：SQLite-Database-Expert(第4轮,留用) / drafter 等市场件。剩余：sec-audit-cn / golang-testing / golang-gin-api / nodejs-best-practices / express-nodejs-expert / Golang-Backend-Development / golangci-lint-strict / vercel-react-best-practices / skill-push / frontend-development —— 产物类型偏「命令输出/审计报告」"
     },
     {
       "name": "skills.sh / GitHub awesome-skills 外部仓库",
@@ -193,22 +204,37 @@
       "url": "academy-guide, brand-guidelines, canvas-design, claude-api, discernment-nudge, doc-coauthoring, docx, frontend-design, internal-comms, mcp-builder, pdf, pptx, skill-creator, slack-gif-creator, theme-factory, web-artifacts-builder, webapp-testing, xlsx",
       "status": "candidate",
       "note": "已 clone 到本地、零安装成本。canvas-design(出 PNG/PDF，需 PIL，本机 python3 无 PIL 且 pip 未验证)、slack-gif-creator(动图 GIF，需 PIL+requirements.txt)、theme-factory(给产物套 10 套主题，纯提示词，含 theme-showcase.pdf 现成参照)、pdf/docx/pptx/xlsx(Office 文档全家桶)、webapp-testing(浏览器自动化测试)、mcp-builder(造 MCP server) —— 下轮优先 theme-factory 或 webapp-testing 或 xlsx（避开依赖 PIL/pip 的两个）。"
+    },
+    {
+      "name": "node:sqlite（本机可用运行时，非技能）",
+      "source": "Node v22.23.2 内置模块，无需安装",
+      "url": "",
+      "status": "working_source",
+      "note": "**SQLite 类技能的落地路线**：自带 FTS5 + JSON1（SQLite 3.51.3），零 npm、零网络。对比之下本机唯一 sqlite3 CLI=/Users/apple/Android/Sdk/platform-tools/sqlite3 (3.50.6) 无 FTS5、PRAGMA compile_options 空。下轮做数据库/检索类产物直接用它，别再探测 CLI。"
+    },
+    {
+      "name": "SQLite FTS5 中文分词（技术结论，供后续任何检索需求复用）",
+      "source": "本轮实测",
+      "url": "",
+      "status": "reference",
+      "note": "默认 unicode61 把连续 CJK 并成单个 token → 子串/前缀一律查不到且**静默返 0**；tokenize='trigram' 等价子串匹配(=LIKE)但要求查询 ≥3 字符；中文自由文本要「双索引(trigram 兜底 + u61 保词边界/bm25)」或外部 ICU/simple 分词。另：highlight()/bm25() 不接受 FTS5 表别名，必须真实表名。"
     }
   ],
   "in_progress": [],
   "next_candidates": [
-    "★ theme-factory（已 clone 在本地，纯提示词零依赖）× 给本轮 Cron Organicism 页面或 drafter 蓝图套一层 10 套预设主题，产物 = 换肤后的 HTML，换「主题/风格系统」类",
-    "★ webapp-testing（已 clone）× 拿它给自己本轮 art-index.html 写一轮真实浏览器回归，产物 = 测试脚本 + 通过输出，换「自动化测试」类",
-    "★ xlsx / docx / pptx（已 clone）× 用 state.json 台账生成一份真实的 .xlsx 轮次报表或 .pptx 幻灯，产物 = 二进制办公文档，换「Office 文件生成」类（先验 python 依赖是否可装）",
-    "SQLite-Database-Expert（本机已装，零安装）× 建小库跑 FTS 全文检索 work-log，产物 = .db + output.log，换「数据库实验」类",
-    "sec-audit-cn（本机已装）× 审计 demos/ 产物或 portfolio 后端，产物 = 分级审计报告 .md，换「安全审计」类",
-    "doge（ASCII 字符画 official_A9htirhV）/ kbravh-svg-logo-creator（纯 SVG 产物）—— ASCII 类已做过 2 次，SVG 类尚未做过，优先 SVG",
-    "canvas-design / slack-gif-creator —— 依赖 PIL，本机 python3 无 PIL；先花 2 分钟验 pip 是否可用（且不得污染全局），不可用直接记 blocked"
+    "★ webapp-testing（已 clone 在 LAB/.skills/anthropic-skills/skills/webapp-testing，零安装）× 给本轮 lab.db 的检索 CLI 或第 3 轮 art-index.html 写真实浏览器/端到端回归，产物 = 测试脚本 + 通过输出，换「自动化测试」类",
+    "★ theme-factory（已 clone，纯提示词）× 给 lab.db 的查询结果或第 1 轮蓝图套 10 套主题之一，产物 = 换肤 HTML，换「主题/风格系统」类",
+    "★ sec-audit-cn（本机已装，零安装）× 审计 demos/ 下的 Node 脚本与 lab.db 访问路径，产物 = 分级审计报告 .md，换「安全审计」类",
+    "★ golang-testing / golang-gin-api（本机已装）× 用 GOPROXY=https://goproxy.cn,direct 建一个表驱动测试的最小 Go 包，产物 = `go test -v` 输出日志，换「Go 后端」类（注意 go 是否安装：先 `which go`）",
+    "xlsx / docx / pptx（已 clone）× 用 state.json 台账生成真实办公文档，产物 = 二进制 .xlsx/.docx —— 需先验 python/openpyxl 或 npm 依赖能否装（npm 走 npmmirror），未验",
+    "doge / kbravh-svg-logo-creator / svg-generator-pro（官方市场）× 纯 SVG 产物（本实验室尚未做过 SVG 类）",
+    "canvas-design / slack-gif-creator —— 依赖 PIL，本机 python3 无 PIL，先花 2 分钟验 pip，不可用直接记 blocked"
   ],
   "used_artifact_kinds": [
     "单文件自包含 HTML 图表（工程图纸）×1",
     "纯文本终端 ASCII 看板（.txt，零依赖）×1",
-    "单文件自包含 HTML 生成艺术（p5 内联，可交互+种子可复现）×1"
+    "单文件自包含 HTML 生成艺术（p5 内联，可交互+种子可复现）×1",
+    "SQLite 数据库文件 .db（FTS5 全文检索库）+ 可执行检索 CLI + 14 条断言日志 ×1"
   ],
   "environment_notes": [
     "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
@@ -230,7 +256,12 @@
     "browser-use evaluate_script 有 15s 硬超时：单次调用只允许一次重绘/一次重量级扫描（p5 重绘 ~4s）。超时不等于失败——页面侧仍会跑完，补一次只读探针取终态即可判定。",
     "生成艺术「构图」要可量化：用 10 段横向 ink 直方图判定死区，比看缩略图可靠。第 1 版三条带中心 0.25/0.5/0.75 + 垂直步长 0.72 → 顶/底带 ink=473/34；改 0.2/0.5/0.8 + 步长 0.92 → 1675/321，十条带全部有墨。",
     "本机 python3 存在（sandbox_runtime 里）但无 PIL 模块；依赖 Pillow 的技能（canvas-design / slack-gif-creator）在验证 pip 可用性之前一律先当作不可用。",
-    "磁盘开工水位：可用 20450308 KB ≈ 19.5 GiB（>1.5 GiB 阈值），收尾 20439412 KB ≈ 19.5 GiB。本轮 demos 1.0MB（限 5MB），LAB 总 17MB（含 .skills 16MB 未入库）。"
+    "磁盘开工水位：可用 20450308 KB ≈ 19.5 GiB（>1.5 GiB 阈值），收尾 20439412 KB ≈ 19.5 GiB。本轮 demos 1.0MB（限 5MB），LAB 总 17MB（含 .skills 16MB 未入库）。",
+    "sqlite3 CLI（Android platform-tools 3.50.6）**无 FTS5**：CREATE VIRTUAL TABLE … USING fts5 → 'no such module: fts5'，PRAGMA compile_options 空输出。要 FTS5/JSON1 就用 Node 内置 `node:sqlite`（Node v22.23.2 → SQLite 3.51.3，支持 fts5+trigram+bm25+highlight，仅报 ExperimentalWarning，零安装零联网）。",
+    "node:sqlite 三条 API 坑（本轮实测）：(1) 参数绑定要 `stmt.all(...args)`，传数组当单参会 `Unknown named parameter '0'`；(2) FTS5 专属函数 highlight()/bm25() **不接受表别名**（`FROM notes_tri t … highlight(t,…)` → no such column: t），必须写真实表名；(3) ESM 里 `new URL('./x', import.meta.url).pathname` 在中文目录下返回 percent-encoded 路径 → ENOENT，必须 fileURLToPath()。",
+    "zsh 里 `rm -f a* b*`：任一个 glob 无匹配就整条命令 `no matches found` 失败并中断 && 链（本轮清理临时库踩到）。清理一律显式列文件名。",
+    "Write 工具落 JS 文件时，JSON 里的 \\\" 会写成裸 \"：放进普通单引号串无害，放进**模板字符串**就语法错（本轮 2 次：'rebuild' 与 r.\"from\"）。落 JS 时避免模板串内嵌引号，或改用 python heredoc 改写。",
+    "磁盘开工水位：可用 20407692 KB ≈ 19.5 GiB（>1.5 GiB 阈值）；本轮无重活依赖。"
   ],
   "runs": [
     {
@@ -269,6 +300,17 @@
       "push": "已推送：fetch 后确认远端 36cf63d 是本地 HEAD 祖先 → 普通 push origin skill-showcase 成功 36cf63d..e3e940e；无 --force、无 --no-verify；main / go-gin_react 未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
       "installed_by_this_task": [],
       "notes": "来源②首次打通（SSH clone anthropics/skills）。31 项断言全 PASS：结构 12 / 构图渲染 7 / 可复现与交互 8 / 附加 4。技能招牌「same seed ALWAYS identical」被逐像素哈希证实（regenerate 同哈希 3746692814-22500、nextSeed 变、previousSeed 与 reset 均精确复原）。暴露并绕过 4 个坑：CDN 被 TLS 重置→npm 镜像取 p5 内联；线性跨步像素探针假阴性；viewport 0×0 触发响应式假阴性需 320px 离屏容器；SKILL.md 要求 Download PNG 键但自带模板缺失（按 SKILL.md 补齐）。沙箱浏览器不落盘 → PNG 导出只验到调用链，已如实记录。 | 收尾核查：git status 干净、远端 skill-showcase=032a911（=本地 HEAD）、main 与 go-gin_react 未触碰（远端仍 1da8a14 / 53153f4）、LAB 18MB(其中 .skills 16MB 未入库)、demos 本轮 1.0MB、磁盘可用 20434424 KB≈19.5GiB。"
+    },
+    {
+      "time": "2026-09-25T18:42+08:00",
+      "skill": "SQLite-Database-Expert",
+      "result": "success",
+      "seconds": 780,
+      "artifact_size": "lab.db 299008B + build-db.mjs 4.7KB + verify.mjs 9.2KB + query.mjs 1.2KB + maintain.mjs ~0.7KB + output.log ~6KB = demos 本轮 328KB（限 5MB）",
+      "cleanup": "已删 LAB/.tmp/{fk.db,fts-desync.db,bench.db}*（安全实验临时副本）、lab.db-wal / lab.db-shm（干净关闭后残留）、verify-report.txt（内容已并入 output.log）、probe.mjs（逻辑并入 verify.mjs）；零 node_modules、零 npm 安装、零编译二进制、未起任何本地服务（收尾 lsof LISTEN=11 与开工一致，全属既有进程）；本轮**未安装任何全局技能**（installed_by_this_task 为空）、全局缓存未动、除 LAB 外未改任何文件",
+      "push": "PENDING",
+      "installed_by_this_task": [],
+      "notes": "14 断言 / 0 FAIL（E1 查询计划与 tokenizer 4 项 / E1b 触发器失同步+rebuild 2 项 / E2 注入 2 项 / E3 外键 3 项 / E4 事务提速 1 项 / E5 持久 PRAGMA 2 项）。关键量化：unicode61 对 '安全闸门' 漏 1/4（'## 安全闸门结论'）、'p5' 漏 1/13（p5x）、'ab' LIKE=21→MATCH=0；trigram 4/4 与 LIKE 相等但 '安全'(2 字符)=0；单事务 8.2ms vs 逐语句 108.6ms = 13.2x（推翻技能「100x」量级）；FK OFF 收孤儿行 / ON 报 FOREIGN KEY constraint failed；VACUUM freelist=0 尺寸不变 299008B。两轮 FAIL 的真相是我自己的预设错了（以为 unicode61 中文全盲，实为整词精确匹配）——已按真实行为重写断言并把差集行取证写进 output.log。包缺陷：§0 必读的 references/advanced-patterns.md、references/security-examples.md 在包内不存在；frontmatter risk_level=HIGH vs 正文 MEDIUM 自相矛盾。"
     }
   ]
 }
