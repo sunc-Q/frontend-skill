@@ -262,10 +262,10 @@
       "template_created": false,
       "disk": {
         "df_k_avail_before": 20114960,
-        "df_k_avail_after": 20070416,
-        "lab_total_bytes_human": "11M（含 .git 3.5M，主提交后实测）",
+        "df_k_avail_after": 20068500,
+        "lab_total_bytes_human": "11M（含 .git 3.5M，两次记录回写后终值）",
         "scenario_dir_human": "1.4M",
-        "note": "开工 df -k . 可用 20,114,960KB ≈ 19.2GiB，收工 20,070,416KB ≈ 19.1GiB，全程远高于 1.5GiB 熔断线；二进制与运行库全部建在 /tmp 并已删（38MB 级），web/node_modules 已删，共享缓存未动；收工 lsof 复核 8092/8093/8097/8098/8099 监听数 0，git status 干净"
+        "note": "开工 df -k . 可用 20,114,960KB ≈ 19.2GiB，收工 20,068,500KB ≈ 19.2GiB，全程远高于 1.5GiB 熔断线；二进制与运行库全部建在 /tmp 并已删（38MB 级），web/node_modules 已删，共享缓存未动；收工 lsof 复核 8092/8093/8097/8098/8099 监听数 0，git status 干净"
       },
       "volume": {
         "go_files": 16,
@@ -318,7 +318,8 @@
     "**单写者事务铁律（第 5 轮，代价最大的一次）**：DSN 带 txlock(immediate) 且 SetMaxOpenConns(1) 时，`Transaction(func(tx *gorm.DB))` 闭包内**任何**查询都必须走 `tx`；用 `r.db` 去查（本轮是查当日订单号流水）会去抢那条已被事务独占的唯一连接 → 直接死锁，症状是测试包 `FAIL ... 600.448s` 并 dump `connectionOpener` goroutine，看起来像 SQL 错误其实是连接饥饿。订单号唯一冲突的重试也因此必须放在同一个事务闭包里（计数 + 重算 + 重建，≤5 次）。",
     "browser-use 升级版（第 5 轮）：含**无限 CSS 动画**的主题页，**导航后第一次 getComputedStyle 即使只取一个属性也会 15s 超时**；稳定节奏是「导航 → 先跑一个纯计数表达式（如 querySelectorAll(...).length）暖机 → 再逐次单属性取值」。点击/输入这类会触发重渲染的动作必须与取值拆成两次调用，且动作那次允许超时。",
     "Bash 工具里 `cd \"中文路径\" && ...` 形式会被转义破坏（报 `no such file or directory`，路径里的中文变成 \\M-xx 序列）。改用工具的 `dir_path` 参数，或全程用相对路径。",
-    "复核种子数字的干净办法（第 5 轮）：不要在交付用的运行库上做 COUNT，另起一次性实例 `/tmp/xxx-check` + `/tmp/xxx.db`（同端口号递增避让），用 `~/Android/Sdk/platform-tools/sqlite3` 跑 `select count(*) ...`，随后 kill 并删库——这样 README/work-log 里写的行数是实测值而不是记忆值（本轮因此把「245 条明细」纠正为 458 条 / 731 份）。"
+    "复核种子数字的干净办法（第 5 轮）：不要在交付用的运行库上做 COUNT，另起一次性实例 `/tmp/xxx-check` + `/tmp/xxx.db`（同端口号递增避让），用 `~/Android/Sdk/platform-tools/sqlite3` 跑 `select count(*) ...`，随后 kill 并删库——这样 README/work-log 里写的行数是实测值而不是记忆值（本轮因此把「245 条明细」纠正为 458 条 / 731 份）。",
+    "browser-use 第 5 轮：内置浏览器面板**不支持指针事件**（`click` 直接报 `NATIVE_BROWSER_VIEWPORT_UNAVAILABLE`，viewport=0x0 / visibilityState=hidden），但 `take_snapshot` 与 `evaluate_script` 可用 → 页面内动作要在 evaluate_script 里 `element.click()` 派发（先按 textContent 精确匹配找按钮，别靠下标：看板列的第一个 button 是订单卡片本身，最后一个才是动作按钮），派发动作与读取结果仍要拆两次调用。另外预览页的**管理令牌存在 localStorage**，换场景后会残留旧值 → 第一次写操作必然 403 闪「管理令牌无效」，这是既成设计（fail-closed）而不是 bug，取证时先 localStorage.setItem 再重载。"
   ],
   "next_candidates": [
     "医院门诊排班与挂号",

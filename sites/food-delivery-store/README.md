@@ -113,6 +113,11 @@ node scripts/style-probe.js http://127.0.0.1:8092
 任意两两对比在字体族、背景色、圆角、内边距、边框上均有 ≥3 项互异（sport 与 blueprint 虽同为零圆角，
 但字体族/底色/内边距/标题下边框样式四项不同）。
 
+页面写路径也在浏览器里真跑通过一次（一次性实例，收工删库，不影响上面的 preview 文件）：
+看板上的「→ 制作中」按钮 → `POST /api/admin/orders/:id/status` → `FD20260925-0001` 由 `placed` 变 `cooking`，
+`/api/stats` 同步 `placed 3→2 / cooking 3→4`。顺带在浏览器里复现了 403 路径：
+令牌字段读的是 `localStorage['biz-site-admin-token']`，残留旧令牌时点按钮直接闪「管理令牌无效（forbidden）」且数据不变。
+
 ## 本轮踩到的坑
 
 1. **单连接事务内绝不能用 `r.db`**：`SetMaxOpenConns(1)` 下，`PlaceOrder` 的事务里若用 `r.db` 查当日流水号，
@@ -130,7 +135,9 @@ node scripts/style-probe.js http://127.0.0.1:8092
 6. **动画页的 evaluate_script 极不稳定**：主题页含无限 CSS 动画，一次调用放 3 个属性以上必 15s 超时，
    即便单属性也可能在刚导航完时超时。可靠节奏是：导航 → 先跑一个纯计数表达式「暖机」 →
    再逐次单属性取 `getComputedStyle`；点击类「动作」与取值的「读取」必须拆成两次调用，
-   取值以 `take_snapshot` 无障碍树为准。
+   取值以 `take_snapshot` 无障碍树为准。内置浏览器面板还不支持指针事件（`click` 报
+   `NATIVE_BROWSER_VIEWPORT_UNAVAILABLE`），页面内动作只能在 `evaluate_script` 里 `element.click()` 派发，
+   并且要按 `textContent` 精确匹配按钮——看板每一列的第一个 `button` 是订单卡片本身，最后一个才是动作按钮。
 7. 中文路径下 `cd "…"` 形式的 Bash 命令会被转义破坏（`no such file or directory`），改用工具的 `dir_path` 参数。
 
 ## 已知遗留
