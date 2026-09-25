@@ -1,0 +1,76 @@
+{
+  "updated": "2026-09-25T18:20:00+08:00",
+  "tried": [
+    {
+      "time": "2026-09-25T18:15:00+08:00",
+      "scenario": "SaaS 订阅经营后台",
+      "slug": "saas-subscription-admin",
+      "styles": ["瑞士网格", "复古 Win95", "暗色霓虹 cyber"],
+      "result": "成功：后端 go test 3包含义测试全绿 + 逐接口 curl 全通过（含鉴权矩阵与 409 状态机）+ 三风格单文件 preview 实机渲染 23 行数据且零外链",
+      "code_dir": "sites/saas-subscription-admin/{backend,web}",
+      "artifact_dir": "sites/saas-subscription-admin/{web/dist,preview}"
+    }
+  ],
+  "used_scenarios": ["saas-subscription-admin"],
+  "used_styles": ["瑞士网格", "复古 Win95", "暗色霓虹 cyber"],
+  "runs": [
+    {
+      "id": "20260925-18",
+      "slug": "saas-subscription-admin",
+      "started": "2026-09-25T16:45:00+08:00",
+      "finished": "2026-09-25T18:20:00+08:00",
+      "scenario": "SaaS 订阅经营后台",
+      "styles": ["瑞士网格", "复古 Win95", "暗色霓虹 cyber"],
+      "template_created": true,
+      "disk": {
+        "df_k_avail_before": 20425872,
+        "df_k_avail_after": 20466968,
+        "lab_total_bytes_human": "2.7M",
+        "scenario_dir_human": "1.4M"
+      },
+      "volume": {
+        "go_files": 12,
+        "go_test_files": 3,
+        "test_packages_ok": 3,
+        "endpoints": 7,
+        "tables": 4,
+        "seed_rows": "5 plans / 126 subscribers / 126 subscriptions / 349+ payments",
+        "frontend_src_files": 11,
+        "theme_css_files": 3,
+        "dist_bundle_bytes": 284134,
+        "preview_files": 3,
+        "preview_each_bytes": 284679
+      },
+      "push": { "branch": "go-gin_react", "result": "pending", "note": "本轮首次建库：LAB 之前不是 git 仓库，需 git init -b go-gin_react 并推送" }
+    }
+  ],
+  "environment_notes": [
+    "Go 1.27.1 可用；GOPROXY=https://goproxy.cn,direct 正常，纯 Go 驱动 github.com/glebarez/sqlite 无需 CGO（本机无 Xcode CLT 也可编译）。",
+    "npm 必须 --registry=https://registry.npmmirror.com（实测 react+vite 全量安装约 64MB/30s 内）；不要用 npx，直接 ./node_modules/.bin/xxx。",
+    "GitHub / jsDelivr / raw.githubusercontent 的 HTTPS 被 TLS 重置，只有 git@github.com: SSH 可用。",
+    "Vite 多入口 ESM 产物在 file:// 下不执行 → 必须内联成单文件；file:// 的 Origin 是 null，本地 CORS 必须显式放行或改用 localhost 静态服务器。",
+    "内联脚本的坑：压缩后的 bundle 里合法含有 `<\\/script>`，用正则匹配脚本区会截断文件（本轮坏过一次：282KB 只写进 169KB，页面白屏）。必须按下标定位标签再切片，写盘后断言整段 JS 完整且只出现一次；另外 String.replace 替换串里的 $' 会自我复制文档，必须用 replacer 函数。",
+    "IDE 内置浏览器面板不可用（take_screenshot 拿不到），样式核对只能用 browser-use 的 evaluate_script + getComputedStyle；该工具偶发 15s 超时，把断言拆成单个短表达式（一次一个属性）比一次返回大对象可靠。",
+    "gin 在 STATIC_DIR 未配置分支里必须自己挂 NoRoute，否则未匹配的 /api/* 返回纯文本 404，前端 JSON 解析直接抛错。",
+    "sqlite3 CLI 在 ~/Android/Sdk/platform-tools/sqlite3（可用于导出 DDL 做复现文档）。",
+    "磁盘：可用约 19.5GiB（80% 已用），本轮结束未足；仍须每轮开工先 df -k .，低于 1.5GiB 只记录卡点不重构建。",
+    "绝不删除共享缓存 ~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache。"
+  ],
+  "next_candidates": [
+    "跨境电商商品详情+购物车",
+    "在线课程平台",
+    "健身俱乐部预约",
+    "餐饮外卖门店",
+    "医院门诊排班与挂号",
+    "物流运单跟踪",
+    "房产租赁管理",
+    "招聘 ATS 候选人流水线",
+    "图书馆馆藏与借阅",
+    "充电桩车队运营"
+  ],
+  "next_style_candidates": [
+    "暖纸编辑排版", "新粗野主义", "蒸汽波", "日式留白", "包豪斯原色",
+    "终端绿字 CRT", "苹果玻璃拟态", "孟菲斯几何", "报章密排", "莫兰迪色块",
+    "高对比荧光运动风", "等距轴测工业风", "手账纸质拼贴", "航空仪表盘", "乐高积木块面"
+  ]
+}

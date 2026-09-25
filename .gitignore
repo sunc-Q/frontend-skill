@@ -1,0 +1,21 @@
+# 依赖与构建中间物：一律不入库
+node_modules/
+.tmp/
+*.log
+*.db
+*.db-wal
+*.db-shm
+.DS_Store
+.vscode/
+
+# 注意：sites/<slug>/web/dist/ 与 sites/<slug>/preview/ 是交付产物，必须入库，
+# 因此这里不能用通用的 dist/ 规则；编译出的二进制用文件名排除。
+sites/*/backend/api
+sites/*/backend/server
+sites/*/backend/*.exe
+
+# 任意层级（sites/<slug> 与 templates/<骨架>）下编译出的后端二进制
+backend/api
+backend/server
+backend/*.exe
+data/
