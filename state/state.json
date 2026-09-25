@@ -239,7 +239,7 @@
       "result": "success",
       "artifact_size": "1.0MB（3 页各 265,274/265,610/266,379 字节双击可用 + styles.html 对照入口 + src + scripts 校验脚本全保留 + server/mock-api.mjs + 配置与 lock）",
       "cleanup": "删 node_modules 102MB + dist/ + dist-split/ + .tmp/（esbuild 预打包产物）+ .npm-install.log；8141 端口 mock-api 服务先 ps 核对命令行（PID 31327，本任务自起）再 kill，lsof 确认端口释放；校验脚本未删（故无需转录进文档）；单场景 1.0MB ≪ 50MB",
-      "push": "待回填"
+      "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 644fa74，01e0922..644fa74；本机 HTTPS 被 TLS 重置故走 SSH，实际经 ssh.github.com:443，主机键写入实验室 .tmp/known_hosts 后即删；命令与文件里无任何 token，.npmrc 只有 registry 地址，grep 复核过新增文件）"
     }
   ],
   "next_candidates": [
