@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T23:55:00+08:00",
+  "updated": "2026-09-26T01:10:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -78,6 +78,19 @@
       "result": "成功：4 表 10 接口（3 个 Bearer 写）。判分引擎唯一（种子与线上共用 GradeItem）+ 三分数恒等式对外公布为 identity_ok/identity_violations；multi 漏选半分、两套状态机、四道开考门、部分唯一索引允许作废后重考；手机号/答案/选项全 json:\"-\" 且 open 场次不公布干扰项分布。go build/vet/test 全绿（3 包 34 函数 80 用例，含本轮补的「逐个排序键必须 200」回归测试——它抓到一个真实的整页 500）；api-smoke pass=154 fail=0；三风格 preview（329,337/329,329/329,333B）实机同构：10 KPI / 20 表行 / 3 主题按钮 / 外链 0 完全一致，两两 31·30·28 项 / 37 个计算属性互异（style-probe.js + style-diff.py 可复跑取证）；UI 走完开考→作答→交卷→成绩条。过程中修复：名单默认排序误引用子查询不存在的 sc.score → 所有场次 500。场景 1.7M。",
       "code_dir": "sites/online-assessment-exam/{backend,web,scripts}",
       "artifact_dir": "sites/online-assessment-exam/{web/dist,preview}"
+    },
+    {
+      "time": "2026-09-26T01:10:00+08:00",
+      "scenario": "山宿云房 · 民宿房态日历经营台",
+      "slug": "homestay-booking-calendar",
+      "styles": [
+        "拟物工艺台历",
+        "等距轴测工业风",
+        "酸性夜场海报"
+      ],
+      "result": "成功：5 表 12 接口（4 个 ADMIN_TOKEN 写）+ 五级优先价/清洁缓冲/周末最少住/库存排他全部后端算，三条金额恒等式接口回布尔位；go build/vet/test 全绿（domain 17 个表驱动测试 + repository 种子自检 4 个 + server HTTP 矩阵 7 个）；api-smoke.sh 63 项断言 0 失败（含 401/403/503 三层 fail-closed、16KB 超长体、路径注入 404、状态机 409、停售往返）；三风格真无头 Chrome 取证：61 个计算属性两两互异 37~41 项、结构字段（364 日历格/30 订单行/1 内联 style/0 外链）三主题全等、控制台零错误；单文件 preview 各 309KB",
+      "code_dir": "sites/homestay-booking-calendar/{backend,web,scripts}",
+      "artifact_dir": "sites/homestay-booking-calendar/{web/dist,preview}"
     }
   ],
   "used_scenarios": [
@@ -86,7 +99,8 @@
     "cross-border-commerce",
     "online-course-platform",
     "food-delivery-store",
-    "online-assessment-exam"
+    "online-assessment-exam",
+    "homestay-booking-calendar"
   ],
   "used_styles": [
     "瑞士网格",
@@ -106,7 +120,10 @@
     "蓝图工程制图",
     "苹果玻璃拟态",
     "构成主义海报",
-    "手账纸质拼贴"
+    "手账纸质拼贴",
+    "拟物工艺台历",
+    "等距轴测工业风",
+    "酸性夜场海报"
   ],
   "runs": [
     {
@@ -354,6 +371,36 @@
         "commit": "6a4d771（场景主提交，44 文件）+ bbe14df（记忆回写：work-log/state/reports 3 文件）",
         "note": "git fetch origin go-gin_react → git rebase FETCH_HEAD（返回「Current branch go-gin_react is up to date」，无改写、无冲突）→ 普通 push，远端推进 **f0d5782..bbe14df**（2 笔）；未 --force、未 --no-verify、未碰 main（main 是另一个每小时任务在用）、未改任何全局 git 配置，身份只用 -c user.name=sunc-Q -c user.email=sunc-Q@users.noreply.github.com 内联；全程走 SSH 键（origin=git@github.com:sunc-Q/frontend-skill.git，HTTPS 在本机被 TLS 重置），命令行与文件里无任何 token/密钥；staged 文件名扫 node_modules|.db|.log|.tmp/|token|secret|.env 命中 0，内容扫私钥/GitHub PAT/AWS AK/password= 命中 0，仓库里出现的 ADMIN_TOKEN 字面量只有 2 个本地演示值（demo-admin-token、smoke-token）；本行记录的哈希只能由下一轮的收工补丁校正（本条回写本身还会再产生 1 笔提交）"
       }
+    },
+    {
+      "id": "20260926-00",
+      "slug": "homestay-booking-calendar",
+      "started": "2026-09-25T23:56:00+08:00",
+      "finished": "2026-09-26T01:10:00+08:00",
+      "scenario": "山宿云房 · 民宿房态日历经营台",
+      "styles": [
+        "拟物工艺台历",
+        "等距轴测工业风",
+        "酸性夜场海报"
+      ],
+      "template_created": false,
+      "disk": {
+        "df_k_avail_before": 19615144,
+        "df_k_avail_after": 19738520,
+        "lab_total_bytes_human": "15M（含 .git，本轮提交后终值）",
+        "scenario_dir_human": "1.7M（上限 5MB）：backend 228K + web(含 dist 320K) + preview 948K + scripts 66K",
+        "note": "开工 df 值取会话内最早观测（19,615,144KB≈18.7GiB），收工 19,738,520KB≈18.8GiB，全程远高于 1.5GiB 熔断线。删除：web/node_modules（64MB）、/tmp/hs-build/api（40MB 编译产物）、/tmp/hs-run.db{,-wal,-shm}、/tmp/hs-{api,static}.log、/tmp/hs-probe*.json、/tmp/hs-probe.mjs、/tmp/hs-{shot,pv}-*.png 6 张截图。共享缓存（~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache）未动，没有 go clean -cache/-testcache。进程按端口找 PID 并逐个 ps -o command= 核对：:18261=/tmp/hs-build/api、:18262=node scripts/serve-static.mjs，另清掉早先同库残留的 :18260 同二进制进程（都是本轮 /tmp/hs-build/api，确认后才 kill），收工 lsof 无 :1826x 监听。"
+      },
+      "verification": {
+        "go": "gofmt -l 空；go build/vet/test ./... 全绿（domain/repository/server 三包）",
+        "web": "tsc --noEmit 无错；vite build 产出 dist/assets/app.js 320KB（CSS 内联进 JS，无独立 css）",
+        "http": "scripts/api-smoke.sh：63 项断言 0 失败（读接口+三恒等式+隐私 / 错误路径 / 鉴权三层 / 写接口正反向 / 裸路径与目录穿越）",
+        "styles": "scripts/style-shoot.mjs（系统 Chrome + playwright-core，1280×1200）+ scripts/style-diff.py：互斥性 39/41/37 项不同（门槛 3），同构性 kpiCount=6、rowCount=30、calCellCount=364、rowCountCal=13、inlineStyles=1、inlineScripts=3、external=[] 三主题全等，consoleErrors 三主题全空"
+      },
+      "push": {
+        "branch": "go-gin_react",
+        "status": "见下方 commit 记录"
+      }
     }
   ],
   "environment_notes": [
@@ -388,7 +435,17 @@
     "第 6 轮：冒烟脚本自己要有**破坏性守卫**。本场景的状态机有终态（draft→open→closed），脚本第 6 节真的会把一个 draft 场次推到 closed，第二次跑期望值就全错（还容易误判成产品回归）。做法：脚本开头读一次该场次，状态不是 draft 就 ABORT 并提示「用 -seed 重灌临时库」，同时在 README 里写明这条前提。",
     "第 6 轮：测非 Bearer 认证头时，helper 不能无条件补 `Bearer `（`Basic zz` 会变成 `Bearer Basic zz` → 永远 403，401 分支测不到）。约定 `RAW:` 前缀表示整串就是 Authorization 头值；另外「缺头 / 非 Bearer 方案 / 只有前缀」三种 401 要分开断言。",
     "第 6 轮：三风格取证做成可复跑的两个文件而不是肉眼比：`scripts/style-probe.js`（浏览器内一次返回 37 个计算属性 + 结构不变量）+ `scripts/style-diff.py`（两两比较，要求每对 ≥3 项互异）。**必须同时断言两类指标**：互斥性（每对差异 ≥3）与同构性（kpiCount/rowCount/主题按钮数/外链数三主题完全相同）——只看前者会漏掉「偷偷复制三份组件」这种违规。注意 evaluate_script 的返回值可能被 MCP 再编码成字符串，比较脚本要容忍「JSON 里再套一层 JSON」。",
-    "第 6 轮（复现并加固）：bash 里 `\"$( ... \"x\" ... )\"` 嵌套双引号会让 `\"` 提前闭合，`bash -n` 不报、运行期才炸；python 断言表达式经 shell 注入后 `<=` 与 `|` 的优先级差异会造出假绿 → 断言统一显式加括号；zsh `rm -f app.db*` 在无匹配时 `no matches found` 直接中断整条命令（本轮第三次踩），重置库必须显式列 .db/.db-wal/.db-shm。"
+    "第 6 轮（复现并加固）：bash 里 `\"$( ... \"x\" ... )\"` 嵌套双引号会让 `\"` 提前闭合，`bash -n` 不报、运行期才炸；python 断言表达式经 shell 注入后 `<=` 与 `|` 的优先级差异会造出假绿 → 断言统一显式加括号；zsh `rm -f app.db*` 在无匹配时 `no matches found` 直接中断整条命令（本轮第三次踩），重置库必须显式列 .db/.db-wal/.db-shm。",
+    "第 7 轮：**同一份 API 的列表键名必须统一**。/api/rooms 回 items、/api/properties 曾回 properties，前端按 items 读 → 页面顶部「0 家门店」、门店筛选与门店组合卡全空，而所有接口状态码都是 200、go test 全绿。教训：冒烟不能只断状态码，必须断键名与条数（api-smoke.sh 已加 pick_room：取不到 items[0].code 就 die）。",
+    "第 7 轮：**接口 JSON 的 today 与 /health 的 time 不是一回事**。/health 回 UTC（2026-09-25T16:50Z），业务「今天」是本地时区（2026-09-26）。冒烟脚本从 /health 取 today 会让所有日期断言偏一天——统一从 /stats?days=1 取 today。",
+    "第 7 轮：jget 这类 shell 里的 JSON path helper 要同时支持 `items[0].code` 与纯数字下标，并且 dict/list 命中时用 json.dumps 输出（ensure_ascii=False），否则 print 出 Python repr 会让上层取空。",
+    "第 7 轮：**bash 嵌套引号是真炸弹，而且 bash -n 只报一行、不报根因**。`huge+=\"$(python3 -c 'print(\"x\"*9000)')'\"}'` 这种「双引号里再拼单引号收尾」的写法会让 `\"` 提前闭合双引号，报错点跑到文件末尾（unexpected EOF looking for matching `'`）。规则：构造超长/含引号的 JSON 请求体时，**前缀、载荷、后缀分三段赋值**（prefix + python 输出 + '\")}')，不要在一行里混三种引号。",
+    "第 7 轮：**过去日期与提前入住的业务口径是 409 不是 400**（domain 把它们当 blocker/状态机冲突，不是字段格式错）。冒烟断言要顺着实现口径写，并在断言行旁注明为什么不是 400——否则下一轮会把它「修」成 400 破坏语义一致性。",
+    "第 7 轮：**取证脚本必须自己过滤环境噪声，否则真错误会被淹没**。校验用静态服务器没有 favicon → 首个页面必带一条 `Failed to load resource: 404`，而 `m.text()` 不含 URL，要靠 `m.location().url` 过滤。根治办法是 index.html 里 `<link rel=\"icon\" href=\"data:,\" />`（data: 不算外链，零外链断言仍成立）。",
+    "第 7 轮：**截图是数据质检，不只是审美**。接口断言全绿的情况下，种子房型名混进了英文残片（`layered 台地房`）——只有渲染出来才看得见。style-shoot.mjs 每主题存一张 PNG 的理由写进脚本头注释。",
+    "第 7 轮：**模板 CSS 的固定栏数会撑破新页面，修法放在共用层而不是改 DOM**。本轮三处：`.form-row` 继承模板 5 栏网格（两个日期框各占 1/5 必溢出）→ `repeat(auto-fit,minmax(96px,1fr))`；`.kpi-label/.kpi-value/.kpi-hint` 是 `<span>`，基线排一行会让 52px 大数字压住说明文字 → `display:block`；`.cal-name` 定宽 168px 落在 58px 轨道里会溢到相邻格子下 → `grid-column: span 3; min-width:0; overflow:hidden`。全部写进 derive-themes.py 的 SHARED 段，三风格共用一条规则，「只换 CSS」的承诺不破。",
+    "第 7 轮：**风格改名要主动避嫌**。第二套初稿叫「等距工业蓝图」，与第 6 轮已用的「蓝图工程制图」名字相邻（实现其实不同：轴测挤出体 vs 平面制图）。为避免「换名重用旧风格」的嫌疑，改名「等距轴测工业风」（正好是 next_style_candidates 里预置的名字），并把 CSS 注释里残留的「蓝图纸」字样一并换成「轴测网格」。下一轮起名前先跟 used_styles 做子串比对。",
+    "第 7 轮：**playwright-core 可以借用本机已有的一份**（`/Users/apple/Documents/workProject/试验/skill演示场/.tmp/pw2/node_modules/playwright-core`，只读引用，不修改他人目录），配合系统 Chrome（`/Applications/Google Chrome.app/Contents/MacOS/Google Chrome` + `executablePath`）就能拿到真视口与真截图，不必下载几百 MB 浏览器。脚本按 $PW_PATH → 本地 node_modules → 已知路径 顺序找，找不到就打印安装命令。注意 ESM 里 `await import('.../playwright-core/index.js')` 拿不到命名导出，要用 `createRequire`。"
   ],
   "next_candidates": [
     "医院门诊排班与挂号",
@@ -398,10 +455,13 @@
     "图书馆馆藏与借阅",
     "充电桩车队运营",
     "客服中心工单与 SLA",
-    "二手交易平台撮合"
+    "二手交易平台撮合",
+    "宠物医院门诊排班",
+    "二手车评估上架",
+    "冷链运输调度台",
+    "图书馆特色馆藏借阅"
   ],
   "next_style_candidates": [
-    "等距轴测工业风",
     "乐高积木块面"
   ],
   "backlog": [
@@ -418,6 +478,10 @@
     "online-assessment-exam：判分细则写死在 domain 常量里（multi 漏选半分=score/2、交卷宽限 AnswerGraceSec=120、pass_score 挂在场次但无及格率口径表），没有「判分策略表」→ 换一套给分规则要改代码；若要支持「按场次配置是否允许半分」需提升为字段 + Bearer 写接口。",
     "online-assessment-exam：`attempt_answers` 无 `(attempt_id, question_id)` 复合唯一约束（同一题重复作答的输入会被接受成两行，虽然交卷路径按 question_code 点名去重，但约束层面没有兜底）；也没有幂等键，同一份卷重复提交只靠状态机挡。",
     "online-assessment-exam：名单/统计都是「单场次 + 全局」两档口径，缺「按人跨场次」的学员档案视图（同一手机号的多场轨迹）；stats 不支持时间区间过滤（daily 固定 14 天、top_board 固定 8、hardest_items 固定 5，全是常量）。",
-    "templates/go-gin-react：把本轮新写的三风格取证工具（style-probe.js + style-diff.py 双指标断言）与 api-smoke 的「裸路径默认分支 + 破坏性前置守卫」两节固化进模板，前三轮都是现场重写（与第 2/4/5 轮同类遗留合并处理）。"
+    "templates/go-gin-react：把本轮新写的三风格取证工具（style-probe.js + style-diff.py 双指标断言）与 api-smoke 的「裸路径默认分支 + 破坏性前置守卫」两节固化进模板，前三轮都是现场重写（与第 2/4/5 轮同类遗留合并处理）。",
+    "homestay-booking-calendar：促销日历的「成交」覆盖只有 1 间夜——seed.go 末尾的定向造单被随机阶段占满的夜挤掉（价格档分支仍全覆盖，仓库层断言 promoNights>0 通过）。若下一轮要拿它做「特价 ADR」对比，应把定向促销造单挪到随机造单之前，或按剩余库存 units=1 逐日补单。",
+    "homestay-booking-calendar：五级优先价的档期（节假日倍率、特价绝对价、停售）写死在 seed.go 的 rate_days 行，没有价卡表/后台编辑接口；要做「运营可配价」需把 rate_days 提升为带 Bearer 写接口 + 变更审计的配置表。",
+    "homestay-booking-calendar：库存排他靠事务内 `SUM(units)` 区间查询 + SetMaxOpenConns(1) 单写者保证，bookings/booking_nights 无 (room_code,date) 唯一约束；放开多连接前必须先引入夜次占位表 + 唯一索引。",
+    "templates/go-gin-react：把本轮的 scripts/style-shoot.mjs（真无头 Chrome + 计算属性探针 + PNG）与 api-smoke.sh 的「键名/条数断言」回灌成模板通用件——第 6/7 轮连续两次都在现场重编取证工具。"
   ]
 }
