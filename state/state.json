@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T18:50:00+08:00",
+  "updated": "2026-09-25T19:20:00+08:00",
   "tried": [
     {
       "skill": "sites:sites-building",
@@ -70,6 +70,20 @@
       "conclusion": "留用（第 2 次通过）。21/57 条落地并全部核对到文件行：bundle-barrel-imports / bundle-defer-third-party / client-event-listeners / client-passive-event-listeners / client-localstorage-schema / js-cache-storage / js-index-maps / js-set-map-lookups / js-combine-iterations / js-early-exit / js-hoist-regexp / js-batch-dom-css / rendering-hoist-jsx / rendering-content-visibility / rendering-conditional-render / rendering-usetransition-loading / rerender-memo / rerender-dependencies / rerender-functional-setstate / rerender-lazy-state-init / rerender-derived-state-no-effect / rerender-simple-expression-in-memo / rerender-use-ref-transient-values / advanced-event-handler-refs。36 条不适用且逐条给了理由：async-*（5 条，落地页无取数→优先级第 1 类整体清零）、server-*（7 条，无 RSC/server action）、client-swr-dedup、bundle-dynamic-imports+conditional+preload（被 inlineDynamicImports 单文件产物抵消，要验须换多页服务器场景）、rendering-hydration-*+activity+svg 两条、js-tosorted/min-max/length-check/cache-function-results/property-access（上轮表格场景才有）、rerender-defer-reads、advanced-init-once/use-latest、rerender-memo-with-default-value。产物三页共用同一份 245,462 字节 <script>（逐字节断言）、单页 255-260KB、零外链；断言 284 交互 + 61 风格/级联/bundle 一致性全绿，删 node_modules 后 verify.sh 从零 33s 复现。5 个真实缺陷：(1) useReveal 只在挂载时收集 [data-reveal]，动态列表新节点永不打标——改为「动画是加法」（基态 opacity:1，.is-in 只挂 animation）并从动态列表摘掉该属性；(2) 内联校验被 bundle 里 react-dom 的字面量 \"<script>\" 干扰，改 /^<script>/gm 行首匹配；(3) 自己上轮记过的反模式又写了一遍：startTransition+手写 isPending、useMemo 包单个正则——靠逐条回查才改成 useTransition()/直算，说明该 skill 的价值在回查不在通读；(4) 结构层混进 var(--bad, #b4453a) 硬编码兜底色，被分层断言抓出；(5) strict TS 抓出 3 处会真炸的代码（currentTarget 类型为 Element 无 .style / map.values() 误按元组解构 / noUncheckedIndexedAccess 下 KINDS[i] 可能 undefined）。跨 skill 冲突已正面解决：js-early-exit vs frontend-development「禁早期 return」→ 择一规则『控制流允许早退，渲染输出一律三元 + 显式空态』，本轮代码即按此写。未验项（诚实记录）：横向溢出测不了（面板 hidden 使 innerWidth=0），指针驱动 CSS 变量在真实浏览器里 rAF 不触发、只能在 jsdom 验。三风格互不混淆由真浏览器 getComputedStyle 13 项实测（148/56/84px 留白、透明/黑/品红按钮、衬线/Arial Black/Trebuchet、波点背景图只在 memphis、硬阴影 vs 纸影 vs 无）。",
       "artifacts": "artifacts/20260925-18-vercel-react-best-practices-landing/",
       "report": "reports/20260925-18-vercel-react-landing.md"
+    },
+    {
+      "skill": "vercel-react-best-practices + sites:sites-building（叠加）",
+      "scenario": "定价页（虚构「松塔 Songta」反馈管理平台按席位阶梯计价：三档卡（苗木免费/林木 4 段阶梯 39·29·22·17/冠层 20 席起 ¥58）+ 周期(月付/年付折扣 15%·25%) + 币种(CNY/USD 1:7.15 取整到 0.5) + 席位滑杆(1-100，钳制与 20 席下限) + 6 个增值模块(按席/按组织两种计价) + 实时合计条与报价单(邮箱三路校验+打印) + 三档能力对比表(分组+只看差异+能力搜索+空态) + FAQ(热度排序+搜索+手风琴) + 偏好持久化；React 19.3 + Vite 7.3.6 + TS 5.9.3 strict + vite-plugin-singlefile 2.3.3 + jsdom 30.1.1，双构建：lib-IIFE 单文件预览 + split 保留 chunk 边界当 bundle 证据）",
+      "styles": [
+        "包豪斯构件 bauhaus",
+        "千禧镀铬 y2k-chrome",
+        "工程蓝图 blueprint"
+      ],
+      "time": "2026-09-25T19:00+08:00",
+      "reason": "台账 next_candidates 首项（★）。正面验证「性能规范型 + 设计主张型」叠加是否互补无冲突；定价页有大量分支计价，能让 bundle-conditional / 单事实源 / 交叉断言产生可见差异；风格避开已用 15 种",
+      "conclusion": "两个 skill 均留用，叠加判定成立且无条款互斥（上轮解掉的 js-early-exit vs 禁早期 return 直接沿用）。vercel 第 3 次通过：28/57 条落地并核对到文件行（比上轮多 bundle-dynamic-imports 一项，因为本轮同时跑两种构建——同一份源码，lib-IIFE 给人看、split 给规则当证据，这是本轮方法上最大的增量：单文件产物会抵消 bundle 四条款，双构建把「抵消」变成「可测」，实测按需部分只占首包 1.2%）；sites-building 第 3 次通过，且本轮第一次当作「验证范围约束」使用（preload 取舍判定：预加载用户已可见的下一步动作算主流程、不算 speculative polish）。9 个真实缺陷：(1) TierCard 自抄一份阶梯常量形成价格双源；(2) 明细与合计两套算法，年付下相加对不上（460 vs 4416），重构为 charged 由各行求和 → sum(lines)===charged 成为结构不变式，另加 480 组合扫描；(3) saved 重复 ×12 得 68544；(4) 局部变量 listMonthly 遮蔽导出函数；(5) Controls 阶梯提示对冠层/USD 口径错；(6) Compare 空态不可达，补能力搜索框才可达可测；(7) jsdom tick 用 rAF 在 Node 下退化同步 → 39 条假失败，改 setTimeout(15)+轮询挂载；(8) inline.mjs 用 html.length 当字节数（UTF-16 码元，中文页差 2%+），报告照抄成 264.9KB/252,541B，实为 276,091 字节/252,795 字节；(9) style-check 提取内联脚本的偏移 +2 落在 's' 上（切进 script> 标签，多 7 字符），三页互比仍相等故旧断言全绿却给错绝对量——修成捕获组并把「内联=dist+转义字节」写成不变式。最后两个是收尾核对产物口径时抓出的，结论：凡进文档的数字必须由断言打印。398 条断言全绿（85 账目 + 231 交互 + 82 风格/级联/bundle），删 node_modules 后 verify.sh 从零 18-22s 复现。未验项：横向溢出（面板 hidden 使 innerWidth=0）、pointermove 驱动的 --px/--py 仅 jsdom 验、chrome 的 background-clip:text 与三档字距未取到 computed（多属性 getComputedStyle 15s 超时，须 1-3 属性短调用）",
+      "artifacts": "artifacts/20260925-19-sites-react-pricing/",
+      "report": "reports/20260925-19-sites-react-pricing.md"
     }
   ],
   "skills_seen": [
@@ -77,13 +91,13 @@
       "name": "vercel-react-best-practices",
       "source": "用户 2026-09-25 15 时段装入 ~/.qoder-cn/skills/（上游 vercel-labs/agent-skills）",
       "path": "/Users/apple/.qoder-cn/skills/vercel-react-best-practices/SKILL.md",
-      "status": "已用于 17:00 管理后台、18:00 落地页，两次均留用。纯性能规范、零视觉主张，多风格任务必须另配设计主张型技能；内容型页面（无取数）上 async-* 5 条 + server-* 7 条 + client-swr 全清零，bundle-dynamic-imports/conditional/preload 被单文件 inlineDynamicImports 抵消→ 想验它优先级最高的条款需要 Next.js + 取数场景。缺陷：安装目录只有 SKILL.md，文中引用的 rules/*.md 与 AGENTS.md 均不存在，57 条只有一行摘要可用"
+      "status": "已用于 17:00 管理后台、18:00 落地页、19:00 定价页，三次均留用。纯性能规范、零视觉主张，多风格任务必须另配设计主张型技能；内容型页面（无取数）上 async-* 5 条 + server-* 7 条 + client-swr 全清零。关键补法：同一份源码跑两种构建（lib-IIFE 单文件 + split 保留 chunk 边界），可把 bundle-dynamic-imports/conditional/preload 从「被单文件抵消」变成「可断言」——19:00 实测按需部分占首包 1.2%。缺陷：安装目录只有 SKILL.md，文中引用的 rules/*.md 与 AGENTS.md 均不存在，57 条只有一行摘要可用"
     },
     {
       "name": "sites:sites-building",
       "source": "Qoder 内置插件 qoder.sites",
       "path": "/Applications/Qoder CN.app/Contents/Resources/extensions/qoder.sites/cli/sites/skills/sites-building/SKILL.md",
-      "status": "已用于 14:00 落地页、15:00 仪表盘，两次均留用；属「设计主张型」，与 frontend-development 互补"
+      "status": "已用于 14:00 落地页、15:00 仪表盘、19:00 定价页（与 vercel 叠加），三次均留用；属「设计主张型」，与 frontend-development / vercel 互补。19:00 起新增用途：可作为「验证范围」的约束条款来源（哪些算主流程、哪些算 speculative polish）"
     },
     {
       "name": "frontend-development",
@@ -94,7 +108,7 @@
     {
       "name": "vercel-react-best-practices",
       "source": "用户于 2026-09-25 15 时段装入 ~/.qoder-cn/skills/",
-      "status": "已于 17:00 / 18:00 两轮使用并留用（管理后台 / 落地页），不再是候选"
+      "status": "已于 17:00 / 18:00 / 19:00 三轮使用并留用（管理后台 / 落地页 / 定价页），不再是候选"
     },
     {
       "name": "qoder-canvas:canvas",
@@ -194,15 +208,25 @@
       "artifact_size": "1.0MB（3 页各 255-260KB + 源码 108KB + 校验脚本 32KB + 对照页与配置）",
       "cleanup": "删 node_modules 102MB + dist/shiguang.js 240KB + .npm-install.log + .cs-server.log；8128 端口 python3 -m http.server 先 ps 核对命令行再按 PID kill，端口确认关闭；校验脚本全部保留未删；实验室合计约 3.9MB，单场景 1.0MB ≪ 50MB",
       "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 3201f25，fedb91e..3201f25；走 ssh.github.com:443，known_hosts 写在实验室 .tmp/kh，命令与文件均无 token）"
+    },
+    {
+      "time": "2026-09-25T19:00+08:00",
+      "skill": "vercel-react-best-practices + sites:sites-building（叠加）",
+      "scenario": "定价页",
+      "result": "success",
+      "artifact_size": "1.1MB（3 页各 276,091/276,448/276,540 字节双击可用 + styles.html 对照入口 + 源码 140KB + 校验脚本 52KB + 配置与 lock）",
+      "cleanup": "删 node_modules 102MB + dist/（songta.js 252,795B）+ dist-split/ + .build.log + .npm-install.log；8131 端口 python3 -m http.server 先 ps 核对命令行再按 PID 15442 kill；删 /tmp/lab-8131.log 与实验室 .tmp/；校验脚本 inline.mjs/pricing-check/jsdom-check/style-check/verify.sh 全部保留未删（无需转录进文档）；实验室合计待核",
+      "push": "待补记"
     }
   ],
   "next_candidates": [
-    "★ vercel-react-best-practices + sites:sites-building 叠加 × 定价页（正面验证「性能规范 + 设计主张」是否互补无冲突；定价页可让 bundle-conditional 产生可见差异；风格避开已用 15 种）",
+    "★ vercel-react-best-practices × 需要真实取数的场景（Next.js 或带 mock 服务端的 Vite SPA + async-* 攻坚）：它的优先级第 1 档 async-* 5 条至今 0 落地，纯静态产物永远验不到；这是该 skill 剩余价值的最大一块",
     "frontend-development × 管理后台（同场景换 skill，与 17:00 那轮正面对照：同一后台谁给的条款更可落地）",
-    "sites:sites-building × 个人主页（避开已用 15 种风格）",
-    "（需引入 Next.js 才能推进）vercel-react-best-practices × 博客首页 + 客户端取数：专门攻 async-* 与 server-*，那才是它优先级最高的一档；纯静态产物下这 12 条永远落不了地",
+    "sites:sites-building × 个人主页（避开已用 18 种风格）",
+    "sites:sites-building × 多页站点（导航/路由/静态导出，验 sites-building 的 static-site 与 SPA 路由条款——目前只做过单页）",
     "（需用户授权）市场技能 ui-ux-pro-max × 数据报表",
-    "（已解决，仅备查）js-early-exit vs frontend-development「禁早期 return」→ 择一规则：控制流允许早退，渲染输出一律三元 + 显式空态（见 18:00 报告 §10）"
+    "（已解决，仅备查）js-early-exit vs frontend-development「禁早期 return」→ 择一规则：控制流允许早退，渲染输出一律三元 + 显式空态（见 18:00 报告 §10）",
+    "（已解决，仅备查）vercel + sites-building 叠加：无互斥，配方为「主张型定形 + 规范型定码」，19:00 报告 §8"
   ],
   "used_styles": [
     "瑞士极简",
@@ -219,7 +243,10 @@
     "95 桌面 win95",
     "侘寂留白 wabi",
     "构成主义 construct",
-    "孟菲斯 memphis"
+    "孟菲斯 memphis",
+    "包豪斯构件 bauhaus",
+    "千禧镀铬 y2k-chrome",
+    "工程蓝图 blueprint"
   ],
   "environment_notes": [
     "本机无法直连 GitHub raw 与 skills.sh（curl exit 35 / WebFetch fetch failed），外部落地技能持续不可用",
@@ -243,6 +270,12 @@
     "面板 hidden 时真实浏览器 rAF 不触发：指针位置写 CSS 变量（--px/--py）这类交互只能在 jsdom（pretendToBeVisual 有 rAF）验；且 innerWidth=0 使 scrollWidth 只有 284，横向溢出断言会假通过 → 必须显式记为未验项",
     "jsdom 断言可扩展的三种手段（本轮实测有效）：beforeParse 里注入 localStorage 种子以覆盖「二次访问恢复」路径、用 win.__io 数组统计 IntersectionObserver 实例数、用 element.style.getPropertyValue('--px') 读回 CSS 变量；React 提交等待用连续 requestAnimationFrame tick(3~6)，useDeferredValue 需 6 次",
     "结构层/主题层分离必须写断言兜底：一个 var(--bad, #b4453a) 兜底色就能让分层失效而肉眼看不出——检查式「去掉 :root 块后不得出现十六进制色」成本极低、收益确定",
-    "规范型 skill 的真实价值在逐条回查而非通读：本轮 startTransition+手写 isPending、useMemo 包单个正则两处违规，都是写完回查 rendering-usetransition-loading / rerender-simple-expression-in-memo 才发现的"
+    "规范型 skill 的真实价值在逐条回查而非通读：本轮 startTransition+手写 isPending、useMemo 包单个正则两处违规，都是写完回查 rendering-usetransition-loading / rerender-simple-expression-in-memo 才发现的",
+    "产物体积与 bundle 字节数必须用 Buffer.byteLength，不能用 String.length：中文页 UTF-16 码元数比 UTF-8 字节数少 2%+，本轮 inline.mjs 自报 264.9KB 而实际 276,091 字节，报告照抄后全部偏小。凡进文档的数字都应由断言打印（style-check 现打印 bundle/单页字节数）",
+    "从 HTML 里取内联脚本别手算偏移：indexOf('\\n<script>')+2 落在 's' 上（多切 7 字符），三页互比仍相等 → 一致性断言全绿但绝对量错。用 /^<script>([\\s\\S]*?)<\\/script>/m 捕获组；进一步可写不变式「内联字节 = dist 字节 + 每处 </script 一个转义字节」，把内联改动的代价显式化",
+    "单文件产物会抵消 bundle-dynamic-imports/conditional/preload（inlineDynamicImports 把懒加载并回主包）：同一份源码再加一次 vite build --config vite.split.config.ts（普通 app 构建，保留 chunk 边界），即可对这些条款做真实断言（本轮实测 QuoteSheet+telemetry 只占首包 1.2%），并把「按需 chunk 不含首屏文案」当字符串断言。这是纯静态项目验证 bundle-* 的通用办法",
+    "让金额账目自证的结构性做法：charged 由明细各行相加得出（先 CNY 每月 → 按周期放大 → 按币种取整 → 年付追加负项折扣行），再配 480 组合扫描断言 sum(lines)===charged、月付 charged=monthlyTotal、年付省额式、金额单调不减。两套独立算法互查比单点期望值可靠得多（本轮抓出 460 vs 4416 的口径缺陷）",
+    "浏览器 getComputedStyle 短调用原则：一次 1-3 个属性、避免 backgroundImage 这类超长字符串值，否则 15s 超时（页面侧其实已执行）；长字符串属性改用源码/产物断言替代",
+    "jsdom 里等 React 提交不要用 requestAnimationFrame（Node 下退化同步）：await new Promise(r=>setTimeout(r,15)) + 轮询挂载标志（如 .tier 数量达标）再断言，否则整页未渲染就断言会产生大批假失败（本轮 39 条）"
   ]
 }

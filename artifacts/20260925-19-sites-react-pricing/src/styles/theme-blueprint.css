@@ -1,0 +1,262 @@
+/* ============================================================
+   主题层 · 工程蓝图 blueprint
+   主张：定价是一张施工图纸。深蓝图纸底 + 细网格，
+   文字全部用等宽字体标注尺寸，选中态用引出线与角标表达，
+   所有面板零圆角、单线描边，数字旁注「R / ⌀ / ↦」这类制图符号。
+   ============================================================ */
+
+:root {
+  --bg: #0b2a4a;
+  --bg-2: #0e3358;
+  --panel: #0e3358;
+  --panel-2: #123c66;
+  --ink: #eaf4ff;
+  --ink-2: #b9d6f0;
+  --muted: #7fa8c9;
+  --line: #3d7bb0;
+  --accent: #ffcf5c;
+  --accent-ink: #08213a;
+  --accent-2: #6fe3c4;
+  --good: #6fe3c4;
+  --bad: #ff9a8a;
+  --radius: 0px;
+  --radius-sm: 0px;
+  --radius-pill: 2px;
+  --border-w: 1px;
+  --shadow: none;
+  --shadow-lg: none;
+  --nav-h: 58px;
+  --sec-pad: 68px;
+  --font-body: ui-monospace, SFMono-Regular, Menlo, 'Courier New', monospace;
+  --font-display: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --title-size: 26px;
+  --hero-size: 36px;
+  --price-size: 32px;
+  --track: 0.06em;
+  --row-h: 40px;
+  /* 主题专用取值 */
+  --grid-minor: rgba(234, 244, 255, 0.09);
+  --grid-major: rgba(234, 244, 255, 0.16);
+  --title-bg: rgba(8, 33, 58, 0.9);
+  --own-hl: rgba(255, 207, 92, 0.13);
+  color-scheme: dark;
+}
+
+body {
+  background-image: linear-gradient(to right, var(--grid-minor) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-minor) 1px, transparent 1px),
+    linear-gradient(to right, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-major) 1px, transparent 1px);
+  background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
+  text-transform: none;
+}
+
+.nav {
+  border-bottom: 1px dashed var(--line);
+  background: var(--title-bg);
+}
+
+.brand-mark {
+  border-radius: 0;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  font-family: var(--font-mono);
+}
+
+h1.hero-title,
+h2.title {
+  font-weight: 500;
+  letter-spacing: var(--track);
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+.eyebrow {
+  color: var(--accent-2);
+}
+
+.eyebrow::before {
+  content: '◆ ';
+  color: var(--accent-2);
+}
+
+.estimator,
+.table-wrap,
+.quote,
+.faq-item,
+.tier,
+.addon {
+  border: 1px solid var(--line);
+  box-shadow: none;
+  position: relative;
+}
+
+/* 图纸角标：每个面板左上角一道短粗线，像图框的分度标记 */
+.estimator::before,
+.table-wrap::before,
+.quote::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 18px;
+  height: 3px;
+  background: var(--accent);
+}
+
+.control-label::after {
+  content: ' ::';
+  color: var(--line);
+}
+
+.seg {
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  padding: 0;
+  gap: 0;
+}
+
+.seg button {
+  border-right: 1px solid var(--line);
+  border-radius: 0;
+  font-size: 12px;
+  letter-spacing: var(--track);
+  color: var(--ink-2);
+}
+
+.seg button:last-child {
+  border-right: 0;
+}
+
+.seg button[aria-pressed='true'] {
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 700;
+}
+
+.tier {
+  border-radius: 0;
+}
+
+.tier[aria-pressed='true'] {
+  border: 2px solid var(--accent);
+  transform: none;
+  box-shadow: none;
+}
+
+.tier[aria-pressed='true']::after {
+  content: '▸ ' attr(data-selected-label);
+  border-radius: 0;
+  background: transparent;
+  color: var(--accent);
+  border: 0;
+  top: -18px;
+  right: auto;
+  left: -1px;
+  padding: 0;
+}
+
+.tier-price {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.tier-foot::before {
+  content: 'NOTE ';
+  color: var(--accent-2);
+}
+
+.btn {
+  border-radius: 0;
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: var(--accent-ink);
+  font-weight: 700;
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0 var(--accent-ink);
+}
+
+.btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: none;
+}
+
+.summary {
+  background: var(--title-bg);
+  border-top: 1px dashed var(--line);
+}
+
+.summary-total {
+  color: var(--accent);
+}
+
+.crow-head {
+  background: var(--panel-2);
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.crow {
+  border-bottom: 1px dotted var(--line);
+}
+
+.crow-cell.is-own {
+  background: var(--own-hl);
+  color: var(--accent);
+}
+
+.chip {
+  background: transparent;
+  border: 1px dashed var(--line);
+  border-radius: 0;
+  color: var(--ink-2);
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-style: solid;
+  border-color: var(--accent);
+}
+
+.qline {
+  border-bottom: 1px dotted var(--line);
+}
+
+.footer {
+  background: var(--title-bg);
+  border-top: 1px dashed var(--line);
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 960px) {
+  :root {
+    --hero-size: 27px;
+    --sec-pad: 46px;
+  }
+}

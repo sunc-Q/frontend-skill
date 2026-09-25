@@ -1,0 +1,232 @@
+/* ============================================================
+   主题层 · 千禧镀铬 y2k-chrome
+   主张：价格是一块会反光的金属。银色铬渐变做数字，
+   虹彩渐变做选中态，气泡与星形做点缀，一切容器都是大圆角与玻璃；
+   深色底 + 高光边，像 2000 年的系统设置窗口被泡进了肥皂泡。
+   ============================================================ */
+
+:root {
+  --bg: #16121f;
+  --bg-2: #221c33;
+  --panel: rgba(255, 255, 255, 0.06);
+  --panel-2: rgba(255, 255, 255, 0.12);
+  --ink: #f3f0ff;
+  --ink-2: #cdc6e6;
+  --muted: #8d84ad;
+  --line: rgba(255, 255, 255, 0.18);
+  --accent: #b98bff;
+  --accent-ink: #1b1329;
+  --accent-2: #6ff2e6;
+  --good: #7dffb2;
+  --bad: #ff8fae;
+  --radius: 26px;
+  --radius-sm: 16px;
+  --radius-pill: 999px;
+  --border-w: 1px;
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 26px 70px rgba(130, 90, 255, 0.4);
+  --nav-h: 70px;
+  --sec-pad: 88px;
+  --font-body: 'Trebuchet MS', 'Lucida Grande', system-ui, sans-serif;
+  --font-display: 'Arial Rounded MT Bold', 'Trebuchet MS', system-ui, sans-serif;
+  --font-mono: ui-monospace, Menlo, monospace;
+  --title-size: 34px;
+  --hero-size: 54px;
+  --price-size: 42px;
+  --track: 0.01em;
+  /* 主题专用取值 */
+  --chrome: linear-gradient(180deg, #ffffff 0%, #d9d3ee 26%, #8f86b8 48%, #f6f3ff 62%, #a79ed0 100%);
+  --irid: linear-gradient(115deg, #6ff2e6 0%, #b98bff 38%, #ff8fd0 68%, #ffd36f 100%);
+  --halo-1: rgba(111, 242, 230, 0.22);
+  --halo-2: rgba(185, 139, 255, 0.26);
+  --glass-edge: inset 0 1px 0 rgba(255, 255, 255, 0.34);
+  --bubble: #ffffff;
+  color-scheme: dark;
+}
+
+body {
+  background-image: radial-gradient(60% 45% at 12% 0%, var(--halo-2) 0%, transparent 60%),
+    radial-gradient(50% 40% at 92% 12%, var(--halo-1) 0%, transparent 65%),
+    radial-gradient(70% 50% at 50% 105%, var(--halo-2) 0%, transparent 70%);
+  background-attachment: fixed;
+  letter-spacing: var(--track);
+}
+
+.brand-mark {
+  border-radius: 50%;
+  background: var(--irid);
+  box-shadow: var(--glass-edge), 0 0 22px var(--halo-2);
+}
+
+h1.hero-title,
+h2.title {
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.hero-title em {
+  font-style: normal;
+  background: var(--chrome);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border: var(--border-w) solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--panel);
+  color: var(--ink-2);
+}
+
+.eyebrow::before {
+  content: '✦';
+  color: var(--accent-2);
+  letter-spacing: 0;
+}
+
+.estimator,
+.tier,
+.addon,
+.quote,
+.faq-item,
+.table-wrap {
+  backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: var(--glass-edge);
+}
+
+.estimator {
+  border: 1px solid var(--line);
+  padding: 24px;
+}
+
+.seg {
+  background: var(--panel-2);
+  border-color: var(--line);
+}
+
+.seg button {
+  color: var(--ink-2);
+}
+
+.seg button[aria-pressed='true'] {
+  background: var(--irid);
+  color: var(--accent-ink);
+  font-weight: 700;
+  box-shadow: 0 6px 18px var(--halo-2);
+}
+
+.tier {
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02));
+}
+
+.tier[aria-pressed='true'] {
+  border-color: transparent;
+  background: linear-gradient(var(--bg-2), var(--bg-2)) padding-box, var(--irid) border-box;
+}
+
+.tier[aria-pressed='true']::after {
+  background: var(--irid);
+  color: var(--accent-ink);
+  font-weight: 700;
+}
+
+.tier-price {
+  background: var(--chrome);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+
+.tier-latin {
+  color: var(--accent-2);
+}
+
+.btn {
+  background: var(--irid);
+  border: 0;
+  color: var(--accent-ink);
+  font-weight: 700;
+  box-shadow: 0 10px 26px var(--halo-2);
+}
+
+.btn-ghost {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  box-shadow: var(--glass-edge);
+}
+
+.summary {
+  background: rgba(18, 14, 28, 0.82);
+  border-top: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+}
+
+.summary-total {
+  background: var(--chrome);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.crow-head {
+  background: var(--panel-2);
+  color: var(--ink-2);
+}
+
+.crow-cell.is-own {
+  background: rgba(185, 139, 255, 0.14);
+}
+
+.chip {
+  background: var(--panel);
+  color: var(--ink-2);
+  border-color: var(--line);
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--bubble);
+  color: var(--bg);
+  border-color: var(--bubble);
+}
+
+.group-line {
+  background: var(--panel);
+}
+
+.faq-item {
+  background: var(--panel);
+}
+
+.faq-q[aria-expanded='true'] {
+  background: linear-gradient(90deg, var(--halo-2), transparent);
+}
+
+.footer {
+  background: rgba(18, 14, 28, 0.7);
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 960px) {
+  :root {
+    --hero-size: 38px;
+    --price-size: 34px;
+  }
+}

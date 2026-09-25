@@ -1,0 +1,244 @@
+/* ============================================================
+   主题层 · 包豪斯 bauhaus
+   主张：价格是一套可以摆出来的构件。三原色对应三档套餐，
+   圆形/半圆/三角作为唯一的图形语言，字重对比拉开层级，
+   零渐变、零模糊、零圆角 pill——一切装饰必须是几何体。
+   ============================================================ */
+
+:root {
+  --bg: #f4f1e8;
+  --bg-2: #ffffff;
+  --panel: #ffffff;
+  --panel-2: #ece7da;
+  --ink: #14130f;
+  --ink-2: #33302a;
+  --muted: #6d675c;
+  --line: #14130f;
+  --accent: #d5372b;
+  --accent-ink: #f4f1e8;
+  --accent-2: #1b52a6;
+  --good: #1b52a6;
+  --bad: #d5372b;
+  --radius: 0px;
+  --radius-sm: 0px;
+  --radius-pill: 0px;
+  --border-w: 2px;
+  --shadow: 6px 6px 0 #14130f;
+  --shadow-lg: 10px 10px 0 #1b52a6;
+  --nav-h: 68px;
+  --sec-pad: 76px;
+  --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-display: 'Futura', 'Avenir Next', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  --font-mono: ui-monospace, Menlo, monospace;
+  --title-size: 40px;
+  --hero-size: 64px;
+  --price-size: 44px;
+  --track: -0.01em;
+  /* 主题专用色也收进 :root，规则体里不出现裸十六进制色 */
+  --grid-line: rgba(20, 19, 15, 0.05);
+  --summary-bg: #14130f;
+  --summary-ink: #f7f4ec;
+  --summary-mut: #cfc9ba;
+  --own-hl: #fdecc8;
+  --footer-mut: #a9a294;
+  --footer-ink: #ece7da;
+  color-scheme: light;
+}
+
+body {
+  background-image: linear-gradient(to right, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.brand-mark {
+  border-radius: 50%;
+}
+
+h1.hero-title,
+h2.title {
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 22px;
+  height: 8px;
+  margin-right: 8px;
+  background: var(--accent);
+  border-radius: 0 999px 999px 0;
+  vertical-align: middle;
+}
+
+.estimator {
+  border: 3px solid var(--line);
+  box-shadow: 12px 12px 0 var(--accent-2);
+}
+
+.seg {
+  border: 2px solid var(--line);
+  background: var(--bg-2);
+  padding: 0;
+  gap: 0;
+}
+
+.seg button {
+  border-right: 2px solid var(--line);
+  border-radius: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding: 8px 14px;
+}
+
+.seg button:last-child {
+  border-right: 0;
+}
+
+.seg button[aria-pressed='true'] {
+  background: var(--accent);
+  color: var(--footer-ink);
+}
+
+.tier {
+  border: 3px solid var(--line);
+  box-shadow: 5px 5px 0 var(--line);
+}
+
+.tier[data-hue='seed'] .tier-name::after {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-left: 8px;
+  background: var(--good);
+  border-radius: 50%;
+}
+
+.tier[data-hue='grove'] .tier-name::after {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-left: 8px;
+  background: var(--accent);
+}
+
+.tier[data-hue='canopy'] .tier-name::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 8px;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 12px solid var(--accent-2);
+}
+
+.tier[aria-pressed='true'] {
+  border-color: var(--accent);
+  box-shadow: 10px 10px 0 var(--accent);
+  transform: none;
+}
+
+.tier[aria-pressed='true']::after {
+  border-radius: 0;
+  font-weight: 700;
+}
+
+.tier-price {
+  font-weight: 800;
+}
+
+.tick {
+  font-weight: 700;
+}
+
+.btn {
+  border-radius: 0;
+  border: 2px solid var(--line);
+  box-shadow: 4px 4px 0 var(--line);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 12px 20px;
+}
+
+.btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--line);
+}
+
+.btn-ghost {
+  background: var(--bg-2);
+  color: var(--ink);
+}
+
+.summary {
+  background: var(--summary-bg);
+  border-top: 0;
+}
+
+.summary-what,
+.summary-unit {
+  color: var(--summary-mut);
+}
+
+.summary-total {
+  color: var(--summary-ink);
+}
+
+.summary .btn {
+  background: var(--accent);
+  border-color: var(--summary-ink);
+  color: var(--summary-ink);
+  box-shadow: 4px 4px 0 var(--summary-ink);
+}
+
+.table-wrap {
+  border: 3px solid var(--line);
+}
+
+.crow-head {
+  background: var(--ink);
+  color: var(--footer-ink);
+}
+
+.crow-cell.is-own {
+  background: var(--own-hl);
+}
+
+.chip {
+  border: 2px solid var(--line);
+  border-radius: 0;
+  font-weight: 700;
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--accent-2);
+  border-color: var(--accent-2);
+  color: var(--footer-ink);
+}
+
+.faq-q {
+  font-weight: 700;
+}
+
+.footer {
+  background: var(--ink);
+}
+
+.footer .fcol h4,
+.footer-bottom {
+  color: var(--footer-mut);
+}
+
+.footer .fcol li {
+  color: var(--footer-ink);
+}

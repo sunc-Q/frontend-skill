@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>松塔 Songta 定价页 · 三风格对照</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 24px 64px;
+    font: 15px/1.65 system-ui, -apple-system, 'Segoe UI', sans-serif;
+    color: #1c1c1c;
+    background: #f2f1ee;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  h1 { font-size: 26px; margin: 0 0 8px; }
+  .sub { color: #5c5a55; margin-bottom: 28px; max-width: 62ch; }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  a.card {
+    display: grid;
+    gap: 10px;
+    padding: 20px;
+    text-decoration: none;
+    color: inherit;
+    background: #fff;
+    border: 1px solid #dedbd4;
+    border-radius: 10px;
+  }
+  a.card:hover { border-color: #1c1c1c; }
+  .swatch { display: flex; gap: 6px; }
+  .swatch i { width: 26px; height: 26px; border-radius: 4px; display: block; }
+  h2 { font-size: 16px; margin: 0; }
+  p { margin: 0; color: #55534e; font-size: 13.5px; }
+  code { font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; }
+  ul { margin: 18px 0 0; padding-left: 20px; color: #403e3a; }
+  li { margin: 4px 0; }
+  .note { margin-top: 26px; padding-top: 16px; border-top: 1px solid #dedbd4; font-size: 13px; color: #6a6760; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>松塔 Songta · 定价页三风格对照</h1>
+  <p class="sub">
+    同一份 React 产物（三页内联的 <code>&lt;script&gt;</code> 是同一份 252,795 字节 bundle，逐字节相同，由 style-check 断言而非手抄），
+    只换样式层得到三种成立风格。每页双击即可离线打开，零外链。
+  </p>
+  <div class="grid">
+    <a class="card" href="preview/pricing-bauhaus.html">
+      <span class="swatch"><i style="background:#d5372b"></i><i style="background:#1b52a6"></i><i style="background:#f4c81f"></i><i style="background:#14130f"></i></span>
+      <h2>包豪斯构件 bauhaus</h2>
+      <p>三原色对应三档套餐，圆/方/三角是唯一的图形语言；2-3px 实描边、零圆角、硬投影，标题全大写。</p>
+      <p><code>preview/pricing-bauhaus.html</code></p>
+    </a>
+    <a class="card" href="preview/pricing-chrome.html">
+      <span class="swatch"><i style="background:linear-gradient(135deg,#6ff2e6,#b98bff,#ff8fd0)"></i><i style="background:#16121f"></i><i style="background:#f3f0ff"></i></span>
+      <h2>千禧镀铬 y2k-chrome</h2>
+      <p>深色底 + 虹彩渐变描边，价格数字用铬合金渐变裁切文字；玻璃拟态、大圆角、光晕阴影，2000 年系统设置窗泡进肥皂泡。</p>
+      <p><code>preview/pricing-chrome.html</code></p>
+    </a>
+    <a class="card" href="preview/pricing-blueprint.html">
+      <span class="swatch"><i style="background:#0b2a4a"></i><i style="background:#3d7bb0"></i><i style="background:#ffcf5c"></i><i style="background:#6fe3c4"></i></span>
+      <h2>工程蓝图 blueprint</h2>
+      <p>深蓝图纸 + 双层网格，全站等宽字体与 0.06em 字距，面板左上角一道图框分度线，选中态用引出线表达。</p>
+      <p><code>preview/pricing-blueprint.html</code></p>
+    </a>
+  </div>
+  <ul>
+    <li>算价台：月付/年付、CNY/USD、席位滑杆（1-100，苗木档钳到 3 席）、三档实时价格与人均、阶梯提示</li>
+    <li>增值模块：按席位与按组织两类计价，换档时自动剪枝，冠层档显示「已含」与「需要冠层」两种锁定态</li>
+    <li>对比表：16 行 × 3 档，分组筛选 + 只看差异 + 能力搜索，行数与空态可断言</li>
+    <li>报价单：按需动态加载的模块，明细行相加恒等于合计；邮箱校验通过后写入带版本号的 localStorage</li>
+    <li>常见问题：热度排序（toSorted）+ 搜索 + 手风琴 + 无命中空态</li>
+  </ul>
+  <p class="note">
+    本页只是入口对照。<code>index.html</code> 是本项目「代码分割版」构建入口（<code>vite build --config vite.split.config.ts</code>），
+    用来量出报价单模块与分析模块确实落在首包之外；<code>preview/</code> 下的三页才是双击可开的成品。
+    复现步骤与踩坑记录见 <code>../../reports/20260925-19-sites-react-pricing.md</code>。
+  </p>
+</div>
+</body>
+</html>
