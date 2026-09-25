@@ -487,7 +487,7 @@
       "result": "success",
       "artifact_size": "13MB（单场景上限 50MB；最大单文件 779,276B）",
       "cleanup": "删 LAB/.tmp 全部（refbuild/node_modules 52MB：esbuild·three@0.160.0·playwright-core·pngjs，以及 sig/win/win2/qd/qd2/dprobe/pose/idx 八个探针与 index-shot.png，探针内容先抄进报告 §9）与 /tmp 下历轮遗留 diag1/diag2/cam/cam2/det/det2/p/shot1 八个 .mjs；场景目录内零 node_modules/dist（F 组断言）；空目录 previews/ 移除；全程 file://，未起 http.server；技能目录零写入",
-      "push": "提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（known_hosts 写 LAB/.tmp，命令与文件均无 token）"
+      "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 4f7fbb2，13ac4d6..4f7fbb2，32 个新文件；走 ssh.github.com:443，known_hosts 写实验室 .tmp，命令与文件均无 token）"
     }
   ],
   "next_candidates": [
