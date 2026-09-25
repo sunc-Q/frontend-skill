@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cron Organicism — 定时有机主义</title>
+    <script>/*__P5_INLINE__*/</script>
+    <style>
+        /* Anthropic Brand Colors */
+        :root {
+            --anthropic-dark: #141413;
+            --anthropic-light: #faf9f5;
+            --anthropic-mid-gray: #b0aea5;
+            --anthropic-light-gray: #e8e6dc;
+            --anthropic-orange: #d97757;
+            --anthropic-blue: #6a9bcc;
+            --anthropic-green: #788c5d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Helvetica Neue', 'PingFang SC', sans-serif;
+            background: linear-gradient(135deg, var(--anthropic-light) 0%, #f5f3ee 100%);
+            min-height: 100vh;
+            color: var(--anthropic-dark);
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 320px;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(20, 20, 19, 0.1);
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .sidebar h1 {
+            font-family: 'Lora', 'Songti SC', serif;
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--anthropic-dark);
+            margin-bottom: 8px;
+        }
+
+        .sidebar .subtitle {
+            color: var(--anthropic-mid-gray);
+            font-size: 14px;
+            margin-bottom: 32px;
+            line-height: 1.4;
+        }
+
+        /* Control Sections */
+        .control-section {
+            margin-bottom: 32px;
+        }
+
+        .control-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--anthropic-dark);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-section h3::before {
+            content: '•';
+            color: var(--anthropic-orange);
+            font-weight: bold;
+        }
+
+        /* Seed Controls */
+        .seed-input {
+            width: 100%;
+            background: var(--anthropic-light);
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin-bottom: 12px;
+            border: 1px solid var(--anthropic-light-gray);
+            text-align: center;
+        }
+
+        .seed-input:focus {
+            outline: none;
+            border-color: var(--anthropic-orange);
+            box-shadow: 0 0 0 2px rgba(217, 119, 87, 0.1);
+            background: white;
+        }
+
+        .seed-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .regen-button {
+            margin-bottom: 0;
+        }
+
+        /* Parameter Controls */
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        .control-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--anthropic-dark);
+            margin-bottom: 8px;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .slider-container input[type="range"] {
+            flex: 1;
+            height: 4px;
+            background: var(--anthropic-light-gray);
+            border-radius: 2px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: var(--anthropic-orange);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            background: #c86641;
+        }
+
+        .value-display {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: var(--anthropic-mid-gray);
+            min-width: 60px;
+            text-align: right;
+        }
+
+        /* Color Pickers */
+        .color-group {
+            margin-bottom: 16px;
+        }
+
+        .color-group label {
+            display: block;
+            font-size: 12px;
+            color: var(--anthropic-mid-gray);
+            margin-bottom: 4px;
+        }
+
+        .color-picker-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .color-picker-container input[type="color"] {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: none;
+            padding: 0;
+        }
+
+        .color-value {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: var(--anthropic-mid-gray);
+        }
+
+        /* Buttons */
+        .button {
+            background: var(--anthropic-orange);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        .button:hover {
+            background: #c86641;
+            transform: translateY(-1px);
+        }
+
+        .button:active {
+            transform: translateY(0);
+        }
+
+        .button.secondary {
+            background: var(--anthropic-blue);
+        }
+
+        .button.secondary:hover {
+            background: #5a8bb8;
+        }
+
+        .button.tertiary {
+            background: var(--anthropic-green);
+        }
+
+        .button.tertiary:hover {
+            background: #6b7b52;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .button-row .button {
+            flex: 1;
+        }
+
+        .seed-note {
+            font-size: 12px;
+            color: var(--anthropic-mid-gray);
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+
+        /* Canvas Area */
+        .canvas-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 0;
+        }
+
+        #canvas-container {
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(20, 20, 19, 0.1);
+            background: white;
+        }
+
+        #canvas-container canvas {
+            display: block;
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        /* Loading State */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--anthropic-mid-gray);
+            padding: 80px 20px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .canvas-area {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Control Sidebar -->
+        <div class="sidebar">
+            <h1>Cron Organicism</h1>
+            <div class="subtitle">定时有机主义 · 三条流水线在节律场中沉积的密度图。同一种子必得同一幅图。</div>
+
+            <!-- Seed Section (ALWAYS KEEP) -->
+            <div class="control-section">
+                <h3>Seed</h3>
+                <input type="number" id="seed-input" class="seed-input" value="20260925" onchange="updateSeed()">
+                <div class="seed-controls">
+                    <button class="button secondary" onclick="previousSeed()">← Prev</button>
+                    <button class="button secondary" onclick="nextSeed()">Next →</button>
+                </div>
+                <button class="button tertiary regen-button" onclick="randomSeedAndUpdate()">↻ Random</button>
+                <div class="seed-note">种子锁定 noise 表与随机序列：这是可复现的沉积，不是偶然截图。</div>
+            </div>
+
+            <!-- Parameters (VARIABLE) -->
+            <div class="control-section">
+                <h3>Parameters</h3>
+
+                <div class="control-group">
+                    <label>Agents（每槽粒子数）</label>
+                    <div class="slider-container">
+                        <input type="range" id="perLane" min="400" max="3000" step="100" value="1600" oninput="updateParam('perLane', this.value)">
+                        <span class="value-display" id="perLane-value">1600</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Cadence Strength（节律绑定）</label>
+                    <div class="slider-container">
+                        <input type="range" id="cadence" min="0" max="1" step="0.05" value="0.55" oninput="updateParam('cadence', this.value)">
+                        <span class="value-display" id="cadence-value">0.55</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Noise Scale（湍流尺度）</label>
+                    <div class="slider-container">
+                        <input type="range" id="noiseScale" min="0.001" max="0.008" step="0.0005" value="0.0035" oninput="updateParam('noiseScale', this.value)">
+                        <span class="value-display" id="noiseScale-value">0.0035</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Flow Speed（步长）</label>
+                    <div class="slider-container">
+                        <input type="range" id="flowSpeed" min="0.4" max="2.4" step="0.1" value="1.2" oninput="updateParam('flowSpeed', this.value)">
+                        <span class="value-display" id="flowSpeed-value">1.2</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Deposit Passes（沉积轮数）</label>
+                    <div class="slider-container">
+                        <input type="range" id="passes" min="20" max="220" step="10" value="120" oninput="updateParam('passes', this.value)">
+                        <span class="value-display" id="passes-value">120</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colors (VARIABLE: 三条水脉) -->
+            <div class="control-section">
+                <h3>Colors</h3>
+
+                <div class="color-group">
+                    <label>Lane A · 前端实验室 :00</label>
+                    <div class="color-picker-container">
+                        <input type="color" id="color1" value="#d97757" onchange="updateColor('color1', this.value)">
+                        <span class="color-value" id="color1-value">#d97757</span>
+                    </div>
+                </div>
+
+                <div class="color-group">
+                    <label>Lane B · 业务网站 :20</label>
+                    <div class="color-picker-container">
+                        <input type="color" id="color2" value="#6a9bcc" onchange="updateColor('color2', this.value)">
+                        <span class="color-value" id="color2-value">#6a9bcc</span>
+                    </div>
+                </div>
+
+                <div class="color-group">
+                    <label>Lane C · 本任务 :05/:35</label>
+                    <div class="color-picker-container">
+                        <input type="color" id="color3" value="#788c5d" onchange="updateColor('color3', this.value)">
+                        <span class="color-value" id="color3-value">#788c5d</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions (ALWAYS KEEP) -->
+            <div class="control-section">
+                <h3>Actions</h3>
+                <div class="button-row">
+                    <button class="button" id="btn-regenerate" onclick="regenerate()">Regenerate</button>
+                </div>
+                <div class="button-row" style="margin-top:8px">
+                    <button class="button secondary" onclick="resetParameters()">Reset</button>
+                </div>
+                <div class="button-row" style="margin-top:8px">
+                    <button class="button tertiary" onclick="downloadPNG()">Download PNG</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Canvas Area -->
+        <div class="canvas-area">
+            <div id="canvas-container">
+                <div class="loading">Initializing generative art...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════
+        // PARAMETERS
+        // ═══════════════════════════════════════════════════════════════
+        let params = {
+            seed: 20260925,
+            perLane: 1600,
+            cadence: 0.55,
+            noiseScale: 0.0035,
+            flowSpeed: 1.2,
+            passes: 120,
+            colorPalette: ['#d97757', '#6a9bcc', '#788c5d']
+        };
+        let defaultParams = { ...params, colorPalette: params.colorPalette.slice() };
+
+        const LANES = 3;          // 三个时间槽
+        const SLOTS = 6;          // 一个周期内的节律槽位数
+        let particles = [];
+
+        // ═══════════════════════════════════════════════════════════════
+        // FIELD: perlin turbulence + cron rhythm banding
+        // ═══════════════════════════════════════════════════════════════
+        function fieldAngle(x, y) {
+            const turbulence = noise(x * params.noiseScale, y * params.noiseScale) * TWO_PI * 2.0;
+            const n = (y / height - 0.5) * SLOTS * PI;
+            const rhythm = Math.atan2(Math.cos(n), 0.42) * 0.9;
+            const k = params.cadence;
+            return turbulence * (1.0 - 0.62 * k) + rhythm * (0.35 + 0.85 * k);
+        }
+
+        function laneOf(i) {
+            return i % LANES;
+        }
+
+        class Particle {
+            constructor(index) {
+                this.lane = laneOf(index);
+                this.col = color(params.colorPalette[this.lane]);
+                this.respawn();
+            }
+            respawn() {
+                // 三条时区带：中心落在画布 1/5、1/2、4/5 处，留出上下页边距
+                const band = height * (0.2 + 0.3 * this.lane);
+                this.x = random(width);
+                this.y = band + randomGaussian() * height * 0.06;
+                this.prev = { x: this.x, y: this.y };
+                this.life = floor(random(60, 240));
+            }
+            step() {
+                const a = fieldAngle(this.x, this.y);
+                const v = params.flowSpeed * (0.6 + 0.8 * noise(this.x * 0.004 + 17.3, this.y * 0.004));
+                this.x += cos(a) * v;
+                this.y += sin(a) * v * 0.92;
+                this.life -= 1;
+
+                const speed = Math.min(1, v / 2.4);
+                const c = this.col;
+                const strokeCol = color(
+                    red(c) + (255 - red(c)) * 0.25 * speed,
+                    green(c) + (255 - green(c)) * 0.25 * speed,
+                    blue(c) + (255 - blue(c)) * 0.25 * speed,
+                    14 + 46 * speed
+                );
+                stroke(strokeCol);
+                strokeWeight(0.55 + speed * 0.9);
+                line(this.prev.x, this.prev.y, this.x, this.y);
+                this.prev.x = this.x;
+                this.prev.y = this.y;
+
+                if (this.life <= 0 || this.x < -20 || this.x > width + 20 || this.y < -20 || this.y > height + 20) {
+                    this.respawn();
+                }
+            }
+        }
+
+        function initializeSystem() {
+            randomSeed(params.seed);
+            noiseSeed(params.seed);
+            noiseDetail(4, 0.55);
+
+            particles = [];
+            for (let i = 0; i < params.perLane * LANES; i++) particles.push(new Particle(i));
+
+            background(250, 249, 245);
+            blendMode(BLEND);
+            noFill();
+
+            // 极淡的节律底纹：槽位边界
+            const grid = color(20, 20, 19);
+            for (let s = 0; s <= SLOTS; s++) {
+                const y = (height / SLOTS) * s;
+                stroke(red(grid), green(grid), blue(grid), 10);
+                strokeWeight(1);
+                line(0, y, width, y);
+            }
+
+            for (let p = 0; p < params.passes; p++) {
+                for (let i = 0; i < particles.length; i++) particles[i].step();
+            }
+
+            const loading = document.querySelector('.loading');
+            if (loading) loading.style.display = 'none';
+        }
+
+        function setup() {
+            const canvas = createCanvas(1200, 1200);
+            canvas.parent('canvas-container');
+            initializeSystem();
+            noLoop();
+        }
+
+        function draw() { /* 静态沉积：initializeSystem 已完成绘制 */ }
+
+        function regenerate() { initializeSystem(); }
+
+        function downloadPNG() { saveCanvas('cron-organicism-seed-' + params.seed, 'png'); }
+
+        // ═══════════════════════════════════════════════════════════════
+        // UI HANDLERS
+        // ═══════════════════════════════════════════════════════════════
+        function updateParam(paramName, value) {
+            const v = parseFloat(value);
+            params[paramName] = paramName === 'perLane' ? Math.round(v) : v;
+            const disp = document.getElementById(paramName + '-value');
+            if (disp) disp.textContent = value;
+            initializeSystem();
+        }
+
+        function updateColor(colorId, value) {
+            const idx = parseInt(colorId.replace('color', ''), 10) - 1;
+            params.colorPalette[idx] = value;
+            const disp = document.getElementById(colorId + '-value');
+            if (disp) disp.textContent = value;
+            initializeSystem();
+        }
+
+        function updateSeedDisplay() {
+            document.getElementById('seed-input').value = params.seed;
+        }
+
+        function updateSeed() {
+            const input = document.getElementById('seed-input');
+            const newSeed = parseInt(input.value, 10);
+            if (newSeed && newSeed > 0) {
+                params.seed = newSeed;
+                initializeSystem();
+            } else {
+                updateSeedDisplay();
+            }
+        }
+
+        function previousSeed() {
+            params.seed = Math.max(1, params.seed - 1);
+            updateSeedDisplay();
+            initializeSystem();
+        }
+
+        function nextSeed() {
+            params.seed = params.seed + 1;
+            updateSeedDisplay();
+            initializeSystem();
+        }
+
+        function randomSeedAndUpdate() {
+            params.seed = Math.floor(Math.random() * 999999) + 1;
+            updateSeedDisplay();
+            initializeSystem();
+        }
+
+        function resetParameters() {
+            params = { ...defaultParams, colorPalette: defaultParams.colorPalette.slice() };
+            const nums = ['perLane', 'cadence', 'noiseScale', 'flowSpeed', 'passes'];
+            for (const n of nums) {
+                const el = document.getElementById(n);
+                if (el) el.value = params[n];
+                const d = document.getElementById(n + '-value');
+                if (d) d.textContent = params[n];
+            }
+            for (let i = 0; i < 3; i++) {
+                const c = document.getElementById('color' + (i + 1));
+                if (c) c.value = params.colorPalette[i];
+                const cd = document.getElementById('color' + (i + 1) + '-value');
+                if (cd) cd.textContent = params.colorPalette[i];
+            }
+            updateSeedDisplay();
+            initializeSystem();
+        }
+
+        window.addEventListener('load', function () {
+            updateSeedDisplay();
+        });
+    </script>
+</body>
+</html>

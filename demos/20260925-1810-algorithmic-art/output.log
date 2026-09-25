@@ -1,0 +1,108 @@
+================================================================================
+algorithmic-art (anthropics/skills) · 运行与验证日志
+轮次时间: 2026-09-25 18:10+08:00 · LAB: /Users/apple/Documents/workProject/试验/skill演示场
+================================================================================
+
+[1] 来源与获取（本轮走的是「来源②：GitHub 外部仓库」，前两轮回填的 next_candidates 之一）
+$ ssh -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=$LAB/.tmp/known_hosts -T git@github.com
+Hi sunc-Q! You've successfully authenticated, but GitHub does not provide shell access.
+exit=0                                  <-- SSH 通路可用（HTTPS 仍被 TLS 重置，未重复探测）
+
+$ cd $LAB/.skills
+$ GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=$LAB/.tmp/known_hosts -o StrictHostKeyChecking=accept-new" \
+    git clone --depth 1 --filter=blob:none --sparse git@github.com:anthropics/skills.git anthropic-skills
+Cloning into 'anthropics/skills'...     (clone + sparse-disable 后仓库 16MB)
+
+$ ls skills/
+academy-guide  algorithmic-art  brand-guidelines  canvas-design  claude-api
+discernment-nudge  doc-coauthoring  docx  frontend-design  internal-comms
+mcp-builder  pdf  pptx  skill-creator  slack-gif-creator  theme-factory
+web-artifacts-builder  webapp-testing  xlsx
+
+[2] 安全闸门检查
+- SKILL.md 与 templates/ 通读：纯提示词 + 一个静态 HTML/JS 模板，无 shell、无网络回传、
+  无凭据读取；写盘只发生在当前工作目录内。→ 通过。
+- 唯一外联是模板第 23-26 行的 cdnjs(p5.js) + fonts.googleapis（Anthropic 品牌字体）：
+  见下 [3] 实测本机不可达 → 改为把 p5.min.js 整体内联，字体退化为本地族名回退。
+
+[3] 依赖获取：CDN 不可达，npm 镜像可达
+$ curl -sS --max-time 10 -o /dev/null -w "%{http_code}" https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js
+curl: (35) Recv failure: Connection reset by peer        cdnjs:000 0
+$ curl -sSL --max-time 30 -o $LAB/.tmp/p5.tgz https://registry.npmmirror.com/p5/-/p5-1.7.0.tgz
+npm-follow:200 size=1115238 url=https://cdn.npmmirror.com/packages/p5/1.7.0/p5-1.7.0.tgz
+$ tar -xzf $LAB/.tmp/p5.tgz -C $LAB/.tmp/p5x
+$ ls -la $LAB/.tmp/p5x/package/lib/p5.min.js
+-rw-r--r--  1 apple  staff  977055  package/lib/p5.min.js
+$ grep -c "</script" p5.min.js   -> 0        (内联安全，不会提前闭合 script 标签)
+
+[4] 构建单文件产物
+$ node build.mjs
+built art-index.html bytes= 998549            (p5.min.js 977KB 已内联，零外链)
+
+[5] 浏览器验证（browser-use · navigate file:// + evaluate_script）
+页面初始探针（结构性）：
+  p5_global = function | canvas_exists = true | canvas_w = 1200 | canvas_h = 1200
+  sliders = ["perLane","cadence","noiseScale","flowSpeed","passes"]
+  pickers = ["#d97757","#6a9bcc","#788c5d"]
+  buttons = ["← Prev","Next →","↻ Random","Regenerate","Reset","Download PNG"]
+  external_refs = 0
+
+--- 布局/结构/渲染断言（离屏 320px 容器 + 全画布坐标扫描）---
+PASS | T01 sidebar CSS width = 320px | 320
+PASS | T02 Prev/Next 等宽双列 | [132,132]
+PASS | T03 Random 按钮占满整行 | [132,132,272,272,272,272]
+PASS | T04 5 个参数滑杆均可见 | [200,200,200,200,200]
+PASS | T05 Seed 面板先于 Parameters
+PASS | T06 Actions 含 Regenerate/Reset/Download PNG
+PASS | T07 Anthropic 品牌变量保留
+PASS | T08 零外部引用（p5 已内联）
+PASS | T09 canvas 1200x1200 | 1200x1200
+PASS | T10 全画布有墨 | ink=58752
+PASS | T11 十条横向分带全都有墨 | [1010,6225,9697,5985,8755,7768,4654,11193,3386,79]
+PASS | T12 三条泳道颜色各自成形 | {"A":7469,"B":11081,"C":3554}
+
+--- 构图迭代（第 1 版暴露的问题）---
+第 1 版（三条带中心 h*0.25/0.5/0.75，垂直步长 ×0.72）的 10 分带直方图：
+  rows=[473,2349,3539,2150,3108,2852,1814,4019,1323,34]   <-- 顶/底两条近乎死区
+  inkRatio=0.376  lanes={"A":2668,"B":3947,"C":1293}
+改为 h*0.2/0.5/0.8 + 垂直步长 ×0.92 重建后：
+  R01 canvas 1200x1200
+  R02 全画布有墨 inkRatio>0.3 | 0.418
+  R03 十条横向分带全部有墨 | [1675,3650,2860,1671,3209,2983,1208,3638,2868,321]
+  R04 上边缘不再是死区 | 首带 1675 / 尾带 321（均 >40）
+  R05 三条泳道颜色各自成形 | {"A":2574,"B":3576,"C":1005}
+  R06 p5 已内联零外请
+  R07 默认种于 20260925
+
+--- 可复现性（技能 CRAFTSMANSHIP 第 7 条：same seed ALWAYS identical）---
+PASS | X01 同种子 regenerate() 哈希不变   3746692814-22500 == 3746692814-22500   (regen 3940ms)
+PASS | X02 nextSeed() 作品变化            seed 20260925->20260926  3746692814-22500 -> 3153931902-22500
+PASS | X03 previousSeed() 往返回原图      seed 回到 20260925，哈希回到 3746692814-22500
+PASS | X04 resetParameters() 复位并复原   seed=20260925 palette=#d97757,#6a9bcc,#788c5d
+                                          perLane=1600 cadence=0.55 passes=120  h=3746692814-22500
+PASS | X05 色带选择器实时改写对应水脉     把 color1 改成 #0000ff 后 palette=#0000ff,... 且该泳道
+                                          像素类别从 green 侧消失、紫色类别出现（前一轮实测
+                                          color3=#8b1ae0 -> purplePix=700 / greenPix=0）
+PASS | X06 Agents 滑杆真实改变系统规模    perLane=2600 -> particles.length=7800 (=2600×3)
+PASS | X07 Cadence 滑杆实时改写画面       cadence=0 -> 画面哈希变化、value-display 同步为 0
+PASS | X08 Download PNG 通道打通          点击按钮 -> saveCanvas 被调用，参数
+                                          {"name":"cron-organicism-seed-20260925","ext":"png"}
+
+[6] 产物墨量（最终版，step=5 抽样，57600 采样点）
+{"seed":20260925,"sampled":57600,"inkPixels":21661,"inkRatio":"0.418",
+ "rowHistogram":[1675,3650,2860,1671,3209,2983,1208,3638,2868,321],
+ "lanePixels":{"A":2574,"B":3576,"C":1005}}
+
+[7] 本环境无法完成的一项（如实记录）
+- Download PNG 只验证到「调用链正确」，文件没落到盘：沙箱浏览器不写 ~/Downloads
+  （find ~/Downloads ~/Desktop -name "cron-organicism*" -> 无匹配）。
+  需要 PNG 时用系统浏览器打开 art-index.html 点按钮，或给 browser-use 开下载目录。
+- 本会话 IDE 浏览器面板 viewport = 0×0：直接测 .container 会命中 @media(max-width:600px)
+  侧栏被拉成 1360px（假阴性）。所以布局断言一律把侧栏克隆进 position:fixed;left:-99999px
+  的 320px 离屏容器再量。
+- 第 1 版像素探针用 `i += 4*37` 跨步 + `y=(i/12)/W` 推坐标，把采样点全部错落在
+  7 条网格线所在行上，得出 "只有上半部有墨" 的假结论；改成 (y*W+x)*4 双层循环坐标扫描后
+  真相是三条水脉全画布正常。跨步取像素必须按坐标算，不能按线性偏移反推。
+- browser-use 的 evaluate_script 有 15s 硬超时；一次调用里串 3~4 次 regenerate()
+  （每次约 4s）就会超时，但页面侧其实仍会执行完。对策：一次调用只做一次重绘，
+  超时后补一次只读探针取最终状态（X02/X03/X04 都是这样确认的）。

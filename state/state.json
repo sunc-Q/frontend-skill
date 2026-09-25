@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T09:50:30.971Z",
+  "updated": "2026-09-25T18:25:00+08:00",
   "tried": [
     {
       "skill": "drafter",
@@ -26,6 +26,17 @@
       "installed_by_this_task": [
         "ascii-project-dashboard (market id official_qzXG5ekf) -> /Users/apple/.qoder-cn/skills/ascii-project-dashboard/ —— 经 install_extension 安装，市场条目不暴露可 clone 仓库，无法落在 LAB/.skills/"
       ]
+    },
+    {
+      "skill": "algorithmic-art",
+      "source": "GitHub 外部仓库 git@github.com:anthropics/skills.git (main) -> skills/algorithmic-art —— 本任务首次走通「来源②」SSH shallow clone",
+      "skill_path": "LAB/.skills/anthropic-skills/skills/algorithmic-art/SKILL.md",
+      "task": "按技能两步流程（先写算法哲学宣言，再用 p5.js 实现）为本流水线本身生成一幅「Cron Organicism 定时有机主义」：三条水脉=三个实验室的 cron 时间槽，沿 Perlin 湍流+沿 y 的周期余弦节律合成场漂流 120 轮沉积成密度图；Cadence Strength 滑杆=节律绑定强度（0 解散/1 钉死时区带）；默认 seed 20260925",
+      "verdict": "留用。约束最硬、承诺最可验的生成艺术技能：「同种子必得同图」由 randomSeed/noiseSeed+静态绘制保证，本轮用像素哈希逐条证伪通过（regenerate 同哈希 / nextSeed 变 / previousSeed 精确复原 / reset 双双复原）；模板+品牌+Seed 导航写死，省去每次重做 UI。局限：(1) 模板默认走 cdnjs+Google Fonts，本机 TLS 重置→不改内联就白屏；(2) 重绘 ~4s(4800粒×120轮)，批量参数搜索要先降 passes；(3) SKILL.md 要求的 Download PNG 键在自带模板里缺失（文档与模板不一致），且沙箱浏览器不落盘只能验到调用链。",
+      "time": "2026-09-25T18:10+08:00",
+      "artifact": "demos/20260925-1810-algorithmic-art/art-index.html",
+      "report": "reports/20260925-1810-algorithmic-art.md",
+      "installed_by_this_task": []
     }
   ],
   "skills_seen": [
@@ -168,20 +179,36 @@
       "url": "official 非精选",
       "status": "blocked",
       "note": "把本地图 POST 到外部服务并返回 URL → 触安全闸门（内容外发），排除"
+    },
+    {
+      "name": "anthropics/skills 仓库（来源②通路）",
+      "source": "git@github.com:anthropics/skills.git SSH shallow+sparse clone -> LAB/.skills/anthropic-skills/ (16MB)",
+      "url": "github.com/anthropics/skills",
+      "status": "working_source",
+      "note": "**通路已验证可用**：ssh -T git@github.com 认证成功；--filter=blob:none --sparse + sparse-checkout disable 一次拿全 19 个技能。打破前两轮「只有官方市场可用」单点。注意 .skills/ 整个目录被 .gitignore 排除，clone 不进 git。"
+    },
+    {
+      "name": "anthropics/skills 其余 18 个未试技能",
+      "source": "同一仓库 LAB/.skills/anthropic-skills/skills/",
+      "url": "academy-guide, brand-guidelines, canvas-design, claude-api, discernment-nudge, doc-coauthoring, docx, frontend-design, internal-comms, mcp-builder, pdf, pptx, skill-creator, slack-gif-creator, theme-factory, web-artifacts-builder, webapp-testing, xlsx",
+      "status": "candidate",
+      "note": "已 clone 到本地、零安装成本。canvas-design(出 PNG/PDF，需 PIL，本机 python3 无 PIL 且 pip 未验证)、slack-gif-creator(动图 GIF，需 PIL+requirements.txt)、theme-factory(给产物套 10 套主题，纯提示词，含 theme-showcase.pdf 现成参照)、pdf/docx/pptx/xlsx(Office 文档全家桶)、webapp-testing(浏览器自动化测试)、mcp-builder(造 MCP server) —— 下轮优先 theme-factory 或 webapp-testing 或 xlsx（避开依赖 PIL/pip 的两个）。"
     }
   ],
   "in_progress": [],
   "next_candidates": [
-    "★ doge（ASCII 字符画，official_A9htirhV）或 kbravh-svg-logo-creator/svg-artist（纯 SVG 矢量产物，无需 rsvg-convert）—— 换「生成图像文件」这一类产物",
-    "SQLite-Database-Expert（本机已装，零安装）× 建小库跑 FTS 全文检索，产物 = .db + output.log，换「数据库实验」类",
-    "sec-audit-cn（本机已装，零安装）× 审计 portfolio-site 或含漏洞样例，产物 = 分级审计报告 .md，换「安全审计」类",
-    "golang-testing / golang-gin-api（本机已装）× 一个小 Go 包跑 table-driven test，产物 = go test 真实输出，换「后端命令输出」类（注意 GOPROXY=goproxy.cn）",
-    "试通 git@github.com SSH shallow clone 一个 skills.sh/awesome-skills 仓库到 LAB/.skills/，打破「只有官方市场可用」单点（至今两轮都没验过这条通路）",
-    "build-game（Three.js 单文件游戏）—— 先探测 unpkg/cdn 可达性再决定，不可达就改记 blocked"
+    "★ theme-factory（已 clone 在本地，纯提示词零依赖）× 给本轮 Cron Organicism 页面或 drafter 蓝图套一层 10 套预设主题，产物 = 换肤后的 HTML，换「主题/风格系统」类",
+    "★ webapp-testing（已 clone）× 拿它给自己本轮 art-index.html 写一轮真实浏览器回归，产物 = 测试脚本 + 通过输出，换「自动化测试」类",
+    "★ xlsx / docx / pptx（已 clone）× 用 state.json 台账生成一份真实的 .xlsx 轮次报表或 .pptx 幻灯，产物 = 二进制办公文档，换「Office 文件生成」类（先验 python 依赖是否可装）",
+    "SQLite-Database-Expert（本机已装，零安装）× 建小库跑 FTS 全文检索 work-log，产物 = .db + output.log，换「数据库实验」类",
+    "sec-audit-cn（本机已装）× 审计 demos/ 产物或 portfolio 后端，产物 = 分级审计报告 .md，换「安全审计」类",
+    "doge（ASCII 字符画 official_A9htirhV）/ kbravh-svg-logo-creator（纯 SVG 产物）—— ASCII 类已做过 2 次，SVG 类尚未做过，优先 SVG",
+    "canvas-design / slack-gif-creator —— 依赖 PIL，本机 python3 无 PIL；先花 2 分钟验 pip 是否可用（且不得污染全局），不可用直接记 blocked"
   ],
   "used_artifact_kinds": [
     "单文件自包含 HTML 图表（工程图纸）×1",
-    "纯文本终端 ASCII 看板（.txt，零依赖）×1"
+    "纯文本终端 ASCII 看板（.txt，零依赖）×1",
+    "单文件自包含 HTML 生成艺术（p5 内联，可交互+种子可复现）×1"
   ],
   "environment_notes": [
     "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
@@ -195,7 +222,15 @@
     "ASCII/文本类产物的对齐必须由「终端显示宽度」决定：CJK 与 emoji 记 2 列、U+FE0F 变体选择符记 0 列；JS 的 s.length（UTF-16 码单元）与 [...s].length（码点）都不等于显示列数，用它补位会让中文列错位（实测极差 26 列）。",
     "extension-market 里 tags 为空的条目（如 ascii-project-dashboard/fabioc-aloha、dlazy-vectorize）比 origin:skillatlas|modelscope 镜像条目包格式更可靠，本轮 tags 空→一次装成。",
     "兄弟实验室（前端skill实验室/业务网站实验室）的 state.json 在同一时段会被各自的每小时任务并发改写：本任务产物读取它们做数据源时数值会中途变化（本轮从 4 轮变 5 轮），写回自身 state.json 必须先重读再合并，禁止整文件覆盖。",
-    "Bash 与 Write/Read 工具在中文工作目录下路径解析可能不一致（工具侧出现 .sandbox 镜像路径与 does not exist 误报）；结论：以 Bash 的 ls 实况为准，脚本文件优先用 heredoc (cat > f <<'EOF') 落盘最稳。"
+    "Bash 与 Write/Read 工具在中文工作目录下路径解析可能不一致（工具侧出现 .sandbox 镜像路径与 does not exist 误报）；结论：以 Bash 的 ls 实况为准，脚本文件优先用 heredoc (cat > f <<'EOF') 落盘最稳。",
+    "来源②已打通：git@github.com SSH shallow+sparse clone 可用（anthropics/skills 19 个技能已在 LAB/.skills/anthropic-skills/，16MB，被 .gitignore 排除不进 git）。下轮不必再依赖官方市场单点。",
+    "cdnjs.cloudflare.com 与 fonts.googleapis.com 的 HTTPS 同样被 TLS 重置（实测 curl (35) Connection reset by peer）。第三方 JS 库统一走 npm 镜像：curl -sSL https://registry.npmmirror.com/<pkg>/-/<pkg>-<ver>.tgz 再 tar 解包取 lib 产物（p5 1.7.0 = package/lib/p5.min.js 977KB）。",
+    "把外部 JS 内联进 HTML 前必查两件事：grep -c '</script' 库文件（>0 则需转义）；替换必须用 replacer 函数 s.replace(ph, () => lib)，否则库里的 $&/$' 会让文档自我复制。",
+    "像素级验证铁律：读 ImageData 只能按坐标双层循环 for(y)for(x){i=(y*W+x)*4}。用线性跨步 i+=4*N 再反推 y=(i/12)/W 会把采样点错落在少数几条线上，产生「画面上半部才有墨」这类假结论（本轮真实踩过并纠正）。",
+    "browser-use evaluate_script 有 15s 硬超时：单次调用只允许一次重绘/一次重量级扫描（p5 重绘 ~4s）。超时不等于失败——页面侧仍会跑完，补一次只读探针取终态即可判定。",
+    "生成艺术「构图」要可量化：用 10 段横向 ink 直方图判定死区，比看缩略图可靠。第 1 版三条带中心 0.25/0.5/0.75 + 垂直步长 0.72 → 顶/底带 ink=473/34；改 0.2/0.5/0.8 + 步长 0.92 → 1675/321，十条带全部有墨。",
+    "本机 python3 存在（sandbox_runtime 里）但无 PIL 模块；依赖 Pillow 的技能（canvas-design / slack-gif-creator）在验证 pip 可用性之前一律先当作不可用。",
+    "磁盘开工水位：可用 20450308 KB ≈ 19.5 GiB（>1.5 GiB 阈值），收尾 20439412 KB ≈ 19.5 GiB。本轮 demos 1.0MB（限 5MB），LAB 总 17MB（含 .skills 16MB 未入库）。"
   ],
   "runs": [
     {
@@ -223,6 +258,17 @@
         "ascii-project-dashboard -> /Users/apple/.qoder-cn/skills/ascii-project-dashboard/"
       ],
       "notes": "10 PASS / 0 FAIL 断言（列边界/条长/版式一致/框线闭合/百分比==独立反算）；对照组按技能原文口径跑→7 PASS 3 FAIL，实测其「10 chars=10 chars」在中文下极差 26 列。"
+    },
+    {
+      "time": "2026-09-25T18:10+08:00",
+      "skill": "algorithmic-art",
+      "result": "success",
+      "seconds": 780,
+      "artifact_size": "art-index.html 998KB(单文件自包含) + viewer.src.html 21KB + philosophy.md 2.5KB + build.mjs 527B + output.log 7.2KB = demos 本轮 1.0MB（限 5MB）；LAB 总 17MB（.skills 16MB 已 gitignore）",
+      "cleanup": "已删 $LAB/.tmp/p5.tgz 与 .tmp/p5x（p5 已内联进产物，不再需要）；零 node_modules、零构建缓存、零编译二进制；未起本地服务（无新增 LISTEN）；本轮未安装任何全局技能（installed_by_this_task 为空）；新增 LAB/.skills/anthropic-skills 16MB 作为第三方技能镜像保留（可复用、不进 git）",
+      "push": "见本行末尾：本轮走 fetch+rebase 或首推，只碰 skill-showcase 分支，SSH 无 token",
+      "installed_by_this_task": [],
+      "notes": "来源②首次打通（SSH clone anthropics/skills）。31 项断言全 PASS：结构 12 / 构图渲染 7 / 可复现与交互 8 / 附加 4。技能招牌「same seed ALWAYS identical」被逐像素哈希证实（regenerate 同哈希 3746692814-22500、nextSeed 变、previousSeed 与 reset 均精确复原）。暴露并绕过 4 个坑：CDN 被 TLS 重置→npm 镜像取 p5 内联；线性跨步像素探针假阴性；viewport 0×0 触发响应式假阴性需 320px 离屏容器；SKILL.md 要求 Download PNG 键但自带模板缺失（按 SKILL.md 补齐）。沙箱浏览器不落盘 → PNG 导出只验到调用链，已如实记录。"
     }
   ]
 }
