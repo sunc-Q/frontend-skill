@@ -262,10 +262,10 @@
       "template_created": false,
       "disk": {
         "df_k_avail_before": 20114960,
-        "df_k_avail_after": 20070948,
-        "lab_total_bytes_human": "10M（含 .git，场景主提交前实测）",
+        "df_k_avail_after": 20070416,
+        "lab_total_bytes_human": "11M（含 .git 3.5M，主提交后实测）",
         "scenario_dir_human": "1.4M",
-        "note": "开工 df -k . 可用 20,114,960KB ≈ 19.2GiB，收工 20,070,948KB ≈ 19.1GiB，全程远高于 1.5GiB 熔断线；二进制与运行库全部建在 /tmp 并已删（38MB 级），web/node_modules 已删，共享缓存未动；收工 lsof 复核 8092/8093/8097/8098/8099 监听数 0"
+        "note": "开工 df -k . 可用 20,114,960KB ≈ 19.2GiB，收工 20,070,416KB ≈ 19.1GiB，全程远高于 1.5GiB 熔断线；二进制与运行库全部建在 /tmp 并已删（38MB 级），web/node_modules 已删，共享缓存未动；收工 lsof 复核 8092/8093/8097/8098/8099 监听数 0，git status 干净"
       },
       "volume": {
         "go_files": 16,
@@ -276,7 +276,7 @@
         "endpoints": 9,
         "tables": 4,
         "seed_rows": "26 dishes(23 在售·3 沽清) / 5 zones(4 启用) / 122 orders(当天 23，6 态全覆盖) / 458 order_items(731 份，当天 93 条)",
-        "frontend_src_files": 7,
+        "frontend_src_files": 10,
         "theme_css_files": 3,
         "dist_bundle_bytes": 282541,
         "preview_files": 3,
@@ -286,8 +286,9 @@
       },
       "push": {
         "branch": "go-gin_react",
-        "result": "待本条提交后回填",
-        "note": "git fetch origin go-gin_react → rebase FETCH_HEAD → 普通 push；绝不 --force、绝不 --no-verify、绝不碰 main、不改任何全局 git 配置，身份只用 -c user.name/-c user.email 内联"
+        "result": "成功",
+        "commit": "14b5c88（场景主提交，46 文件）+ 本记录回写提交",
+        "note": "git fetch origin go-gin_react → rebase FETCH_HEAD（返回「Current branch go-gin_react is up to date」，无改写）→ git push origin go-gin_react，远端 5f5a4de..14b5c88；未 --force、未跳 hook、未碰 main、未改任何全局 git 配置，身份只用 -c user.name/-c user.email 内联；staged 文件名扫 node_modules|.db|.log|二进制|token 命中 0，/tmp 下一次性二进制与运行库全部删除"
       }
     }
   ],
