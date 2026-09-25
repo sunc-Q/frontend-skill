@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T22:05:00+08:00",
+  "updated": "2026-09-25T22:20:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -262,10 +262,10 @@
       "template_created": false,
       "disk": {
         "df_k_avail_before": 20114960,
-        "df_k_avail_after": 20068500,
+        "df_k_avail_after": 20055596,
         "lab_total_bytes_human": "11M（含 .git 3.5M，两次记录回写后终值）",
         "scenario_dir_human": "1.4M",
-        "note": "开工 df -k . 可用 20,114,960KB ≈ 19.2GiB，收工 20,068,500KB ≈ 19.2GiB，全程远高于 1.5GiB 熔断线；二进制与运行库全部建在 /tmp 并已删（38MB 级），web/node_modules 已删，共享缓存未动；收工 lsof 复核 8092/8093/8097/8098/8099 监听数 0，git status 干净"
+        "note": "开工 df -k . 可用 20,114,960KB ≈ 19.2GiB，收工 20,055,596KB ≈ 19.1GiB（4 笔提交后的终值），全程远高于 1.5GiB 熔断线；二进制与运行库全部建在 /tmp 并已删（38MB 级），web/node_modules 已删，共享缓存未动；收工 lsof 复核 8092/8093/8097/8098/8099 监听数 0，git status 干净"
       },
       "volume": {
         "go_files": 16,
@@ -282,6 +282,7 @@
         "preview_files": 3,
         "preview_each_bytes": 283090,
         "smoke_assertions": "pass=63 fail=0",
+        "ui_write_verified": "浏览器内点看板「→ 制作中」：旧令牌先复现 403 fail-closed，换对令牌后 FD20260925-0001 placed→cooking（stats by_status placed 3→2 / cooking 3→4，看板列标题同步）；一次性 /tmp 实例与库已删",
         "stats_verified": "GMV ¥16,947.00 / 今日 ¥3,470.00 / 客单价 ¥151.31 / 平均出餐 34min / 取消率 8.2%"
       },
       "push": {
