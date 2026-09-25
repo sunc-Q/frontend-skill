@@ -117,7 +117,7 @@
       "seconds": 420,
       "artifact_size": "15KB HTML + 3.4KB output.log；本轮 demos 目录合计 20KB（限 5MB）",
       "cleanup": "无需删依赖（零安装零 node_modules、产物无 JS 无外链）；未起任何本地服务，lsof 无监听；本轮唯一持久副作用=安装了 ~/.qoder-cn/skills/drafter（已登记 installed_by_this_task，按规约不自动卸载）；离屏测量容器随重新导航自动消失，未落盘",
-      "push": "pending — 见 work-log 末行",
+      "push": "已推送：git push -u origin skill-showcase 新建远端孤立分支成功（首推，无 force），远端 refs/heads/skill-showcase = 2004a2f；main 保持 c662335 未被触碰；走 git.com SSH + LAB/.tmp/known_hosts，命令行无任何 token",
       "installed_by_this_task": [
         "drafter -> /Users/apple/.qoder-cn/skills/drafter/"
       ],
