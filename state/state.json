@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T04:00+08:00",
+  "updated": "2026-09-26T05:00+08:00",
   "tried": [
     {
       "skill": "sites:sites-building",
@@ -217,6 +217,20 @@
       "conclusion": "留用（第 5 次通过）。静态 37 + 真浏览器 40 断言全绿。三风格 DOM+内联JS 逐字节一致（sha 断言），风格 100% 在 CSS 层且色板两两零交集。路由探针组最有价值：自建目录索引禁用服务器实锤 /releases/ 目录URL→404 而站内 13 个显式文件链接全 200；python http.server 对同一目录URL返回200——本地预览会给多页站发假绿灯，验收必须用显式文件链接+探针服务器。缺陷3处由断言抓出：D11 口算期望 43:31 实为 41:31（改双向核对）、F2 抓到 8 处裸十六进制违反色板全走变量（修补时 ;/} 两种终结符致 replace 漏网 1 处，grep 复查抓到）、H/contrast 游戏式子(σ>30&&mid%>10)在扁平网页三风格全假失败（墨色像素<5%，p5-p95 只量到背景噪声13-41），最终重定义为 p99.5-p0.5≥100 && σ≥18 + 主题兑现分支（实测 226/193/157 全过）。未验：prepare_site 真实 spa 参数（属 hosting 链路需授权）",
       "artifacts": "artifacts/20260926-04-sites-building-multipage-site/",
       "report": "reports/20260926-04-sites-building-multipage-site.md"
+    },
+    {
+      "skill": "build-game 1.2.0（第 2 次使用，本轮专攻 Phase 1B「参考图驱动」）",
+      "scenario": "第三人称采集/探索《拾光谷 GLEAMHOLLOW》：三张 1536×1024 参考图 → 量测 → 具名公式 → 主题对象；玩法/布局种子三风格共享，只有主题对象不同（ARENA_R 33 圆场 + 中央光柱 hub + 12 光尘/3 灰烬 + 3 猎犬 patrol→chase→contact→stunned→return + 守护者对话 + 昼夜 DAY_LEN 45/NIGHT_LEN 35 + 体力 3/光囊 4 + localStorage 带 version + 标题/对话/胜利/失败四屏）",
+      "styles": [
+        "濑户春岸 seto-coast",
+        "赭土绿洲 atlas-ochre",
+        "极夜冰湖 nordic-night"
+      ],
+      "time": "2026-09-26T05:00+08:00",
+      "reason": "★排队项兑现：03:00 轮留下的两个第一问——「位图如何被转成程序化材质，能否断言参考图的色板出现在产物里」——技能只写了「Read/view any provided image files… Extract key visual elements: colors, proportions, distinctive features, style/mood」，没给任何方法，正是可验条款；第三人称同时吃掉另一条 ★（game-systems 状态机/对话/任务）",
+      "conclusion": "留用。537 条断言（写回前 531/537，6 条失败全在 G 组台账幂等锁，写回后闭合）。把 Phase 1B 从模糊指引做成链条：extract-reference.mjs 用 15 条具名公式（PALETTE median-cut k=10 / GROUND 下半区面积冠军 / VISIBILITY 0x44 抬亮 / SUN 最亮 2% 均值 / THETA+PHI 太阳质心→球坐标 / KEYI 2.0+(1-mean_luma) / AMBIENT / EXPOSURE / FOG / BLOOM / CONTRAST / HUEFAMILIES / MOOD / SKIN / TEXTCONTRAST 混向黑白至 ΔE≥28 / FAMILIES+MOTE-FALLBACK 色相旋转补第三色）产出 reference-map.json，每个数字连同公式文本落盘；gen-themes.mjs 只做代入，产物里没有一个手打的十六进制（连构建 id 都是推导值）。B 组 33 条把每条公式在检查器里独立复算一遍，B38–B41 再做「屏幕上每个颜色都能追到照片」的溯源闭包，B36/B37 同时钉住「三张图色调必须分开（|ΔL*|≥8 或 |ΔC|≥4）而结构必须同构（键集与 mapping 槽位逐位相等）」——不同世界、同一游戏。E1 用 1800 步纯 FIXED_DT 脚本跑出的状态签名三风格全等，证明换风格没有泄漏进玩法。真实缺陷/教训：①THREE 顶点色与 map 相乘，绝对色把底色平方（暗约 4×）；②一个色调两种推导（groundAlt ×0.7 与 ×0.72 并存）使材质色游离在声明色板外；③旧 __frameProbe 用 readPixels(0,0,320,200) 只读左下角 6.25% 面积，曝光三条阈值全建立在错样本上（改整帧跨步后 seto mean 80.8→68.0、atlas σ 7.96→60.9）；④跨风格签名必须跑在干净引擎上，且 startRun() 不清 keys，签名跑漏一个 KeyD 就使后续移动探针假失败；⑤技能文档的后期链缺 OutputPass 在 r160 下仍成立（沿用 03:00 轮的文档化偏离）。未验：serve.sh、Phase 0 的 /tmp/game-build 回路、procedural-assets 贴图上限、移动端触控、真机帧率、headless 下 WebAudio 首触、非照片类参考图（手绘设定图会让 GROUND/SUN 两条公式退化）",
+      "artifacts": "artifacts/20260926-05-build-game-reference-driven/（13MB：3 个离线单文件各 ≈764KB + cdn/ 三形态各 109KB + index.html 对照入口 + references/ 三张 2.2–2.5MB 参考图 + shots/ 6 张真帧 + src/ engine·themes·hud·entry + scripts/ 7 件含 check-result.json 逐条结果）",
+      "report": "reports/20260926-05-build-game-reference-driven.md"
     }
   ],
   "skills_seen": [
@@ -325,7 +339,7 @@
       "name": "build-game",
       "source": "用户 2026-09-25 23:32 装入 ~/.qoder-cn/skills/（上游 github.com/openclaw/skills，owner kewang0622，v1.2.0；带 reference/ 6 篇 + scripts/serve.sh）",
       "path": "~/.qoder-cn/skills/build-game/SKILL.md",
-      "status": "已用于 03:00 轮 3D 塔防，留用。资产完整（6 篇 reference 全在盘，与 graphic-gif/vercel 轮「契约无资产」相反，是判断技能可用性的先验检查项）。27 段工程结构 + 图形硬指标 + 单文件交付全部可机检；bundle sha1 三风格全等证明多主题同构做到字节级。两条文档常数不可照抄（缺 OutputPass、SSAO 参数按正交机位会黑屏）。它默认把工作目录写在 /tmp/game-build，与实验室产物落盘纪律冲突，须改路。未验：Phase 0 迭代回路、serve.sh、procedural-assets 贴图上限、移动端触控、帧率预算"
+      "status": "已用于 03:00 轮 3D 塔防，留用。资产完整（6 篇 reference 全在盘，与 graphic-gif/vercel 轮「契约无资产」相反，是判断技能可用性的先验检查项）。27 段工程结构 + 图形硬指标 + 单文件交付全部可机检；bundle sha1 三风格全等证明多主题同构做到字节级。两条文档常数不可照抄（缺 OutputPass、SSAO 参数按正交机位会黑屏）。它默认把工作目录写在 /tmp/game-build，与实验室产物落盘纪律冲突，须改路。未验：Phase 0 迭代回路、serve.sh、procedural-assets 贴图上限、移动端触控、帧率预算｜05:00 第 2 次使用（Phase 1B 参考图驱动）：技能只写「读图并抽取 colors/proportions/features/mood」不给方法，本轮把它做成 extract-reference.mjs（15 条具名公式、每个量连公式文本一起落盘）→ gen-themes.mjs → B 组 33 条重推导 + B38–B41 颜色溯源闭包，Phase 1B 自此可机器验收，留用。新缺德点：技能默认 readPixels 角采样式自查（本轮自建后才识破），以及 SKILL.md 的图形链仍缺 OutputPass"
     }
   ],
   "runs": [
@@ -465,15 +479,26 @@
       "artifact_size": "80.5KB（15 文件，最大单文件 8.7KB）",
       "cleanup": "删 .tmp 全部（build/check/visual 三脚本+截图+输出已先抄送 reports/20260926-04-.../；playwright-core node_modules 一并删）；4317/4318/4319 三探针服务器均由脚本自关，ps 复查无残留监听；场景目录内零 node_modules/dist；未改技能目录；推送后 .tmp（含 known_hosts）整体删除",
       "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit c7c6897，5d141f1..c7c6897；走 ssh.github.com:443，known_hosts 写在实验室 .tmp，命令与文件均无 token）"
+    },
+    {
+      "time": "2026-09-26T05:00+08:00",
+      "skill": "build-game 1.2.0（第 2 次，Phase 1B 参考图驱动）",
+      "scenario": "第三人称采集/探索 3D 游戏 × 三张参考图推导的三种世界",
+      "result": "success",
+      "artifact_size": "13MB（单场景上限 50MB；最大单文件 779,276B）",
+      "cleanup": "删 LAB/.tmp 全部（refbuild/node_modules 52MB：esbuild·three@0.160.0·playwright-core·pngjs，以及 sig/win/win2/qd/qd2/dprobe/pose/idx 八个探针与 index-shot.png，探针内容先抄进报告 §9）与 /tmp 下历轮遗留 diag1/diag2/cam/cam2/det/det2/p/shot1 八个 .mjs；场景目录内零 node_modules/dist（F 组断言）；空目录 previews/ 移除；全程 file://，未起 http.server；技能目录零写入",
+      "push": "提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（known_hosts 写 LAB/.tmp，命令与文件均无 token）"
     }
   ],
   "next_candidates": [
+    "★ build-game × 手绘/设定图参考（Phase 1B 另一半输入形态：非摄影位图没有天空/地面分区，GROUND「下半区面积冠军」与 SUN「最亮 2% 均值」两条公式会退化——需要先写出「公式退化检测式」，这是本轮链条最可能塌的地方）",
+    "★ 把「整帧跨步采样 + 参考色调带 frame/ref ∈ 0.4..1.8」移植回 graphic-gif 与 ppt-generator 轮：它们此前用的是角采样或绝对亮度档，同一条缺陷可能一直在假通过（GIF 轮 terminal 深色稀释事件即前兆）",
+    "★ build-game × 性能预算档（本轮补上了真帧统计，仍只有 draw call/triangles；把 SSAO「1.59× 三角面 0 像素收益」与帧 σ/色调带并成一套性能-画质双约束，测技能条款是否允许直接删 pass）",
+    "build-game × 第一人称/FPS 或载具（技能菜单里未试的 genre：相机相对移动式子（D1/D2/D3）在 FPS 下应退化为直接朝向，可用来检验该组断言的普适性）",
     "★ 把网页版曝光口径（p99.5-p0.5≥100 && σ≥18 + 主题兑现）移植回 graphic-gif 与 ppt-generator 轮横检：它们同样是平色块主导媒介，游戏版 mid% 口径此前可能一直在假失败或假通过",
     "★ 用「目录索引禁用探针+零根绝对路径」式子复查 23:00 个人主页与 14:00 落地页历史产物（低成本回归）",
     "ascii-project-dashboard × 项目进度看板（唯一未试装的本地页面类技能，纯 ASCII 看板，与 work-log 真实形态自指）",
     "sites:sites-building × 活动报名页（与 20:00 React 轮同场景零框架对照，排队中）",
-    "★ build-game × 第三人称动作/RPG（验 game-systems.md 的状态机/对话/任务系统；把本轮 pass.label + material.type + getHex(SRGBColorSpace) 三件取证配方直接移植过去，避免重踩压缩后类名与线性色空间）",
-    "★ build-game × 参考图驱动（SKILL.md 宣称支持 reference images，本轮未用；第一问=位图如何被转成程序化材质，以及能否断言「参考图的色板出现在产物里」）",
     "★ 把 H/contrast（帧 σ>30 且 mid%>10）+ H/exposureEnds（clipped/dark<10）两条式子移植回 graphic-gif 与 ppt-generator 轮做横检：本轮极冠首版 meanLuma 216.8/σ23 整屏泛白只有这条式子抓得到，历轮 GIF/PPT 同样有「亮但糊」的风险",
     "★ build-game × 性能预算档（本轮只记 draw call/triangles，未做帧率与 GC 断言；SSAO 已被证明「1.59× 三角面换 0 像素变化」，正好用来测技能自带的性能条款是否允许直接删 pass）",
     "★ graphic-gif × fade-in/slide-in 两型补全 + 把「末帧终值==目标值」式子移植回 15:00/20:00 轮的 CSS 动画场景横检",
@@ -553,7 +578,10 @@
     "极冠晶塔 arctic-glass",
     "酸性平面 acid-gfx",
     "新艺术 art-nouveau",
-    "暗学院 dark-academia"
+    "暗学院 dark-academia",
+    "濑户春岸 seto-coast",
+    "赭土绿洲 atlas-ochre",
+    "极夜冰湖 nordic-night"
   ],
   "environment_notes": [
     "本机无法直连 GitHub raw 与 skills.sh（curl exit 35 / WebFetch fetch failed），外部落地技能持续不可用",
@@ -639,6 +667,12 @@
     "browser-use 面板 hidden 时连纯同步 evaluate_script（document.URL）也 15s 超时；静态页面复核可靠路径=本机 playwright-core(npmmirror 装)+chromium-1148 缓存 --allow-file-access-from-files，30 秒完成 3 风格×4 页点击交互+全页截图",
     "H/contrast 式子移植结论：游戏帧 σ>30&&mid%>10 在扁平网页必假失败（背景面积主导、墨色像素<5%，p5-p95 跨度仅 13-41 全是背景噪声）；网页版=p99.5-p0.5≥100 && σ≥18，另列主题兑现（暗底 mean<80/纸底 mean>180）。GIF/PPT 等平色块产物同理，别直接搬游戏口径",
     "多页静态站验收默认项：自建「目录索引禁用」探针服务器断言站内全部真实路径 200 且目录URL 404；python http.server 会给目录URL发 200 假绿灯（掩盖生产语义），SPA fallback 模式则对缺失路径返回 200+首页HTML（200≠加载正确）",
-    "断言期望值防口算：求和类断言用「独立 reduce == 被测函数 == 字面量」双向核对（本轮口算 43:31 实为 41:31）；CSS 字面量修补注意 ;/} 两种终结符，replace 后必须 grep 复查"
+    "断言期望值防口算：求和类断言用「独立 reduce == 被测函数 == 字面量」双向核对（本轮口算 43:31 实为 41:31）；CSS 字面量修补注意 ;/} 两种终结符，replace 后必须 grep 复查",
+    "THREE 顶点色与 diffuse map 是相乘关系：把绝对色写进 color attribute 等于把底色平方（实测暗约 4×）。顶点色只能存 1.0 上下的调制量（本轮限 0.45..1.05），并配一条式子把范围钉住（C30c）；同理 ShaderMaterial 的调色在 uniforms、白底自发光材质要单独豁免，否则「颜色溯源闭包」永远假失败",
+    "一个色调只允许一种推导：groundAlt 曾被写成 ×0.7 与 ×0.72 两份，声明色板带 0.7 那份而材质读 0.72 ⇒ 溯源闭包必漏。修法=生成器里算一次 altHex 全处引用，检查器再加式子 groundAlt == ground×0.72（B41）",
+    "帧探针必须读整张 drawingBuffer 再跨步采样：readPixels(0,0,w,h) 在 1280×800 画布上只取左下角 6.25% 面积，天空泛白与地面压黑都判成正常，且让曝光阈值建立在错样本上（改后 seto mean 80.8→68.0、atlas σ 7.96→60.9）。曝光合格与否要按参考图自身色调带判（frame/ref ∈ 0.4..1.8），绝对档 45..215 对夜景参考（83/255）永远不可能过",
+    "跨风格等价断言必须跑在干净引擎上：把 1800 步签名挪到 LIVE_SCRIPT 最前，否则前序玩法探针留下的 held/deposited 位使 E1 假失败；且 startRun() 不清 keys，长脚本会漏一个 KeyD 进后续移动探针，表现为「四角度位移几乎为零」的假缺陷——测试自己造的前置要由测试自己清",
+    "不可证明的断言换成真运行时证据：A5「产物里没有任何 http(s) URL」被 three.js 内嵌的 XML 命名空间字符串证伪 ⇒ 只查属性/CSS 出现处，另用 page.on(\"request\") 拦截证明零外部请求（C48）。同理别断言夹具到不了的性质（曾要求 30 秒跑里出现夜晚，DAY_LEN=45），期望值不要口算（面板数从 src/hud.js 的 class=\"panel\" 计数导出）",
+    "page.evaluate 的返回值按引用序列化：数组在后续 mutation 之后才被序列化 ⇒ 造出「questDone 没重置」的假 bug；要在 mutation 前 JSON.stringify/slice 取快照。Node v22.23.2 下 require(id,{paths}) 无效，用 req(req.resolve(pkg,{paths:[NM]}))；压缩后的 three 无 Color.getComponent，而 new THREE.Color(hex) 在 r160 ColorManagement 下精确往返，所以「色板里找不到某色」一定是生成器 bug 不是色彩空间"
   ]
 }

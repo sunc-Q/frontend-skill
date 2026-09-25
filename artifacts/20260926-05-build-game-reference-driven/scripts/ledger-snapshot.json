@@ -1,0 +1,7 @@
+{
+ "taken_at": "before 20260926-05 bookkeeping",
+ "note": "counts in state.json immediately BEFORE this round was recorded; check.mjs asserts current == snapshot + increments",
+ "tried": 15,
+ "runs": 15,
+ "used_styles": 45
+}

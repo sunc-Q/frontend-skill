@@ -1,0 +1,626 @@
+[
+ {
+  "id": "seto-coast",
+  "mapping": [
+   [
+    "colors.ground",
+    "GROUND",
+    "lower-frame area winner #B3980A"
+   ],
+   [
+    "colors.groundAlt",
+    "GROUND×0.72",
+    "second terrain tone for the noise texture"
+   ],
+   [
+    "sky.bottom / fog.color",
+    "SKY-horizon",
+    "#C9D5DC = max L* of the palette (fog matched to horizon per SKILL.md)"
+   ],
+   [
+    "sky.top",
+    "SKY-zenith+VISIBILITY",
+    "#2A2F17 = min L* among non-ground entries, lifted to #3D4421 (dE 10.9) so the dome clears the 0x44 floor"
+   ],
+   [
+    "lights.key.pos",
+    "THETA+PHI",
+    "sun centroid (u=0.0666, v=0.1334) -> az -78deg, el 49.7deg, R=78 -> [-49.35, 59.49, -10.49]"
+   ],
+   [
+    "lights.key.color",
+    "SUN",
+    "mean colour of the brightest 2% = #F4F4EE"
+   ],
+   [
+    "lights.key.intensity",
+    "KEYI",
+    "2.0 + (1 - mean_luma 0.5403) * 1.0 = 2.46"
+   ],
+   [
+    "lights.ambient.intensity",
+    "AMBIENT",
+    "clamp(0.5 + (0.55 - 0.5403) * 1.4, .5, .8) = 0.514"
+   ],
+   [
+    "lights.rim.color",
+    "ACCENT",
+    "#B3980A"
+   ],
+   [
+    "colors.motes",
+    "FAMILIES+MOTE-FALLBACK",
+    "3 mote colours from 2 hue families: #676318 #688BA6 #5DB30A (min pairwise dE 54.5, 1 synthesised by hue rotation of the accent)"
+   ],
+   [
+    "scatter.kind",
+    "SCAPE-KIND",
+    "flora #2E3319 (share 0.125)"
+   ],
+   [
+    "HUD skin",
+    "SKIN",
+    "scatter.kind flora -> rounded/soft-shadow/humanist sans"
+   ],
+   [
+    "colors.uiMuted/uiText",
+    "TEXTCONTRAST",
+    "panel #444931: #2A2F17->#8A8D7F (dE 29, pushed along its own hue to >=28), #C9D5DC->#C9D5DC (dE 57.8)"
+   ],
+   [
+    "scatter.count",
+    "MOOD",
+    "220 + 420 * mood 0.407 = 391"
+   ],
+   [
+    "scatter.toonSteps",
+    "MOOD",
+    "mood 0.407 -> 3 gradient steps"
+   ],
+   [
+    "post.exposure",
+    "EXPOSURE",
+    "clamp(1 + (0.55 - 0.5403) * 1.2, 1, 1.4) = 1.012"
+   ],
+   [
+    "post.bloom.strength",
+    "BLOOM",
+    "0.25 + 0.25 * (1 - 0.5403) = 0.365"
+   ],
+   [
+    "post.grade.contrast",
+    "CONTRAST",
+    "1 + L*range 66.3/100 * 0.35 = 1.232"
+   ],
+   [
+    "post.grade.saturation",
+    "HUEFAMILIES",
+    "0.95 + 0.15 * families 2 = 1.25"
+   ],
+   [
+    "post.grade.vignette",
+    "MOOD",
+    "0.18 + 0.2 * 0.407 = 0.261 (SKILL.md cap 0.3)"
+   ],
+   [
+    "fog.density",
+    "FOG",
+    "0.004 + (1 - 0.5403) * 0.006 = 0.00676"
+   ],
+   [
+    "particles.additive",
+    "MOOD",
+    "bright reference -> normal blending"
+   ],
+   [
+    "seed",
+    "NOT-FROM-IMAGE",
+    "shared 20260926 on purpose: layout/AI must be style-independent"
+   ]
+  ],
+  "colors": {
+   "ground": 11769866,
+   "groundAlt": 8482055,
+   "rock": 4015137,
+   "flora": 3027737,
+   "skyTop": 2764567,
+   "skyBottom": 13227484,
+   "sun": 16053486,
+   "accent": 11769866,
+   "fog": 13227484,
+   "motes": [
+    6775576,
+    6851494,
+    6140682
+   ],
+   "moteHexes": [
+    "#676318",
+    "#688BA6",
+    "#5DB30A"
+   ],
+   "hub": 11769866,
+   "hound": 2764567,
+   "uiAccent": "#B3980A",
+   "uiText": "#C9D5DC",
+   "uiMuted": "#8A8D7F",
+   "uiPanel": "#444931",
+   "uiTextFrom": "#C9D5DC",
+   "uiMutedFrom": "#2A2F17"
+  },
+  "post": {
+   "exposure": 1.012,
+   "bloom": {
+    "strength": 0.365,
+    "radius": 0.3,
+    "threshold": 0.85
+   },
+   "grade": {
+    "brightness": 0.01,
+    "contrast": 1.232,
+    "saturation": 1.25,
+    "vignette": 0.261
+   }
+  },
+  "lights": {
+   "key": {
+    "color": 16053486,
+    "intensity": 2.46,
+    "pos": [
+     -49.35,
+     59.49,
+     -10.49
+    ]
+   },
+   "fill": {
+    "color": 13227484,
+    "intensity": 0.7,
+    "pos": [
+     34.55,
+     42,
+     7.34
+    ]
+   },
+   "hemi": {
+    "sky": 13227484,
+    "gnd": 11769866,
+    "intensity": 0.5
+   },
+   "ambient": {
+    "color": 13227484,
+    "intensity": 0.514
+   },
+   "rim": {
+    "color": 11769866,
+    "intensity": 1.2,
+    "distance": 60,
+    "pos": [
+     19.740000000000002,
+     14,
+     4.196000000000001
+    ]
+   }
+  },
+  "scatter": {
+   "count": 391,
+   "kind": "flora",
+   "colorHex": "#2E3319",
+   "toonSteps": 3
+  }
+ },
+ {
+  "id": "atlas-ochre",
+  "mapping": [
+   [
+    "colors.ground",
+    "GROUND",
+    "lower-frame area winner #F3E5CE"
+   ],
+   [
+    "colors.groundAlt",
+    "GROUND×0.72",
+    "second terrain tone for the noise texture"
+   ],
+   [
+    "sky.bottom / fog.color",
+    "SKY-horizon",
+    "#F3E5CE = max L* of the palette (fog matched to horizon per SKILL.md)"
+   ],
+   [
+    "sky.top",
+    "SKY-zenith+VISIBILITY",
+    "#432913 = min L* among non-ground entries, lifted to #442A13 (dE 0.7) so the dome clears the 0x44 floor"
+   ],
+   [
+    "lights.key.pos",
+    "THETA+PHI",
+    "sun centroid (u=0.5474, v=0.6783) -> az 8.5deg, el 27.9deg, R=78 -> [10.19, 36.5, -68.18]"
+   ],
+   [
+    "lights.key.color",
+    "SUN",
+    "mean colour of the brightest 2% = #FBF6EA"
+   ],
+   [
+    "lights.key.intensity",
+    "KEYI",
+    "2.0 + (1 - mean_luma 0.648) * 1.0 = 2.35"
+   ],
+   [
+    "lights.ambient.intensity",
+    "AMBIENT",
+    "clamp(0.5 + (0.55 - 0.648) * 1.4, .5, .8) = 0.5"
+   ],
+   [
+    "lights.rim.color",
+    "ACCENT",
+    "#A4623A"
+   ],
+   [
+    "colors.motes",
+    "FAMILIES",
+    "3 mote colours from 1 hue families: #A4623A #7E5F34 #D8AD8B (min pairwise dE 17.3)"
+   ],
+   [
+    "scatter.kind",
+    "SCAPE-KIND",
+    "no 60..180deg band >=0.5% and L* range 72.1 >= 45 -> boulder"
+   ],
+   [
+    "HUD skin",
+    "SKIN",
+    "scatter.kind boulder -> square/2px ring/Helvetica + 3px top rule"
+   ],
+   [
+    "colors.uiMuted/uiText",
+    "TEXTCONTRAST",
+    "panel #5D432D: #432913->#98897D (dE 29.3, pushed along its own hue to >=28), #F3E5CE->#F3E5CE (dE 61.4)"
+   ],
+   [
+    "scatter.count",
+    "MOOD",
+    "220 + 420 * mood 0.355 = 369"
+   ],
+   [
+    "scatter.toonSteps",
+    "MOOD",
+    "mood 0.355 -> 3 gradient steps"
+   ],
+   [
+    "post.exposure",
+    "EXPOSURE",
+    "clamp(1 + (0.55 - 0.648) * 1.2, 1, 1.4) = 1"
+   ],
+   [
+    "post.bloom.strength",
+    "BLOOM",
+    "0.25 + 0.25 * (1 - 0.648) = 0.338"
+   ],
+   [
+    "post.grade.contrast",
+    "CONTRAST",
+    "1 + L*range 72.1/100 * 0.35 = 1.252"
+   ],
+   [
+    "post.grade.saturation",
+    "HUEFAMILIES",
+    "0.95 + 0.15 * families 1 = 1.1"
+   ],
+   [
+    "post.grade.vignette",
+    "MOOD",
+    "0.18 + 0.2 * 0.355 = 0.251 (SKILL.md cap 0.3)"
+   ],
+   [
+    "fog.density",
+    "FOG",
+    "0.004 + (1 - 0.648) * 0.006 = 0.00611"
+   ],
+   [
+    "particles.additive",
+    "MOOD",
+    "bright reference -> normal blending"
+   ],
+   [
+    "seed",
+    "NOT-FROM-IMAGE",
+    "shared 20260926 on purpose: layout/AI must be style-independent"
+   ]
+  ],
+  "colors": {
+   "ground": 15984078,
+   "groundAlt": 11511188,
+   "rock": 4467219,
+   "flora": null,
+   "skyTop": 4401427,
+   "skyBottom": 15984078,
+   "sun": 16512746,
+   "accent": 10773050,
+   "fog": 15984078,
+   "motes": [
+    10773050,
+    8281908,
+    14200203
+   ],
+   "moteHexes": [
+    "#A4623A",
+    "#7E5F34",
+    "#D8AD8B"
+   ],
+   "hub": 10773050,
+   "hound": 4401427,
+   "uiAccent": "#A4623A",
+   "uiText": "#F3E5CE",
+   "uiMuted": "#98897D",
+   "uiPanel": "#5D432D",
+   "uiTextFrom": "#F3E5CE",
+   "uiMutedFrom": "#432913"
+  },
+  "post": {
+   "exposure": 1,
+   "bloom": {
+    "strength": 0.338,
+    "radius": 0.3,
+    "threshold": 0.85
+   },
+   "grade": {
+    "brightness": 0.01,
+    "contrast": 1.252,
+    "saturation": 1.1,
+    "vignette": 0.251
+   }
+  },
+  "lights": {
+   "key": {
+    "color": 16512746,
+    "intensity": 2.35,
+    "pos": [
+     10.19,
+     36.5,
+     -68.18
+    ]
+   },
+   "fill": {
+    "color": 15984078,
+    "intensity": 0.7,
+    "pos": [
+     -7.13,
+     42,
+     47.73
+    ]
+   },
+   "hemi": {
+    "sky": 15984078,
+    "gnd": 15984078,
+    "intensity": 0.5
+   },
+   "ambient": {
+    "color": 15984078,
+    "intensity": 0.5
+   },
+   "rim": {
+    "color": 10773050,
+    "intensity": 1.2,
+    "distance": 60,
+    "pos": [
+     -4.076,
+     14,
+     27.272000000000006
+    ]
+   }
+  },
+  "scatter": {
+   "count": 369,
+   "kind": "boulder",
+   "colorHex": "#442A13",
+   "toonSteps": 3
+  }
+ },
+ {
+  "id": "nordic-night",
+  "mapping": [
+   [
+    "colors.ground",
+    "GROUND",
+    "lower-frame area winner #678AAE"
+   ],
+   [
+    "colors.groundAlt",
+    "GROUND×0.72",
+    "second terrain tone for the noise texture"
+   ],
+   [
+    "sky.bottom / fog.color",
+    "SKY-horizon",
+    "#678AAE = max L* of the palette (fog matched to horizon per SKILL.md)"
+   ],
+   [
+    "sky.top",
+    "SKY-zenith",
+    "#16344F = min L* among non-ground entries"
+   ],
+   [
+    "lights.key.pos",
+    "THETA+PHI",
+    "sun centroid (u=0.2364, v=0.7358) -> az -47.4deg, el 25.6deg, R=78 -> [-51.78, 33.7, -47.61]"
+   ],
+   [
+    "lights.key.color",
+    "SUN",
+    "mean colour of the brightest 2% = #95B0CA"
+   ],
+   [
+    "lights.key.intensity",
+    "KEYI",
+    "2.0 + (1 - mean_luma 0.3267) * 1.0 = 2.67"
+   ],
+   [
+    "lights.ambient.intensity",
+    "AMBIENT",
+    "clamp(0.5 + (0.55 - 0.3267) * 1.4, .5, .8) = 0.8"
+   ],
+   [
+    "lights.rim.color",
+    "ACCENT",
+    "#678AAE"
+   ],
+   [
+    "colors.motes",
+    "FAMILIES+MOTE-FALLBACK",
+    "3 mote colours from 1 hue families: #44688B #7367AE #A367AE (min pairwise dE 17.4, 2 synthesised by hue rotation of the accent)"
+   ],
+   [
+    "scatter.kind",
+    "SCAPE-KIND",
+    "no 60..180deg band >=0.5% and L* range 35.4 < 45 -> shard"
+   ],
+   [
+    "HUD skin",
+    "SKIN",
+    "scatter.kind shard -> hairline/inset bar/monospace + uppercase wide title"
+   ],
+   [
+    "colors.uiMuted/uiText",
+    "TEXTCONTRAST",
+    "panel #304E69: #16344F->#7F8F9E (dE 28.1, pushed along its own hue to >=28), #678AAE->#7696B6 (dE 28.8, pushed)"
+   ],
+   [
+    "scatter.count",
+    "MOOD",
+    "220 + 420 * mood 0.354 = 369"
+   ],
+   [
+    "scatter.toonSteps",
+    "MOOD",
+    "mood 0.354 -> 3 gradient steps"
+   ],
+   [
+    "post.exposure",
+    "EXPOSURE",
+    "clamp(1 + (0.55 - 0.3267) * 1.2, 1, 1.4) = 1.268"
+   ],
+   [
+    "post.bloom.strength",
+    "BLOOM",
+    "0.25 + 0.25 * (1 - 0.3267) = 0.418"
+   ],
+   [
+    "post.grade.contrast",
+    "CONTRAST",
+    "1 + L*range 35.4/100 * 0.35 = 1.124"
+   ],
+   [
+    "post.grade.saturation",
+    "HUEFAMILIES",
+    "0.95 + 0.15 * families 1 = 1.1"
+   ],
+   [
+    "post.grade.vignette",
+    "MOOD",
+    "0.18 + 0.2 * 0.354 = 0.251 (SKILL.md cap 0.3)"
+   ],
+   [
+    "fog.density",
+    "FOG",
+    "0.004 + (1 - 0.3267) * 0.006 = 0.00804"
+   ],
+   [
+    "particles.additive",
+    "MOOD",
+    "dark reference -> additive sparks"
+   ],
+   [
+    "seed",
+    "NOT-FROM-IMAGE",
+    "shared 20260926 on purpose: layout/AI must be style-independent"
+   ]
+  ],
+  "colors": {
+   "ground": 6785710,
+   "groundAlt": 4875133,
+   "rock": 1455183,
+   "flora": null,
+   "skyTop": 1455183,
+   "skyBottom": 6785710,
+   "sun": 9810122,
+   "accent": 6785710,
+   "fog": 6785710,
+   "motes": [
+    4483211,
+    7563182,
+    10708910
+   ],
+   "moteHexes": [
+    "#44688B",
+    "#7367AE",
+    "#A367AE"
+   ],
+   "hub": 6785710,
+   "hound": 1455183,
+   "uiAccent": "#678AAE",
+   "uiText": "#7696B6",
+   "uiMuted": "#7F8F9E",
+   "uiPanel": "#304E69",
+   "uiTextFrom": "#678AAE",
+   "uiMutedFrom": "#16344F"
+  },
+  "post": {
+   "exposure": 1.268,
+   "bloom": {
+    "strength": 0.418,
+    "radius": 0.3,
+    "threshold": 0.85
+   },
+   "grade": {
+    "brightness": 0.01,
+    "contrast": 1.124,
+    "saturation": 1.1,
+    "vignette": 0.251
+   }
+  },
+  "lights": {
+   "key": {
+    "color": 9810122,
+    "intensity": 2.67,
+    "pos": [
+     -51.78,
+     33.7,
+     -47.61
+    ]
+   },
+   "fill": {
+    "color": 6785710,
+    "intensity": 0.7,
+    "pos": [
+     36.25,
+     42,
+     33.33
+    ]
+   },
+   "hemi": {
+    "sky": 6785710,
+    "gnd": 6785710,
+    "intensity": 0.5
+   },
+   "ambient": {
+    "color": 6785710,
+    "intensity": 0.8
+   },
+   "rim": {
+    "color": 6785710,
+    "intensity": 1.2,
+    "distance": 60,
+    "pos": [
+     20.712000000000003,
+     14,
+     19.044
+    ]
+   }
+  },
+  "scatter": {
+   "count": 369,
+   "kind": "shard",
+   "colorHex": "#16344F",
+   "toonSteps": 3
+  }
+ }
+]

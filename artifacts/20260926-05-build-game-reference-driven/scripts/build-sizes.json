@@ -1,0 +1,23 @@
+{
+ "seto-coast": {
+  "bytes": 779274,
+  "bundleBytes": 778876,
+  "escapedScriptClose": 0,
+  "cdnBytes": 109104,
+  "cdnImports": 8
+ },
+ "atlas-ochre": {
+  "bytes": 779275,
+  "bundleBytes": 778876,
+  "escapedScriptClose": 0,
+  "cdnBytes": 109105,
+  "cdnImports": 8
+ },
+ "nordic-night": {
+  "bytes": 779276,
+  "bundleBytes": 778876,
+  "escapedScriptClose": 0,
+  "cdnBytes": 109106,
+  "cdnImports": 8
+ }
+}

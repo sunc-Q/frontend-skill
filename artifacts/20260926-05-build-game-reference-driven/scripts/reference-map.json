@@ -1,0 +1,382 @@
+{
+ "generated_by": "scripts/extract-reference.mjs",
+ "sample_w": 220,
+ "k_buckets": 10,
+ "formulas": {
+  "PALETTE": "closed palette = median-cut(k=10) on a 220px resample, dE76 merge, share>=2%, top 6 by area",
+  "FEATURE": "accent/flora are scanned over a 0.5% \"feature pool\" — SKILL.md 1B asks for distinctive features, which in a photo are small (one palm cluster, one lantern)",
+  "ACCENT": "accent = max(chroma) entry of the feature pool",
+  "GROUND": "ground = palette entry with the largest share of pixels whose v>0.55 (lower 45% of the frame)",
+  "VISIBILITY": "if max(channel(ground)) < 0x44 lift it by 0x44/max(channel) — SKILL.md \"never near-black on large surfaces\"",
+  "SUN": "sun = centroid (u,v) of the brightest 2% of pixels by Rec.709 luma",
+  "THETA": "key-light azimuth = (u - 0.5) * 180deg, i.e. u<0.5 puts the sun on the -x side",
+  "PHI": "key-light elevation = 55deg - 40deg * v",
+  "EXPOSURE": "toneMappingExposure = clamp(1.0 + (0.55 - mean_luma) * 1.2, 1.0, 1.4) — dark references get more light back",
+  "AMBIENT": "ambient intensity = clamp(0.5 + (0.55 - mean_luma) * 1.4, 0.5, 0.8) — the skill's \"safety net that prevents dark scenes\" is sized off the reference too",
+  "MERGE": "median-cut boxes are merged when their means are closer than 10 dE76, then share>=2% and top-6 by area",
+  "HUEFAMILIES": "family_count = distinct round(hue/30) among entries with saturation>0.12 and share>=3%",
+  "GREEN": "flora colour = first palette entry with 60<=hue<=180 and saturation>0.15 and lightness<0.62; none => rocks instead of trees",
+  "FAMILIES": "entity_families = clamp(family_count, 3, 5) — how many visually distinct mote/hound families the world carries",
+  "MOOD": "mood = clamp(share-weighted Lab C*ab / 60, 0, 1) => toon gradient steps (2/3/4) and scatter instance count (220 + 420*mood)"
+ },
+ "refs": [
+  {
+   "id": "seto-coast",
+   "zh": "濑户春岸",
+   "file": "references/ref-seto-spring.png",
+   "source": {
+    "png_w": 1536,
+    "png_h": 1024,
+    "sampled_px": 32340,
+    "quantizer": "median-cut k=10 min_share=2%",
+    "palette_slots": 6
+   },
+   "palette": [
+    {
+     "hex": "#C9D5DC",
+     "rgb": [
+      201,
+      213,
+      220
+     ],
+     "share": 0.25,
+     "hsl": {
+      "h": 202.2,
+      "s": 0.212,
+      "l": 0.825
+     }
+    },
+    {
+     "hex": "#688BA6",
+     "rgb": [
+      104,
+      139,
+      166
+     ],
+     "share": 0.125,
+     "hsl": {
+      "h": 206.1,
+      "s": 0.26,
+      "l": 0.531
+     }
+    },
+    {
+     "hex": "#676318",
+     "rgb": [
+      103,
+      99,
+      24
+     ],
+     "share": 0.125,
+     "hsl": {
+      "h": 56.8,
+      "s": 0.629,
+      "l": 0.249
+     }
+    },
+    {
+     "hex": "#B3980A",
+     "rgb": [
+      179,
+      152,
+      10
+     ],
+     "share": 0.125,
+     "hsl": {
+      "h": 50.7,
+      "s": 0.892,
+      "l": 0.37
+     }
+    },
+    {
+     "hex": "#4A6981",
+     "rgb": [
+      74,
+      105,
+      129
+     ],
+     "share": 0.125,
+     "hsl": {
+      "h": 205.7,
+      "s": 0.271,
+      "l": 0.398
+     }
+    },
+    {
+     "hex": "#2A2F17",
+     "rgb": [
+      42,
+      47,
+      23
+     ],
+     "share": 0.125,
+     "hsl": {
+      "h": 71.5,
+      "s": 0.346,
+      "l": 0.137
+     }
+    }
+   ],
+   "derived": {
+    "accent_hex": "#B3980A",
+    "accent_share": 0.125,
+    "accent_outside_palette": false,
+    "ground_hex": "#B3980A",
+    "ground_final_hex": "#B3980A",
+    "ground_lift": {
+     "lifted": false,
+     "from": "#B3980A",
+     "to": "#B3980A",
+     "delta": 0
+    },
+    "sun": {
+     "u": 0.0666,
+     "v": 0.1334,
+     "azimuth_deg": -78,
+     "elevation_deg": 49.7,
+     "color_hex": "#F4F4EE"
+    },
+    "exposure": 1.012,
+    "ambient": 0.514,
+    "mean_luma": 0.5403,
+    "hue_families": [
+     2,
+     7
+    ],
+    "family_count": 2,
+    "entity_families": 3,
+    "green_hex": "#2A2F17",
+    "green_share": 0.125,
+    "lstar_range": 66.3,
+    "mood": 0.407,
+    "mean_chroma_ab": 24.41,
+    "toon_steps": 3,
+    "scatter_count": 391
+   }
+  },
+  {
+   "id": "atlas-ochre",
+   "zh": "赭土绿洲",
+   "file": "references/ref-atlas-ochre.png",
+   "source": {
+    "png_w": 1536,
+    "png_h": 1024,
+    "sampled_px": 32340,
+    "quantizer": "median-cut k=10 min_share=2%",
+    "palette_slots": 6
+   },
+   "palette": [
+    {
+     "hex": "#F3E5CE",
+     "rgb": [
+      243,
+      229,
+      206
+     ],
+     "share": 0.5,
+     "hsl": {
+      "h": 36.3,
+      "s": 0.609,
+      "l": 0.882
+     }
+    },
+    {
+     "hex": "#864729",
+     "rgb": [
+      134,
+      71,
+      41
+     ],
+     "share": 0.125,
+     "hsl": {
+      "h": 19.7,
+      "s": 0.536,
+      "l": 0.343
+     }
+    },
+    {
+     "hex": "#D8AD8B",
+     "rgb": [
+      216,
+      173,
+      139
+     ],
+     "share": 0.0625,
+     "hsl": {
+      "h": 26.6,
+      "s": 0.502,
+      "l": 0.696
+     }
+    },
+    {
+     "hex": "#7E5F34",
+     "rgb": [
+      126,
+      95,
+      52
+     ],
+     "share": 0.0625,
+     "hsl": {
+      "h": 35.1,
+      "s": 0.415,
+      "l": 0.349
+     }
+    },
+    {
+     "hex": "#A4623A",
+     "rgb": [
+      164,
+      98,
+      58
+     ],
+     "share": 0.0625,
+     "hsl": {
+      "h": 22.7,
+      "s": 0.478,
+      "l": 0.436
+     }
+    },
+    {
+     "hex": "#432913",
+     "rgb": [
+      67,
+      41,
+      19
+     ],
+     "share": 0.0625,
+     "hsl": {
+      "h": 27.8,
+      "s": 0.559,
+      "l": 0.168
+     }
+    }
+   ],
+   "derived": {
+    "accent_hex": "#A4623A",
+    "accent_share": 0.0625,
+    "accent_outside_palette": false,
+    "ground_hex": "#F3E5CE",
+    "ground_final_hex": "#F3E5CE",
+    "ground_lift": {
+     "lifted": false,
+     "from": "#F3E5CE",
+     "to": "#F3E5CE",
+     "delta": 0
+    },
+    "sun": {
+     "u": 0.5474,
+     "v": 0.6783,
+     "azimuth_deg": 8.5,
+     "elevation_deg": 27.9,
+     "color_hex": "#FBF6EA"
+    },
+    "exposure": 1,
+    "ambient": 0.5,
+    "mean_luma": 0.648,
+    "hue_families": [
+     1
+    ],
+    "family_count": 1,
+    "entity_families": 3,
+    "green_hex": null,
+    "green_share": null,
+    "lstar_range": 72.1,
+    "mood": 0.355,
+    "mean_chroma_ab": 21.3,
+    "toon_steps": 3,
+    "scatter_count": 369
+   }
+  },
+  {
+   "id": "nordic-night",
+   "zh": "极夜冰湖",
+   "file": "references/ref-nordic-night.png",
+   "source": {
+    "png_w": 1536,
+    "png_h": 1024,
+    "sampled_px": 32340,
+    "quantizer": "median-cut k=10 min_share=2%",
+    "palette_slots": 3
+   },
+   "palette": [
+    {
+     "hex": "#16344F",
+     "rgb": [
+      22,
+      52,
+      79
+     ],
+     "share": 0.5,
+     "hsl": {
+      "h": 209.3,
+      "s": 0.561,
+      "l": 0.2
+     }
+    },
+    {
+     "hex": "#678AAE",
+     "rgb": [
+      103,
+      138,
+      174
+     ],
+     "share": 0.25,
+     "hsl": {
+      "h": 210.6,
+      "s": 0.306,
+      "l": 0.542
+     }
+    },
+    {
+     "hex": "#44688B",
+     "rgb": [
+      68,
+      104,
+      139
+     ],
+     "share": 0.125,
+     "hsl": {
+      "h": 209.2,
+      "s": 0.343,
+      "l": 0.405
+     }
+    }
+   ],
+   "derived": {
+    "accent_hex": "#678AAE",
+    "accent_share": 0.25,
+    "accent_outside_palette": false,
+    "ground_hex": "#678AAE",
+    "ground_final_hex": "#678AAE",
+    "ground_lift": {
+     "lifted": false,
+     "from": "#678AAE",
+     "to": "#678AAE",
+     "delta": 0
+    },
+    "sun": {
+     "u": 0.2364,
+     "v": 0.7358,
+     "azimuth_deg": -47.4,
+     "elevation_deg": 25.6,
+     "color_hex": "#95B0CA"
+    },
+    "exposure": 1.268,
+    "ambient": 0.8,
+    "mean_luma": 0.3267,
+    "hue_families": [
+     7
+    ],
+    "family_count": 1,
+    "entity_families": 3,
+    "green_hex": null,
+    "green_share": null,
+    "lstar_range": 35.4,
+    "mood": 0.354,
+    "mean_chroma_ab": 21.26,
+    "toon_steps": 3,
+    "scatter_count": 369
+   }
+  }
+ ]
+}

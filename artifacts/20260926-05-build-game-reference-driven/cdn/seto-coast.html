@@ -1,0 +1,3011 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>拾光谷 · 春岸 濑户春岸</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{height:100%;overflow:hidden}canvas{display:block}</style>
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+}
+</script>
+</head>
+<body>
+<script>window.__THEME_ID = 'seto-coast';</script>
+<script type="module">// artifacts/20260926-05-build-game-reference-driven/src/hud.js
+function hudHtml({ title, sub, cta, hint, brand }) {
+  return `
+<div id="hud">
+  <div class="hud-top">
+    <div class="panel quest-panel" data-hud="quest">
+      <div class="stat-label" id="quest-kicker">\u5F53\u524D\u76EE\u6807</div>
+      <div class="quest-title" id="quest-title">\u2014</div>
+      <div class="quest-desc" id="quest-desc">\u2014</div>
+      <div class="bar"><div class="bar-fill" id="quest-bar" style="width:0%"></div></div>
+      <div class="quest-progress" id="quest-progress">0 / 0</div>
+    </div>
+    <div class="panel clock-panel" data-hud="clock">
+      <div class="stat-label">\u663C\u591C</div>
+      <div class="phase-value" id="phase-value">\u767D\u663C</div>
+      <div class="stat-label">\u5DF2\u7528 <span class="accent" id="time-value">0:00</span></div>
+      <div class="bar"><div class="bar-fill" id="day-bar" style="width:0%"></div></div>
+    </div>
+  </div>
+  <div class="hud-left">
+    <div class="panel life-panel" data-hud="lives">
+      <div class="stat-label">\u4F53\u529B</div>
+      <div class="life-pips" id="life-pips"></div>
+    </div>
+    <div class="panel satchel-panel" data-hud="satchel">
+      <div class="stat-label">\u5149\u56CA</div>
+      <div class="satchel-pips" id="satchel-pips"></div>
+      <div class="satchel-note" id="satchel-note">\u56DE\u4E2D\u592E\u5149\u67F1\u4EA4\u4ED8</div>
+    </div>
+  </div>
+  <div class="hud-bottom">
+    <div class="panel hint-panel" data-hud="hint"><span class="accent">WASD</span> \u79FB\u52A8 \xB7 <span class="accent">\u62D6\u52A8\u9F20\u6807</span> \u8F6C\u89C6\u89D2 \xB7 <span class="accent">E</span> \u4EA4\u4E92/\u5BF9\u8BDD \xB7 <span class="accent">Shift</span> \u75BE\u884C</div>
+  </div>
+  <div id="toast-container"></div>
+  <div id="dialogue" class="panel" data-hud="dialogue" hidden>
+    <div class="dlg-speaker" id="dlg-speaker">\u6D41\u8424</div>
+    <div class="dlg-line" id="dlg-line"></div>
+    <div class="dlg-choices" id="dlg-choices"></div>
+    <div class="dlg-hint" id="dlg-hint">\u6309 1 / 2 \u9009\u62E9\uFF0CE \u7EE7\u7EED</div>
+  </div>
+  <div id="prompt" class="prompt" hidden></div>
+  <div id="damage-vignette"></div>
+  <div id="announce"></div>
+</div>
+<div id="title-screen" class="screen">
+  <div class="screen-inner panel">
+    <div class="kicker">${brand}</div>
+    <h1 class="title">${title}</h1>
+    <div class="subtitle">${sub}</div>
+    <p class="blurb">\u591C\u91CC\u4F1A\u6D6E\u51FA\u7070\u70EC\u788E\u7247\u3002\u5929\u9ED1\u524D\u628A\u5149\u56CA\u4EA4\u7ED9\u5149\u67F1\uFF0C\u5929\u9ED1\u540E\u53BB\u5BFB\u90A3\u4E9B\u53EA\u6709\u6697\u5904\u624D\u4EAE\u7684\u4E1C\u897F\u3002</p>
+    <div class="cta" id="start-cta">${cta}</div>
+    <div class="controls">${hint}</div>
+    <div class="record" id="record-line">\u5C1A\u65E0\u8BB0\u5F55</div>
+    <div class="provenance" id="provenance"></div>
+  </div>
+</div>
+<div id="end-screen" class="screen" hidden>
+  <div class="screen-inner panel">
+    <div class="kicker" id="end-kicker">\u7ED3\u7B97</div>
+    <h2 class="title" id="end-title">\u2014</h2>
+    <div class="stats-grid" id="end-stats"></div>
+    <div class="cta" id="restart-cta">\u70B9\u51FB\u518D\u6765\u4E00\u6B21</div>
+  </div>
+</div>`;
+}
+var HUD_BASE_CSS = `
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:#05070a}
+canvas{display:block}
+#hud{position:fixed;inset:0;pointer-events:none;z-index:10;font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;color:#f4f6fa}
+.hud-top{position:absolute;top:18px;left:18px;right:18px;display:flex;gap:14px;justify-content:space-between}
+.hud-left{position:absolute;top:120px;left:18px;display:flex;flex-direction:column;gap:12px}
+.hud-bottom{position:absolute;bottom:18px;left:50%;transform:translateX(-50%)}
+.panel{padding:12px 16px;min-width:220px;backdrop-filter:blur(6px)}
+.quest-panel{max-width:340px}
+.stat-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.72}
+.quest-title{font-size:19px;font-weight:650;margin-top:2px}
+.quest-desc{font-size:12.5px;opacity:.8;margin-top:3px;line-height:1.45}
+.quest-progress{font-size:11px;margin-top:5px;font-variant-numeric:tabular-nums;opacity:.85}
+.bar{height:5px;background:rgba(255,255,255,.16);margin-top:8px;overflow:hidden;border-radius:99px}
+.bar-fill{height:100%;width:0%;transition:width .25s ease}
+.clock-panel{text-align:right;min-width:150px}
+.phase-value{font-size:22px;font-weight:700;letter-spacing:.04em}
+.life-pips,.satchel-pips{display:flex;gap:5px;margin-top:6px}
+.pip{width:16px;height:16px;border:1px solid rgba(255,255,255,.4);border-radius:4px;background:rgba(255,255,255,.06)}
+.pip.on{background:currentColor;border-color:transparent}
+.satchel-note{font-size:11px;opacity:.7;margin-top:6px}
+.hint-panel{font-size:12px;letter-spacing:.03em;opacity:.9}
+#toast-container{position:absolute;right:18px;bottom:18px;display:flex;flex-direction:column;align-items:flex-end;gap:7px}
+.toast{padding:8px 13px;font-size:12.5px;border-radius:8px;background:rgba(10,14,20,.82);border:1px solid rgba(255,255,255,.16);animation:toastIn .28s ease both}
+.toast.out{animation:toastOut .5s ease both}
+@keyframes toastIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateY(-6px)}}
+#dialogue{position:absolute;left:50%;bottom:74px;transform:translateX(-50%);width:min(560px,86vw);pointer-events:auto}
+.dlg-speaker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.75}
+.dlg-line{font-size:15.5px;line-height:1.55;margin-top:5px;min-height:44px}
+.dlg-choices{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.dlg-choice{font-size:13.5px;padding:6px 9px;border:1px solid rgba(255,255,255,.24);border-radius:7px;cursor:pointer;pointer-events:auto}
+.dlg-choice[sel="1"]{border-color:currentColor;background:rgba(255,255,255,.08)}
+.dlg-hint{font-size:11px;opacity:.6;margin-top:7px}
+.prompt{position:absolute;left:50%;top:58%;transform:translateX(-50%);font-size:13px;padding:6px 12px;border-radius:99px;background:rgba(8,12,18,.78);border:1px solid rgba(255,255,255,.2)}
+#damage-vignette{position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse at center,transparent 42%,rgba(190,40,40,.62) 100%);transition:opacity .35s ease}
+#announce{position:absolute;left:50%;top:32%;transform:translateX(-50%);font-size:30px;font-weight:700;letter-spacing:.08em;opacity:0;text-shadow:0 4px 24px rgba(0,0,0,.6);white-space:nowrap}
+#announce.show{animation:ann 1.6s ease both}
+@keyframes ann{0%{opacity:0;transform:translateX(-50%) scale(.94)}14%{opacity:1;transform:translateX(-50%) scale(1)}78%{opacity:1}100%{opacity:0}}
+.screen{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(4,6,10,.72),rgba(4,6,10,.9));font-family:"Segoe UI",system-ui,sans-serif;color:#f4f6fa}
+.screen[hidden]{display:none}
+.screen-inner{max-width:560px;width:86vw;padding:26px 30px;pointer-events:auto}
+.kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.62}
+.title{font-size:34px;font-weight:750;letter-spacing:.01em;margin-top:6px}
+.subtitle{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.7;margin-top:3px}
+.blurb{font-size:13.5px;line-height:1.62;opacity:.86;margin-top:13px}
+.cta{margin-top:17px;display:inline-block;font-size:14px;letter-spacing:.06em;padding:9px 17px;border:1px solid currentColor;border-radius:9px;cursor:pointer}
+.controls{font-size:12px;opacity:.66;margin-top:11px}
+.record{font-size:12px;margin-top:9px;opacity:.8;font-variant-numeric:tabular-nums}
+.provenance{font-size:10.5px;line-height:1.7;opacity:.52;margin-top:14px;border-top:1px solid rgba(255,255,255,.14);padding-top:9px;font-variant-numeric:tabular-nums;white-space:normal}
+.provenance b{font-weight:600;opacity:.9}
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:14px;font-size:13px}
+.stats-grid div{display:flex;justify-content:space-between;border-bottom:1px dashed rgba(255,255,255,.16);padding-bottom:4px}
+.stats-grid span{font-variant-numeric:tabular-nums}
+`;
+
+// artifacts/20260926-05-build-game-reference-driven/src/themes.js
+var THEMES = [
+  {
+    "id": "seto-coast",
+    "game": "\u62FE\u5149\u8C37 \xB7 \u6625\u5CB8",
+    "sub": "GLEAMHOLLOW \xB7 SETO COAST",
+    "cta": "\u70B9\u51FB\u8FDB\u5165\u6625\u5CB8",
+    "hint": "\u53C2\u8003\u56FE\uFF1A\u6FD1\u6237\u5185\u6D77\u6625\u5CB8\u7167\u7247 \xB7 \u4F4E\u592A\u9633\u5728\u753B\u9762\u5DE6",
+    "label": "\u6FD1\u6237\u6625\u5CB8",
+    "seed": 20260926,
+    "refFile": "references/ref-seto-spring.png",
+    "palette": [
+      {
+        "hex": "#C9D5DC",
+        "share": 0.25,
+        "l": 84.6,
+        "c": 5.5
+      },
+      {
+        "hex": "#688BA6",
+        "share": 0.125,
+        "l": 56.2,
+        "c": 18.9
+      },
+      {
+        "hex": "#676318",
+        "share": 0.125,
+        "l": 41,
+        "c": 41.4
+      },
+      {
+        "hex": "#B3980A",
+        "share": 0.125,
+        "l": 63.4,
+        "c": 65.8
+      },
+      {
+        "hex": "#4A6981",
+        "share": 0.125,
+        "l": 43,
+        "c": 17.5
+      },
+      {
+        "hex": "#2A2F17",
+        "share": 0.125,
+        "l": 18.3,
+        "c": 16.3
+      }
+    ],
+    "colors": {
+      "ground": 11769866,
+      "groundAlt": 8482055,
+      "rock": 4015137,
+      "flora": 3027737,
+      "skyTop": 2764567,
+      "skyBottom": 13227484,
+      "sun": 16053486,
+      "accent": 11769866,
+      "fog": 13227484,
+      "motes": [
+        6775576,
+        6851494,
+        6140682
+      ],
+      "moteHexes": [
+        "#676318",
+        "#688BA6",
+        "#5DB30A"
+      ],
+      "hub": 11769866,
+      "hound": 2764567,
+      "uiAccent": "#B3980A",
+      "uiText": "#C9D5DC",
+      "uiMuted": "#8A8D7F",
+      "uiPanel": "#444931",
+      "uiTextFrom": "#C9D5DC",
+      "uiMutedFrom": "#2A2F17"
+    },
+    "sky": {
+      "top": 4015137,
+      "bottom": 13227484,
+      "sun": 16053486,
+      "sunSize": 0.06
+    },
+    "fog": {
+      "color": 13227484,
+      "density": 676e-5
+    },
+    "lights": {
+      "key": {
+        "color": 16053486,
+        "intensity": 2.46,
+        "pos": [
+          -49.35,
+          59.49,
+          -10.49
+        ]
+      },
+      "fill": {
+        "color": 13227484,
+        "intensity": 0.7,
+        "pos": [
+          34.55,
+          42,
+          7.34
+        ]
+      },
+      "hemi": {
+        "sky": 13227484,
+        "gnd": 11769866,
+        "intensity": 0.5
+      },
+      "ambient": {
+        "color": 13227484,
+        "intensity": 0.514
+      },
+      "rim": {
+        "color": 11769866,
+        "intensity": 1.2,
+        "distance": 60,
+        "pos": [
+          19.740000000000002,
+          14,
+          4.196000000000001
+        ]
+      }
+    },
+    "ground": {
+      "c1": [
+        179,
+        152,
+        10
+      ],
+      "c2": [
+        125,
+        106,
+        7
+      ],
+      "roughness": 0.9,
+      "metalness": 0.02
+    },
+    "scatter": {
+      "count": 391,
+      "kind": "flora",
+      "colorHex": "#2E3319",
+      "toonSteps": 3
+    },
+    "motes": {
+      "emissiveIntensity": 2.2,
+      "colors": [
+        6775576,
+        6851494,
+        6140682
+      ],
+      "spread_dE": 54.5
+    },
+    "synthesised": [
+      {
+        "hex": "#5DB30A",
+        "from": "#B3980A",
+        "rotated_deg": 40,
+        "min_dE_to_roster": 54.5
+      }
+    ],
+    "declaredColors": [
+      "#B3980A",
+      "#816D07",
+      "#C9D5DC",
+      "#2A2F17",
+      "#3D4421",
+      "#F4F4EE",
+      "#676318",
+      "#688BA6",
+      "#5DB30A",
+      "#444931",
+      "#8A8D7F",
+      "#2E3319"
+    ],
+    "particles": {
+      "colors": [
+        13227484,
+        6851494,
+        6775576,
+        11769866
+      ],
+      "additive": false,
+      "size": 1.1,
+      "gravity": -0.6,
+      "rate": 0.91
+    },
+    "post": {
+      "exposure": 1.012,
+      "bloom": {
+        "strength": 0.365,
+        "radius": 0.3,
+        "threshold": 0.85
+      },
+      "grade": {
+        "brightness": 0.01,
+        "contrast": 1.232,
+        "saturation": 1.25,
+        "vignette": 0.261
+      }
+    },
+    "mapping": [
+      [
+        "colors.ground",
+        "GROUND",
+        "lower-frame area winner #B3980A"
+      ],
+      [
+        "colors.groundAlt",
+        "GROUND\xD70.72",
+        "second terrain tone for the noise texture"
+      ],
+      [
+        "sky.bottom / fog.color",
+        "SKY-horizon",
+        "#C9D5DC = max L* of the palette (fog matched to horizon per SKILL.md)"
+      ],
+      [
+        "sky.top",
+        "SKY-zenith+VISIBILITY",
+        "#2A2F17 = min L* among non-ground entries, lifted to #3D4421 (dE 10.9) so the dome clears the 0x44 floor"
+      ],
+      [
+        "lights.key.pos",
+        "THETA+PHI",
+        "sun centroid (u=0.0666, v=0.1334) -> az -78deg, el 49.7deg, R=78 -> [-49.35, 59.49, -10.49]"
+      ],
+      [
+        "lights.key.color",
+        "SUN",
+        "mean colour of the brightest 2% = #F4F4EE"
+      ],
+      [
+        "lights.key.intensity",
+        "KEYI",
+        "2.0 + (1 - mean_luma 0.5403) * 1.0 = 2.46"
+      ],
+      [
+        "lights.ambient.intensity",
+        "AMBIENT",
+        "clamp(0.5 + (0.55 - 0.5403) * 1.4, .5, .8) = 0.514"
+      ],
+      [
+        "lights.rim.color",
+        "ACCENT",
+        "#B3980A"
+      ],
+      [
+        "colors.motes",
+        "FAMILIES+MOTE-FALLBACK",
+        "3 mote colours from 2 hue families: #676318 #688BA6 #5DB30A (min pairwise dE 54.5, 1 synthesised by hue rotation of the accent)"
+      ],
+      [
+        "scatter.kind",
+        "SCAPE-KIND",
+        "flora #2E3319 (share 0.125)"
+      ],
+      [
+        "HUD skin",
+        "SKIN",
+        "scatter.kind flora -> rounded/soft-shadow/humanist sans"
+      ],
+      [
+        "colors.uiMuted/uiText",
+        "TEXTCONTRAST",
+        "panel #444931: #2A2F17->#8A8D7F (dE 29, pushed along its own hue to >=28), #C9D5DC->#C9D5DC (dE 57.8)"
+      ],
+      [
+        "scatter.count",
+        "MOOD",
+        "220 + 420 * mood 0.407 = 391"
+      ],
+      [
+        "scatter.toonSteps",
+        "MOOD",
+        "mood 0.407 -> 3 gradient steps"
+      ],
+      [
+        "post.exposure",
+        "EXPOSURE",
+        "clamp(1 + (0.55 - 0.5403) * 1.2, 1, 1.4) = 1.012"
+      ],
+      [
+        "post.bloom.strength",
+        "BLOOM",
+        "0.25 + 0.25 * (1 - 0.5403) = 0.365"
+      ],
+      [
+        "post.grade.contrast",
+        "CONTRAST",
+        "1 + L*range 66.3/100 * 0.35 = 1.232"
+      ],
+      [
+        "post.grade.saturation",
+        "HUEFAMILIES",
+        "0.95 + 0.15 * families 2 = 1.25"
+      ],
+      [
+        "post.grade.vignette",
+        "MOOD",
+        "0.18 + 0.2 * 0.407 = 0.261 (SKILL.md cap 0.3)"
+      ],
+      [
+        "fog.density",
+        "FOG",
+        "0.004 + (1 - 0.5403) * 0.006 = 0.00676"
+      ],
+      [
+        "particles.additive",
+        "MOOD",
+        "bright reference -> normal blending"
+      ],
+      [
+        "seed",
+        "NOT-FROM-IMAGE",
+        "shared 20260926 on purpose: layout/AI must be style-independent"
+      ]
+    ],
+    "rockLift": {
+      "hex": "#3D4421",
+      "lifted": true,
+      "delta": 10.9,
+      "from": "#2A2F17"
+    }
+  },
+  {
+    "id": "atlas-ochre",
+    "game": "\u62FE\u5149\u8C37 \xB7 \u8D6D\u6D32",
+    "sub": "GLEAMHOLLOW \xB7 ATLAS OCHRE",
+    "cta": "\u70B9\u51FB\u8FDB\u5165\u8D6D\u6D32",
+    "hint": "\u53C2\u8003\u56FE\uFF1A\u9AD8Atlas\u571F\u5821\u6B63\u5348\u7167\u7247 \xB7 \u5149\u5728\u753B\u9762\u53F3",
+    "label": "\u8D6D\u571F\u7EFF\u6D32",
+    "seed": 20260926,
+    "refFile": "references/ref-atlas-ochre.png",
+    "palette": [
+      {
+        "hex": "#F3E5CE",
+        "share": 0.5,
+        "l": 91.5,
+        "c": 13
+      },
+      {
+        "hex": "#864729",
+        "share": 0.125,
+        "l": 37.4,
+        "c": 38.2
+      },
+      {
+        "hex": "#D8AD8B",
+        "share": 0.0625,
+        "l": 73.8,
+        "c": 25.9
+      },
+      {
+        "hex": "#7E5F34",
+        "share": 0.0625,
+        "l": 42.6,
+        "c": 30.1
+      },
+      {
+        "hex": "#A4623A",
+        "share": 0.0625,
+        "l": 48.2,
+        "c": 40.8
+      },
+      {
+        "hex": "#432913",
+        "share": 0.0625,
+        "l": 19.3,
+        "c": 21.4
+      }
+    ],
+    "colors": {
+      "ground": 15984078,
+      "groundAlt": 11511188,
+      "rock": 4467219,
+      "flora": null,
+      "skyTop": 4401427,
+      "skyBottom": 15984078,
+      "sun": 16512746,
+      "accent": 10773050,
+      "fog": 15984078,
+      "motes": [
+        10773050,
+        8281908,
+        14200203
+      ],
+      "moteHexes": [
+        "#A4623A",
+        "#7E5F34",
+        "#D8AD8B"
+      ],
+      "hub": 10773050,
+      "hound": 4401427,
+      "uiAccent": "#A4623A",
+      "uiText": "#F3E5CE",
+      "uiMuted": "#98897D",
+      "uiPanel": "#5D432D",
+      "uiTextFrom": "#F3E5CE",
+      "uiMutedFrom": "#432913"
+    },
+    "sky": {
+      "top": 4467219,
+      "bottom": 15984078,
+      "sun": 16512746,
+      "sunSize": 0.06
+    },
+    "fog": {
+      "color": 15984078,
+      "density": 611e-5
+    },
+    "lights": {
+      "key": {
+        "color": 16512746,
+        "intensity": 2.35,
+        "pos": [
+          10.19,
+          36.5,
+          -68.18
+        ]
+      },
+      "fill": {
+        "color": 15984078,
+        "intensity": 0.7,
+        "pos": [
+          -7.13,
+          42,
+          47.73
+        ]
+      },
+      "hemi": {
+        "sky": 15984078,
+        "gnd": 15984078,
+        "intensity": 0.5
+      },
+      "ambient": {
+        "color": 15984078,
+        "intensity": 0.5
+      },
+      "rim": {
+        "color": 10773050,
+        "intensity": 1.2,
+        "distance": 60,
+        "pos": [
+          -4.076,
+          14,
+          27.272000000000006
+        ]
+      }
+    },
+    "ground": {
+      "c1": [
+        243,
+        229,
+        206
+      ],
+      "c2": [
+        170,
+        160,
+        144
+      ],
+      "roughness": 0.9,
+      "metalness": 0.02
+    },
+    "scatter": {
+      "count": 369,
+      "kind": "boulder",
+      "colorHex": "#442A13",
+      "toonSteps": 3
+    },
+    "motes": {
+      "emissiveIntensity": 2.2,
+      "colors": [
+        10773050,
+        8281908,
+        14200203
+      ],
+      "spread_dE": 17.3
+    },
+    "synthesised": [],
+    "declaredColors": [
+      "#F3E5CE",
+      "#AFA594",
+      "#432913",
+      "#442A13",
+      "#A4623A",
+      "#FBF6EA",
+      "#7E5F34",
+      "#D8AD8B",
+      "#5D432D",
+      "#98897D"
+    ],
+    "particles": {
+      "colors": [
+        15984078,
+        8800041,
+        14200203,
+        8281908
+      ],
+      "additive": false,
+      "size": 1.1,
+      "gravity": -0.6,
+      "rate": 0.85
+    },
+    "post": {
+      "exposure": 1,
+      "bloom": {
+        "strength": 0.338,
+        "radius": 0.3,
+        "threshold": 0.85
+      },
+      "grade": {
+        "brightness": 0.01,
+        "contrast": 1.252,
+        "saturation": 1.1,
+        "vignette": 0.251
+      }
+    },
+    "mapping": [
+      [
+        "colors.ground",
+        "GROUND",
+        "lower-frame area winner #F3E5CE"
+      ],
+      [
+        "colors.groundAlt",
+        "GROUND\xD70.72",
+        "second terrain tone for the noise texture"
+      ],
+      [
+        "sky.bottom / fog.color",
+        "SKY-horizon",
+        "#F3E5CE = max L* of the palette (fog matched to horizon per SKILL.md)"
+      ],
+      [
+        "sky.top",
+        "SKY-zenith+VISIBILITY",
+        "#432913 = min L* among non-ground entries, lifted to #442A13 (dE 0.7) so the dome clears the 0x44 floor"
+      ],
+      [
+        "lights.key.pos",
+        "THETA+PHI",
+        "sun centroid (u=0.5474, v=0.6783) -> az 8.5deg, el 27.9deg, R=78 -> [10.19, 36.5, -68.18]"
+      ],
+      [
+        "lights.key.color",
+        "SUN",
+        "mean colour of the brightest 2% = #FBF6EA"
+      ],
+      [
+        "lights.key.intensity",
+        "KEYI",
+        "2.0 + (1 - mean_luma 0.648) * 1.0 = 2.35"
+      ],
+      [
+        "lights.ambient.intensity",
+        "AMBIENT",
+        "clamp(0.5 + (0.55 - 0.648) * 1.4, .5, .8) = 0.5"
+      ],
+      [
+        "lights.rim.color",
+        "ACCENT",
+        "#A4623A"
+      ],
+      [
+        "colors.motes",
+        "FAMILIES",
+        "3 mote colours from 1 hue families: #A4623A #7E5F34 #D8AD8B (min pairwise dE 17.3)"
+      ],
+      [
+        "scatter.kind",
+        "SCAPE-KIND",
+        "no 60..180deg band >=0.5% and L* range 72.1 >= 45 -> boulder"
+      ],
+      [
+        "HUD skin",
+        "SKIN",
+        "scatter.kind boulder -> square/2px ring/Helvetica + 3px top rule"
+      ],
+      [
+        "colors.uiMuted/uiText",
+        "TEXTCONTRAST",
+        "panel #5D432D: #432913->#98897D (dE 29.3, pushed along its own hue to >=28), #F3E5CE->#F3E5CE (dE 61.4)"
+      ],
+      [
+        "scatter.count",
+        "MOOD",
+        "220 + 420 * mood 0.355 = 369"
+      ],
+      [
+        "scatter.toonSteps",
+        "MOOD",
+        "mood 0.355 -> 3 gradient steps"
+      ],
+      [
+        "post.exposure",
+        "EXPOSURE",
+        "clamp(1 + (0.55 - 0.648) * 1.2, 1, 1.4) = 1"
+      ],
+      [
+        "post.bloom.strength",
+        "BLOOM",
+        "0.25 + 0.25 * (1 - 0.648) = 0.338"
+      ],
+      [
+        "post.grade.contrast",
+        "CONTRAST",
+        "1 + L*range 72.1/100 * 0.35 = 1.252"
+      ],
+      [
+        "post.grade.saturation",
+        "HUEFAMILIES",
+        "0.95 + 0.15 * families 1 = 1.1"
+      ],
+      [
+        "post.grade.vignette",
+        "MOOD",
+        "0.18 + 0.2 * 0.355 = 0.251 (SKILL.md cap 0.3)"
+      ],
+      [
+        "fog.density",
+        "FOG",
+        "0.004 + (1 - 0.648) * 0.006 = 0.00611"
+      ],
+      [
+        "particles.additive",
+        "MOOD",
+        "bright reference -> normal blending"
+      ],
+      [
+        "seed",
+        "NOT-FROM-IMAGE",
+        "shared 20260926 on purpose: layout/AI must be style-independent"
+      ]
+    ],
+    "rockLift": {
+      "hex": "#442A13",
+      "lifted": true,
+      "delta": 0.7,
+      "from": "#432913"
+    }
+  },
+  {
+    "id": "nordic-night",
+    "game": "\u62FE\u5149\u8C37 \xB7 \u6781\u591C",
+    "sub": "GLEAMHOLLOW \xB7 NORDIC NIGHT",
+    "cta": "\u70B9\u51FB\u8FDB\u5165\u6781\u591C",
+    "hint": "\u53C2\u8003\u56FE\uFF1A\u5317\u6B27\u51B0\u6E56\u84DD\u8C03\u591C \xB7 \u6708\u5149\u5728\u753B\u9762\u5DE6\u4E0B",
+    "label": "\u6781\u591C\u51B0\u6E56",
+    "seed": 20260926,
+    "refFile": "references/ref-nordic-night.png",
+    "palette": [
+      {
+        "hex": "#16344F",
+        "share": 0.5,
+        "l": 20.8,
+        "c": 19.9
+      },
+      {
+        "hex": "#678AAE",
+        "share": 0.25,
+        "l": 56.2,
+        "c": 23
+      },
+      {
+        "hex": "#44688B",
+        "share": 0.125,
+        "l": 42.8,
+        "c": 23.4
+      }
+    ],
+    "colors": {
+      "ground": 6785710,
+      "groundAlt": 4875133,
+      "rock": 1455183,
+      "flora": null,
+      "skyTop": 1455183,
+      "skyBottom": 6785710,
+      "sun": 9810122,
+      "accent": 6785710,
+      "fog": 6785710,
+      "motes": [
+        4483211,
+        7563182,
+        10708910
+      ],
+      "moteHexes": [
+        "#44688B",
+        "#7367AE",
+        "#A367AE"
+      ],
+      "hub": 6785710,
+      "hound": 1455183,
+      "uiAccent": "#678AAE",
+      "uiText": "#7696B6",
+      "uiMuted": "#7F8F9E",
+      "uiPanel": "#304E69",
+      "uiTextFrom": "#678AAE",
+      "uiMutedFrom": "#16344F"
+    },
+    "sky": {
+      "top": 1455183,
+      "bottom": 6785710,
+      "sun": 9810122,
+      "sunSize": 0.06
+    },
+    "fog": {
+      "color": 6785710,
+      "density": 804e-5
+    },
+    "lights": {
+      "key": {
+        "color": 9810122,
+        "intensity": 2.67,
+        "pos": [
+          -51.78,
+          33.7,
+          -47.61
+        ]
+      },
+      "fill": {
+        "color": 6785710,
+        "intensity": 0.7,
+        "pos": [
+          36.25,
+          42,
+          33.33
+        ]
+      },
+      "hemi": {
+        "sky": 6785710,
+        "gnd": 6785710,
+        "intensity": 0.5
+      },
+      "ambient": {
+        "color": 6785710,
+        "intensity": 0.8
+      },
+      "rim": {
+        "color": 6785710,
+        "intensity": 1.2,
+        "distance": 60,
+        "pos": [
+          20.712000000000003,
+          14,
+          19.044
+        ]
+      }
+    },
+    "ground": {
+      "c1": [
+        103,
+        138,
+        174
+      ],
+      "c2": [
+        72,
+        97,
+        122
+      ],
+      "roughness": 0.9,
+      "metalness": 0.02
+    },
+    "scatter": {
+      "count": 369,
+      "kind": "shard",
+      "colorHex": "#16344F",
+      "toonSteps": 3
+    },
+    "motes": {
+      "emissiveIntensity": 2.2,
+      "colors": [
+        4483211,
+        7563182,
+        10708910
+      ],
+      "spread_dE": 17.4
+    },
+    "synthesised": [
+      {
+        "hex": "#7367AE",
+        "from": "#678AAE",
+        "rotated_deg": 40,
+        "min_dE_to_roster": 27.7
+      },
+      {
+        "hex": "#A367AE",
+        "from": "#678AAE",
+        "rotated_deg": 80,
+        "min_dE_to_roster": 17.4
+      }
+    ],
+    "declaredColors": [
+      "#678AAE",
+      "#4A637D",
+      "#16344F",
+      "#95B0CA",
+      "#44688B",
+      "#7367AE",
+      "#A367AE",
+      "#304E69",
+      "#7F8F9E",
+      "#7696B6"
+    ],
+    "particles": {
+      "colors": [
+        1455183,
+        6785710,
+        4483211
+      ],
+      "additive": true,
+      "size": 1.1,
+      "gravity": -0.6,
+      "rate": 0.85
+    },
+    "post": {
+      "exposure": 1.268,
+      "bloom": {
+        "strength": 0.418,
+        "radius": 0.3,
+        "threshold": 0.85
+      },
+      "grade": {
+        "brightness": 0.01,
+        "contrast": 1.124,
+        "saturation": 1.1,
+        "vignette": 0.251
+      }
+    },
+    "mapping": [
+      [
+        "colors.ground",
+        "GROUND",
+        "lower-frame area winner #678AAE"
+      ],
+      [
+        "colors.groundAlt",
+        "GROUND\xD70.72",
+        "second terrain tone for the noise texture"
+      ],
+      [
+        "sky.bottom / fog.color",
+        "SKY-horizon",
+        "#678AAE = max L* of the palette (fog matched to horizon per SKILL.md)"
+      ],
+      [
+        "sky.top",
+        "SKY-zenith",
+        "#16344F = min L* among non-ground entries"
+      ],
+      [
+        "lights.key.pos",
+        "THETA+PHI",
+        "sun centroid (u=0.2364, v=0.7358) -> az -47.4deg, el 25.6deg, R=78 -> [-51.78, 33.7, -47.61]"
+      ],
+      [
+        "lights.key.color",
+        "SUN",
+        "mean colour of the brightest 2% = #95B0CA"
+      ],
+      [
+        "lights.key.intensity",
+        "KEYI",
+        "2.0 + (1 - mean_luma 0.3267) * 1.0 = 2.67"
+      ],
+      [
+        "lights.ambient.intensity",
+        "AMBIENT",
+        "clamp(0.5 + (0.55 - 0.3267) * 1.4, .5, .8) = 0.8"
+      ],
+      [
+        "lights.rim.color",
+        "ACCENT",
+        "#678AAE"
+      ],
+      [
+        "colors.motes",
+        "FAMILIES+MOTE-FALLBACK",
+        "3 mote colours from 1 hue families: #44688B #7367AE #A367AE (min pairwise dE 17.4, 2 synthesised by hue rotation of the accent)"
+      ],
+      [
+        "scatter.kind",
+        "SCAPE-KIND",
+        "no 60..180deg band >=0.5% and L* range 35.4 < 45 -> shard"
+      ],
+      [
+        "HUD skin",
+        "SKIN",
+        "scatter.kind shard -> hairline/inset bar/monospace + uppercase wide title"
+      ],
+      [
+        "colors.uiMuted/uiText",
+        "TEXTCONTRAST",
+        "panel #304E69: #16344F->#7F8F9E (dE 28.1, pushed along its own hue to >=28), #678AAE->#7696B6 (dE 28.8, pushed)"
+      ],
+      [
+        "scatter.count",
+        "MOOD",
+        "220 + 420 * mood 0.354 = 369"
+      ],
+      [
+        "scatter.toonSteps",
+        "MOOD",
+        "mood 0.354 -> 3 gradient steps"
+      ],
+      [
+        "post.exposure",
+        "EXPOSURE",
+        "clamp(1 + (0.55 - 0.3267) * 1.2, 1, 1.4) = 1.268"
+      ],
+      [
+        "post.bloom.strength",
+        "BLOOM",
+        "0.25 + 0.25 * (1 - 0.3267) = 0.418"
+      ],
+      [
+        "post.grade.contrast",
+        "CONTRAST",
+        "1 + L*range 35.4/100 * 0.35 = 1.124"
+      ],
+      [
+        "post.grade.saturation",
+        "HUEFAMILIES",
+        "0.95 + 0.15 * families 1 = 1.1"
+      ],
+      [
+        "post.grade.vignette",
+        "MOOD",
+        "0.18 + 0.2 * 0.354 = 0.251 (SKILL.md cap 0.3)"
+      ],
+      [
+        "fog.density",
+        "FOG",
+        "0.004 + (1 - 0.3267) * 0.006 = 0.00804"
+      ],
+      [
+        "particles.additive",
+        "MOOD",
+        "dark reference -> additive sparks"
+      ],
+      [
+        "seed",
+        "NOT-FROM-IMAGE",
+        "shared 20260926 on purpose: layout/AI must be style-independent"
+      ]
+    ],
+    "rockLift": {
+      "hex": "#16344F",
+      "lifted": false,
+      "delta": 0,
+      "from": "#16344F"
+    }
+  }
+];
+var HUD_SKIN_CSS = '\n.skin-seto-coast{\n  --bg:#8A8D7F; --panel:#444931; --accent:#B3980A; --text:#C9D5DC; --muted:#8A8D7F;\n  --radius:14px;\n  --shadow:0 10px 30px rgba(0,0,0,.35);\n  --font:"Segoe UI",system-ui,-apple-system,"Hiragino Sans",sans-serif;\n}\n.skin-seto-coast #hud,.skin-seto-coast .screen{font-family:"Segoe UI",system-ui,-apple-system,"Hiragino Sans",sans-serif}\n.skin-seto-coast .panel{position:relative;background:linear-gradient(160deg, var(--panel), var(--bg));border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);box-shadow:var(--shadow)}\n.skin-seto-coast .stat-label{color:var(--muted);font-size:11px;letter-spacing:.2em;text-transform:uppercase}\n.skin-seto-coast .stat-value{color:var(--text)}\n.skin-seto-coast .accent{color:var(--accent)}\n.skin-seto-coast .bar-fill{background:var(--accent)}\n.skin-seto-coast .title{color:var(--text);font-size:34px;font-weight:650;letter-spacing:.02em}\n.skin-seto-coast .provenance{color:var(--muted)}\n.skin-seto-coast .cta{border-radius:var(--radius)}\n.skin-seto-coast .prompt{border-radius:var(--radius)}\n.skin-seto-coast .panel::before{content:"";position:absolute;left:14px;top:-1px;width:34px;height:3px;border-radius:99px;background:var(--accent)}\n\n\n.skin-atlas-ochre{\n  --bg:#98897D; --panel:#5D432D; --accent:#A4623A; --text:#F3E5CE; --muted:#98897D;\n  --radius:2px;\n  --shadow:0 0 0 2px #A4623A;\n  --font:"Helvetica Neue",Arial,"PingFang SC",sans-serif;\n}\n.skin-atlas-ochre #hud,.skin-atlas-ochre .screen{font-family:"Helvetica Neue",Arial,"PingFang SC",sans-serif}\n.skin-atlas-ochre .panel{position:relative;background:linear-gradient(160deg, var(--panel), var(--bg));border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);box-shadow:var(--shadow)}\n.skin-atlas-ochre .stat-label{color:var(--muted);font-size:10px;letter-spacing:.34em;text-transform:uppercase;font-weight:700}\n.skin-atlas-ochre .stat-value{color:var(--text)}\n.skin-atlas-ochre .accent{color:var(--accent)}\n.skin-atlas-ochre .bar-fill{background:var(--accent)}\n.skin-atlas-ochre .title{color:var(--text);font-size:30px;font-weight:800;letter-spacing:-.01em;text-transform:none}\n.skin-atlas-ochre .provenance{color:var(--muted)}\n.skin-atlas-ochre .cta{border-radius:var(--radius)}\n.skin-atlas-ochre .prompt{border-radius:var(--radius)}\n.skin-atlas-ochre .panel{border-top-width:3px!important;border-top-color:var(--accent)!important}\n\n\n.skin-nordic-night{\n  --bg:#7F8F9E; --panel:#304E69; --accent:#678AAE; --text:#7696B6; --muted:#7F8F9E;\n  --radius:0px;\n  --shadow:inset 3px 0 0 var(--accent);\n  --font:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;\n}\n.skin-nordic-night #hud,.skin-nordic-night .screen{font-family:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}\n.skin-nordic-night .panel{position:relative;background:linear-gradient(160deg, var(--panel), var(--bg));border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);box-shadow:var(--shadow)}\n.skin-nordic-night .stat-label{color:var(--muted);font-size:10.5px;letter-spacing:.08em;text-transform:none}\n.skin-nordic-night .stat-value{color:var(--text)}\n.skin-nordic-night .accent{color:var(--accent)}\n.skin-nordic-night .bar-fill{background:var(--accent)}\n.skin-nordic-night .title{color:var(--text);font-size:26px;font-weight:500;letter-spacing:.14em;text-transform:uppercase}\n.skin-nordic-night .provenance{color:var(--muted)}\n.skin-nordic-night .cta{border-radius:var(--radius)}\n.skin-nordic-night .prompt{border-radius:var(--radius)}\n.skin-nordic-night .bar{height:3px;border-radius:0}.skin-nordic-night .pip{border-radius:0}\n';
+function themeById(id) {
+  const t = THEMES.find((x) => x.id === id);
+  if (!t) throw new Error("unknown theme " + id + " \u2014 expected one of " + THEMES.map((x) => x.id).join(", "));
+  return t;
+}
+
+// artifacts/20260926-05-build-game-reference-driven/src/engine.js
+import * as THREE from "three";
+import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
+import { SSAOPass } from "three/addons/postprocessing/SSAOPass.js";
+import { FXAAShader } from "three/addons/shaders/FXAAShader.js";
+import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
+var CONSTANTS = {
+  ARENA_R: 33,
+  HUB_R: 3.6,
+  FIXED_DT: 1 / 60,
+  MAX_FRAME_DT: 0.05,
+  WALK_ACCEL: 34,
+  RUN_ACCEL: 52,
+  MAX_SPEED: 6.4,
+  RUN_SPEED: 9.2,
+  FRICTION: 9,
+  PLAYER_R: 0.55,
+  CAM_DIST: 9.2,
+  CAM_PITCH: 0.42,
+  CAM_LERP: 8.5,
+  DAY_LEN: 45,
+  NIGHT_LEN: 35,
+  MOTE_COUNT: 12,
+  MOTE_FLEE_R: 4.2,
+  MOTE_GRAB_R: 1.25,
+  MOTE_FLEE_SPEED: 3.1,
+  MOTE_WANDER_R: 2.2,
+  HOUND_COUNT: 3,
+  HOUND_PATROL_SPEED: 1.9,
+  HOUND_CHASE_SPEED: 4.4,
+  AGGRO_DAY: 8,
+  AGGRO_NIGHT: 10.5,
+  HOUND_HIT_R: 1.35,
+  HOUND_STUN: 2.5,
+  INVULN: 2,
+  START_LIVES: 3,
+  SATCHEL_BASE: 4,
+  SATCHEL_BONUS: 1,
+  DEPOSIT_R: 3,
+  TALK_R: 3.2,
+  QUEST_MOTES: 3,
+  QUEST_EMBERS: 2,
+  EMBER_COUNT: 3,
+  SAVE_KEY: "gleamhollow_save_v1",
+  SAVE_VERSION: 1,
+  OBSTACLES: 14,
+  MAX_PARTICLES: 700,
+  /* graphics-quality.md prescribes kernelRadius 16 / min .005 / max .1; those are
+     normalised-depth constants for a perspective rig at this scale and were already
+     shown (round 03:00) to black out an ortho scene. Perspective here, but the same
+     depth range would smear AO across the whole arena, so scaled to ~1-3 world units. */
+  SSAO: { kernelRadius: 2.4, minDistance: 4e-4, maxDistance: 6e-3 }
+};
+var QUESTS = [
+  { id: "gather", title: "\u6536\u62E2\u6D41\u8424", desc: "\u5728\u8352\u5730\u91CC\u62FE\u53D6 3 \u679A\u5149\u8424\uFF0C\u5E26\u56DE\u4E2D\u592E\u5149\u67F1\u4EA4\u4ED8\u3002", need: CONSTANTS.QUEST_MOTES, kind: "motes" },
+  { id: "ask", title: "\u95EE\u4E00\u95EE\u5B88\u5854\u4EBA", desc: "\u9760\u8FD1\u5149\u67F1\u65C1\u7684\u5B88\u5854\u4EBA\uFF0C\u6309 E \u542C\u5B8C\u5979\u7684\u8BDD\u3002", need: 1, kind: "talk" },
+  { id: "dusk", title: "\u8D81\u591C\u8272\u62FE\u70EC", desc: "\u5165\u591C\u540E\u8352\u5730\u4E0A\u4F1A\u6D6E\u51FA\u7070\u70EC\u788E\u7247\uFF0C\u4EA4\u4ED8 2 \u679A\u3002", need: CONSTANTS.QUEST_EMBERS, kind: "embers" }
+];
+var DIALOGUE = {
+  start: {
+    speaker: "\u5B88\u5854\u4EBA\xB7\u963F\u680C",
+    text: "\u5149\u67F1\u5FEB\u7184\u4E86\u3002\u4F60\u56CA\u91CC\u90A3\u4E9B\u6D41\u8424\uFF0C\u653E\u4E0B\u4E09\u679A\u5C31\u80FD\u518D\u6491\u4E00\u9635\u3002",
+    next: "ask"
+  },
+  ask: {
+    speaker: "\u5B88\u5854\u4EBA\xB7\u963F\u680C",
+    text: "\u5165\u591C\u4EE5\u540E\u624D\u6709\u7070\u70EC\u788E\u7247\u6D6E\u51FA\u6765\u3002\u5B83\u4EEC\u53EA\u5728\u6697\u5904\u4EAE\uFF0C\u522B\u5ACC\u9ED1\u3002",
+    choices: [
+      { id: "lantern", text: "\u8BA8\u4E00\u76CF\u63D0\u706F\u518D\u8D70\u3002", set: { lantern: true } },
+      { id: "brave", text: "\u4E0D\u5FC5\uFF0C\u6478\u9ED1\u4E5F\u8BA4\u5F97\u8DEF\u3002", set: { lantern: false } }
+    ],
+    next: "close"
+  },
+  close: {
+    speaker: "\u5B88\u5854\u4EBA\xB7\u963F\u680C",
+    text: "\u90A3\u5C31\u5929\u9ED1\u89C1\u3002\u788E\u7247\u591F\u4E24\u679A\uFF0C\u5149\u67F1\u5C31\u80FD\u6491\u8FC7\u8FD9\u4E00\u591C\u3002",
+    line2: "\u5979\u671D\u6797\u5B50\u6DF1\u5904\u52AA\u4E86\u52AA\u5634\uFF0C\u628A\u624B\u91CC\u90A3\u76CF\u706F\u5F80\u4F60\u6000\u91CC\u63A8\u4E86\u534A\u5BF8\u3002"
+  }
+};
+var MOTE_KINDS = ["wisp", "shard", "emberling"];
+function freshState() {
+  return {
+    mode: "title",
+    time: 0,
+    lives: CONSTANTS.START_LIVES,
+    satchel: 0,
+    satchelCap: CONSTANTS.SATCHEL_BASE,
+    motesCollected: 0,
+    motesDeposited: 0,
+    embersCollected: 0,
+    embersDeposited: 0,
+    questIndex: 0,
+    questDone: [false, false, false],
+    talked: false,
+    lantern: false,
+    night: false,
+    nightCount: 0,
+    lost: false,
+    won: false,
+    invuln: 0,
+    hitFlash: 0,
+    shake: 0,
+    deposits: 0
+  };
+}
+function saveGame(state) {
+  try {
+    const raw = localStorage.getItem(CONSTANTS.SAVE_KEY);
+    const prev = raw ? JSON.parse(raw) : {};
+    const rec = {
+      version: CONSTANTS.SAVE_VERSION,
+      runs: (prev.runs || 0) + 1,
+      wins: (prev.wins || 0) + (state.won ? 1 : 0),
+      bestTime: state.won ? prev.bestTime == null ? +state.time.toFixed(2) : Math.min(prev.bestTime, +state.time.toFixed(2)) : prev.bestTime == null ? null : prev.bestTime,
+      bestDeposits: Math.max(prev.bestDeposits || 0, state.deposits),
+      lastLantern: !!state.lantern
+    };
+    localStorage.setItem(CONSTANTS.SAVE_KEY, JSON.stringify(rec));
+    return rec;
+  } catch (e) {
+    return { error: String(e && e.message) };
+  }
+}
+function loadSave() {
+  try {
+    const raw = localStorage.getItem(CONSTANTS.SAVE_KEY);
+    if (!raw) return null;
+    const p = JSON.parse(raw);
+    return p && p.version === CONSTANTS.SAVE_VERSION ? p : null;
+  } catch (e) {
+    return null;
+  }
+}
+function mulberry32(a) {
+  return function() {
+    a |= 0;
+    a = a + 1831565813 | 0;
+    let t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+var xzDist = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
+var clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+var lerp = (a, b, t) => a + (b - a) * t;
+function createAudio(theme) {
+  let ctx = null;
+  const freqs = {
+    grab: 720,
+    deposit: 420,
+    hurt: 150,
+    night: 240,
+    dawn: 520,
+    win: 660,
+    lose: 110,
+    talk: 300,
+    step: 90,
+    ui: 480
+  };
+  function ensure() {
+    if (!ctx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      ctx = new AC();
+    }
+    if (ctx.state === "suspended") ctx.resume().catch(() => {
+    });
+    return ctx;
+  }
+  function blip(freq, dur, type, gain, slideTo) {
+    const c = ensure();
+    if (!c) return;
+    const o = c.createOscillator(), g = c.createGain(), f = c.createBiquadFilter();
+    o.type = type || "sine";
+    o.frequency.setValueAtTime(freq, c.currentTime);
+    if (slideTo) o.frequency.exponentialRampToValueAtTime(Math.max(30, slideTo), c.currentTime + dur);
+    f.type = "lowpass";
+    f.frequency.value = 2400;
+    g.gain.setValueAtTime(1e-4, c.currentTime);
+    g.gain.exponentialRampToValueAtTime(gain == null ? 0.05 : gain, c.currentTime + 0.012);
+    g.gain.exponentialRampToValueAtTime(1e-4, c.currentTime + dur);
+    o.connect(f);
+    f.connect(g);
+    g.connect(c.destination);
+    o.start();
+    o.stop(c.currentTime + dur + 0.02);
+  }
+  const sfx = {
+    grab: () => blip(freqs.grab, 0.16, "triangle", 0.05, freqs.grab * 1.6),
+    deposit: () => blip(freqs.deposit, 0.3, "sine", 0.06, freqs.deposit * 2),
+    hurt: () => blip(freqs.hurt, 0.28, "sawtooth", 0.07, 60),
+    night: () => blip(freqs.night, 0.7, "sine", 0.04, 150),
+    dawn: () => blip(freqs.dawn, 0.6, "sine", 0.04, 780),
+    win: () => {
+      blip(freqs.win, 0.4, "triangle", 0.06, 990);
+      setTimeout(() => blip(880, 0.5, "sine", 0.05, 1320), 180);
+    },
+    lose: () => blip(freqs.lose, 0.8, "sawtooth", 0.06, 48),
+    talk: () => blip(freqs.talk, 0.09, "square", 0.028),
+    ui: () => blip(freqs.ui, 0.07, "sine", 0.03)
+  };
+  return { sfx, ensure, get ctx() {
+    return ctx;
+  } };
+}
+function createGame(theme, domTarget) {
+  const T = THREE;
+  const state = freshState();
+  const rng = mulberry32(theme.seed);
+  const audio = createAudio(theme);
+  const scene = new T.Scene();
+  scene.background = new T.Color(theme.sky.bottom);
+  scene.fog = new T.FogExp2(theme.fog.color, theme.fog.density);
+  const camera = new T.PerspectiveCamera(58, Math.max(1, window.innerWidth) / Math.max(1, window.innerHeight), 0.1, 900);
+  camera.position.set(0, 7, 14);
+  const renderer = new T.WebGLRenderer({ antialias: true, powerPreference: "high-performance", stencil: false });
+  renderer.setSize(Math.max(1, window.innerWidth), Math.max(1, window.innerHeight));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = T.PCFSoftShadowMap;
+  renderer.toneMapping = T.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = theme.post.exposure;
+  renderer.outputColorSpace = T.SRGBColorSpace;
+  (domTarget || document.body).appendChild(renderer.domElement);
+  const keyLight = new T.DirectionalLight(theme.lights.key.color, theme.lights.key.intensity);
+  keyLight.position.fromArray(theme.lights.key.pos);
+  keyLight.castShadow = true;
+  keyLight.shadow.mapSize.set(4096, 4096);
+  keyLight.shadow.normalBias = 0.02;
+  keyLight.shadow.bias = -5e-4;
+  const sc = keyLight.shadow.camera;
+  sc.left = -44;
+  sc.right = 44;
+  sc.top = 44;
+  sc.bottom = -44;
+  sc.near = 1;
+  sc.far = 220;
+  sc.updateProjectionMatrix();
+  scene.add(keyLight);
+  const fillLight = new T.DirectionalLight(theme.lights.fill.color, theme.lights.fill.intensity);
+  fillLight.position.fromArray(theme.lights.fill.pos);
+  scene.add(fillLight);
+  const hemiLight = new T.HemisphereLight(theme.lights.hemi.sky, theme.lights.hemi.gnd, theme.lights.hemi.intensity);
+  scene.add(hemiLight);
+  const ambientLight = new T.AmbientLight(theme.lights.ambient.color, theme.lights.ambient.intensity);
+  scene.add(ambientLight);
+  const rimLight = new T.PointLight(theme.lights.rim.color, theme.lights.rim.intensity, theme.lights.rim.distance, 2);
+  rimLight.position.fromArray(theme.lights.rim.pos);
+  scene.add(rimLight);
+  const hubLight = new T.PointLight(theme.colors.accent, 2.2, 26, 2);
+  hubLight.position.set(0, 4.2, 0);
+  scene.add(hubLight);
+  const LIGHT_BASE = {
+    key: keyLight.intensity,
+    fill: fillLight.intensity,
+    hemi: hemiLight.intensity,
+    ambient: ambientLight.intensity,
+    rim: rimLight.intensity,
+    bg: theme.sky.bottom,
+    fog: theme.fog.color
+  };
+  function createSkyDome(topColor, bottomColor, sunColor, sunDir2, sunSize) {
+    const mat = new T.ShaderMaterial({
+      side: T.BackSide,
+      depthWrite: false,
+      uniforms: {
+        topColor: { value: new T.Color(topColor) },
+        bottomColor: { value: new T.Color(bottomColor) },
+        sunColor: { value: new T.Color(sunColor) },
+        sunDir: { value: sunDir2.clone().normalize() },
+        sunSize: { value: sunSize }
+      },
+      vertexShader: `varying vec3 vDir; void main(){ vDir = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
+      fragmentShader: `
+        uniform vec3 topColor, bottomColor, sunColor, sunDir; uniform float sunSize; varying vec3 vDir;
+        void main(){
+          float h = clamp(vDir.y * 0.5 + 0.5, 0.0, 1.0);
+          vec3 col = mix(bottomColor, topColor, pow(h, 0.72));
+          float sd = max(dot(normalize(vDir), normalize(sunDir)), 0.0);
+          col += sunColor * pow(sd, 1.0 / max(sunSize, 0.001)) * 1.25;
+          gl_FragColor = vec4(col, 1.0);
+        }`
+    });
+    return new T.Mesh(new T.SphereGeometry(600, 32, 24), mat);
+  }
+  const sunDir = new T.Vector3().fromArray(theme.lights.key.pos).normalize();
+  const skyDome = createSkyDome(theme.sky.top, theme.sky.bottom, theme.sky.sun, sunDir, theme.sky.sunSize);
+  skyDome.userData.kind = "skydome";
+  scene.add(skyDome);
+  const pmrem = new T.PMREMGenerator(renderer);
+  pmrem.compileEquirectangularShader();
+  const envScene = new T.Scene();
+  envScene.add(createSkyDome(theme.sky.top, theme.sky.bottom, theme.sky.sun, sunDir, theme.sky.sunSize));
+  const envMap = pmrem.fromScene(envScene, 0.04).texture;
+  scene.environment = envMap;
+  pmrem.dispose();
+  const composer = new EffectComposer(renderer);
+  composer.setSize(Math.max(1, window.innerWidth), Math.max(1, window.innerHeight));
+  const addPass = (pass, label) => {
+    pass.label = label;
+    composer.addPass(pass);
+    return pass;
+  };
+  addPass(new RenderPass(scene, camera), "RenderPass");
+  const ssaoPass = addPass(new SSAOPass(scene, camera, Math.max(1, window.innerWidth), Math.max(1, window.innerHeight)), "SSAOPass");
+  ssaoPass.kernelRadius = CONSTANTS.SSAO.kernelRadius;
+  ssaoPass.minDistance = CONSTANTS.SSAO.minDistance;
+  ssaoPass.maxDistance = CONSTANTS.SSAO.maxDistance;
+  const bloomPass = addPass(new UnrealBloomPass(
+    new T.Vector2(Math.max(1, window.innerWidth), Math.max(1, window.innerHeight)),
+    theme.post.bloom.strength,
+    theme.post.bloom.radius,
+    theme.post.bloom.threshold
+  ), "UnrealBloomPass");
+  addPass(new OutputPass(), "OutputPass");
+  const gradePass = addPass(new ShaderPass({
+    uniforms: {
+      tDiffuse: { value: null },
+      brightness: { value: theme.post.grade.brightness },
+      contrast: { value: theme.post.grade.contrast },
+      saturation: { value: theme.post.grade.saturation },
+      vignetteIntensity: { value: theme.post.grade.vignette },
+      nightMix: { value: 0 }
+    },
+    vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
+    fragmentShader: `
+      uniform sampler2D tDiffuse; uniform float brightness, contrast, saturation, vignetteIntensity, nightMix;
+      varying vec2 vUv;
+      void main(){
+        vec4 c = texture2D(tDiffuse, vUv);
+        c.rgb += brightness;
+        c.rgb = (c.rgb - 0.5) * contrast + 0.5;
+        float l = dot(c.rgb, vec3(0.2126, 0.7152, 0.0722));
+        c.rgb = mix(vec3(l), c.rgb, saturation);
+        c.rgb = mix(c.rgb, c.rgb * vec3(0.66, 0.76, 1.05), nightMix * 0.75);
+        vec2 p = vUv - 0.5;
+        float v = 1.0 - pow(clamp(length(p) * 1.42, 0.0, 1.0), 2.0) * vignetteIntensity;
+        gl_FragColor = vec4(c.rgb * clamp(v, 0.0, 1.0), c.a);
+      }`
+  }), "ColorGradePass");
+  const fxaaPass = addPass(new ShaderPass(FXAAShader), "FXAAPass");
+  const sizeFxaa = () => fxaaPass.material.uniforms.resolution.value.set(
+    1 / (Math.max(1, window.innerWidth) * renderer.getPixelRatio()),
+    1 / (Math.max(1, window.innerHeight) * renderer.getPixelRatio())
+  );
+  sizeFxaa();
+  function toon(color, steps) {
+    const cv = document.createElement("canvas");
+    cv.width = steps;
+    cv.height = 1;
+    const g = cv.getContext("2d");
+    for (let i = 0; i < steps; i++) {
+      const v = Math.round(255 * (i + 1) / steps);
+      g.fillStyle = `rgb(${v},${v},${v})`;
+      g.fillRect(i, 0, 1, 1);
+    }
+    const tex = new T.CanvasTexture(cv);
+    tex.minFilter = tex.magFilter = T.NearestFilter;
+    tex.generateMipmaps = false;
+    return new T.MeshToonMaterial({ color, gradientMap: tex });
+  }
+  const std = (o) => new T.MeshStandardMaterial(o);
+  const phy = (o) => new T.MeshPhysicalMaterial(o);
+  const MATS = {
+    cloth: toon(theme.colors.ground, theme.scatter.toonSteps),
+    cloak: std({ color: theme.colors.groundAlt, roughness: 0.78, metalness: 0.04 }),
+    skin: std({ color: theme.colors.sun, roughness: 0.65 }),
+    metal: std({ color: theme.colors.rock, roughness: 0.32, metalness: 0.92, envMapIntensity: 1.35 }),
+    wood: std({ color: theme.colors.groundAlt, roughness: 0.85, metalness: 0.02 }),
+    stone: toon(theme.colors.rock, theme.scatter.toonSteps),
+    flora: toon(theme.colors.flora == null ? theme.colors.rock : theme.colors.flora, theme.scatter.toonSteps),
+    crystal: phy({
+      color: theme.colors.motes[0],
+      roughness: 0.12,
+      metalness: 0,
+      transmission: 0.55,
+      thickness: 1.1,
+      ior: 1.42,
+      envMapIntensity: 1.5
+    }),
+    glow: std({ color: theme.colors.accent, roughness: 0.35, emissive: theme.colors.accent, emissiveIntensity: 2.4 }),
+    moteA: std({ color: theme.colors.motes[0], roughness: 0.3, emissive: theme.colors.motes[0], emissiveIntensity: 2.2 }),
+    moteB: std({ color: theme.colors.motes[1], roughness: 0.3, emissive: theme.colors.motes[1], emissiveIntensity: 2.2 }),
+    moteC: std({ color: theme.colors.motes[2], roughness: 0.3, emissive: theme.colors.motes[2], emissiveIntensity: 2.2 }),
+    ember: std({ color: theme.colors.accent, roughness: 0.28, emissive: theme.colors.accent, emissiveIntensity: 3 }),
+    houndHide: toon(theme.colors.hound, theme.scatter.toonSteps),
+    houndEye: std({ color: 16777215, roughness: 0.2, emissive: theme.colors.accent, emissiveIntensity: 3.2 }),
+    ground: std({ color: theme.colors.ground, roughness: theme.ground.roughness, metalness: theme.ground.metalness })
+  };
+  const MOTE_MATS = [MATS.moteA, MATS.moteB, MATS.moteC];
+  function part(geo, mat, x, y, z, rx, ry, rz, s) {
+    const m = new T.Mesh(geo, mat);
+    m.position.set(x || 0, y || 0, z || 0);
+    if (rx || ry || rz) m.rotation.set(rx || 0, ry || 0, rz || 0);
+    if (s) m.scale.setScalar(s);
+    m.castShadow = true;
+    m.receiveShadow = true;
+    return m;
+  }
+  const countParts = (root) => {
+    let n = 0;
+    root.traverse((o) => {
+      if (o !== root && o.isMesh) n++;
+    });
+    return n;
+  };
+  function createGatherer() {
+    const g = new T.Group();
+    g.add(part(new T.CapsuleGeometry(0.34, 0.72, 6, 12), MATS.cloth, 0, 1.02, 0));
+    g.add(part(new T.CylinderGeometry(0.46, 0.62, 0.86, 12, 1, true), MATS.cloak, 0, 0.92, -0.02));
+    g.add(part(new T.SphereGeometry(0.27, 16, 12), MATS.skin, 0, 1.66, 0.02));
+    g.add(part(new T.SphereGeometry(0.33, 16, 12, 0, Math.PI * 2, 0, Math.PI * 0.62), MATS.cloak, 0, 1.7, -0.02));
+    g.add(part(new T.BoxGeometry(0.3, 0.09, 0.2), MATS.wood, 0, 1.6, 0.22));
+    g.add(part(new T.CapsuleGeometry(0.09, 0.38, 4, 8), MATS.cloth, -0.36, 1.06, 0.04, 0, 0, 0.22));
+    g.add(part(new T.CapsuleGeometry(0.09, 0.38, 4, 8), MATS.cloth, 0.36, 1.06, 0.04, 0, 0, -0.22));
+    g.add(part(new T.SphereGeometry(0.11, 10, 8), MATS.skin, -0.4, 0.8, 0.08));
+    g.add(part(new T.SphereGeometry(0.11, 10, 8), MATS.skin, 0.4, 0.8, 0.08));
+    g.add(part(new T.CapsuleGeometry(0.12, 0.4, 4, 8), MATS.cloak, -0.15, 0.36, 0));
+    g.add(part(new T.CapsuleGeometry(0.12, 0.4, 4, 8), MATS.cloak, 0.15, 0.36, 0));
+    g.add(part(new T.BoxGeometry(0.17, 0.08, 0.29), MATS.metal, -0.15, 0.1, 0.04));
+    g.add(part(new T.BoxGeometry(0.17, 0.08, 0.29), MATS.metal, 0.15, 0.1, 0.04));
+    g.add(part(new T.SphereGeometry(0.24, 12, 10), MATS.wood, 0.42, 0.92, -0.28));
+    g.add(part(new T.TorusGeometry(0.2, 0.035, 6, 14), MATS.metal, 0.42, 1.14, -0.28, Math.PI / 2));
+    g.add(part(new T.CylinderGeometry(0.035, 0.035, 1.5, 8), MATS.wood, -0.46, 1.16, 0.12, 0.1));
+    const lantern2 = part(new T.OctahedronGeometry(0.17, 0), MATS.glow, -0.5, 1.9, 0.2);
+    lantern2.userData.kind = "lantern";
+    g.add(lantern2);
+    g.add(part(new T.BoxGeometry(0.34, 0.05, 0.34), MATS.metal, 0, 1.36, -0.3));
+    g.add(part(new T.ConeGeometry(0.1, 0.26, 8), MATS.metal, 0, 1.98, -0.06));
+    g.add(part(new T.SphereGeometry(0.07, 8, 6), MATS.glow, 0, 1.72, 0.24, 0, 0, 0, 1));
+    g.add(part(new T.TorusGeometry(0.3, 0.03, 6, 16), MATS.metal, 0, 0.06, 0, Math.PI / 2));
+    g.add(part(new T.BoxGeometry(0.5, 0.05, 0.36), MATS.cloak, 0, 0.72, -0.36, -0.22));
+    g.userData.kind = "player";
+    return g;
+  }
+  function createMote(ci) {
+    const g = new T.Group();
+    const mat = MOTE_MATS[ci % MOTE_MATS.length];
+    g.add(part(new T.OctahedronGeometry(0.2, 0), mat, 0, 0, 0));
+    g.add(part(new T.IcosahedronGeometry(0.31, 0), MATS.crystal, 0, 0, 0));
+    g.add(part(new T.TorusGeometry(0.4, 0.025, 5, 16), mat, 0, 0, 0, Math.PI / 2));
+    g.add(part(new T.TorusGeometry(0.34, 0.02, 5, 16), mat, 0, 0, 0, 0, Math.PI / 3));
+    g.add(part(new T.SphereGeometry(0.07, 8, 6), mat, 0.3, 0.1, 0));
+    g.add(part(new T.SphereGeometry(0.06, 8, 6), mat, -0.26, -0.12, 0.14));
+    g.add(part(new T.ConeGeometry(0.08, 0.24, 5), mat, 0, 0.3, 0));
+    g.add(part(new T.ConeGeometry(0.08, 0.24, 5), mat, 0, -0.3, 0, Math.PI));
+    g.userData.kind = "mote";
+    return g;
+  }
+  function createHound() {
+    const g = new T.Group();
+    g.add(part(new T.CapsuleGeometry(0.3, 0.85, 5, 10), MATS.houndHide, 0, 0.78, 0, 0, 0, Math.PI / 2));
+    g.add(part(new T.BoxGeometry(0.62, 0.36, 0.9), MATS.houndHide, 0, 0.98, 0));
+    g.add(part(new T.BoxGeometry(0.34, 0.3, 0.42), MATS.houndHide, 0, 1.02, 0.72));
+    g.add(part(new T.BoxGeometry(0.22, 0.13, 0.2), MATS.houndHide, 0, 0.87, 0.94));
+    g.add(part(new T.SphereGeometry(0.06, 8, 6), MATS.houndEye, 0.1, 1.06, 0.93));
+    g.add(part(new T.SphereGeometry(0.06, 8, 6), MATS.houndEye, -0.1, 1.06, 0.93));
+    g.add(part(new T.ConeGeometry(0.11, 0.28, 5), MATS.houndHide, 0.16, 1.28, 0.6));
+    g.add(part(new T.ConeGeometry(0.11, 0.28, 5), MATS.houndHide, -0.16, 1.28, 0.6));
+    for (const sx of [-1, 1]) for (const sz of [-1, 1]) {
+      g.add(part(new T.CapsuleGeometry(0.1, 0.5, 4, 8), MATS.houndHide, sx * 0.26, 0.33, sz * 0.42));
+      g.add(part(new T.BoxGeometry(0.17, 0.07, 0.24), MATS.metal, sx * 0.26, 0.06, sz * 0.42 + 0.03));
+    }
+    g.add(part(new T.CylinderGeometry(0.07, 0.02, 0.62, 6), MATS.houndHide, 0, 1, -0.78, 1.15));
+    g.add(part(new T.SphereGeometry(0.09, 8, 6), MATS.glow, 0, 1.05, -1.05));
+    for (let i = 0; i < 3; i++) {
+      g.add(part(new T.ConeGeometry(0.07, 0.2, 4), MATS.metal, 0, 1.22 + i * 0.01, 0.36 - i * 0.42));
+    }
+    g.userData.kind = "hound";
+    return g;
+  }
+  function createKeeper() {
+    const g = new T.Group();
+    g.add(part(new T.ConeGeometry(0.56, 1.6, 12), MATS.cloak, 0, 0.8, 0));
+    g.add(part(new T.CylinderGeometry(0.3, 0.42, 0.5, 12), MATS.cloth, 0, 1.5, 0));
+    g.add(part(new T.SphereGeometry(0.22, 14, 10), MATS.skin, 0, 1.86, 0.01));
+    g.add(part(new T.SphereGeometry(0.27, 14, 10, 0, Math.PI * 2, 0, Math.PI * 0.55), MATS.cloak, 0, 1.9, -0.02));
+    g.add(part(new T.BoxGeometry(0.52, 0.1, 0.24), MATS.metal, 0, 1.34, 0.16));
+    g.add(part(new T.CapsuleGeometry(0.075, 0.34, 4, 8), MATS.cloth, -0.3, 1.32, 0.06, 0, 0, 0.3));
+    g.add(part(new T.CapsuleGeometry(0.075, 0.34, 4, 8), MATS.cloth, 0.3, 1.32, 0.06, 0, 0, -0.3));
+    g.add(part(new T.SphereGeometry(0.09, 8, 6), MATS.skin, -0.36, 1.1, 0.1));
+    g.add(part(new T.SphereGeometry(0.09, 8, 6), MATS.skin, 0.36, 1.1, 0.1));
+    g.add(part(new T.CylinderGeometry(0.028, 0.028, 0.9, 6), MATS.wood, 0.42, 1.16, 0.22, 0.2));
+    g.add(part(new T.OctahedronGeometry(0.15, 0), MATS.glow, 0.44, 1.66, 0.31));
+    g.add(part(new T.TorusGeometry(0.13, 0.02, 5, 12), MATS.metal, 0.44, 1.66, 0.31, Math.PI / 2));
+    g.add(part(new T.BoxGeometry(0.3, 0.06, 0.34), MATS.wood, 0, 0.03, 0));
+    g.add(part(new T.SphereGeometry(0.06, 8, 6), MATS.glow, 0, 2.12, 0));
+    g.add(part(new T.CylinderGeometry(0.16, 0.2, 0.12, 10), MATS.metal, 0, 0.1, 0.1));
+    g.userData.kind = "keeper";
+    return g;
+  }
+  function createHub() {
+    const g = new T.Group();
+    g.add(part(new T.CylinderGeometry(CONSTANTS.HUB_R, CONSTANTS.HUB_R + 0.35, 0.4, 30), MATS.stone, 0, 0.2, 0));
+    g.add(part(new T.CylinderGeometry(CONSTANTS.HUB_R - 0.7, CONSTANTS.HUB_R - 0.5, 0.18, 24), MATS.metal, 0, 0.46, 0));
+    g.add(part(new T.CylinderGeometry(0.5, 0.78, 4.2, 12), MATS.stone, 0, 2.4, 0));
+    for (let i = 0; i < 4; i++) {
+      const a = i / 4 * Math.PI * 2;
+      g.add(part(new T.BoxGeometry(0.22, 3.2, 0.22), MATS.metal, Math.cos(a) * 1.05, 2.3, Math.sin(a) * 1.05, 0, a, 0.1 * (i % 2 ? 1 : -1)));
+    }
+    const flame = part(new T.OctahedronGeometry(0.72, 0), MATS.glow, 0, 5, 0);
+    flame.userData.kind = "beacon";
+    g.add(flame);
+    g.add(part(new T.TorusGeometry(1, 0.06, 6, 22), MATS.metal, 0, 5, 0, Math.PI / 2));
+    g.add(part(new T.TorusGeometry(1.35, 0.05, 6, 24), MATS.metal, 0, 4.5, 0, Math.PI / 2.6));
+    g.add(part(new T.CylinderGeometry(0.95, 1.15, 0.3, 14), MATS.stone, 0, 0.62, 0));
+    g.userData.kind = "hub";
+    return g;
+  }
+  function createNoiseTexture(size, c1, c2, scale) {
+    const cv = document.createElement("canvas");
+    cv.width = cv.height = size;
+    const g = cv.getContext("2d");
+    const img = g.createImageData(size, size);
+    const r = mulberry32(9);
+    const grid = [];
+    for (let i = 0; i < 64; i++) grid.push(r());
+    const sample = (x, y) => {
+      const gx = x / size * 8, gy = y / size * 8;
+      const x0 = Math.floor(gx) & 7, y0 = Math.floor(gy) & 7;
+      const x1 = x0 + 1 & 7, y1 = y0 + 1 & 7;
+      const fx = gx - Math.floor(gx), fy = gy - Math.floor(gy);
+      const sx = fx * fx * (3 - 2 * fx), sy = fy * fy * (3 - 2 * fy);
+      return lerp(lerp(grid[y0 * 8 + x0], grid[y0 * 8 + x1], sx), lerp(grid[y1 * 8 + x0], grid[y1 * 8 + x1], sx), sy);
+    };
+    for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
+      let n = 0, amp = 0.5, f = scale || 1;
+      for (let o = 0; o < 4; o++) {
+        n += sample(x * f / 4, y * f / 4) * amp;
+        amp *= 0.5;
+        f *= 2;
+      }
+      const i = (y * size + x) * 4;
+      img.data[i] = lerp(c1[0], c2[0], n);
+      img.data[i + 1] = lerp(c1[1], c2[1], n);
+      img.data[i + 2] = lerp(c1[2], c2[2], n);
+      img.data[i + 3] = 255;
+    }
+    g.putImageData(img, 0, 0);
+    const t = new T.CanvasTexture(cv);
+    t.wrapS = t.wrapT = T.RepeatWrapping;
+    t.colorSpace = T.SRGBColorSpace;
+    return t;
+  }
+  function createNoiseNormalMap(size, bump) {
+    const cv = document.createElement("canvas");
+    cv.width = cv.height = size;
+    const g = cv.getContext("2d");
+    const img = g.createImageData(size, size);
+    const r = mulberry32(23);
+    const h = new Float32Array(size * size);
+    for (let i = 0; i < h.length; i++) h[i] = r();
+    for (let pass = 0; pass < 2; pass++) {
+      const n = new Float32Array(h.length);
+      for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
+        let s = 0, c = 0;
+        for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+          s += h[(y + dy + size) % size * size + (x + dx + size) % size];
+          c++;
+        }
+        n[y * size + x] = s / c;
+      }
+      h.set(n);
+    }
+    for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
+      const ddX = (h[y * size + (x + 1) % size] - h[y * size + (x - 1 + size) % size]) * bump;
+      const ddY = (h[(y + 1) % size * size + x] - h[(y - 1 + size) % size * size + x]) * bump;
+      const len = Math.hypot(-ddX, -ddY, 1);
+      const i = (y * size + x) * 4;
+      img.data[i] = (-ddX / len * 0.5 + 0.5) * 255;
+      img.data[i + 1] = (-ddY / len * 0.5 + 0.5) * 255;
+      img.data[i + 2] = 1 / len * 255;
+      img.data[i + 3] = 255;
+    }
+    g.putImageData(img, 0, 0);
+    const t = new T.CanvasTexture(cv);
+    t.wrapS = t.wrapT = T.RepeatWrapping;
+    return t;
+  }
+  const groundTex = createNoiseTexture(256, theme.ground.c1, theme.ground.c2, 2);
+  groundTex.repeat.set(9, 9);
+  const groundNrm = createNoiseNormalMap(128, 2.4);
+  groundNrm.repeat.set(14, 14);
+  const groundMat = new T.MeshStandardMaterial({
+    map: groundTex,
+    normalMap: groundNrm,
+    normalScale: new T.Vector2(0.65, 0.65),
+    roughness: theme.ground.roughness,
+    metalness: theme.ground.metalness
+  });
+  const groundGeo = new T.CircleGeometry(CONSTANTS.ARENA_R + 6, 72, 0, Math.PI * 2);
+  {
+    const pos = groundGeo.attributes.position;
+    const cols = [];
+    const cA = new T.Color(theme.colors.ground), cB = new T.Color(theme.colors.groundAlt);
+    const mod = [cB.r / Math.max(cA.r, 1e-4), cB.g / Math.max(cA.g, 1e-4), cB.b / Math.max(cA.b, 1e-4)].map((v) => Number.isFinite(v) ? clamp(v, 0, 2) : 1);
+    for (let i = 0; i < pos.count; i++) {
+      const r = Math.hypot(pos.getX(i), pos.getY(i));
+      const t = clamp((r - CONSTANTS.ARENA_R * 0.6) / (CONSTANTS.ARENA_R * 0.6), 0, 1);
+      cols.push(1 + (mod[0] - 1) * t, 1 + (mod[1] - 1) * t, 1 + (mod[2] - 1) * t);
+    }
+    groundGeo.setAttribute("color", new T.Float32BufferAttribute(cols, 3));
+  }
+  groundMat.vertexColors = true;
+  const ground = new T.Mesh(groundGeo, groundMat);
+  ground.rotation.x = -Math.PI / 2;
+  ground.receiveShadow = true;
+  ground.userData.kind = "ground";
+  scene.add(ground);
+  const hub = createHub();
+  scene.add(hub);
+  const keeper = createKeeper();
+  keeper.position.set(CONSTANTS.HUB_R + 1.5, 0, 1.2);
+  keeper.rotation.y = -Math.PI / 3;
+  scene.add(keeper);
+  const layoutRng = mulberry32(CONSTANTS.OBSTACLES * 7919 + theme.seed);
+  const obstacles = [];
+  for (let i = 0; i < CONSTANTS.OBSTACLES; i++) {
+    const a = i / CONSTANTS.OBSTACLES * Math.PI * 2 + layoutRng() * 0.5;
+    const rad = 9 + layoutRng() * 19;
+    const x = Math.cos(a) * rad, z = Math.sin(a) * rad;
+    const r = 1.1 + layoutRng() * 1.1;
+    obstacles.push({ x, z, r });
+  }
+  const rockGeo = new T.DodecahedronGeometry(1, 0);
+  const rockMesh = new T.InstancedMesh(rockGeo, MATS.stone, obstacles.length);
+  rockMesh.castShadow = rockMesh.receiveShadow = true;
+  {
+    const m = new T.Matrix4();
+    obstacles.forEach((o, i) => {
+      m.compose(new T.Vector3(o.x, o.r * 0.62, o.z), new T.Quaternion().setFromEuler(new T.Euler(0, i * 1.7, 0)), new T.Vector3(o.r, o.r * 0.9, o.r));
+      rockMesh.setMatrixAt(i, m);
+    });
+    rockMesh.instanceMatrix.needsUpdate = true;
+  }
+  rockMesh.userData.kind = "rock";
+  scene.add(rockMesh);
+  const wallGeo = new T.TorusGeometry(CONSTANTS.ARENA_R + 1.4, 0.85, 6, 64);
+  const wall = new T.Mesh(wallGeo, MATS.stone);
+  wall.rotation.x = Math.PI / 2;
+  wall.position.y = 0.5;
+  wall.castShadow = wall.receiveShadow = true;
+  wall.userData.kind = "wall";
+  scene.add(wall);
+  const SCATTER = [];
+  {
+    const srng = mulberry32(theme.seed ^ 24378);
+    const n = theme.scatter.count;
+    const trunkGeo = new T.CylinderGeometry(0.13, 0.2, 1.5, 6);
+    const crownGeo = new T.ConeGeometry(0.85, 2.3, 7);
+    const shardGeo = new T.OctahedronGeometry(0.75, 0);
+    const boulderGeo = new T.IcosahedronGeometry(0.7, 0);
+    const scatterMat = theme.scatter.kind === "flora" ? MATS.flora : MATS.stone;
+    const trunks = new T.InstancedMesh(trunkGeo, MATS.wood, theme.scatter.kind === "flora" ? n : 0);
+    const crowns = new T.InstancedMesh(theme.scatter.kind === "flora" ? crownGeo : theme.scatter.kind === "shard" ? shardGeo : boulderGeo, scatterMat, n);
+    trunks.castShadow = crowns.castShadow = true;
+    trunks.receiveShadow = crowns.receiveShadow = true;
+    const m = new T.Matrix4(), q = new T.Quaternion(), e = new T.Euler(), s = new T.Vector3(), p = new T.Vector3();
+    for (let i = 0; i < n; i++) {
+      const a = srng() * Math.PI * 2;
+      const rad = 6 + Math.sqrt(srng()) * (CONSTANTS.ARENA_R - 6.5);
+      p.set(Math.cos(a) * rad, 0, Math.sin(a) * rad);
+      const sc2 = 0.55 + srng() * 0.85;
+      e.set(0, srng() * Math.PI * 2, theme.scatter.kind === "shard" ? (srng() - 0.5) * 0.5 : 0);
+      q.setFromEuler(e);
+      if (theme.scatter.kind === "flora") {
+        m.compose(p.clone().setY(0.72 * sc2), q, s.set(sc2, sc2, sc2));
+        trunks.setMatrixAt(i, m);
+        m.compose(p.clone().setY(1.55 * sc2 + 0.9 * sc2), q, s.set(sc2, sc2 * (0.85 + srng() * 0.4), sc2));
+      } else if (theme.scatter.kind === "shard") {
+        m.compose(p.clone().setY(0.85 * sc2), q, s.set(sc2 * 0.5, sc2 * 1.6, sc2 * 0.5));
+      } else {
+        m.compose(p.clone().setY(0.45 * sc2), q, s.set(sc2 * 1.2, sc2 * 0.75, sc2 * 1.05));
+      }
+      crowns.setMatrixAt(i, m);
+    }
+    trunks.instanceMatrix.needsUpdate = true;
+    crowns.instanceMatrix.needsUpdate = true;
+    crowns.userData.kind = "scatter";
+    trunks.userData.kind = "scatter-trunk";
+    scene.add(trunks, crowns);
+    SCATTER.push(crowns);
+  }
+  const playerObj = createGatherer();
+  scene.add(playerObj);
+  const player = {
+    x: 0,
+    z: CONSTANTS.HUB_R + 4.5,
+    y: 0,
+    vx: 0,
+    vz: 0,
+    yaw: Math.PI,
+    speed: 0,
+    bob: 0,
+    group: playerObj,
+    anim: { legPhase: 0 }
+  };
+  const camRig = { yaw: Math.PI, pitch: CONSTANTS.CAM_PITCH, dist: CONSTANTS.CAM_DIST, shake: 0 };
+  const beacon = hub.children.find((o) => o.userData.kind === "beacon");
+  const lantern = playerObj.children.find((o) => o.userData.kind === "lantern");
+  const KEEPER_POS = { x: keeper.position.x, z: keeper.position.z };
+  const keys = /* @__PURE__ */ Object.create(null);
+  const setKey = (code, down) => {
+    keys[code] = !!down;
+  };
+  function cameraBasis() {
+    const fwd = new T.Vector3();
+    camera.getWorldDirection(fwd);
+    fwd.y = 0;
+    if (fwd.lengthSq() < 1e-6) fwd.set(0, 0, -1);
+    fwd.normalize();
+    const right = new T.Vector3().crossVectors(fwd, new T.Vector3(0, 1, 0)).normalize();
+    return { fwd, right };
+  }
+  function updatePlayer(dt) {
+    const { fwd, right } = cameraBasis();
+    let ix = 0, iz = 0;
+    if (keys.KeyW) iz += 1;
+    if (keys.KeyS) iz -= 1;
+    if (keys.KeyD) ix += 1;
+    if (keys.KeyA) ix -= 1;
+    const running = !!(keys.ShiftLeft || keys.ShiftRight);
+    const accel = running ? CONSTANTS.RUN_ACCEL : CONSTANTS.WALK_ACCEL;
+    const maxSpeed = running ? CONSTANTS.RUN_SPEED : CONSTANTS.MAX_SPEED;
+    const dirX = fwd.x * iz + right.x * ix;
+    const dirZ = fwd.z * iz + right.z * ix;
+    const mag = Math.hypot(dirX, dirZ);
+    if (mag > 1e-4) {
+      player.vx += dirX / mag * accel * dt;
+      player.vz += dirZ / mag * accel * dt;
+      player.yaw = Math.atan2(dirX, dirZ);
+    }
+    if (mag <= 1e-4) {
+      const damp = Math.exp(-CONSTANTS.FRICTION * dt);
+      player.vx *= damp;
+      player.vz *= damp;
+    }
+    const sp = Math.hypot(player.vx, player.vz);
+    if (sp > maxSpeed) {
+      player.vx = player.vx / sp * maxSpeed;
+      player.vz = player.vz / sp * maxSpeed;
+    }
+    player.x += player.vx * dt;
+    player.z += player.vz * dt;
+    resolveObstacles(player, CONSTANTS.PLAYER_R);
+    const rr = Math.hypot(player.x, player.z);
+    if (rr > CONSTANTS.ARENA_R) {
+      player.x = player.x / rr * CONSTANTS.ARENA_R;
+      player.z = player.z / rr * CONSTANTS.ARENA_R;
+    }
+    player.speed = Math.hypot(player.vx, player.vz);
+    player.bob += dt * (2 + player.speed * 1.6);
+    playerObj.position.set(player.x, Math.sin(player.bob * 2.2) * 0.045 * Math.min(1, player.speed / 3), player.z);
+    playerObj.rotation.y = lerpAngle(playerObj.rotation.y, player.yaw, 1 - Math.exp(-12 * dt));
+    const swing = Math.sin(player.bob * 3.4) * Math.min(1, player.speed / 5) * 0.5;
+    playerObj.children[9].rotation.x = swing;
+    playerObj.children[10].rotation.x = -swing;
+  }
+  const lerpAngle = (a, b, t) => {
+    let d = ((b - a + Math.PI) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2) - Math.PI;
+    return a + d * t;
+  };
+  function resolveObstacles(ent, radius) {
+    for (const o of obstacles) {
+      const dx = ent.x - o.x, dz = ent.z - o.z;
+      const d = Math.hypot(dx, dz), need = o.r + radius;
+      if (d < need && d > 1e-5) {
+        ent.x = o.x + dx / d * need;
+        ent.z = o.z + dz / d * need;
+      }
+    }
+    const hb = Math.hypot(ent.x, ent.z);
+    const keep = CONSTANTS.HUB_R + radius;
+    if (hb < keep) {
+      if (hb < 1e-5) {
+        ent.x = keep;
+        ent.z = 0;
+      } else {
+        ent.x = ent.x / hb * keep;
+        ent.z = ent.z / hb * keep;
+      }
+    }
+  }
+  function rigPosition() {
+    return [
+      player.x - Math.sin(camRig.yaw) * camRig.dist * Math.cos(camRig.pitch),
+      1.6 + camRig.dist * Math.sin(camRig.pitch),
+      player.z - Math.cos(camRig.yaw) * camRig.dist * Math.cos(camRig.pitch)
+    ];
+  }
+  function snapCamera() {
+    camera.position.fromArray(rigPosition());
+    camera.lookAt(player.x, 1.25, player.z);
+    camera.updateMatrixWorld();
+  }
+  function updateCamera(dt) {
+    const [wantX, wantY, wantZ] = rigPosition();
+    const k = 1 - Math.exp(-CONSTANTS.CAM_LERP * dt);
+    camera.position.set(lerp(camera.position.x, wantX, k), lerp(camera.position.y, wantY, k), lerp(camera.position.z, wantZ, k));
+    if (camRig.shake > 1e-3) {
+      const s = camRig.shake;
+      camera.position.x += Math.sin(state.time * 61) * s * 0.35;
+      camera.position.y += Math.sin(state.time * 47) * s * 0.28;
+      camRig.shake = Math.max(0, camRig.shake - dt * 2.4);
+    }
+    camera.lookAt(player.x, 1.25, player.z);
+  }
+  const motes = [];
+  const mrng = mulberry32(theme.seed ^ 4660);
+  for (let i = 0; i < CONSTANTS.MOTE_COUNT; i++) {
+    const a = i / CONSTANTS.MOTE_COUNT * Math.PI * 2 + mrng() * 0.6;
+    const rad = 11 + mrng() * 19;
+    const m = {
+      id: i,
+      kind: MOTE_KINDS[i % MOTE_KINDS.length],
+      colorIndex: i % 3,
+      ax: Math.cos(a) * rad,
+      az: Math.sin(a) * rad,
+      x: Math.cos(a) * rad,
+      z: Math.sin(a) * rad,
+      state: "idle",
+      timer: 0,
+      phase: i * 0.37,
+      held: false,
+      deposited: false,
+      ember: i >= CONSTANTS.MOTE_COUNT - CONSTANTS.EMBER_COUNT,
+      transitions: { flee: 0, idle: 0 },
+      group: null
+    };
+    m.group = createMote(m.colorIndex);
+    m.group.position.set(m.x, 1, m.z);
+    m.group.visible = !m.ember;
+    m.group.traverse((o) => {
+      if (o.isMesh) o.userData.kind = "mote";
+    });
+    scene.add(m.group);
+    motes.push(m);
+  }
+  const hounds = [];
+  const hrng = mulberry32(theme.seed ^ 39338);
+  for (let i = 0; i < CONSTANTS.HOUND_COUNT; i++) {
+    const wps = [];
+    for (let w = 0; w < 4; w++) {
+      const a = w / 4 * Math.PI * 2 + hrng() * 0.9;
+      const rad = 12 + hrng() * 16;
+      wps.push({ x: Math.cos(a) * rad, z: Math.sin(a) * rad });
+    }
+    const h = {
+      id: i,
+      x: wps[0].x,
+      z: wps[0].z,
+      startX: wps[0].x,
+      startZ: wps[0].z,
+      state: "patrol",
+      timer: 0,
+      wp: 1,
+      wps,
+      vx: 0,
+      vz: 0,
+      yaw: 0,
+      hits: 0,
+      chases: 0,
+      group: createHound()
+    };
+    h.group.position.set(h.x, 0, h.z);
+    h.group.traverse((o) => {
+      if (o.isMesh) o.userData.kind = "hound";
+    });
+    scene.add(h.group);
+    hounds.push(h);
+  }
+  function moteVisible(m) {
+    if (!m.ember) return !m.held && !m.deposited;
+    return state.night && !m.held && !m.deposited;
+  }
+  function updateMotes(dt) {
+    for (const m of motes) {
+      if (m.held || m.deposited) {
+        m.group.visible = false;
+        continue;
+      }
+      m.group.visible = moteVisible(m);
+      if (!moteVisible(m)) continue;
+      const dp = Math.hypot(player.x - m.x, player.z - m.z);
+      if (m.state === "idle" && dp < CONSTANTS.MOTE_FLEE_R) {
+        m.state = "flee";
+        m.timer = 1.1;
+        m.transitions.flee++;
+      } else if (m.state === "flee") {
+        m.timer -= dt;
+        if (m.timer <= 0 && dp > CONSTANTS.MOTE_FLEE_R * 1.5) {
+          m.state = "idle";
+          m.transitions.idle++;
+        }
+      }
+      let tx = m.ax, tz = m.az;
+      if (m.state === "flee") {
+        const dx = m.x - player.x, dz = m.z - player.z, d = Math.max(1e-3, Math.hypot(dx, dz));
+        tx = m.x + dx / d * 6;
+        tz = m.z + dz / d * 6;
+      } else {
+        m.phase += dt * 0.8;
+        tx = m.ax + Math.cos(m.phase) * CONSTANTS.MOTE_WANDER_R;
+        tz = m.az + Math.sin(m.phase * 1.3) * CONSTANTS.MOTE_WANDER_R;
+      }
+      const k = 1 - Math.exp(-(m.state === "flee" ? CONSTANTS.MOTE_FLEE_SPEED : 1.1) * dt * 1.6);
+      m.x = lerp(m.x, tx, k);
+      m.z = lerp(m.z, tz, k);
+      const rr = Math.hypot(m.x, m.z);
+      if (rr > CONSTANTS.ARENA_R - 1) {
+        m.x = m.x / rr * (CONSTANTS.ARENA_R - 1);
+        m.z = m.z / rr * (CONSTANTS.ARENA_R - 1);
+      }
+      m.group.position.set(m.x, 1 + Math.sin(state.time * 2.1 + m.phase) * 0.22, m.z);
+      m.group.rotation.y += dt * 1.4;
+      m.group.children[2].rotation.z += dt * 2.2;
+    }
+  }
+  function grabMote(m) {
+    m.held = true;
+    state.satchel += 1;
+    if (m.ember) state.embersCollected++;
+    else state.motesCollected++;
+    burst(m.x, 1.1, m.z, theme.colors.motes[m.colorIndex], 26);
+    audio.sfx.grab();
+  }
+  function updateHounds(dt) {
+    const aggro = state.night ? CONSTANTS.AGGRO_NIGHT : CONSTANTS.AGGRO_DAY;
+    for (const h of hounds) {
+      const dp = xzDist(h, player);
+      if (h.state === "stunned") {
+        h.timer -= dt;
+        if (h.timer <= 0) {
+          h.state = "return";
+        }
+      } else if (h.state === "patrol") {
+        if (dp < aggro && !state.lost && state.mode === "playing") {
+          h.state = "chase";
+          h.chases++;
+        }
+      } else if (h.state === "chase") {
+        if (dp > aggro * 1.6) {
+          h.state = "return";
+        }
+      } else if (h.state === "return") {
+        if (dp < aggro * 0.7) {
+          h.state = "chase";
+          h.chases++;
+        } else {
+          const w = houndsWaypoint(h);
+          if (Math.hypot(h.x - w.x, h.z - w.z) < 0.9) {
+            h.state = "patrol";
+          }
+        }
+      }
+      let target = null, speed = CONSTANTS.HOUND_PATROL_SPEED;
+      if (h.state === "chase") {
+        target = player;
+        speed = CONSTANTS.HOUND_CHASE_SPEED;
+      } else if (h.state === "return") target = houndsWaypoint(h);
+      else if (h.state === "patrol") {
+        const w = houndsWaypoint(h);
+        target = w;
+        if (Math.hypot(h.x - w.x, h.z - w.z) < 0.8) {
+          h.wp = (h.wp + 1) % 4;
+        }
+      }
+      if (target && h.state !== "stunned") {
+        const dx = target.x - h.x, dz = target.z - h.z, d = Math.max(1e-3, Math.hypot(dx, dz));
+        h.vx = lerp(h.vx, dx / d * speed, 1 - Math.exp(-4 * dt));
+        h.vz = lerp(h.vz, dz / d * speed, 1 - Math.exp(-4 * dt));
+        h.yaw = Math.atan2(dx, dz);
+      } else {
+        h.vx *= Math.exp(-6 * dt);
+        h.vz *= Math.exp(-6 * dt);
+      }
+      h.x += h.vx * dt;
+      h.z += h.vz * dt;
+      resolveObstacles(h, 0.7);
+      const rr = Math.hypot(h.x, h.z);
+      if (rr > CONSTANTS.ARENA_R) {
+        h.x = h.x / rr * CONSTANTS.ARENA_R;
+        h.z = h.z / rr * CONSTANTS.ARENA_R;
+      }
+      h.group.position.set(h.x, Math.abs(Math.sin(state.time * 6 + h.id)) * 0.06 * Math.min(1, Math.hypot(h.vx, h.vz) / 3), h.z);
+      h.group.rotation.y = lerpAngle(h.group.rotation.y, h.yaw, 1 - Math.exp(-9 * dt));
+      if (h.state === "chase" && dp < CONSTANTS.HOUND_HIT_R && state.invuln <= 0 && !state.lost) bitePlayer(h);
+      h.group.children[4].visible = h.group.children[5].visible = h.state !== "stunned";
+    }
+  }
+  function houndsWaypoint(h) {
+    if (h.state === "return") return { x: h.startX, z: h.startZ };
+    return h.wps[h.wp];
+  }
+  function bitePlayer(h) {
+    state.lives -= 1;
+    state.invuln = CONSTANTS.INVULN;
+    state.hitFlash = 1;
+    state.shake = 1;
+    camRig.shake = 0.55;
+    h.hits++;
+    h.state = "stunned";
+    h.timer = CONSTANTS.HOUND_STUN;
+    const dx = player.x - h.x, dz = player.z - h.z, d = Math.max(1e-3, Math.hypot(dx, dz));
+    player.vx = dx / d * 9;
+    player.vz = dz / d * 9;
+    burst(player.x, 1.1, player.z, 16777215, 18);
+    audio.sfx.hurt();
+    hud.toast(`\u88AB\u7070\u72AC\u649E\u4E0A\uFF0C\u4F53\u529B -1\uFF08\u5269 ${state.lives}\uFF09`, "bad");
+    if (state.lives <= 0) endRun(false);
+  }
+  function depositAtHub() {
+    if (state.satchel <= 0) return false;
+    const carried = motes.filter((m) => m.held);
+    let embers = 0, wisps = 0;
+    for (const m of carried) {
+      m.held = false;
+      m.deposited = true;
+      if (m.ember) embers++;
+      else wisps++;
+    }
+    state.deposits++;
+    state.satchel = 0;
+    if (wisps) state.motesDeposited += wisps;
+    if (embers) state.embersDeposited += embers;
+    burst(0, 4.6, 0, theme.colors.accent, 60);
+    hubPulse = 1;
+    audio.sfx.deposit();
+    hud.toast(`\u4EA4\u4ED8 ${wisps + embers} \u679A`, "ok");
+    checkQuests();
+    return true;
+  }
+  function checkQuests() {
+    let guard = 0;
+    while (state.questIndex < QUESTS.length && guard++ < 8) {
+      const q = QUESTS[state.questIndex];
+      const prog = questProgress(q);
+      if (prog >= q.need) {
+        state.questDone[state.questIndex] = true;
+        state.questIndex++;
+        hud.announce(`\u76EE\u6807\u8FBE\u6210 \xB7 ${q.title}`);
+        audio.sfx.win();
+      } else break;
+    }
+    if (state.questIndex >= QUESTS.length && !state.won) endRun(true);
+  }
+  function questProgress(q) {
+    if (!q) return 0;
+    if (q.kind === "motes") return state.motesDeposited;
+    if (q.kind === "embers") return state.embersDeposited;
+    if (q.kind === "talk") return state.talked ? 1 : 0;
+    return 0;
+  }
+  const dialogue = { open: false, node: null, choiceIndex: 0, awaitingChoice: false, line: 0 };
+  function openDialogue() {
+    dialogue.open = true;
+    dialogue.node = "start";
+    dialogue.line = 0;
+    state.mode = "dialogue";
+    audio.sfx.talk();
+    hud.showDialogue(DIALOGUE.start, dialogue);
+  }
+  function advanceDialogue() {
+    if (!dialogue.open) return;
+    const n = DIALOGUE[dialogue.node];
+    if (n.line2 && dialogue.line === 0) {
+      dialogue.line = 1;
+      hud.showDialogue(n, dialogue);
+      return;
+    }
+    if (n.choices && !dialogue.awaitingChoice) {
+      dialogue.awaitingChoice = true;
+      dialogue.choiceIndex = 0;
+      hud.showDialogue(n, dialogue);
+      return;
+    }
+    if (dialogue.awaitingChoice) {
+      const c = n.choices[dialogue.choiceIndex];
+      Object.assign(state, c.set);
+      if (c.id === "lantern") state.satchelCap += CONSTANTS.SATCHEL_BONUS;
+      dialogue.awaitingChoice = false;
+      state.talked = true;
+      hud.toast(c.id === "lantern" ? "\u501F\u5230\u63D0\u706F\uFF1A\u5149\u56CA +1" : "\u5A49\u62D2\u63D0\u706F\uFF1A\u591C\u91CC\u7684\u5149\u8424\u66F4\u6697", "info");
+      if (n.next) {
+        dialogue.node = n.next;
+        dialogue.line = 0;
+        hud.showDialogue(DIALOGUE[dialogue.node], dialogue);
+      } else closeDialogue();
+      checkQuests();
+      return;
+    }
+    if (n.next) {
+      dialogue.node = n.next;
+      dialogue.line = 0;
+      hud.showDialogue(DIALOGUE[dialogue.node], dialogue);
+    } else closeDialogue();
+  }
+  function chooseDialogue(i) {
+    if (!dialogue.awaitingChoice) return;
+    dialogue.choiceIndex = clamp(i, 0, DIALOGUE[dialogue.node].choices.length - 1);
+    hud.showDialogue(DIALOGUE[dialogue.node], dialogue);
+    audio.sfx.ui();
+  }
+  function closeDialogue() {
+    dialogue.open = false;
+    dialogue.node = null;
+    state.mode = "playing";
+    hud.hideDialogue();
+    state.talked = true;
+    checkQuests();
+  }
+  function tryPickup() {
+    for (const m of motes) {
+      if (m.held || m.deposited || !moteVisible(m)) continue;
+      if (Math.hypot(player.x - m.x, player.z - m.z) < CONSTANTS.MOTE_GRAB_R + 0.9) {
+        if (state.satchel >= state.satchelCap) {
+          hud.toast("\u5149\u56CA\u5DF2\u6EE1\uFF0C\u5148\u56DE\u5149\u67F1\u4EA4\u4ED8", "bad");
+          return false;
+        }
+        grabMote(m);
+        return true;
+      }
+    }
+    return false;
+  }
+  const particles = (() => {
+    const max = CONSTANTS.MAX_PARTICLES;
+    const pos = new Float32Array(max * 3), col = new Float32Array(max * 3);
+    const siz = new Float32Array(max), alp = new Float32Array(max);
+    const vel = new Float32Array(max * 3), life = new Float32Array(max), decay = new Float32Array(max);
+    let head = 0, live = 0;
+    const geo = new T.BufferGeometry();
+    geo.setAttribute("position", new T.BufferAttribute(pos, 3));
+    geo.setAttribute("pcolor", new T.BufferAttribute(col, 3));
+    geo.setAttribute("psize", new T.BufferAttribute(siz, 1));
+    geo.setAttribute("palpha", new T.BufferAttribute(alp, 1));
+    const mat = new T.ShaderMaterial({
+      uniforms: { pxScale: { value: window.innerHeight * 0.5 } },
+      transparent: true,
+      depthWrite: false,
+      blending: theme.particles.additive ? T.AdditiveBlending : T.NormalBlending,
+      vertexShader: `
+        attribute float psize; attribute float palpha; attribute vec3 pcolor;
+        varying float vA; varying vec3 vC; uniform float pxScale;
+        void main(){ vA = palpha; vC = pcolor; vec4 mv = modelViewMatrix * vec4(position,1.0);
+          gl_PointSize = psize * pxScale / max(0.001, -mv.z); gl_Position = projectionMatrix * mv; }`,
+      fragmentShader: `varying float vA; varying vec3 vC;
+        void main(){ vec2 d = gl_PointCoord - 0.5; float r = dot(d,d); if(r>0.25) discard;
+          gl_FragColor = vec4(vC, vA * (1.0 - r * 4.0)); }`
+    });
+    const points = new T.Points(geo, mat);
+    points.frustumCulled = false;
+    points.userData.kind = "particles";
+    scene.add(points);
+    const c = new T.Color();
+    function spawn(x, y, z, color, vx, vy, vz, size, ttl) {
+      const i = head;
+      head = (head + 1) % max;
+      pos[i * 3] = x;
+      pos[i * 3 + 1] = y;
+      pos[i * 3 + 2] = z;
+      vel[i * 3] = vx;
+      vel[i * 3 + 1] = vy;
+      vel[i * 3 + 2] = vz;
+      c.set(color);
+      col[i * 3] = c.r;
+      col[i * 3 + 1] = c.g;
+      col[i * 3 + 2] = c.b;
+      siz[i] = size;
+      alp[i] = 1;
+      life[i] = ttl;
+      decay[i] = 1 / ttl;
+      if (live < max) live++;
+    }
+    function update2(dt) {
+      for (let i = 0; i < max; i++) {
+        if (life[i] <= 0) {
+          if (alp[i] !== 0) alp[i] = 0;
+          continue;
+        }
+        life[i] -= dt;
+        alp[i] = Math.max(0, life[i] * decay[i]);
+        vel[i * 3 + 1] += theme.particles.gravity * dt;
+        pos[i * 3] += vel[i * 3] * dt;
+        pos[i * 3 + 1] += vel[i * 3 + 1] * dt;
+        pos[i * 3 + 2] += vel[i * 3 + 2] * dt;
+        if (life[i] <= 0) {
+          alp[i] = 0;
+          live = Math.max(0, live - 1);
+        }
+      }
+      geo.attributes.position.needsUpdate = true;
+      geo.attributes.palpha.needsUpdate = true;
+      geo.attributes.pcolor.needsUpdate = true;
+      geo.attributes.psize.needsUpdate = true;
+    }
+    return {
+      spawn,
+      update: update2,
+      points,
+      count: () => Array.from(life).filter((v) => v > 0).length,
+      reset: () => {
+        life.fill(0);
+        alp.fill(0);
+        head = 0;
+        live = 0;
+      }
+    };
+  })();
+  function burst(x, y, z, color, n) {
+    for (let i = 0; i < n; i++) {
+      const a = i / n * Math.PI * 2, r = 1.4 + i % 5 * 0.35;
+      particles.spawn(
+        x,
+        y,
+        z,
+        color,
+        Math.cos(a) * r,
+        1.5 + i % 3 * 0.6,
+        Math.sin(a) * r,
+        theme.particles.size * (0.03 + i % 4 * 0.012),
+        0.7 + i % 5 * 0.09
+      );
+    }
+  }
+  let ambientAcc = 0;
+  function ambientParticles(dt) {
+    ambientAcc += dt * theme.particles.rate * 22;
+    while (ambientAcc >= 1) {
+      ambientAcc -= 1;
+      const a = particles.count() * 0.618 % 1 * Math.PI * 2;
+      const rad = 5 + particles.count() * 7919 % 100 / 100 * (CONSTANTS.ARENA_R - 6);
+      particles.spawn(
+        Math.cos(a) * rad,
+        0.4 + particles.count() * 31 % 40 / 12,
+        Math.sin(a) * rad,
+        theme.particles.colors[particles.count() % theme.particles.colors.length],
+        0.2,
+        0.25,
+        -0.15,
+        0.045,
+        3.4
+      );
+    }
+  }
+  let hubPulse = 0;
+  const CYCLE = CONSTANTS.DAY_LEN + CONSTANTS.NIGHT_LEN;
+  function cycleT() {
+    return state.time % CYCLE;
+  }
+  function isNightAt(t) {
+    return t % CYCLE >= CONSTANTS.DAY_LEN;
+  }
+  function nightMix() {
+    const t = cycleT();
+    if (t < CONSTANTS.DAY_LEN - 4) return 0;
+    if (t < CONSTANTS.DAY_LEN) return (t - (CONSTANTS.DAY_LEN - 4)) / 4;
+    if (t < CYCLE - 4) return 1;
+    return 1 - (t - (CYCLE - 4)) / 4;
+  }
+  function updateDayNight(dt) {
+    const wasNight = state.night;
+    state.night = isNightAt(state.time);
+    const mix = nightMix();
+    keyLight.intensity = lerp(LIGHT_BASE.key, LIGHT_BASE.key * 0.16, mix);
+    fillLight.intensity = lerp(LIGHT_BASE.fill, LIGHT_BASE.fill * 0.3, mix);
+    hemiLight.intensity = lerp(LIGHT_BASE.hemi, 0.42, mix);
+    ambientLight.intensity = lerp(LIGHT_BASE.ambient, Math.max(0.45, LIGHT_BASE.ambient * 0.8), mix);
+    rimLight.intensity = lerp(LIGHT_BASE.rim, 2.2, mix);
+    hubLight.intensity = lerp(1.4, 3.6, mix) * (1 + hubPulse);
+    gradePass.uniforms.nightMix.value = mix;
+    scene.fog.density = theme.fog.density * (1 + mix * 0.7);
+    skyDome.material.uniforms.topColor.value.set(theme.sky.top).multiplyScalar(lerp(1, 0.32, mix));
+    if (state.night !== wasNight) {
+      if (state.night) {
+        state.nightCount++;
+        hud.announce("\u591C\u5E55\u843D\u4E0B \xB7 \u7070\u70EC\u788E\u7247\u6D6E\u51FA");
+        audio.sfx.night();
+        for (const m of motes) if (m.ember) {
+          m.held = false;
+          m.deposited = false;
+          m.x = m.ax;
+          m.z = m.az;
+        }
+      } else {
+        hud.announce("\u5929\u5149\u56DE\u6765\u4E86");
+        audio.sfx.dawn();
+      }
+    }
+    hubPulse = Math.max(0, hubPulse - dt * 1.6);
+    beacon.rotation.y += dt * 0.9;
+    beacon.scale.setScalar(1 + Math.sin(state.time * 3.1) * 0.06 + hubPulse * 0.35);
+    MATS.glow.emissiveIntensity = 2.4 + hubPulse * 0.9 + (state.night ? state.lantern ? 2.2 : 0.9 : 0);
+    lantern.scale.setScalar(1 + (state.night ? state.lantern ? 0.55 : 0.2 : 0));
+  }
+  const hud = buildHud(theme, KEEPER_POS);
+  function startRun() {
+    Object.assign(state, freshState());
+    state.invuln = 0;
+    for (const m of motes) {
+      m.held = false;
+      m.deposited = false;
+      m.state = "idle";
+      m.timer = 0;
+      m.x = m.ax;
+      m.z = m.az;
+      m.phase = m.id * 0.37;
+      m.transitions.flee = 0;
+      m.transitions.idle = 0;
+    }
+    for (const h of hounds) {
+      h.wp = 1;
+      h.x = h.wps[0].x;
+      h.z = h.wps[0].z;
+      h.startX = h.wps[0].x;
+      h.startZ = h.wps[0].z;
+      h.vx = h.vz = 0;
+      h.yaw = 0;
+      h.state = "patrol";
+      h.hits = 0;
+      h.chases = 0;
+      h.timer = 0;
+    }
+    player.x = 0;
+    player.z = CONSTANTS.HUB_R + 4.5;
+    player.vx = player.vz = 0;
+    player.yaw = Math.PI;
+    player.bob = 0;
+    player.speed = 0;
+    particles.reset();
+    camRig.yaw = Math.PI;
+    camRig.pitch = CONSTANTS.CAM_PITCH;
+    camRig.shake = 0;
+    snapCamera();
+    cameraBasis();
+    hud.hideScreen("title-screen");
+    hud.hideScreen("end-screen");
+    state.mode = "playing";
+    hud.announce("\u62FE\u5149\u5F00\u59CB");
+    audio.ensure();
+  }
+  function endRun(won) {
+    if (state.mode === "over") return;
+    state.mode = "over";
+    state.won = won;
+    state.lost = !won;
+    if (won) hud.announce("\u5149\u67F1\u91CD\u65B0\u4EAE\u8D77\u6765");
+    else hud.announce("\u4F60\u5728\u591C\u8272\u91CC\u5012\u4E0B");
+    audio.sfx[won ? "win" : "lose"]();
+    const rec = saveGame(state);
+    hud.showEnd(won, state, rec);
+  }
+  let acc = 0, last = performance.now(), raf = 0;
+  function interact() {
+    const nearKeeper = Math.hypot(player.x - keeper.position.x, player.z - keeper.position.z) < CONSTANTS.TALK_R;
+    if (nearKeeper) {
+      if (!dialogue.open) openDialogue();
+      else advanceDialogue();
+      return true;
+    }
+    if (Math.hypot(player.x, player.z) < CONSTANTS.DEPOSIT_R + CONSTANTS.HUB_R && state.satchel > 0) return depositAtHub();
+    return tryPickup();
+  }
+  function update(dt) {
+    if (state.mode === "playing") {
+      state.time += dt;
+      if (state.invuln > 0) state.invuln = Math.max(0, state.invuln - dt);
+      updatePlayer(dt);
+      updateMotes(dt);
+      updateHounds(dt);
+      updateDayNight(dt);
+      ambientParticles(dt);
+      particles.update(dt);
+      updateCamera(dt);
+      state.hitFlash = Math.max(0, state.hitFlash - dt * 2.2);
+      state.shake = Math.max(0, state.shake - dt * 2.4);
+      hud.sync(state, motes, dialogue, player);
+    } else if (state.mode === "dialogue") {
+      updateDayNight(dt);
+      particles.update(dt);
+      updateCamera(dt);
+      hud.sync(state, motes, dialogue, player);
+    } else {
+      state.time += dt * 0.35;
+      updateCamera(dt);
+      updateDayNight(dt);
+      ambientParticles(dt);
+      particles.update(dt);
+      hud.sync(state, motes, dialogue, player);
+    }
+  }
+  function render() {
+    composer.render();
+  }
+  let paused = false;
+  window.__setPaused = (v) => {
+    paused = !!v;
+    last = performance.now();
+    acc = 0;
+  };
+  function frame(nowMs) {
+    raf = requestAnimationFrame(frame);
+    if (paused) return;
+    let dt = (nowMs - last) / 1e3;
+    last = nowMs;
+    if (!(dt > 0)) dt = 0;
+    acc += Math.min(dt, CONSTANTS.MAX_FRAME_DT);
+    let steps = 0;
+    while (acc >= CONSTANTS.FIXED_DT && steps++ < 6) {
+      update(CONSTANTS.FIXED_DT);
+      acc -= CONSTANTS.FIXED_DT;
+    }
+    if (steps === 6) acc = 0;
+    render();
+  }
+  function onResize() {
+    camera.aspect = Math.max(1, window.innerWidth) / Math.max(1, window.innerHeight);
+    camera.updateProjectionMatrix();
+    renderer.setSize(Math.max(1, window.innerWidth), Math.max(1, window.innerHeight));
+    composer.setSize(Math.max(1, window.innerWidth), Math.max(1, window.innerHeight));
+    bloomPass.setSize(Math.max(1, window.innerWidth), Math.max(1, window.innerHeight));
+    ssaoPass.setSize(Math.max(1, window.innerWidth), Math.max(1, window.innerHeight));
+    sizeFxaa();
+  }
+  let dragging = false, lastX = 0, lastY = 0;
+  function onPointerDown(ev) {
+    if (state.mode === "title") {
+      startRun();
+      return;
+    }
+    if (state.mode === "over") {
+      startRun();
+      return;
+    }
+    dragging = true;
+    lastX = ev.clientX;
+    lastY = ev.clientY;
+  }
+  function onPointerMove(ev) {
+    if (!dragging) return;
+    camRig.yaw -= (ev.clientX - lastX) * 6e-3;
+    camRig.pitch = clamp(camRig.pitch + (ev.clientY - lastY) * 4e-3, 0.12, 1.15);
+    lastX = ev.clientX;
+    lastY = ev.clientY;
+  }
+  function onPointerUp() {
+    dragging = false;
+  }
+  function onKey(ev) {
+    if (ev.type === "keydown") setKey(ev.code, true);
+    if (ev.type === "keyup") setKey(ev.code, false);
+    if (ev.type !== "keydown") return;
+    if (ev.code === "KeyE") {
+      if (state.mode === "title" || state.mode === "over") startRun();
+      else interact();
+    }
+    if (state.mode === "dialogue" && (ev.code === "Digit1" || ev.code === "Digit2")) chooseDialogue(ev.code === "Digit1" ? 0 : 1);
+    if (ev.code === "Escape" && state.mode === "dialogue") closeDialogue();
+    if (ev.code === "Space" && state.mode === "playing") {
+      ev.preventDefault();
+      tryPickup();
+    }
+  }
+  window.addEventListener("resize", onResize);
+  renderer.domElement.addEventListener("pointerdown", onPointerDown);
+  window.addEventListener("pointermove", onPointerMove);
+  window.addEventListener("pointerup", onPointerUp);
+  window.addEventListener("keydown", onKey);
+  window.addEventListener("keyup", onKey);
+  function cleanup() {
+    cancelAnimationFrame(raf);
+    window.removeEventListener("resize", onResize);
+    window.removeEventListener("pointermove", onPointerMove);
+    window.removeEventListener("pointerup", onPointerUp);
+    window.removeEventListener("keydown", onKey);
+    window.removeEventListener("keyup", onKey);
+    renderer.domElement.removeEventListener("pointerdown", onPointerDown);
+    renderer.dispose();
+  }
+  hud.showProvenance();
+  const saved = loadSave();
+  hud.showRecord(saved);
+  playerObj.position.set(player.x, 0, player.z);
+  snapCamera();
+  window.render_game_to_text = () => JSON.stringify({
+    mode: state.mode,
+    theme: theme.id,
+    time: +state.time.toFixed(2),
+    lives: state.lives,
+    satchel: state.satchel,
+    cap: state.satchelCap,
+    quest: state.questIndex,
+    motesDeposited: state.motesDeposited,
+    embersDeposited: state.embersDeposited,
+    night: state.night,
+    flees: motes.reduce((a, m) => a + m.transitions.flee, 0),
+    chases: hounds.reduce((a, h) => a + h.chases, 0),
+    particles: particles.count()
+  });
+  window.advanceTime = (ms) => {
+    const steps = Math.max(1, Math.round(ms / (1e3 / 60)));
+    for (let i = 0; i < steps; i++) update(CONSTANTS.FIXED_DT);
+  };
+  window.__setKey = setKey;
+  window.__keys = keys;
+  window.__frameProbe = (w, h) => {
+    const gl = renderer.getContext();
+    const bw = gl.drawingBufferWidth, bh = gl.drawingBufferHeight;
+    const buf = new Uint8Array(bw * bh * 4);
+    renderer.render(scene, camera);
+    gl.readPixels(0, 0, bw, bh, gl.RGBA, gl.UNSIGNED_BYTE, buf);
+    const sx = Math.max(1, Math.round(bw / (w || 220))), sy = Math.max(1, Math.round(bh / (h || 220)));
+    let sum = 0, sum2 = 0;
+    const hist = new Array(8).fill(0);
+    let mn = 255, mx = 0, n = 0;
+    const sorted = [];
+    for (let y = 0; y < bh; y += sy) {
+      for (let x = 0; x < bw; x += sx) {
+        const i = (y * bw + x) * 4;
+        const l = 0.2126 * buf[i] + 0.7152 * buf[i + 1] + 0.0722 * buf[i + 2];
+        sum += l;
+        sum2 += l * l;
+        mn = Math.min(mn, l);
+        mx = Math.max(mx, l);
+        sorted.push(l);
+        n++;
+        hist[Math.min(7, Math.floor(l / 32))]++;
+      }
+    }
+    const mean = sum / n, sd = Math.sqrt(Math.max(0, sum2 / n - mean * mean));
+    sorted.sort((a, b) => a - b);
+    const q = (p) => sorted[Math.min(n - 1, Math.floor(p * n))];
+    return {
+      meanLuma: +mean.toFixed(2),
+      sd: +sd.toFixed(2),
+      min: +mn.toFixed(1),
+      max: +mx.toFixed(1),
+      p0_5: +q(5e-3).toFixed(1),
+      p5: +q(0.05).toFixed(1),
+      p50: +q(0.5).toFixed(1),
+      p95: +q(0.95).toFixed(1),
+      p99_5: +q(0.995).toFixed(1),
+      midPct: +(sorted.filter((v) => v >= 60 && v <= 200).length / n * 100).toFixed(2),
+      brightPct: +(hist[7] / n * 100).toFixed(2),
+      darkPct: +(hist[0] / n * 100).toFixed(2)
+    };
+  };
+  window.__diag = () => ({
+    threeRevision: T.REVISION,
+    theme: theme.id,
+    seed: theme.seed,
+    lights: scene.children.filter((o) => o.isLight).map((l) => ({
+      type: l.type,
+      intensity: +l.intensity.toFixed(3),
+      color: "#" + l.color.getHex(T.SRGBColorSpace).toString(16).padStart(6, "0").toUpperCase(),
+      pos: [+l.position.x.toFixed(2), +l.position.y.toFixed(2), +l.position.z.toFixed(2)],
+      castShadow: !!l.castShadow
+    })),
+    renderer: {
+      toneMapping: renderer.toneMapping === T.ACESFilmicToneMapping ? "ACESFilmic" : String(renderer.toneMapping),
+      exposure: +renderer.toneMappingExposure.toFixed(3),
+      outputColorSpace: renderer.outputColorSpace,
+      shadowType: renderer.shadowMap.type === T.PCFSoftShadowMap ? "PCFSoft" : String(renderer.shadowMap.type),
+      shadowEnabled: renderer.shadowMap.enabled,
+      pixelRatio: renderer.getPixelRatio(),
+      size: [renderer.domElement.width, renderer.domElement.height]
+    },
+    passes: composer.passes.map((p) => p.label),
+    bloom: { strength: bloomPass.strength, radius: bloomPass.radius, threshold: bloomPass.threshold },
+    ssao: { kernelRadius: ssaoPass.kernelRadius, min: ssaoPass.minDistance, max: ssaoPass.maxDistance },
+    grade: {
+      contrast: gradePass.uniforms.contrast.value,
+      saturation: gradePass.uniforms.saturation.value,
+      vignette: gradePass.uniforms.vignetteIntensity.value,
+      brightness: gradePass.uniforms.brightness.value
+    },
+    shadow: { mapSize: keyLight.shadow.mapSize.width, normalBias: keyLight.shadow.normalBias },
+    envMap: !!scene.environment,
+    skyDome: !!skyDome,
+    fog: { color: "#" + scene.fog.color.getHex(T.SRGBColorSpace).toString(16).padStart(6, "0").toUpperCase(), density: +scene.fog.density.toFixed(5) },
+    sceneColors: (() => {
+      const out = [];
+      const ext = (geo, pick) => {
+        const a = geo?.attributes?.color?.array;
+        if (!a) return null;
+        let v = pick === "min" ? Infinity : -Infinity;
+        for (let i = 0; i < a.length; i++) v = pick === "min" ? Math.min(v, a[i]) : Math.max(v, a[i]);
+        return +v.toFixed(3);
+      };
+      scene.traverse((o) => {
+        if (!o.isMesh || !o.visible) return;
+        const mm = Array.isArray(o.material) ? o.material[0] : o.material;
+        if (!mm) return;
+        const isToon = mm.type === "MeshToonMaterial";
+        const base = mm.color ? mm.color.getHex(T.SRGBColorSpace) : 0;
+        const uni = [];
+        if (mm.uniforms) {
+          for (const [name, u] of Object.entries(mm.uniforms)) {
+            const cv = u && u.value;
+            if (cv && cv.isColor) uni.push({ name, hex: "#" + cv.getHex(T.SRGBColorSpace).toString(16).padStart(6, "0").toUpperCase() });
+          }
+        }
+        out.push({
+          kind: o.userData.kind || o.parent?.userData?.kind || "unknown",
+          hex: "#" + base.toString(16).padStart(6, "0").toUpperCase(),
+          r: base >> 16 & 255,
+          g: base >> 8 & 255,
+          b: base & 255,
+          matType: mm.type,
+          uniforms: uni,
+          basic: mm.type === "MeshBasicMaterial",
+          emissiveHex: mm.emissive ? "#" + mm.emissive.getHex(T.SRGBColorSpace).toString(16).padStart(6, "0").toUpperCase() : null,
+          emissiveIntensity: mm.emissiveIntensity === void 0 ? null : mm.emissiveIntensity,
+          transmission: mm.transmission === void 0 ? null : mm.transmission,
+          vertexColors: !!mm.vertexColors,
+          hasMap: !!mm.map,
+          hasNormalMap: !!mm.normalMap,
+          /* vertex colours here are modulations around 1.0, not palette entries: expose the
+             extremes so a regression to absolute colours is catchable */
+          vcMin: mm.vertexColors ? ext(o.geometry, "min") : null,
+          vcMax: mm.vertexColors ? ext(o.geometry, "max") : null,
+          castShadow: !!o.castShadow,
+          isInstanced: !!o.isInstancedMesh
+        });
+      });
+      return out;
+    })(),
+    counts: {
+      playerParts: countParts(playerObj),
+      moteParts: countParts(motes[0].group),
+      houndParts: countParts(hounds[0].group),
+      keeperParts: countParts(keeper),
+      hubParts: countParts(hub),
+      scatter: theme.scatter.count,
+      obstacles: obstacles.length,
+      motesTotal: motes.length,
+      embers: motes.filter((m) => m.ember).length
+    },
+    fsm: {
+      motes: motes.map((m) => ({ id: m.id, kind: m.kind, state: m.state, ember: m.ember, visible: m.group.visible, held: m.held, deposited: m.deposited, transitions: { ...m.transitions } })),
+      hounds: hounds.map((h) => ({ id: h.id, state: h.state, chases: h.chases, hits: h.hits, x: +h.x.toFixed(2), z: +h.z.toFixed(2) }))
+    },
+    camera: {
+      pos: [+camera.position.x.toFixed(2), +camera.position.y.toFixed(2), +camera.position.z.toFixed(2)],
+      forwardXZ: (() => {
+        const b = cameraBasis();
+        return [+b.fwd.x.toFixed(4), +b.fwd.z.toFixed(4)];
+      })(),
+      yaw: +camRig.yaw.toFixed(4),
+      pitch: +camRig.pitch.toFixed(4)
+    },
+    player: { x: +player.x.toFixed(3), z: +player.z.toFixed(3), speed: +player.speed.toFixed(3), yaw: +player.yaw.toFixed(3) },
+    cycle: { DAY_LEN: CONSTANTS.DAY_LEN, NIGHT_LEN: CONSTANTS.NIGHT_LEN, t: +cycleT().toFixed(2), night: state.night, mix: +nightMix().toFixed(3) },
+    mapping: theme.mapping,
+    palette: theme.palette,
+    declaredColors: theme.declaredColors,
+    state
+  });
+  window.__game = {
+    state,
+    scene,
+    camera,
+    renderer,
+    composer,
+    hud,
+    player,
+    motes,
+    hounds,
+    obstacles,
+    keys,
+    camRig,
+    cameraBasis,
+    setKey,
+    startRun,
+    restart: startRun,
+    endRun,
+    cleanup,
+    dialogue,
+    interact,
+    depositAtHub,
+    tryPickup,
+    openDialogue,
+    advanceDialogue,
+    chooseDialogue,
+    closeDialogue,
+    checkQuests,
+    CONSTANTS,
+    QUESTS,
+    DIALOGUE,
+    theme,
+    THREE: T,
+    particles,
+    burst,
+    isNightAt,
+    nightMix,
+    saveGame,
+    loadSave,
+    update
+  };
+  raf = requestAnimationFrame(frame);
+  return { state, scene, renderer, composer, hud, update, cleanup };
+}
+function buildHud(theme, keeperPos) {
+  const $ = (s) => document.querySelector(s);
+  const els = {
+    questKicker: $("#quest-kicker"),
+    questTitle: $("#quest-title"),
+    questDesc: $("#quest-desc"),
+    questBar: $("#quest-bar"),
+    questProg: $("#quest-progress"),
+    phase: $("#phase-value"),
+    time: $("#time-value"),
+    dayBar: $("#day-bar"),
+    lives: $("#life-pips"),
+    satchel: $("#satchel-pips"),
+    satchelNote: $("#satchel-note"),
+    toasts: $("#toast-container"),
+    dialogue: $("#dialogue"),
+    dlgSpeaker: $("#dlg-speaker"),
+    dlgLine: $("#dlg-line"),
+    dlgChoices: $("#dlg-choices"),
+    dlgHint: $("#dlg-hint"),
+    prompt: $("#prompt"),
+    vignette: $("#damage-vignette"),
+    announce: $("#announce"),
+    title: $("#title-screen"),
+    end: $("#end-screen"),
+    endTitle: $("#end-title"),
+    endStats: $("#end-stats"),
+    endKicker: $("#end-kicker"),
+    provenance: $("#provenance"),
+    record: $("#record-line")
+  };
+  let lastSatchel = -1, lastLives = -1, lastQuest = -1, lastPhase = null;
+  function pips(host, n, total, cls) {
+    if (host.childElementCount !== total) {
+      host.innerHTML = "";
+      for (let i = 0; i < total; i++) {
+        const s = document.createElement("i");
+        s.className = "pip";
+        host.appendChild(s);
+      }
+    }
+    [...host.children].forEach((c, i) => c.classList.toggle("on", i < n));
+    host.style.color = cls || theme.colors.uiAccent;
+  }
+  function sync(state, motes, dialogue, player) {
+    const q = QUESTS[state.questIndex];
+    if (state.questIndex !== lastQuest) {
+      lastQuest = state.questIndex;
+      els.questKicker.textContent = q ? `\u76EE\u6807 ${state.questIndex + 1} / ${QUESTS.length}` : "\u5168\u90E8\u76EE\u6807\u5DF2\u5B8C\u6210";
+      els.questTitle.textContent = q ? q.title : "\u6D3B\u4E0B\u6765\u4E86";
+      els.questDesc.textContent = q ? q.desc : "\u628A\u6700\u540E\u4E00\u6279\u7070\u70EC\u4EA4\u7ED9\u5149\u67F1\u3002";
+    }
+    const prog = q ? questProgressOf(state, q) : state.won ? 1 : 0;
+    const need = q ? q.need : 1;
+    els.questBar.style.width = `${Math.min(100, prog / need * 100).toFixed(1)}%`;
+    els.questProg.textContent = `${Math.min(prog, need)} / ${need}`;
+    if (state.satchel !== lastSatchel || lastSatchelCap !== state.satchelCap) {
+      lastSatchel = state.satchel;
+      lastSatchelCap = state.satchelCap;
+      pips(els.satchel, state.satchel, state.satchelCap);
+    }
+    if (state.lives !== lastLives) {
+      lastLives = state.lives;
+      pips(els.lives, Math.max(0, state.lives), CONSTANTS.START_LIVES, state.lives === 1 ? "#e0664a" : void 0);
+    }
+    const secs = Math.floor(state.time);
+    els.time.textContent = `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, "0")}`;
+    els.phase.textContent = state.night ? "\u591C\u665A" : "\u767D\u663C";
+    if (lastPhase !== state.night) {
+      lastPhase = state.night;
+      els.phase.style.color = state.night ? theme.colors.uiMuted : theme.colors.uiText;
+    }
+    els.dayBar.style.width = `${(state.night ? 1 : 0.2 + 0.8 * (state.time % CONSTANTS.DAY_LEN) / CONSTANTS.DAY_LEN) * 100}%`;
+    els.vignette.style.opacity = String(Math.min(0.85, state.hitFlash * 0.8 + (state.invuln > 0 ? 0.18 : 0)));
+    if (state.mode === "playing") {
+      const nearKeeper = Math.hypot(player.x - keeperPos.x, player.z - keeperPos.z) < CONSTANTS.TALK_R;
+      const atHub = Math.hypot(player.x, player.z) < CONSTANTS.DEPOSIT_R + CONSTANTS.HUB_R;
+      let txt = "";
+      if (nearKeeper) txt = state.talked ? "E \xB7 \u518D\u542C\u4E00\u53E5" : "E \xB7 \u4E0E\u5B88\u5854\u4EBA\u4EA4\u8C08";
+      else if (atHub && state.satchel > 0) txt = "E \xB7 \u628A\u5149\u56CA\u4EA4\u7ED9\u5149\u67F1";
+      else if (state.satchel >= state.satchelCap) txt = "\u5149\u56CA\u5DF2\u6EE1 \xB7 \u56DE\u5149\u67F1";
+      if (txt) {
+        els.prompt.hidden = false;
+        els.prompt.textContent = txt;
+      } else els.prompt.hidden = true;
+    } else els.prompt.hidden = true;
+  }
+  let lastSatchelCap = -1;
+  function questProgressOf(state, q) {
+    if (q.kind === "motes") return state.motesDeposited;
+    if (q.kind === "embers") return state.embersDeposited;
+    if (q.kind === "talk") return state.talked ? 1 : 0;
+    return 0;
+  }
+  function toast(msg, kind) {
+    const el = document.createElement("div");
+    el.className = "toast";
+    el.dataset.kind = kind || "info";
+    el.textContent = msg;
+    el.style.borderColor = kind === "bad" ? "#e0664a" : kind === "ok" ? "#5fbf8a" : "rgba(255,255,255,.18)";
+    els.toasts.appendChild(el);
+    while (els.toasts.childElementCount > 4) els.toasts.removeChild(els.toasts.firstChild);
+    setTimeout(() => {
+      el.classList.add("out");
+      setTimeout(() => el.remove(), 520);
+    }, 2100);
+  }
+  function announce(text) {
+    els.announce.textContent = text;
+    els.announce.classList.remove("show");
+    void els.announce.offsetWidth;
+    els.announce.classList.add("show");
+  }
+  function showDialogue(n, d) {
+    els.dialogue.hidden = false;
+    els.dlgSpeaker.textContent = n.speaker;
+    els.dlgLine.textContent = d.line === 1 && n.line2 ? n.line2 : n.text;
+    els.dlgChoices.innerHTML = "";
+    if (n.choices) {
+      n.choices.forEach((c, i) => {
+        const el = document.createElement("div");
+        el.className = "dlg-choice";
+        el.textContent = `${i + 1}. ${c.text}`;
+        el.setAttribute("sel", d.awaitingChoice && d.choiceIndex === i ? "1" : "0");
+        el.style.pointerEvents = "auto";
+        el.addEventListener("click", () => {
+          d.choiceIndex = i;
+          window.__game && window.__game.chooseDialogue(i);
+        });
+        els.dlgChoices.appendChild(el);
+      });
+      els.dlgHint.textContent = d.awaitingChoice ? "\u6309 1 / 2 \u9009\u62E9\uFF0C\u518D\u6309 E \u786E\u8BA4" : "\u6309 E \u4F5C\u51FA\u9009\u62E9";
+    } else {
+      els.dlgHint.textContent = n.next || n.line2 ? "\u6309 E \u7EE7\u7EED" : "\u6309 E \u7ED3\u675F\u5BF9\u8BDD";
+    }
+  }
+  function hideDialogue() {
+    els.dialogue.hidden = true;
+  }
+  function showProvenance() {
+    if (!els.provenance) return;
+    const rows = theme.mapping.slice(0, 8).map(([slot, formula, note]) => `<div><b>${slot}</b> \u2190 ${formula} \xB7 ${note}</div>`).join("");
+    els.provenance.innerHTML = `<div><b>\u53C2\u8003\u56FE</b> ${theme.refFile} \xB7 ${theme.palette.length} \u4E2A\u91CF\u8272</div>` + rows + `<div><b>\u5408\u6210\u8272</b> ${theme.synthesised.length ? theme.synthesised.map((s) => s.hex).join(" ") : "\u65E0"}</div>`;
+  }
+  function showRecord(rec) {
+    if (!els.record) return;
+    els.record.textContent = rec ? `\u5386\u53F2\uFF1A${rec.runs} \u6B21 \xB7 ${rec.wins} \u6210 \xB7 \u6700\u5FEB ${rec.bestTime == null ? "\u2014" : rec.bestTime.toFixed(1) + "s"} \xB7 \u6700\u591A\u4EA4\u4ED8 ${rec.bestDeposits}` : "\u5C1A\u65E0\u8BB0\u5F55";
+  }
+  function hideScreen(id) {
+    const el = document.getElementById(id);
+    if (el) el.hidden = true;
+  }
+  function showEnd(won, state, rec) {
+    els.end.hidden = false;
+    els.endKicker.textContent = won ? "\u8FD9\u4E00\u591C\u5B88\u4F4F\u4E86" : "\u5149\u67F1\u6697\u4E86\u4E0B\u53BB";
+    els.endTitle.textContent = won ? "\u62FE\u5149\u5706\u6EE1" : "\u591C\u8272\u53D6\u80DC";
+    const mins = Math.floor(state.time / 60), secs = Math.floor(state.time % 60);
+    const rows = [
+      ["\u7528\u65F6", `${mins}:${String(secs).padStart(2, "0")}`],
+      ["\u4EA4\u4ED8\u5149\u8424", String(state.motesDeposited)],
+      ["\u4EA4\u4ED8\u7070\u70EC", String(state.embersDeposited)],
+      ["\u5B8C\u6210\u76EE\u6807", `${state.questIndex} / ${QUESTS.length}`],
+      ["\u7ECF\u5386\u591C\u665A", String(state.nightCount)],
+      ["\u5269\u4F59\u4F53\u529B", String(Math.max(0, state.lives))],
+      ["\u63D0\u706F", state.lantern ? "\u501F\u5230\u4E86" : "\u6CA1\u501F"],
+      ["\u5386\u53F2\u6700\u5FEB", rec && rec.bestTime != null ? rec.bestTime.toFixed(1) + "s" : "\u2014"]
+    ];
+    els.endStats.innerHTML = rows.map(([k, v]) => `<div>${k}<span>${v}</span></div>`).join("");
+  }
+  return { sync, toast, announce, showDialogue, hideDialogue, showProvenance, showRecord, showEnd, hideScreen, els };
+}
+
+// artifacts/20260926-05-build-game-reference-driven/src/entry.js
+var THEME_ID = typeof window !== "undefined" && window.__THEME_ID ? window.__THEME_ID : typeof location !== "undefined" && location.hash ? location.hash.slice(1) : THEMES[0].id;
+function boot() {
+  const theme = themeById(THEME_ID);
+  document.documentElement.classList.add(`skin-${theme.id}`);
+  const style = document.createElement("style");
+  style.textContent = `${HUD_BASE_CSS}
+${HUD_SKIN_CSS}
+`;
+  document.head.appendChild(style);
+  document.body.insertAdjacentHTML("beforeend", hudHtml({
+    title: theme.game,
+    sub: theme.sub,
+    cta: theme.cta,
+    hint: theme.hint,
+    brand: "\u62FE\u5149\u8C37 \xB7 GLEAMHOLLOW"
+  }));
+  const game = createGame(theme);
+  window.__GAME = game;
+  window.__THEME = theme;
+  window.__THEME_ID = theme.id;
+  return game;
+}
+if (typeof document !== "undefined" && document.body) boot();
+export {
+  boot
+};
+</script>
+</body>
+</html>
