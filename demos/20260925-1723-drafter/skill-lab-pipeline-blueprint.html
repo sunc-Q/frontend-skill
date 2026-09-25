@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>定时 Skill 验证流水线 · 三实验室拓扑</title>
+    <style>
+      :root {
+        --c-bg: #f8fafc;
+        --c-canvas: #ffffff;
+        --c-border: #cbd5e1;
+        --c-text-main: #0f172a;
+        --c-text-sub: #64748b;
+        --c-accent: #b91c1c;
+        --font-ui: system-ui, -apple-system, 'Segoe UI', sans-serif;
+        --font-mono: 'SF Mono', Monaco, Consolas, monospace;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--c-bg);
+        font-family: var(--font-ui);
+        color: var(--c-text-main);
+        padding: 40px;
+      }
+
+      .diagram-canvas {
+        background: var(--c-canvas);
+        border: 2px solid var(--c-border);
+        padding: 32px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .diagram-header {
+        border-bottom: 1px solid var(--c-border);
+        padding-bottom: 16px;
+        margin-bottom: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+
+      .diagram-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--c-text-main);
+      }
+
+      .diagram-subtitle {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--c-text-sub);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-top: 4px;
+      }
+
+      .sheet-id {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--c-text-sub);
+        text-align: right;
+        line-height: 1.6;
+      }
+
+      .node {
+        background: var(--c-canvas);
+        border: 1px solid var(--c-border);
+        padding: 12px 16px;
+      }
+
+      .badge {
+        display: inline-block;
+        font-size: 10px;
+        font-family: var(--font-mono);
+        padding: 2px 6px;
+        border: 1px solid var(--c-text-main);
+        text-transform: uppercase;
+      }
+
+      .badge--filled {
+        background: var(--c-text-main);
+        color: var(--c-canvas);
+      }
+
+      .badge--danger {
+        border-color: var(--c-accent);
+        color: var(--c-accent);
+      }
+
+      .mono {
+        font-family: var(--font-mono);
+        font-size: 13px;
+      }
+
+      .section-label {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--c-text-sub);
+        margin-bottom: 10px;
+      }
+
+      /* ---- Row 1: schedules ---- */
+      .schedules {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .sched {
+        border: 1px solid var(--c-border);
+        padding: 14px 16px;
+        position: relative;
+      }
+
+      .sched--active {
+        border: 2px solid var(--c-text-main);
+      }
+
+      .sched__name {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+
+      .sched__cron {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--c-text-sub);
+        margin-bottom: 8px;
+      }
+
+      .sched__branch {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        padding-top: 8px;
+        border-top: 1px dashed var(--c-border);
+      }
+
+      .sched__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+      }
+
+      /* ---- feed line ---- */
+      .feed {
+        height: 34px;
+        position: relative;
+      }
+
+      .feed svg {
+        display: block;
+        width: 100%;
+        height: 34px;
+      }
+
+      /* ---- Row 2: pipeline steps ---- */
+      .pipeline {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 0;
+      }
+
+      .step {
+        border: 1px solid var(--c-border);
+        border-right: none;
+        padding: 10px 10px 12px;
+        position: relative;
+      }
+
+      .step:last-child {
+        border-right: 1px solid var(--c-border);
+      }
+
+      .step__n {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--c-text-sub);
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .step__t {
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+
+      .step__d {
+        font-size: 11px;
+        color: var(--c-text-sub);
+        line-height: 1.5;
+        margin-top: 5px;
+      }
+
+      .step::after {
+        content: '';
+        position: absolute;
+        right: -1px;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border-left: 5px solid var(--c-text-main);
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        z-index: 2;
+      }
+
+      .step:last-child::after {
+        display: none;
+      }
+
+      /* ---- Row 3: gates + memory ---- */
+      .lower {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+        gap: 20px;
+        margin-top: 28px;
+      }
+
+      .panel {
+        border: 1px solid var(--c-border);
+        padding: 16px;
+      }
+
+      .panel__h {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--c-border);
+        margin-bottom: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      ul.rules {
+        list-style: none;
+      }
+
+      ul.rules li {
+        font-size: 12px;
+        line-height: 1.5;
+        padding: 7px 0 7px 22px;
+        border-bottom: 1px dashed var(--c-border);
+        position: relative;
+      }
+
+      ul.rules li:last-child {
+        border-bottom: none;
+      }
+
+      ul.rules li::before {
+        content: attr(data-i);
+        position: absolute;
+        left: 0;
+        top: 7px;
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--c-text-sub);
+      }
+
+      ul.rules li.deny::before {
+        color: var(--c-accent);
+      }
+
+      ul.rules li.deny {
+        color: var(--c-text-main);
+      }
+
+      .kv {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+      }
+
+      .kv td {
+        padding: 6px 4px;
+        border-bottom: 1px dashed var(--c-border);
+        vertical-align: top;
+      }
+
+      .kv tr:last-child td {
+        border-bottom: none;
+      }
+
+      .kv td.k {
+        color: var(--c-text-main);
+        width: 38%;
+        padding-right: 8px;
+      }
+
+      .kv td.v {
+        color: var(--c-text-sub);
+      }
+
+      .dedup {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .dedup .node {
+        padding: 10px 12px;
+      }
+
+      .dedup__t {
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 3px;
+      }
+
+      .dedup__d {
+        font-size: 11px;
+        color: var(--c-text-sub);
+        line-height: 1.5;
+      }
+
+      .arrow-down {
+        text-align: center;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--c-text-sub);
+        margin: 10px 0;
+      }
+
+      .note {
+        margin-top: 22px;
+        padding-top: 12px;
+        border-top: 1px solid var(--c-border);
+        font-size: 11px;
+        color: var(--c-text-sub);
+        line-height: 1.7;
+        display: flex;
+        gap: 24px;
+      }
+
+      .note strong {
+        color: var(--c-text-main);
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="diagram-canvas">
+      <div class="diagram-header">
+        <div>
+          <h1 class="diagram-title">定时 Skill 验证流水线 · 三实验室拓扑</h1>
+          <p class="diagram-subtitle">AUTO-SCHEDULED SKILL LABS — DISCOVER / GATE / RUN / RECORD / PUSH</p>
+        </div>
+        <div class="sheet-id">
+          SHEET&nbsp;01&nbsp;/&nbsp;01<br />
+          REV&nbsp;2026-09-25&nbsp;17:23<br />
+          SCALE&nbsp;N.T.S.
+        </div>
+      </div>
+
+      <!-- ============ ROW 1 : SCHEDULES ============ -->
+      <div class="section-label">01 — 调度层 / 三条互不冲突的 cron 时间槽</div>
+      <div class="schedules">
+        <div class="sched">
+          <div class="sched__head">
+            <span class="sched__name">前端 skill 实验室</span>
+            <span class="badge">HOURLY</span>
+          </div>
+          <div class="sched__cron">0 * * * * · :00</div>
+          <div class="sched__branch">LAB: 试验/前端skill实验室<br />PUSH → branch <strong>main</strong></div>
+        </div>
+
+        <div class="sched">
+          <div class="sched__head">
+            <span class="sched__name">业务网站实验室</span>
+            <span class="badge">HOURLY</span>
+          </div>
+          <div class="sched__cron">20 * * * * · :20</div>
+          <div class="sched__branch">LAB: 试验/业务网站实验室<br />PUSH → branch <strong>go-gin_react</strong></div>
+        </div>
+
+        <div class="sched sched--active">
+          <div class="sched__head">
+            <span class="sched__name">有趣 Skill 演示场</span>
+            <span class="badge badge--filled">30-MIN · 本页</span>
+          </div>
+          <div class="sched__cron">5,35 * * * * · :05 / :35</div>
+          <div class="sched__branch">LAB: 试验/skill演示场<br />PUSH → branch <strong>skill-showcase</strong></div>
+        </div>
+      </div>
+
+      <div class="arrow-down">▼ 每 30 分钟触发一次独立会话（无历史上下文，记忆仅存磁盘） ▼</div>
+
+      <!-- ============ ROW 2 : PIPELINE ============ -->
+      <div class="section-label">02 — 单轮执行流 / 10 步固定顺序</div>
+      <div class="pipeline">
+        <div class="step">
+          <span class="step__n">STEP 01</span>
+          <div class="step__t">读台账</div>
+          <div class="step__d">work-log.md<br />state.json<br />df -k 磁盘水位</div>
+        </div>
+        <div class="step">
+          <span class="step__n">STEP 02</span>
+          <div class="step__t">发现候选</div>
+          <div class="step__d">① 官方市场<br />② skills.sh<br />③ 本机已装<br />④ GitHub</div>
+        </div>
+        <div class="step">
+          <span class="step__n">STEP 03</span>
+          <div class="step__t">安全闸门</div>
+          <div class="step__d">先读完 SKILL.md<br />与被引用脚本<br />不过闸即弃</div>
+        </div>
+        <div class="step">
+          <span class="step__n">STEP 04</span>
+          <div class="step__t">跑最小任务</div>
+          <div class="step__d">1 个 skill<br />× 1 个小任务<br />≤ 15 min</div>
+        </div>
+        <div class="step">
+          <span class="step__n">STEP 05</span>
+          <div class="step__t">验证产物</div>
+          <div class="step__d">存在且非空<br />浏览器可打开<br />结构断言通过</div>
+        </div>
+        <div class="step">
+          <span class="step__n">STEP 06</span>
+          <div class="step__t">清理→记录→推送</div>
+          <div class="step__d">删依赖/缓存<br />写 reports/+state<br />push skill-showcase</div>
+        </div>
+      </div>
+
+      <!-- ============ ROW 3 : GATE + MEMORY ============ -->
+      <div class="lower">
+        <div class="panel">
+          <div class="panel__h">
+            <span>03 — 第三方代码安全闸门</span>
+            <span class="badge badge--danger">HARD GATE</span>
+          </div>
+          <ul class="rules">
+            <li data-i="R1">执行前完整读 SKILL.md 及其引用的脚本，弄清写哪里、跑什么、连什么网</li>
+            <li data-i="X1" class="deny">拒绝读取/回显 token、~/.ssh、浏览器数据、环境变量密钥</li>
+            <li data-i="X2" class="deny">拒绝把本地内容 POST 到外部地址、拒绝 curl|bash 类无审查管道</li>
+            <li data-i="X3" class="deny">拒绝改写 LAB 与工作区之外的文件、拒绝 sudo、拒绝改全局 git/ssh/npm 配置</li>
+            <li data-i="R2">本地服务与临时文件一律限制在 LAB 内；结束按端口找 PID、核对命令行后再 kill</li>
+            <li data-i="R3">要求用户确认或付费凭据 → 立即放弃并记 skills_seen.status=blocked</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <div class="panel__h">
+            <span>04 — 跨运行记忆（唯一状态源）</span>
+            <span class="badge">FILE-BASED</span>
+          </div>
+          <table class="kv">
+            <tr>
+              <td class="k">state/state.json</td>
+              <td class="v">机读台账：tried / skills_seen / next_candidates / used_artifact_kinds / runs — 只增不删</td>
+            </tr>
+            <tr>
+              <td class="k">records/work-log.md</td>
+              <td class="v">人读流水账，每轮一行，只追加不改历史</td>
+            </tr>
+            <tr>
+              <td class="k">demos/&lt;ts&gt;-&lt;slug&gt;/</td>
+              <td class="v">最终可见产物 + 最小复现脚本，单轮 &lt; 5MB，硬上限 20MB</td>
+            </tr>
+            <tr>
+              <td class="k">reports/&lt;ts&gt;-&lt;slug&gt;.md</td>
+              <td class="v">获取命令、真实小任务、复现步骤、留用结论、踩坑</td>
+            </tr>
+            <tr>
+              <td class="k">.skills/</td>
+              <td class="v">第三方技能包落地处，不污染 ~/.qoder-cn/skills</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- ============ ROW 4 : DEDUP ============ -->
+      <div class="section-label" style="margin-top: 28px">05 — 去重契约 / 防跨运行空转</div>
+      <div class="dedup">
+        <div class="node">
+          <div class="dedup__t">tried 命中即排除</div>
+          <div class="dedup__d">含别名与 slug；本轮不得再选同一 skill，也不得顺手重构上轮产物</div>
+        </div>
+        <div class="node">
+          <div class="dedup__t">来源状态复用</div>
+          <div class="dedup__d">skills_seen 标为 unreachable / blocked 的来源本轮不重复探测，直接换来源</div>
+        </div>
+        <div class="node">
+          <div class="dedup__t">无新 skill 时</div>
+          <div class="dedup__d">追加一行「本次无新 skill 可试」写清卡点，更新 state 后收工 —— 严禁整轮空转改环境</div>
+        </div>
+      </div>
+
+      <div class="note">
+        <span><strong>推送约束：</strong>仓库 git@github.com:sunc-Q/frontend-skill.git；skill-showcase 由本任务独占，main / go-gin_react 归兄弟实验室，不得触碰；绝不 --force、绝不 --no-verify。</span>
+        <span><strong>网络事实：</strong>github.com HTTPS 被 TLS 重置，仅 git@github.com SSH 可用；npm 走 registry.npmmirror.com。</span>
+      </div>
+    </div>
+  </body>
+</html>

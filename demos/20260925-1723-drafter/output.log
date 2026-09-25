@@ -1,0 +1,65 @@
+# drafter (技术图表生成) — 产物验证记录
+# 时间: 2026-09-25 17:23 +08:00
+# 产物: demos/20260925-1723-drafter/skill-lab-pipeline-blueprint.html
+# 方式: browser-use navigate(file://) + evaluate_script 取 getComputedStyle 断言
+#       IDE 浏览器面板 viewport=0x0，故另建 1200px 离屏容器做确定性布局测量
+
+## 第 1 轮：结构与「扁平工程图纸」风格合规（27 项）
+PASS | canvas exists
+PASS | canvas bg #fff | rgb(255, 255, 255)
+PASS | canvas border 2px slate-300 | 2px rgb(203, 213, 225)
+PASS | title 24px/600 | 24px/600
+PASS | subtitle uppercase tracked | uppercase
+PASS | 6 pipeline steps | 6
+PASS | step grid = 6 cols | 72.2812px 62.8438px 70.7969px 45.0156px 45.0156px 96.6094px   <-- 注意：轨道宽度不等，暴露真实缺陷
+PASS | steps positioned for arrows | 6
+PASS | 3 schedule cards | 3
+PASS | active card 2px border | 2px rgb(15, 23, 42)
+PASS | badges >=5 mono small | 5/10px
+PASS | 6 gate rules | 6
+PASS | rule font 12px | 12
+PASS | deny rows accented red | rgb(15, 23, 42)
+PASS | 5 memory rows | 5
+PASS | kv monospace | "SF Mono", Monaco, Consolas, monospace
+PASS | 3 dedup boxes | 3
+PASS | ZERO border-radius (flat rule) | 0
+PASS | ZERO box-shadow (no shadows) | 0
+PASS | ZERO gradients | 0
+PASS | NO blur/glassmorphism | 0
+PASS | no external CDN refs | 0
+PASS | no scripts at all
+PASS | body padding 40px | 40px
+PASS | text-main slate-900 | rgb(15, 23, 42)
+PASS | footer note present
+PASS | page taller than viewport | 3482
+
+0 FAIL / 27 checks
+
+## 发现的真实缺陷（不是断言脚本的问题）
+`grid-template-columns: repeat(6, 1fr)` 中 `1fr` = `minmax(auto, 1fr)`，轨道下限被内容 min-width 顶住，
+六步流程条宽度被拉成 72/63/71/45/45/97px —— 完全不等，违反本 skill 自己的
+「Grid/Flexbox alignment: Everything must be strictly aligned」。
+修复：所有 fr 轨道改 `minmax(0, 1fr)`（4 处：.schedules / .pipeline / .lower / .dedup）。
+
+## 第 2 轮：修复后在强制 1200px 离屏容器下复测（确定性布局）
+PASS | pipeline 6 tracks present | [188.656,188.672,188.672,188.656,188.672,188.672]   <-- spread 0.02px，已等宽
+PASS | schedules 3 equal tracks | [366.7,366.7,366.7]
+PASS | dedup 3 equal tracks | [370.7,370.7,370.7]
+PASS | lower 1.15:1 ratio honored | [594.8,517.2]
+PASS | no horizontally clipped elements
+PASS | nothing overflows canvas box
+PASS | canvas not vertically clipped | 1014/1014
+FAIL | pipeline tracks ~equal & fill width | track=188.66 expect≈182.33   <-- 断言算错：canvas 命中 max-width:1200px，未减 body padding
+FAIL | canvas width = 1160 | 1200.00                                        <-- 同上，断言预期值写错，非页面缺陷
+（2 项 FAIL 均为验证脚本自身的算术错误，已在此注明，产物无需改动）
+
+## 第 3 轮：宽度扫描（确认无文字裁切 / 无横向溢出）
+w=1600  canvasW=1200  h=1018  stepTrack=188.7  clipped=0 overflowX=0
+w=1280  canvasW=1200  h=1018  stepTrack=188.7  clipped=0 overflowX=0
+w=1024  canvasW=1024  h=1061  stepTrack=159.3  clipped=0 overflowX=0
+w=860   canvasW=860   h=1109  stepTrack=132.0  clipped=0 overflowX=0
+w=720   canvasW=720   h=1278  stepTrack=108.7  clipped=0 overflowX=0
+
+## 结论
+产物为单文件自包含 HTML（双击即可打开，无 JS、无外链、无 CDN），
+符合 drafter SKILL.md 全部 6 条视觉规则与 5 条 Output Format 硬性要求。

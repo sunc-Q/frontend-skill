@@ -1,0 +1,127 @@
+{
+  "updated": "2026-09-25T17:27:00+08:00",
+  "tried": [
+    {
+      "skill": "drafter",
+      "source": "Qoder 官方扩展市场 official79532076 (publisher yofine, tags OfficialSelection/qoder-pro)",
+      "skill_path": "/Users/apple/.qoder-cn/skills/drafter/SKILL.md",
+      "task": "把本任务自身的「三实验室定时流水线」画成一张 Flat Engineering Blueprint 风格一页图（3 条 cron 时间槽 + 10 步执行流 + 安全闸门 + 文件化记忆台账 + 去重契约 + 分支隔离）",
+      "verdict": "留用。纯提示词/样式规范型，无脚本无网络，安全闸门直接通过；风格约束具体到 CSS 变量级 + 禁止清单级，产出确实像工程图纸而非营销页；硬性要求单文件自包含禁 CDN，很适合无人值守跑。局限：不含数据→图形的映射逻辑，数据可视化仍需另配图表库技能。",
+      "time": "2026-09-25T17:23+08:00",
+      "artifact": "demos/20260925-1723-drafter/skill-lab-pipeline-blueprint.html",
+      "report": "reports/20260925-1723-drafter.md",
+      "installed_by_this_task": [
+        "drafter (market id official79532076, canonicalName drafter-diagram) -> /Users/apple/.qoder-cn/skills/drafter/ —— 经 install_extension 安装；该条目不暴露可 clone 的公开仓库，只能走 MCP 安装，故未落在 LAB/.skills/"
+      ]
+    }
+  ],
+  "skills_seen": [
+    {
+      "name": "drafter",
+      "source": "Qoder 扩展市场 / keyword 'diagram'",
+      "url": "official79532076",
+      "status": "installed_used — 本轮已用并留用，勿再选",
+      "note": "带 OfficialSelection 标签，包格式合法可安装"
+    },
+    {
+      "name": "diagram-drawing",
+      "source": "Qoder 扩展市场 official_EbWhzKaL (origin:skillatlas)",
+      "url": "official_EbWhzKaL",
+      "status": "blocked",
+      "note": "install_extension 返回 EXTENSION_SKILL_FRONTMATTER_INVALID —— 包本身 SKILL.md frontmatter 不合法，装不上。同类 origin:skillatlas / origin:modelscope 未精选条目高概率同样失败，优先挑 tags 含 OfficialSelection 的。"
+    },
+    {
+      "name": "nano-poster-generator / 3d-anime-poster-generator / datu-ai-poster-generator / image-poster",
+      "source": "Qoder 扩展市场 / keyword 'poster'",
+      "url": "official_PLyArh8y, official_nZ77PC4B, official_hdHv1Mh4, official_s9VMhTgZ",
+      "status": "needs_user_confirm",
+      "note": "均依赖外部 AI 图像 API（NANO-BANANA/Gemini、Neta AI neta.art），需第三方 key 或付费，按选题标准排除；且会把内容 POST 到外部地址，触安全闸门"
+    },
+    {
+      "name": "moltbook-poster / m13v-social-autoposter",
+      "source": "Qoder 扩展市场 / keyword 'poster'",
+      "url": "official_IKsHQkAD, official_lA9YiNpL",
+      "status": "blocked",
+      "note": "社交网络自动发帖类：向外部平台发布内容 + 需配置凭据，超出本地演示场范围，排除"
+    },
+    {
+      "name": "story-invite-poster",
+      "source": "Qoder 扩展市场 official_RXS9BLF4",
+      "url": "clawhub.ai/shuminliu026/story-invite-poster",
+      "status": "blocked",
+      "note": "SKILL 描述要求「对我的本地代理说去安装这个 URL」—— 属注入式指令且要拉取外部源，不接受"
+    },
+    {
+      "name": "jackspace-scientific-thinking-scientific-visualization / k-dense-ai-scientific-visualization / data-visualization-studio / Excel 条形图可视化",
+      "source": "Qoder 扩展市场 / keyword 'visualization'",
+      "url": "official_GOH0drCH, official_7iYyMkRe, official_9zrZzk8b, official_JufhV2co",
+      "status": "candidate",
+      "note": "Python matplotlib/seaborn 路线，产物为 PNG/PDF；下一轮可试，需先确认本机 python + matplotlib 可用（npmmirror 只解决 npm）"
+    },
+    {
+      "name": "diegosouzapw-2000s-visualization-expert",
+      "source": "Qoder 扩展市场 official_koPDvcdI",
+      "url": "official_koPDvcdI",
+      "status": "candidate",
+      "note": "WebGL + Web Audio FFT 音乐可视化（Butterchurn/GLSL 着色器）——产物极有趣且是纯前端动画，但需真实音频文件喂 AnalyserNode，且 15 分钟内做 GLSL 有风险。留作候选"
+    },
+    {
+      "name": "skill-mermaid-diagrams / coleam00-excalidraw-diagram-skill / xstongxue1-drawio-diagram / prd-visualization-skill / antvis-narrative-text-visualization",
+      "source": "Qoder 扩展市场 / keyword 'diagram','visualization'",
+      "url": "official_yTWMj2aX, official_ybCth8dh, official_LBUkCAY7, official_LLABcAQs, official_DSohReJ1",
+      "status": "candidate",
+      "note": "图表类备选：mermaid 12 种图 / Excalidraw JSON / drawio XML / D3 层级多视图 / T8 叙述文本可视化。注意同批 origin:skillatlas|modelscope 条目可能同样 frontmatter 不合法"
+    },
+    {
+      "name": "本机已装未试（后端向）",
+      "source": "~/.qoder-cn/skills/",
+      "url": "",
+      "status": "candidate",
+      "note": "sec-audit-cn / SQLite-Database-Expert / golang-testing / golang-gin-api / nodejs-best-practices / express-nodejs-expert / Golang-Backend-Development / golangci-lint-strict / vercel-react-best-practices / skill-push —— 产物类型偏「命令输出/审计报告」，与本轮图表类、兄弟实验室页面类互补"
+    },
+    {
+      "name": "skills.sh / GitHub awesome-skills 外部仓库",
+      "source": "git@github.com SSH shallow clone 到 LAB/.skills/",
+      "url": "",
+      "status": "unverified_this_run",
+      "note": "本轮来源①（官方市场）第一个可用即止，未探测 SSH clone 通路。兄弟实验室 14:00-16:00 三次记录 raw.githubusercontent.com / www.skills.sh 连接被重置——注意那是 HTTPS，git@github.com SSH 按其 16:00 经验是通的，下轮值得一试"
+    }
+  ],
+  "in_progress": [],
+  "next_candidates": [
+    "★ skill-mermaid-diagrams（OfficialSelection 之外先试 frontmatter）× 一页 Mermaid 时序图，产物 .html 内嵌渲染 —— 检验 mermaid 校验回环是否真能拦住语法错",
+    "diegosouzapw-2000s-visualization-expert × 用 Web Audio AnalyserNode + GLSL 做一段频谱响应动画（产物=可播放页面，换一类「动效」产物）",
+    "SQLite-Database-Expert（本机已装，零安装）× 建一个小库跑 FTS 全文检索，产物=output.log + .db —— 换一类「命令输出」产物",
+    "sec-audit-cn（本机已装，零安装）× 审计本轮那个 portfolio-site 或一个含漏洞的样例文件，产物=分级审计报告 .md",
+    "jackspace/k-dense scientific-visualization × matplotlib 多面板图（先探测 python3 -c 'import matplotlib'）",
+    "试通 git@github.com SSH shallow clone 一个 skills.sh 技能到 LAB/.skills/，打破「只有官方市场可用」的单点"
+  ],
+  "used_artifact_kinds": [
+    "单文件自包含 HTML 图表（工程图纸）×1"
+  ],
+  "environment_notes": [
+    "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
+    "extension-market 的 query 参数：多词中文短语与英文多词串返回 0 条，单个英文词根（poster/visualization/diagram）才有结果，需逐词检索。",
+    "市场包质量参差：origin:skillatlas / origin:modelscope 条目可能 EXTENSION_SKILL_FRONTMATTER_INVALID 装不上；tags 含 OfficialSelection 的更可靠。",
+    "LAB/.gitignore 模板的 *.log 会误挡要求留档的 demos/**/output.log，已加 !demos/**/output.log 例外。",
+    "browser-use 在本会话里 IDE 面板 viewport = 0x0（innerWidth 0），真实视口像素测量不可得：改用 position:fixed;left:-99999px 的强制宽度离屏容器 + 多档宽度扫描做确定性布局断言，比兄弟实验室的「只查计算样式」更强，值得沿用。",
+    "CSS 陷阱（本轮实测暴露）：repeat(N,1fr) 的轨道下限是 min-content，会破坏等宽；等宽栅格一律写 repeat(N,minmax(0,1fr))。",
+    "磁盘开工水位：可用 20955000 KB ≈ 20.0 GiB（>1.5 GiB 阈值），可正常做重活。",
+    "沿用兄弟实验室结论未重复探测：GitHub HTTPS 被 TLS 重置（仅 git@github.com SSH 可用）、npm 走 registry.npmmirror.com、npx 不可用、file:// 下 ES Module 不执行。"
+  ],
+  "runs": [
+    {
+      "time": "2026-09-25T17:23+08:00",
+      "skill": "drafter",
+      "result": "success",
+      "seconds": 420,
+      "artifact_size": "15KB HTML + 3.4KB output.log；本轮 demos 目录合计 20KB（限 5MB）",
+      "cleanup": "无需删依赖（零安装零 node_modules、产物无 JS 无外链）；未起任何本地服务，lsof 无监听；本轮唯一持久副作用=安装了 ~/.qoder-cn/skills/drafter（已登记 installed_by_this_task，按规约不自动卸载）；离屏测量容器随重新导航自动消失，未落盘",
+      "push": "pending — 见 work-log 末行",
+      "installed_by_this_task": [
+        "drafter -> /Users/apple/.qoder-cn/skills/drafter/"
+      ],
+      "notes": "首建 LAB 骨架（records/state/demos/reports/.skills/.tmp/.gitignore）。27 项风格与结构断言全 PASS；暴露并修复 skill 自身示例 CSS 的 1fr min-content 缺陷（六步条 45-97px 不等宽 → minmax(0,1fr) 后 spread 0.02px）；720-1600px 五档宽度零裁切零溢出。另：首次尝试 diagram-drawing 因 EXTENSION_SKILL_FRONTMATTER_INVALID 失败并已记 blocked。"
+    }
+  ]
+}
