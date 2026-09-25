@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T23:56+08:00",
+  "updated": "2026-09-25T23:59+08:00",
   "tried": [
     {
       "skill": "drafter",
@@ -486,8 +486,8 @@
       "seconds": 1440,
       "artifact_size": "frostlight-gather.html 750,620B + game.src.html 40,938B + verify.mjs 22,030B + postfx.bundle.js 39,825B + inline-jsm.mjs 2,683B + build.mjs 1,183B + output.log 3,950B + render_game_to_text.txt 268B + shots/ 3 张 jpg 193,437B = 本轮 demos 1.0MB（限 5MB）",
       "cleanup": "已删 demos 内中间件 part1.js/part2.js、LAB/.tmp/three（9.4MB tgz+解包）、.tmp/pw/node_modules（playwright-core）；无本轮起的服务/监听进程（未起 server，产物 file:// 直开）；全局缓存与 ~/.qoder-cn/skills 未动",
-      "push": "待推送",
-      "notes": "来源①官方市场第一个候选即中（search_extensions query \"build-game\" → install_extension，installRef 现搜现装）。安全闸门：读全文 SKILL.md+serve.sh+抽查 references 后放行；拒绝 Phase 5 的 here.now 上传（本地内容外发）；serve.sh PID 写死 /tmp 之外故未使用，改 file:// 直开。最大工程点=three r160 离线化：classic 构建内联 + examples/jsm ESM→IIFE 命名空间转换（11 模块 39.8KB），把 SKILL 强制的 bloom/调色/FXAA/OutputPass 链真的装上（SSAO 放弃并已记录）。两条 FAIL 均为我方判据错（跳跃采样窗口、亮度阈值与 vignette 采样位置），已换成理论值对比与局部像素探针。"
+      "push": "已推送：git push origin skill-showcase 成功（600f5c9..8873a67，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 600f5c9 是本地 HEAD 祖先故无需 rebase；main / go-gin_react 未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
+      "notes": "来源①官方市场第一个候选即中（search_extensions query \"build-game\" → install_extension，installRef 现搜现装）。安全闸门：读全文 SKILL.md+serve.sh+抽查 references 后放行；拒绝 Phase 5 的 here.now 上传（本地内容外发）；serve.sh PID 写死 /tmp 之外故未使用，改 file:// 直开。最大工程点=three r160 离线化：classic 构建内联 + examples/jsm ESM→IIFE 命名空间转换（11 模块 39.8KB），把 SKILL 强制的 bloom/调色/FXAA/OutputPass 链真的装上（SSAO 放弃并已记录）。两条 FAIL 均为我方判据错（跳跃采样窗口、亮度阈值与 vignette 采样位置），已换成理论值对比与局部像素探针。 | 收尾核查：git status 干净（仅本轮 4 项变更已提交）、远端 skill-showcase=8873a67、LAB 21MB（含 .skills 16MB gitignored）、磁盘可用 19853944 KB ≈ 18.9 GiB、lsof 无本轮残留监听（未起任何 server）、全局技能库新增 1 项 build-game（见 installed_by_this_task）。"
     }
   ]
 }
