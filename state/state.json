@@ -5,14 +5,24 @@
       "time": "2026-09-25T18:15:00+08:00",
       "scenario": "SaaS 订阅经营后台",
       "slug": "saas-subscription-admin",
-      "styles": ["瑞士网格", "复古 Win95", "暗色霓虹 cyber"],
+      "styles": [
+        "瑞士网格",
+        "复古 Win95",
+        "暗色霓虹 cyber"
+      ],
       "result": "成功：后端 go test 3包含义测试全绿 + 逐接口 curl 全通过（含鉴权矩阵与 409 状态机）+ 三风格单文件 preview 实机渲染 23 行数据且零外链",
       "code_dir": "sites/saas-subscription-admin/{backend,web}",
       "artifact_dir": "sites/saas-subscription-admin/{web/dist,preview}"
     }
   ],
-  "used_scenarios": ["saas-subscription-admin"],
-  "used_styles": ["瑞士网格", "复古 Win95", "暗色霓虹 cyber"],
+  "used_scenarios": [
+    "saas-subscription-admin"
+  ],
+  "used_styles": [
+    "瑞士网格",
+    "复古 Win95",
+    "暗色霓虹 cyber"
+  ],
   "runs": [
     {
       "id": "20260925-18",
@@ -20,7 +30,11 @@
       "started": "2026-09-25T16:45:00+08:00",
       "finished": "2026-09-25T18:20:00+08:00",
       "scenario": "SaaS 订阅经营后台",
-      "styles": ["瑞士网格", "复古 Win95", "暗色霓虹 cyber"],
+      "styles": [
+        "瑞士网格",
+        "复古 Win95",
+        "暗色霓虹 cyber"
+      ],
       "template_created": true,
       "disk": {
         "df_k_avail_before": 20425872,
@@ -41,7 +55,11 @@
         "preview_files": 3,
         "preview_each_bytes": 284679
       },
-      "push": { "branch": "go-gin_react", "result": "pending", "note": "本轮首次建库：LAB 之前不是 git 仓库，需 git init -b go-gin_react 并推送" }
+      "push": {
+        "branch": "go-gin_react",
+        "result": "成功",
+        "note": "LAB 首轮 git init -b go-gin_react；远端原只有 main 与 skill-showcase，按预授权用 git push -u origin go-gin_react 新建孤儿分支（83 文件 / .git 716K）；未加 --force、未跳 hook、未碰 main、未改任何全局 git 配置"
+      }
     }
   ],
   "environment_notes": [
@@ -69,8 +87,20 @@
     "充电桩车队运营"
   ],
   "next_style_candidates": [
-    "暖纸编辑排版", "新粗野主义", "蒸汽波", "日式留白", "包豪斯原色",
-    "终端绿字 CRT", "苹果玻璃拟态", "孟菲斯几何", "报章密排", "莫兰迪色块",
-    "高对比荧光运动风", "等距轴测工业风", "手账纸质拼贴", "航空仪表盘", "乐高积木块面"
+    "暖纸编辑排版",
+    "新粗野主义",
+    "蒸汽波",
+    "日式留白",
+    "包豪斯原色",
+    "终端绿字 CRT",
+    "苹果玻璃拟态",
+    "孟菲斯几何",
+    "报章密排",
+    "莫兰迪色块",
+    "高对比荧光运动风",
+    "等距轴测工业风",
+    "手账纸质拼贴",
+    "航空仪表盘",
+    "乐高积木块面"
   ]
 }
