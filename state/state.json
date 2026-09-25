@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T01:10:00+08:00",
+  "updated": "2026-09-26T01:20:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -386,8 +386,8 @@
       "template_created": false,
       "disk": {
         "df_k_avail_before": 19615144,
-        "df_k_avail_after": 19738520,
-        "lab_total_bytes_human": "15M（含 .git，本轮提交后终值）",
+        "df_k_avail_after": 19694680,
+        "lab_total_bytes_human": "16M（含 .git 5.2M，本轮提交后终值）",
         "scenario_dir_human": "1.7M（上限 5MB）：backend 228K + web(含 dist 320K) + preview 948K + scripts 66K",
         "note": "开工 df 值取会话内最早观测（19,615,144KB≈18.7GiB），收工 19,738,520KB≈18.8GiB，全程远高于 1.5GiB 熔断线。删除：web/node_modules（64MB）、/tmp/hs-build/api（40MB 编译产物）、/tmp/hs-run.db{,-wal,-shm}、/tmp/hs-{api,static}.log、/tmp/hs-probe*.json、/tmp/hs-probe.mjs、/tmp/hs-{shot,pv}-*.png 6 张截图。共享缓存（~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache）未动，没有 go clean -cache/-testcache。进程按端口找 PID 并逐个 ps -o command= 核对：:18261=/tmp/hs-build/api、:18262=node scripts/serve-static.mjs，另清掉早先同库残留的 :18260 同二进制进程（都是本轮 /tmp/hs-build/api，确认后才 kill），收工 lsof 无 :1826x 监听。"
       },
@@ -399,7 +399,7 @@
       },
       "push": {
         "branch": "go-gin_react",
-        "status": "见下方 commit 记录"
+        "status": "已推送 38a4f5b..81d9c03（fetch → rebase「up to date」无改写 → 普通 push；未 --force、未跳 hook、未碰 main、未改全局 git 配置）"
       }
     }
   ],
