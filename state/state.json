@@ -1,575 +1,611 @@
 {
- "updated": "2026-09-26T02:00+08:00",
- "tried": [
-  {
-   "skill": "sites:sites-building",
-   "scenario": "落地页（landing page）",
-   "styles": [
+  "updated": "2026-09-26T03:00+08:00",
+  "tried": [
+    {
+      "skill": "sites:sites-building",
+      "scenario": "落地页（landing page）",
+      "styles": [
+        "瑞士极简",
+        "玻璃极光",
+        "新粗野主义"
+      ],
+      "time": "2026-09-25T14:00+08:00",
+      "reason": "内置技能，唯一可在无网络安装、无用户确认前提下走通的页面构建路径；Simple site 分支零依赖零构建",
+      "conclusion": "留用。产物 72KB/4 文件全自包含，本地预览校验通过；发现并修复共用 Markdown 渲染器的引用行分支缺陷（esc 先行导致 /^>/ 永不匹配）",
+      "artifacts": "artifacts/20260925-14-sites-building-landing-page/",
+      "report": "reports/20260925-14-sites-building-landing-page.md"
+    },
+    {
+      "skill": "sites:sites-building",
+      "scenario": "仪表盘（订阅收入看板，working surface）",
+      "styles": [
+        "深色密集分析",
+        "报纸排版",
+        "复古终端"
+      ],
+      "time": "2026-09-25T15:00+08:00",
+      "reason": "台账排队项；市场 9 个仪表盘技能全部未安装且 install_extension 强制用户确认，GitHub/skills.sh 仍不可达，故沿用唯一可自主调用的内置技能换新场景",
+      "conclusion": "继续留用。同一 DOM + 逐字节相同的 JS 换三套 CSS 即得三种成立风格；交互（范围/区域/排序/搜索/悬停读数）实测生效。自查修复 3 处：JS 语法错误致整页空白（vm.Script 定位）、月流失率 12 个月窗口算出 111.8% 的口径失真、交易表未跟随时间范围过滤。限制：IDE 浏览器面板 hidden 导致无像素级截图，仅用计算样式断言替代",
+      "artifacts": "artifacts/20260925-15-sites-building-dashboard/",
+      "report": "reports/20260925-15-sites-building-dashboard.md"
+    },
+    {
+      "skill": "frontend-development",
+      "scenario": "数据报表（个人站流量与作品表现月报：KPI + 趋势 + 渠道表 + 页面明细 + 洞察）",
+      "styles": [
+        "暖纸数据新闻 editorial",
+        "冷灰对账单 statement",
+        "暗色霓虹 cyber"
+      ],
+      "time": "2026-09-25T16:00+08:00",
+      "reason": "台账 next_candidates 首项；用户已把该技能装入 ~/.qoder-cn/skills/ 故无需安装与确认；与前两轮构成跨 skill 对照（真框架工程 vs 零依赖单文件）。工具链靠 registry.npmmirror.com 打通（Vite 8.3.1 + Vue 3.5 + Pinia 3 + TS 5.9 strict）",
+      "conclusion": "留用（该技能第 1 次通过）。属「规范型」技能：features/{api,components,hooks,helpers,types} 结构、strict TS 无 any、shallowRef、350ms 防抖、typed props/emits、不用早期 return 等条款在 Vue 3 上全部可直接落地；strict + noUncheckedIndexedAccess 直接暴露并修掉 12 处真实缺陷。但它不提供任何视觉主张（唯一样式指引绑定 MUI sx/theme.palette），React 专属条款约占 70% 篇幅（React.FC/useSuspenseQuery/SuspenseLoader/useMuiSnackbar/~features 别名/MUI v7 Grid）需逐条判为不适用——三风格仍须自行定主张，建议与 sites-building 或 vercel-react-best-practices 组合使用。产物 552KB；数据口径 36 项断言全 PASS（渠道合计=日合计、加权跳出率=KPI、ratio-of-sums、跨区间同日数值一致），KPI 与表格交叉核对一致",
+      "artifacts": "artifacts/20260925-16-frontend-development-report/",
+      "report": "reports/20260925-16-frontend-development-report.md"
+    },
+    {
+      "skill": "vercel-react-best-practices",
+      "scenario": "管理后台（虚构「Beacon 信标」短链服务运营后台：总览 KPI+14 日趋势+Top5+事件流 / 60 行短链表：搜索+状态筛选+三向排序+行展开+停用+两步删除 / API 密钥脱敏显隐复制吊销 / 服务设置表单校验+localStorage 持久化）",
+      "styles": [
+        "商务白 business",
+        "单色暗 mono",
+        "95 桌面 win95"
+      ],
+      "time": "2026-09-25T17:00+08:00",
+      "reason": "台账 next_candidates 首项（★）。React 栈是该 skill 主场，与 frontend-development 叠加验证「两个规范型技能是否互补」。工具链 React 19.3 + Vite 7.3.6 + TS 5.9.3 strict + vite-plugin-singlefile 2.3.3，全走 registry.npmmirror.com",
+      "conclusion": "留用（第 1 次通过，可判定型）。13/57 条规则能在纯 React+Vite 静态产物上直接落地并核对到文件（js-index-maps / js-combine-iterations / js-tosorted-immutable / js-min-max-loop / js-hoist-regexp / rendering-hoist-jsx / client-localstorage-schema + js-cache-storage / rerender-functional-setstate / rerender-transitions / rerender-memo / rerender-dependencies / rerender-lazy-state-init / rendering-conditional-render / advanced-event-handler-refs / bundle-barrel-imports）；async-*/server-*/client-swr-dedup/bundle-dynamic-imports 绑定 Next.js+RSC+SWR，纯静态产物下不适用，已显式标注。4 个真实缺陷：(1) Vite build.lib 的 IIFE 不注入 process.env.NODE_ENV define，浏览器顶层 ReferenceError 致页面静默全白且控制台零报错，vm 桩执行才定位；修 define 后 bundle 676KB→245KB；(2) inline 模板漏 BeaconAdmin.mount（lib-IIFE 不自挂载）；(3) 主题 CSS 误排在 base.css 之前，同特异性被反向覆盖，mono 的 radius:0 与 win95 整套斜角边框全部失效——只有真实浏览器 getComputedStyle 能发现，jsdom 不做样式层叠（实测返回 rgba(0,0,0,0)），已加拼接顺序回归断言；(4) 自己违反 skill 精神把 setTimeout/onConfirm 写进 state updater，改为纯 updater + confirmRef。产物三页 243,433 字节 JS 逐字节相同、仅换 CSS，980KB，jsdom 39 断言 ×3 + 风格/级联 24 断言全绿，删 node_modules+dist 后 verify.sh 从零 33s 复现。关键冲突：本 skill 的 js-early-exit 与 frontend-development 的「禁早期 return」直接互斥，两规范型 skill 叠加前必须先解冲突。",
+      "artifacts": "artifacts/20260925-17-vercel-react-best-practices-admin/",
+      "report": "reports/20260925-17-vercel-react-admin.md"
+    },
+    {
+      "skill": "vercel-react-best-practices",
+      "scenario": "落地页（虚构产品「拾光 Shiguang」端侧 AI 相册整理工具：hero+双CTA / 3 能力卡 / 3 步流程+4 统计 / 168 格相册墙（整理前后切换+4 类筛选+memo 渲染计数）/ 3 位使用者+标签筛选 / 5 条问答+搜索+手风琴 / 3 档定价+平台+邮箱校验+带版本 localStorage 持久化；React 19.3 + Vite 7.3.6 + TS 5.9.3 strict + vite-plugin-singlefile 2.3.3 + jsdom 30.1.1）",
+      "styles": [
+        "侘寂留白 wabi",
+        "构成主义 construct",
+        "孟菲斯 memphis"
+      ],
+      "time": "2026-09-25T18:00+08:00",
+      "reason": "台账 next_candidates 首项（★）。与第 1 轮 sites:sites-building × 落地页做同场景跨 skill 对照；内容型页面无取数，正好检验该 skill 在高优先级条款（async-*/server-*）清零后还剩什么",
+      "conclusion": "留用（第 2 次通过）。21/57 条落地并全部核对到文件行：bundle-barrel-imports / bundle-defer-third-party / client-event-listeners / client-passive-event-listeners / client-localstorage-schema / js-cache-storage / js-index-maps / js-set-map-lookups / js-combine-iterations / js-early-exit / js-hoist-regexp / js-batch-dom-css / rendering-hoist-jsx / rendering-content-visibility / rendering-conditional-render / rendering-usetransition-loading / rerender-memo / rerender-dependencies / rerender-functional-setstate / rerender-lazy-state-init / rerender-derived-state-no-effect / rerender-simple-expression-in-memo / rerender-use-ref-transient-values / advanced-event-handler-refs。36 条不适用且逐条给了理由：async-*（5 条，落地页无取数→优先级第 1 类整体清零）、server-*（7 条，无 RSC/server action）、client-swr-dedup、bundle-dynamic-imports+conditional+preload（被 inlineDynamicImports 单文件产物抵消，要验须换多页服务器场景）、rendering-hydration-*+activity+svg 两条、js-tosorted/min-max/length-check/cache-function-results/property-access（上轮表格场景才有）、rerender-defer-reads、advanced-init-once/use-latest、rerender-memo-with-default-value。产物三页共用同一份 245,462 字节 <script>（逐字节断言）、单页 255-260KB、零外链；断言 284 交互 + 61 风格/级联/bundle 一致性全绿，删 node_modules 后 verify.sh 从零 33s 复现。5 个真实缺陷：(1) useReveal 只在挂载时收集 [data-reveal]，动态列表新节点永不打标——改为「动画是加法」（基态 opacity:1，.is-in 只挂 animation）并从动态列表摘掉该属性；(2) 内联校验被 bundle 里 react-dom 的字面量 \"<script>\" 干扰，改 /^<script>/gm 行首匹配；(3) 自己上轮记过的反模式又写了一遍：startTransition+手写 isPending、useMemo 包单个正则——靠逐条回查才改成 useTransition()/直算，说明该 skill 的价值在回查不在通读；(4) 结构层混进 var(--bad, #b4453a) 硬编码兜底色，被分层断言抓出；(5) strict TS 抓出 3 处会真炸的代码（currentTarget 类型为 Element 无 .style / map.values() 误按元组解构 / noUncheckedIndexedAccess 下 KINDS[i] 可能 undefined）。跨 skill 冲突已正面解决：js-early-exit vs frontend-development「禁早期 return」→ 择一规则『控制流允许早退，渲染输出一律三元 + 显式空态』，本轮代码即按此写。未验项（诚实记录）：横向溢出测不了（面板 hidden 使 innerWidth=0），指针驱动 CSS 变量在真实浏览器里 rAF 不触发、只能在 jsdom 验。三风格互不混淆由真浏览器 getComputedStyle 13 项实测（148/56/84px 留白、透明/黑/品红按钮、衬线/Arial Black/Trebuchet、波点背景图只在 memphis、硬阴影 vs 纸影 vs 无）。",
+      "artifacts": "artifacts/20260925-18-vercel-react-best-practices-landing/",
+      "report": "reports/20260925-18-vercel-react-landing.md"
+    },
+    {
+      "skill": "vercel-react-best-practices + sites:sites-building（叠加）",
+      "scenario": "定价页（虚构「松塔 Songta」反馈管理平台按席位阶梯计价：三档卡（苗木免费/林木 4 段阶梯 39·29·22·17/冠层 20 席起 ¥58）+ 周期(月付/年付折扣 15%·25%) + 币种(CNY/USD 1:7.15 取整到 0.5) + 席位滑杆(1-100，钳制与 20 席下限) + 6 个增值模块(按席/按组织两种计价) + 实时合计条与报价单(邮箱三路校验+打印) + 三档能力对比表(分组+只看差异+能力搜索+空态) + FAQ(热度排序+搜索+手风琴) + 偏好持久化；React 19.3 + Vite 7.3.6 + TS 5.9.3 strict + vite-plugin-singlefile 2.3.3 + jsdom 30.1.1，双构建：lib-IIFE 单文件预览 + split 保留 chunk 边界当 bundle 证据）",
+      "styles": [
+        "包豪斯构件 bauhaus",
+        "千禧镀铬 y2k-chrome",
+        "工程蓝图 blueprint"
+      ],
+      "time": "2026-09-25T19:00+08:00",
+      "reason": "台账 next_candidates 首项（★）。正面验证「性能规范型 + 设计主张型」叠加是否互补无冲突；定价页有大量分支计价，能让 bundle-conditional / 单事实源 / 交叉断言产生可见差异；风格避开已用 15 种",
+      "conclusion": "两个 skill 均留用，叠加判定成立且无条款互斥（上轮解掉的 js-early-exit vs 禁早期 return 直接沿用）。vercel 第 3 次通过：28/57 条落地并核对到文件行（比上轮多 bundle-dynamic-imports 一项，因为本轮同时跑两种构建——同一份源码，lib-IIFE 给人看、split 给规则当证据，这是本轮方法上最大的增量：单文件产物会抵消 bundle 四条款，双构建把「抵消」变成「可测」，实测按需部分只占首包 1.2%）；sites-building 第 3 次通过，且本轮第一次当作「验证范围约束」使用（preload 取舍判定：预加载用户已可见的下一步动作算主流程、不算 speculative polish）。9 个真实缺陷：(1) TierCard 自抄一份阶梯常量形成价格双源；(2) 明细与合计两套算法，年付下相加对不上（460 vs 4416），重构为 charged 由各行求和 → sum(lines)===charged 成为结构不变式，另加 480 组合扫描；(3) saved 重复 ×12 得 68544；(4) 局部变量 listMonthly 遮蔽导出函数；(5) Controls 阶梯提示对冠层/USD 口径错；(6) Compare 空态不可达，补能力搜索框才可达可测；(7) jsdom tick 用 rAF 在 Node 下退化同步 → 39 条假失败，改 setTimeout(15)+轮询挂载；(8) inline.mjs 用 html.length 当字节数（UTF-16 码元，中文页差 2%+），报告照抄成 264.9KB/252,541B，实为 276,091 字节/252,795 字节；(9) style-check 提取内联脚本的偏移 +2 落在 's' 上（切进 script> 标签，多 7 字符），三页互比仍相等故旧断言全绿却给错绝对量——修成捕获组并把「内联=dist+转义字节」写成不变式。最后两个是收尾核对产物口径时抓出的，结论：凡进文档的数字必须由断言打印。398 条断言全绿（85 账目 + 231 交互 + 82 风格/级联/bundle），删 node_modules 后 verify.sh 从零 18-22s 复现。未验项：横向溢出（面板 hidden 使 innerWidth=0）、pointermove 驱动的 --px/--py 仅 jsdom 验、chrome 的 background-clip:text 与三档字距未取到 computed（多属性 getComputedStyle 15s 超时，须 1-3 属性短调用）",
+      "artifacts": "artifacts/20260925-19-sites-react-pricing/",
+      "report": "reports/20260925-19-sites-react-pricing.md"
+    },
+    {
+      "skill": "vercel-react-best-practices",
+      "scenario": "活动营销/报名页（虚构「星屿·声浪岛音乐节」：hero 倒计时+3 KPI+开票进度 / 12 艺人阵容（投票乐观更新+useTransition 双排序）/ 25 场日程（分舞台 Map+公告 tab 延后取数）/ 报名表单（三档票+VIP 分支校验+乐观 patch/快照回滚）/ 纪念票根 SVG（hover 预载·点击动态 import）；React 19 + Vite 7.3.6 + TS 5.9 strict + 零依赖 node:http mock API（hrtime 事件日志）+ jsdom，双构建 lib-IIFE 单文件 + split 分包证据）",
+      "styles": [
+        "装饰艺术 deco",
+        "蒸汽波 vapor",
+        "孔版印刷 riso"
+      ],
+      "time": "2026-09-25T20:00+08:00",
+      "reason": "台账 next_candidates 首项（★）：async-* 5 条前三轮 0 落地，本轮造「必须取数」的场景 + mock 服务端正面攻坚",
+      "conclusion": "留用（第 4 次通过，关键补全轮）。async-* 4/5 落地且以服务端时间窗口为证据（三请求到达窗口<60ms、墙钟 410ms vs 串行 740ms；notices/vip 首屏零请求）；async-dependencies 记不适用（场景无部分依赖扇出，不凑题）。server-* 等价落地 4 条（single-flight：并发 2 请求上游 1 次；LRU cap4/TTL2s；after()：setImmediate 计数断言 afterH>=respondedH；设备令牌 401/403），RSC 专属 3 条仍需 Next.js。client-swr-dedup 手写等价物（资源注册表+5s TTL inflight，3 消费者 1 到达）。验证配方沉淀：传输层抽象让同一组件代码跑 fixture（file://）与真 HTTP 两世界 + 客户端 reqLog 计数 + 服务端 hrtime 到达日志 + 延迟表。乐观更新证明设计为「确认延迟 60ms > 轮询上限 45ms」使『先 +1 后确认』成为硬证据。205/205 断言绿（35 时序+130 DOM+40 风格/bundle），三页 265-266KB 逐字节同 JS 仅换 CSS。15 个坑里 4 个是真缺陷：LRU 存取形态不一致致命中路径返回空响应体、mock 包 {ok} 而客户端按裸数组消费、Hero/Register 缺 Suspense 边界、Schedule 渲染体残留无条件 loadResource 把 defer 证明打穿（页面照常工作肉眼不可见→延后取数必须配请求计数断言）。断言侧 3 坑：react-dom 自带已转义 </script 字面量使「转义计数」不成立→改整体逐字节相等；零外链须白名单 w3.org xmlns/react.dev 错误码数据串（标签级断言才是真约束）；minify 保留动态 import 绑定名→「首包不含实现」不能用符号名，改用 poster 独有串 width=\"640\"/等 12 组。测试装置：jsdom file:// 禁 localStorage→Map shim；setInterval 挂住进程→win.close()；固定 sleep 负载漂移→全量改条件轮询 waitFor；Node22 不能 import 无扩展名 .ts→esbuild 预打包；transport TTL 缓存反噬读数→新鲜读用新 transport，stale 读数本身即去重证据；fixture 不写 reqLog 使零请求断言假通过→计数器写入点要先验证",
+      "artifacts": "artifacts/20260925-20-vercel-react-activity/",
+      "report": "reports/20260925-20-vercel-react-activity.md"
+    },
+    {
+      "skill": "drafter",
+      "scenario": "架构说明页（新场景：把「每小时前端 Skill 验证流水线」自身画成工程图纸 —— 六阶段主链路 + 去重四道闸 + state.json 字段表 + 环境约束矩阵 + 产物路径约定；主题自指，内容与台账一一对得上）",
+      "styles": [
+        "蓝图浅色单栏 blueprint-light",
+        "夜间制图左索引 drafting-dark",
+        "规格说明书三栏印刷件 spec-sheet"
+      ],
+      "time": "2026-09-25T21:00+08:00",
+      "reason": "用户 17:23 装入 ~/.qoder-cn/skills/drafter（第 4 个可在无网络安装、无用户确认前提下自主调用的前端页面技能；台账 tried 里没有它）。选「架构说明页」这个此前 7 轮未用的新场景，因为它是技能自述的主场（architecture/flow/spec sheet），能把技能规则与真实需要画的内容对齐，而不是硬套到营销页上（技能明写 NOT marketing landing pages）。三风格按「同图同信息，只换色板/骨架/图示法」构造，其中 21-B 深色与 21-C 印刷件都是对技能默认令牌的显式偏离，用来测该技能的风格上限。",
+      "conclusion": "留用（限定场景）。产物天然满足实验室最硬三条约束：单文件 / 零依赖 / 零构建 / 双击可开，15-17KB 每页（对比 React 轮 265KB），本轮无 node_modules、无 dist、无临时脚本，场景目录仅 72KB。最大亮点是规则可机检：把技能的视觉条款（无阴影、无渐变、无模糊、按钮无圆角、1-2px 实线、系统字体、至多一种语义色）直接写成 C 组 24 条断言，已试 5 技能里独一份。短板四条：①单风格主张撑不起多风格横评（深色必须反相整套 :root 令牌，印刷件必须自行新增图号条/脚注/@media print）；②输出契约假定 HTML 直进对话，落盘/校验/推送全在技能话术之外；③无交互与多页条款，本轮标注开关与 styles.html 对照入口均为技能外补充；④无中文行高与表格密度话术。78/78 断言绿（A 语法 6 + B 零外链 9 + C 规则符合 24 + D 三风格互异 21 + E 体积 5 + F 内容同题 12 + G 台账互查 10）。首跑 6 条真失败全在断言侧：inlineScript 正则不许行首缩进；别名映射表把 G4 映到自身导致 21-A 恒判 3/4。为此补了 G 组（读 state.json 反推本轮前规模，逐字段互查页面抄写值），当场抓出 21-A 把 environment_notes 写 31（实 38）、next_candidates 写 9（实 10）——凭印象手打的台账数字肉眼查不出，必须读盘互查。浏览器计算样式复核三页互异成立（A 248,250,252 / B 11,15,20 + 6 row + 6 tl-item + 标注双向开关 / C 233,233,233 + 3 col + 32 矩阵格），控制台零消息，截图与横向溢出因面板 hidden 未验。复用姿势：drafter 出形（结构 + 描线纪律），另配规范型技能出码；变体偏离要写进 environment_notes 免下轮误判。",
+      "artifacts": "artifacts/20260925-21-drafter-architecture/（72KB：blueprint-light.html 17,304B + drafting-dark.html 15,401B + spec-sheet.html 16,468B + styles.html 对照入口 6,453B + scripts/check.mjs 9,221B + scripts/ledger-snapshot.json 302B，校验脚本与快照均保留未删）",
+      "report": "reports/20260925-21-drafter-architecture.md"
+    },
+    {
+      "skill": "ppt-generator",
+      "scenario": "演示汇报页（5 页标准汇报稿：封面/提纲/章节页/内容页/结尾页，主题自指=实验室 8 轮台账）",
+      "styles": [
+        "咨询图表深底 exhibit",
+        "论文答辩学术白 academic_defense",
+        "红黑几何切角 smart_red"
+      ],
+      "time": "2026-09-25T22:00+08:00",
+      "reason": "本机剩 3 个未试技能里唯一自带风格系统的（13 个模板目录 × design_spec.md + 5 张参考 SVG），直接检验前 8 轮反复记录的「规范型技能不给视觉主张」是否可解；且 pypi 镜像可达故能把技能承诺的 SVG→原生 PPTX 全链路真跑通，不停在 SVG 半成品",
+      "conclusion": "留用（限定场景：真要交 PPT 时首选）。184/184 断言全绿（A61/B15/C15/D10/E8/F17/G13/H29/I16）。svg_to_pptx 确为可编辑原生形状：6 份 deck 零 ppt/media、零 <p:pic>、<p:sp> 159-168，<text>↔<a:t> 逐页相等，pt==px×0.75 精确，1px=9525 EMU，渐变/分组 stroke-opacity→alpha/闭合 path→Freeform/text-anchor→algn 全部保真。11 条缺陷最硬的是页序：02_toc 与 02_chapter 并存 + SKILL.md 用 sorted(glob) → 三套 deck 第 2 页全错位且两种顺序字节数相同故肉眼查不出；其次文档 sys.path 指向不存在的 ~/.openclaw、layouts_index 20 条 vs 磁盘 13 目录（10 只列不存、3 只存不列、菜单第 3 位 cloud_orange 零 SVG）、Step2 菜单漏 5 套可用模板、spec 色板与自家模板互不对账（smart_red 主张的 #F0964D 模板 0 次、模板反用 13 个未声明色）→ 解法「色板取 spec ∪ 模板」两级、600+ icons 实为零文件需抓 svgrepo（本机 429 且会写技能目录，已回避）、charts/ 33 张图模板从未出现在 SKILL.md 正文、exhibit spec 要求 ≥12px 而其自身模板有 10px 页脚。我自身 8 坑含「凭印象修 bug 两次复发」，规约再确认：动手前先读盘。",
+      "artifacts": "artifacts/20260925-22-ppt-generator-deck/",
+      "report": "reports/20260925-22-ppt-generator-deck.md"
+    },
+    {
+      "skill": "sites:sites-building",
+      "scenario": "个人主页（虚构独立开发者「柯屿 KE YU」：五件作品潮汐/汉字谱/光斑/字节盒/漫游 + 四则随记 + 近况三格 + 不可送达的示例邮箱 hey@keyu.example；三页共享同一份事实，只有设计主张不同，三页合计 37,928 字符）",
+      "styles": [
+        "和纸浮世绘 ukiyo",
+        "深空星图 astro",
+        "像素掌机 pixel-console"
+      ],
+      "time": "2026-09-25T23:00+08:00",
+      "reason": "next_candidates 里的「sites:sites-building × 个人主页（避开已用风格）」；个人主页是前 9 轮未覆盖的新场景，且是该技能 Simple site 路径第 3 次使用、第一次单独承担内容型单页",
+      "conclusion": "留用（第 3 次通过，内容型单页首选）。219+24=243 条断言全绿（初跑 207/212）。①把技能最易被忽略的「反功能膨胀」条款第一次提成断言组 F（零 form/input/localStorage/fetch、至多 1 个按钮、唯一 h1、id 不重复）——它正是产物从 18:00 轮 React 落地页 255KB 掉到 13.7-15.9KB（约 17 倍）的原因；②发明并把「一个连贯视觉主张」写成可机检式子：色板封闭（页内任何十六进制色必须属于该页声明色板）+ 三对风格七项指纹（栅格/字族/圆角/是否 table/是否竖排/是否方格仪表）差异≥3 + 色板两两零交集，成本 6 行；③抓到 4 处 astro 字号滑到 11.5px/10px（技能说更小字号只留给次要元数据，写码时极易把表格列头/标签/按钮都划成元数据）→ 全部上提 12px，教训：底线必须写成断言不能靠措辞；④抓到 C 页方格仪表与图例不自洽（1h/周 画 1 格，按 round(h/5) 应为 0）→ 改 0 格 + 图例改为可验式「每格≈5 小时（四舍五入）」+ 加 pixel-gauge-math 断言，这是本轮唯一一处「页面功能正常但数据说谎」；⑤校验脚本自身两个假失败：把「本页无 SVG」判成失败、我在 astro 色板清单误列 #3a3b3c（C 页边框色）→「历轮反复出现的检查器 bug 伪装成内容缺陷」又多一例；⑥零位图策略让「零外链」断言第一次不需要任何白名单（前几轮必须放行 w3.org xmlns 与 react.dev 文案）；⑦局限：该技能给设计纪律不给设计素材（无色板库/组件/图模板），换风格成本比 ppt-generator 高",
+      "artifacts": [
+        "artifacts/20260925-23-sites-building-personal-homepage/ukiyo/index.html",
+        "artifacts/20260925-23-sites-building-personal-homepage/astro/index.html",
+        "artifacts/20260925-23-sites-building-personal-homepage/pixel-console/index.html",
+        "artifacts/20260925-23-sites-building-personal-homepage/styles.html",
+        "artifacts/20260925-23-sites-building-personal-homepage/scripts/check.mjs",
+        "artifacts/20260925-23-sites-building-personal-homepage/scripts/interact.mjs",
+        "artifacts/20260925-23-sites-building-personal-homepage/scripts/ledger-snapshot.json"
+      ],
+      "report": "reports/20260925-23-sites-building-personal-homepage.md"
+    },
+    {
+      "skill": "ppt-generator",
+      "scenario": "图表密集分析页（虚构内容平台「回声岛 Echo Isle」2025 年度经营分析：每风格 6 页 = KPI 四卡 / 双序列 12 月趋势折线 / 六业务线横向对比条 / 收入构成 donut / TOP8 创作者排行 / 注册→付费五级漏斗；三风格同数据同版式，全部几何从 data.json 现算。收入 Σ=3,846万、成本 Σ=3,258、五业务线 1286/864/712/603/381 加总=3,846、漏斗 2,860,000→1,543,000→401,000→188,000→52,000、排行 4820→1327 万次）",
+      "styles": [
+        "政务蓝图表件 government-blue-charts",
+        "疗愈蓝绿图表件 psych-healing-charts",
+        "霓虹像素图表件 pixel-neon-charts"
+      ],
+      "time": "2026-09-26T00:00+08:00",
+      "reason": "state.json next_candidates 的 ★ 首选项「ppt-generator × 图表密集分析页：templates/charts/ 33 张图模板 SKILL.md 正文只字未提，真用它们出图，验『SVG 图模板 → 原生可编辑图表』的距离与 charts_index.json 是否与磁盘同样不符」——22:00 轮柱状图只能手画，本轮补验",
+      "conclusion": "留用（升级为图表类汇报件首选路径）。353/353 断言绿（A 结构与按锚点估宽安全区 144 + B 零外链 18 + C 色板封闭与序列槽用满 21 + D 三风格互异 9 + E 从 data.json 现算复算 30 + F 跨风格数值一致 15 + G 台账契约 9 + H 模板血统与诚实度 33 + I PPTX 探针 60 + J 预览件与入口 11 + K 磁盘纪律 3）。核心量化答案：①charts_index.json 与磁盘完全一致（meta_total=33==目录数==条目数、引用零缺失），是 layouts_index（20 vs 13）的反例——真正缺口在 SKILL.md 正文 0 提及；②模板样例数据算术不诚实：donut 五段标注 126/100.8/72/43.2/18° 与按路径端点反推的实际扫角 [119.4,104.1,63.0,55.9,17.6] 偏差最大 +12.7°/-9.0°（加总仍=360°，只查加总的断言永远放行）；funnel 五级顶宽 600/510/420/330 是等差 −90px，与标称 100/45/18/6.5% 无比例关系——结论：模板只能继承结构常量（坐标/半径/基线/字号槽），任何编码长度或角度必须从数据现算，E 组 62 条即按公式复算；③PPTX 导出实测丢弃一切滤镜：三份 a:blur 均 0（模板 6/6 有 feGaussianBlur、pixel 封面 glow 全丢），而 a:alpha（gov 0/psych 18/pixel 30）、a:gradFill（6/6/0）、custGeom（34/份）、文本 run 逐页相等全保留、media 部件 0 → 霓虹观感在 PPTX 里必然退化，SVG 预览与 PPTX 不等效；④模板图表颜色与三个 layouts spec 色板交集为 0，必须两级换色（themes.json 序列槽 5 色×三主题，C 组断言每主题 5 个序列色全部出现且属于封闭色板）；⑤结构常量必须脚本现读不能手抄：我把 kpi 卡 x 记成 640，模板审计查出真实值 660，已改 TPL 重生成。缺陷续记：funnel 模板用 marker 箭头（技能自己的 SVG 硬约束禁止）、line/funnel 裸 opacity 属性（PPT 兼容规则禁止）、6/6 模板带 filter——技能自家图模板违反技能自家条款。我自己 7 个坑：legend「合计 3,258」与排行 4,820 标签两处真实安全区溢出（A6 按锚点估宽抓到，非误报）；T() 缺 fam 时吐字面量占位符；header() 返回 body[1:] 丢掉背景 rect；ink_dark 值写成 int 触发 TypeError；I10 阈值 sp≥50 是检查器 bug（漏斗页天然 26 形状）改逐页>0+最大≥40；正则 [^—]+ 跨行把六行百分比并成一行；float(rect.get('x')) 在背景 rect 上 None 崩。浏览器复核：gov/pixel 两页 file:// 直开计算样式正确（rgb(232,232,232)/rgb(10,12,16)、各 6 张内联 SVG、text[filter] 在 DOM、控制台零消息），面板仍 hidden 无像素级复核。未验项：其余 27 张 chart 模板、svg_quality_checker.py 黑盒、transition/notesSlide、Office 实际打开效果。报告见 reports/20260926-00-ppt-generator-charts.md。台账类断言必须写成幂等式（快照+增量==现值），初版写成「本轮风格/组合未见于台账」会在写回后自毁，已改并复跑至 353/353",
+      "artifacts": "artifacts/20260926-00-ppt-generator-charts/（479KB：svg/ 3×6=18 页 + pptx/ 3 份 51,795/52,037/51,746B + preview/ 3 页 43-46KB + styles.html + data.json + themes.json + scripts/ 全保留含 template-audit.json 与 ledger-snapshot.json）"
+    },
+    {
+      "skill": "ppt-generator",
+      "scenario": "中文商务提案（虚构「澄区智慧运管中心 IOC 建设项目」技术方案与投资建议书：封面/目录/现状与问题(4 KPI 卡+5 条事件来源横向条形，Σ=12,860)/总体架构(五层 28 模块芯片带)/实施计划与投资报价(12 月甘特 4+5+3、报价表 286+194+128=608 万、付款 30/40/25/5%、团队 13 人)/结尾(三条合作请求+联系方式)。三风格同结构同事实源，几何全部从 data.json 现算）",
+      "styles": [
+        "咨询蓝提案件 consultant",
+        "政务红立项件 gov-red",
+        "科技蓝商务提案件 tech-blue-proposal"
+      ],
+      "time": "2026-09-26T01:00+08:00",
+      "reason": "next_candidates ★「ppt-generator × 中文商务提案（未用过的 layouts：consultant/government_red/科技蓝商务…复测模板色板与 spec 交集是否为 0）」；consultant 恰是 SKILL.md 菜单列了但 layouts_index 漏标的目录，government_red/科技蓝商务在 index 里却不在 SKILL.md 菜单里——正好同时踩三份清单的错配区",
+      "conclusion": "留用（第 3 次，定位＝有官方 spec 的提案/汇报/政务件首选）。394 条断言（写回台账前 390/394，唯一失败=K 组 4 条幂等锁，写回后复跑闭合）：六页×三风格=18 页 SVG 111,008B + 3 份 6 页原生 PPTX（media=0、<a:t> 数逐页=SVG text 数、pt=px×0.75 精确）+ 3 份零外链双击预览，artifacts 516KB。核心新事实：①三份清单互斥地错——SKILL.md 菜单 8 风格 / layouts_index 20 条（磁盘 13，brand 族 10 条虚列）/ 磁盘 13 目录，且「菜单里恰好是 index 漏列的 consultant/dark_warm/cloud_orange 三个」，选风格前必须跑磁盘对账探针（spec_probe.py 已固化进流程）；②『模板∩spec=0』结论只适用于 charts 模板——三个 layout 的 5 张模板与自家 spec 交集 10/9/8 色，layouts 模板可作可信增量色板（补 spec 漏列渐变端点 #001A33/#002244/#CBD5E1），charts 模板仍必须整体换色；③SKILL.md 说 ai_ops=Dark、其 design_spec 明写 Light——冲突时以 design_spec 为准。真实缺陷 6 处：font-family 属性内双引号直接炸 XML（spec 字体栈自带引号，靠 18 页 ET.parse 全量校验兜住）、5 组越界字号(13/11/15/22/40)、gov 节号写死 03、tech_blue 付款带纵向几何撞线（改 py=y1-90 反锚定+行高由面积解出）、检查器 rx 字符串==int 恒假 + toc 页误套内容页指纹断言、我自己写的伪断言 B/kpi(2140*6>12860 恰假)——教训：『看不出错了会怎样的断言一律不写』。新坑：hidden 面板下 getBoundingClientRect 类强制布局 evaluate_script 100% 超时（纯 DOM 读可用），真实视口溢出改由 D 组锚点估宽 3,111 text 静态兜底。报告 reports/20260926-01-ppt-generator-proposal.md",
+      "artifacts": [
+        "artifacts/20260926-01-ppt-generator-proposal"
+      ]
+    },
+    {
+      "skill": "graphic-gif",
+      "time": "2026-09-26T02:00+08:00",
+      "scenario": "动效营销横幅（GIF，800×800·3s@12fps·36帧·无限循环）：虚构活动「发光跑 GLOW RUN 3」，三张共享同一 facts.json",
+      "styles": [
+        "云白板计数 clean-slate-gif",
+        "磷绿终端打字 terminal-gif",
+        "黄黑硬框跑马灯 brutalist-gif"
+      ],
+      "reason": "本机最后一个未试的页面级动效技能；tried 无此组合；场景（动图横幅）此前 12 轮未做",
+      "conclusion": "留用（限定场景：社媒/营销动图资产）。契约无资产（references 两本+export-gif.sh 全缺，同 vercel 轮失效模式）；抓到规则6×一次性动画终值缺陷（末帧到不了目标值，烘焙 92%+hold 修复）；GIF 厘秒粒度 12fps→12.5fps；ch 打字术仅等宽成立；155 断言（A 组 74 条=技能规则整段机检）",
+      "artifacts": "artifacts/20260926-02-graphic-gif-banner/（≈3.1MB：3 html + 3 gif 2.5MB + styles.html + samples 9png + scripts 4件 + metrics 3件）",
+      "report": "reports/20260926-02-graphic-gif-banner.md"
+    },
+    {
+      "skill": "build-game 1.2.0（第 1 次使用，~/.qoder-cn/skills/build-game，上游 openclaw/skills owner kewang0622，reference/ 6 篇 + scripts/serve.sh 资产完整）",
+      "scenario": "3D 塔防（哨站 TOWERLINE）：12×8 格 + S 形走廊 + 3 塔（弩炮 60/霜环 85/熔炉 125）+ 4 敌（runner/brute/swift/titan）+ 10 波 + 起始金 220/生命 20 + 拆塔返还 70% + localStorage 存档 + 标题/胜利/失败三屏；三风格共用同一引擎与关卡，只有 themes.js 主题对象不同",
+      "styles": [
+        "日光苔原 sunlit-moss",
+        "曜岩熔脉 obsidian-lava",
+        "极冠晶塔 arctic-glass"
+      ],
+      "reason": "tried 无此组合；本机最后一个未用的前端产物型技能，也是唯一能产出可玩 WebGL 应用的；第一问「WebGL 在 headless/hidden 面板下的可渲染性」已由 12 张真帧 + 220 条断言回答",
+      "conclusion": "留用（3D/游戏化交互产物唯一路径）。两条技能文档常数在真实渲染下是错的：①graphics-quality.md 的后期链缺 OutputPass ⇒ 成品比修复版暗 3–6 倍（消融实测 文档链 15.06/brightPct 0 vs +OutputPass 65.95/80.40；游戏内三风格比值 0.306/0.247/0.163）；②SSAO 写死 16/0.005/0.1 在技能自己建议的正交顶视机位（near .1/far 2000）下整帧纯黑，按深度缩到 2/2e-4/4e-3 才可见、但一个像素都不改变（121.71 vs 121.71）且多花 1.59× 三角面——合规但无收益，两条方向式断言已钉住。真实缺陷 7 处：themes.js 模块作用域引用未导入的 THREE（白屏零日志）、对象池 Mesh 与数据记录混用、isOnPath 拿格坐标比世界折线（96 格里 53 格误判成路径、左半场一格建不了）、pathMesh.scale.y 连 y 偏移一起压把路面埋进底板、索敌用三维距离使视觉走路抖动经 theme.seed 泄漏进玩法（F 组跨风格等价当场抓住，改 xzDist 后三风格 400 秒全通逐字段相等）、曜岩夜景 meanLuma 18.68/darkPct 51.38、lives 扣成 -1",
+      "artifacts": "artifacts/20260926-03-build-game-tower-defense/（6.0MB：3 离线单文件 756,500/756,502/756,501B + cdn/ 三形态 75,5xxB + index.html 对照入口 + previews/ 12 PNG + src/ 4 件 + scripts/ 10 件含 check-result.json 220 条逐条结果）",
+      "report": "reports/20260926-03-build-game-tower-defense.md"
+    }
+  ],
+  "skills_seen": [
+    {
+      "name": "vercel-react-best-practices",
+      "source": "用户 2026-09-25 15 时段装入 ~/.qoder-cn/skills/（上游 vercel-labs/agent-skills）",
+      "path": "/Users/apple/.qoder-cn/skills/vercel-react-best-practices/SKILL.md",
+      "status": "已用于 17:00 管理后台、18:00 落地页、19:00 定价页、20:00 活动报名页，四轮均留用。纯性能规范、零视觉主张，多风格任务必须另配设计主张型技能；内容型页面（无取数）上 async-* 5 条 + server-* 7 条 + client-swr 全清零——20:00 已在「Vite SPA + 零依赖 mock 服务端」上攻坚：async-* 落地 4/5（服务端 hrtime 到达窗口为证据）、server-* 等价落地 4 条（single-flight/LRU/after/设备鉴权）、client-swr-dedup 手写等价物可断言；剩余只有 RSC 专属 3 条（须 Next.js）与 async-dependencies（须部分依赖扇出形态）。关键补法：同一份源码跑两种构建（lib-IIFE 单文件 + split 保留 chunk 边界），可把 bundle-dynamic-imports/conditional/preload 从「被单文件抵消」变成「可断言」——19:00 实测按需部分占首包 1.2%，20:00 占 0.5%。缺陷：安装目录只有 SKILL.md，文中引用的 rules/*.md 与 AGENTS.md 均不存在，57 条只有一行摘要可用"
+    },
+    {
+      "name": "sites:sites-building",
+      "source": "Qoder 内置插件 qoder.sites",
+      "path": "/Applications/Qoder CN.app/Contents/Resources/extensions/qoder.sites/cli/sites/skills/sites-building/SKILL.md",
+      "status": "已用于 14:00 落地页、15:00 仪表盘、19:00 定价页（与 vercel 叠加）、23:00 个人主页，四次均留用。属「设计主张型 + 设计纪律型」：无色板库/组件/图模板，三种风格全靠现写（本轮三页 37,928 字符）；Simple site 路径（单路由、无持久数据、无鉴权、无外部服务）= 纯 HTML/CSS/JS、零构建、零依赖、单文件 14-16KB，是内容型单页当前最优解；references 里 Capability 五篇 50,529B 与 Simple site 无关（只用到 visual-design 4,181B + static-site 4,678B）；「Polished 不授权额外路由/表单/搜索/分享/鉴权/持久化」是全实验室唯一能把产物做小的条款，与 vercel 系列取向相反，叠加时必须先定谁让步"
+    },
+    {
+      "name": "frontend-development",
+      "source": "用户于 2026-09-25 15 时段前后装入 ~/.qoder-cn/skills/",
+      "path": "/Users/apple/.qoder-cn/skills/frontend-development/SKILL.md",
+      "status": "已用于 16:00 数据报表并留用：规范有效但 React 条款占七成、Vue 3 章节仅 60 行且无报表/路由细节；不建议单独承担「多风格」任务"
+    },
+    {
+      "name": "vercel-react-best-practices",
+      "source": "用户于 2026-09-25 15 时段装入 ~/.qoder-cn/skills/",
+      "status": "已于 17:00 / 18:00 / 19:00 / 20:00 四轮使用并留用（管理后台 / 落地页 / 定价页 / 活动报名页），不再是候选"
+    },
+    {
+      "name": "qoder-canvas:canvas",
+      "source": "Qoder 内置插件 qoder.canvas",
+      "path": "/Applications/Qoder CN.app/Contents/Resources/extensions/qoder.canvas/cli/canvas/skills/canvas/SKILL.md",
+      "status": "暂缓：产物为 .canvas.tsx 只在 IDE 面板渲染，不落盘为可独立打开的页面；且文档限定仅斜杠命令调用"
+    },
+    {
+      "name": "ui-designer",
+      "source": "Qoder 扩展市场（publisher: daymade）",
+      "id": "official86382844",
+      "status": "未安装：install_extension 要求用户确认（用户偏好亦为逐项确认），定时无人值守运行不得安装"
+    },
+    {
+      "name": "diegosouzapw-ui-ux-pro-max-corsal2025",
+      "source": "Qoder 扩展市场（VueUI设计，50 风格/21 调色板/50 字体配对/9 框架栈）",
+      "id": "official_mAVyCiL7",
+      "status": "未安装：同上；适合风格横评，优先待授权尝试"
+    },
+    {
+      "name": "diegosouzapw-ui-ux-intelligence-expert",
+      "source": "Qoder 扩展市场（UI设计，67 风格/96 配色/57 字体搭配/99 UX 指南）",
+      "id": "official_kgmrEas7",
+      "status": "未安装：同上"
+    },
+    {
+      "name": "realtime-dashboard / dicklesworthstone-kpi-dashboard-template / diegosouzapw-aibi-dashboards / pm-dashboard / chatandbuild-dashboard-create-screen 等 9 个",
+      "source": "Qoder 扩展市场，关键词 dashboard 检索结果",
+      "status": "全部 installed:false，需用户确认安装，暂不可用于定时任务"
+    },
+    {
+      "name": "ibelick/ui-skills",
+      "source": "GitHub / skills.sh",
+      "status": "不可达：raw.githubusercontent.com 与 www.skills.sh 均连接被重置（14:00、15:00、16:00 三次复测）"
+    },
+    {
+      "name": "BuilderIO/agent-native",
+      "source": "skills.sh（14 skills）",
+      "status": "不可达：同上网络限制"
+    },
+    {
+      "name": "design-anti-slop",
+      "source": "tool.lu 技能聚合站",
+      "status": "不可达：同上网络限制"
+    },
+    {
+      "name": "Gitee giteesunc/agent-work-record @skill 分支",
+      "source": "skill_ctl.py list（32 个技能包）",
+      "status": "无前端页面构建类技能，本轮排除"
+    },
+    {
+      "name": "本机其他候选（未试）",
+      "source": "~/.qoder-cn/skills/",
+      "status": "golang-gin-api / nodejs-best-practices / SQLite-Database-Expert / express-nodejs-expert / golang-testing / sec-audit-cn —— 均为后端类，不做「前端页面」验证；若改场景为「前后端联调页」可考虑"
+    },
+    {
+      "name": "drafter",
+      "source": "用户 2026-09-25 17:23 装入 ~/.qoder-cn/skills/drafter（.skill-metadata.yaml 标 category: design-ui、version 1.0.0，未给上游仓库链接）",
+      "path": "/Users/apple/.qoder-cn/skills/drafter/SKILL.md",
+      "status": "已用于 21:00 架构说明页并留用（限定场景）。产物=单个自包含 HTML（内联 <style> + 系统字体 + 禁 CDN），零依赖零构建，15-17KB/页，双击即开 —— 收尾成本本轮为 0。独有优点：视觉条款可机检（无阴影/无渐变/无模糊/按钮无圆角/1-2px 实线/system-ui+等宽/:root 令牌齐备/语义色≤1），能整段转成回归断言。短板：①只有一种视觉声音，做深色或印刷件必须显式偏离它给死的 :root 令牌块与 max-width:1200 单栏图纸；②「只返回 HTML、不要 markdown 代码块」的输出契约假定产物直进对话，落盘/校验/推送都在技能外；③无交互、无多页/路由条款；④无中文行高与密集表格话术。适合汇报配图、文档配图、一页规格件；不适合产品页与风格横评。"
+    },
+    {
+      "name": "ppt-generator",
+      "source": "用户 2026-09-25 19:06 装入 ~/.qoder-cn/skills/ppt-generator（SVG-based PPT generator，ppt-master-assets 2.1MB：13 个 layouts + 33 张 charts + icons 索引 + svg_to_pptx/svg_finalize 脚本）",
+      "path": "/Users/apple/.qoder-cn/skills/ppt-generator/SKILL.md",
+      "status": "已用于 22:00 演示汇报页并留用（限定场景：需交付 PPT/汇报稿）。独有优点：第一个自带可机检风格系统的技能（design_spec.md 给色板/字级/安全区/页面结构/签名构件/SVG 硬约束，A/C/D 三组 86 条断言全部来自它），且导出真是可编辑原生 DrawingML（零 media、文本逐页保真、px→pt 精确 0.75、渐变/分组/自由形/文本对齐全转换）。硬伤：SKILL.md 与磁盘资产大面积不一致（假 sys.path、index 20 vs 实际 13、菜单漏 5 套、charts/ 与 icons/ 与另一套质量脚本均未提及）、sorted(glob) 页序缺陷、spec 色板与自家模板互相不认。用法要点：色板取「spec ∪ 模板」两级、字号取 spec 下限、页序显式列表、图标当不存在（离线不可靠）｜09-26 00:00 图表密集分析页第 2 次使用仍留用并升级为图表类汇报件首选。新增事实：①charts_index.json 与磁盘 33 张完全一致（layouts_index 的反例），缺口只是 SKILL.md 正文 0 提及；②模板样例数据算术不诚实——donut 标注角与路径端点反推差最大 +12.7°（加总仍 360°，加总断言查不出）、funnel 顶宽是等差 −90px 与标称百分比无关 → 正确姿势=只继承结构常量、编码几何一律从数据现算；③svg_to_pptx 实测丢弃一切 filter（三份 pptx a:blur=0，pixel 霓虹 glow 全丢），alpha/gradFill/custGeom/文本 run 全保留、media 仍 0 → SVG 预览与 PPTX 不等效；④模板颜色与 layouts spec 色板交集 0，序列色必须走 themes.json 槽位两级换色；⑤技能自家 charts 模板违反自家 SKILL.md 条款（funnel 用 marker、line/funnel 裸 opacity、6/6 带 filter）。用法要点追加：模板骨架常量用脚本现读（kpi 卡真实 x=660 而非 640）、结构安全区断言（按 text-anchor 估宽）能抓真实溢出不必怀疑误报｜09-26 01:00 商务提案件中第 3 次使用仍留用。新增事实：①三份清单互斥地错——SKILL.md 菜单 8 风格(恰含 index 漏列的 consultant/dark_warm/cloud_orange)、layouts_index 20 条(brand 族 10 条虚列)、磁盘 13 目录(科技蓝商务为中文目录名需映射)，选风格必须先跑磁盘对账；②『模板∩spec=0』只对 charts 模板成立，layout 的 5 张模板与自家 spec 交集 10/9/8 色=可信增量色板；③SKILL.md 说 ai_ops Dark、其 design_spec 写 Light，冲突以 spec 为准；④字体栈带双引号会炸 XML font-family 属性，必须规范化；⑤字号允许集=spec 字级表端点∪模板 SVG 实测 font-size，产物必须做集合断言。五件套 spec_probe/generate/build_preview/export_pptx/check 全程分钟级，收尾成本仍近 0"
+    },
+    {
+      "name": "ascii-project-dashboard",
+      "source": "用户 2026-09-25 17:36 装入 ~/.qoder-cn/skills/ascii-project-dashboard（仅一个 7,810B 的 SKILL.md，无脚本无资产）",
+      "path": "/Users/apple/.qoder-cn/skills/ascii-project-dashboard/SKILL.md",
+      "status": "排除，不占用轮次（23:00 轮开工前读毕全文）：applyTo 为 **/*plan*,**/*roadmap*,**/*tracker*,**/*dashboard*，全文只规定 ▓░ 十格进度条 / Markdown 表格 / ●──○ 时间线 / emoji 状态位，卖点恰是「no rendering, works in any editor, terminal, email, Slack」，不产出可双击打开的页面，与实验室「artifacts 只留可直接打开预览的页面产物」硬约束冲突。两个可移植点已被本轮吸收：「不得硬编码派生值，必须从计数算出」→ 转成 E 组 pixel-gauge-math 断言；emoji 状态位在暗底页面上不可控，实验室仍用 CSS/SVG 表达状态"
+    },
+    {
+      "name": "graphic-gif",
+      "source": "用户 2026-09-25 19:37 装入 ~/.qoder-cn/skills/（author OpenDirectory v1.0.0）",
+      "path": "~/.qoder-cn/skills/graphic-gif/SKILL.md",
+      "status": "已用于 02:00 动效横幅并留用（限定场景）。规则可机检度全实验室前三（A组74条）；但 references/animation-library.md、references/style-presets.md、scripts/export-gif.sh 三资产全缺，导出链路须自带（本轮沉淀 capture-encode.mjs：playwright-core@1.48.2 + 缓存 chromium-1148 + gifenc，npmmirror 1 分钟装完）；风格 token 需按 SKILL.md 线索重建；规则6×线性一次性动画有终值缺陷（末帧永不到目标），修式=keyframes 92% 到顶+hold；Kling 路径未验（无 KLING_API_KEY）"
+    },
+    {
+      "name": "build-game",
+      "source": "用户 2026-09-25 23:32 装入 ~/.qoder-cn/skills/（上游 github.com/openclaw/skills，owner kewang0622，v1.2.0；带 reference/ 6 篇 + scripts/serve.sh）",
+      "path": "~/.qoder-cn/skills/build-game/SKILL.md",
+      "status": "已用于 03:00 轮 3D 塔防，留用。资产完整（6 篇 reference 全在盘，与 graphic-gif/vercel 轮「契约无资产」相反，是判断技能可用性的先验检查项）。27 段工程结构 + 图形硬指标 + 单文件交付全部可机检；bundle sha1 三风格全等证明多主题同构做到字节级。两条文档常数不可照抄（缺 OutputPass、SSAO 参数按正交机位会黑屏）。它默认把工作目录写在 /tmp/game-build，与实验室产物落盘纪律冲突，须改路。未验：Phase 0 迭代回路、serve.sh、procedural-assets 贴图上限、移动端触控、帧率预算"
+    }
+  ],
+  "runs": [
+    {
+      "time": "2026-09-25T14:00+08:00",
+      "skill": "sites:sites-building",
+      "scenario": "落地页",
+      "result": "success",
+      "artifact_size": "72KB",
+      "cleanup": "已删 .tmp 与 /tmp 日志；无 node_modules/lock/构建缓存；自建 http.server PID 34045 已核对命令行后 kill，端口已关"
+    },
+    {
+      "time": "2026-09-25T15:00+08:00",
+      "skill": "sites:sites-building",
+      "scenario": "仪表盘",
+      "result": "success",
+      "artifact_size": "100KB（单页 30-31KB）",
+      "cleanup": "已删 .tmp（临时替换脚本 + 两份临时 CSS）与 /tmp 两个服务日志；无 node_modules/lock/构建缓存；PID 39831 与 40996 均先 ps 核对命令行再 kill，端口已关；实验室合计 192KB"
+    },
+    {
+      "time": "2026-09-25T16:00+08:00",
+      "skill": "frontend-development",
+      "scenario": "数据报表",
+      "result": "success",
+      "artifact_size": "552KB（3 页双击版各 114KB + 源码 128KB + 配置/lock）",
+      "cleanup": "删 node_modules 75MB、dist/、.single/、.preview.log、.tmp/{probe,single,kh,inline.mjs}；8098/8099 两个 http.server 已按端口 PID 核对后 kill；check-consistency.mjs 内容已抄进 reports 文档后再删临时目录；实验室合计约 740KB，单场景 552KB ≪ 50MB",
+      "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（HTTPS 被 TLS 重置，改走 ssh.github.com:443 + 127.0.0.1:7897 代理；空仓库首推，无 token 出现在命令中）"
+    },
+    {
+      "time": "2026-09-25T17:00+08:00",
+      "skill": "vercel-react-best-practices",
+      "scenario": "管理后台",
+      "result": "success",
+      "artifact_size": "980KB（3 页各 248KB + 源码 92KB + 校验脚本 28KB + 配置）",
+      "cleanup": "删 node_modules 102MB（含临时 --no-save 的 jsdom）+ dist/ + .npm-install.log + .jsdom.log；8123 端口 python3 -m http.server 先 ps 核对命令行再 kill，端口已关；实验室合计约 1.7MB，单场景 980KB ≪ 50MB",
+      "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 1c51e57，走 ssh.github.com:443；known_hosts 写在本机 .tmp/kh，命令与文件均无 token）"
+    },
+    {
+      "time": "2026-09-25T18:00+08:00",
+      "skill": "vercel-react-best-practices",
+      "scenario": "落地页",
+      "result": "success",
+      "artifact_size": "1.0MB（3 页各 255-260KB + 源码 108KB + 校验脚本 32KB + 对照页与配置）",
+      "cleanup": "删 node_modules 102MB + dist/shiguang.js 240KB + .npm-install.log + .cs-server.log；8128 端口 python3 -m http.server 先 ps 核对命令行再按 PID kill，端口确认关闭；校验脚本全部保留未删；实验室合计约 3.9MB，单场景 1.0MB ≪ 50MB",
+      "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 3201f25，fedb91e..3201f25；走 ssh.github.com:443，known_hosts 写在实验室 .tmp/kh，命令与文件均无 token）"
+    },
+    {
+      "time": "2026-09-25T19:00+08:00",
+      "skill": "vercel-react-best-practices + sites:sites-building（叠加）",
+      "scenario": "定价页",
+      "result": "success",
+      "artifact_size": "1.1MB（3 页各 276,091/276,448/276,540 字节双击可用 + styles.html 对照入口 + 源码 140KB + 校验脚本 52KB + 配置与 lock）",
+      "cleanup": "删 node_modules 102MB + dist/songta.js(252,795B) + dist-split/ + .build.log + .npm-install.log；8131 端口 python3 -m http.server 先 ps 核对命令行（PID 15442）再 kill，端口确认关闭；删 /tmp/lab-8131.log；校验脚本 inline.mjs / pricing-check / jsdom-check / style-check / verify.sh 全部保留未删（故无需转录进文档）；实验室合计 5.6MB，单场景 1.1MB ≪ 50MB",
+      "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 3833e6d，1da8a14..3833e6d；本机 HTTPS 被 TLS 重置故走 SSH，实际经 ssh.github.com:443，主机键写入实验室 .tmp/known_hosts 后即删除；命令与文件里无任何 token，已 grep 复核 .npmrc 只有 registry 地址）"
+    },
+    {
+      "time": "2026-09-25T20:00+08:00",
+      "skill": "vercel-react-best-practices",
+      "scenario": "活动营销/报名页",
+      "result": "success",
+      "artifact_size": "1.0MB（3 页各 265,274/265,610/266,379 字节双击可用 + styles.html 对照入口 + src + scripts 校验脚本全保留 + server/mock-api.mjs + 配置与 lock）",
+      "cleanup": "删 node_modules 102MB + dist/ + dist-split/ + .tmp/（esbuild 预打包产物）+ .npm-install.log；8141 端口 mock-api 服务先 ps 核对命令行（PID 31327，本任务自起）再 kill，lsof 确认端口释放；校验脚本未删（故无需转录进文档）；单场景 1.0MB ≪ 50MB",
+      "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 644fa74，01e0922..644fa74；本机 HTTPS 被 TLS 重置故走 SSH，实际经 ssh.github.com:443，主机键写入实验室 .tmp/known_hosts 后即删；命令与文件里无任何 token，.npmrc 只有 registry 地址，grep 复核过新增文件）"
+    },
+    {
+      "time": "2026-09-25T21:00+08:00",
+      "skill": "drafter",
+      "scenario": "架构说明页",
+      "result": "success",
+      "artifact_size": "72KB（三页 17,304 / 15,401 / 16,468 字节 + styles.html 6,453 字节 + scripts/check.mjs 9,221 字节 + scripts/ledger-snapshot.json 302 字节，全部保留）",
+      "cleanup": "本轮无 node_modules、无 dist、无 .tmp 脚本：只删了 /tmp/lab-8151.log（http.server 日志）并 kill 8151 端口服务（先 ps 核对命令行确认 PID 36541 是本任务自起的 python3 -m http.server 再 kill，lsof 确认端口已释放）。校验脚本 scripts/check.mjs 保留未删（故无需转录进报告）。实验室总量约 7.9MB，单场景 72KB ≪ 50MB。",
+      "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 3a126e3，5de329c..3a126e3；本机 HTTPS 被 TLS 重置故走 SSH，实际经 ssh.github.com:443，主机键写入实验室 .tmp/known_hosts 后随 .tmp 一并删除；命令与文件里无任何 token，已 grep 复核本轮新增/修改文件无密钥样式）"
+    },
+    {
+      "time": "2026-09-25T22:00+08:00",
+      "skill": "ppt-generator",
+      "scenario": "演示汇报页",
+      "result": "success",
+      "artifact_size": "504KB（svg 64,708B + 6 份 pptx 275,376B + preview 3 页 74,541B + styles.html 3,066B + scripts 37,322B）",
+      "cleanup": "已删 .tmp/pylibs 32MB 与 .tmp/pipprobe 10MB wheel 缓存；无 node_modules/dist/构建缓存；本轮未起 http.server（预览走 file://），无 /tmp 日志；技能目录零写入（未跑 download_icons）；无临时脚本待删（check/export/build_preview/probe 全部保留在 artifacts/.../scripts/）",
+      "push": "已推送 origin/main（f422ac8..f65eb61，走 SSH git@github.com:sunc-Q/frontend-skill.git，~/.ssh/known_hosts 已有主机键故未再用 .tmp/known_hosts；本轮 .tmp 已整体删除）"
+    },
+    {
+      "time": "2026-09-25T23:00+08:00",
+      "skill": "sites:sites-building",
+      "scenario": "个人主页",
+      "result": "success",
+      "artifact_size": "80KB（三页 13,705/15,914/14,329 字节 + styles.html 5,116 字节 + scripts/check.mjs 15,036 字节 + interact.mjs 3,288 字节 + ledger-snapshot.json 1,375 字节；断言 219+24 全绿）",
+      "cleanup": "本轮零中间产物：无 node_modules、无 dist、无 pip 包、无构建缓存、未起 http.server（三页走 file://）、/tmp 零写入；技能目录零写入（只读 SKILL.md 与 references/）；全盘探测 node_modules|dist|*.log|.tmp|__pycache__ 结果为空；实验室合计 9.1MB，单场景 80KB ≪ 50MB",
+      "push": "已提交并推送：git@github.com:sunc-Q/frontend-skill.git main 分支 9f91623..480b667（SSH，known_hosts 写 LAB/.tmp 后即删；命令与文件零 token）。提交物=三页 + styles.html + 两个校验脚本 + 台账快照 + report + work-log 行 + state 台账"
+    },
+    {
+      "time": "2026-09-26T00:00+08:00",
+      "skill": "ppt-generator",
+      "scenario": "图表密集分析页",
+      "result": "success",
+      "assertions": "353/353 全绿（scripts/check.py，A–K 十一组；写回台账前后各跑一次均全绿）",
+      "artifact_size": "479KB（490,790B，限额 50MB）",
+      "cleanup": "已删 .tmp/pylibs + .tmp/pipprobe（43MB pip 隔离安装与 wheel 缓存）；无 node_modules/dist/构建缓存；未起 http.server（预览走 file://）；技能目录零写入（find ~/.qoder-cn/skills/ppt-generator -newer 判空）；artifacts 仅保留可直接打开产物（svg/pptx/preview/styles.html）与全部脚本",
+      "push": "已提交并推送：git@github.com:sunc-Q/frontend-skill.git main 分支 816a5f9..6cc0301（SSH 经 ssh.github.com:443，known_hosts 写 LAB/.tmp 后即删；命令与文件零 token）。提交物=18 页 SVG + 3 份 PPTX + 3 份预览 + styles.html + data.json/themes.json + scripts 全套（generate/template_audit/check/export_pptx/build_preview + template-audit.json + export-result.json + ledger-snapshot.json）+ report + work-log 行 + state 台账（38 文件，3957 插入）"
+    },
+    {
+      "time": "2026-09-26T01:00+08:00",
+      "skill": "ppt-generator",
+      "scenario": "中文商务提案",
+      "result": "success",
+      "assertions": "394 条（写回前 390/394，K 组 4 条为台账幂等锁，写回后复跑闭合）",
+      "artifact_size": "516KB（SVG 111,008B/18 页 + PPTX 3×~50KB + 预览 3×36-44.5KB + 脚本数据），限额 50MB",
+      "cleanup": "已删 .tmp/pylibs + .tmp/pipcache（43MB pip 隔离安装与缓存）；无 node_modules/dist/构建缓存；技能目录零写入；artifacts 仅保留可直接打开产物与全部复现脚本",
+      "push": "已提交并推送：git@github.com:sunc-Q/frontend-skill.git main 分支 f85e53c..a296420（SSH 经 ssh.github.com:443，known_hosts 写 LAB/.tmp 即删；命令与文件零 token）。提交物=18 页 SVG + 3 份 PPTX + 3 份预览 + styles.html + data.json + 五件套脚本与三份 JSON 测量 + report + work-log 行 + state 台账（37 文件）；随后补记本条推送结果"
+    },
+    {
+      "time": "2026-09-26T02:00+08:00",
+      "skill": "graphic-gif",
+      "scenario": "动效营销横幅（GIF）",
+      "result": "success",
+      "assertions": "155 条（写回前 149/155，F 组 6 条台账幂等锁写回后闭合）",
+      "artifact_size": "3.1MB（GIF 合计 2.5MB，限额 50MB）",
+      "cleanup": "删 LAB/.tmp（node_modules 12MB + probe 装置）；无 dist/构建缓存；未起 http.server；技能目录零写入",
+      "push": "已推送 8881e05..c875912 main（SSH via ssh.github.com:443）"
+    },
+    {
+      "time": "2026-09-26T03:00+08:00",
+      "skill": "build-game",
+      "scenario": "3D 塔防（哨站 TOWERLINE）",
+      "result": "success",
+      "assertions": "220 条（写回前 213/220，7 条失败全在 G 组台账幂等锁，写回后闭合）",
+      "artifact_size": "6.0MB（限额 50MB；单文件 756KB < 1MB 上限已由 J 组断言）",
+      "cleanup": "删 LAB/.tmp（build/node_modules 56MB + 13 个探针脚本，内容已抄进报告 §9）与 /tmp 临时 PNG；无 dist/构建缓存留在场景目录；未起 http.server；技能目录零写入",
+      "push": "待推送"
+    }
+  ],
+  "next_candidates": [
+    "★ build-game × 第三人称动作/RPG（验 game-systems.md 的状态机/对话/任务系统；把本轮 pass.label + material.type + getHex(SRGBColorSpace) 三件取证配方直接移植过去，避免重踩压缩后类名与线性色空间）",
+    "★ build-game × 参考图驱动（SKILL.md 宣称支持 reference images，本轮未用；第一问=位图如何被转成程序化材质，以及能否断言「参考图的色板出现在产物里」）",
+    "★ 把 H/contrast（帧 σ>30 且 mid%>10）+ H/exposureEnds（clipped/dark<10）两条式子移植回 graphic-gif 与 ppt-generator 轮做横检：本轮极冠首版 meanLuma 216.8/σ23 整屏泛白只有这条式子抓得到，历轮 GIF/PPT 同样有「亮但糊」的风险",
+    "★ build-game × 性能预算档（本轮只记 draw call/triangles，未做帧率与 GC 断言；SSAO 已被证明「1.59× 三角面换 0 像素变化」，正好用来测技能自带的性能条款是否允许直接删 pass）",
+    "★ graphic-gif × fade-in/slide-in 两型补全 + 把「末帧终值==目标值」式子移植回 15:00/20:00 轮的 CSS 动画场景横检",
+    "graphic-gif × 邮件横幅（<500KB 预算档，技能 Step6 的 email 预算从未压测；filesize 优化档 + gifsicle 缺位下的体积上限）",
+    "★ ppt-generator × 图表模板诚实度横筛（剩余 27 张 chart 模板，标注 vs 端点反推式子自动化）",
+    "★ ppt-generator × dark_warm 暖色商务提案（SKILL.md 菜单默认风格、index 漏列）",
+    "ppt-generator × charts_index bestFor/avoidFor 选图决策断言",
+    "ppt-generator × svg_quality_checker.py/batch_validate.py 黑盒对垒",
+    "★ 三条式子（色板封闭+七指纹+零交集）移植回 14/16/17/18 轮历史产物横检",
+    "★ sites:sites-building × 多页站点（references/static-site.md 静态导出与 SPA 路由条款至今未验）",
+    "三技能叠加 sites-building+vercel-react+drafter：反膨胀条款 vs 分包懒加载条款是否互斥",
+    "vercel-react × 真 Next.js 工程吃 RSC 专属 server-*（3 条）",
+    "跨技能：graphic-gif 产出的 GIF 作为 sites-building 落地页素材（动图入静态站，验证两技能产物互喂）",
+    "ppt-generator × charts_index.json 的 bestFor/avoidFor 选图决策：33 条目带适用/回避场景描述，本轮未验——给同一份数据故意配错图型（如漏斗数据画 donut），断言技能文档能否让 Agent 事后指出错配（选图条款第一次可测）",
+    "ppt-generator × svg_quality_checker.py / batch_validate.py 黑盒：22:00 轮记的「另一套未接线的质量脚本」，把它当第三方 linter 跑本轮 18 页 SVG，对照 check.py 的 350 条看谁抓到更多（验技能自带 QA 与自研 QA 的覆盖差）",
+    "三技能叠加 sites-building（定形+反膨胀）+ vercel-react（定码）+ drafter（定图）：验 F 组「不许加分包以外的功能」与 vercel「鼓励分包/懒加载」是否互斥；19:00 轮的先例是先解控制流冲突再叠加",
+    "sites:sites-building × 活动报名页（与 20:00 React 轮同场景零框架对照，本轮 15KB 已可作为成本基线）",
+    "vercel-react-best-practices × 真 Next.js 工程（server-serialization / server-dedup-props / React.cache 本体与流式 SSR 形态的 suspense-boundaries 只有 Next.js 能验；npmmirror 可装 next，需先确认 Node 22 兼容与构建时长配额）",
+    "★ vercel-react-best-practices × 真 Next.js 工程：server-* 剩余 3 条 RSC 专属（server-serialization / server-dedup-props / React.cache 本体）与流式 SSR 形态的 suspense-boundaries 只有 Next.js 能验；npmmirror 可装 next，但需先确认 Node 22 兼容与构建时长配额",
+    "★ vercel-react-best-practices × 「部分依赖扇出」数据形态（如列表返回 ids 后逐项取详情）：async-dependencies（better-all）是唯一还没落地的 async 条款，别为它凑题，等自然场景",
+    "sites:sites-building × 活动报名页（与 20:00 轮同场景零框架对照：同一张活动页，内置技能单文件 vs React+mock 服务端的成本/能力差）",
+    "frontend-development × 管理后台（同场景换 skill，与 17:00 那轮正面对照：同一后台谁给的条款更可落地）",
+    "（需用户授权）市场技能 ui-ux-pro-max × 数据报表",
+    "drafter × 单张长链流程图/时序图（技能主场未测点：连接线在 12+ 节点、直角折线与跨行虚线下的可读性与塌陷风险；产物仍应 15-20KB）",
+    "drafter + 规范型技能叠加 × 数据看板（测「主张型定形 + 规范型定码」配方在纯静态图纸上是否仍互补，且能否把 C 组视觉断言与 bundle 断言并成一套）",
+    "ascii-project-dashboard × 项目进度看板（~/.qoder-cn/skills/，用户 17:36 装入；纯 ASCII 看板，可顺带对照本实验室 work-log 的真实形态）",
+    "★ vercel-react-best-practices × 真 Next.js 工程：server-* 剩余 3 条 RSC 专属（server-serialization / server-dedup-props / React.cache 本体）与流式 SSR 形态的 suspense-boundaries 只有 Next.js 能验；npmmirror 可装 next，但需先确认 Node 22 兼容与构建时长配额",
+    "★ vercel-react-best-practices × 「部分依赖扇出」数据形态（列表返回 ids 后逐项取详情）：async-dependencies（better-all）是唯一还没落地的 async 条款，别为它凑题，等自然场景",
+    "sites:sites-building × 活动报名页（与 20:00 轮同场景零框架对照：同一张活动页，内置技能单文件 vs React+mock 服务端的成本/能力差）",
+    "frontend-development × 管理后台（同场景换 skill，与 17:00 那轮正面对照：同一后台谁给的条款更可落地）",
+    "drafter × 单张长链流程图/时序图（12+ 节点下连接线可读性与塌陷风险；产物仍应 15-20KB）",
+    "drafter + 规范型技能叠加 × 数据看板（测「主张型定形 + 规范型定码」在纯静态图纸上是否仍互补，能否把视觉断言与 bundle 断言并成一套）",
+    "（备查·跨技能条款冲突）js-early-exit vs frontend-development「禁早期 return」→ 已定规则：控制流允许早退，渲染输出一律三元 + 显式空态（18:00 报告 §10；叠加两技能时必须先解冲突）",
+    "（需用户授权）市场技能 ui-ux-pro-max × 数据报表"
+  ],
+  "used_styles": [
     "瑞士极简",
     "玻璃极光",
-    "新粗野主义"
-   ],
-   "time": "2026-09-25T14:00+08:00",
-   "reason": "内置技能，唯一可在无网络安装、无用户确认前提下走通的页面构建路径；Simple site 分支零依赖零构建",
-   "conclusion": "留用。产物 72KB/4 文件全自包含，本地预览校验通过；发现并修复共用 Markdown 渲染器的引用行分支缺陷（esc 先行导致 /^>/ 永不匹配）",
-   "artifacts": "artifacts/20260925-14-sites-building-landing-page/",
-   "report": "reports/20260925-14-sites-building-landing-page.md"
-  },
-  {
-   "skill": "sites:sites-building",
-   "scenario": "仪表盘（订阅收入看板，working surface）",
-   "styles": [
+    "新粗野主义",
     "深色密集分析",
     "报纸排版",
-    "复古终端"
-   ],
-   "time": "2026-09-25T15:00+08:00",
-   "reason": "台账排队项；市场 9 个仪表盘技能全部未安装且 install_extension 强制用户确认，GitHub/skills.sh 仍不可达，故沿用唯一可自主调用的内置技能换新场景",
-   "conclusion": "继续留用。同一 DOM + 逐字节相同的 JS 换三套 CSS 即得三种成立风格；交互（范围/区域/排序/搜索/悬停读数）实测生效。自查修复 3 处：JS 语法错误致整页空白（vm.Script 定位）、月流失率 12 个月窗口算出 111.8% 的口径失真、交易表未跟随时间范围过滤。限制：IDE 浏览器面板 hidden 导致无像素级截图，仅用计算样式断言替代",
-   "artifacts": "artifacts/20260925-15-sites-building-dashboard/",
-   "report": "reports/20260925-15-sites-building-dashboard.md"
-  },
-  {
-   "skill": "frontend-development",
-   "scenario": "数据报表（个人站流量与作品表现月报：KPI + 趋势 + 渠道表 + 页面明细 + 洞察）",
-   "styles": [
-    "暖纸数据新闻 editorial",
-    "冷灰对账单 statement",
-    "暗色霓虹 cyber"
-   ],
-   "time": "2026-09-25T16:00+08:00",
-   "reason": "台账 next_candidates 首项；用户已把该技能装入 ~/.qoder-cn/skills/ 故无需安装与确认；与前两轮构成跨 skill 对照（真框架工程 vs 零依赖单文件）。工具链靠 registry.npmmirror.com 打通（Vite 8.3.1 + Vue 3.5 + Pinia 3 + TS 5.9 strict）",
-   "conclusion": "留用（该技能第 1 次通过）。属「规范型」技能：features/{api,components,hooks,helpers,types} 结构、strict TS 无 any、shallowRef、350ms 防抖、typed props/emits、不用早期 return 等条款在 Vue 3 上全部可直接落地；strict + noUncheckedIndexedAccess 直接暴露并修掉 12 处真实缺陷。但它不提供任何视觉主张（唯一样式指引绑定 MUI sx/theme.palette），React 专属条款约占 70% 篇幅（React.FC/useSuspenseQuery/SuspenseLoader/useMuiSnackbar/~features 别名/MUI v7 Grid）需逐条判为不适用——三风格仍须自行定主张，建议与 sites-building 或 vercel-react-best-practices 组合使用。产物 552KB；数据口径 36 项断言全 PASS（渠道合计=日合计、加权跳出率=KPI、ratio-of-sums、跨区间同日数值一致），KPI 与表格交叉核对一致",
-   "artifacts": "artifacts/20260925-16-frontend-development-report/",
-   "report": "reports/20260925-16-frontend-development-report.md"
-  },
-  {
-   "skill": "vercel-react-best-practices",
-   "scenario": "管理后台（虚构「Beacon 信标」短链服务运营后台：总览 KPI+14 日趋势+Top5+事件流 / 60 行短链表：搜索+状态筛选+三向排序+行展开+停用+两步删除 / API 密钥脱敏显隐复制吊销 / 服务设置表单校验+localStorage 持久化）",
-   "styles": [
+    "复古终端",
+    "暖纸数据新闻",
+    "冷灰对账单",
+    "暗色霓虹",
     "商务白 business",
     "单色暗 mono",
-    "95 桌面 win95"
-   ],
-   "time": "2026-09-25T17:00+08:00",
-   "reason": "台账 next_candidates 首项（★）。React 栈是该 skill 主场，与 frontend-development 叠加验证「两个规范型技能是否互补」。工具链 React 19.3 + Vite 7.3.6 + TS 5.9.3 strict + vite-plugin-singlefile 2.3.3，全走 registry.npmmirror.com",
-   "conclusion": "留用（第 1 次通过，可判定型）。13/57 条规则能在纯 React+Vite 静态产物上直接落地并核对到文件（js-index-maps / js-combine-iterations / js-tosorted-immutable / js-min-max-loop / js-hoist-regexp / rendering-hoist-jsx / client-localstorage-schema + js-cache-storage / rerender-functional-setstate / rerender-transitions / rerender-memo / rerender-dependencies / rerender-lazy-state-init / rendering-conditional-render / advanced-event-handler-refs / bundle-barrel-imports）；async-*/server-*/client-swr-dedup/bundle-dynamic-imports 绑定 Next.js+RSC+SWR，纯静态产物下不适用，已显式标注。4 个真实缺陷：(1) Vite build.lib 的 IIFE 不注入 process.env.NODE_ENV define，浏览器顶层 ReferenceError 致页面静默全白且控制台零报错，vm 桩执行才定位；修 define 后 bundle 676KB→245KB；(2) inline 模板漏 BeaconAdmin.mount（lib-IIFE 不自挂载）；(3) 主题 CSS 误排在 base.css 之前，同特异性被反向覆盖，mono 的 radius:0 与 win95 整套斜角边框全部失效——只有真实浏览器 getComputedStyle 能发现，jsdom 不做样式层叠（实测返回 rgba(0,0,0,0)），已加拼接顺序回归断言；(4) 自己违反 skill 精神把 setTimeout/onConfirm 写进 state updater，改为纯 updater + confirmRef。产物三页 243,433 字节 JS 逐字节相同、仅换 CSS，980KB，jsdom 39 断言 ×3 + 风格/级联 24 断言全绿，删 node_modules+dist 后 verify.sh 从零 33s 复现。关键冲突：本 skill 的 js-early-exit 与 frontend-development 的「禁早期 return」直接互斥，两规范型 skill 叠加前必须先解冲突。",
-   "artifacts": "artifacts/20260925-17-vercel-react-best-practices-admin/",
-   "report": "reports/20260925-17-vercel-react-admin.md"
-  },
-  {
-   "skill": "vercel-react-best-practices",
-   "scenario": "落地页（虚构产品「拾光 Shiguang」端侧 AI 相册整理工具：hero+双CTA / 3 能力卡 / 3 步流程+4 统计 / 168 格相册墙（整理前后切换+4 类筛选+memo 渲染计数）/ 3 位使用者+标签筛选 / 5 条问答+搜索+手风琴 / 3 档定价+平台+邮箱校验+带版本 localStorage 持久化；React 19.3 + Vite 7.3.6 + TS 5.9.3 strict + vite-plugin-singlefile 2.3.3 + jsdom 30.1.1）",
-   "styles": [
+    "95 桌面 win95",
     "侘寂留白 wabi",
     "构成主义 construct",
-    "孟菲斯 memphis"
-   ],
-   "time": "2026-09-25T18:00+08:00",
-   "reason": "台账 next_candidates 首项（★）。与第 1 轮 sites:sites-building × 落地页做同场景跨 skill 对照；内容型页面无取数，正好检验该 skill 在高优先级条款（async-*/server-*）清零后还剩什么",
-   "conclusion": "留用（第 2 次通过）。21/57 条落地并全部核对到文件行：bundle-barrel-imports / bundle-defer-third-party / client-event-listeners / client-passive-event-listeners / client-localstorage-schema / js-cache-storage / js-index-maps / js-set-map-lookups / js-combine-iterations / js-early-exit / js-hoist-regexp / js-batch-dom-css / rendering-hoist-jsx / rendering-content-visibility / rendering-conditional-render / rendering-usetransition-loading / rerender-memo / rerender-dependencies / rerender-functional-setstate / rerender-lazy-state-init / rerender-derived-state-no-effect / rerender-simple-expression-in-memo / rerender-use-ref-transient-values / advanced-event-handler-refs。36 条不适用且逐条给了理由：async-*（5 条，落地页无取数→优先级第 1 类整体清零）、server-*（7 条，无 RSC/server action）、client-swr-dedup、bundle-dynamic-imports+conditional+preload（被 inlineDynamicImports 单文件产物抵消，要验须换多页服务器场景）、rendering-hydration-*+activity+svg 两条、js-tosorted/min-max/length-check/cache-function-results/property-access（上轮表格场景才有）、rerender-defer-reads、advanced-init-once/use-latest、rerender-memo-with-default-value。产物三页共用同一份 245,462 字节 <script>（逐字节断言）、单页 255-260KB、零外链；断言 284 交互 + 61 风格/级联/bundle 一致性全绿，删 node_modules 后 verify.sh 从零 33s 复现。5 个真实缺陷：(1) useReveal 只在挂载时收集 [data-reveal]，动态列表新节点永不打标——改为「动画是加法」（基态 opacity:1，.is-in 只挂 animation）并从动态列表摘掉该属性；(2) 内联校验被 bundle 里 react-dom 的字面量 \"<script>\" 干扰，改 /^<script>/gm 行首匹配；(3) 自己上轮记过的反模式又写了一遍：startTransition+手写 isPending、useMemo 包单个正则——靠逐条回查才改成 useTransition()/直算，说明该 skill 的价值在回查不在通读；(4) 结构层混进 var(--bad, #b4453a) 硬编码兜底色，被分层断言抓出；(5) strict TS 抓出 3 处会真炸的代码（currentTarget 类型为 Element 无 .style / map.values() 误按元组解构 / noUncheckedIndexedAccess 下 KINDS[i] 可能 undefined）。跨 skill 冲突已正面解决：js-early-exit vs frontend-development「禁早期 return」→ 择一规则『控制流允许早退，渲染输出一律三元 + 显式空态』，本轮代码即按此写。未验项（诚实记录）：横向溢出测不了（面板 hidden 使 innerWidth=0），指针驱动 CSS 变量在真实浏览器里 rAF 不触发、只能在 jsdom 验。三风格互不混淆由真浏览器 getComputedStyle 13 项实测（148/56/84px 留白、透明/黑/品红按钮、衬线/Arial Black/Trebuchet、波点背景图只在 memphis、硬阴影 vs 纸影 vs 无）。",
-   "artifacts": "artifacts/20260925-18-vercel-react-best-practices-landing/",
-   "report": "reports/20260925-18-vercel-react-landing.md"
-  },
-  {
-   "skill": "vercel-react-best-practices + sites:sites-building（叠加）",
-   "scenario": "定价页（虚构「松塔 Songta」反馈管理平台按席位阶梯计价：三档卡（苗木免费/林木 4 段阶梯 39·29·22·17/冠层 20 席起 ¥58）+ 周期(月付/年付折扣 15%·25%) + 币种(CNY/USD 1:7.15 取整到 0.5) + 席位滑杆(1-100，钳制与 20 席下限) + 6 个增值模块(按席/按组织两种计价) + 实时合计条与报价单(邮箱三路校验+打印) + 三档能力对比表(分组+只看差异+能力搜索+空态) + FAQ(热度排序+搜索+手风琴) + 偏好持久化；React 19.3 + Vite 7.3.6 + TS 5.9.3 strict + vite-plugin-singlefile 2.3.3 + jsdom 30.1.1，双构建：lib-IIFE 单文件预览 + split 保留 chunk 边界当 bundle 证据）",
-   "styles": [
+    "孟菲斯 memphis",
     "包豪斯构件 bauhaus",
     "千禧镀铬 y2k-chrome",
-    "工程蓝图 blueprint"
-   ],
-   "time": "2026-09-25T19:00+08:00",
-   "reason": "台账 next_candidates 首项（★）。正面验证「性能规范型 + 设计主张型」叠加是否互补无冲突；定价页有大量分支计价，能让 bundle-conditional / 单事实源 / 交叉断言产生可见差异；风格避开已用 15 种",
-   "conclusion": "两个 skill 均留用，叠加判定成立且无条款互斥（上轮解掉的 js-early-exit vs 禁早期 return 直接沿用）。vercel 第 3 次通过：28/57 条落地并核对到文件行（比上轮多 bundle-dynamic-imports 一项，因为本轮同时跑两种构建——同一份源码，lib-IIFE 给人看、split 给规则当证据，这是本轮方法上最大的增量：单文件产物会抵消 bundle 四条款，双构建把「抵消」变成「可测」，实测按需部分只占首包 1.2%）；sites-building 第 3 次通过，且本轮第一次当作「验证范围约束」使用（preload 取舍判定：预加载用户已可见的下一步动作算主流程、不算 speculative polish）。9 个真实缺陷：(1) TierCard 自抄一份阶梯常量形成价格双源；(2) 明细与合计两套算法，年付下相加对不上（460 vs 4416），重构为 charged 由各行求和 → sum(lines)===charged 成为结构不变式，另加 480 组合扫描；(3) saved 重复 ×12 得 68544；(4) 局部变量 listMonthly 遮蔽导出函数；(5) Controls 阶梯提示对冠层/USD 口径错；(6) Compare 空态不可达，补能力搜索框才可达可测；(7) jsdom tick 用 rAF 在 Node 下退化同步 → 39 条假失败，改 setTimeout(15)+轮询挂载；(8) inline.mjs 用 html.length 当字节数（UTF-16 码元，中文页差 2%+），报告照抄成 264.9KB/252,541B，实为 276,091 字节/252,795 字节；(9) style-check 提取内联脚本的偏移 +2 落在 's' 上（切进 script> 标签，多 7 字符），三页互比仍相等故旧断言全绿却给错绝对量——修成捕获组并把「内联=dist+转义字节」写成不变式。最后两个是收尾核对产物口径时抓出的，结论：凡进文档的数字必须由断言打印。398 条断言全绿（85 账目 + 231 交互 + 82 风格/级联/bundle），删 node_modules 后 verify.sh 从零 18-22s 复现。未验项：横向溢出（面板 hidden 使 innerWidth=0）、pointermove 驱动的 --px/--py 仅 jsdom 验、chrome 的 background-clip:text 与三档字距未取到 computed（多属性 getComputedStyle 15s 超时，须 1-3 属性短调用）",
-   "artifacts": "artifacts/20260925-19-sites-react-pricing/",
-   "report": "reports/20260925-19-sites-react-pricing.md"
-  },
-  {
-   "skill": "vercel-react-best-practices",
-   "scenario": "活动营销/报名页（虚构「星屿·声浪岛音乐节」：hero 倒计时+3 KPI+开票进度 / 12 艺人阵容（投票乐观更新+useTransition 双排序）/ 25 场日程（分舞台 Map+公告 tab 延后取数）/ 报名表单（三档票+VIP 分支校验+乐观 patch/快照回滚）/ 纪念票根 SVG（hover 预载·点击动态 import）；React 19 + Vite 7.3.6 + TS 5.9 strict + 零依赖 node:http mock API（hrtime 事件日志）+ jsdom，双构建 lib-IIFE 单文件 + split 分包证据）",
-   "styles": [
+    "工程蓝图 blueprint",
     "装饰艺术 deco",
     "蒸汽波 vapor",
-    "孔版印刷 riso"
-   ],
-   "time": "2026-09-25T20:00+08:00",
-   "reason": "台账 next_candidates 首项（★）：async-* 5 条前三轮 0 落地，本轮造「必须取数」的场景 + mock 服务端正面攻坚",
-   "conclusion": "留用（第 4 次通过，关键补全轮）。async-* 4/5 落地且以服务端时间窗口为证据（三请求到达窗口<60ms、墙钟 410ms vs 串行 740ms；notices/vip 首屏零请求）；async-dependencies 记不适用（场景无部分依赖扇出，不凑题）。server-* 等价落地 4 条（single-flight：并发 2 请求上游 1 次；LRU cap4/TTL2s；after()：setImmediate 计数断言 afterH>=respondedH；设备令牌 401/403），RSC 专属 3 条仍需 Next.js。client-swr-dedup 手写等价物（资源注册表+5s TTL inflight，3 消费者 1 到达）。验证配方沉淀：传输层抽象让同一组件代码跑 fixture（file://）与真 HTTP 两世界 + 客户端 reqLog 计数 + 服务端 hrtime 到达日志 + 延迟表。乐观更新证明设计为「确认延迟 60ms > 轮询上限 45ms」使『先 +1 后确认』成为硬证据。205/205 断言绿（35 时序+130 DOM+40 风格/bundle），三页 265-266KB 逐字节同 JS 仅换 CSS。15 个坑里 4 个是真缺陷：LRU 存取形态不一致致命中路径返回空响应体、mock 包 {ok} 而客户端按裸数组消费、Hero/Register 缺 Suspense 边界、Schedule 渲染体残留无条件 loadResource 把 defer 证明打穿（页面照常工作肉眼不可见→延后取数必须配请求计数断言）。断言侧 3 坑：react-dom 自带已转义 </script 字面量使「转义计数」不成立→改整体逐字节相等；零外链须白名单 w3.org xmlns/react.dev 错误码数据串（标签级断言才是真约束）；minify 保留动态 import 绑定名→「首包不含实现」不能用符号名，改用 poster 独有串 width=\"640\"/等 12 组。测试装置：jsdom file:// 禁 localStorage→Map shim；setInterval 挂住进程→win.close()；固定 sleep 负载漂移→全量改条件轮询 waitFor；Node22 不能 import 无扩展名 .ts→esbuild 预打包；transport TTL 缓存反噬读数→新鲜读用新 transport，stale 读数本身即去重证据；fixture 不写 reqLog 使零请求断言假通过→计数器写入点要先验证",
-   "artifacts": "artifacts/20260925-20-vercel-react-activity/",
-   "report": "reports/20260925-20-vercel-react-activity.md"
-  },
-  {
-   "skill": "drafter",
-   "scenario": "架构说明页（新场景：把「每小时前端 Skill 验证流水线」自身画成工程图纸 —— 六阶段主链路 + 去重四道闸 + state.json 字段表 + 环境约束矩阵 + 产物路径约定；主题自指，内容与台账一一对得上）",
-   "styles": [
+    "孔版印刷 riso",
     "蓝图浅色单栏 blueprint-light",
     "夜间制图左索引 drafting-dark",
-    "规格说明书三栏印刷件 spec-sheet"
-   ],
-   "time": "2026-09-25T21:00+08:00",
-   "reason": "用户 17:23 装入 ~/.qoder-cn/skills/drafter（第 4 个可在无网络安装、无用户确认前提下自主调用的前端页面技能；台账 tried 里没有它）。选「架构说明页」这个此前 7 轮未用的新场景，因为它是技能自述的主场（architecture/flow/spec sheet），能把技能规则与真实需要画的内容对齐，而不是硬套到营销页上（技能明写 NOT marketing landing pages）。三风格按「同图同信息，只换色板/骨架/图示法」构造，其中 21-B 深色与 21-C 印刷件都是对技能默认令牌的显式偏离，用来测该技能的风格上限。",
-   "conclusion": "留用（限定场景）。产物天然满足实验室最硬三条约束：单文件 / 零依赖 / 零构建 / 双击可开，15-17KB 每页（对比 React 轮 265KB），本轮无 node_modules、无 dist、无临时脚本，场景目录仅 72KB。最大亮点是规则可机检：把技能的视觉条款（无阴影、无渐变、无模糊、按钮无圆角、1-2px 实线、系统字体、至多一种语义色）直接写成 C 组 24 条断言，已试 5 技能里独一份。短板四条：①单风格主张撑不起多风格横评（深色必须反相整套 :root 令牌，印刷件必须自行新增图号条/脚注/@media print）；②输出契约假定 HTML 直进对话，落盘/校验/推送全在技能话术之外；③无交互与多页条款，本轮标注开关与 styles.html 对照入口均为技能外补充；④无中文行高与表格密度话术。78/78 断言绿（A 语法 6 + B 零外链 9 + C 规则符合 24 + D 三风格互异 21 + E 体积 5 + F 内容同题 12 + G 台账互查 10）。首跑 6 条真失败全在断言侧：inlineScript 正则不许行首缩进；别名映射表把 G4 映到自身导致 21-A 恒判 3/4。为此补了 G 组（读 state.json 反推本轮前规模，逐字段互查页面抄写值），当场抓出 21-A 把 environment_notes 写 31（实 38）、next_candidates 写 9（实 10）——凭印象手打的台账数字肉眼查不出，必须读盘互查。浏览器计算样式复核三页互异成立（A 248,250,252 / B 11,15,20 + 6 row + 6 tl-item + 标注双向开关 / C 233,233,233 + 3 col + 32 矩阵格），控制台零消息，截图与横向溢出因面板 hidden 未验。复用姿势：drafter 出形（结构 + 描线纪律），另配规范型技能出码；变体偏离要写进 environment_notes 免下轮误判。",
-   "artifacts": "artifacts/20260925-21-drafter-architecture/（72KB：blueprint-light.html 17,304B + drafting-dark.html 15,401B + spec-sheet.html 16,468B + styles.html 对照入口 6,453B + scripts/check.mjs 9,221B + scripts/ledger-snapshot.json 302B，校验脚本与快照均保留未删）",
-   "report": "reports/20260925-21-drafter-architecture.md"
-  },
-  {
-   "skill": "ppt-generator",
-   "scenario": "演示汇报页（5 页标准汇报稿：封面/提纲/章节页/内容页/结尾页，主题自指=实验室 8 轮台账）",
-   "styles": [
+    "规格说明书三栏印刷件 spec-sheet",
     "咨询图表深底 exhibit",
     "论文答辩学术白 academic_defense",
-    "红黑几何切角 smart_red"
-   ],
-   "time": "2026-09-25T22:00+08:00",
-   "reason": "本机剩 3 个未试技能里唯一自带风格系统的（13 个模板目录 × design_spec.md + 5 张参考 SVG），直接检验前 8 轮反复记录的「规范型技能不给视觉主张」是否可解；且 pypi 镜像可达故能把技能承诺的 SVG→原生 PPTX 全链路真跑通，不停在 SVG 半成品",
-   "conclusion": "留用（限定场景：真要交 PPT 时首选）。184/184 断言全绿（A61/B15/C15/D10/E8/F17/G13/H29/I16）。svg_to_pptx 确为可编辑原生形状：6 份 deck 零 ppt/media、零 <p:pic>、<p:sp> 159-168，<text>↔<a:t> 逐页相等，pt==px×0.75 精确，1px=9525 EMU，渐变/分组 stroke-opacity→alpha/闭合 path→Freeform/text-anchor→algn 全部保真。11 条缺陷最硬的是页序：02_toc 与 02_chapter 并存 + SKILL.md 用 sorted(glob) → 三套 deck 第 2 页全错位且两种顺序字节数相同故肉眼查不出；其次文档 sys.path 指向不存在的 ~/.openclaw、layouts_index 20 条 vs 磁盘 13 目录（10 只列不存、3 只存不列、菜单第 3 位 cloud_orange 零 SVG）、Step2 菜单漏 5 套可用模板、spec 色板与自家模板互不对账（smart_red 主张的 #F0964D 模板 0 次、模板反用 13 个未声明色）→ 解法「色板取 spec ∪ 模板」两级、600+ icons 实为零文件需抓 svgrepo（本机 429 且会写技能目录，已回避）、charts/ 33 张图模板从未出现在 SKILL.md 正文、exhibit spec 要求 ≥12px 而其自身模板有 10px 页脚。我自身 8 坑含「凭印象修 bug 两次复发」，规约再确认：动手前先读盘。",
-   "artifacts": "artifacts/20260925-22-ppt-generator-deck/",
-   "report": "reports/20260925-22-ppt-generator-deck.md"
-  },
-  {
-   "skill": "sites:sites-building",
-   "scenario": "个人主页（虚构独立开发者「柯屿 KE YU」：五件作品潮汐/汉字谱/光斑/字节盒/漫游 + 四则随记 + 近况三格 + 不可送达的示例邮箱 hey@keyu.example；三页共享同一份事实，只有设计主张不同，三页合计 37,928 字符）",
-   "styles": [
+    "红黑几何切角 smart_red",
     "和纸浮世绘 ukiyo",
     "深空星图 astro",
-    "像素掌机 pixel-console"
-   ],
-   "time": "2026-09-25T23:00+08:00",
-   "reason": "next_candidates 里的「sites:sites-building × 个人主页（避开已用风格）」；个人主页是前 9 轮未覆盖的新场景，且是该技能 Simple site 路径第 3 次使用、第一次单独承担内容型单页",
-   "conclusion": "留用（第 3 次通过，内容型单页首选）。219+24=243 条断言全绿（初跑 207/212）。①把技能最易被忽略的「反功能膨胀」条款第一次提成断言组 F（零 form/input/localStorage/fetch、至多 1 个按钮、唯一 h1、id 不重复）——它正是产物从 18:00 轮 React 落地页 255KB 掉到 13.7-15.9KB（约 17 倍）的原因；②发明并把「一个连贯视觉主张」写成可机检式子：色板封闭（页内任何十六进制色必须属于该页声明色板）+ 三对风格七项指纹（栅格/字族/圆角/是否 table/是否竖排/是否方格仪表）差异≥3 + 色板两两零交集，成本 6 行；③抓到 4 处 astro 字号滑到 11.5px/10px（技能说更小字号只留给次要元数据，写码时极易把表格列头/标签/按钮都划成元数据）→ 全部上提 12px，教训：底线必须写成断言不能靠措辞；④抓到 C 页方格仪表与图例不自洽（1h/周 画 1 格，按 round(h/5) 应为 0）→ 改 0 格 + 图例改为可验式「每格≈5 小时（四舍五入）」+ 加 pixel-gauge-math 断言，这是本轮唯一一处「页面功能正常但数据说谎」；⑤校验脚本自身两个假失败：把「本页无 SVG」判成失败、我在 astro 色板清单误列 #3a3b3c（C 页边框色）→「历轮反复出现的检查器 bug 伪装成内容缺陷」又多一例；⑥零位图策略让「零外链」断言第一次不需要任何白名单（前几轮必须放行 w3.org xmlns 与 react.dev 文案）；⑦局限：该技能给设计纪律不给设计素材（无色板库/组件/图模板），换风格成本比 ppt-generator 高",
-   "artifacts": [
-    "artifacts/20260925-23-sites-building-personal-homepage/ukiyo/index.html",
-    "artifacts/20260925-23-sites-building-personal-homepage/astro/index.html",
-    "artifacts/20260925-23-sites-building-personal-homepage/pixel-console/index.html",
-    "artifacts/20260925-23-sites-building-personal-homepage/styles.html",
-    "artifacts/20260925-23-sites-building-personal-homepage/scripts/check.mjs",
-    "artifacts/20260925-23-sites-building-personal-homepage/scripts/interact.mjs",
-    "artifacts/20260925-23-sites-building-personal-homepage/scripts/ledger-snapshot.json"
-   ],
-   "report": "reports/20260925-23-sites-building-personal-homepage.md"
-  },
-  {
-   "skill": "ppt-generator",
-   "scenario": "图表密集分析页（虚构内容平台「回声岛 Echo Isle」2025 年度经营分析：每风格 6 页 = KPI 四卡 / 双序列 12 月趋势折线 / 六业务线横向对比条 / 收入构成 donut / TOP8 创作者排行 / 注册→付费五级漏斗；三风格同数据同版式，全部几何从 data.json 现算。收入 Σ=3,846万、成本 Σ=3,258、五业务线 1286/864/712/603/381 加总=3,846、漏斗 2,860,000→1,543,000→401,000→188,000→52,000、排行 4820→1327 万次）",
-   "styles": [
+    "像素掌机 pixel-console",
     "政务蓝图表件 government-blue-charts",
     "疗愈蓝绿图表件 psych-healing-charts",
-    "霓虹像素图表件 pixel-neon-charts"
-   ],
-   "time": "2026-09-26T00:00+08:00",
-   "reason": "state.json next_candidates 的 ★ 首选项「ppt-generator × 图表密集分析页：templates/charts/ 33 张图模板 SKILL.md 正文只字未提，真用它们出图，验『SVG 图模板 → 原生可编辑图表』的距离与 charts_index.json 是否与磁盘同样不符」——22:00 轮柱状图只能手画，本轮补验",
-   "conclusion": "留用（升级为图表类汇报件首选路径）。353/353 断言绿（A 结构与按锚点估宽安全区 144 + B 零外链 18 + C 色板封闭与序列槽用满 21 + D 三风格互异 9 + E 从 data.json 现算复算 30 + F 跨风格数值一致 15 + G 台账契约 9 + H 模板血统与诚实度 33 + I PPTX 探针 60 + J 预览件与入口 11 + K 磁盘纪律 3）。核心量化答案：①charts_index.json 与磁盘完全一致（meta_total=33==目录数==条目数、引用零缺失），是 layouts_index（20 vs 13）的反例——真正缺口在 SKILL.md 正文 0 提及；②模板样例数据算术不诚实：donut 五段标注 126/100.8/72/43.2/18° 与按路径端点反推的实际扫角 [119.4,104.1,63.0,55.9,17.6] 偏差最大 +12.7°/-9.0°（加总仍=360°，只查加总的断言永远放行）；funnel 五级顶宽 600/510/420/330 是等差 −90px，与标称 100/45/18/6.5% 无比例关系——结论：模板只能继承结构常量（坐标/半径/基线/字号槽），任何编码长度或角度必须从数据现算，E 组 62 条即按公式复算；③PPTX 导出实测丢弃一切滤镜：三份 a:blur 均 0（模板 6/6 有 feGaussianBlur、pixel 封面 glow 全丢），而 a:alpha（gov 0/psych 18/pixel 30）、a:gradFill（6/6/0）、custGeom（34/份）、文本 run 逐页相等全保留、media 部件 0 → 霓虹观感在 PPTX 里必然退化，SVG 预览与 PPTX 不等效；④模板图表颜色与三个 layouts spec 色板交集为 0，必须两级换色（themes.json 序列槽 5 色×三主题，C 组断言每主题 5 个序列色全部出现且属于封闭色板）；⑤结构常量必须脚本现读不能手抄：我把 kpi 卡 x 记成 640，模板审计查出真实值 660，已改 TPL 重生成。缺陷续记：funnel 模板用 marker 箭头（技能自己的 SVG 硬约束禁止）、line/funnel 裸 opacity 属性（PPT 兼容规则禁止）、6/6 模板带 filter——技能自家图模板违反技能自家条款。我自己 7 个坑：legend「合计 3,258」与排行 4,820 标签两处真实安全区溢出（A6 按锚点估宽抓到，非误报）；T() 缺 fam 时吐字面量占位符；header() 返回 body[1:] 丢掉背景 rect；ink_dark 值写成 int 触发 TypeError；I10 阈值 sp≥50 是检查器 bug（漏斗页天然 26 形状）改逐页>0+最大≥40；正则 [^—]+ 跨行把六行百分比并成一行；float(rect.get('x')) 在背景 rect 上 None 崩。浏览器复核：gov/pixel 两页 file:// 直开计算样式正确（rgb(232,232,232)/rgb(10,12,16)、各 6 张内联 SVG、text[filter] 在 DOM、控制台零消息），面板仍 hidden 无像素级复核。未验项：其余 27 张 chart 模板、svg_quality_checker.py 黑盒、transition/notesSlide、Office 实际打开效果。报告见 reports/20260926-00-ppt-generator-charts.md。台账类断言必须写成幂等式（快照+增量==现值），初版写成「本轮风格/组合未见于台账」会在写回后自毁，已改并复跑至 353/353",
-   "artifacts": "artifacts/20260926-00-ppt-generator-charts/（479KB：svg/ 3×6=18 页 + pptx/ 3 份 51,795/52,037/51,746B + preview/ 3 页 43-46KB + styles.html + data.json + themes.json + scripts/ 全保留含 template-audit.json 与 ledger-snapshot.json）"
-  },
-  {
-   "skill": "ppt-generator",
-   "scenario": "中文商务提案（虚构「澄区智慧运管中心 IOC 建设项目」技术方案与投资建议书：封面/目录/现状与问题(4 KPI 卡+5 条事件来源横向条形，Σ=12,860)/总体架构(五层 28 模块芯片带)/实施计划与投资报价(12 月甘特 4+5+3、报价表 286+194+128=608 万、付款 30/40/25/5%、团队 13 人)/结尾(三条合作请求+联系方式)。三风格同结构同事实源，几何全部从 data.json 现算）",
-   "styles": [
+    "霓虹像素图表件 pixel-neon-charts",
     "咨询蓝提案件 consultant",
     "政务红立项件 gov-red",
-    "科技蓝商务提案件 tech-blue-proposal"
-   ],
-   "time": "2026-09-26T01:00+08:00",
-   "reason": "next_candidates ★「ppt-generator × 中文商务提案（未用过的 layouts：consultant/government_red/科技蓝商务…复测模板色板与 spec 交集是否为 0）」；consultant 恰是 SKILL.md 菜单列了但 layouts_index 漏标的目录，government_red/科技蓝商务在 index 里却不在 SKILL.md 菜单里——正好同时踩三份清单的错配区",
-   "conclusion": "留用（第 3 次，定位＝有官方 spec 的提案/汇报/政务件首选）。394 条断言（写回台账前 390/394，唯一失败=K 组 4 条幂等锁，写回后复跑闭合）：六页×三风格=18 页 SVG 111,008B + 3 份 6 页原生 PPTX（media=0、<a:t> 数逐页=SVG text 数、pt=px×0.75 精确）+ 3 份零外链双击预览，artifacts 516KB。核心新事实：①三份清单互斥地错——SKILL.md 菜单 8 风格 / layouts_index 20 条（磁盘 13，brand 族 10 条虚列）/ 磁盘 13 目录，且「菜单里恰好是 index 漏列的 consultant/dark_warm/cloud_orange 三个」，选风格前必须跑磁盘对账探针（spec_probe.py 已固化进流程）；②『模板∩spec=0』结论只适用于 charts 模板——三个 layout 的 5 张模板与自家 spec 交集 10/9/8 色，layouts 模板可作可信增量色板（补 spec 漏列渐变端点 #001A33/#002244/#CBD5E1），charts 模板仍必须整体换色；③SKILL.md 说 ai_ops=Dark、其 design_spec 明写 Light——冲突时以 design_spec 为准。真实缺陷 6 处：font-family 属性内双引号直接炸 XML（spec 字体栈自带引号，靠 18 页 ET.parse 全量校验兜住）、5 组越界字号(13/11/15/22/40)、gov 节号写死 03、tech_blue 付款带纵向几何撞线（改 py=y1-90 反锚定+行高由面积解出）、检查器 rx 字符串==int 恒假 + toc 页误套内容页指纹断言、我自己写的伪断言 B/kpi(2140*6>12860 恰假)——教训：『看不出错了会怎样的断言一律不写』。新坑：hidden 面板下 getBoundingClientRect 类强制布局 evaluate_script 100% 超时（纯 DOM 读可用），真实视口溢出改由 D 组锚点估宽 3,111 text 静态兜底。报告 reports/20260926-01-ppt-generator-proposal.md",
-   "artifacts": [
-    "artifacts/20260926-01-ppt-generator-proposal"
-   ]
-  },
-  {
-   "skill": "graphic-gif",
-   "time": "2026-09-26T02:00+08:00",
-   "scenario": "动效营销横幅（GIF，800×800·3s@12fps·36帧·无限循环）：虚构活动「发光跑 GLOW RUN 3」，三张共享同一 facts.json",
-   "styles": [
+    "科技蓝商务提案件 tech-blue-proposal",
     "云白板计数 clean-slate-gif",
     "磷绿终端打字 terminal-gif",
-    "黄黑硬框跑马灯 brutalist-gif"
-   ],
-   "reason": "本机最后一个未试的页面级动效技能；tried 无此组合；场景（动图横幅）此前 12 轮未做",
-   "conclusion": "留用（限定场景：社媒/营销动图资产）。契约无资产（references 两本+export-gif.sh 全缺，同 vercel 轮失效模式）；抓到规则6×一次性动画终值缺陷（末帧到不了目标值，烘焙 92%+hold 修复）；GIF 厘秒粒度 12fps→12.5fps；ch 打字术仅等宽成立；155 断言（A 组 74 条=技能规则整段机检）",
-   "artifacts": "artifacts/20260926-02-graphic-gif-banner/（≈3.1MB：3 html + 3 gif 2.5MB + styles.html + samples 9png + scripts 4件 + metrics 3件）",
-   "report": "reports/20260926-02-graphic-gif-banner.md"
-  }
- ],
- "skills_seen": [
-  {
-   "name": "vercel-react-best-practices",
-   "source": "用户 2026-09-25 15 时段装入 ~/.qoder-cn/skills/（上游 vercel-labs/agent-skills）",
-   "path": "/Users/apple/.qoder-cn/skills/vercel-react-best-practices/SKILL.md",
-   "status": "已用于 17:00 管理后台、18:00 落地页、19:00 定价页、20:00 活动报名页，四轮均留用。纯性能规范、零视觉主张，多风格任务必须另配设计主张型技能；内容型页面（无取数）上 async-* 5 条 + server-* 7 条 + client-swr 全清零——20:00 已在「Vite SPA + 零依赖 mock 服务端」上攻坚：async-* 落地 4/5（服务端 hrtime 到达窗口为证据）、server-* 等价落地 4 条（single-flight/LRU/after/设备鉴权）、client-swr-dedup 手写等价物可断言；剩余只有 RSC 专属 3 条（须 Next.js）与 async-dependencies（须部分依赖扇出形态）。关键补法：同一份源码跑两种构建（lib-IIFE 单文件 + split 保留 chunk 边界），可把 bundle-dynamic-imports/conditional/preload 从「被单文件抵消」变成「可断言」——19:00 实测按需部分占首包 1.2%，20:00 占 0.5%。缺陷：安装目录只有 SKILL.md，文中引用的 rules/*.md 与 AGENTS.md 均不存在，57 条只有一行摘要可用"
-  },
-  {
-   "name": "sites:sites-building",
-   "source": "Qoder 内置插件 qoder.sites",
-   "path": "/Applications/Qoder CN.app/Contents/Resources/extensions/qoder.sites/cli/sites/skills/sites-building/SKILL.md",
-   "status": "已用于 14:00 落地页、15:00 仪表盘、19:00 定价页（与 vercel 叠加）、23:00 个人主页，四次均留用。属「设计主张型 + 设计纪律型」：无色板库/组件/图模板，三种风格全靠现写（本轮三页 37,928 字符）；Simple site 路径（单路由、无持久数据、无鉴权、无外部服务）= 纯 HTML/CSS/JS、零构建、零依赖、单文件 14-16KB，是内容型单页当前最优解；references 里 Capability 五篇 50,529B 与 Simple site 无关（只用到 visual-design 4,181B + static-site 4,678B）；「Polished 不授权额外路由/表单/搜索/分享/鉴权/持久化」是全实验室唯一能把产物做小的条款，与 vercel 系列取向相反，叠加时必须先定谁让步"
-  },
-  {
-   "name": "frontend-development",
-   "source": "用户于 2026-09-25 15 时段前后装入 ~/.qoder-cn/skills/",
-   "path": "/Users/apple/.qoder-cn/skills/frontend-development/SKILL.md",
-   "status": "已用于 16:00 数据报表并留用：规范有效但 React 条款占七成、Vue 3 章节仅 60 行且无报表/路由细节；不建议单独承担「多风格」任务"
-  },
-  {
-   "name": "vercel-react-best-practices",
-   "source": "用户于 2026-09-25 15 时段装入 ~/.qoder-cn/skills/",
-   "status": "已于 17:00 / 18:00 / 19:00 / 20:00 四轮使用并留用（管理后台 / 落地页 / 定价页 / 活动报名页），不再是候选"
-  },
-  {
-   "name": "qoder-canvas:canvas",
-   "source": "Qoder 内置插件 qoder.canvas",
-   "path": "/Applications/Qoder CN.app/Contents/Resources/extensions/qoder.canvas/cli/canvas/skills/canvas/SKILL.md",
-   "status": "暂缓：产物为 .canvas.tsx 只在 IDE 面板渲染，不落盘为可独立打开的页面；且文档限定仅斜杠命令调用"
-  },
-  {
-   "name": "ui-designer",
-   "source": "Qoder 扩展市场（publisher: daymade）",
-   "id": "official86382844",
-   "status": "未安装：install_extension 要求用户确认（用户偏好亦为逐项确认），定时无人值守运行不得安装"
-  },
-  {
-   "name": "diegosouzapw-ui-ux-pro-max-corsal2025",
-   "source": "Qoder 扩展市场（VueUI设计，50 风格/21 调色板/50 字体配对/9 框架栈）",
-   "id": "official_mAVyCiL7",
-   "status": "未安装：同上；适合风格横评，优先待授权尝试"
-  },
-  {
-   "name": "diegosouzapw-ui-ux-intelligence-expert",
-   "source": "Qoder 扩展市场（UI设计，67 风格/96 配色/57 字体搭配/99 UX 指南）",
-   "id": "official_kgmrEas7",
-   "status": "未安装：同上"
-  },
-  {
-   "name": "realtime-dashboard / dicklesworthstone-kpi-dashboard-template / diegosouzapw-aibi-dashboards / pm-dashboard / chatandbuild-dashboard-create-screen 等 9 个",
-   "source": "Qoder 扩展市场，关键词 dashboard 检索结果",
-   "status": "全部 installed:false，需用户确认安装，暂不可用于定时任务"
-  },
-  {
-   "name": "ibelick/ui-skills",
-   "source": "GitHub / skills.sh",
-   "status": "不可达：raw.githubusercontent.com 与 www.skills.sh 均连接被重置（14:00、15:00、16:00 三次复测）"
-  },
-  {
-   "name": "BuilderIO/agent-native",
-   "source": "skills.sh（14 skills）",
-   "status": "不可达：同上网络限制"
-  },
-  {
-   "name": "design-anti-slop",
-   "source": "tool.lu 技能聚合站",
-   "status": "不可达：同上网络限制"
-  },
-  {
-   "name": "Gitee giteesunc/agent-work-record @skill 分支",
-   "source": "skill_ctl.py list（32 个技能包）",
-   "status": "无前端页面构建类技能，本轮排除"
-  },
-  {
-   "name": "本机其他候选（未试）",
-   "source": "~/.qoder-cn/skills/",
-   "status": "golang-gin-api / nodejs-best-practices / SQLite-Database-Expert / express-nodejs-expert / golang-testing / sec-audit-cn —— 均为后端类，不做「前端页面」验证；若改场景为「前后端联调页」可考虑"
-  },
-  {
-   "name": "drafter",
-   "source": "用户 2026-09-25 17:23 装入 ~/.qoder-cn/skills/drafter（.skill-metadata.yaml 标 category: design-ui、version 1.0.0，未给上游仓库链接）",
-   "path": "/Users/apple/.qoder-cn/skills/drafter/SKILL.md",
-   "status": "已用于 21:00 架构说明页并留用（限定场景）。产物=单个自包含 HTML（内联 <style> + 系统字体 + 禁 CDN），零依赖零构建，15-17KB/页，双击即开 —— 收尾成本本轮为 0。独有优点：视觉条款可机检（无阴影/无渐变/无模糊/按钮无圆角/1-2px 实线/system-ui+等宽/:root 令牌齐备/语义色≤1），能整段转成回归断言。短板：①只有一种视觉声音，做深色或印刷件必须显式偏离它给死的 :root 令牌块与 max-width:1200 单栏图纸；②「只返回 HTML、不要 markdown 代码块」的输出契约假定产物直进对话，落盘/校验/推送都在技能外；③无交互、无多页/路由条款；④无中文行高与密集表格话术。适合汇报配图、文档配图、一页规格件；不适合产品页与风格横评。"
-  },
-  {
-   "name": "ppt-generator",
-   "source": "用户 2026-09-25 19:06 装入 ~/.qoder-cn/skills/ppt-generator（SVG-based PPT generator，ppt-master-assets 2.1MB：13 个 layouts + 33 张 charts + icons 索引 + svg_to_pptx/svg_finalize 脚本）",
-   "path": "/Users/apple/.qoder-cn/skills/ppt-generator/SKILL.md",
-   "status": "已用于 22:00 演示汇报页并留用（限定场景：需交付 PPT/汇报稿）。独有优点：第一个自带可机检风格系统的技能（design_spec.md 给色板/字级/安全区/页面结构/签名构件/SVG 硬约束，A/C/D 三组 86 条断言全部来自它），且导出真是可编辑原生 DrawingML（零 media、文本逐页保真、px→pt 精确 0.75、渐变/分组/自由形/文本对齐全转换）。硬伤：SKILL.md 与磁盘资产大面积不一致（假 sys.path、index 20 vs 实际 13、菜单漏 5 套、charts/ 与 icons/ 与另一套质量脚本均未提及）、sorted(glob) 页序缺陷、spec 色板与自家模板互相不认。用法要点：色板取「spec ∪ 模板」两级、字号取 spec 下限、页序显式列表、图标当不存在（离线不可靠）｜09-26 00:00 图表密集分析页第 2 次使用仍留用并升级为图表类汇报件首选。新增事实：①charts_index.json 与磁盘 33 张完全一致（layouts_index 的反例），缺口只是 SKILL.md 正文 0 提及；②模板样例数据算术不诚实——donut 标注角与路径端点反推差最大 +12.7°（加总仍 360°，加总断言查不出）、funnel 顶宽是等差 −90px 与标称百分比无关 → 正确姿势=只继承结构常量、编码几何一律从数据现算；③svg_to_pptx 实测丢弃一切 filter（三份 pptx a:blur=0，pixel 霓虹 glow 全丢），alpha/gradFill/custGeom/文本 run 全保留、media 仍 0 → SVG 预览与 PPTX 不等效；④模板颜色与 layouts spec 色板交集 0，序列色必须走 themes.json 槽位两级换色；⑤技能自家 charts 模板违反自家 SKILL.md 条款（funnel 用 marker、line/funnel 裸 opacity、6/6 带 filter）。用法要点追加：模板骨架常量用脚本现读（kpi 卡真实 x=660 而非 640）、结构安全区断言（按 text-anchor 估宽）能抓真实溢出不必怀疑误报｜09-26 01:00 商务提案件中第 3 次使用仍留用。新增事实：①三份清单互斥地错——SKILL.md 菜单 8 风格(恰含 index 漏列的 consultant/dark_warm/cloud_orange)、layouts_index 20 条(brand 族 10 条虚列)、磁盘 13 目录(科技蓝商务为中文目录名需映射)，选风格必须先跑磁盘对账；②『模板∩spec=0』只对 charts 模板成立，layout 的 5 张模板与自家 spec 交集 10/9/8 色=可信增量色板；③SKILL.md 说 ai_ops Dark、其 design_spec 写 Light，冲突以 spec 为准；④字体栈带双引号会炸 XML font-family 属性，必须规范化；⑤字号允许集=spec 字级表端点∪模板 SVG 实测 font-size，产物必须做集合断言。五件套 spec_probe/generate/build_preview/export_pptx/check 全程分钟级，收尾成本仍近 0"
-  },
-  {
-   "name": "ascii-project-dashboard",
-   "source": "用户 2026-09-25 17:36 装入 ~/.qoder-cn/skills/ascii-project-dashboard（仅一个 7,810B 的 SKILL.md，无脚本无资产）",
-   "path": "/Users/apple/.qoder-cn/skills/ascii-project-dashboard/SKILL.md",
-   "status": "排除，不占用轮次（23:00 轮开工前读毕全文）：applyTo 为 **/*plan*,**/*roadmap*,**/*tracker*,**/*dashboard*，全文只规定 ▓░ 十格进度条 / Markdown 表格 / ●──○ 时间线 / emoji 状态位，卖点恰是「no rendering, works in any editor, terminal, email, Slack」，不产出可双击打开的页面，与实验室「artifacts 只留可直接打开预览的页面产物」硬约束冲突。两个可移植点已被本轮吸收：「不得硬编码派生值，必须从计数算出」→ 转成 E 组 pixel-gauge-math 断言；emoji 状态位在暗底页面上不可控，实验室仍用 CSS/SVG 表达状态"
-  },
-  {
-   "name": "graphic-gif",
-   "source": "用户 2026-09-25 19:37 装入 ~/.qoder-cn/skills/（author OpenDirectory v1.0.0）",
-   "path": "~/.qoder-cn/skills/graphic-gif/SKILL.md",
-   "status": "已用于 02:00 动效横幅并留用（限定场景）。规则可机检度全实验室前三（A组74条）；但 references/animation-library.md、references/style-presets.md、scripts/export-gif.sh 三资产全缺，导出链路须自带（本轮沉淀 capture-encode.mjs：playwright-core@1.48.2 + 缓存 chromium-1148 + gifenc，npmmirror 1 分钟装完）；风格 token 需按 SKILL.md 线索重建；规则6×线性一次性动画有终值缺陷（末帧永不到目标），修式=keyframes 92% 到顶+hold；Kling 路径未验（无 KLING_API_KEY）"
-  },
-  {
-   "name": "build-game",
-   "source": "用户 2026-09-25 23:32 装入 ~/.qoder-cn/skills/（带 reference/ 6 篇 + scripts/serve.sh，资产完整）",
-   "path": "~/.qoder-cn/skills/build-game/SKILL.md",
-   "status": "未试——本机最后一个未用的前端产物型技能，产物=单文件可玩 HTML(Three.js)，是候选而非排除项；下轮 ★ 首选"
-  }
- ],
- "runs": [
-  {
-   "time": "2026-09-25T14:00+08:00",
-   "skill": "sites:sites-building",
-   "scenario": "落地页",
-   "result": "success",
-   "artifact_size": "72KB",
-   "cleanup": "已删 .tmp 与 /tmp 日志；无 node_modules/lock/构建缓存；自建 http.server PID 34045 已核对命令行后 kill，端口已关"
-  },
-  {
-   "time": "2026-09-25T15:00+08:00",
-   "skill": "sites:sites-building",
-   "scenario": "仪表盘",
-   "result": "success",
-   "artifact_size": "100KB（单页 30-31KB）",
-   "cleanup": "已删 .tmp（临时替换脚本 + 两份临时 CSS）与 /tmp 两个服务日志；无 node_modules/lock/构建缓存；PID 39831 与 40996 均先 ps 核对命令行再 kill，端口已关；实验室合计 192KB"
-  },
-  {
-   "time": "2026-09-25T16:00+08:00",
-   "skill": "frontend-development",
-   "scenario": "数据报表",
-   "result": "success",
-   "artifact_size": "552KB（3 页双击版各 114KB + 源码 128KB + 配置/lock）",
-   "cleanup": "删 node_modules 75MB、dist/、.single/、.preview.log、.tmp/{probe,single,kh,inline.mjs}；8098/8099 两个 http.server 已按端口 PID 核对后 kill；check-consistency.mjs 内容已抄进 reports 文档后再删临时目录；实验室合计约 740KB，单场景 552KB ≪ 50MB",
-   "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（HTTPS 被 TLS 重置，改走 ssh.github.com:443 + 127.0.0.1:7897 代理；空仓库首推，无 token 出现在命令中）"
-  },
-  {
-   "time": "2026-09-25T17:00+08:00",
-   "skill": "vercel-react-best-practices",
-   "scenario": "管理后台",
-   "result": "success",
-   "artifact_size": "980KB（3 页各 248KB + 源码 92KB + 校验脚本 28KB + 配置）",
-   "cleanup": "删 node_modules 102MB（含临时 --no-save 的 jsdom）+ dist/ + .npm-install.log + .jsdom.log；8123 端口 python3 -m http.server 先 ps 核对命令行再 kill，端口已关；实验室合计约 1.7MB，单场景 980KB ≪ 50MB",
-   "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 1c51e57，走 ssh.github.com:443；known_hosts 写在本机 .tmp/kh，命令与文件均无 token）"
-  },
-  {
-   "time": "2026-09-25T18:00+08:00",
-   "skill": "vercel-react-best-practices",
-   "scenario": "落地页",
-   "result": "success",
-   "artifact_size": "1.0MB（3 页各 255-260KB + 源码 108KB + 校验脚本 32KB + 对照页与配置）",
-   "cleanup": "删 node_modules 102MB + dist/shiguang.js 240KB + .npm-install.log + .cs-server.log；8128 端口 python3 -m http.server 先 ps 核对命令行再按 PID kill，端口确认关闭；校验脚本全部保留未删；实验室合计约 3.9MB，单场景 1.0MB ≪ 50MB",
-   "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 3201f25，fedb91e..3201f25；走 ssh.github.com:443，known_hosts 写在实验室 .tmp/kh，命令与文件均无 token）"
-  },
-  {
-   "time": "2026-09-25T19:00+08:00",
-   "skill": "vercel-react-best-practices + sites:sites-building（叠加）",
-   "scenario": "定价页",
-   "result": "success",
-   "artifact_size": "1.1MB（3 页各 276,091/276,448/276,540 字节双击可用 + styles.html 对照入口 + 源码 140KB + 校验脚本 52KB + 配置与 lock）",
-   "cleanup": "删 node_modules 102MB + dist/songta.js(252,795B) + dist-split/ + .build.log + .npm-install.log；8131 端口 python3 -m http.server 先 ps 核对命令行（PID 15442）再 kill，端口确认关闭；删 /tmp/lab-8131.log；校验脚本 inline.mjs / pricing-check / jsdom-check / style-check / verify.sh 全部保留未删（故无需转录进文档）；实验室合计 5.6MB，单场景 1.1MB ≪ 50MB",
-   "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 3833e6d，1da8a14..3833e6d；本机 HTTPS 被 TLS 重置故走 SSH，实际经 ssh.github.com:443，主机键写入实验室 .tmp/known_hosts 后即删除；命令与文件里无任何 token，已 grep 复核 .npmrc 只有 registry 地址）"
-  },
-  {
-   "time": "2026-09-25T20:00+08:00",
-   "skill": "vercel-react-best-practices",
-   "scenario": "活动营销/报名页",
-   "result": "success",
-   "artifact_size": "1.0MB（3 页各 265,274/265,610/266,379 字节双击可用 + styles.html 对照入口 + src + scripts 校验脚本全保留 + server/mock-api.mjs + 配置与 lock）",
-   "cleanup": "删 node_modules 102MB + dist/ + dist-split/ + .tmp/（esbuild 预打包产物）+ .npm-install.log；8141 端口 mock-api 服务先 ps 核对命令行（PID 31327，本任务自起）再 kill，lsof 确认端口释放；校验脚本未删（故无需转录进文档）；单场景 1.0MB ≪ 50MB",
-   "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 644fa74，01e0922..644fa74；本机 HTTPS 被 TLS 重置故走 SSH，实际经 ssh.github.com:443，主机键写入实验室 .tmp/known_hosts 后即删；命令与文件里无任何 token，.npmrc 只有 registry 地址，grep 复核过新增文件）"
-  },
-  {
-   "time": "2026-09-25T21:00+08:00",
-   "skill": "drafter",
-   "scenario": "架构说明页",
-   "result": "success",
-   "artifact_size": "72KB（三页 17,304 / 15,401 / 16,468 字节 + styles.html 6,453 字节 + scripts/check.mjs 9,221 字节 + scripts/ledger-snapshot.json 302 字节，全部保留）",
-   "cleanup": "本轮无 node_modules、无 dist、无 .tmp 脚本：只删了 /tmp/lab-8151.log（http.server 日志）并 kill 8151 端口服务（先 ps 核对命令行确认 PID 36541 是本任务自起的 python3 -m http.server 再 kill，lsof 确认端口已释放）。校验脚本 scripts/check.mjs 保留未删（故无需转录进报告）。实验室总量约 7.9MB，单场景 72KB ≪ 50MB。",
-   "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 3a126e3，5de329c..3a126e3；本机 HTTPS 被 TLS 重置故走 SSH，实际经 ssh.github.com:443，主机键写入实验室 .tmp/known_hosts 后随 .tmp 一并删除；命令与文件里无任何 token，已 grep 复核本轮新增/修改文件无密钥样式）"
-  },
-  {
-   "time": "2026-09-25T22:00+08:00",
-   "skill": "ppt-generator",
-   "scenario": "演示汇报页",
-   "result": "success",
-   "artifact_size": "504KB（svg 64,708B + 6 份 pptx 275,376B + preview 3 页 74,541B + styles.html 3,066B + scripts 37,322B）",
-   "cleanup": "已删 .tmp/pylibs 32MB 与 .tmp/pipprobe 10MB wheel 缓存；无 node_modules/dist/构建缓存；本轮未起 http.server（预览走 file://），无 /tmp 日志；技能目录零写入（未跑 download_icons）；无临时脚本待删（check/export/build_preview/probe 全部保留在 artifacts/.../scripts/）",
-   "push": "已推送 origin/main（f422ac8..f65eb61，走 SSH git@github.com:sunc-Q/frontend-skill.git，~/.ssh/known_hosts 已有主机键故未再用 .tmp/known_hosts；本轮 .tmp 已整体删除）"
-  },
-  {
-   "time": "2026-09-25T23:00+08:00",
-   "skill": "sites:sites-building",
-   "scenario": "个人主页",
-   "result": "success",
-   "artifact_size": "80KB（三页 13,705/15,914/14,329 字节 + styles.html 5,116 字节 + scripts/check.mjs 15,036 字节 + interact.mjs 3,288 字节 + ledger-snapshot.json 1,375 字节；断言 219+24 全绿）",
-   "cleanup": "本轮零中间产物：无 node_modules、无 dist、无 pip 包、无构建缓存、未起 http.server（三页走 file://）、/tmp 零写入；技能目录零写入（只读 SKILL.md 与 references/）；全盘探测 node_modules|dist|*.log|.tmp|__pycache__ 结果为空；实验室合计 9.1MB，单场景 80KB ≪ 50MB",
-   "push": "已提交并推送：git@github.com:sunc-Q/frontend-skill.git main 分支 9f91623..480b667（SSH，known_hosts 写 LAB/.tmp 后即删；命令与文件零 token）。提交物=三页 + styles.html + 两个校验脚本 + 台账快照 + report + work-log 行 + state 台账"
-  },
-  {
-   "time": "2026-09-26T00:00+08:00",
-   "skill": "ppt-generator",
-   "scenario": "图表密集分析页",
-   "result": "success",
-   "assertions": "353/353 全绿（scripts/check.py，A–K 十一组；写回台账前后各跑一次均全绿）",
-   "artifact_size": "479KB（490,790B，限额 50MB）",
-   "cleanup": "已删 .tmp/pylibs + .tmp/pipprobe（43MB pip 隔离安装与 wheel 缓存）；无 node_modules/dist/构建缓存；未起 http.server（预览走 file://）；技能目录零写入（find ~/.qoder-cn/skills/ppt-generator -newer 判空）；artifacts 仅保留可直接打开产物（svg/pptx/preview/styles.html）与全部脚本",
-   "push": "已提交并推送：git@github.com:sunc-Q/frontend-skill.git main 分支 816a5f9..6cc0301（SSH 经 ssh.github.com:443，known_hosts 写 LAB/.tmp 后即删；命令与文件零 token）。提交物=18 页 SVG + 3 份 PPTX + 3 份预览 + styles.html + data.json/themes.json + scripts 全套（generate/template_audit/check/export_pptx/build_preview + template-audit.json + export-result.json + ledger-snapshot.json）+ report + work-log 行 + state 台账（38 文件，3957 插入）"
-  },
-  {
-   "time": "2026-09-26T01:00+08:00",
-   "skill": "ppt-generator",
-   "scenario": "中文商务提案",
-   "result": "success",
-   "assertions": "394 条（写回前 390/394，K 组 4 条为台账幂等锁，写回后复跑闭合）",
-   "artifact_size": "516KB（SVG 111,008B/18 页 + PPTX 3×~50KB + 预览 3×36-44.5KB + 脚本数据），限额 50MB",
-   "cleanup": "已删 .tmp/pylibs + .tmp/pipcache（43MB pip 隔离安装与缓存）；无 node_modules/dist/构建缓存；技能目录零写入；artifacts 仅保留可直接打开产物与全部复现脚本",
-   "push": "已提交并推送：git@github.com:sunc-Q/frontend-skill.git main 分支 f85e53c..a296420（SSH 经 ssh.github.com:443，known_hosts 写 LAB/.tmp 即删；命令与文件零 token）。提交物=18 页 SVG + 3 份 PPTX + 3 份预览 + styles.html + data.json + 五件套脚本与三份 JSON 测量 + report + work-log 行 + state 台账（37 文件）；随后补记本条推送结果"
-  },
-  {
-   "time": "2026-09-26T02:00+08:00",
-   "skill": "graphic-gif",
-   "scenario": "动效营销横幅（GIF）",
-   "result": "success",
-   "assertions": "155 条（写回前 149/155，F 组 6 条台账幂等锁写回后闭合）",
-   "artifact_size": "3.1MB（GIF 合计 2.5MB，限额 50MB）",
-   "cleanup": "删 LAB/.tmp（node_modules 12MB + probe 装置）；无 dist/构建缓存；未起 http.server；技能目录零写入",
-   "push": "已推送 8881e05..c875912 main（SSH via ssh.github.com:443）"
-  }
- ],
- "next_candidates": [
-  "★ build-game × 3D 小游戏场景（本机最后一个未用前端产物型技能，资产完整：reference/6 篇+serve.sh；产物=单文件 Three.js HTML，与实验室「双击即开」纪律契合；注意 WebGL 在 headless/hidden 面板下的可渲染性是第一问）",
-  "★ graphic-gif × fade-in/slide-in 两型补全 + 把「末帧终值==目标值」式子移植回 15:00/20:00 轮的 CSS 动画场景横检",
-  "graphic-gif × 邮件横幅（<500KB 预算档，技能 Step6 的 email 预算从未压测；filesize 优化档 + gifsicle 缺位下的体积上限）",
-  "★ ppt-generator × 图表模板诚实度横筛（剩余 27 张 chart 模板，标注 vs 端点反推式子自动化）",
-  "★ ppt-generator × dark_warm 暖色商务提案（SKILL.md 菜单默认风格、index 漏列）",
-  "ppt-generator × charts_index bestFor/avoidFor 选图决策断言",
-  "ppt-generator × svg_quality_checker.py/batch_validate.py 黑盒对垒",
-  "★ 三条式子（色板封闭+七指纹+零交集）移植回 14/16/17/18 轮历史产物横检",
-  "★ sites:sites-building × 多页站点（references/static-site.md 静态导出与 SPA 路由条款至今未验）",
-  "三技能叠加 sites-building+vercel-react+drafter：反膨胀条款 vs 分包懒加载条款是否互斥",
-  "vercel-react × 真 Next.js 工程吃 RSC 专属 server-*（3 条）",
-  "跨技能：graphic-gif 产出的 GIF 作为 sites-building 落地页素材（动图入静态站，验证两技能产物互喂）",
-  "ppt-generator × charts_index.json 的 bestFor/avoidFor 选图决策：33 条目带适用/回避场景描述，本轮未验——给同一份数据故意配错图型（如漏斗数据画 donut），断言技能文档能否让 Agent 事后指出错配（选图条款第一次可测）",
-  "ppt-generator × svg_quality_checker.py / batch_validate.py 黑盒：22:00 轮记的「另一套未接线的质量脚本」，把它当第三方 linter 跑本轮 18 页 SVG，对照 check.py 的 350 条看谁抓到更多（验技能自带 QA 与自研 QA 的覆盖差）",
-  "三技能叠加 sites-building（定形+反膨胀）+ vercel-react（定码）+ drafter（定图）：验 F 组「不许加分包以外的功能」与 vercel「鼓励分包/懒加载」是否互斥；19:00 轮的先例是先解控制流冲突再叠加",
-  "sites:sites-building × 活动报名页（与 20:00 React 轮同场景零框架对照，本轮 15KB 已可作为成本基线）",
-  "vercel-react-best-practices × 真 Next.js 工程（server-serialization / server-dedup-props / React.cache 本体与流式 SSR 形态的 suspense-boundaries 只有 Next.js 能验；npmmirror 可装 next，需先确认 Node 22 兼容与构建时长配额）",
-  "graphic-gif × 动效横幅（需 Playwright + Chromium 下载；产物 .gif 不属于「可直接双击打开的页面」，落盘与预览策略要先定）",
-  "★ vercel-react-best-practices × 真 Next.js 工程：server-* 剩余 3 条 RSC 专属（server-serialization / server-dedup-props / React.cache 本体）与流式 SSR 形态的 suspense-boundaries 只有 Next.js 能验；npmmirror 可装 next，但需先确认 Node 22 兼容与构建时长配额",
-  "★ vercel-react-best-practices × 「部分依赖扇出」数据形态（如列表返回 ids 后逐项取详情）：async-dependencies（better-all）是唯一还没落地的 async 条款，别为它凑题，等自然场景",
-  "sites:sites-building × 活动报名页（与 20:00 轮同场景零框架对照：同一张活动页，内置技能单文件 vs React+mock 服务端的成本/能力差）",
-  "frontend-development × 管理后台（同场景换 skill，与 17:00 那轮正面对照：同一后台谁给的条款更可落地）",
-  "（需用户授权）市场技能 ui-ux-pro-max × 数据报表",
-  "drafter × 单张长链流程图/时序图（技能主场未测点：连接线在 12+ 节点、直角折线与跨行虚线下的可读性与塌陷风险；产物仍应 15-20KB）",
-  "drafter + 规范型技能叠加 × 数据看板（测「主张型定形 + 规范型定码」配方在纯静态图纸上是否仍互补，且能否把 C 组视觉断言与 bundle 断言并成一套）",
-  "graphic-gif × 动效横幅（~/.qoder-cn/skills/graphic-gif，用户 19:37 装入；需要 Playwright + Chromium 下载，先验 npmmirror 能否装 playwright 与本机是否已有缓存浏览器；产物 .gif 不属于「可直接双击打开的页面」，落盘与预览策略要先想清楚）",
-  "ascii-project-dashboard × 项目进度看板（~/.qoder-cn/skills/，用户 17:36 装入；纯 ASCII 看板，可顺带对照本实验室 work-log 的真实形态）",
-  "★ vercel-react-best-practices × 真 Next.js 工程：server-* 剩余 3 条 RSC 专属（server-serialization / server-dedup-props / React.cache 本体）与流式 SSR 形态的 suspense-boundaries 只有 Next.js 能验；npmmirror 可装 next，但需先确认 Node 22 兼容与构建时长配额",
-  "★ vercel-react-best-practices × 「部分依赖扇出」数据形态（列表返回 ids 后逐项取详情）：async-dependencies（better-all）是唯一还没落地的 async 条款，别为它凑题，等自然场景",
-  "sites:sites-building × 活动报名页（与 20:00 轮同场景零框架对照：同一张活动页，内置技能单文件 vs React+mock 服务端的成本/能力差）",
-  "frontend-development × 管理后台（同场景换 skill，与 17:00 那轮正面对照：同一后台谁给的条款更可落地）",
-  "drafter × 单张长链流程图/时序图（12+ 节点下连接线可读性与塌陷风险；产物仍应 15-20KB）",
-  "drafter + 规范型技能叠加 × 数据看板（测「主张型定形 + 规范型定码」在纯静态图纸上是否仍互补，能否把视觉断言与 bundle 断言并成一套）",
-  "（备查·跨技能条款冲突）js-early-exit vs frontend-development「禁早期 return」→ 已定规则：控制流允许早退，渲染输出一律三元 + 显式空态（18:00 报告 §10；叠加两技能时必须先解冲突）",
-  "（需用户授权）市场技能 ui-ux-pro-max × 数据报表"
- ],
- "used_styles": [
-  "瑞士极简",
-  "玻璃极光",
-  "新粗野主义",
-  "深色密集分析",
-  "报纸排版",
-  "复古终端",
-  "暖纸数据新闻",
-  "冷灰对账单",
-  "暗色霓虹",
-  "商务白 business",
-  "单色暗 mono",
-  "95 桌面 win95",
-  "侘寂留白 wabi",
-  "构成主义 construct",
-  "孟菲斯 memphis",
-  "包豪斯构件 bauhaus",
-  "千禧镀铬 y2k-chrome",
-  "工程蓝图 blueprint",
-  "装饰艺术 deco",
-  "蒸汽波 vapor",
-  "孔版印刷 riso",
-  "蓝图浅色单栏 blueprint-light",
-  "夜间制图左索引 drafting-dark",
-  "规格说明书三栏印刷件 spec-sheet",
-  "咨询图表深底 exhibit",
-  "论文答辩学术白 academic_defense",
-  "红黑几何切角 smart_red",
-  "和纸浮世绘 ukiyo",
-  "深空星图 astro",
-  "像素掌机 pixel-console",
-  "政务蓝图表件 government-blue-charts",
-  "疗愈蓝绿图表件 psych-healing-charts",
-  "霓虹像素图表件 pixel-neon-charts",
-  "咨询蓝提案件 consultant",
-  "政务红立项件 gov-red",
-  "科技蓝商务提案件 tech-blue-proposal",
-  "云白板计数 clean-slate-gif",
-  "磷绿终端打字 terminal-gif",
-  "黄黑硬框跑马灯 brutalist-gif"
- ],
- "environment_notes": [
-  "本机无法直连 GitHub raw 与 skills.sh（curl exit 35 / WebFetch fetch failed），外部落地技能持续不可用",
-  "extension-market 的 install_extension 强制用户确认，定时无人值守运行不得安装；用户本人亦持「装技能须逐项确认」偏好",
-  "browser-use 仅改 hash 的导航不会重新加载页面，复核改动前必须 reload(ignoreCache)",
-  "browser-use take_screenshot 在 IDE 内置浏览器面板不可见时报 NATIVE_BROWSER_VIEWPORT_UNAVAILABLE；此时改用 getComputedStyle 断言做视觉复核",
-  "内联 <script> 先用 node vm.Script 做语法检查再看浏览器：语法错误会让整页不渲染且控制台静默",
-  "跨运行相对链接需以 artifacts/ 为服务器根，否则 http.server 禁止上跳返回 404",
-  "npm 官方 registry 与 GitHub 均不可达，但 registry.npmmirror.com 可达：真实框架工具链（vite/vue/pinia/typescript）可正常安装；npx 会去不可达 registry，故改用产物目录内 ./node_modules/.bin/*",
-  "Vite 多入口产物是 ES Module，file:// 下不执行（前两轮单文件产物双击可用，这轮不行）：另建 vite.single.config.ts 用 inlineDynamicImports 单入口构建，再把 JS/CSS 内联成单文件版",
-  "把 JS/CSS 内联进 HTML 时，String.replace 的替换串里 $' / $& / $` 会被展开——必须传 replacer 函数，否则文档自我复制且页面静默不渲染（无控制台报错）",
-  "browser-use evaluate_script 内含 await 的调用常 15s 超时（页面侧其实已执行）：断言写成同步、交互与读结果分两次调用",
-  "github.com 的 HTTPS 被 TLS 重置，但 SSH 可用：~/.ssh/config 已让 github.com 经 ssh.github.com:443 + 127.0.0.1:7897 代理，id_ed25519 认证为 sunc-Q；known_hosts 写到实验室内 .tmp/kh 以免越界改文件",
-  "Vite build.lib 的 IIFE 产物不会自动替换 process.env.NODE_ENV：React/react-dom 为 CJS 双构建时会留裸 process 引用，浏览器里顶层 ReferenceError 使整页静默空白且控制台零报错（list_console_messages 也拿不到）。必须显式 define: { process.env.NODE_ENV: \"production\" }，bundle 还能再瘦 2/3。定位手段：node -e vm.runInContext(内联脚本) 配桩 DOM",
-  "build.lib IIFE 只暴露全局对象（var BeaconAdmin=…），不会自挂载：内联模板必须自己追加 <script>BeaconAdmin.mount(document.getElementById(\"root\"))</script>，否则 root 为空",
-  "多份 CSS 拼进同一个 <style> 时顺序即层叠优先级：主题层必须在结构层之后，否则同特异性的 .kpi/.avatar 等规则被反向覆盖。jsdom 的 getComputedStyle 不做样式层叠（返回 rgba(0,0,0,0)），此类缺陷只能靠真实浏览器计算样式或「拼接顺序」显式断言发现",
-  "IDE 内置浏览器面板 hidden 时（document.visibilityState=hidden / innerWidth=0）：evaluate_script 里 dispatchEvent 触发的 React 更新不会 flush 到 DOM，click 工具报 NATIVE_BROWSER_VIEWPORT_UNAVAILABLE，连 getComputedStyle 都可能 15s 超时——不是应用 bug。交互验证一律改走 jsdom（runScripts:dangerously + pretendToBeVisual + 等 rAF tick），浏览器只留给不需要事件的计算样式复核；恢复办法是重新 navigate_page（不带 ignoreCache）",
-  "jsdom 版交互断言范式：input 赋值须用 Object.getOwnPropertyDescriptor(win.HTMLInputElement.prototype,\"value\").set.call(el,v) 再 dispatchEvent(new win.Event(\"input\",{bubbles:true}))；React 提交要等帧，统一 await tick(n)（requestAnimationFrame 递归）；toast 取最后一个（querySelectorAll 末尾），面板类选择器要限定作用域避免命中隐藏的其他分区",
-  "内联 HTML 校验不能全局匹配 '<script>'：react-dom bundle 里有字面量 \"<script><\\/script>\"，计数与「零外链」断言一律用行首匹配 /^<script>/gm；也不要把 <script 全量转义，会破坏产物",
-  "进场动画/reveal 类交互的正确做法：observer 只在挂载时收集一次目标，动态列表里新挂载的元素抓不到——所以基态必须保持可见（opacity:1），.is-in 只追加 animation；把 opacity:0 当基态会让漏标元素永久空白",
-  "面板 hidden 时真实浏览器 rAF 不触发：指针位置写 CSS 变量（--px/--py）这类交互只能在 jsdom（pretendToBeVisual 有 rAF）验；且 innerWidth=0 使 scrollWidth 只有 284，横向溢出断言会假通过 → 必须显式记为未验项",
-  "jsdom 断言可扩展的三种手段（本轮实测有效）：beforeParse 里注入 localStorage 种子以覆盖「二次访问恢复」路径、用 win.__io 数组统计 IntersectionObserver 实例数、用 element.style.getPropertyValue('--px') 读回 CSS 变量；React 提交等待用连续 requestAnimationFrame tick(3~6)，useDeferredValue 需 6 次",
-  "结构层/主题层分离必须写断言兜底：一个 var(--bad, #b4453a) 兜底色就能让分层失效而肉眼看不出——检查式「去掉 :root 块后不得出现十六进制色」成本极低、收益确定",
-  "规范型 skill 的真实价值在逐条回查而非通读：本轮 startTransition+手写 isPending、useMemo 包单个正则两处违规，都是写完回查 rendering-usetransition-loading / rerender-simple-expression-in-memo 才发现的",
-  "产物体积与 bundle 字节数必须用 Buffer.byteLength，不能用 String.length：中文页 UTF-16 码元数比 UTF-8 字节数少 2%+，本轮 inline.mjs 自报 264.9KB 而实际 276,091 字节，报告照抄后全部偏小。凡进文档的数字都应由断言打印（style-check 现打印 bundle/单页字节数）",
-  "从 HTML 里取内联脚本别手算偏移：indexOf('\\n<script>')+2 落在 's' 上（多切 7 字符），三页互比仍相等 → 一致性断言全绿但绝对量错。用 /^<script>([\\s\\S]*?)<\\/script>/m 捕获组；进一步可写不变式「内联字节 = dist 字节 + 每处 </script 一个转义字节」，把内联改动的代价显式化",
-  "单文件产物会抵消 bundle-dynamic-imports/conditional/preload（inlineDynamicImports 把懒加载并回主包）：同一份源码再加一次 vite build --config vite.split.config.ts（普通 app 构建，保留 chunk 边界），即可对这些条款做真实断言（本轮实测 QuoteSheet+telemetry 只占首包 1.2%），并把「按需 chunk 不含首屏文案」当字符串断言。这是纯静态项目验证 bundle-* 的通用办法",
-  "让金额账目自证的结构性做法：charged 由明细各行相加得出（先 CNY 每月 → 按周期放大 → 按币种取整 → 年付追加负项折扣行），再配 480 组合扫描断言 sum(lines)===charged、月付 charged=monthlyTotal、年付省额式、金额单调不减。两套独立算法互查比单点期望值可靠得多（本轮抓出 460 vs 4416 的口径缺陷）",
-  "浏览器 getComputedStyle 短调用原则：一次 1-3 个属性、避免 backgroundImage 这类超长字符串值，否则 15s 超时（页面侧其实已执行）；长字符串属性改用源码/产物断言替代",
-  "jsdom 里等 React 提交不要用 requestAnimationFrame（Node 下退化同步）：await new Promise(r=>setTimeout(r,15)) + 轮询挂载标志（如 .tier 数量达标）再断言，否则整页未渲染就跑断言会产生大批假失败（本轮 39 条）",
-  "异步优化（async-parallel/defer-await/swr-dedup）的可验证配方：①传输层抽象让同一组件代码跑 file://fixture 与真 HTTP 两个世界；②客户端 reqLog（挂 window.__reqs）做请求计数；③服务端按 process.hrtime 记到达时刻，断言打在「到达窗口」与「墙钟 vs 串行下界」上；④延迟表把快慢差做进数据。固定 sleep 在负载下全部漂移（20ms 定时器实际几百 ms）：jsdom 一律条件轮询 waitFor(fn)（4ms 步进），证明「乐观更新先于服务端确认」要把确认延迟(60ms)做在轮询上限(45ms)之后",
-  "jsdom 两个必备装置：file:// origin 下 localStorage 抛 DOMException，须 beforeParse 里 defineProperty 注入 Map shim（顺带可种子化「二次访问」路径）；页面里有 setInterval（倒计时）时进程永不退出，每个套件结束必须 win.close()",
-  "Node 22 跑 .mjs 脚本不能 import 无扩展名 .ts：被测模块（保持无 React 依赖）先用 esbuild 预打包成 .tmp/*.mjs 再 import",
-  "计数/缓存类断言的三个假通过来源：①fixture transport 最初不写 reqLog → 「零请求」断言全绿但无意义——计数器的写入点必须先被单独验证；②TTL 缓存反噬测试读数（读到旧值）——需要新鲜读时新建 transport 或用裸 fetch，且 stale 读数本身就是去重生效的证据，两种断言分开写；③LRU 存取形态必须一致（存裸值而按 {at,value} 解构 → 命中路径返回 undefined → JSON.stringify(undefined) 空响应体，只在命中时炸）",
-  "内联转义不变式的最终形态：不是「转义点数相等」（react-dom 产物自带已转义字面量 <\\/script，计数天然对不上）而是「内联体 === dist 文本套同一 replace 的结果」逐字节相等——顺带把 inline.mjs 与检查器绑进同一契约",
-  "「零外链」断言要区分资源加载与数据串：bundle 里 w3.org 命名空间（xmlns 值，浏览器不请求）与 react.dev 错误码文案属合法数据串，须白名单；真正有约束力的是标签级断言（link/img/script 带 src/href 即失败）。「无 http(s) 字符」式断言在 React 产物上必误报",
-  "split 构建「首包不含懒加载实现」不能断言符号名：minify 后动态 import 的绑定名（buildPoster）仍留在主包，且外壳组件文案（纪念票根）本就在首屏——要用只可能出现在被拆模块实现里的独有字符串（如 width=\\\"640\\\"、特定文案）做「主包无 + chunk 有」双向断言",
-  "延后取数（async-defer-await）必须配请求计数断言兜底：渲染体内残留一句无条件 loadResource 就把整个 defer 证明打穿，而页面功能完全正常、肉眼零迹象。同理 mock 服务端的响应形态必须以客户端类型为准（包了 {ok,...} 而客户端按裸数组消费会静默错位）；缺 Suspense 边界的挂起会直接崩 root，每个数据组件都要有自己的边界+骨架",
-  "用脚本/python str.replace 给测试文件打补丁可能静默 no-op（引号风格不匹配），测试照跑产生无法解释的 flaky——补丁一律用编辑工具并回读确认",
-  "zsh 的 echo === 会触发 =cmd 展开报错（echo 参数加引号）；macOS 无 timeout 命令，长任务用工具级超时控制",
-  "从 HTML 取内联脚本的正则必须允许缩进：/^<script>/m 在实际页面里常匹配不到（标签前有空格），会连带把后续契约断言全打成假失败；用 /^[ \\t]*<script>([\\s\\S]*?)<\\/script>/m",
-  "断言里的别名/编号映射表要防自环：{G4:\"G4\"} 打错成映射自身，会让按 B1..B4 编号的那一页恒判「未覆盖」，看起来像内容缺陷其实是检查器 bug；每张别名表都要逐键确认指向另一套真实编号",
-  "单次 evaluate_script 里放 4 个以上 getComputedStyle 就会 15s 超时（页面侧其实已执行完，超时后再读状态能看到点击已生效）—— 视觉复核拆成每次 1-3 个属性，交互与读结果分两次调用",
-  "<pre> 里的 ASCII 字符画必须把 > 转义成 &gt;（`-->` 会被当标签收尾吃掉后半张图）；drafter 类技能示例未提这一点",
-  "风格命名带实现后缀（blueprint-light / drafting-dark / spec-sheet）以免与历史 used_styles 字面撞车：19:00 轮的「工程蓝图 blueprint」是定价页皮肤，本轮 21-A 是 drafter 规则的图纸骨架，语义不同必须可区分",
-  "产物里只要抄写 state.json 的规模数字，就必须配一组「读盘反推互查」断言（G 组：用台账现值减本轮新增还原本轮前规模，与页面值逐字段比）——本轮凭印象手打的 2 个数字（31/38、9/10）就是这么被抓出来的；同理别名映射表须防自环、取内联脚本的正则须允许行首缩进",
-  "跨文件互查「开工前状态」必须落显式快照（本轮 artifacts/.../scripts/ledger-snapshot.json），不能用「台账现值 - 本轮新增条数」反推：收尾时再往台账补记一条，写死的减数就自毁",
-  "pypi 可达且能隔离安装：python3 -m pip install --target 前端skill实验室/.tmp/pylibs --index-url https://mirrors.aliyun.com/pypi/simple/ --cache-dir .tmp/pipprobe python-pptx lxml Pillow（得 python-pptx 1.0.2 / lxml 6.1.3 / Pillow 12.3.0），运行时 PYTHONPATH 指过去即可 import 技能自带包；「GitHub HTTPS 被 TLS 重置」不代表所有外网都不通，镜像类域名可达（本条推翻 21:00 之前「装不了第三方依赖」的隐含假设）",
-  "svgrepo.com TLS 握手正常但 HEAD 直接 HTTP 429 Too Many Requests：ppt-generator 的 640 个图标要靠 scripts/download_icons.py 现场抓，本机不可用；且该脚本默认写进技能自身目录，违反「不修改技能目录」约束，遇此类技能应直接放弃该能力而不是绕过",
-  "ppt-generator 的 sorted(glob('*.svg')) + 技能标准文件名 02_toc/02_chapter 并存 = 章节页永远排在提纲页之前，两种顺序导出的 PPTX 字节数完全相同（45,999/45,664/46,025），只有读 slide2 的首个 <a:t> 才能查出 → 结论：顺序类缺陷必须用「首元素内容」断言，不能用体积或数量",
-  "读 PPTX 的可靠办法（无需 python-pptx）：zipfile 打开后正则统计 ppt/media/ 部件数、<p:sp>/<p:pic>/<a:blip>/<a:gradFill>/<p:grpSp> 数量、<a:t> run 数、sz= 与 font-size 的 ×0.75 对应、<a:off>+<a:ext> 是否落在 12192000×6858000 EMU 内；DrawingML 的文本对齐属性名是 algn 不是 al（写错会得到恒假断言）",
-  "断言「零外链」时先剥掉 xmlns=\"http://www.w3.org/2000/svg\" 再判，且 url(#local) 要用 startswith('#') 判定（strip('#') 会把 # 剥掉导致恒判外链）——本轮这两处共制造 20 条假失败",
-  "evaluate_script 把「点击 + 读结果」写进同一个函数必 15s 超时（页面侧其实已执行完），必须拆两次调用；press_key 之后紧跟读取也超时过一次 —— 与前几轮的 getComputedStyle 合并调用超时同源：动作与读取永远分离",
-  "evaluate_script 在「某次调用 15s 超时」之后，下一次调用会先返回上一次已执行但没回传的结果——读数滞后一格。23:00 轮连续命中三次：导航到 astro 后读 body 背景色拿到 ukiyo 的 rgb(244,237,226)，再读一次才拿到 astro 真实 rgb(7,11,22)；pixel 页第一次读又返回上一支表达式。对策：面板 hidden 时同一表达式连读两次取第二次，或先跑一次已知答案的探针调用。与历轮记的「动作与读取必须拆两次」是不同现象",
-  "零位图（几何全用内联 SVG/CSS，人物/场景不配图）能让「零外链」断言第一次不需要白名单：前几轮在 React 产物上必须放行 w3.org xmlns 与 react.dev 错误码文案。个人主页/图纸/报表这类页面可直接采用该策略",
-  "把「一个连贯视觉主张」写成可机检断言的三条式子（本轮验证有效，可移植回历史轮做横检）：①色板封闭——页内出现的任何十六进制色必须属于该页声明色板；②风格七项指纹（grid-template-columns / font-family / border-radius / 是否用 table / 是否用竖排 / 是否方格仪表 / 阴影手法）两两差异 ≥3；③色板两两零交集。注意第③条会把「我自己在清单里误列的颜色」变成假失败，色板必须由脚本从 :root 解析而不是手抄",
-  "交互层的零依赖验证配方（不需要 jsdom，也就不需要 102MB node_modules）：vm.createContext + 30 行桩 DOM（getElementById/addEventListener/setTimeout/navigator.clipboard），分别跑「无 clipboard API」与「有 clipboard」两条分支，断言回退文案、是否安排复原定时器、复原后是否等于「从 HTML 里正则读出的初始文案」（不能写死字符串，否则改文案就假通过）",
-  "技能自带「不做浏览器 QA」的默认（Browser screenshots/DOM inspection/interaction QA require a user request），与实验室「必须复核产物」冲突。已验证的分工：浏览器只读不需要事件驱动的计算样式（每次 ≤3 属性），交互一律走 vm 桩，真实视口溢出记为未验项并改用静态防线（repeat() 必配 minmax(0,…)、无 ≥500px 固定宽、容器 max-width、nowrap 预算 ≤6）",
-  "ppt-generator 的 charts_index.json 与磁盘完全一致（meta_total=33==目录数==引用零缺失）——与 layouts_index.json（声称 20、磁盘 13）相反，说明该技能的索引 bug 是逐个文件人工维护出来的，不能推广为「索引都不可信」；真正的缺口统一在 SKILL.md 正文：charts/、icons/、svg_quality_checker 等一套脚本全部未接线",
-  "图表模板「样例数据算术不诚实」的检测式：把标注百分比/数值编码到的几何量（弧的起止角、条长、顶宽）从路径端点或 rect width 反推回来与标注比对。只查「角度加总=360°」或「百分比加总=100%」的断言永远放行（donut 五段偏差 +12.7°/-9.0° 但加总恰为 360°；funnel 顶宽 600/510/420/330 是等差数列、与标称 100/45/18/6.5% 无任何比例关系）。结论：继承模板只能取结构常量（坐标轴/半径/基线/字号槽），任何编码几何必须从数据现算",
-  "svg_to_pptx 实测丢弃 SVG filter：三份含 feGaussianBlur 的页面导出的 pptx 里 a:blur 部件均为 0（pixel 霓虹 glow 全丢），而 a:alpha（18/30 处）、a:gradFill（6/6/0）、custGeom（34/份）、<a:t> 与 SVG <text> 逐页相等、media 0 全部保留 → 依赖 filter 的风格（pixel_retro 的 glow）在 PPTX 端必然退化，「SVG 预览 ≈ PPTX 效果」不成立，交付前必须按 OOXML 复核而不是按 SVG 目视",
-  "模板/素材颜色与 layouts design_spec 色板交集可以为 0（charts/ 33 张模板用的 12 色与本轮三套 spec 色板零重合）→ 跨素材族复用模板时必须做两级换色：themes.json 里给每主题定 5 个序列色槽，生成器只按槽取色；并配「每主题序列槽全部出现且属于封闭色板」断言，否则换色漏槽会静默产生同色柱条",
-  "技能自带模板骨架的坐标常量必须脚本现读、不可手抄：我把 kpi 第二列卡片的 x 记成 640，实际模板是 660（模板审计按 rect 现读才发现），错的常量会让整套间距推导偏移而肉眼看不出；同理 funnel 模板 6 级骨架塞 5 级数据需要显式改 pitch 并在文档里记为「结构常量偏离」",
-  "正则从 SVG/HTML 模板抽标注时 [^—]+ 这类否定字符类会跨换行把多行并成一次命中（本轮六行百分比被并成一个值），一律加 \\n 排除（[^—\\n]）；遍历 SVG 元素属性前先挡 None（背景 rect 常无 x/y），float(el.get('x')) 直接崩",
-  "安全区断言按 text-anchor 分锚点估算文本宽度（start 向右、middle 双向、end 向左）能抓到真实溢出：本轮 legend「合计 3,258」与排行页 4,820 标签两处肉眼易漏的越界都是它first 抓的，这不是检查器误报——历轮「检查器 bug 伪装成内容缺陷」的模式不适用于这条，别因为怕误报而放宽",
-  "台账/去重类断言一律写成幂等式「快照值 + 本轮增量 == 台账现值」（含 used_styles 末三条须与快照 this_round_styles 逐字相同），不要写成「本轮内容未出现在台账里」——后者在写回台账的那一刻必然翻转成失败，让复现文档自毁；改完后写回前后各跑一次 check.py 都应全绿才算通过",
-  "ppt-generator layouts 实测：SKILL.md 菜单/index/磁盘三方各错一片（菜单 8 里 consultant/dark_warm/cloud_orange 不在 index；index 20 里 brand 族 10 个不在磁盘；磁盘 13 目录里科技蓝商务是中文名需映射表）——凡用该技能，spec_probe 式磁盘对账是第 0 步，不是可选优化",
-  "design_spec.md 字体栈含双引号（如 \"Helvetica Neue\"），拼进 SVG font-family=\"...\" 属性会产出非法 XML 且只有全量 ET.parse 能抓到（浏览器对首个坏页静默）；族名一律 \"→' 规范化后再写入",
-  "browser-use 面板 hidden 时新增量化事实：getBoundingClientRect 等强制布局的 evaluate_script 100% 15s 超时（连累同批次短查询），只有纯 DOM 读（document.title / querySelectorAll().length）可用——真实视口溢出验证由「锚点估宽静态断言」兜底已成标准做法",
-  "fonts.googleapis.com/fonts.gstatic.com 本机可达（css2 实测 200/0.5s）：GitHub 被 TLS 重置不代表 CDN 全灭，字体 CDN 类技能条款可满足；headless 截图前必须 await document.fonts.ready 并用 FontFaceSet.size 断言真加载",
-  "gifenc 的 writeFrame delay 单位是毫秒（内部 Math.round(delay/10) 化厘秒），传厘秒值会得 1cs=100fps 错片；GIF 延时粒度=1/100s ⇒ 12fps 实际 12.5fps（B 组已把 effective_fps 固化成断言）；自研 GIF 块遍历解析器要跳过图像描述符的局部色板+LZW 子块链，否则帧数恒 0",
-  "CSS 规则符合性断言必须在 stripComments 后的代码上跑：注释里写「无 animation-delay」会被关键词匹配判违规（本轮 3 条假失败）；同理 @keyframes 块抽取要括号配平扫描（非贪婪正则遇嵌套必截错）、0% 起点判定要认 '0%,4%{' 选择器组形态、终值断言取 matchAll().at(-1)",
-  "一次性动画（counter/typewriter）的 GIF 末帧终值探针配方：capture 停在最后一帧时读 getComputedStyle(el).getPropertyValue('--num') 与 .tw 宿主 width，断言==目标值——技能规则6（禁采 t=duration）下这是唯一能证明「目标值真的出现过」的手段；目视兜底=每风格落 首/中/末 3 张 sample PNG 进 artifacts"
- ]
+    "黄黑硬框跑马灯 brutalist-gif",
+    "日光苔原 sunlit-moss",
+    "曜岩熔脉 obsidian-lava",
+    "极冠晶塔 arctic-glass"
+  ],
+  "environment_notes": [
+    "本机无法直连 GitHub raw 与 skills.sh（curl exit 35 / WebFetch fetch failed），外部落地技能持续不可用",
+    "extension-market 的 install_extension 强制用户确认，定时无人值守运行不得安装；用户本人亦持「装技能须逐项确认」偏好",
+    "browser-use 仅改 hash 的导航不会重新加载页面，复核改动前必须 reload(ignoreCache)",
+    "browser-use take_screenshot 在 IDE 内置浏览器面板不可见时报 NATIVE_BROWSER_VIEWPORT_UNAVAILABLE；此时改用 getComputedStyle 断言做视觉复核",
+    "内联 <script> 先用 node vm.Script 做语法检查再看浏览器：语法错误会让整页不渲染且控制台静默",
+    "跨运行相对链接需以 artifacts/ 为服务器根，否则 http.server 禁止上跳返回 404",
+    "npm 官方 registry 与 GitHub 均不可达，但 registry.npmmirror.com 可达：真实框架工具链（vite/vue/pinia/typescript）可正常安装；npx 会去不可达 registry，故改用产物目录内 ./node_modules/.bin/*",
+    "Vite 多入口产物是 ES Module，file:// 下不执行（前两轮单文件产物双击可用，这轮不行）：另建 vite.single.config.ts 用 inlineDynamicImports 单入口构建，再把 JS/CSS 内联成单文件版",
+    "把 JS/CSS 内联进 HTML 时，String.replace 的替换串里 $' / $& / $` 会被展开——必须传 replacer 函数，否则文档自我复制且页面静默不渲染（无控制台报错）",
+    "browser-use evaluate_script 内含 await 的调用常 15s 超时（页面侧其实已执行）：断言写成同步、交互与读结果分两次调用",
+    "github.com 的 HTTPS 被 TLS 重置，但 SSH 可用：~/.ssh/config 已让 github.com 经 ssh.github.com:443 + 127.0.0.1:7897 代理，id_ed25519 认证为 sunc-Q；known_hosts 写到实验室内 .tmp/kh 以免越界改文件",
+    "Vite build.lib 的 IIFE 产物不会自动替换 process.env.NODE_ENV：React/react-dom 为 CJS 双构建时会留裸 process 引用，浏览器里顶层 ReferenceError 使整页静默空白且控制台零报错（list_console_messages 也拿不到）。必须显式 define: { process.env.NODE_ENV: \"production\" }，bundle 还能再瘦 2/3。定位手段：node -e vm.runInContext(内联脚本) 配桩 DOM",
+    "build.lib IIFE 只暴露全局对象（var BeaconAdmin=…），不会自挂载：内联模板必须自己追加 <script>BeaconAdmin.mount(document.getElementById(\"root\"))</script>，否则 root 为空",
+    "多份 CSS 拼进同一个 <style> 时顺序即层叠优先级：主题层必须在结构层之后，否则同特异性的 .kpi/.avatar 等规则被反向覆盖。jsdom 的 getComputedStyle 不做样式层叠（返回 rgba(0,0,0,0)），此类缺陷只能靠真实浏览器计算样式或「拼接顺序」显式断言发现",
+    "IDE 内置浏览器面板 hidden 时（document.visibilityState=hidden / innerWidth=0）：evaluate_script 里 dispatchEvent 触发的 React 更新不会 flush 到 DOM，click 工具报 NATIVE_BROWSER_VIEWPORT_UNAVAILABLE，连 getComputedStyle 都可能 15s 超时——不是应用 bug。交互验证一律改走 jsdom（runScripts:dangerously + pretendToBeVisual + 等 rAF tick），浏览器只留给不需要事件的计算样式复核；恢复办法是重新 navigate_page（不带 ignoreCache）",
+    "jsdom 版交互断言范式：input 赋值须用 Object.getOwnPropertyDescriptor(win.HTMLInputElement.prototype,\"value\").set.call(el,v) 再 dispatchEvent(new win.Event(\"input\",{bubbles:true}))；React 提交要等帧，统一 await tick(n)（requestAnimationFrame 递归）；toast 取最后一个（querySelectorAll 末尾），面板类选择器要限定作用域避免命中隐藏的其他分区",
+    "内联 HTML 校验不能全局匹配 '<script>'：react-dom bundle 里有字面量 \"<script><\\/script>\"，计数与「零外链」断言一律用行首匹配 /^<script>/gm；也不要把 <script 全量转义，会破坏产物",
+    "进场动画/reveal 类交互的正确做法：observer 只在挂载时收集一次目标，动态列表里新挂载的元素抓不到——所以基态必须保持可见（opacity:1），.is-in 只追加 animation；把 opacity:0 当基态会让漏标元素永久空白",
+    "面板 hidden 时真实浏览器 rAF 不触发：指针位置写 CSS 变量（--px/--py）这类交互只能在 jsdom（pretendToBeVisual 有 rAF）验；且 innerWidth=0 使 scrollWidth 只有 284，横向溢出断言会假通过 → 必须显式记为未验项",
+    "jsdom 断言可扩展的三种手段（本轮实测有效）：beforeParse 里注入 localStorage 种子以覆盖「二次访问恢复」路径、用 win.__io 数组统计 IntersectionObserver 实例数、用 element.style.getPropertyValue('--px') 读回 CSS 变量；React 提交等待用连续 requestAnimationFrame tick(3~6)，useDeferredValue 需 6 次",
+    "结构层/主题层分离必须写断言兜底：一个 var(--bad, #b4453a) 兜底色就能让分层失效而肉眼看不出——检查式「去掉 :root 块后不得出现十六进制色」成本极低、收益确定",
+    "规范型 skill 的真实价值在逐条回查而非通读：本轮 startTransition+手写 isPending、useMemo 包单个正则两处违规，都是写完回查 rendering-usetransition-loading / rerender-simple-expression-in-memo 才发现的",
+    "产物体积与 bundle 字节数必须用 Buffer.byteLength，不能用 String.length：中文页 UTF-16 码元数比 UTF-8 字节数少 2%+，本轮 inline.mjs 自报 264.9KB 而实际 276,091 字节，报告照抄后全部偏小。凡进文档的数字都应由断言打印（style-check 现打印 bundle/单页字节数）",
+    "从 HTML 里取内联脚本别手算偏移：indexOf('\\n<script>')+2 落在 's' 上（多切 7 字符），三页互比仍相等 → 一致性断言全绿但绝对量错。用 /^<script>([\\s\\S]*?)<\\/script>/m 捕获组；进一步可写不变式「内联字节 = dist 字节 + 每处 </script 一个转义字节」，把内联改动的代价显式化",
+    "单文件产物会抵消 bundle-dynamic-imports/conditional/preload（inlineDynamicImports 把懒加载并回主包）：同一份源码再加一次 vite build --config vite.split.config.ts（普通 app 构建，保留 chunk 边界），即可对这些条款做真实断言（本轮实测 QuoteSheet+telemetry 只占首包 1.2%），并把「按需 chunk 不含首屏文案」当字符串断言。这是纯静态项目验证 bundle-* 的通用办法",
+    "让金额账目自证的结构性做法：charged 由明细各行相加得出（先 CNY 每月 → 按周期放大 → 按币种取整 → 年付追加负项折扣行），再配 480 组合扫描断言 sum(lines)===charged、月付 charged=monthlyTotal、年付省额式、金额单调不减。两套独立算法互查比单点期望值可靠得多（本轮抓出 460 vs 4416 的口径缺陷）",
+    "浏览器 getComputedStyle 短调用原则：一次 1-3 个属性、避免 backgroundImage 这类超长字符串值，否则 15s 超时（页面侧其实已执行）；长字符串属性改用源码/产物断言替代",
+    "jsdom 里等 React 提交不要用 requestAnimationFrame（Node 下退化同步）：await new Promise(r=>setTimeout(r,15)) + 轮询挂载标志（如 .tier 数量达标）再断言，否则整页未渲染就跑断言会产生大批假失败（本轮 39 条）",
+    "异步优化（async-parallel/defer-await/swr-dedup）的可验证配方：①传输层抽象让同一组件代码跑 file://fixture 与真 HTTP 两个世界；②客户端 reqLog（挂 window.__reqs）做请求计数；③服务端按 process.hrtime 记到达时刻，断言打在「到达窗口」与「墙钟 vs 串行下界」上；④延迟表把快慢差做进数据。固定 sleep 在负载下全部漂移（20ms 定时器实际几百 ms）：jsdom 一律条件轮询 waitFor(fn)（4ms 步进），证明「乐观更新先于服务端确认」要把确认延迟(60ms)做在轮询上限(45ms)之后",
+    "jsdom 两个必备装置：file:// origin 下 localStorage 抛 DOMException，须 beforeParse 里 defineProperty 注入 Map shim（顺带可种子化「二次访问」路径）；页面里有 setInterval（倒计时）时进程永不退出，每个套件结束必须 win.close()",
+    "Node 22 跑 .mjs 脚本不能 import 无扩展名 .ts：被测模块（保持无 React 依赖）先用 esbuild 预打包成 .tmp/*.mjs 再 import",
+    "计数/缓存类断言的三个假通过来源：①fixture transport 最初不写 reqLog → 「零请求」断言全绿但无意义——计数器的写入点必须先被单独验证；②TTL 缓存反噬测试读数（读到旧值）——需要新鲜读时新建 transport 或用裸 fetch，且 stale 读数本身就是去重生效的证据，两种断言分开写；③LRU 存取形态必须一致（存裸值而按 {at,value} 解构 → 命中路径返回 undefined → JSON.stringify(undefined) 空响应体，只在命中时炸）",
+    "内联转义不变式的最终形态：不是「转义点数相等」（react-dom 产物自带已转义字面量 <\\/script，计数天然对不上）而是「内联体 === dist 文本套同一 replace 的结果」逐字节相等——顺带把 inline.mjs 与检查器绑进同一契约",
+    "「零外链」断言要区分资源加载与数据串：bundle 里 w3.org 命名空间（xmlns 值，浏览器不请求）与 react.dev 错误码文案属合法数据串，须白名单；真正有约束力的是标签级断言（link/img/script 带 src/href 即失败）。「无 http(s) 字符」式断言在 React 产物上必误报",
+    "split 构建「首包不含懒加载实现」不能断言符号名：minify 后动态 import 的绑定名（buildPoster）仍留在主包，且外壳组件文案（纪念票根）本就在首屏——要用只可能出现在被拆模块实现里的独有字符串（如 width=\\\"640\\\"、特定文案）做「主包无 + chunk 有」双向断言",
+    "延后取数（async-defer-await）必须配请求计数断言兜底：渲染体内残留一句无条件 loadResource 就把整个 defer 证明打穿，而页面功能完全正常、肉眼零迹象。同理 mock 服务端的响应形态必须以客户端类型为准（包了 {ok,...} 而客户端按裸数组消费会静默错位）；缺 Suspense 边界的挂起会直接崩 root，每个数据组件都要有自己的边界+骨架",
+    "用脚本/python str.replace 给测试文件打补丁可能静默 no-op（引号风格不匹配），测试照跑产生无法解释的 flaky——补丁一律用编辑工具并回读确认",
+    "zsh 的 echo === 会触发 =cmd 展开报错（echo 参数加引号）；macOS 无 timeout 命令，长任务用工具级超时控制",
+    "从 HTML 取内联脚本的正则必须允许缩进：/^<script>/m 在实际页面里常匹配不到（标签前有空格），会连带把后续契约断言全打成假失败；用 /^[ \\t]*<script>([\\s\\S]*?)<\\/script>/m",
+    "断言里的别名/编号映射表要防自环：{G4:\"G4\"} 打错成映射自身，会让按 B1..B4 编号的那一页恒判「未覆盖」，看起来像内容缺陷其实是检查器 bug；每张别名表都要逐键确认指向另一套真实编号",
+    "单次 evaluate_script 里放 4 个以上 getComputedStyle 就会 15s 超时（页面侧其实已执行完，超时后再读状态能看到点击已生效）—— 视觉复核拆成每次 1-3 个属性，交互与读结果分两次调用",
+    "<pre> 里的 ASCII 字符画必须把 > 转义成 &gt;（`-->` 会被当标签收尾吃掉后半张图）；drafter 类技能示例未提这一点",
+    "风格命名带实现后缀（blueprint-light / drafting-dark / spec-sheet）以免与历史 used_styles 字面撞车：19:00 轮的「工程蓝图 blueprint」是定价页皮肤，本轮 21-A 是 drafter 规则的图纸骨架，语义不同必须可区分",
+    "产物里只要抄写 state.json 的规模数字，就必须配一组「读盘反推互查」断言（G 组：用台账现值减本轮新增还原本轮前规模，与页面值逐字段比）——本轮凭印象手打的 2 个数字（31/38、9/10）就是这么被抓出来的；同理别名映射表须防自环、取内联脚本的正则须允许行首缩进",
+    "跨文件互查「开工前状态」必须落显式快照（本轮 artifacts/.../scripts/ledger-snapshot.json），不能用「台账现值 - 本轮新增条数」反推：收尾时再往台账补记一条，写死的减数就自毁",
+    "pypi 可达且能隔离安装：python3 -m pip install --target 前端skill实验室/.tmp/pylibs --index-url https://mirrors.aliyun.com/pypi/simple/ --cache-dir .tmp/pipprobe python-pptx lxml Pillow（得 python-pptx 1.0.2 / lxml 6.1.3 / Pillow 12.3.0），运行时 PYTHONPATH 指过去即可 import 技能自带包；「GitHub HTTPS 被 TLS 重置」不代表所有外网都不通，镜像类域名可达（本条推翻 21:00 之前「装不了第三方依赖」的隐含假设）",
+    "svgrepo.com TLS 握手正常但 HEAD 直接 HTTP 429 Too Many Requests：ppt-generator 的 640 个图标要靠 scripts/download_icons.py 现场抓，本机不可用；且该脚本默认写进技能自身目录，违反「不修改技能目录」约束，遇此类技能应直接放弃该能力而不是绕过",
+    "ppt-generator 的 sorted(glob('*.svg')) + 技能标准文件名 02_toc/02_chapter 并存 = 章节页永远排在提纲页之前，两种顺序导出的 PPTX 字节数完全相同（45,999/45,664/46,025），只有读 slide2 的首个 <a:t> 才能查出 → 结论：顺序类缺陷必须用「首元素内容」断言，不能用体积或数量",
+    "读 PPTX 的可靠办法（无需 python-pptx）：zipfile 打开后正则统计 ppt/media/ 部件数、<p:sp>/<p:pic>/<a:blip>/<a:gradFill>/<p:grpSp> 数量、<a:t> run 数、sz= 与 font-size 的 ×0.75 对应、<a:off>+<a:ext> 是否落在 12192000×6858000 EMU 内；DrawingML 的文本对齐属性名是 algn 不是 al（写错会得到恒假断言）",
+    "断言「零外链」时先剥掉 xmlns=\"http://www.w3.org/2000/svg\" 再判，且 url(#local) 要用 startswith('#') 判定（strip('#') 会把 # 剥掉导致恒判外链）——本轮这两处共制造 20 条假失败",
+    "evaluate_script 把「点击 + 读结果」写进同一个函数必 15s 超时（页面侧其实已执行完），必须拆两次调用；press_key 之后紧跟读取也超时过一次 —— 与前几轮的 getComputedStyle 合并调用超时同源：动作与读取永远分离",
+    "evaluate_script 在「某次调用 15s 超时」之后，下一次调用会先返回上一次已执行但没回传的结果——读数滞后一格。23:00 轮连续命中三次：导航到 astro 后读 body 背景色拿到 ukiyo 的 rgb(244,237,226)，再读一次才拿到 astro 真实 rgb(7,11,22)；pixel 页第一次读又返回上一支表达式。对策：面板 hidden 时同一表达式连读两次取第二次，或先跑一次已知答案的探针调用。与历轮记的「动作与读取必须拆两次」是不同现象",
+    "零位图（几何全用内联 SVG/CSS，人物/场景不配图）能让「零外链」断言第一次不需要白名单：前几轮在 React 产物上必须放行 w3.org xmlns 与 react.dev 错误码文案。个人主页/图纸/报表这类页面可直接采用该策略",
+    "把「一个连贯视觉主张」写成可机检断言的三条式子（本轮验证有效，可移植回历史轮做横检）：①色板封闭——页内出现的任何十六进制色必须属于该页声明色板；②风格七项指纹（grid-template-columns / font-family / border-radius / 是否用 table / 是否用竖排 / 是否方格仪表 / 阴影手法）两两差异 ≥3；③色板两两零交集。注意第③条会把「我自己在清单里误列的颜色」变成假失败，色板必须由脚本从 :root 解析而不是手抄",
+    "交互层的零依赖验证配方（不需要 jsdom，也就不需要 102MB node_modules）：vm.createContext + 30 行桩 DOM（getElementById/addEventListener/setTimeout/navigator.clipboard），分别跑「无 clipboard API」与「有 clipboard」两条分支，断言回退文案、是否安排复原定时器、复原后是否等于「从 HTML 里正则读出的初始文案」（不能写死字符串，否则改文案就假通过）",
+    "技能自带「不做浏览器 QA」的默认（Browser screenshots/DOM inspection/interaction QA require a user request），与实验室「必须复核产物」冲突。已验证的分工：浏览器只读不需要事件驱动的计算样式（每次 ≤3 属性），交互一律走 vm 桩，真实视口溢出记为未验项并改用静态防线（repeat() 必配 minmax(0,…)、无 ≥500px 固定宽、容器 max-width、nowrap 预算 ≤6）",
+    "ppt-generator 的 charts_index.json 与磁盘完全一致（meta_total=33==目录数==引用零缺失）——与 layouts_index.json（声称 20、磁盘 13）相反，说明该技能的索引 bug 是逐个文件人工维护出来的，不能推广为「索引都不可信」；真正的缺口统一在 SKILL.md 正文：charts/、icons/、svg_quality_checker 等一套脚本全部未接线",
+    "图表模板「样例数据算术不诚实」的检测式：把标注百分比/数值编码到的几何量（弧的起止角、条长、顶宽）从路径端点或 rect width 反推回来与标注比对。只查「角度加总=360°」或「百分比加总=100%」的断言永远放行（donut 五段偏差 +12.7°/-9.0° 但加总恰为 360°；funnel 顶宽 600/510/420/330 是等差数列、与标称 100/45/18/6.5% 无任何比例关系）。结论：继承模板只能取结构常量（坐标轴/半径/基线/字号槽），任何编码几何必须从数据现算",
+    "svg_to_pptx 实测丢弃 SVG filter：三份含 feGaussianBlur 的页面导出的 pptx 里 a:blur 部件均为 0（pixel 霓虹 glow 全丢），而 a:alpha（18/30 处）、a:gradFill（6/6/0）、custGeom（34/份）、<a:t> 与 SVG <text> 逐页相等、media 0 全部保留 → 依赖 filter 的风格（pixel_retro 的 glow）在 PPTX 端必然退化，「SVG 预览 ≈ PPTX 效果」不成立，交付前必须按 OOXML 复核而不是按 SVG 目视",
+    "模板/素材颜色与 layouts design_spec 色板交集可以为 0（charts/ 33 张模板用的 12 色与本轮三套 spec 色板零重合）→ 跨素材族复用模板时必须做两级换色：themes.json 里给每主题定 5 个序列色槽，生成器只按槽取色；并配「每主题序列槽全部出现且属于封闭色板」断言，否则换色漏槽会静默产生同色柱条",
+    "技能自带模板骨架的坐标常量必须脚本现读、不可手抄：我把 kpi 第二列卡片的 x 记成 640，实际模板是 660（模板审计按 rect 现读才发现），错的常量会让整套间距推导偏移而肉眼看不出；同理 funnel 模板 6 级骨架塞 5 级数据需要显式改 pitch 并在文档里记为「结构常量偏离」",
+    "正则从 SVG/HTML 模板抽标注时 [^—]+ 这类否定字符类会跨换行把多行并成一次命中（本轮六行百分比被并成一个值），一律加 \\n 排除（[^—\\n]）；遍历 SVG 元素属性前先挡 None（背景 rect 常无 x/y），float(el.get('x')) 直接崩",
+    "安全区断言按 text-anchor 分锚点估算文本宽度（start 向右、middle 双向、end 向左）能抓到真实溢出：本轮 legend「合计 3,258」与排行页 4,820 标签两处肉眼易漏的越界都是它first 抓的，这不是检查器误报——历轮「检查器 bug 伪装成内容缺陷」的模式不适用于这条，别因为怕误报而放宽",
+    "台账/去重类断言一律写成幂等式「快照值 + 本轮增量 == 台账现值」（含 used_styles 末三条须与快照 this_round_styles 逐字相同），不要写成「本轮内容未出现在台账里」——后者在写回台账的那一刻必然翻转成失败，让复现文档自毁；改完后写回前后各跑一次 check.py 都应全绿才算通过",
+    "ppt-generator layouts 实测：SKILL.md 菜单/index/磁盘三方各错一片（菜单 8 里 consultant/dark_warm/cloud_orange 不在 index；index 20 里 brand 族 10 个不在磁盘；磁盘 13 目录里科技蓝商务是中文名需映射表）——凡用该技能，spec_probe 式磁盘对账是第 0 步，不是可选优化",
+    "design_spec.md 字体栈含双引号（如 \"Helvetica Neue\"），拼进 SVG font-family=\"...\" 属性会产出非法 XML 且只有全量 ET.parse 能抓到（浏览器对首个坏页静默）；族名一律 \"→' 规范化后再写入",
+    "browser-use 面板 hidden 时新增量化事实：getBoundingClientRect 等强制布局的 evaluate_script 100% 15s 超时（连累同批次短查询），只有纯 DOM 读（document.title / querySelectorAll().length）可用——真实视口溢出验证由「锚点估宽静态断言」兜底已成标准做法",
+    "fonts.googleapis.com/fonts.gstatic.com 本机可达（css2 实测 200/0.5s）：GitHub 被 TLS 重置不代表 CDN 全灭，字体 CDN 类技能条款可满足；headless 截图前必须 await document.fonts.ready 并用 FontFaceSet.size 断言真加载",
+    "gifenc 的 writeFrame delay 单位是毫秒（内部 Math.round(delay/10) 化厘秒），传厘秒值会得 1cs=100fps 错片；GIF 延时粒度=1/100s ⇒ 12fps 实际 12.5fps（B 组已把 effective_fps 固化成断言）；自研 GIF 块遍历解析器要跳过图像描述符的局部色板+LZW 子块链，否则帧数恒 0",
+    "CSS 规则符合性断言必须在 stripComments 后的代码上跑：注释里写「无 animation-delay」会被关键词匹配判违规（本轮 3 条假失败）；同理 @keyframes 块抽取要括号配平扫描（非贪婪正则遇嵌套必截错）、0% 起点判定要认 '0%,4%{' 选择器组形态、终值断言取 matchAll().at(-1)",
+    "一次性动画（counter/typewriter）的 GIF 末帧终值探针配方：capture 停在最后一帧时读 getComputedStyle(el).getPropertyValue('--num') 与 .tw 宿主 width，断言==目标值——技能规则6（禁采 t=duration）下这是唯一能证明「目标值真的出现过」的手段；目视兜底=每风格落 首/中/末 3 张 sample PNG 进 artifacts",
+    "jsDelivr/unpkg **在 Chromium 里是通的**（同一时刻 cdn-form-probe.mjs：浏览器 threeLoaded=true/revision 160/零请求失败，curl 同 URL exit 35 Recv failure）——「GitHub 被 TLS 重置」不能推广成「CDN 全灭」；判定外链可用性必须两边各测一次，浏览器侧用 page.on(response/requestfailed) 取证，产物里保留 cdn-probe.json 作证据",
+    "three.js r160 + EffectComposer：中间缓冲是线性空间，文档若不给 OutputPass（线性→sRGB）成品就暗 3–6 倍；消融取证法=运行时按 label 取 pass 子集逐个 render + gl.readPixels，配式「文档形态 meanLuma 严格更低 && 比值<0.95 && 高光带 hiPct 严格更低」（不能要求暗像素变多，雪景/亮底 100% 亮像素永远不可能变多——本轮 arctic 假失败即由此来）",
+    "SSAO 的 minDistance/maxDistance 是**归一化深度**阈值，与 near/far 强耦合：正交顶视 near .1/far 2000 下文档值 16/0.005/0.1 使整帧纯黑（OUTPUT.Default/SSAO/Blur 全 0 而 Depth 247.21/Normal 223.74 正常 ⇒ 是遮挡判定杀画面，不是深度纹理坏）；缩到 2/2e-4/4e-3 后与「关掉 SSAO」逐像素同值，但仍多 1.59× 三角面——「合规但无收益」要用两条方向式同时钉住（文档值必黑 + 采用值不变画面且增开销）",
+    "WebGL 产物在本机可以拿到**真像素**：playwright-core + 缓存 chromium-1148（headless，args --no-sandbox --allow-file-access-from-files）能 screenshot 出 1280×720 真实帧并用 Read 目视，IDE 的 MCP 面板 hidden/0×0 不再是「无法目视」的理由；目视复核独有的两类缺陷本轮各中一次（夜景过暗只能从 σ/meanLuma 反推、卡片 <a> 套 <a> 非法 HTML 导致解析器提前闭合而布局炸开——DOM 断言查不出来）",
+    "游戏/动画类产物的「主题不得影响玩法」是可测的：同一 build 脚本在三主题下跑完整局，逐字段断言 gold/spent/earned/damageDealt/spawned/killed/wave/mode/time 相等。本轮由这条抓到真实耦合——rng 由 theme.seed 播种且与粒子共用一条流（粒子率随主题不同⇒消耗次数不同⇒敌人走路相位不同），而索敌用了三维 distanceTo，于是视觉抖动决定了谁被射死；修=地面平面距离 xzDist()。凡「视觉随机 + 三维距离」并存都要按这条查",
+    "mesh.scale 会连同顶点偏移一起缩放：TubeGeometry 顶点在 y=0.45、scale.y=0.12 ⇒ 路面沉到 0.054±0.132 被底板（顶 0.4）整条埋掉，三个主题的路面材质（含自发光熔缝）白写。几何要放在 y=0，高度用 mesh.position.y 表达；配「路面顶 > 底板顶 + 0.05 且 < +0.35」断言",
+    "格点/世界两套坐标混用是静默缺陷：isOnPath(cx,cz) 拿格坐标与世界空间折线比、阈值还是世界单位 CELL*0.95 ⇒ 96 格里 53 格误判成路径、可建造格 43 个全在右半场（leftBuild=0、覆盖列 6/12），缩略图上只表现为「左边有点空」。防线：把走廊写成可机检式子（走廊格数 15–35 && 左右两半各 >5 格可建 && 覆盖列数==GRID_W && 垫块实例数==总格数−走廊格数）",
+    "readPixels 前必须先 render：同一 JS 任务里 composer.render() 紧跟 readPixels 才拿得到帧，否则整屏 0 值会被当成「画面全黑」；探针里 Vector3.project(camera) 把世界点投到帧坐标再取色，是判定「某物件到底看不看得见」的最省事手段（本轮用它证伪了一次「左半场没有垫块」的误读——真实原因只是我把缩放后的缩略图看成空白）",
+    "台账类断言一律写成「快照 + 增量 == 现值」（沿用 00:00 轮定式，本轮 G 组 8 条再次验证写回前 7 红 / 写回后全绿）；skills_seen 用「同名先删后插」更新，避免同一技能累积多条 status:未试 的过期条目"
+  ]
 }

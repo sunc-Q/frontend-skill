@@ -1,0 +1,23 @@
+{
+ "sunlit-moss": {
+  "bytes": 756519,
+  "bundleBytes": 756114,
+  "escapedScriptClose": 0,
+  "cdnBytes": 75550,
+  "cdnModuleGraph": 9
+ },
+ "obsidian-lava": {
+  "bytes": 756521,
+  "bundleBytes": 756114,
+  "escapedScriptClose": 0,
+  "cdnBytes": 75552,
+  "cdnModuleGraph": 9
+ },
+ "arctic-glass": {
+  "bytes": 756520,
+  "bundleBytes": 756114,
+  "escapedScriptClose": 0,
+  "cdnBytes": 75551,
+  "cdnModuleGraph": 9
+ }
+}

@@ -1,0 +1,13 @@
+{
+ "when": "2026-09-25T18:52:37.628Z",
+ "form": "SKILL.md Phase 3 verbatim: importmap -> https://cdn.jsdelivr.net/npm/three@0.160.0",
+ "threeLoaded": true,
+ "revision": "160",
+ "err": null,
+ "curl": {
+  "exit": 35,
+  "note": "curl: (35) Recv failure: Connection reset by peer"
+ },
+ "requestFailures": [],
+ "console": []
+}

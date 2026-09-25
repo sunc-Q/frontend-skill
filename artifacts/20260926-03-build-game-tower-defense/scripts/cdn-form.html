@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>build-game 文档形态探针（SKILL.md Phase 3 原样结构）</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { overflow: hidden; background: #000; font-family: 'Segoe UI', Arial, sans-serif; }
+        canvas { display: block; }
+        #hud { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
+    </style>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div id="hud"><p id="out" style="color:#fff;font:14px monospace;padding:12px">loading three from the documented CDN…</p></div>
+    <script type="module">
+    // The skill's mandatory structure, unmodified, including its mandatory CDN.
+    // window.__probe is written by cdn-form-probe.mjs assertions, not by the game.
+    try {
+      const THREE = await import('three');
+      const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+      window.__probe = { threeLoaded: true, revision: THREE.REVISION, controlsLoaded: typeof OrbitControls === 'function', err: null };
+    } catch (e) {
+      window.__probe = { threeLoaded: false, revision: null, controlsLoaded: false, err: String(e && e.message || e) };
+    }
+    document.getElementById('out').textContent = JSON.stringify(window.__probe);
+    </script>
+</body>
+</html>

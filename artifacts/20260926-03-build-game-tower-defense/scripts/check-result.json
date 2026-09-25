@@ -1,0 +1,1632 @@
+{
+ "summary": {
+  "total": 220,
+  "pass": 220,
+  "fail": 0,
+  "groups": {
+   "A": {
+    "pass": 54,
+    "fail": 0
+   },
+   "B": {
+    "pass": 15,
+    "fail": 0
+   },
+   "C": {
+    "pass": 21,
+    "fail": 0
+   },
+   "D": {
+    "pass": 26,
+    "fail": 0
+   },
+   "E": {
+    "pass": 18,
+    "fail": 0
+   },
+   "F": {
+    "pass": 30,
+    "fail": 0
+   },
+   "G": {
+    "pass": 8,
+    "fail": 0
+   },
+   "H": {
+    "pass": 28,
+    "fail": 0
+   },
+   "I": {
+    "pass": 16,
+    "fail": 0
+   },
+   "J": {
+    "pass": 4,
+    "fail": 0
+   }
+  },
+  "measured": {
+   "sceneBytes": 8210947,
+   "perStyle": {
+    "sunlit-moss": {
+     "htmlBytes": 756519,
+     "bundleBytes": 756114,
+     "meanLumaFixed": 123.99,
+     "clippedPctFixed": 0,
+     "darkPctFixed": 0,
+     "hiPctFixed": 40.38,
+     "stdFixed": 46.16,
+     "midPctFixed": 99.94,
+     "hiPctDocForm": 0.01,
+     "meanLumaDocForm": 37.98,
+     "passes": [
+      "RenderPass",
+      "SSAOPass",
+      "UnrealBloomPass",
+      "OutputPass",
+      "ColorGradePass",
+      "FXAAPass"
+     ],
+     "exposure": 1.32,
+     "bloom": 0.35,
+     "vignette": 0.15,
+     "lights": 5,
+     "towerParts": {
+      "ballista": 15,
+      "frost": 17,
+      "mortar": 16
+     },
+     "enemyParts": {
+      "runner": 16,
+      "brute": 17,
+      "swift": 16,
+      "titan": 18
+     },
+     "sim": {
+      "gold": 150,
+      "spent": 1980,
+      "earned": 2130,
+      "damageDealt": 22339,
+      "hpSpawned": 22339,
+      "hpLeaked": 0,
+      "liveHp": 0,
+      "spawned": 120,
+      "killed": 120,
+      "leaked": 0,
+      "wave": 10,
+      "lives": 20,
+      "mode": "victory",
+      "buildCount": 24,
+      "time": 288.93,
+      "bestWave": 10,
+      "wins": 1
+     },
+     "bare": {
+      "gold": 310,
+      "spent": 0,
+      "earned": 310,
+      "damageDealt": 0,
+      "hpSpawned": 1614,
+      "hpLeaked": 1026,
+      "liveHp": 588,
+      "spawned": 25,
+      "killed": 0,
+      "leaked": 18,
+      "wave": 3,
+      "lives": 0,
+      "mode": "gameover",
+      "buildCount": 0,
+      "time": 132.33,
+      "bestWave": 10,
+      "wins": 2
+     },
+     "determinismEqual": true
+    },
+    "obsidian-lava": {
+     "htmlBytes": 756521,
+     "bundleBytes": 756114,
+     "meanLumaFixed": 53.53,
+     "clippedPctFixed": 0,
+     "darkPctFixed": 0,
+     "hiPctFixed": 5.72,
+     "stdFixed": 33.55,
+     "midPctFixed": 30.12,
+     "hiPctDocForm": 0.07,
+     "meanLumaDocForm": 13.2,
+     "passes": [
+      "RenderPass",
+      "SSAOPass",
+      "UnrealBloomPass",
+      "OutputPass",
+      "ColorGradePass",
+      "FXAAPass"
+     ],
+     "exposure": 1.35,
+     "bloom": 0.5,
+     "vignette": 0.28,
+     "lights": 5,
+     "towerParts": {
+      "ballista": 15,
+      "frost": 17,
+      "mortar": 16
+     },
+     "enemyParts": {
+      "runner": 16,
+      "brute": 17,
+      "swift": 16,
+      "titan": 18
+     },
+     "sim": {
+      "gold": 150,
+      "spent": 1980,
+      "earned": 2130,
+      "damageDealt": 22339,
+      "hpSpawned": 22339,
+      "hpLeaked": 0,
+      "liveHp": 0,
+      "spawned": 120,
+      "killed": 120,
+      "leaked": 0,
+      "wave": 10,
+      "lives": 20,
+      "mode": "victory",
+      "buildCount": 24,
+      "time": 288.93,
+      "bestWave": 10,
+      "wins": 3
+     },
+     "bare": {
+      "gold": 310,
+      "spent": 0,
+      "earned": 310,
+      "damageDealt": 0,
+      "hpSpawned": 1614,
+      "hpLeaked": 1026,
+      "liveHp": 588,
+      "spawned": 25,
+      "killed": 0,
+      "leaked": 18,
+      "wave": 3,
+      "lives": 0,
+      "mode": "gameover",
+      "buildCount": 0,
+      "time": 132.33,
+      "bestWave": 10,
+      "wins": 4
+     },
+     "determinismEqual": true
+    },
+    "arctic-glass": {
+     "htmlBytes": 756520,
+     "bundleBytes": 756114,
+     "meanLumaFixed": 95.37,
+     "clippedPctFixed": 0,
+     "darkPctFixed": 0,
+     "hiPctFixed": 7.25,
+     "stdFixed": 32.12,
+     "midPctFixed": 96.51,
+     "hiPctDocForm": 0.02,
+     "meanLumaDocForm": 15.53,
+     "passes": [
+      "RenderPass",
+      "SSAOPass",
+      "UnrealBloomPass",
+      "OutputPass",
+      "ColorGradePass",
+      "FXAAPass"
+     ],
+     "exposure": 1.06,
+     "bloom": 0.35,
+     "vignette": 0.26,
+     "lights": 5,
+     "towerParts": {
+      "ballista": 15,
+      "frost": 17,
+      "mortar": 16
+     },
+     "enemyParts": {
+      "runner": 16,
+      "brute": 17,
+      "swift": 16,
+      "titan": 18
+     },
+     "sim": {
+      "gold": 150,
+      "spent": 1980,
+      "earned": 2130,
+      "damageDealt": 22339,
+      "hpSpawned": 22339,
+      "hpLeaked": 0,
+      "liveHp": 0,
+      "spawned": 120,
+      "killed": 120,
+      "leaked": 0,
+      "wave": 10,
+      "lives": 20,
+      "mode": "victory",
+      "buildCount": 24,
+      "time": 288.93,
+      "bestWave": 10,
+      "wins": 5
+     },
+     "bare": {
+      "gold": 310,
+      "spent": 0,
+      "earned": 310,
+      "damageDealt": 0,
+      "hpSpawned": 1614,
+      "hpLeaked": 1026,
+      "liveHp": 588,
+      "spawned": 25,
+      "killed": 0,
+      "leaked": 18,
+      "wave": 3,
+      "lives": 0,
+      "mode": "gameover",
+      "buildCount": 0,
+      "time": 132.33,
+      "bestWave": 10,
+      "wins": 6
+     },
+     "determinismEqual": true
+    }
+   },
+   "fingerprintMatrix": [
+    {
+     "pair": "sunlit-moss~obsidian-lava",
+     "rootShared": [],
+     "hexSharedNonTrivial": [
+      "#4ade80",
+      "#fbbf24",
+      "#ef4444"
+     ]
+    },
+    {
+     "pair": "sunlit-moss~arctic-glass",
+     "rootShared": [],
+     "hexSharedNonTrivial": [
+      "#4ade80",
+      "#fbbf24",
+      "#ef4444"
+     ]
+    },
+    {
+     "pair": "obsidian-lava~arctic-glass",
+     "rootShared": [],
+     "hexSharedNonTrivial": [
+      "#4ade80",
+      "#fbbf24",
+      "#ef4444"
+     ]
+    }
+   ],
+   "inlineScriptSha1": {
+    "sunlit-moss": "c2ed7b30d948fcf77f636bcb9bf655e43be9ad05",
+    "obsidian-lava": "c2ed7b30d948fcf77f636bcb9bf655e43be9ad05",
+    "arctic-glass": "c2ed7b30d948fcf77f636bcb9bf655e43be9ad05"
+   }
+  }
+ },
+ "assertions": [
+  {
+   "group": "A",
+   "id": "boot/ready/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "A",
+   "id": "boot/hooks/sunlit-moss",
+   "ok": true,
+   "detail": "__playwright__binding__,__THEME_ID,__THREE__,__THEME,__ready,__diag,__game"
+  },
+  {
+   "group": "A",
+   "id": "boot/ready/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "A",
+   "id": "boot/hooks/obsidian-lava",
+   "ok": true,
+   "detail": "__playwright__binding__,__THEME_ID,__THREE__,__THEME,__ready,__diag,__game"
+  },
+  {
+   "group": "A",
+   "id": "boot/ready/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "A",
+   "id": "boot/hooks/arctic-glass",
+   "ok": true,
+   "detail": "__playwright__binding__,__THEME_ID,__THREE__,__THEME,__ready,__diag,__game"
+  },
+  {
+   "group": "A",
+   "id": "A/flags/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "A",
+   "id": "A/shadowtype/sunlit-moss",
+   "ok": true,
+   "detail": "PCFSoft"
+  },
+  {
+   "group": "A",
+   "id": "A/exposure/sunlit-moss",
+   "ok": true,
+   "detail": "1.32"
+  },
+  {
+   "group": "A",
+   "id": "A/pixelratio/sunlit-moss",
+   "ok": true,
+   "detail": "1"
+  },
+  {
+   "group": "A",
+   "id": "A/mapsize/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "A",
+   "id": "A/lights/sunlit-moss",
+   "ok": true,
+   "detail": "5"
+  },
+  {
+   "group": "A",
+   "id": "A/keyint/sunlit-moss",
+   "ok": true,
+   "detail": "DirectionalLight,2.6,DirectionalLight,0.7,HemisphereLight,0.5,AmbientLight,0.55,PointLight,1.2"
+  },
+  {
+   "group": "A",
+   "id": "A/ambint/sunlit-moss",
+   "ok": true,
+   "detail": "0.55"
+  },
+  {
+   "group": "A",
+   "id": "A/hemiint/sunlit-moss",
+   "ok": true,
+   "detail": "0.5"
+  },
+  {
+   "group": "A",
+   "id": "A/fillint/sunlit-moss",
+   "ok": true,
+   "detail": "2.6,0.7"
+  },
+  {
+   "group": "A",
+   "id": "A/keyshadow/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object],[object Object],[object Object],[object Object],[object Object]"
+  },
+  {
+   "group": "A",
+   "id": "A/bloom/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "A",
+   "id": "A/vignette/sunlit-moss",
+   "ok": true,
+   "detail": "0.15"
+  },
+  {
+   "group": "A",
+   "id": "A/passes/sunlit-moss",
+   "ok": true,
+   "detail": "RenderPass,SSAOPass,UnrealBloomPass,OutputPass,ColorGradePass,FXAAPass"
+  },
+  {
+   "group": "A",
+   "id": "A/envmap/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "A",
+   "id": "A/skydome/sunlit-moss",
+   "ok": true,
+   "detail": "true"
+  },
+  {
+   "group": "A",
+   "id": "A/flags/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "A",
+   "id": "A/shadowtype/obsidian-lava",
+   "ok": true,
+   "detail": "PCFSoft"
+  },
+  {
+   "group": "A",
+   "id": "A/exposure/obsidian-lava",
+   "ok": true,
+   "detail": "1.35"
+  },
+  {
+   "group": "A",
+   "id": "A/pixelratio/obsidian-lava",
+   "ok": true,
+   "detail": "1"
+  },
+  {
+   "group": "A",
+   "id": "A/mapsize/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "A",
+   "id": "A/lights/obsidian-lava",
+   "ok": true,
+   "detail": "5"
+  },
+  {
+   "group": "A",
+   "id": "A/keyint/obsidian-lava",
+   "ok": true,
+   "detail": "DirectionalLight,2.6,DirectionalLight,0.7,HemisphereLight,0.6,AmbientLight,0.8,PointLight,2.2"
+  },
+  {
+   "group": "A",
+   "id": "A/ambint/obsidian-lava",
+   "ok": true,
+   "detail": "0.8"
+  },
+  {
+   "group": "A",
+   "id": "A/hemiint/obsidian-lava",
+   "ok": true,
+   "detail": "0.6"
+  },
+  {
+   "group": "A",
+   "id": "A/fillint/obsidian-lava",
+   "ok": true,
+   "detail": "2.6,0.7"
+  },
+  {
+   "group": "A",
+   "id": "A/keyshadow/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object],[object Object],[object Object],[object Object],[object Object]"
+  },
+  {
+   "group": "A",
+   "id": "A/bloom/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "A",
+   "id": "A/vignette/obsidian-lava",
+   "ok": true,
+   "detail": "0.28"
+  },
+  {
+   "group": "A",
+   "id": "A/passes/obsidian-lava",
+   "ok": true,
+   "detail": "RenderPass,SSAOPass,UnrealBloomPass,OutputPass,ColorGradePass,FXAAPass"
+  },
+  {
+   "group": "A",
+   "id": "A/envmap/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "A",
+   "id": "A/skydome/obsidian-lava",
+   "ok": true,
+   "detail": "true"
+  },
+  {
+   "group": "A",
+   "id": "A/flags/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "A",
+   "id": "A/shadowtype/arctic-glass",
+   "ok": true,
+   "detail": "PCFSoft"
+  },
+  {
+   "group": "A",
+   "id": "A/exposure/arctic-glass",
+   "ok": true,
+   "detail": "1.06"
+  },
+  {
+   "group": "A",
+   "id": "A/pixelratio/arctic-glass",
+   "ok": true,
+   "detail": "1"
+  },
+  {
+   "group": "A",
+   "id": "A/mapsize/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "A",
+   "id": "A/lights/arctic-glass",
+   "ok": true,
+   "detail": "5"
+  },
+  {
+   "group": "A",
+   "id": "A/keyint/arctic-glass",
+   "ok": true,
+   "detail": "DirectionalLight,2.2,DirectionalLight,0.55,HemisphereLight,0.42,AmbientLight,0.5,PointLight,1.8"
+  },
+  {
+   "group": "A",
+   "id": "A/ambint/arctic-glass",
+   "ok": true,
+   "detail": "0.5"
+  },
+  {
+   "group": "A",
+   "id": "A/hemiint/arctic-glass",
+   "ok": true,
+   "detail": "0.42"
+  },
+  {
+   "group": "A",
+   "id": "A/fillint/arctic-glass",
+   "ok": true,
+   "detail": "2.2,0.55"
+  },
+  {
+   "group": "A",
+   "id": "A/keyshadow/arctic-glass",
+   "ok": true,
+   "detail": "[object Object],[object Object],[object Object],[object Object],[object Object]"
+  },
+  {
+   "group": "A",
+   "id": "A/bloom/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "A",
+   "id": "A/vignette/arctic-glass",
+   "ok": true,
+   "detail": "0.26"
+  },
+  {
+   "group": "A",
+   "id": "A/passes/arctic-glass",
+   "ok": true,
+   "detail": "RenderPass,SSAOPass,UnrealBloomPass,OutputPass,ColorGradePass,FXAAPass"
+  },
+  {
+   "group": "A",
+   "id": "A/envmap/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "A",
+   "id": "A/skydome/arctic-glass",
+   "ok": true,
+   "detail": "true"
+  },
+  {
+   "group": "B",
+   "id": "B/midtone/sunlit-moss",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "B",
+   "id": "B/fog/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "B",
+   "id": "B/density/sunlit-moss",
+   "ok": true,
+   "detail": "0.0055"
+  },
+  {
+   "group": "B",
+   "id": "B/groundvisible/sunlit-moss",
+   "ok": true,
+   "detail": "null"
+  },
+  {
+   "group": "B",
+   "id": "B/nobasic/sunlit-moss",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "B",
+   "id": "B/midtone/obsidian-lava",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "B",
+   "id": "B/fog/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "B",
+   "id": "B/density/obsidian-lava",
+   "ok": true,
+   "detail": "0.0085"
+  },
+  {
+   "group": "B",
+   "id": "B/groundvisible/obsidian-lava",
+   "ok": true,
+   "detail": "null"
+  },
+  {
+   "group": "B",
+   "id": "B/nobasic/obsidian-lava",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "B",
+   "id": "B/midtone/arctic-glass",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "B",
+   "id": "B/fog/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "B",
+   "id": "B/density/arctic-glass",
+   "ok": true,
+   "detail": "0.0075"
+  },
+  {
+   "group": "B",
+   "id": "B/groundvisible/arctic-glass",
+   "ok": true,
+   "detail": "null"
+  },
+  {
+   "group": "B",
+   "id": "B/nobasic/arctic-glass",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "C/towerparts/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "C",
+   "id": "C/enemyparts/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "C",
+   "id": "C/scatter/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "C",
+   "id": "C/castshadow/sunlit-moss",
+   "ok": true,
+   "detail": "0"
+  },
+  {
+   "group": "C",
+   "id": "C/corridorIsNarrow/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "C",
+   "id": "C/padsMatchMask/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "C",
+   "id": "C/roadAbovePlate/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "C",
+   "id": "C/towerparts/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "C",
+   "id": "C/enemyparts/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "C",
+   "id": "C/scatter/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "C",
+   "id": "C/castshadow/obsidian-lava",
+   "ok": true,
+   "detail": "0"
+  },
+  {
+   "group": "C",
+   "id": "C/corridorIsNarrow/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "C",
+   "id": "C/padsMatchMask/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "C",
+   "id": "C/roadAbovePlate/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "C",
+   "id": "C/towerparts/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "C",
+   "id": "C/enemyparts/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "C",
+   "id": "C/scatter/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "C",
+   "id": "C/castshadow/arctic-glass",
+   "ok": true,
+   "detail": "0"
+  },
+  {
+   "group": "C",
+   "id": "C/corridorIsNarrow/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "C",
+   "id": "C/padsMatchMask/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "C",
+   "id": "C/roadAbovePlate/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "D",
+   "id": "D/noResourceTags/sunlit-moss",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "D",
+   "id": "D/noImportmap/sunlit-moss",
+   "ok": true,
+   "detail": "null"
+  },
+  {
+   "group": "D",
+   "id": "D/noCdnHost/sunlit-moss",
+   "ok": true,
+   "detail": "null"
+  },
+  {
+   "group": "D",
+   "id": "D/noLoadableRemote/sunlit-moss",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "D",
+   "id": "D/noResourceTags/obsidian-lava",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "D",
+   "id": "D/noImportmap/obsidian-lava",
+   "ok": true,
+   "detail": "null"
+  },
+  {
+   "group": "D",
+   "id": "D/noCdnHost/obsidian-lava",
+   "ok": true,
+   "detail": "null"
+  },
+  {
+   "group": "D",
+   "id": "D/noLoadableRemote/obsidian-lava",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "D",
+   "id": "D/noResourceTags/arctic-glass",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "D",
+   "id": "D/noImportmap/arctic-glass",
+   "ok": true,
+   "detail": "null"
+  },
+  {
+   "group": "D",
+   "id": "D/noCdnHost/arctic-glass",
+   "ok": true,
+   "detail": "null"
+  },
+  {
+   "group": "D",
+   "id": "D/noLoadableRemote/arctic-glass",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "D",
+   "id": "D/docUrlsIdentical",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "D",
+   "id": "D/sizeAccounting/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "D",
+   "id": "D/sizeAccounting/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "D",
+   "id": "D/sizeAccounting/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "D",
+   "id": "D/cdnFormEvidenceFresh",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "D",
+   "id": "D/cdnFormUsableInBrowser",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "D",
+   "id": "D/cdnBootsAndRenders/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "D",
+   "id": "D/cdnFrameMatchesInline/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "D",
+   "id": "D/cdnBootsAndRenders/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "D",
+   "id": "D/cdnFrameMatchesInline/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "D",
+   "id": "D/cdnBootsAndRenders/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "D",
+   "id": "D/cdnFrameMatchesInline/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "D",
+   "id": "D/cdnFormSmallerThanInline",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "D",
+   "id": "D/cdnFormKeepsBareImports",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "E",
+   "id": "E/scriptIdentical",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "E",
+   "id": "E/domSkeletonIdentical",
+   "ok": true,
+   "detail": "9b73f2c185,9b73f2c185,9b73f2c185"
+  },
+  {
+   "group": "E",
+   "id": "E/rootVarsComplete/sunlit-moss",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "E/rootVarsComplete/obsidian-lava",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "E/rootVarsComplete/arctic-glass",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "E/rootDisjoint/sunlit-moss~obsidian-lava",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "E/styleHexDisjoint/sunlit-moss~obsidian-lava",
+   "ok": true,
+   "detail": "#4ade80,#fbbf24,#ef4444"
+  },
+  {
+   "group": "E",
+   "id": "E/fingerprints>=5/sunlit-moss~obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "E",
+   "id": "E/rootDisjoint/sunlit-moss~arctic-glass",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "E/styleHexDisjoint/sunlit-moss~arctic-glass",
+   "ok": true,
+   "detail": "#4ade80,#fbbf24,#ef4444"
+  },
+  {
+   "group": "E",
+   "id": "E/fingerprints>=5/sunlit-moss~arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "E",
+   "id": "E/rootDisjoint/obsidian-lava~arctic-glass",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "E/styleHexDisjoint/obsidian-lava~arctic-glass",
+   "ok": true,
+   "detail": "#4ade80,#fbbf24,#ef4444"
+  },
+  {
+   "group": "E",
+   "id": "E/fingerprints>=5/obsidian-lava~arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "E",
+   "id": "E/sunlitToon",
+   "ok": true,
+   "detail": "MeshStandardMaterial,MeshToonMaterial,MeshPhysicalMaterial"
+  },
+  {
+   "group": "E",
+   "id": "E/arcticTransmission",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "E",
+   "id": "E/lavaEmissive",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "E",
+   "id": "E/onlyThemeIdDiffers",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/determinism/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/goldConservation/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/hpConservation/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/winPolicy/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/killAccounting/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/loseWithoutTowers/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/livesNeverNegative/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/wavesDefined/sunlit-moss",
+   "ok": true,
+   "detail": "288.93"
+  },
+  {
+   "group": "F",
+   "id": "F/poolNoGrowth/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/determinism/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/goldConservation/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/hpConservation/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/winPolicy/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/killAccounting/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/loseWithoutTowers/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/livesNeverNegative/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/wavesDefined/obsidian-lava",
+   "ok": true,
+   "detail": "288.93"
+  },
+  {
+   "group": "F",
+   "id": "F/poolNoGrowth/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/determinism/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/goldConservation/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/hpConservation/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/winPolicy/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/killAccounting/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/loseWithoutTowers/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/livesNeverNegative/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/wavesDefined/arctic-glass",
+   "ok": true,
+   "detail": "288.93"
+  },
+  {
+   "group": "F",
+   "id": "F/poolNoGrowth/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/scenarioSameAcrossStyles",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/ambientParticlesDiffer",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "F",
+   "id": "F/bareLoseSameAcrossStyles",
+   "ok": true,
+   "detail": "[object Object],[object Object],[object Object]"
+  },
+  {
+   "group": "G",
+   "id": "G/triedPlus1",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "G",
+   "id": "G/runsPlus1",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "G",
+   "id": "G/stylesPlus3",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "G",
+   "id": "G/lastStylesAreMine",
+   "ok": true,
+   "detail": "日光苔原 sunlit-moss,曜岩熔脉 obsidian-lava,极冠晶塔 arctic-glass"
+  },
+  {
+   "group": "G",
+   "id": "G/lastTriedIsBuildGame",
+   "ok": true,
+   "detail": "build-game 1.2.0（第 1 次使用，~/.qoder-cn/skills/build-game，上游 openclaw/skills owner kewang0622，reference/ 6 篇 + scripts/serve.sh 资产完整）"
+  },
+  {
+   "group": "G",
+   "id": "G/prevTriedUnchanged",
+   "ok": true,
+   "detail": "graphic-gif"
+  },
+  {
+   "group": "G",
+   "id": "G/noStyleCollision",
+   "ok": true,
+   "detail": "云白板计数 clean-slate-gif,磷绿终端打字 terminal-gif,黄黑硬框跑马灯 brutalist-gif,日光苔原 sunlit-moss,曜岩熔脉 obsidian-lava,极冠晶塔 arctic-glass"
+  },
+  {
+   "group": "G",
+   "id": "G/envNotesGrew",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/renders/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/notBlack/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/docFormDegrades/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/exposureEnds/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/contrast/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/docSsaoBlacksOut/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/shippedSsaoStaysBright/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/ssaoCostsDraws/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/ssaoChangesNothingAtThisScale/sunlit-moss",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/renders/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/notBlack/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/docFormDegrades/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/exposureEnds/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/contrast/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/docSsaoBlacksOut/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/shippedSsaoStaysBright/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/ssaoCostsDraws/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/ssaoChangesNothingAtThisScale/obsidian-lava",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/renders/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/notBlack/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/docFormDegrades/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/exposureEnds/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/contrast/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/docSsaoBlacksOut/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/shippedSsaoStaysBright/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/ssaoCostsDraws/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/ssaoChangesNothingAtThisScale/arctic-glass",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "H",
+   "id": "H/distinctRenders",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "I",
+   "id": "I/pointerEventsHud",
+   "ok": true,
+   "detail": "none"
+  },
+  {
+   "group": "I",
+   "id": "I/pointerEventsPalette",
+   "ok": true,
+   "detail": "auto"
+  },
+  {
+   "group": "I",
+   "id": "I/tabularNums",
+   "ok": true,
+   "detail": "tabular-nums"
+  },
+  {
+   "group": "I",
+   "id": "I/userSelectNone",
+   "ok": true,
+   "detail": "none"
+  },
+  {
+   "group": "I",
+   "id": "I/transitionsEase",
+   "ok": true,
+   "detail": "0.2s, 0.2s, 0.2s"
+  },
+  {
+   "group": "I",
+   "id": "I/zIndexContract",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "I",
+   "id": "I/titleVisible",
+   "ok": true,
+   "detail": "null"
+  },
+  {
+   "group": "I",
+   "id": "I/announceWave",
+   "ok": true,
+   "detail": "null"
+  },
+  {
+   "group": "I",
+   "id": "I/clickStartsGame",
+   "ok": true,
+   "detail": "playing"
+  },
+  {
+   "group": "I",
+   "id": "I/keysSelectTower",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "I",
+   "id": "I/clickBuilds",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "I",
+   "id": "I/clickSellsWithRefund",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "I",
+   "id": "I/saveShape",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "I",
+   "id": "I/noConsoleErrors/sunlit-moss",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "I",
+   "id": "I/noConsoleErrors/obsidian-lava",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "I",
+   "id": "I/noConsoleErrors/arctic-glass",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "group": "J",
+   "id": "J/sceneUnder50MB",
+   "ok": true,
+   "detail": "8210947"
+  },
+  {
+   "group": "J",
+   "id": "J/singleFilesInline",
+   "ok": true,
+   "detail": "[object Object]"
+  },
+  {
+   "group": "J",
+   "id": "J/noNodeModulesInScene",
+   "ok": true,
+   "detail": "null"
+  },
+  {
+   "group": "J",
+   "id": "J/everyPageOpensAlone",
+   "ok": true,
+   "detail": "null"
+  }
+ ]
+}
