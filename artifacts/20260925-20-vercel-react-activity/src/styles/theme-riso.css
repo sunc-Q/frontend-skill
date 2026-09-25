@@ -1,0 +1,180 @@
+/* 风格三：孔版印刷 Risograph —— 米纸底 + 荧光粉/钴蓝双专色叠印 + 网点 + 错位套印
+   识别点：硬偏移阴影、半调网点色块、双色错位大标题、粗黑等线体。 */
+:root {
+  --bg: #f2ecdc;
+  --bg2: #e4dcc6;
+  --card: #f7f2e4;
+  --ink: #191b1f;
+  --ink-dim: #5d5a4f;
+  --accent: #ff4f8b;
+  --accent-2: #2b4df7;
+  --danger: #d8381f;
+  --line: #d4cbb2;
+  --line-strong: #191b1f;
+  --font-display: 'Arial Black', 'PingFang SC', sans-serif;
+  --font-body: 'Helvetica Neue', 'PingFang SC', Arial, sans-serif;
+  --font-mono: 'SFMono-Regular', ui-monospace, Consolas, monospace;
+  --radius-card: 0px;
+  --radius-btn: 2px;
+  --radius-bar: 0px;
+  --ls-brand: 0.02em;
+  --ls-title: 0.01em;
+  --ls-kicker: 0.2em;
+  --shadow-card: 5px 5px 0 var(--ink);
+  --tier-halo: 4px 4px 0 var(--accent-2);
+  --btn-ink: #ffffff;
+  --mis-pink: #ff4f8b;
+  --mis-blue: #2b4df7;
+  --dot-ink: #2b4df7;
+  --paper-edge: #e8e0ca;
+}
+body {
+  background-image:
+    repeating-linear-gradient(45deg, var(--paper-edge) 0 2px, transparent 2px 5px);
+}
+.page {
+  background: var(--bg);
+  border-left: 1px dashed var(--line);
+  border-right: 1px dashed var(--line);
+}
+.topbar {
+  border-bottom: 3px solid var(--ink);
+}
+.topbar.is-condensed {
+  border-bottom-width: 1px;
+}
+.brand-cn {
+  font-family: var(--font-display);
+  text-transform: none;
+}
+.hero {
+  padding-top: 60px;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  /* 双色错位套印：riso 的灵魂 */
+  text-shadow: 3px 3px 0 var(--mis-pink), -3px -2px 0 var(--mis-blue);
+  transform: rotate(-0.6deg);
+}
+.hero-kicker {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--btn-ink);
+  padding: 2px 10px;
+  text-transform: uppercase;
+}
+.cd-cell b {
+  background: var(--btn-ink);
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--mis-blue);
+  padding: 2px 6px;
+}
+.kpi {
+  border: 2px solid var(--ink);
+  background: var(--card);
+  box-shadow: 4px 4px 0 var(--accent);
+  padding: 8px 14px;
+}
+.bar {
+  border: 2px solid var(--ink);
+  height: 14px;
+  background: var(--btn-ink);
+}
+.bar i {
+  background: repeating-linear-gradient(45deg, var(--accent) 0 4px, var(--mis-pink) 4px 8px);
+  border-radius: 0;
+}
+.btn {
+  border: 2px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  text-transform: uppercase;
+  font-size: 13px;
+}
+.btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.btn.ghost {
+  background: var(--btn-ink);
+  color: var(--ink);
+  box-shadow: 4px 4px 0 var(--mis-blue);
+}
+.sec-head h2 {
+  font-family: var(--font-display);
+  text-transform: none;
+  border-bottom: 6px solid var(--accent);
+  display: inline-block;
+  padding-bottom: 2px;
+}
+.artist {
+  border: 2px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--accent-2);
+}
+.artist .face {
+  /* 半调网点：中心到边缘渐密 */
+  background:
+    radial-gradient(var(--dot-ink) 1.2px, transparent 1.3px) 0 0 / 5px 5px,
+    var(--card);
+  border-bottom: 2px solid var(--ink);
+  border-radius: 0;
+}
+.artist .initial {
+  font-family: var(--font-display);
+  background: var(--btn-ink);
+  color: var(--ink);
+  padding: 0 10px;
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--accent);
+}
+.vote-bar {
+  background: var(--accent-2);
+}
+.vote-bar-track {
+  border: 1px solid var(--ink);
+  background: var(--btn-ink);
+}
+.vote-btn {
+  background: var(--btn-ink);
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--mis-pink);
+  font-weight: 700;
+}
+.tab {
+  background: var(--btn-ink);
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  font-weight: 700;
+}
+.tab.active {
+  background: var(--accent);
+  color: var(--btn-ink);
+}
+.slot {
+  border-bottom: 2px dotted var(--line-strong);
+}
+.slot-tag {
+  border: 1px solid var(--ink);
+  background: var(--card);
+  color: var(--ink);
+}
+.notice {
+  border: 2px solid var(--ink);
+  border-left: 10px solid var(--accent-2);
+  box-shadow: 5px 5px 0 var(--accent);
+}
+.tier {
+  border: 2px solid var(--ink);
+  background: var(--btn-ink);
+}
+.tier.active {
+  box-shadow: 6px 6px 0 var(--accent);
+  transform: rotate(-0.4deg);
+}
+.done-card {
+  border: 3px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--mis-blue);
+}
+.foot {
+  border-top: 3px solid var(--ink);
+}

@@ -1,0 +1,146 @@
+/* 风格二：蒸汽波 Vaporwave —— 紫夜落日 + 霓虹描边 + 透视网格地板 + 希腊字母
+   识别点：品红/青双色霓虹、巨型背景「ΑΕΡ」、透视网格、圆角胶囊。 */
+:root {
+  --bg: #150b2b;
+  --bg2: #241245;
+  --card: #1d1139;
+  --ink: #f2e9ff;
+  --ink-dim: #a794d9;
+  --accent: #ff71ce;
+  --accent-2: #01cdfe;
+  --danger: #ff2975;
+  --line: #37245e;
+  --line-strong: #5c3f96;
+  --font-display: 'Palatino Linotype', 'Book Antiqua', 'Songti SC', serif;
+  --font-body: 'Segoe UI', 'PingFang SC', 'Helvetica Neue', sans-serif;
+  --font-mono: 'Consolas', ui-monospace, monospace;
+  --radius-card: 14px;
+  --radius-btn: 999px;
+  --radius-bar: 999px;
+  --ls-brand: 0.14em;
+  --ls-title: 0.02em;
+  --ls-kicker: 0.3em;
+  --shadow-card: 0 10px 34px #ff71ce1f;
+  --tier-halo: 0 0 18px #01cdfe40;
+  --btn-ink: #1c0b2b;
+  --sun-hi: #ff8ad4;
+  --sun-mid: #7a3bd0;
+  --grid-ink: #01cdfe33;
+  --deep: #0d0620;
+  --face-end: #131332;
+  --glow-pink: #ff71ce55;
+  --glow-cyan: #01cdfe33;
+  --inner-cyan: #01cdfe14;
+  --slot-hover: #2a1652;
+  --tab-glow: #ff71ce66;
+  --foot-ink: #6f5aa0;
+}
+body {
+  background:
+    radial-gradient(900px 420px at 50% 0%, var(--sun-mid) 0%, transparent 62%),
+    linear-gradient(180deg, var(--bg) 0%, var(--deep) 100%);
+  background-attachment: fixed;
+}
+.page {
+  position: relative;
+}
+.hero {
+  position: relative;
+  padding-top: 96px;
+}
+.hero::before {
+  /* 巨型希腊字：vapor 的招牌底纹 */
+  content: 'ΑΕΡ';
+  position: absolute;
+  top: -30px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 150px;
+  letter-spacing: 0.18em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--grid-ink);
+  pointer-events: none;
+}
+.hero::after {
+  /* 透视网格地板 */
+  content: '';
+  position: absolute;
+  left: -24px;
+  right: -24px;
+  bottom: -60px;
+  height: 220px;
+  background:
+    repeating-linear-gradient(90deg, var(--grid-ink) 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(0deg, var(--grid-ink) 0 1px, transparent 1px 32px);
+  transform: perspective(340px) rotateX(52deg);
+  transform-origin: bottom;
+  mask-image: linear-gradient(180deg, transparent, black 62%);
+  pointer-events: none;
+}
+.hero-title {
+  color: var(--ink);
+  text-shadow: 2px 2px 0 var(--accent), -2px -2px 0 var(--accent-2);
+}
+.hero-kicker {
+  text-transform: uppercase;
+}
+.cd-cell b {
+  color: var(--accent-2);
+  text-shadow: 0 0 14px var(--accent-2);
+}
+.kpi-value {
+  color: var(--ink);
+}
+.btn {
+  box-shadow: 0 0 22px var(--glow-pink);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 13px;
+}
+.btn.ghost {
+  border-color: var(--accent-2);
+  color: var(--accent-2);
+  box-shadow: 0 0 14px var(--glow-cyan);
+}
+.sec-head h2 {
+  text-shadow: 1px 1px 0 var(--accent);
+}
+.artist {
+  border: 1px solid var(--line-strong);
+  box-shadow: inset 0 0 26px var(--inner-cyan);
+}
+.artist .face {
+  background: linear-gradient(160deg, var(--sun-hi), var(--sun-mid) 55%, var(--face-end));
+}
+.artist .initial {
+  color: var(--bg);
+  text-shadow: none;
+  font-weight: 700;
+}
+.vote-bar-track {
+  background: var(--deep);
+}
+.slot:hover {
+  background: var(--slot-hover);
+}
+.slot-tag {
+  border-color: var(--line-strong);
+  color: var(--accent-2);
+}
+.tab {
+  border-radius: 999px;
+}
+.tab.active {
+  box-shadow: 0 0 16px var(--tab-glow);
+}
+.notice {
+  border-color: var(--line-strong);
+}
+.poster-art svg {
+  outline: 1px solid var(--line-strong);
+}
+.foot {
+  color: var(--foot-ink);
+}

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>星屿·声浪岛音乐节 活动页 · 三种风格（vercel-react-best-practices 验证）</title>
+    <meta name="description" content="同一套 React 19 活动页（async-* 并行取数 / 单飞缓存 / 分包含证），三套互不混用的视觉风格：装饰艺术、蒸汽波、孔版印刷。" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0d0e12;
+        --fg: #ecebe6;
+        --dim: #9a988f;
+        --line: #2a2c34;
+        --card: #15161c;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        padding: clamp(24px, 6vw, 64px);
+        background: var(--bg);
+        color: var(--fg);
+        font: 15px/1.7 -apple-system, 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+      }
+      main { max-width: 880px; margin: 0 auto; display: grid; gap: 24px; }
+      h1 { font-size: clamp(22px, 4vw, 32px); margin: 0; letter-spacing: 0.06em; }
+      p.lead { color: var(--dim); margin: 0; }
+      .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+      a.card {
+        display: block; padding: 20px; border: 1px solid var(--line);
+        border-radius: 14px; background: var(--card); color: var(--fg);
+        text-decoration: none; transition: transform 0.15s ease, border-color 0.15s ease;
+      }
+      a.card:hover { transform: translateY(-2px); border-color: var(--fg); }
+      .chip { display: inline-block; font-size: 12px; padding: 2px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--dim); margin-bottom: 10px; }
+      h2 { margin: 0 0 6px; font-size: 18px; letter-spacing: 0.04em; }
+      .card p { margin: 0; color: var(--dim); font-size: 13px; }
+      .deco .chip { color: #d9b36a; border-color: #d9b36a; }
+      .vapor .chip { color: #ff7ad9; border-color: #ff7ad9; }
+      .riso .chip { color: #7ee081; border-color: #7ee081; }
+      footer { color: var(--dim); font-size: 12px; border-top: 1px solid var(--line); padding-top: 16px; }
+      code { background: #1c1e26; padding: 1px 6px; border-radius: 6px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>星屿 · 声浪岛音乐节 — 活动报名页 × 3 风格</h1>
+        <p class="lead">
+          同一份内联 JS bundle（逐字节相同，见 <code>scripts/style-check.mjs</code> 断言），只换 CSS 主题层。
+          页面本身按 vercel-react-best-practices 的 async-* / bundle-* / client-* 规则组织：
+          首屏三资源并行发起、预约名单与 VIP 校验按分支延迟、poster/analytics 动态分包。
+        </p>
+      </header>
+      <nav class="grid">
+        <a class="card deco" href="preview/activity-deco.html">
+          <span class="chip">DECO</span>
+          <h2>装饰艺术 · 金色铭牌</h2>
+          <p>锥形放射纹章、双线描边、衬线大字。适合把它想象成一张 1930 年代的歌剧院门票。</p>
+        </a>
+        <a class="card vapor" href="preview/activity-vapor.html">
+          <span class="chip">VAPOR</span>
+          <h2>蒸汽波 · 霓虹网格</h2>
+          <p>透视网格地平线、希腊字 ΑΕΡ、霓虹 text-shadow。落日与扫描线永不落山。</p>
+        </a>
+        <a class="card riso" href="preview/activity-riso.html">
+          <span class="chip">RISO</span>
+          <h2>孔版印刷 · 双色套印</h2>
+          <p>半调网点、双色错位套印、硬偏移阴影。像机房里现印的宣传单，油墨未干。</p>
+        </a>
+      </nav>
+      <footer>
+        三页均为单文件离线产物（file:// 直接打开，走 fixture 数据源）；真接口形态见
+        <code>npm run serve</code> 后的 <code>dist-split/</code>。复现：<code>bash scripts/verify.sh</code>。
+      </footer>
+    </main>
+  </body>
+</html>

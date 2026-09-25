@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T19:35:00+08:00",
+  "updated": "2026-09-25T20:50:00+08:00",
   "tried": [
     {
       "skill": "sites:sites-building",
@@ -84,6 +84,20 @@
       "conclusion": "两个 skill 均留用，叠加判定成立且无条款互斥（上轮解掉的 js-early-exit vs 禁早期 return 直接沿用）。vercel 第 3 次通过：28/57 条落地并核对到文件行（比上轮多 bundle-dynamic-imports 一项，因为本轮同时跑两种构建——同一份源码，lib-IIFE 给人看、split 给规则当证据，这是本轮方法上最大的增量：单文件产物会抵消 bundle 四条款，双构建把「抵消」变成「可测」，实测按需部分只占首包 1.2%）；sites-building 第 3 次通过，且本轮第一次当作「验证范围约束」使用（preload 取舍判定：预加载用户已可见的下一步动作算主流程、不算 speculative polish）。9 个真实缺陷：(1) TierCard 自抄一份阶梯常量形成价格双源；(2) 明细与合计两套算法，年付下相加对不上（460 vs 4416），重构为 charged 由各行求和 → sum(lines)===charged 成为结构不变式，另加 480 组合扫描；(3) saved 重复 ×12 得 68544；(4) 局部变量 listMonthly 遮蔽导出函数；(5) Controls 阶梯提示对冠层/USD 口径错；(6) Compare 空态不可达，补能力搜索框才可达可测；(7) jsdom tick 用 rAF 在 Node 下退化同步 → 39 条假失败，改 setTimeout(15)+轮询挂载；(8) inline.mjs 用 html.length 当字节数（UTF-16 码元，中文页差 2%+），报告照抄成 264.9KB/252,541B，实为 276,091 字节/252,795 字节；(9) style-check 提取内联脚本的偏移 +2 落在 's' 上（切进 script> 标签，多 7 字符），三页互比仍相等故旧断言全绿却给错绝对量——修成捕获组并把「内联=dist+转义字节」写成不变式。最后两个是收尾核对产物口径时抓出的，结论：凡进文档的数字必须由断言打印。398 条断言全绿（85 账目 + 231 交互 + 82 风格/级联/bundle），删 node_modules 后 verify.sh 从零 18-22s 复现。未验项：横向溢出（面板 hidden 使 innerWidth=0）、pointermove 驱动的 --px/--py 仅 jsdom 验、chrome 的 background-clip:text 与三档字距未取到 computed（多属性 getComputedStyle 15s 超时，须 1-3 属性短调用）",
       "artifacts": "artifacts/20260925-19-sites-react-pricing/",
       "report": "reports/20260925-19-sites-react-pricing.md"
+    },
+    {
+      "skill": "vercel-react-best-practices",
+      "scenario": "活动营销/报名页（虚构「星屿·声浪岛音乐节」：hero 倒计时+3 KPI+开票进度 / 12 艺人阵容（投票乐观更新+useTransition 双排序）/ 25 场日程（分舞台 Map+公告 tab 延后取数）/ 报名表单（三档票+VIP 分支校验+乐观 patch/快照回滚）/ 纪念票根 SVG（hover 预载·点击动态 import）；React 19 + Vite 7.3.6 + TS 5.9 strict + 零依赖 node:http mock API（hrtime 事件日志）+ jsdom，双构建 lib-IIFE 单文件 + split 分包证据）",
+      "styles": [
+        "装饰艺术 deco",
+        "蒸汽波 vapor",
+        "孔版印刷 riso"
+      ],
+      "time": "2026-09-25T20:00+08:00",
+      "reason": "台账 next_candidates 首项（★）：async-* 5 条前三轮 0 落地，本轮造「必须取数」的场景 + mock 服务端正面攻坚",
+      "conclusion": "留用（第 4 次通过，关键补全轮）。async-* 4/5 落地且以服务端时间窗口为证据（三请求到达窗口<60ms、墙钟 410ms vs 串行 740ms；notices/vip 首屏零请求）；async-dependencies 记不适用（场景无部分依赖扇出，不凑题）。server-* 等价落地 4 条（single-flight：并发 2 请求上游 1 次；LRU cap4/TTL2s；after()：setImmediate 计数断言 afterH>=respondedH；设备令牌 401/403），RSC 专属 3 条仍需 Next.js。client-swr-dedup 手写等价物（资源注册表+5s TTL inflight，3 消费者 1 到达）。验证配方沉淀：传输层抽象让同一组件代码跑 fixture（file://）与真 HTTP 两世界 + 客户端 reqLog 计数 + 服务端 hrtime 到达日志 + 延迟表。乐观更新证明设计为「确认延迟 60ms > 轮询上限 45ms」使『先 +1 后确认』成为硬证据。205/205 断言绿（35 时序+130 DOM+40 风格/bundle），三页 265-266KB 逐字节同 JS 仅换 CSS。15 个坑里 4 个是真缺陷：LRU 存取形态不一致致命中路径返回空响应体、mock 包 {ok} 而客户端按裸数组消费、Hero/Register 缺 Suspense 边界、Schedule 渲染体残留无条件 loadResource 把 defer 证明打穿（页面照常工作肉眼不可见→延后取数必须配请求计数断言）。断言侧 3 坑：react-dom 自带已转义 <\/script 字面量使「转义计数」不成立→改整体逐字节相等；零外链须白名单 w3.org xmlns/react.dev 错误码数据串（标签级断言才是真约束）；minify 保留动态 import 绑定名→「首包不含实现」不能用符号名，改用 poster 独有串 width=\"640\"/等 12 组。测试装置：jsdom file:// 禁 localStorage→Map shim；setInterval 挂住进程→win.close()；固定 sleep 负载漂移→全量改条件轮询 waitFor；Node22 不能 import 无扩展名 .ts→esbuild 预打包；transport TTL 缓存反噬读数→新鲜读用新 transport，stale 读数本身即去重证据；fixture 不写 reqLog 使零请求断言假通过→计数器写入点要先验证",
+      "artifacts": "artifacts/20260925-20-vercel-react-activity/",
+      "report": "reports/20260925-20-vercel-react-activity.md"
     }
   ],
   "skills_seen": [
@@ -91,7 +105,7 @@
       "name": "vercel-react-best-practices",
       "source": "用户 2026-09-25 15 时段装入 ~/.qoder-cn/skills/（上游 vercel-labs/agent-skills）",
       "path": "/Users/apple/.qoder-cn/skills/vercel-react-best-practices/SKILL.md",
-      "status": "已用于 17:00 管理后台、18:00 落地页、19:00 定价页，三次均留用。纯性能规范、零视觉主张，多风格任务必须另配设计主张型技能；内容型页面（无取数）上 async-* 5 条 + server-* 7 条 + client-swr 全清零。关键补法：同一份源码跑两种构建（lib-IIFE 单文件 + split 保留 chunk 边界），可把 bundle-dynamic-imports/conditional/preload 从「被单文件抵消」变成「可断言」——19:00 实测按需部分占首包 1.2%。缺陷：安装目录只有 SKILL.md，文中引用的 rules/*.md 与 AGENTS.md 均不存在，57 条只有一行摘要可用"
+      "status": "已用于 17:00 管理后台、18:00 落地页、19:00 定价页、20:00 活动报名页，四轮均留用。纯性能规范、零视觉主张，多风格任务必须另配设计主张型技能；内容型页面（无取数）上 async-* 5 条 + server-* 7 条 + client-swr 全清零——20:00 已在「Vite SPA + 零依赖 mock 服务端」上攻坚：async-* 落地 4/5（服务端 hrtime 到达窗口为证据）、server-* 等价落地 4 条（single-flight/LRU/after/设备鉴权）、client-swr-dedup 手写等价物可断言；剩余只有 RSC 专属 3 条（须 Next.js）与 async-dependencies（须部分依赖扇出形态）。关键补法：同一份源码跑两种构建（lib-IIFE 单文件 + split 保留 chunk 边界），可把 bundle-dynamic-imports/conditional/preload 从「被单文件抵消」变成「可断言」——19:00 实测按需部分占首包 1.2%，20:00 占 0.5%。缺陷：安装目录只有 SKILL.md，文中引用的 rules/*.md 与 AGENTS.md 均不存在，57 条只有一行摘要可用"
     },
     {
       "name": "sites:sites-building",
@@ -108,7 +122,7 @@
     {
       "name": "vercel-react-best-practices",
       "source": "用户于 2026-09-25 15 时段装入 ~/.qoder-cn/skills/",
-      "status": "已于 17:00 / 18:00 / 19:00 三轮使用并留用（管理后台 / 落地页 / 定价页），不再是候选"
+      "status": "已于 17:00 / 18:00 / 19:00 / 20:00 四轮使用并留用（管理后台 / 落地页 / 定价页 / 活动报名页），不再是候选"
     },
     {
       "name": "qoder-canvas:canvas",
@@ -217,16 +231,28 @@
       "artifact_size": "1.1MB（3 页各 276,091/276,448/276,540 字节双击可用 + styles.html 对照入口 + 源码 140KB + 校验脚本 52KB + 配置与 lock）",
       "cleanup": "删 node_modules 102MB + dist/songta.js(252,795B) + dist-split/ + .build.log + .npm-install.log；8131 端口 python3 -m http.server 先 ps 核对命令行（PID 15442）再 kill，端口确认关闭；删 /tmp/lab-8131.log；校验脚本 inline.mjs / pricing-check / jsdom-check / style-check / verify.sh 全部保留未删（故无需转录进文档）；实验室合计 5.6MB，单场景 1.1MB ≪ 50MB",
       "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 3833e6d，1da8a14..3833e6d；本机 HTTPS 被 TLS 重置故走 SSH，实际经 ssh.github.com:443，主机键写入实验室 .tmp/known_hosts 后即删除；命令与文件里无任何 token，已 grep 复核 .npmrc 只有 registry 地址）"
+    },
+    {
+      "time": "2026-09-25T20:00+08:00",
+      "skill": "vercel-react-best-practices",
+      "scenario": "活动营销/报名页",
+      "result": "success",
+      "artifact_size": "1.0MB（3 页各 265,274/265,610/266,379 字节双击可用 + styles.html 对照入口 + src + scripts 校验脚本全保留 + server/mock-api.mjs + 配置与 lock）",
+      "cleanup": "删 node_modules 102MB + dist/ + dist-split/ + .tmp/（esbuild 预打包产物）+ .npm-install.log；8141 端口 mock-api 服务先 ps 核对命令行（PID 31327，本任务自起）再 kill，lsof 确认端口释放；校验脚本未删（故无需转录进文档）；单场景 1.0MB ≪ 50MB",
+      "push": "待回填"
     }
   ],
   "next_candidates": [
-    "★ vercel-react-best-practices × 需要真实取数的场景（Next.js 或带 mock 服务端的 Vite SPA + async-* 攻坚）：它的优先级第 1 档 async-* 5 条至今 0 落地，纯静态产物永远验不到；这是该 skill 剩余价值的最大一块",
+    "★ vercel-react-best-practices × 真 Next.js 工程：server-* 剩余 3 条 RSC 专属（server-serialization / server-dedup-props / React.cache 本体）与流式 SSR 形态的 suspense-boundaries 只有 Next.js 能验；npmmirror 可装 next，但需先确认 Node 22 兼容与构建时长配额",
+    "★ vercel-react-best-practices × 「部分依赖扇出」数据形态（如列表返回 ids 后逐项取详情）：async-dependencies（better-all）是唯一还没落地的 async 条款，别为它凑题，等自然场景",
+    "sites:sites-building × 活动报名页（与 20:00 轮同场景零框架对照：同一张活动页，内置技能单文件 vs React+mock 服务端的成本/能力差）",
     "frontend-development × 管理后台（同场景换 skill，与 17:00 那轮正面对照：同一后台谁给的条款更可落地）",
-    "sites:sites-building × 个人主页（避开已用 18 种风格）",
+    "sites:sites-building × 个人主页（避开已用 21 种风格）",
     "sites:sites-building × 多页站点（导航/路由/静态导出，验 sites-building 的 static-site 与 SPA 路由条款——目前只做过单页）",
     "（需用户授权）市场技能 ui-ux-pro-max × 数据报表",
     "（已解决，仅备查）js-early-exit vs frontend-development「禁早期 return」→ 择一规则：控制流允许早退，渲染输出一律三元 + 显式空态（见 18:00 报告 §10）",
-    "（已解决，仅备查）vercel + sites-building 叠加：无互斥，配方为「主张型定形 + 规范型定码」，19:00 报告 §8"
+    "（已解决，仅备查）vercel + sites-building 叠加：无互斥，配方为「主张型定形 + 规范型定码」，19:00 报告 §8",
+    "（已解决，仅备查）vercel async-* 0 落地问题 → 20:00 用 Vite SPA + 零依赖 mock 服务端解决（到达窗口/请求计数断言配方见 20:00 报告 §2、§3）"
   ],
   "used_styles": [
     "瑞士极简",
@@ -246,7 +272,10 @@
     "孟菲斯 memphis",
     "包豪斯构件 bauhaus",
     "千禧镀铬 y2k-chrome",
-    "工程蓝图 blueprint"
+    "工程蓝图 blueprint",
+    "装饰艺术 deco",
+    "蒸汽波 vapor",
+    "孔版印刷 riso"
   ],
   "environment_notes": [
     "本机无法直连 GitHub raw 与 skills.sh（curl exit 35 / WebFetch fetch failed），外部落地技能持续不可用",
@@ -276,6 +305,16 @@
     "单文件产物会抵消 bundle-dynamic-imports/conditional/preload（inlineDynamicImports 把懒加载并回主包）：同一份源码再加一次 vite build --config vite.split.config.ts（普通 app 构建，保留 chunk 边界），即可对这些条款做真实断言（本轮实测 QuoteSheet+telemetry 只占首包 1.2%），并把「按需 chunk 不含首屏文案」当字符串断言。这是纯静态项目验证 bundle-* 的通用办法",
     "让金额账目自证的结构性做法：charged 由明细各行相加得出（先 CNY 每月 → 按周期放大 → 按币种取整 → 年付追加负项折扣行），再配 480 组合扫描断言 sum(lines)===charged、月付 charged=monthlyTotal、年付省额式、金额单调不减。两套独立算法互查比单点期望值可靠得多（本轮抓出 460 vs 4416 的口径缺陷）",
     "浏览器 getComputedStyle 短调用原则：一次 1-3 个属性、避免 backgroundImage 这类超长字符串值，否则 15s 超时（页面侧其实已执行）；长字符串属性改用源码/产物断言替代",
-    "jsdom 里等 React 提交不要用 requestAnimationFrame（Node 下退化同步）：await new Promise(r=>setTimeout(r,15)) + 轮询挂载标志（如 .tier 数量达标）再断言，否则整页未渲染就断言会产生大批假失败（本轮 39 条）"
+    "jsdom 里等 React 提交不要用 requestAnimationFrame（Node 下退化同步）：await new Promise(r=>setTimeout(r,15)) + 轮询挂载标志（如 .tier 数量达标）再断言，否则整页未渲染就跑断言会产生大批假失败（本轮 39 条）",
+    "异步优化（async-parallel/defer-await/swr-dedup）的可验证配方：①传输层抽象让同一组件代码跑 file://fixture 与真 HTTP 两个世界；②客户端 reqLog（挂 window.__reqs）做请求计数；③服务端按 process.hrtime 记到达时刻，断言打在「到达窗口」与「墙钟 vs 串行下界」上；④延迟表把快慢差做进数据。固定 sleep 在负载下全部漂移（20ms 定时器实际几百 ms）：jsdom 一律条件轮询 waitFor(fn)（4ms 步进），证明「乐观更新先于服务端确认」要把确认延迟(60ms)做在轮询上限(45ms)之后",
+    "jsdom 两个必备装置：file:// origin 下 localStorage 抛 DOMException，须 beforeParse 里 defineProperty 注入 Map shim（顺带可种子化「二次访问」路径）；页面里有 setInterval（倒计时）时进程永不退出，每个套件结束必须 win.close()",
+    "Node 22 跑 .mjs 脚本不能 import 无扩展名 .ts：被测模块（保持无 React 依赖）先用 esbuild 预打包成 .tmp/*.mjs 再 import",
+    "计数/缓存类断言的三个假通过来源：①fixture transport 最初不写 reqLog → 「零请求」断言全绿但无意义——计数器的写入点必须先被单独验证；②TTL 缓存反噬测试读数（读到旧值）——需要新鲜读时新建 transport 或用裸 fetch，且 stale 读数本身就是去重生效的证据，两种断言分开写；③LRU 存取形态必须一致（存裸值而按 {at,value} 解构 → 命中路径返回 undefined → JSON.stringify(undefined) 空响应体，只在命中时炸）",
+    "内联转义不变式的最终形态：不是「转义点数相等」（react-dom 产物自带已转义字面量 <\\/script，计数天然对不上）而是「内联体 === dist 文本套同一 replace 的结果」逐字节相等——顺带把 inline.mjs 与检查器绑进同一契约",
+    "「零外链」断言要区分资源加载与数据串：bundle 里 w3.org 命名空间（xmlns 值，浏览器不请求）与 react.dev 错误码文案属合法数据串，须白名单；真正有约束力的是标签级断言（link/img/script 带 src/href 即失败）。「无 http(s) 字符」式断言在 React 产物上必误报",
+    "split 构建「首包不含懒加载实现」不能断言符号名：minify 后动态 import 的绑定名（buildPoster）仍留在主包，且外壳组件文案（纪念票根）本就在首屏——要用只可能出现在被拆模块实现里的独有字符串（如 width=\\\"640\\\"、特定文案）做「主包无 + chunk 有」双向断言",
+    "延后取数（async-defer-await）必须配请求计数断言兜底：渲染体内残留一句无条件 loadResource 就把整个 defer 证明打穿，而页面功能完全正常、肉眼零迹象。同理 mock 服务端的响应形态必须以客户端类型为准（包了 {ok,...} 而客户端按裸数组消费会静默错位）；缺 Suspense 边界的挂起会直接崩 root，每个数据组件都要有自己的边界+骨架",
+    "用脚本/python str.replace 给测试文件打补丁可能静默 no-op（引号风格不匹配），测试照跑产生无法解释的 flaky——补丁一律用编辑工具并回读确认",
+    "zsh 的 echo === 会触发 =cmd 展开报错（echo 参数加引号）；macOS 无 timeout 命令，长任务用工具级超时控制"
   ]
 }

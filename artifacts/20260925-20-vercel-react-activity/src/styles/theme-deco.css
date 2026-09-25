@@ -1,0 +1,148 @@
+/* 风格一：装饰艺术 Art Deco —— 夜绿幕布 + 黄铜细线 + 衬线大写 + 扇形放射
+   识别点：双线描边、0.4em 字距、锥形放射纹章、阶梯角标。 */
+:root {
+  --bg: #0e1411;
+  --bg2: #17201b;
+  --card: #121a16;
+  --ink: #ece4cd;
+  --ink-dim: #96a08f;
+  --accent: #c9a35c;
+  --accent-2: #e7d19a;
+  --danger: #cf7a55;
+  --line: #233028;
+  --line-strong: #57684f;
+  --font-display: Georgia, 'Times New Roman', 'Songti SC', serif;
+  --font-body: 'Helvetica Neue', 'PingFang SC', Arial, sans-serif;
+  --font-mono: 'Courier New', ui-monospace, monospace;
+  --radius-card: 2px;
+  --radius-btn: 0px;
+  --radius-bar: 0px;
+  --ls-brand: 0.28em;
+  --ls-title: 0.06em;
+  --ls-kicker: 0.42em;
+  --shadow-card: 0 0 0 1px #233028;
+  --tier-halo: inset 0 0 0 1px var(--accent);
+  --btn-ink: #10160f;
+  --halo-top: #1a2620;
+  --sunburst: #c9a35c14;
+  --face-top: #1c2822;
+}
+body {
+  background-image: radial-gradient(1200px 500px at 50% -220px, var(--halo-top) 0%, transparent 70%);
+}
+.topbar {
+  border-bottom: 1px solid var(--line);
+}
+.topbar.is-condensed {
+  border-bottom: 3px double var(--accent);
+}
+.hero {
+  text-align: center;
+  max-width: none;
+}
+.hero-title {
+  font-weight: 400;
+  text-transform: none;
+}
+.hero-title::before,
+.hero-title::after {
+  content: '';
+  display: block;
+  width: 180px;
+  margin: 18px auto;
+  border-top: 3px double var(--accent);
+}
+.hero-sub {
+  margin-inline: auto;
+}
+.hero-kicker {
+  text-transform: uppercase;
+}
+.countdown {
+  justify-content: center;
+  position: relative;
+}
+.countdown::before {
+  /* 扇形放射：deco 的招牌纹样 */
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 340px;
+  height: 340px;
+  transform: translate(-50%, -58%);
+  background: repeating-conic-gradient(from -18deg, transparent 0 12deg, var(--sunburst) 12deg 24deg);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.cd-cell b {
+  color: var(--accent-2);
+  border: 1px solid var(--line);
+  padding: 2px 8px;
+  background: var(--bg2);
+}
+.kpis {
+  justify-content: center;
+}
+.kpi {
+  border-left: 1px solid var(--line);
+  padding-left: 26px;
+  text-align: left;
+}
+.kpi:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+.bar {
+  max-width: 560px;
+  margin-inline: auto;
+  border-bottom-width: 2px;
+}
+.hero-cta {
+  justify-content: center;
+}
+.btn {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 13px;
+  border: 1px solid var(--accent);
+}
+.sec-head h2,
+.stage-name {
+  text-transform: uppercase;
+}
+.artist {
+  border-top: 3px double var(--accent);
+}
+.artist .face {
+  background: linear-gradient(180deg, var(--face-top) 0%, var(--card) 100%);
+}
+.artist .initial {
+  font-family: var(--font-display);
+  border: 1px solid var(--accent);
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+.slot {
+  border-bottom: 1px solid var(--line);
+}
+.tab {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 12px;
+  border-radius: 0;
+}
+.tier {
+  border: 1px solid var(--line-strong);
+}
+.notice {
+  border-left-width: 3px;
+  border-left-style: double;
+}
+.foot {
+  text-align: center;
+  letter-spacing: 0.2em;
+}
