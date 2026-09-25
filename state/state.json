@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T18:20:00+08:00",
+  "updated": "2026-09-25T19:13:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -13,15 +13,32 @@
       "result": "成功：后端 go test 3包含义测试全绿 + 逐接口 curl 全通过（含鉴权矩阵与 409 状态机）+ 三风格单文件 preview 实机渲染 23 行数据且零外链",
       "code_dir": "sites/saas-subscription-admin/{backend,web}",
       "artifact_dir": "sites/saas-subscription-admin/{web/dist,preview}"
+    },
+    {
+      "time": "2026-09-25T19:13:00+08:00",
+      "scenario": "城市健身工作室排课与预约看板",
+      "slug": "fitness-studio-booking",
+      "styles": [
+        "新粗野主义",
+        "日式留白",
+        "莫兰迪色块"
+      ],
+      "result": "成功：4 表 7 接口（2 个 Bearer 写）+ 事务化容量/查重/候补/扣次；go build/vet/test 全绿，api-smoke.sh 逐接口断言全过（401/403/400/201/409/503 矩阵与收敛）；三风格单文件 preview 各 8 卡 44 行真数据、8 类 computedStyle 两两互异、零外链；UI 内完成一次真实占座（11/12→12/12，名单出现新记录）",
+      "code_dir": "sites/fitness-studio-booking/{backend,web,scripts}",
+      "artifact_dir": "sites/fitness-studio-booking/{web/dist,preview}"
     }
   ],
   "used_scenarios": [
-    "saas-subscription-admin"
+    "saas-subscription-admin",
+    "fitness-studio-booking"
   ],
   "used_styles": [
     "瑞士网格",
     "复古 Win95",
-    "暗色霓虹 cyber"
+    "暗色霓虹 cyber",
+    "新粗野主义",
+    "日式留白",
+    "莫兰迪色块"
   ],
   "runs": [
     {
@@ -60,6 +77,43 @@
         "result": "成功",
         "note": "LAB 首轮 git init -b go-gin_react；远端原只有 main 与 skill-showcase，按预授权用 git push -u origin go-gin_react 新建孤儿分支（83 文件 / .git 716K）；未加 --force、未跳 hook、未碰 main、未改任何全局 git 配置"
       }
+    },
+    {
+      "id": "20260925-19",
+      "slug": "fitness-studio-booking",
+      "started": "2026-09-25T18:20:00+08:00",
+      "finished": "2026-09-25T19:13:00+08:00",
+      "scenario": "城市健身工作室排课与预约看板",
+      "styles": [
+        "新粗野主义",
+        "日式留白",
+        "莫兰迪色块"
+      ],
+      "template_created": false,
+      "disk": {
+        "df_k_avail_before": 20275132,
+        "df_k_avail_after": 20264548,
+        "lab_total_bytes_human": "4.0M",
+        "scenario_dir_human": "1.5M"
+      },
+      "volume": {
+        "go_files": 13,
+        "go_test_files": 3,
+        "test_packages_ok": 3,
+        "endpoints": 7,
+        "tables": 4,
+        "seed_rows": "10 classes(9 在售) / 48 members / 84 sessions / ±7 天窗口 654 bookings",
+        "frontend_src_files": 10,
+        "theme_css_files": 3,
+        "dist_bundle_bytes": 292259,
+        "preview_files": 3,
+        "preview_each_bytes": 292831
+      },
+      "push": {
+        "branch": "go-gin_react",
+        "result": "待推送（本轮结束时更新）",
+        "note": "push 前先 git fetch origin go-gin_react + rebase FETCH_HEAD；只碰 go-gin_react，不 --force、不 --no-verify、不碰 main、不改全局配置；提交用 -c user.name/-c user.email 显式身份"
+      }
     }
   ],
   "environment_notes": [
@@ -67,17 +121,20 @@
     "npm 必须 --registry=https://registry.npmmirror.com（实测 react+vite 全量安装约 64MB/30s 内）；不要用 npx，直接 ./node_modules/.bin/xxx。",
     "GitHub / jsDelivr / raw.githubusercontent 的 HTTPS 被 TLS 重置，只有 git@github.com: SSH 可用。",
     "Vite 多入口 ESM 产物在 file:// 下不执行 → 必须内联成单文件；file:// 的 Origin 是 null，本地 CORS 必须显式放行或改用 localhost 静态服务器。",
-    "内联脚本的坑：压缩后的 bundle 里合法含有 `<\\/script>`，用正则匹配脚本区会截断文件（本轮坏过一次：282KB 只写进 169KB，页面白屏）。必须按下标定位标签再切片，写盘后断言整段 JS 完整且只出现一次；另外 String.replace 替换串里的 $' 会自我复制文档，必须用 replacer 函数。",
+    "内联脚本的坑：压缩后的 bundle 里合法含有 `<\\/script>`，用正则匹配脚本区会截断文件（首轮坏过一次：282KB 只写进 169KB，页面白屏）。必须按下标定位标签再切片，写盘后断言整段 JS 完整且只出现一次；另外 String.replace 替换串里的 $' 会自我复制文档，必须用 replacer 函数（第 2 轮换 index.html 标题时传字符串参数，静默不生效）。",
     "IDE 内置浏览器面板不可用（take_screenshot 拿不到），样式核对只能用 browser-use 的 evaluate_script + getComputedStyle；该工具偶发 15s 超时，把断言拆成单个短表达式（一次一个属性）比一次返回大对象可靠。",
+    "browser-use 升级版实测（第 2 轮）：**任何带 await（fetch/sleep）或会触发 React 重渲染的 evaluate_script 几乎必 15s 超时，但脚本已执行**。可行套路 = 动作与读取分两次调用，动作那次允许超时，读取改用 take_snapshot（可访问性树，能读到表单结果、名单行、KPI 数字）。纯同步取 getComputedStyle 仍然稳定。",
     "gin 在 STATIC_DIR 未配置分支里必须自己挂 NoRoute，否则未匹配的 /api/* 返回纯文本 404，前端 JSON 解析直接抛错。",
-    "sqlite3 CLI 在 ~/Android/Sdk/platform-tools/sqlite3（可用于导出 DDL 做复现文档）。",
-    "磁盘：可用约 19.5GiB（80% 已用），本轮结束未足；仍须每轮开工先 df -k .，低于 1.5GiB 只记录卡点不重构建。",
+    "sqlite3 CLI 在 ~/Android/Sdk/platform-tools/sqlite3（可用于导出 DDL 做复现文档；配合临时 -db /tmp/probe.db 起一个临时实例再 .schema，收工删掉）。",
+    "磁盘：可用约 19.3GiB（80% 已用），本轮结束仍未足；仍须每轮开工先 df -k .，低于 1.5GiB 只记录卡点不重构建。",
+    "重启后端前必须核对监听者身份：`lsof -nP -iTCP:<port> -sTCP:LISTEN -t` → `ps -o command= -p <pid>` → kill → 确认监听数为 0 → 再 curl。第 2 轮踩过：新实例因端口占用静默退出，curl 打到旧进程 + 已 rm 的 db inode，看到的全是旧种子数据。",
+    "zsh 的 nomatch：`rm -f foo.db*` 在无匹配时直接中断整条 && 链（看起来像命令没生效）。清理语句要么列全文件名，要么 setopt no_nomatch。",
+    "编译产物别留在场景目录里：`go build -o api ./cmd/api` 单个二进制 38MB，会让场景目录从 1.5M 涨到 39M；收工必须删（node_modules 64M 同理）。",
     "绝不删除共享缓存 ~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache。"
   ],
   "next_candidates": [
     "跨境电商商品详情+购物车",
     "在线课程平台",
-    "健身俱乐部预约",
     "餐饮外卖门店",
     "医院门诊排班与挂号",
     "物流运单跟踪",
@@ -88,19 +145,20 @@
   ],
   "next_style_candidates": [
     "暖纸编辑排版",
-    "新粗野主义",
     "蒸汽波",
-    "日式留白",
     "包豪斯原色",
     "终端绿字 CRT",
     "苹果玻璃拟态",
     "孟菲斯几何",
     "报章密排",
-    "莫兰迪色块",
     "高对比荧光运动风",
     "等距轴测工业风",
     "手账纸质拼贴",
     "航空仪表盘",
     "乐高积木块面"
+  ],
+  "backlog": [
+    "fitness-studio-booking：bookings 目前无 (session_id,member_id) 复合唯一索引，查重依赖事务内 SELECT + 单写者；若放开多连接必须先补索引（confirmed/waitlist 用部分索引）。",
+    "templates/go-gin-react：可把 scripts/api-smoke.sh 的「鉴权矩阵 + 收敛断言」骨架回灌成模板通用件，省下一轮现场编排。"
   ]
 }
