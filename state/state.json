@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T23:50:00+08:00",
+  "updated": "2026-09-25T23:55:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -323,10 +323,10 @@
       "template_created": false,
       "disk": {
         "df_k_avail_before": 20050292,
-        "df_k_avail_after": 19838948,
-        "lab_total_bytes_human": "13M（含 .git 3.7M，本轮提交后终值）",
+        "df_k_avail_after": 19845632,
+        "lab_total_bytes_human": "14M（含 .git 4.5M，本轮 3 笔提交后终值）",
         "scenario_dir_human": "1.7M（44 文件，上限 5MB）",
-        "note": "开工 df -k . 可用 20,050,292KB ≈ 19.1GiB，收工 19,838,948KB ≈ 18.9GiB，全程远高于 1.5GiB 熔断线；一次性编译产物（/tmp/oae-smoke/api 38MB）与运行库全部建在 /tmp 并已删，web/node_modules（64MB）已删，共享缓存（go-build / go mod / npm _cacache）未动，未跑 go clean -cache/-testcache；清理后复跑 go build/vet/test 仍全绿。收工 lsof 复核 18091-18098 / 8080 / 8123-8125 监听数 0（本轮 12 个进程逐个核对命令行后才 kill）"
+        "note": "开工 df -k . 可用 20,050,292KB ≈ 19.1GiB，收工 19,845,632KB ≈ 18.9GiB（写本条审计时又回到同一量级），全程远高于 1.5GiB 熔断线；一次性编译产物 /tmp/oae-smoke/api（38MB）与 6 组临时库 app/notoken/nt/f1/f2/pv/live.db{,-wal,-shm}、/tmp/oae-style、/tmp/{t1,t2,t3}.sh、/tmp/{x,y,r}.json、/tmp/oa-npm.log、web/node_modules（64MB）、空的 web/public/ 全部删除；共享缓存（~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache）未动，全程没有 go clean -cache/-testcache；12 个本轮进程（/tmp/oae-smoke/api 于 18091-18098+8080、node 于 8123-8125）逐个 ps -o pid,lstart,command 核对命令行后才 kill，收工 lsof 复核这些端口监听数 0；清理后复跑 go build/vet/test 仍 3 包全绿 → 删掉的都不是复现必需品；git status 收工 **0 项**，场景目录 1.7M（44 文件，上限 5MB），LAB 14M（.git 4.5M）"
       },
       "volume": {
         "go_files": 16,
@@ -350,9 +350,9 @@
       },
       "push": {
         "branch": "go-gin_react",
-        "result": "待推送后回写",
-        "commit": "",
-        "note": "本轮共 2 笔：①场景主提交（sites/online-assessment-exam 全量 + README + scripts + preview + dist）②记忆回写提交（records/work-log.md + state/state.json + reports/20260925-23-*.md）。git fetch origin go-gin_react → git rebase FETCH_HEAD → 普通 push；未 --force、未 --no-verify、未碰 main、未改任何全局 git 配置，身份只用 -c user.name/-c user.email 内联，全程走 SSH 键，命令行与文件里没有 token/密钥"
+        "result": "成功",
+        "commit": "6a4d771（场景主提交，44 文件）+ bbe14df（记忆回写：work-log/state/reports 3 文件）",
+        "note": "git fetch origin go-gin_react → git rebase FETCH_HEAD（返回「Current branch go-gin_react is up to date」，无改写、无冲突）→ 普通 push，远端推进 **f0d5782..bbe14df**（2 笔）；未 --force、未 --no-verify、未碰 main（main 是另一个每小时任务在用）、未改任何全局 git 配置，身份只用 -c user.name=sunc-Q -c user.email=sunc-Q@users.noreply.github.com 内联；全程走 SSH 键（origin=git@github.com:sunc-Q/frontend-skill.git，HTTPS 在本机被 TLS 重置），命令行与文件里无任何 token/密钥；staged 文件名扫 node_modules|.db|.log|.tmp/|token|secret|.env 命中 0，内容扫私钥/GitHub PAT/AWS AK/password= 命中 0，仓库里出现的 ADMIN_TOKEN 字面量只有 2 个本地演示值（demo-admin-token、smoke-token）；本行记录的哈希只能由下一轮的收工补丁校正（本条回写本身还会再产生 1 笔提交）"
       }
     }
   ],
