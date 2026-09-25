@@ -296,7 +296,8 @@
       "scenario": "演示汇报页",
       "result": "success",
       "artifact_size": "504KB（svg 64,708B + 6 份 pptx 275,376B + preview 3 页 74,541B + styles.html 3,066B + scripts 37,322B）",
-      "cleanup": "已删 .tmp/pylibs 32MB 与 .tmp/pipprobe 10MB wheel 缓存；无 node_modules/dist/构建缓存；本轮未起 http.server（预览走 file://），无 /tmp 日志；技能目录零写入（未跑 download_icons）；无临时脚本待删（check/export/build_preview/probe 全部保留在 artifacts/.../scripts/）"
+      "cleanup": "已删 .tmp/pylibs 32MB 与 .tmp/pipprobe 10MB wheel 缓存；无 node_modules/dist/构建缓存；本轮未起 http.server（预览走 file://），无 /tmp 日志；技能目录零写入（未跑 download_icons）；无临时脚本待删（check/export/build_preview/probe 全部保留在 artifacts/.../scripts/）",
+      "push": "已推送 origin/main（f422ac8..f65eb61，走 SSH git@github.com:sunc-Q/frontend-skill.git，~/.ssh/known_hosts 已有主机键故未再用 .tmp/known_hosts；本轮 .tmp 已整体删除）"
     }
   ],
   "next_candidates": [
