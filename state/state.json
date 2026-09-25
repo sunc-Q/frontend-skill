@@ -441,7 +441,7 @@
       "assertions": "220 条（写回前 213/220，7 条失败全在 G 组台账幂等锁，写回后闭合）",
       "artifact_size": "6.0MB（限额 50MB；单文件 756KB < 1MB 上限已由 J 组断言）",
       "cleanup": "删 LAB/.tmp（build/node_modules 56MB + 13 个探针脚本，内容已抄进报告 §9）与 /tmp 临时 PNG；无 dist/构建缓存留在场景目录；未起 http.server；技能目录零写入",
-      "push": "待推送"
+      "push": "已提交并推送：git@github.com:sunc-Q/frontend-skill.git main 分支 41f499e..f13e1c7（SSH 走 ssh.github.com:443，本次 known_hosts 已有条目、无需新建 LAB/.tmp；命令与文件零 token，未动全局 git 配置）。提交物=3 份单文件游戏（inline 形态 756KB×3）+ cdn/ 形态 3 份 + index.html + previews 12 张 PNG 与两份 shots JSON + src 四件 + scripts 全套（build/make-index/check + check-result.json 220/220 + build-sizes.json + ledger-snapshot.json + cdn-form-probe 与其 JSON）+ report（13 节，含 §9 探针抄录）+ work-log 行 + state 台账，共 37 文件 24576 插入；随后补记本条推送结果"
     }
   ],
   "next_candidates": [
