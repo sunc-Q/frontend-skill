@@ -107,6 +107,7 @@ node scripts/style-probe.js http://127.0.0.1:8092
 | `.kpi` 左内边距（间距口径） | `20px` | `16px` | `14px` |
 | `.kpi` 上边框宽度 | `3px` | `0px` | `0px` |
 | `.section-title` 下边框样式 | `solid` | `solid` | `dashed` |
+| `button` 圆角 | `999px` | `0px` | `0px` |
 | 表格行数 / KPI 卡数 | 40 / 6 | 40 / 6 | 40 / 6 |
 
 任意两两对比在字体族、背景色、圆角、内边距、边框上均有 ≥3 项互异（sport 与 blueprint 虽同为零圆角，
