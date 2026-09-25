@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T19:20:00+08:00",
+  "updated": "2026-09-25T19:35:00+08:00",
   "tried": [
     {
       "skill": "sites:sites-building",
@@ -215,8 +215,8 @@
       "scenario": "定价页",
       "result": "success",
       "artifact_size": "1.1MB（3 页各 276,091/276,448/276,540 字节双击可用 + styles.html 对照入口 + 源码 140KB + 校验脚本 52KB + 配置与 lock）",
-      "cleanup": "删 node_modules 102MB + dist/（songta.js 252,795B）+ dist-split/ + .build.log + .npm-install.log；8131 端口 python3 -m http.server 先 ps 核对命令行再按 PID 15442 kill；删 /tmp/lab-8131.log 与实验室 .tmp/；校验脚本 inline.mjs/pricing-check/jsdom-check/style-check/verify.sh 全部保留未删（无需转录进文档）；实验室合计待核",
-      "push": "待补记"
+      "cleanup": "删 node_modules 102MB + dist/songta.js(252,795B) + dist-split/ + .build.log + .npm-install.log；8131 端口 python3 -m http.server 先 ps 核对命令行（PID 15442）再 kill，端口确认关闭；删 /tmp/lab-8131.log；校验脚本 inline.mjs / pricing-check / jsdom-check / style-check / verify.sh 全部保留未删（故无需转录进文档）；实验室合计 5.6MB，单场景 1.1MB ≪ 50MB",
+      "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 3833e6d，1da8a14..3833e6d；本机 HTTPS 被 TLS 重置故走 SSH，实际经 ssh.github.com:443，主机键写入实验室 .tmp/known_hosts 后即删除；命令与文件里无任何 token，已 grep 复核 .npmrc 只有 registry 地址）"
     }
   ],
   "next_candidates": [
