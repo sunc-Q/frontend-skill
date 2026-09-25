@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>graphic-gif | skill-showcase lab 06</title>
+<style>
+/* ---- graphic-gif: css-animated / style=terminal / animation=counter(+pulse) / 800x800 / 4.0s @12fps ---- */
+@property --num {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+:root{
+  --bg: #0d1117;
+  --fg: #e6edf3;
+  --dim: #7d8590;
+  --accent: #39d353;
+  --amber: #e3b341;
+  --duration: 4s;
+  --target: 6;
+  --font-body: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 800px;
+  height: 800px;
+  overflow: hidden;
+  background: var(--bg);
+  font-family: var(--font-body);
+}
+.canvas {
+  width: 800px;
+  height: 800px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* signature element (terminal preset): scan-line overlay */
+.canvas::after{
+  content: "";
+  position: absolute; left: 0; top: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(to bottom, rgba(230,237,243,0.06) 0 1px, rgba(0,0,0,0) 1px 3px);
+  opacity: 0.03;
+  pointer-events: none;
+}
+.stack{ width: 680px; }
+.head{
+  font-size: 19px; font-weight: 400; letter-spacing: 0.18em;
+  color: var(--dim);
+  border-bottom: 1px solid #21262d;
+  padding-bottom: 14px;
+  display: flex; align-items: baseline; justify-content: space-between;
+}
+.head b{ color: var(--accent); font-weight: 700; }
+.counter{
+  margin-top: 34px;
+  font-size: 210px;
+  line-height: 0.86;
+  font-weight: 700;
+  color: var(--fg);
+  animation: countUp var(--duration) linear both;
+  animation-iteration-count: 1;
+  counter-reset: num var(--num);
+}
+.counter::after{ content: counter(num); }
+.label{
+  margin-top: 18px;
+  font-size: 27px; font-weight: 700; letter-spacing: 0.26em;
+  color: var(--accent);
+}
+.stats{
+  margin-top: 26px;
+  font-size: 17px; font-weight: 400; letter-spacing: 0.04em;
+  color: var(--dim);
+  animation: reveal var(--duration) cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-iteration-count: 1;
+}
+.stats i{ color: var(--amber); font-style: normal; font-weight: 700; }
+.prompt{
+  margin-top: 30px;
+  font-size: 16px; font-weight: 400;
+  color: var(--fg);
+  white-space: nowrap;
+}
+.prompt span.gt{ color: var(--dim); }
+/* unforgettable detail: blinking block cursor (pulse type, infinite) */
+.cursor{
+  display: inline-block;
+  width: 10px; height: 18px;
+  margin-left: 7px;
+  vertical-align: -2px;
+  background: var(--accent);
+  animation: blink 0.8s linear both;
+  animation-iteration-count: infinite;
+}
+/* stagger baked into keyframe percentages (no animation-delay anywhere) */
+@keyframes countUp {
+  from { --num: 0; }
+  60%  { --num: var(--target); }
+  to   { --num: var(--target); }
+}
+@keyframes reveal {
+  0%, 45% { opacity: 0; }
+  68%     { opacity: 1; }
+  to      { opacity: 1; }
+}
+@keyframes blink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="stack">
+    <div class="head"><span>SKILL&nbsp;SHOWCASE&nbsp;LAB</span><b>ROUND&nbsp;06</b></div>
+    <div class="counter"></div>
+    <div class="label">SKILLS SHIPPED</div>
+    <div class="stats"><i>6</i> runs &nbsp;&middot;&nbsp; <i>6</i> artifacts &nbsp;&middot;&nbsp; <i>0</i> user prompts &nbsp;&middot;&nbsp; <i>100%</i> kept</div>
+    <div class="prompt"><span class="gt">&gt;</span> one skill, one artifact, fifteen minutes<span class="cursor"></span></div>
+  </div>
+</div>
+</body>
+</html>

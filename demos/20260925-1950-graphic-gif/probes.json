@@ -1,0 +1,290 @@
+[
+ {
+  "num": 0,
+  "counterReset": "num 0",
+  "statsOpacity": 0,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 0,
+  "counterReset": "num 0",
+  "statsOpacity": 0,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 0,
+  "counterReset": "num 0",
+  "statsOpacity": 0,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 1,
+  "counterReset": "num 1",
+  "statsOpacity": 0,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 1,
+  "counterReset": "num 1",
+  "statsOpacity": 0,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 1,
+  "counterReset": "num 1",
+  "statsOpacity": 0,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 1,
+  "counterReset": "num 1",
+  "statsOpacity": 0,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 1,
+  "counterReset": "num 1",
+  "statsOpacity": 0,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 2,
+  "counterReset": "num 2",
+  "statsOpacity": 0,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 2,
+  "counterReset": "num 2",
+  "statsOpacity": 0,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 2,
+  "counterReset": "num 2",
+  "statsOpacity": 0,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 2,
+  "counterReset": "num 2",
+  "statsOpacity": 0,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 3,
+  "counterReset": "num 3",
+  "statsOpacity": 0,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 3,
+  "counterReset": "num 3",
+  "statsOpacity": 0,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 3,
+  "counterReset": "num 3",
+  "statsOpacity": 0,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 3,
+  "counterReset": "num 3",
+  "statsOpacity": 0,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 3,
+  "counterReset": "num 3",
+  "statsOpacity": 0,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 4,
+  "counterReset": "num 4",
+  "statsOpacity": 0,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 4,
+  "counterReset": "num 4",
+  "statsOpacity": 0,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 4,
+  "counterReset": "num 4",
+  "statsOpacity": 0,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 4,
+  "counterReset": "num 4",
+  "statsOpacity": 0,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 4,
+  "counterReset": "num 4",
+  "statsOpacity": 0,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 5,
+  "counterReset": "num 5",
+  "statsOpacity": 0.158444,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 5,
+  "counterReset": "num 5",
+  "statsOpacity": 0.487308,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 5,
+  "counterReset": "num 5",
+  "statsOpacity": 0.708622,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 5,
+  "counterReset": "num 5",
+  "statsOpacity": 0.841122,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 5,
+  "counterReset": "num 5",
+  "statsOpacity": 0.916266,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 0.957882,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 0.980348,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 0.991907,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 0.997327,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 0.999438,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 0.99997,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 1,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 1,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 1,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 1,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 1,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 1,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 1,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 1,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 1,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 1,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 1,
+  "cursorOpacity": 1
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 1,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 1,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 1,
+  "cursorOpacity": 0
+ },
+ {
+  "num": 6,
+  "counterReset": "num 6",
+  "statsOpacity": 1,
+  "cursorOpacity": 0
+ }
+]

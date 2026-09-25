@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T19:16+08:00",
+  "updated": "2026-09-25T20:08+08:00",
   "tried": [
     {
       "skill": "drafter",
@@ -60,6 +60,19 @@
       "report": "reports/20260925-1906-ppt-generator.md",
       "installed_by_this_task": [
         "ppt-generator (market id official_79e7IlJQ / canonicalName svg-ppt-generator) -> /Users/apple/.qoder-cn/skills/ppt-generator/ —— 经 install_extension 安装；市场条目不暴露可 clone 仓库，无法落在 LAB/.skills/。python-pptx 1.0.2 用 python3 -m pip install --target 落在 LAB/.tmp/pylibs（gitignored，收尾已删），未污染全局 site-packages。"
+      ]
+    },
+    {
+      "skill": "graphic-gif",
+      "source": "Qoder 官方扩展市场 official_nhsK8Qra (publisher Varnan-Tech, tags 空=非镜像条目)",
+      "skill_path": "/Users/apple/.qoder-cn/skills/graphic-gif/SKILL.md",
+      "task": "css-animated 路径：counter 动画类型 + terminal 风格预设，把本流水线第 6 轮做成 800x800 / 4.0s@12fps / 48 帧循环 GIF（大数字 0→6、45% 关键帧淡入 stats、扫描线签名、块光标）",
+      "verdict": "留用（当规格书用，别当工具用）。Rule 5/6/9（WAAPI 逐帧寻址、不捕获 t=duration、stagger 烘焙进关键帧）三条写对了且可证伪，照做后 26 条断言一次全过；自带 12fps/4s 量级与 email<500KB/social<3MB 体积门槛。前提：包内只有 SKILL.md，导出脚本/动画类型库/风格预设 token 表三项全缺，必须自带实现层。",
+      "time": "2026-09-25T19:50+08:00",
+      "artifact": "demos/20260925-1950-graphic-gif/animation.gif",
+      "report": "reports/20260925-1950-graphic-gif.md",
+      "installed_by_this_task": [
+        "graphic-gif (market id official_nhsK8Qra) -> /Users/apple/.qoder-cn/skills/graphic-gif/ 经 install_extension 安装（包内仅 12225B 的 SKILL.md，无可 clone 仓库）；playwright-core 装在 demos 内并已收尾删除（未下载任何浏览器）"
       ]
     }
   ],
@@ -243,23 +256,68 @@
       "source": "LAB/.skills/anthropic-skills/skills/ + 本机 python3",
       "status": "candidate（原「blocked: 没有 pip」结论已作废）",
       "note": "第 4 轮判『pip 不可用 → 依赖 Pillow/openpyxl 的路线一律搁置』**过宽**：pip3 的 shim 因 sandbox 缺 realpath 坏了，但 `python3 -m pip install --target LAB/.tmp/pylibs --index-url https://pypi.tuna.tsinghua.edu.cn/simple` 完全可用（本轮 python-pptx+lxml+Pillow 32MB / 6.1s，cp314 wheel 齐全）。下轮这些技能重新变成可选，装完记得删 .tmp/pylibs。openpyxl 还需 LibreOffice 才能跑它的 recalc.py——那一步仍未验。"
+    },
+    {
+      "name": "graphic-gif",
+      "source": "Qoder 扩展市场 official_nhsK8Qra / query 'gif','graphic-gif'",
+      "status": "installed_used — 本轮已用并留用，勿再选",
+      "note": "css-animated 路径离线可跑通（系统 Chrome + ffmpeg）；ai-generated 路径需 KLING_API_KEY + 上传本图→双触闸门，已按它自己的降级条款排除。包内零实现层文件。"
+    },
+    {
+      "name": "本机 headless Chrome + ffmpeg 管线（环境能力，非技能）",
+      "source": "/Applications/Google Chrome.app + /Users/apple/.local/bin/ffmpeg + playwright-core(npmmirror)",
+      "status": "working_source",
+      "note": "★推翻前五轮『只能靠计算样式断言』的自我设限：executablePath 直指系统 Chrome、不下载浏览器，即可按 800x800 定宽真截图，48 帧端到端 7s。以后 HTML 产物可做像素级验证与真出图（GIF/PNG 连帧）。"
+    },
+    {
+      "name": "gif-maker-free / 免费动图制作器 (official_yZBpN49c)",
+      "source": "Qoder 扩展市场 / query 'gif'",
+      "status": "blocked",
+      "note": "『上传视频或图像(最大200MB)+云端渲染』=内容外发，触安全闸门，未安装即排除。"
+    },
+    {
+      "name": "majiayu000-teams-gif-creator / mood-diary / ub2-markdown-report-generator 等 query 'gif' 其余命中",
+      "source": "Qoder 扩展市场 / query 'gif'",
+      "status": "candidate",
+      "note": "Teams 向 GIF 创建器与 graphic-gif 同类（同产物类型，短期不重复占轮）；mood-diary=纯本地 JSON 情绪日记（产物偏数据）；markdown-report-generator 支持 PDF 导出可作报告类候选。"
+    },
+    {
+      "name": "excel-spreadsheet-handler (tjade273) / excel-spreadsheets (aws-samples) / afrexai-spreadsheet-master",
+      "source": "Qoder 扩展市场 / query 'spreadsheet'",
+      "status": "candidate",
+      "note": "openpyxl 路线（第 5 轮已证明 python3 -m pip --target + 清华/aliyun 源可用），产物=带真公式的 .xlsx，换『电子表格』类；注意与第 5 轮 pptx 同属办公文档，宜与公式重算/图表结合以拉开差异。"
+    },
+    {
+      "name": "build-game (official_LaiVUmnK) / github-game-engine",
+      "source": "Qoder 扩展市场 / query 'game','3d'",
+      "status": "candidate",
+      "note": "Three.js 走 CDN 的话本机不可达，但现在可用 npmmirror tgz 内联 + 系统 Chrome 真截图验证 → 这条路第 6 轮后才真正打开，值得单占一轮。"
+    },
+    {
+      "name": "web-animation-design / booklib-ai-animation-at-work / andronics-animation-creator",
+      "source": "Qoder 扩展市场 / query 'animation'",
+      "status": "candidate",
+      "note": "纯 CSS/Web Animations 动画知识型技能，产物仍是 HTML；与 graphic-gif 有重叠，优先选带可验证运动规格的那类。"
     }
   ],
   "in_progress": [],
   "next_candidates": [
-    "★ webapp-testing（已 clone LAB/.skills/anthropic-skills/skills/webapp-testing，零安装）× 给 lab.db 检索 CLI 或本轮 5 页 SVG 写真实浏览器端到端回归，产物 = 测试脚本 + 通过输出，换「自动化测试」类（先读它的 scripts/ 是否依赖 playwright 下载浏览器——那是重网络，可能 blocked）",
-    "★ sec-audit-cn（本机已装，零安装）× 审计 demos/ 下 Node/Python 脚本与本轮 .tmp/pylibs 安装路线，产物 = 分级审计报告 .md，换「安全审计」类",
-    "★ golang-testing（本机已装）+ go 1.27.1 已在 PATH（本轮实测 which go）× 表驱动测试最小 Go 包，产物 = `go test -v` 日志，换「Go 后端」类",
-    "★ ppt-generator 的第二形态：用它 templates/charts/ 里 36 张真图表（雷达/甘特/桑基/热力）重做一版台账 deck，或用它未读的 scripts/ppt_validator.py + visual_reviewer.py —— 但同一 skill 短期内不重复占一轮，优先级低于新技能",
-    "openpyxl / Pillow 路线现已重开（本轮证明 python3 -m pip --target 可用）：xlsx × 把台账做成带公式的 .xlsx（注意它的 recalc.py 需 LibreOffice，未验）、canvas-design / slack-gif-creator × PNG/GIF 产物",
-    "doge / kbravh-svg-logo-creator（官方市场）× 纯 SVG 产物（本轮 SVG 已是副产物，宜换语言）"
+    "★优先吃掉第 6 轮新能力：build-game / github-game-engine 或 diegosouzapw-2000s-visualization-expert（WebGL+WebAudio FFT 音乐可视化）——Three.js/p5 走 npmmirror tgz 内联 + 系统 Chrome 真截图做像素级验证，产物=可玩 HTML 或音乐可视化动画。第 6 轮前这条路验不了，现在能。",
+    "★excel-spreadsheet-handler(tjade273) × 把台账做成带真公式与图表的 .xlsx（openpyxl：python3 -m pip install --target LAB/.tmp/pylibs --index-url 清华/aliyun），换『电子表格』类；与第 5 轮 pptx 同属办公文档，务必靠公式重算/图表拉开差异",
+    "sec-audit-cn（本机已装，零安装）× 审计 demos/ 下 Node/Python 脚本与 LAB/.tmp/pylibs 安装路线，产物=分级审计报告 .md，换『安全审计』类",
+    "golang-testing（本机已装）× 表驱动测试最小 Go 包（go 1.27.1 在 PATH），产物=`go test -v` 日志，换『Go 后端/测试』类",
+    "webapp-testing（已在 LAB/.skills/anthropic-skills/skills/）× 给 lab.db 检索 CLI 或本轮 GIF 源页写端到端回归——第 6 轮已证系统 Chrome 可用，playwright 那条『需下载浏览器』的顾虑作废（用 executablePath 即可）",
+    "anthropics/skills 未试：canvas-design / slack-gif-creator（Pillow 路线已通）、docx、theme-factory、brand-guidelines、mcp-builder —— 零 clone 成本，落地在 LAB/.skills/，产物分别是 PNG/海报、GIF（与本轮同类，靠后）、.docx、主题化改造",
+    "graphic-gif 的其余 5 种动画类型 × 4 套风格预设（同一技能短期不重复占轮，优先级低于新技能）",
+    "市场 query 'gif' 其余候选：majiayu000-teams-gif-creator（与本轮同类，靠后）、ub2-markdown-report-generator（Markdown→PDF 报告类）"
   ],
   "used_artifact_kinds": [
     "单文件自包含 HTML 图表（工程图纸）×1",
     "纯文本终端 ASCII 看板（.txt，零依赖）×1",
     "单文件自包含 HTML 生成艺术（p5 内联，可交互+种子可复现）×1",
     "SQLite 数据库文件 .db（FTS5 全文检索库）+ 可执行检索 CLI + 14 条断言日志 ×1",
-    "原生可编辑办公文档 .pptx（SVG→DrawingML，211 shape / 0 图片，49KB）+ 5 页 1280×720 矢量幻灯片 ×1"
+    "原生可编辑办公文档 .pptx（SVG→DrawingML，211 shape / 0 图片，49KB）+ 5 页 1280×720 矢量幻灯片 ×1",
+    "动画 GIF .gif（800x800 / 48 帧 / 无限循环 / 47KB，GIF89a 结构+NETSCAPE 循环计数+差分子矩形帧全部经手写二进制解析器核对）+ 其 CSS 动画源 animation.html ×1"
   ],
   "environment_notes": [
     "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
@@ -291,7 +349,16 @@
     "★ extension-market 的 origin 标签不是可靠判据：origin:skillatlas 的 official_79e7IlJQ(svg-ppt-generator) 本轮一次装成，与前两轮『skillatlas/modelscope 高概率 EXTENSION_SKILL_FRONTMATTER_INVALID』的概括相反。只能逐条试，别按 origin 提前排除候选。",
     "SVG 类产物在本环境反而好验：viewport 0×0 不影响 SVG 用户坐标与 getBBox，量一次文本右端/柱高就是确定性证据，不需要前几轮的离屏容器与像素直方图。但 evaluate_script 仍 15s 超时——一次调用里别循环 30+ 次 getBBox 还塞 IIFE；先过滤再算，超时后补一次只读探针。",
     "技能自带的『质量闸门』会给假通过：ppt-generator 的 svg_quality_checker.py 只查 §X 语法禁令，不查它 design_spec §II 自己定的 60px 边距（实测越界 28px 仍 [OK]）。凡是『跑它的 checker 全绿』都不算验完，必须再叠一层独立断言（本轮：PPTX 结构 13 条 + 浏览器 getBBox）。",
-    "磁盘开工水位：可用 20329292 KB ≈ 19.4 GiB（>1.5 GiB 阈值）。本轮 demos 100KB（限 5MB），LAB 约 18MB（含 .skills 16MB、.tmp/pylibs 32MB 均 gitignored，后者收尾已删）。"
+    "磁盘开工水位：可用 20329292 KB ≈ 19.4 GiB（>1.5 GiB 阈值）。本轮 demos 100KB（限 5MB），LAB 约 18MB（含 .skills 16MB、.tmp/pylibs 32MB 均 gitignored，后者收尾已删）。",
+    "★真截图能力打开（第 6 轮）：前五轮被『browser-use 面板 hidden / take_screenshot 不可用』限制成只用计算样式。实际上本机有 /Applications/Google Chrome.app，用 playwright-core（npm i --registry=https://registry.npmmirror.com playwright-core，纯 JS 包 2s，**不要装 playwright、不要下载浏览器**）+ chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', args:['--no-sandbox','--disable-gpu','--hide-scrollbars','--force-color-profile=srgb']}) + newPage({viewport:{width:800,height:800}}) 即可定宽逐帧截图；file:// 页面直接 page.goto 可用（截图不依赖 ESM）。48 帧 capture+screenshot+ffmpeg 编码 = 7 秒。",
+    "ffmpeg 在 /Users/apple/.local/bin/ffmpeg（gifsicle/ImageMagick/rsvg-convert 均缺失）。CSS→GIF 两遍调色板命令：ffmpeg -y -framerate 12 -i frames/f%03d.png -vf 'scale=800:800:flags=lanczos,palettegen=stats_mode=diff' palette.png && ffmpeg -y -framerate 12 -i frames/f%03d.png -i palette.png -lavfi 'scale=800:800:flags=lanczos[x];[x][1:v]paletteuse=dither=bayer:bayer_scale=5' -loop 0 animation.gif",
+    "GIF 断言要这样写（本轮实测）：ffmpeg 的 gif 编码器输出**差分子矩形帧**——只有帧 0 是 0,0,800,800，其余是 1×1/局部矩形，所以『每帧描述符都是全画布』必假 FAIL；帧延迟 100/12=8.33cs 写成 8 与 9 交替，断言用 set⊂{8,9}+均值≈8.33；无限循环看 NETSCAPE2.0 应用扩展的 loop 字段（0）。手写解析器：0x21 扩展块步进为 let q=p+2; while(gif[q]!==0) q+=gif[q]+1; p=q+1（GCE 的 delay 在 p+4，NETSCAPE 的 loop 在 p+16），图像块 0x2C 步进 p+=10(+LCT)+1+子块链。",
+    "CSS 计数器动画的可读探针：getComputedStyle(el,'::after').content 在 Chrome 里返回**字面量 \"counter(num)\"** 而非解析后的数字（第 1 版探针因此全 NaN）。要读 @property 注册属性的插值值 getComputedStyle(el).getPropertyValue('--num')，或用 cs.counterReset（'num 6'）互相核对。",
+    "像素↔状态一致性断言的坑：把连续量（opacity 0.98 vs 1.0）按 >0.5 二值化当状态键会**误报不确定性**。状态键用全精度字符串；本轮 48 帧 → 22 个精确状态 → 0 组同态异像素，才证明 WAAPI 寻址位级可复现。",
+    "市场镜像包的系统性缺陷（3/6 轮命中）：只搬 SKILL.md、丢 scripts/ 与 references/。graphic-gif 包里唯一文件 SKILL.md 明文引用的 scripts/export-gif.sh、capture-and-encode.mjs、references/animation-library.md、references/style-presets.md 四个全不存在（find 结果 1 个文件）。→ 装完任何市场技能，第一步 find <dir> -type f 核对文件清单，缺实现层就在 demos/ 里自补并在报告注明。",
+    "search_extensions 参数名是 query（传 keyword 报 'params must NOT have additional properties'）；用完整 canonicalName（含连字符，如 'graphic-gif'）精确检索只回 1 条，比宽词省。Full Access 下 install_extension 第 3 次不弹用户确认。",
+    "zsh 里 $PIPESTATUS 恒空（zsh 用 $pipestatus[1]）；重定向写到根目录（如 > /tmp_cap.log）报 read-only file system 并中断整条命令——日志一律相对路径。",
+    "磁盘开工水位：可用 20222172 KB ≈ 19.3 GiB（>1.5 GiB 阈值）。收尾 demos 本轮 192KB（限 5MB），LAB 约 19MB（含 .skills 16MB gitignored）。"
   ],
   "runs": [
     {
@@ -352,6 +419,17 @@
       "push": "已推送：fetch 确认远端 5175275 是本地 HEAD 祖先 → 普通 push origin skill-showcase 成功 5175275..ec14770；无 --force、无 --no-verify；main / go-gin_react 未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
       "notes": "5 页 pixel_retro 幻灯片 + 原生 .pptx；技能自带 checker 5/5，独立断言 13/13；最有价值发现：它自己的 checker 不查它自己定的边距（假通过），以及 python3 -m pip --target 这条依赖路线其实可用。",
       "final_check": "git status 干净；demos 本轮 100KB；LAB 18MB（.skills 16MB + .gitignore 排除项不入库）；磁盘 20290752 KB ≈ 19.4 GiB；lsof LISTEN=10 全属既有进程；.tmp/pylibs 32MB 已删"
+    },
+    {
+      "time": "2026-09-25T19:50+08:00",
+      "skill": "graphic-gif",
+      "result": "成功（留用）。产物 demos/20260925-1950-graphic-gif/animation.gif 48293B / 48 帧 / 800x800 / 无限循环，26 条独立断言 26 PASS 0 FAIL",
+      "seconds": 900,
+      "artifact_size": "192KB（本轮 demos；含 4 抽样帧 96KB，gif 47KB）",
+      "cleanup": "已删 frames/(1.2MB,48 帧 PNG 中间物)、node_modules/(13MB playwright-core)、palette.png、package-lock.json；零新增进程与监听；全局 site-packages 未碰；未装除 graphic-gif 外任何技能",
+      "push": "待推",
+      "notes": "实现层（export-gif.sh/capture-and-encode.mjs/两个 references）包内全缺→按 SKILL.md 规范自补 capture.mjs；KLING(ai-generated) 路线需付费凭据+上传本图，按闸门排除并走它自带的降级条款。",
+      "seconds_note": "19:50 开工→20:05 出纪要，约 15 分钟；其中 48 帧捕获+编码 7 秒"
     }
   ]
 }

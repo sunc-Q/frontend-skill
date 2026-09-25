@@ -1,0 +1,71 @@
+# graphic-gif 运行原始输出 · 2026-09-25 19:50+08:00 (Round 6)
+
+## 环境
+node v22.23.2
+python Python 3.14.7
+ffmpeg version 9.0.1-tessus  https://evermeet.cx/ffmpeg/  Copyright (c) 2000-2026 the FFmpeg developers
+可用二进制: ffmpeg=/Users/apple/.local/bin/ffmpeg | Chrome=/Applications/Google Chrome.app | gifsicle/convert/rsvg-convert 缺失
+
+## 技能包实况（install_extension 之后整个包只有一个文件）
+-rw-------  1 apple  staff  12225 Sep 25 19:37 /Users/apple/.qoder-cn/skills/graphic-gif/SKILL.md
+SKILL.md 引用但包内不存在的实现层: scripts/export-gif.sh, scripts/capture-and-encode.mjs, references/animation-library.md, references/style-presets.md
+
+## Step 1 Intake（无人值守，规约要求的参数由任务自答）
+prompt=把"本流水线第6轮"做成循环动图 | animation_type=css-animated | duration=4.0 | fps=12 | loop=true | style=terminal | dimensions=800x800 | optimization=balanced
+Step 2 设计定型: Tone=mechanical | Signature=scan-line overlay | Motion=linear counter w/ hold | Unforgettable=块光标在 12fps 下精确闪烁
+帧数 = Math.floor(4.0 * 12) = 48；t=4000ms 不捕获（Critical Rule 6）
+
+## Step 5 Export（scripts/ 缺失 → 自实现 capture.mjs：playwright-core 驱动系统 Chrome，WAAPI pause + currentTime 逐帧寻址 → ffmpeg 两遍调色板）
+$ npm install --registry=https://registry.npmmirror.com playwright-core   # ~2s，纯 JS 包，未下载任何浏览器
+$ node capture.mjs
+  animations found: [{"name":"countUp","time":666.659000071138},{"name":"reveal","time":666.659000071138},{"name":"blink","time":666.659000071138}]
+  captured frames: 48
+  gif written
+capture rc=0（zsh 下 $PIPESTATUS 空，改用 node verify.mjs 的 rc 与 RESULT 行为准）
+
+## 独立验证（26 条断言，A=HTML 规范自查 B=GIF 二进制手写解析器 C=WAAPI 寻址探针 D=像素↔计算状态交叉核对）
+  PASS | A1 body + .canvas exactly 800x800 (Rule 2) | regex over CSS
+  PASS | A2 overflow:hidden on body and .canvas | 2 occurrences
+  PASS | A3 zero animation-delay (Rule 9) | 0 real uses
+  PASS | A4 fill-mode both on all 3 animations | 3/3
+  PASS | A5 one-shot=1, pulse=infinite (Rule: looping happens at GIF level) | both present
+  PASS | A6 @property --num declared <integer> initial 0 | regex
+  PASS | A7 counter-reset + ::after content counter(num) | both found
+  PASS | A8 single self-contained file, zero external refs (font CDN dropped: TLS-reset) | 0 urls
+  PASS | A9 terminal signature: scan-line overlay opacity .03 | present
+  PASS | B1 GIF magic | GIF89a
+  PASS | B2 logical screen 800x800 | 800x800
+  PASS | B3 48 GCE/image pairs == floor(4.0s x 12fps) (Rule 6) | 48
+  PASS | B4 NETSCAPE loop count 0 = infinite (loop=true) | 0
+  PASS | B5 frame0 full canvas + all diff rects inside 800x800 | frame0=0,0,800,800 out-of-bounds=0 distinct rects=13
+  PASS | B6 delays 8/9 centisec alternating (100/12=8.33) | set=[8,9] mean=8.33
+  PASS | C1 counter monotonic over 48 frames | 0->6
+  PASS | C2 counter starts 0 and ends at target 6 | 0 / 6
+  PASS | C3 hold baked into keyframes: still counting at t=1.67s, landed by t=2.42s | f21=4 f30=6
+  PASS | C4 counterReset agrees with registered --num (two CSS APIs) | 48/48
+  PASS | C5 stats reveal gated at 45% keyframe | f1=0 f21=0 f48=1
+  PASS | C6 cursor blink toggles 0/1 | [1,0]
+  PASS | D1 frame0 != frame47 (Rule 6: t=duration not captured, no loop stutter) | db29beb9c9 vs bc8c35870d
+  PASS | D2 determinism: identical animated state => identical pixels (WAAPI seeking exact) | 22 exact states, 48 frames, 0 divergent
+  PASS | D3 each counter digit produces renderable pixel changes | 7 digit values -> 20 distinct frames
+  PASS | D4 ffmpeg decodes back 48 frames | 48
+  PASS | D5 GIF non-trivial | 47 KB
+  
+  RESULT 26 PASS / 0 FAIL | gif=47KB | frames=48
+verify rc=0
+
+## ffmpeg 解码回读交叉核对（帧数与时长）
+  frame=   48 fps=0.0 q=-0.0 Lsize=N/A time=00:00:04.00 bitrate=N/A speed= 193x elapsed=0:00:00.02    
+
+## 生成前 → 生成后
+  生成前: animation.gif 不存在（本轮从零生成）
+  生成后: -rw-r--r--  1 apple  staff  48293 Sep 25 19:45 animation.gif
+  生成后: -rw-r--r--  1 apple  staff   3512 Sep 25 19:39 animation.html
+  生成后: -rw-r--r--  1 apple  staff   4302 Sep 25 19:45 probes.json
+  抽样帧（4/48，另 44 帧为可再生的构建中间物，收尾已删）:
+    -rw-r--r--  1 apple  staff  22025 Sep 25 19:43 f000.png
+    -rw-r--r--  1 apple  staff  20754 Sep 25 19:43 f012.png
+    -rw-r--r--  1 apple  staff  25715 Sep 25 19:43 f024.png
+    -rw-r--r--  1 apple  staff  27753 Sep 25 19:43 f047.png
+  本轮 demos 体积:  14M	.
+  磁盘: /dev/disk1s2   118284248 78339108  20259792    80% 1232020 202597920    1%   /System/Volumes/Data
