@@ -266,7 +266,7 @@
       "seconds": 780,
       "artifact_size": "art-index.html 998KB(单文件自包含) + viewer.src.html 21KB + philosophy.md 2.5KB + build.mjs 527B + output.log 7.2KB = demos 本轮 1.0MB（限 5MB）；LAB 总 17MB（.skills 16MB 已 gitignore）",
       "cleanup": "已删 $LAB/.tmp/p5.tgz 与 .tmp/p5x（p5 已内联进产物，不再需要）；零 node_modules、零构建缓存、零编译二进制；未起本地服务（无新增 LISTEN）；本轮未安装任何全局技能（installed_by_this_task 为空）；新增 LAB/.skills/anthropic-skills 16MB 作为第三方技能镜像保留（可复用、不进 git）",
-      "push": "见本行末尾：本轮走 fetch+rebase 或首推，只碰 skill-showcase 分支，SSH 无 token",
+      "push": "已推送：fetch 后确认远端 36cf63d 是本地 HEAD 祖先 → 普通 push origin skill-showcase 成功 36cf63d..e3e940e；无 --force、无 --no-verify；main / go-gin_react 未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
       "installed_by_this_task": [],
       "notes": "来源②首次打通（SSH clone anthropics/skills）。31 项断言全 PASS：结构 12 / 构图渲染 7 / 可复现与交互 8 / 附加 4。技能招牌「same seed ALWAYS identical」被逐像素哈希证实（regenerate 同哈希 3746692814-22500、nextSeed 变、previousSeed 与 reset 均精确复原）。暴露并绕过 4 个坑：CDN 被 TLS 重置→npm 镜像取 p5 内联；线性跨步像素探针假阴性；viewport 0×0 触发响应式假阴性需 320px 离屏容器；SKILL.md 要求 Download PNG 键但自带模板缺失（按 SKILL.md 补齐）。沙箱浏览器不落盘 → PNG 导出只验到调用链，已如实记录。"
     }
