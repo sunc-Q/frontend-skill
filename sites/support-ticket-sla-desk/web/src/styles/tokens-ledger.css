@@ -1,0 +1,119 @@
+/* ============================================================
+   风格 A · 冷灰账簿（ledger）
+   主张：把 SLA 当成一本能查账的印刷账簿——纸灰底、发丝线格、
+   等宽数字对齐、零圆角、表头压成小字号大字距，颜色只用来标违例。
+   ============================================================ */
+
+:root {
+  --bg: #eceef0;
+  --bg-panel: #fbfbfa;
+  --bg-alt: #f2f3f4;
+  --bg-input: #ffffff;
+  --bg-head: #e4e6e8;
+  --zebra: #f6f7f8;
+  --hover: #eef2f6;
+  --selected: #e3ebf3;
+
+  --ink: #1c2024;
+  --ink-soft: #4d565f;
+  --ink-faint: #8a939c;
+
+  --line: #c9ced3;
+  --line-strong: #7d858d;
+  --accent: #2b4a7a;
+  --accent-ink: #ffffff;
+  --accent-soft: #b9c6d8;
+
+  --ok: #2c6b4f;
+  --ok-bg: #e4f0e9;
+  --warn: #8a6110;
+  --warn-bg: #f6ecd8;
+  --bad: #9b2723;
+  --bad-bg: #f7e4e3;
+  --idle: #9aa2aa;
+
+  --border-w: 1px;
+  --border-w-lg: 3px;
+  --border: 1px solid var(--line);
+  --border-hair: 1px solid #dfe3e6;
+  --focus-w: 2px;
+  --radius: 0;
+  --radius-sm: 0;
+  --chip-radius: 0;
+  --shadow: none;
+  --t: 120ms linear;
+
+  --font-body: Georgia, 'Songti SC', 'Source Han Serif SC', 'Noto Serif CJK SC', serif;
+  --font-head: 'Helvetica Neue', 'PingFang SC', 'Noto Sans CJK SC', sans-serif;
+  --font-mono: 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --head-transform: uppercase;
+  --head-tracking: 0.09em;
+  --mono-tracking: 0;
+
+  --fs-base: 14px;
+  --fs-tiny: 10.5px;
+  --fs-small: 12.5px;
+  --fs-title: 15px;
+  --fs-head: 19px;
+  --fs-kpi: 26px;
+  --fw-normal: 400;
+  --fw-bold: 700;
+
+  --gap: 12px;
+  --gap-sm: 8px;
+  --gap-lg: 16px;
+  --pad: 12px;
+  --pad-sm: 6px;
+  --pad-xs: 3px;
+  --maxw: 1600px;
+  --side-w: 380px;
+  --field-min: 150px;
+  --bar-h: 8px;
+  --bar-h-sm: 5px;
+  --dot: 8px;
+  --dot-o: 4.5px;
+  --sticky-z: 2;
+  --mark-size: 26px;
+  --hatch-angle: 45deg;
+}
+
+/* 账簿的纸面质感与表格规矩：结构层不动，只补这几条。 */
+body {
+  background-image: linear-gradient(to bottom, rgba(43, 74, 122, 0.045), rgba(43, 74, 122, 0) 240px);
+}
+
+.panel,
+.topbar {
+  border-top: var(--border-w-lg) solid var(--line-strong);
+}
+
+table.tickets td,
+table.tickets th {
+  border-right: var(--border-hair);
+}
+
+table.tickets td:last-child,
+table.tickets th:last-child {
+  border-right: 0;
+}
+
+.kpi {
+  border-top: 0;
+  border-right: 0;
+  border-bottom: var(--border-hair);
+  border-left: var(--border-w-lg) solid var(--tone, var(--line-strong));
+}
+
+.btn,
+.tab,
+.input,
+.theme-btn,
+.clock-flag {
+  font-family: var(--font-head);
+  text-transform: none;
+}
+
+.ident-mark {
+  border: var(--border-hair);
+  padding: 0 4px;
+}

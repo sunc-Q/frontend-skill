@@ -1,0 +1,121 @@
+/* ============================================================
+   风格 C · 深色企业台（corporate）
+   主张：值班室大屏——近黑蓝底、青蓝高亮、发丝分隔线、
+   紧凑行高与等宽数字，超时用告警红直接点亮左侧色条，
+   让值班的人在暗光环境里一眼看到该处理哪张单。
+   ============================================================ */
+
+:root {
+  --bg: #0d1117;
+  --bg-panel: #151b24;
+  --bg-alt: #1b2330;
+  --bg-input: #10161f;
+  --bg-head: #1a2230;
+  --zebra: #171e28;
+  --hover: #202a38;
+  --selected: #223146;
+
+  --ink: #e6edf5;
+  --ink-soft: #a7b6c8;
+  --ink-faint: #6f8098;
+
+  --line: #2a3543;
+  --line-strong: #3d4c5f;
+  --accent: #34d0e8;
+  --accent-ink: #06232a;
+  --accent-soft: #14464f;
+
+  --ok: #4ecf8f;
+  --ok-bg: #12291f;
+  --warn: #e8b33c;
+  --warn-bg: #2b2413;
+  --bad: #ff6b6b;
+  --bad-bg: #331518;
+  --idle: #5b6a7c;
+
+  --border-w: 1px;
+  --border-w-lg: 2px;
+  --border: 1px solid var(--line);
+  --border-hair: 1px solid #222c38;
+  --focus-w: 1px;
+  --radius: 6px;
+  --radius-sm: 4px;
+  --chip-radius: 4px;
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 8px 24px rgba(0, 0, 0, 0.45);
+  --t: 90ms ease-out;
+
+  --font-body: 'Inter', 'Helvetica Neue', 'PingFang SC', 'Noto Sans CJK SC', sans-serif;
+  --font-head: 'Inter', 'SF Pro Display', 'PingFang SC', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+  --head-transform: none;
+  --head-tracking: 0.01em;
+  --mono-tracking: -0.01em;
+
+  --fs-base: 13px;
+  --fs-tiny: 10px;
+  --fs-small: 12px;
+  --fs-title: 13px;
+  --fs-head: 15px;
+  --fs-kpi: 22px;
+  --fw-normal: 400;
+  --fw-bold: 600;
+
+  --gap: 10px;
+  --gap-sm: 6px;
+  --gap-lg: 12px;
+  --pad: 10px;
+  --pad-sm: 5px;
+  --pad-xs: 2px;
+  --maxw: 1780px;
+  --side-w: 340px;
+  --field-min: 132px;
+  --bar-h: 6px;
+  --bar-h-sm: 4px;
+  --dot: 7px;
+  --dot-o: 4px;
+  --sticky-z: 3;
+  --mark-size: 22px;
+  --hatch-angle: 135deg;
+}
+
+body {
+  background-image: linear-gradient(180deg, rgba(52, 208, 232, 0.05), rgba(13, 17, 23, 0) 320px);
+}
+
+.panel-title,
+.kpi-label,
+.field-label,
+table.tickets thead th,
+.cal-minutes {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.kpi[data-tone='bad'],
+.panel:has(.error-box) {
+  box-shadow: 0 0 0 var(--border-w) var(--bad) inset;
+}
+
+table.tickets thead th {
+  border-bottom: var(--border-w-lg) solid var(--line-strong);
+}
+
+.bar,
+.lb-track,
+.load-bar {
+  background: #0b1017;
+  border-color: var(--line);
+}
+
+.chip {
+  border-color: currentColor;
+  background: transparent;
+}
+
+.ident-list .ident[data-ok='true'] {
+  background: var(--ok-bg);
+}
+
+.timeline {
+  border-left-color: var(--line-strong);
+}

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T01:20:00+08:00",
+  "updated": "2026-09-26T02:50:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -91,6 +91,19 @@
       "result": "成功：5 表 12 接口（4 个 ADMIN_TOKEN 写）+ 五级优先价/清洁缓冲/周末最少住/库存排他全部后端算，三条金额恒等式接口回布尔位；go build/vet/test 全绿（domain 17 个表驱动测试 + repository 种子自检 4 个 + server HTTP 矩阵 7 个）；api-smoke.sh 63 项断言 0 失败（含 401/403/503 三层 fail-closed、16KB 超长体、路径注入 404、状态机 409、停售往返）；三风格真无头 Chrome 取证：61 个计算属性两两互异 37~41 项、结构字段（364 日历格/30 订单行/1 内联 style/0 外链）三主题全等、控制台零错误；单文件 preview 各 309KB",
       "code_dir": "sites/homestay-booking-calendar/{backend,web,scripts}",
       "artifact_dir": "sites/homestay-booking-calendar/{web/dist,preview}"
+    },
+    {
+      "time": "2026-09-26T02:50:00+08:00",
+      "scenario": "驻场 SLA 值班台 · 工作分钟账本",
+      "slug": "support-ticket-sla-desk",
+      "styles": [
+        "冷灰账簿",
+        "儿童绘本",
+        "深色企业台"
+      ],
+      "result": "成功：5 表 / 8 读 + 6 写接口（单 ADMIN_TOKEN，503·401·403 三层）+ 业务日历 SLA 时钟（09-12/13-18 两段、假日与调休上班、只有 pending_customer 停表、时效快照不回溯、部分唯一索引去重同名在办单）；四条恒等式由 domain.ComputeClock/LedgerFor 唯一计算，列表/详情/统计共用同一份分解式；go build/vet/test 全绿，tsc --noEmit 0 错，api-smoke.sh 112 项断言 0 失败，ui-check.mjs 21 项真浏览器回归全过，style-diff 互斥 50/57/57 + 同构 12 字段三主题全等 + 零外链零 console 错误；base.css(63 token, 零裸色值) + tokens-<id>.css 由 derive-themes.py 拼装，缺 token 即失败。真浏览器回归抓出两处 go test 抓不到的缺陷（时间线一次动作写两条且 from=to；列表 UTC 与详情 +08:00 差 8 小时），均已修因并加断言钉住。场景 1.8M",
+      "code_dir": "sites/support-ticket-sla-desk/{backend,web,scripts}",
+      "artifact_dir": "sites/support-ticket-sla-desk/{web/dist,preview,evidence}"
     }
   ],
   "used_scenarios": [
@@ -100,7 +113,8 @@
     "online-course-platform",
     "food-delivery-store",
     "online-assessment-exam",
-    "homestay-booking-calendar"
+    "homestay-booking-calendar",
+    "support-ticket-sla-desk"
   ],
   "used_styles": [
     "瑞士网格",
@@ -123,7 +137,10 @@
     "手账纸质拼贴",
     "拟物工艺台历",
     "等距轴测工业风",
-    "酸性夜场海报"
+    "酸性夜场海报",
+    "冷灰账簿",
+    "儿童绘本",
+    "深色企业台"
   ],
   "runs": [
     {
@@ -401,6 +418,38 @@
         "branch": "go-gin_react",
         "status": "已推送 38a4f5b..81d9c03（fetch → rebase「up to date」无改写 → 普通 push；未 --force、未跳 hook、未碰 main、未改全局 git 配置）"
       }
+    },
+    {
+      "id": "20260926-02",
+      "slug": "support-ticket-sla-desk",
+      "started": "2026-09-26T01:15:00+08:00",
+      "finished": "2026-09-26T02:50:00+08:00",
+      "scenario": "驻场 SLA 值班台 · 工作分钟账本",
+      "styles": [
+        "冷灰账簿",
+        "儿童绘本",
+        "深色企业台"
+      ],
+      "template_created": false,
+      "disk": {
+        "df_k_avail_before": 19337756,
+        "df_k_avail_after": null,
+        "lab_total_bytes_human": null,
+        "scenario_dir_human": "1.8M（上限 5MB）：backend 240K + web(含 dist) 572K + preview 972K + scripts 64K + evidence 12K，54 个文件",
+        "note": "开工 df 可用 19,337,756KB≈18.4GiB，全程远高于 1.5GiB 熔断线。删除：web/node_modules（64MB）、/tmp/sla-desk-api 编译产物、/tmp/sla-{smoke,notok}.db{,-wal,-shm}、/tmp/sla-*.log、/tmp/sla-probe*.json、/tmp/sla-shot-*.png、临时令牌文件 /tmp/sla-tok。共享缓存（~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache）未动，没有 go clean -cache/-testcache。进程按端口找 PID 并逐个 ps -o command= 核对：:8091 与 :8093 = /tmp/sla-desk-api、:18262 = node scripts/serve-static.mjs，三个都是本轮自己起的，kill 后监听数 0。"
+      },
+      "verification": {
+        "go": "gofmt -l 空；go build/vet/test ./... 全绿（domain/repository/server 三包，新增 field_utc_offset_min 与「UTC 行时间 vs +08:00 账本时间同一时刻」两条不变式）",
+        "web": "tsc --noEmit 无错；vite build 产出 dist/assets/app.js 330.77KB（gzip 89.06KB）；inline-preview 三主题各 320.3KB 单文件，零外链",
+        "http": "scripts/api-smoke.sh：112 项断言 0 失败（读接口字段与字典 / page_size 夹到 100 / 注入串按字面量处理且不泄露底层错误 / 隐私三层 / 401·403·503 鉴权矩阵 / 状态机非法跃迁 409 / 停表恢复 / 快照不回溯 / CORS 与响应头）",
+        "browser": "scripts/ui-check.mjs：21 项真浏览器（系统 Chrome + playwright-core）交互回归全过，含新增「列表与详情的建单时刻一致」时区断言",
+        "styles": "scripts/style-shoot.mjs + style-diff.py：互斥性 50/57/57 项不同（门槛 3），同构性 kpiCount=8、rowCount=12、tabCount=6、calCount=16、loadCount=12、matrixCount=4、identCount=8、dailyCount=14、clockCount=6、inlineStyles=1、inlineScripts=3、external=[] 三主题全等，consoleErrors 三主题全空；原始数据 evidence/style-probe.json",
+        "css": "scripts/derive-themes.py：base.css 63 个 token 三套全补齐，base.css 零裸色值"
+      },
+      "push": {
+        "branch": "go-gin_react",
+        "status": null
+      }
     }
   ],
   "environment_notes": [
@@ -454,7 +503,6 @@
     "招聘 ATS 候选人流水线",
     "图书馆馆藏与借阅",
     "充电桩车队运营",
-    "客服中心工单与 SLA",
     "二手交易平台撮合",
     "宠物医院门诊排班",
     "二手车评估上架",

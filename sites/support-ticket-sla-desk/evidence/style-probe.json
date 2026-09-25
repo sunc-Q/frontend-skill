@@ -1,0 +1,353 @@
+{
+ "ledger": {
+  "theme": "ledger",
+  "shellFont": "Georgia, \"Songti SC\", \"Source Han Serif SC\", \"Noto Serif CJK SC\", serif",
+  "pageBg": "rgb(236, 238, 240)",
+  "kpi": {
+   "borderTopLeftRadius": "0px",
+   "borderLeftWidth": "3px",
+   "borderLeftStyle": "solid",
+   "paddingTop": "12px",
+   "boxShadow": "none",
+   "backgroundColor": "rgb(251, 251, 250)"
+  },
+  "label": {
+   "fontFamily": "Georgia, \"Songti SC\", \"Source Han Serif SC\", \"Noto Serif CJK SC\", serif",
+   "fontSize": "10.5px",
+   "letterSpacing": "0.945px",
+   "textTransform": "uppercase",
+   "color": "rgb(138, 147, 156)"
+  },
+  "value": {
+   "fontFamily": "\"SF Mono\", ui-monospace, Menlo, Consolas, monospace",
+   "fontSize": "26px",
+   "fontWeight": "700",
+   "color": "rgb(28, 32, 36)",
+   "lineHeight": "28.6px"
+  },
+  "head": {
+   "fontFamily": "Georgia, \"Songti SC\", \"Source Han Serif SC\", \"Noto Serif CJK SC\", serif",
+   "fontSize": "10.5px",
+   "color": "rgb(77, 86, 95)",
+   "backgroundColor": "rgb(228, 230, 232)",
+   "textTransform": "uppercase",
+   "borderBottomWidth": "1px"
+  },
+  "btn": {
+   "borderTopLeftRadius": "0px",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "color": "rgb(28, 32, 36)",
+   "paddingTop": "6px",
+   "textTransform": "none"
+  },
+  "input": {
+   "borderTopLeftRadius": "0px",
+   "borderTopWidth": "1px",
+   "borderStyle": "solid",
+   "backgroundColor": "rgb(255, 255, 255)",
+   "height": "32.75px"
+  },
+  "chip": {
+   "borderTopLeftRadius": "0px",
+   "borderStyle": "solid",
+   "letterSpacing": "normal",
+   "backgroundColor": "rgb(242, 243, 244)",
+   "color": "rgb(154, 162, 170)",
+   "paddingLeft": "3px"
+  },
+  "tab": {
+   "borderRadius": "0px",
+   "borderTopWidth": "1px",
+   "backgroundColor": "rgb(43, 74, 122)",
+   "color": "rgb(255, 255, 255)",
+   "fontSize": "12.5px"
+  },
+  "cal": {
+   "borderTopLeftRadius": "0px",
+   "borderStyle": "solid",
+   "backgroundColor": "rgb(242, 243, 244)",
+   "color": "rgb(28, 32, 36)",
+   "paddingTop": "3px"
+  },
+  "bar": {
+   "height": "8px",
+   "borderTopLeftRadius": "0px",
+   "backgroundColor": "rgb(242, 243, 244)",
+   "borderStyle": "solid"
+  },
+  "panel": {
+   "borderTopLeftRadius": "0px",
+   "borderTopWidth": "1px",
+   "boxShadow": "none",
+   "padding": "12px",
+   "backgroundColor": "rgb(251, 251, 250)"
+  },
+  "ident": {
+   "borderLeftWidth": "3px",
+   "borderLeftStyle": "solid",
+   "backgroundColor": "rgb(242, 243, 244)",
+   "fontSize": "12.5px",
+   "paddingLeft": "6px"
+  },
+  "tl": {
+   "width": "8px",
+   "height": "8px",
+   "borderRadius": "50%",
+   "backgroundColor": "rgb(43, 74, 122)",
+   "borderStyle": "solid"
+  },
+  "kpiCount": 8,
+  "rowCount": 12,
+  "tabCount": 6,
+  "calCount": 16,
+  "loadCount": 12,
+  "matrixCount": 4,
+  "identCount": 8,
+  "dailyCount": 14,
+  "clockCount": 6,
+  "inlineStyles": 1,
+  "inlineScripts": 3,
+  "external": [],
+  "kpiText": "94",
+  "firstRow": "TK-20260802-0002",
+  "equationText": "2047 = 非工作 1682 + 工作 365；工作 365 = 停表 0 +",
+  "clockText": "2026-09-26 02:41",
+  "calText": "09-21",
+  "consoleErrors": []
+ },
+ "picture": {
+  "theme": "picture",
+  "shellFont": "\"Yuanti SC\", YouYuan, \"PingFang SC\", \"Hiragino Sans GB\", sans-serif",
+  "pageBg": "rgb(253, 243, 227)",
+  "kpi": {
+   "borderTopLeftRadius": "22px",
+   "borderLeftWidth": "6px",
+   "borderLeftStyle": "solid",
+   "paddingTop": "16px",
+   "boxShadow": "none",
+   "backgroundColor": "rgb(255, 250, 241)"
+  },
+  "label": {
+   "fontFamily": "\"Yuanti SC\", YouYuan, \"PingFang SC\", \"Hiragino Sans GB\", sans-serif",
+   "fontSize": "12px",
+   "letterSpacing": "0.24px",
+   "textTransform": "none",
+   "color": "rgb(171, 143, 116)"
+  },
+  "value": {
+   "fontFamily": "ui-rounded, \"Hiragino Maru Gothic ProN\", \"Yuanti SC\", Menlo, monospace",
+   "fontSize": "34px",
+   "fontWeight": "700",
+   "color": "rgb(70, 50, 34)",
+   "lineHeight": "37.4px"
+  },
+  "head": {
+   "fontFamily": "\"Yuanti SC\", YouYuan, \"PingFang SC\", \"Hiragino Sans GB\", sans-serif",
+   "fontSize": "12px",
+   "color": "rgb(123, 92, 64)",
+   "backgroundColor": "rgb(251, 228, 196)",
+   "textTransform": "none",
+   "borderBottomWidth": "2px"
+  },
+  "btn": {
+   "borderTopLeftRadius": "14px",
+   "borderTopWidth": "2px",
+   "borderTopStyle": "solid",
+   "color": "rgb(70, 50, 34)",
+   "paddingTop": "6px",
+   "textTransform": "none"
+  },
+  "input": {
+   "borderTopLeftRadius": "14px",
+   "borderTopWidth": "2px",
+   "borderStyle": "solid",
+   "backgroundColor": "rgb(255, 255, 255)",
+   "height": "37px"
+  },
+  "chip": {
+   "borderTopLeftRadius": "999px",
+   "borderStyle": "dashed",
+   "letterSpacing": "normal",
+   "backgroundColor": "rgb(253, 238, 216)",
+   "color": "rgb(196, 179, 159)",
+   "paddingLeft": "4px"
+  },
+  "tab": {
+   "borderRadius": "999px",
+   "borderTopWidth": "2px",
+   "backgroundColor": "rgb(232, 98, 60)",
+   "color": "rgb(255, 248, 239)",
+   "fontSize": "14px"
+  },
+  "cal": {
+   "borderTopLeftRadius": "14px",
+   "borderStyle": "dashed",
+   "backgroundColor": "rgb(253, 238, 216)",
+   "color": "rgb(70, 50, 34)",
+   "paddingTop": "4px"
+  },
+  "bar": {
+   "height": "12px",
+   "borderTopLeftRadius": "999px",
+   "backgroundColor": "rgb(253, 238, 216)",
+   "borderStyle": "dashed"
+  },
+  "panel": {
+   "borderTopLeftRadius": "22px",
+   "borderTopWidth": "2px",
+   "boxShadow": "rgba(203, 168, 120, 0.35) 0px 6px 0px 0px",
+   "padding": "16px",
+   "backgroundColor": "rgb(255, 250, 241)"
+  },
+  "ident": {
+   "borderLeftWidth": "6px",
+   "borderLeftStyle": "solid",
+   "backgroundColor": "rgb(253, 238, 216)",
+   "fontSize": "14px",
+   "paddingLeft": "8px"
+  },
+  "tl": {
+   "width": "12px",
+   "height": "12px",
+   "borderRadius": "50%",
+   "backgroundColor": "rgb(232, 98, 60)",
+   "borderStyle": "dashed"
+  },
+  "kpiCount": 8,
+  "rowCount": 12,
+  "tabCount": 6,
+  "calCount": 16,
+  "loadCount": 12,
+  "matrixCount": 4,
+  "identCount": 8,
+  "dailyCount": 14,
+  "clockCount": 6,
+  "inlineStyles": 1,
+  "inlineScripts": 3,
+  "external": [],
+  "kpiText": "94",
+  "firstRow": "TK-20260802-0002",
+  "equationText": "2047 = 非工作 1682 + 工作 365；工作 365 = 停表 0 +",
+  "clockText": "2026-09-26 02:41",
+  "calText": "09-21",
+  "consoleErrors": []
+ },
+ "corporate": {
+  "theme": "corporate",
+  "shellFont": "Inter, \"Helvetica Neue\", \"PingFang SC\", \"Noto Sans CJK SC\", sans-serif",
+  "pageBg": "rgb(13, 17, 23)",
+  "kpi": {
+   "borderTopLeftRadius": "6px",
+   "borderLeftWidth": "2px",
+   "borderLeftStyle": "solid",
+   "paddingTop": "10px",
+   "boxShadow": "none",
+   "backgroundColor": "rgb(21, 27, 36)"
+  },
+  "label": {
+   "fontFamily": "Inter, \"Helvetica Neue\", \"PingFang SC\", \"Noto Sans CJK SC\", sans-serif",
+   "fontSize": "10px",
+   "letterSpacing": "0.1px",
+   "textTransform": "none",
+   "color": "rgb(111, 128, 152)"
+  },
+  "value": {
+   "fontFamily": "\"JetBrains Mono\", \"SF Mono\", ui-monospace, Menlo, monospace",
+   "fontSize": "22px",
+   "fontWeight": "600",
+   "color": "rgb(230, 237, 245)",
+   "lineHeight": "24.2px"
+  },
+  "head": {
+   "fontFamily": "Inter, \"Helvetica Neue\", \"PingFang SC\", \"Noto Sans CJK SC\", sans-serif",
+   "fontSize": "10px",
+   "color": "rgb(167, 182, 200)",
+   "backgroundColor": "rgb(26, 34, 48)",
+   "textTransform": "none",
+   "borderBottomWidth": "1px"
+  },
+  "btn": {
+   "borderTopLeftRadius": "4px",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "color": "rgb(230, 237, 245)",
+   "paddingTop": "6px",
+   "textTransform": "none"
+  },
+  "input": {
+   "borderTopLeftRadius": "4px",
+   "borderTopWidth": "1px",
+   "borderStyle": "solid",
+   "backgroundColor": "rgb(16, 22, 31)",
+   "height": "32px"
+  },
+  "chip": {
+   "borderTopLeftRadius": "4px",
+   "borderStyle": "solid",
+   "letterSpacing": "normal",
+   "backgroundColor": "rgb(27, 35, 48)",
+   "color": "rgb(91, 106, 124)",
+   "paddingLeft": "2px"
+  },
+  "tab": {
+   "borderRadius": "4px",
+   "borderTopWidth": "1px",
+   "backgroundColor": "rgb(52, 208, 232)",
+   "color": "rgb(6, 35, 42)",
+   "fontSize": "12px"
+  },
+  "cal": {
+   "borderTopLeftRadius": "4px",
+   "borderStyle": "solid",
+   "backgroundColor": "rgb(27, 35, 48)",
+   "color": "rgb(230, 237, 245)",
+   "paddingTop": "2px"
+  },
+  "bar": {
+   "height": "6px",
+   "borderTopLeftRadius": "4px",
+   "backgroundColor": "rgb(27, 35, 48)",
+   "borderStyle": "solid"
+  },
+  "panel": {
+   "borderTopLeftRadius": "6px",
+   "borderTopWidth": "1px",
+   "boxShadow": "rgba(255, 255, 255, 0.03) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.45) 0px 8px 24px 0px",
+   "padding": "10px",
+   "backgroundColor": "rgb(21, 27, 36)"
+  },
+  "ident": {
+   "borderLeftWidth": "2px",
+   "borderLeftStyle": "solid",
+   "backgroundColor": "rgb(18, 41, 31)",
+   "fontSize": "12px",
+   "paddingLeft": "5px"
+  },
+  "tl": {
+   "width": "7px",
+   "height": "7px",
+   "borderRadius": "50%",
+   "backgroundColor": "rgb(52, 208, 232)",
+   "borderStyle": "solid"
+  },
+  "kpiCount": 8,
+  "rowCount": 12,
+  "tabCount": 6,
+  "calCount": 16,
+  "loadCount": 12,
+  "matrixCount": 4,
+  "identCount": 8,
+  "dailyCount": 14,
+  "clockCount": 6,
+  "inlineStyles": 1,
+  "inlineScripts": 3,
+  "external": [],
+  "kpiText": "94",
+  "firstRow": "TK-20260802-0002",
+  "equationText": "2047 = 非工作 1682 + 工作 365；工作 365 = 停表 0 +",
+  "clockText": "2026-09-26 02:41",
+  "calText": "09-21",
+  "consoleErrors": []
+ }
+}
