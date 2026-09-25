@@ -1,0 +1,14 @@
+{
+ "taken_at": "2026-09-26T01:00+08:00",
+ "note": "开工前台账快照：本轮收尾写回后 K 组用幂等式 快照+本轮增量==现值 互查",
+ "tried_count": 11,
+ "runs_count": 11,
+ "used_styles_count": 33,
+ "skills_seen_count": 17,
+ "environment_notes_count": 64,
+ "this_round_styles": [
+  "咨询蓝提案件 consultant",
+  "政务红立项件 gov-red",
+  "科技蓝商务提案件 tech-blue-proposal"
+ ]
+}

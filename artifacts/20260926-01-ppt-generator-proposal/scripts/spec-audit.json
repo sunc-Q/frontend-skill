@@ -1,0 +1,974 @@
+{
+ "skill_scripts_note": "create_pptx_with_native_svg in ppt-master-assets/scripts",
+ "index_audit": {
+  "meta_total": 20,
+  "indexed": 20,
+  "on_disk": 13,
+  "indexed_but_missing": [
+   "anthropic",
+   "google_style",
+   "mckinsey",
+   "中国电建_常规",
+   "中国电建_现代",
+   "中汽研_商务",
+   "中汽研_常规",
+   "中汽研_现代",
+   "招商银行",
+   "重庆大学"
+  ],
+  "on_disk_but_unindexed": [
+   "cloud_orange",
+   "consultant",
+   "dark_warm"
+  ],
+  "disk_svg_counts": {
+   "academic_defense": 5,
+   "ai_ops": 6,
+   "cloud_orange": 0,
+   "consultant": 5,
+   "dark_warm": 5,
+   "exhibit": 5,
+   "government_blue": 5,
+   "government_red": 5,
+   "medical_university": 5,
+   "pixel_retro": 5,
+   "psychology_attachment": 5,
+   "smart_red": 5,
+   "科技蓝商务": 5
+  }
+ },
+ "styles": {
+  "consultant": {
+   "spec_font_stack": "Arial, \"Helvetica Neue\", \"Segoe UI\", sans-serif",
+   "spec_font_table": [
+    {
+     "level": "H1",
+     "usage": "Cover main title",
+     "size": "52",
+     "weight": "Bold"
+    },
+    {
+     "level": "H2",
+     "usage": "Page title",
+     "size": "36",
+     "weight": "Bold"
+    },
+    {
+     "level": "H3",
+     "usage": "Section title",
+     "size": "22-24",
+     "weight": "Bold"
+    },
+    {
+     "level": "H4",
+     "usage": "Card title",
+     "size": "16-18",
+     "weight": "Bold"
+    },
+    {
+     "level": "P",
+     "usage": "Body content",
+     "size": "14-16",
+     "weight": "Regular"
+    },
+    {
+     "level": "Data",
+     "usage": "Data highlight",
+     "size": "44",
+     "weight": "Bold"
+    },
+    {
+     "level": "Sub",
+     "usage": "Chart labels/Annotations",
+     "size": "12-14",
+     "weight": "Regular"
+    }
+   ],
+   "spec_roles": {
+    "#005587": [
+     "Consultant Blue"
+    ],
+    "#004D5C": [
+     "Deep Teal"
+    ],
+    "#FFFFFF": [
+     "Background White",
+     "White Text"
+    ],
+    "#ECF0F1": [
+     "Light Gray Background"
+    ],
+    "#2C3E50": [
+     "Title Dark Gray"
+    ],
+    "#5D6D7E": [
+     "Body Gray"
+    ],
+    "#7F8C8D": [
+     "Auxiliary Gray"
+    ],
+    "#F5A623": [
+     "Data Highlight"
+    ],
+    "#E74C3C": [
+     "Warning/Issue"
+    ],
+    "#27AE60": [
+     "Success/Positive"
+    ],
+    "#0076A8": [
+     "Info Blue"
+    ]
+   },
+   "spec_hex_all": [
+    "#004D5C",
+    "#005587",
+    "#0076A8",
+    "#27AE60",
+    "#2C3E50",
+    "#4A90A4",
+    "#5D6D7E",
+    "#7F8C8D",
+    "#E74C3C",
+    "#ECF0F1",
+    "#F5A623",
+    "#FFFFFF"
+   ],
+   "template_hex_all": [
+    "#003A5C",
+    "#004A75",
+    "#004D5C",
+    "#005587",
+    "#0076A8",
+    "#2C3E50",
+    "#5D6D7E",
+    "#7F8C8D",
+    "#95A5A6",
+    "#BDC3C7",
+    "#D5DBDB",
+    "#E5E7EB",
+    "#E74C3C",
+    "#E89207",
+    "#ECF0F1",
+    "#F1F3F4",
+    "#F5A623",
+    "#F8F9FA",
+    "#FAFAFA",
+    "#FAFBFC",
+    "#FFF8E1",
+    "#FFFFFF"
+   ],
+   "template_hex_count": 22,
+   "template_intersection_with_spec": [
+    "#004D5C",
+    "#005587",
+    "#0076A8",
+    "#2C3E50",
+    "#5D6D7E",
+    "#7F8C8D",
+    "#E74C3C",
+    "#ECF0F1",
+    "#F5A623",
+    "#FFFFFF"
+   ],
+   "template_only_colors": [
+    "#003A5C",
+    "#004A75",
+    "#95A5A6",
+    "#BDC3C7",
+    "#D5DBDB",
+    "#E5E7EB",
+    "#E89207",
+    "#F1F3F4",
+    "#F8F9FA",
+    "#FAFAFA",
+    "#FAFBFC",
+    "#FFF8E1"
+   ],
+   "geometry": {
+    "01_cover.svg": {
+     "texts": 9,
+     "gradients": 2,
+     "rx_values": [
+      2.0,
+      4.0
+     ],
+     "dasharray": [],
+     "font_families": [
+      "Arial, sans-serif"
+     ],
+     "font_sizes": [
+      12.0,
+      14.0,
+      18.0,
+      26.0,
+      56.0
+     ],
+     "max_rect": {
+      "width": 1280.0,
+      "height": 720.0
+     },
+     "full_width_bars": [],
+     "hex_bg_first": "#FFFFFF"
+    },
+    "02_chapter.svg": {
+     "texts": 6,
+     "gradients": 1,
+     "rx_values": [
+      4.0
+     ],
+     "dasharray": [],
+     "font_families": [
+      "Arial, sans-serif"
+     ],
+     "font_sizes": [
+      12.0,
+      14.0,
+      18.0,
+      20.0,
+      48.0,
+      280.0
+     ],
+     "max_rect": {
+      "width": 1280.0,
+      "height": 720.0
+     },
+     "full_width_bars": [],
+     "hex_bg_first": "#FFFFFF"
+    },
+    "02_toc.svg": {
+     "texts": 22,
+     "gradients": 1,
+     "rx_values": [
+      3.0,
+      4.0,
+      6.0
+     ],
+     "dasharray": [
+      "6,4"
+     ],
+     "font_families": [
+      "Arial, sans-serif"
+     ],
+     "font_sizes": [
+      12.0,
+      14.0,
+      18.0,
+      20.0,
+      28.0,
+      40.0
+     ],
+     "max_rect": {
+      "width": 1280.0,
+      "height": 720.0
+     },
+     "full_width_bars": [
+      {
+       "x": 0.0,
+       "y": 0.0,
+       "width": 1280.0,
+       "height": 6.0
+      }
+     ],
+     "hex_bg_first": "#FFFFFF"
+    },
+    "03_content.svg": {
+     "texts": 12,
+     "gradients": 1,
+     "rx_values": [
+      2.0,
+      4.0,
+      6.0
+     ],
+     "dasharray": [
+      "8,6"
+     ],
+     "font_families": [
+      "Arial, sans-serif"
+     ],
+     "font_sizes": [
+      11.0,
+      12.0,
+      14.0,
+      15.0,
+      18.0,
+      28.0,
+      44.0
+     ],
+     "max_rect": {
+      "width": 1280.0,
+      "height": 720.0
+     },
+     "full_width_bars": [
+      {
+       "x": 0.0,
+       "y": 0.0,
+       "width": 1280.0,
+       "height": 5.0
+      }
+     ],
+     "hex_bg_first": "#FFFFFF"
+    },
+    "04_ending.svg": {
+     "texts": 10,
+     "gradients": 2,
+     "rx_values": [
+      3.0,
+      4.0,
+      8.0
+     ],
+     "dasharray": [],
+     "font_families": [
+      "Arial, sans-serif"
+     ],
+     "font_sizes": [
+      12.0,
+      14.0,
+      18.0,
+      20.0,
+      52.0
+     ],
+     "max_rect": {
+      "width": 1280.0,
+      "height": 720.0
+     },
+     "full_width_bars": [
+      {
+       "x": 0.0,
+       "y": 0.0,
+       "width": 1280.0,
+       "height": 6.0
+      }
+     ],
+     "hex_bg_first": "#FFFFFF"
+    }
+   }
+  },
+  "government_red": {
+   "spec_font_stack": "\"Microsoft YaHei\", \"微软雅黑\", \"SimHei\", \"Source Han Sans SC\", Arial, sans-serif",
+   "spec_font_table": [
+    {
+     "level": "H1",
+     "usage": "Cover main title",
+     "size": "48",
+     "weight": "Bold"
+    },
+    {
+     "level": "H2",
+     "usage": "Page heading",
+     "size": "28",
+     "weight": "Bold"
+    },
+    {
+     "level": "H3",
+     "usage": "Section title/Subtitle",
+     "size": "24",
+     "weight": "Bold"
+    },
+    {
+     "level": "P",
+     "usage": "Body content",
+     "size": "18",
+     "weight": "Regular"
+    },
+    {
+     "level": "High",
+     "usage": "Highlighted data",
+     "size": "36",
+     "weight": "Bold"
+    },
+    {
+     "level": "Sub",
+     "usage": "Supplementary text",
+     "size": "14",
+     "weight": "Regular"
+    }
+   ],
+   "spec_roles": {
+    "#8B0000": [
+     "Government Red"
+    ],
+    "#003366": [
+     "Government Blue"
+    ],
+    "#FFFFFF": [
+     "Background White",
+     "White Text"
+    ],
+    "#F5F7FA": [
+     "Auxiliary Light Gray"
+    ],
+    "#E4E7EB": [
+     "Border Gray"
+    ],
+    "#DAA520": [
+     "Gold Accent"
+    ],
+    "#1A1A1A": [
+     "Primary Text"
+    ],
+    "#4A5568": [
+     "Secondary Text"
+    ],
+    "#718096": [
+     "Light Auxiliary"
+    ],
+    "#38A169": [
+     "Success"
+    ],
+    "#E53E3E": [
+     "Warning"
+    ],
+    "#3182CE": [
+     "Info"
+    ]
+   },
+   "spec_hex_all": [
+    "#003366",
+    "#1A1A1A",
+    "#3182CE",
+    "#38A169",
+    "#4A5568",
+    "#718096",
+    "#8B0000",
+    "#DAA520",
+    "#E4E7EB",
+    "#E53E3E",
+    "#F5F7FA",
+    "#FFFFFF"
+   ],
+   "template_hex_all": [
+    "#001A33",
+    "#002244",
+    "#003366",
+    "#1A1A1A",
+    "#4A5568",
+    "#718096",
+    "#8B0000",
+    "#CBD5E1",
+    "#DAA520",
+    "#E4E7EB",
+    "#F5F7FA",
+    "#FFFFFF"
+   ],
+   "template_hex_count": 12,
+   "template_intersection_with_spec": [
+    "#003366",
+    "#1A1A1A",
+    "#4A5568",
+    "#718096",
+    "#8B0000",
+    "#DAA520",
+    "#E4E7EB",
+    "#F5F7FA",
+    "#FFFFFF"
+   ],
+   "template_only_colors": [
+    "#001A33",
+    "#002244",
+    "#CBD5E1"
+   ],
+   "geometry": {
+    "01_cover.svg": {
+     "texts": 6,
+     "gradients": 2,
+     "rx_values": [],
+     "dasharray": [],
+     "font_families": [
+      "Arial, Microsoft YaHei, sans-serif",
+      "Arial, sans-serif",
+      "Microsoft YaHei, Arial, sans-serif",
+      "Microsoft YaHei, SimHei, sans-serif",
+      "Microsoft YaHei, sans-serif"
+     ],
+     "font_sizes": [
+      14.0,
+      16.0,
+      18.0,
+      24.0,
+      28.0,
+      52.0
+     ],
+     "max_rect": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 1280.0,
+      "height": 720.0
+     },
+     "full_width_bars": [
+      {
+       "x": 0.0,
+       "y": 0.0,
+       "width": 1280.0,
+       "height": 6.0
+      }
+     ],
+     "hex_bg_first": "#FFFFFF"
+    },
+    "02_chapter.svg": {
+     "texts": 4,
+     "gradients": 2,
+     "rx_values": [],
+     "dasharray": [],
+     "font_families": [
+      "Arial",
+      "Microsoft YaHei, SimHei, sans-serif",
+      "Microsoft YaHei, sans-serif"
+     ],
+     "font_sizes": [
+      14.0,
+      22.0,
+      48.0,
+      160.0
+     ],
+     "max_rect": {
+      "width": 1280.0,
+      "height": 720.0
+     },
+     "full_width_bars": [
+      {
+       "x": 0.0,
+       "y": 0.0,
+       "width": 1280.0,
+       "height": 6.0
+      }
+     ],
+     "hex_bg_first": "#FFFFFF"
+    },
+    "02_toc.svg": {
+     "texts": 23,
+     "gradients": 1,
+     "rx_values": [
+      8.0
+     ],
+     "dasharray": [],
+     "font_families": [
+      "Arial, sans-serif",
+      "Microsoft YaHei, SimHei, sans-serif",
+      "Microsoft YaHei, sans-serif"
+     ],
+     "font_sizes": [
+      14.0,
+      16.0,
+      20.0,
+      22.0,
+      24.0,
+      28.0,
+      48.0,
+      72.0
+     ],
+     "max_rect": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 1280.0,
+      "height": 720.0
+     },
+     "full_width_bars": [
+      {
+       "x": 0.0,
+       "y": 0.0,
+       "width": 1280.0,
+       "height": 6.0
+      },
+      {
+       "x": 0.0,
+       "y": 716.0,
+       "width": 1280.0,
+       "height": 4.0
+      }
+     ],
+     "hex_bg_first": "#FFFFFF"
+    },
+    "03_content.svg": {
+     "texts": 7,
+     "gradients": 1,
+     "rx_values": [
+      8.0
+     ],
+     "dasharray": [
+      "8,8"
+     ],
+     "font_families": [
+      "Arial, sans-serif",
+      "Microsoft YaHei, SimHei, sans-serif",
+      "Microsoft YaHei, sans-serif"
+     ],
+     "font_sizes": [
+      12.0,
+      14.0,
+      18.0,
+      24.0,
+      28.0
+     ],
+     "max_rect": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 1280.0,
+      "height": 720.0
+     },
+     "full_width_bars": [
+      {
+       "x": 0.0,
+       "y": 0.0,
+       "width": 1280.0,
+       "height": 6.0
+      },
+      {
+       "x": 0.0,
+       "y": 716.0,
+       "width": 1280.0,
+       "height": 4.0
+      }
+     ],
+     "hex_bg_first": "#FFFFFF"
+    },
+    "04_ending.svg": {
+     "texts": 6,
+     "gradients": 2,
+     "rx_values": [],
+     "dasharray": [],
+     "font_families": [
+      "Arial, Georgia, serif",
+      "Arial, sans-serif",
+      "Microsoft YaHei, SimHei, sans-serif",
+      "Microsoft YaHei, sans-serif"
+     ],
+     "font_sizes": [
+      14.0,
+      16.0,
+      22.0,
+      26.0,
+      64.0
+     ],
+     "max_rect": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 1280.0,
+      "height": 720.0
+     },
+     "full_width_bars": [
+      {
+       "x": 0.0,
+       "y": 0.0,
+       "width": 1280.0,
+       "height": 6.0
+      }
+     ],
+     "hex_bg_first": "#FFFFFF"
+    }
+   }
+  },
+  "科技蓝商务": {
+   "spec_font_stack": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+   "spec_font_table": [
+    {
+     "level": "H1",
+     "usage": "Cover main title",
+     "size": "64",
+     "weight": "Bold"
+    },
+    {
+     "level": "H2",
+     "usage": "Page title",
+     "size": "36-40",
+     "weight": "Bold"
+    },
+    {
+     "level": "H3",
+     "usage": "Section/card title",
+     "size": "24-28",
+     "weight": "Bold"
+    },
+    {
+     "level": "P",
+     "usage": "Body content",
+     "size": "20-24",
+     "weight": "Regular"
+    },
+    {
+     "level": "Caption",
+     "usage": "Supplementary text",
+     "size": "14-16",
+     "weight": "Regular"
+    }
+   ],
+   "spec_roles": {
+    "#0078D7": [
+     "Primary Blue"
+    ],
+    "#002E5D": [
+     "Dark Blue"
+    ],
+    "#4CA1E7": [
+     "Accent Cyan"
+    ],
+    "#E60012": [
+     "Alert Red"
+    ],
+    "#FFFFFF": [
+     "Background White"
+    ],
+    "#F5F5F7": [
+     "Light Gray BG"
+    ],
+    "#A0C4E3": [
+     "Border Gray"
+    ],
+    "#333333": [
+     "Body Text Black"
+    ],
+    "#666666": [
+     "Caption Gray"
+    ]
+   },
+   "spec_hex_all": [
+    "#002E5D",
+    "#0078D7",
+    "#333333",
+    "#4CA1E7",
+    "#666666",
+    "#A0C4E3",
+    "#E60012",
+    "#F5F5F7",
+    "#FFFFFF"
+   ],
+   "template_hex_all": [
+    "#002E5D",
+    "#0078D7",
+    "#333333",
+    "#4CA1E7",
+    "#666666",
+    "#999999",
+    "#A0C4E3",
+    "#CCCCCC",
+    "#E0E0E0",
+    "#F5F5F5",
+    "#F5F5F7",
+    "#FFFFFF"
+   ],
+   "template_hex_count": 12,
+   "template_intersection_with_spec": [
+    "#002E5D",
+    "#0078D7",
+    "#333333",
+    "#4CA1E7",
+    "#666666",
+    "#A0C4E3",
+    "#F5F5F7",
+    "#FFFFFF"
+   ],
+   "template_only_colors": [
+    "#999999",
+    "#CCCCCC",
+    "#E0E0E0",
+    "#F5F5F5"
+   ],
+   "geometry": {
+    "01_cover.svg": {
+     "texts": 6,
+     "gradients": 1,
+     "rx_values": [
+      4.0,
+      8.0,
+      10.0
+     ],
+     "dasharray": [
+      "8,8"
+     ],
+     "font_families": [
+      "Microsoft YaHei"
+     ],
+     "font_sizes": [
+      14.0,
+      18.0,
+      20.0,
+      32.0,
+      56.0
+     ],
+     "max_rect": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 1280.0,
+      "height": 720.0
+     },
+     "full_width_bars": [],
+     "hex_bg_first": "#FFFFFF"
+    },
+    "02_chapter.svg": {
+     "texts": 4,
+     "gradients": 1,
+     "rx_values": [
+      1.0,
+      20.0
+     ],
+     "dasharray": [],
+     "font_families": [
+      "Arial",
+      "Microsoft YaHei"
+     ],
+     "font_sizes": [
+      18.0,
+      20.0,
+      64.0,
+      280.0
+     ],
+     "max_rect": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 1280.0,
+      "height": 720.0
+     },
+     "full_width_bars": [],
+     "hex_bg_first": "#FFFFFF"
+    },
+    "02_toc.svg": {
+     "texts": 18,
+     "gradients": 1,
+     "rx_values": [
+      8.0
+     ],
+     "dasharray": [],
+     "font_families": [
+      "Arial",
+      "Microsoft YaHei"
+     ],
+     "font_sizes": [
+      14.0,
+      18.0,
+      20.0,
+      24.0,
+      28.0,
+      36.0,
+      56.0
+     ],
+     "max_rect": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 1280.0,
+      "height": 720.0
+     },
+     "full_width_bars": [],
+     "hex_bg_first": "#FFFFFF"
+    },
+    "03_content.svg": {
+     "texts": 5,
+     "gradients": 0,
+     "rx_values": [
+      10.0
+     ],
+     "dasharray": [
+      "8,8"
+     ],
+     "font_families": [
+      "Arial",
+      "Microsoft YaHei"
+     ],
+     "font_sizes": [
+      14.0,
+      16.0,
+      24.0,
+      36.0
+     ],
+     "max_rect": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 1280.0,
+      "height": 720.0
+     },
+     "full_width_bars": [],
+     "hex_bg_first": "#FFFFFF"
+    },
+    "04_ending.svg": {
+     "texts": 6,
+     "gradients": 1,
+     "rx_values": [
+      1.0,
+      10.0,
+      30.0
+     ],
+     "dasharray": [],
+     "font_families": [
+      "Arial",
+      "Microsoft YaHei"
+     ],
+     "font_sizes": [
+      12.0,
+      14.0,
+      16.0,
+      24.0,
+      28.0,
+      72.0
+     ],
+     "max_rect": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 1280.0,
+      "height": 720.0
+     },
+     "full_width_bars": [],
+     "hex_bg_first": "#FFFFFF"
+    }
+   }
+  }
+ },
+ "skill_md_table": {
+  "dark_warm": {
+   "label": "Dark Warm",
+   "bg_claim": "Dark cover + light content"
+  },
+  "consultant": {
+   "label": "Consultant",
+   "bg_claim": "White + blue"
+  },
+  "cloud_orange": {
+   "label": "Cloud Orange",
+   "bg_claim": "Deep navy + orange"
+  },
+  "ai_ops": {
+   "label": "AI Ops",
+   "bg_claim": "Dark"
+  },
+  "科技蓝商务": {
+   "label": "Tech Blue",
+   "bg_claim": "Blue"
+  },
+  "smart_red": {
+   "label": "Smart Red",
+   "bg_claim": "Red"
+  },
+  "exhibit": {
+   "label": "Exhibit",
+   "bg_claim": "Light"
+  },
+  "pixel_retro": {
+   "label": "Pixel Retro",
+   "bg_claim": "Dark"
+  }
+ },
+ "theme_mode_claims": {
+  "ai_ops": {
+   "skill_md": "Dark",
+   "design_spec": "Light theme (white background + red-blue dual-color accents + warm gray panels)"
+  },
+  "cloud_orange": {
+   "skill_md": "Deep navy + orange",
+   "design_spec": "Dark theme (deep navy background + orange accent)"
+  },
+  "consultant": {
+   "skill_md": "White + blue",
+   "design_spec": "Light theme (white background + Consultant Blue accent)"
+  },
+  "tech_blue": {
+   "skill_md": "（SKILL.md 表中无此目录名）",
+   "design_spec": "（design_spec.md 不在盘上）"
+  },
+  "科技蓝商务": {
+   "skill_md": "Blue",
+   "design_spec": "Mixed theme (dark blue/tech blue cover + light content pages)"
+  },
+  "government_red": {
+   "skill_md": "（SKILL.md 表中无此目录名）",
+   "design_spec": "Light theme (white background + government red/blue accents)"
+  }
+ }
+}
