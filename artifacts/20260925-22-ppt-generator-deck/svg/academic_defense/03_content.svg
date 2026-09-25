@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#FFFFFF"/>
+
+  <!-- ==================== 页眉（spec V：h=70 深蓝 + 6px 红竖条） ==================== -->
+  <rect x="0" y="0" width="1280" height="70" fill="#003366"/>
+  <rect x="0" y="0" width="6" height="70" fill="#CC0000"/>
+  <text x="40" y="46" fill="#FFFFFF" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="28" font-weight="bold">2.1  组合覆盖与质量闸门</text>
+  <text x="1220" y="46" text-anchor="end" fill="#FFFFFF" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="18" font-weight="bold">SKILL LAB</text>
+
+  <!-- ==================== 核心观点条（spec V：y=70 h=50 浅蓝灰 + 蓝色左饰条） ==================== -->
+  <rect x="0" y="70" width="1280" height="50" fill="#E8F4FC"/>
+  <rect x="0" y="70" width="6" height="50" fill="#0066CC"/>
+  <text x="40" y="102" fill="#333333" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="18">八轮全部判为留用：单轮断言由 36 条增至 398 条，风格零重复</text>
+
+  <!-- ==================== 数据高亮块 ×4（spec XI.3：白底 + 2px 红描边 + rx8） ==================== -->
+  <rect x="40" y="145" width="285" height="95" fill="#FFFFFF" stroke="#CC0000" stroke-width="2" rx="8"/>
+  <text x="64" y="196" fill="#CC0000" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="36" font-weight="bold">8</text>
+  <text x="106" y="196" fill="#333333" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="18">轮已试组合</text>
+  <text x="64" y="224" fill="#666666" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">skill × 场景，台账内无重复</text>
+
+  <rect x="345" y="145" width="285" height="95" fill="#FFFFFF" stroke="#CC0000" stroke-width="2" rx="8"/>
+  <text x="369" y="196" fill="#CC0000" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="36" font-weight="bold">4</text>
+  <text x="411" y="196" fill="#333333" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="18">个技能已完成横评</text>
+  <text x="369" y="224" fill="#666666" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">内置 1 + 本机自装 3</text>
+
+  <rect x="650" y="145" width="285" height="95" fill="#FFFFFF" stroke="#CC0000" stroke-width="2" rx="8"/>
+  <text x="674" y="196" fill="#CC0000" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="36" font-weight="bold">1,203</text>
+  <text x="674" y="224" fill="#666666" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">条断言（有记录的 6 轮累计）</text>
+
+  <rect x="955" y="145" width="285" height="95" fill="#FFFFFF" stroke="#CC0000" stroke-width="2" rx="8"/>
+  <text x="979" y="196" fill="#CC0000" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="36" font-weight="bold">1.1MB</text>
+  <text x="979" y="224" fill="#666666" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">单场景产物峰值 / 限额 50MB</text>
+
+  <!-- ==================== 左：柱状图（spec VII Timeline/Table 之外的自由布局区） ==================== -->
+  <rect x="40" y="260" width="700" height="390" fill="#F5F7FA" stroke="#D0D7E0" stroke-width="1" rx="8"/>
+  <text x="64" y="294" fill="#003366" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="24" font-weight="bold">每轮断言条数</text>
+  <text x="64" y="316" fill="#666666" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">16:00 起有量化记录 · 单位：条</text>
+
+  <line x1="100" y1="600" x2="700" y2="600" stroke="#D0D7E0" stroke-width="1"/>
+  <line x1="100" y1="525" x2="700" y2="525" stroke="#D0D7E0" stroke-width="1" stroke-opacity="0.6"/>
+  <line x1="100" y1="450" x2="700" y2="450" stroke="#D0D7E0" stroke-width="1" stroke-opacity="0.6"/>
+  <line x1="100" y1="375" x2="700" y2="375" stroke="#D0D7E0" stroke-width="1" stroke-opacity="0.6"/>
+  <line x1="100" y1="300" x2="700" y2="300" stroke="#D0D7E0" stroke-width="1" stroke-opacity="0.6"/>
+  <text x="92" y="604" text-anchor="end" fill="#999999" font-family="Arial, sans-serif" font-size="12">0</text>
+  <text x="92" y="529" text-anchor="end" fill="#999999" font-family="Arial, sans-serif" font-size="12">100</text>
+  <text x="92" y="454" text-anchor="end" fill="#999999" font-family="Arial, sans-serif" font-size="12">200</text>
+  <text x="92" y="379" text-anchor="end" fill="#999999" font-family="Arial, sans-serif" font-size="12">300</text>
+  <text x="92" y="304" text-anchor="end" fill="#999999" font-family="Arial, sans-serif" font-size="12">400</text>
+
+  <rect x="110" y="573" width="60" height="27" fill="#0066CC"/>
+  <rect x="210" y="494" width="60" height="106" fill="#0066CC"/>
+  <rect x="310" y="341" width="60" height="259" fill="#0066CC"/>
+  <rect x="410" y="301" width="60" height="299" fill="#003366"/>
+  <rect x="510" y="446" width="60" height="154" fill="#0066CC"/>
+  <rect x="610" y="541" width="60" height="59" fill="#0066CC"/>
+
+  <text x="140" y="565" text-anchor="middle" fill="#333333" font-family="Arial, sans-serif" font-size="16" font-weight="bold">36</text>
+  <text x="240" y="486" text-anchor="middle" fill="#333333" font-family="Arial, sans-serif" font-size="16" font-weight="bold">141</text>
+  <text x="340" y="333" text-anchor="middle" fill="#333333" font-family="Arial, sans-serif" font-size="16" font-weight="bold">345</text>
+  <text x="440" y="293" text-anchor="middle" fill="#CC0000" font-family="Arial, sans-serif" font-size="16" font-weight="bold">398</text>
+  <text x="540" y="438" text-anchor="middle" fill="#333333" font-family="Arial, sans-serif" font-size="16" font-weight="bold">205</text>
+  <text x="640" y="533" text-anchor="middle" fill="#333333" font-family="Arial, sans-serif" font-size="16" font-weight="bold">78</text>
+
+  <text x="140" y="622" text-anchor="middle" fill="#666666" font-family="Arial, sans-serif" font-size="12">16:00</text>
+  <text x="240" y="622" text-anchor="middle" fill="#666666" font-family="Arial, sans-serif" font-size="12">17:00</text>
+  <text x="340" y="622" text-anchor="middle" fill="#666666" font-family="Arial, sans-serif" font-size="12">18:00</text>
+  <text x="440" y="622" text-anchor="middle" fill="#666666" font-family="Arial, sans-serif" font-size="12">19:00</text>
+  <text x="540" y="622" text-anchor="middle" fill="#666666" font-family="Arial, sans-serif" font-size="12">20:00</text>
+  <text x="640" y="622" text-anchor="middle" fill="#666666" font-family="Arial, sans-serif" font-size="12">21:00</text>
+
+  <text x="110" y="642" fill="#CC0000" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">峰值 398 条：19:00 定价页 · 双技能叠加轮</text>
+
+  <!-- ==================== 右：技能覆盖表（spec VII Table） ==================== -->
+  <rect x="760" y="260" width="480" height="390" fill="#FFFFFF" stroke="#D0D7E0" stroke-width="1" rx="8"/>
+  <text x="784" y="294" fill="#003366" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="24" font-weight="bold">技能 × 轮次</text>
+
+  <rect x="784" y="306" width="432" height="32" fill="#003366"/>
+  <text x="798" y="328" fill="#FFFFFF" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14" font-weight="bold">技能</text>
+  <text x="1110" y="328" text-anchor="end" fill="#FFFFFF" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14" font-weight="bold">轮次</text>
+  <text x="1128" y="328" fill="#FFFFFF" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14" font-weight="bold">判定</text>
+
+  <text x="798" y="368" fill="#333333" font-family="Arial, sans-serif" font-size="14">sites:sites-building</text>
+  <text x="1110" y="368" text-anchor="end" fill="#333333" font-family="Arial, sans-serif" font-size="16" font-weight="bold">3</text>
+  <text x="1128" y="368" fill="#0066CC" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">留用</text>
+  <line x1="784" y1="382" x2="1216" y2="382" stroke="#D0D7E0" stroke-width="1"/>
+
+  <text x="798" y="408" fill="#333333" font-family="Arial, sans-serif" font-size="14">vercel-react-best-practices</text>
+  <text x="1110" y="408" text-anchor="end" fill="#333333" font-family="Arial, sans-serif" font-size="16" font-weight="bold">4</text>
+  <text x="1128" y="408" fill="#0066CC" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">留用</text>
+  <line x1="784" y1="422" x2="1216" y2="422" stroke="#D0D7E0" stroke-width="1"/>
+
+  <text x="798" y="448" fill="#333333" font-family="Arial, sans-serif" font-size="14">frontend-development</text>
+  <text x="1110" y="448" text-anchor="end" fill="#333333" font-family="Arial, sans-serif" font-size="16" font-weight="bold">1</text>
+  <text x="1128" y="448" fill="#0066CC" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">留用</text>
+  <line x1="784" y1="462" x2="1216" y2="462" stroke="#D0D7E0" stroke-width="1"/>
+
+  <text x="798" y="488" fill="#333333" font-family="Arial, sans-serif" font-size="14">drafter</text>
+  <text x="1110" y="488" text-anchor="end" fill="#333333" font-family="Arial, sans-serif" font-size="16" font-weight="bold">1</text>
+  <text x="1128" y="488" fill="#FFA500" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">留用·限定场景</text>
+  <line x1="784" y1="502" x2="1216" y2="502" stroke="#D0D7E0" stroke-width="1"/>
+
+  <rect x="784" y="510" width="432" height="36" fill="none" stroke="#CC0000" stroke-width="2" rx="4"/>
+  <text x="798" y="534" fill="#003366" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="16" font-weight="bold">合计轮次</text>
+  <text x="1110" y="534" text-anchor="end" fill="#CC0000" font-family="Arial, sans-serif" font-size="18" font-weight="bold">8</text>
+  <text x="1128" y="534" fill="#CC0000" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14" font-weight="bold">全部留用</text>
+
+  <text x="784" y="574" fill="#666666" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">19:00 一轮由 vercel 与 sites-building 叠加完成，</text>
+  <text x="784" y="594" fill="#666666" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">故技能轮次相加为 9、实际轮次为 8。</text>
+  <text x="784" y="632" fill="#999999" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">本轮第 5 个研究对象：ppt-generator</text>
+
+  <!-- ==================== 页脚（spec V：y=665 h=55） ==================== -->
+  <line x1="40" y1="665" x2="1240" y2="665" stroke="#E8F4FC" stroke-width="1"/>
+  <text x="40" y="695" fill="#999999" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="12">数据来源：state/state.json 与 records/work-log.md @ 2026-09-25 22:00 快照</text>
+  <text x="640" y="695" text-anchor="middle" fill="#999999" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="12">02 已试组合与留用判定</text>
+  <text x="1220" y="695" text-anchor="end" fill="#666666" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">04 / 05</text>
+</svg>

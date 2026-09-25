@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect x="0" y="0" width="1280" height="720" fill="#F5F5F7"/>
+
+  <!-- 左上呼应封面的红三角（spec VII.3） -->
+  <path d="M0 0 L180 0 L0 180 Z" fill="#DE3545"/>
+  <path d="M0 0 L80 0 L0 80 Z" fill="#F5A0A8"/>
+  <!-- 右下呼应红三角 -->
+  <path d="M1280 720 L1100 720 L1280 540 Z" fill="#DE3545"/>
+  <path d="M1280 720 L1180 720 L1280 620 Z" fill="#F5A0A8"/>
+
+  <!-- 章节号水印：描边 + 浅红填充两层（spec V.1 多层几何叠加） -->
+  <text x="640" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="140" font-weight="bold" fill="none" stroke="#F8D0D3" stroke-width="3">02</text>
+  <text x="640" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="140" font-weight="bold" fill="#FADCDE">02</text>
+
+  <!-- 章节标题 H2 档 -->
+  <text x="640" y="390" text-anchor="middle" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="64" font-weight="bold" fill="#333333">已试组合与留用判定</text>
+
+  <!-- 红色装饰线 -->
+  <line x1="540" y1="430" x2="740" y2="430" stroke="#DE3545" stroke-width="4"/>
+
+  <!-- 英文小结行 -->
+  <text x="640" y="480" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#999999" letter-spacing="6">SKILL LAB REVIEW</text>
+
+  <text x="640" y="545" text-anchor="middle" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="20" fill="#666666">4 个技能 · 8 个场景 · 逐轮留用判定</text>
+  <text x="640" y="580" text-anchor="middle" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="16" fill="#999999">判定口径：留用 / 留用（限定场景）/ 不适用条款逐条记因</text>
+</svg>

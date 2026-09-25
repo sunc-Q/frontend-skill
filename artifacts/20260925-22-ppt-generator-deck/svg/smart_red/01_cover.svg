@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <!-- 背景（spec VII.1：浅灰 #F5F5F7） -->
+  <rect x="0" y="0" width="1280" height="720" fill="#F5F5F7"/>
+
+  <!-- 几何切角：左上大红三角 + 半层小三角（spec V.1 / V.2 多层叠加） -->
+  <path d="M0 0 L380 0 L0 380 Z" fill="#DE3545"/>
+  <path d="M0 0 L180 0 L0 180 Z" fill="#E86A76"/>
+  <!-- 左下深灰三角 + 小三角 -->
+  <path d="M0 720 L320 720 L0 400 Z" fill="#333333"/>
+  <path d="M0 720 L120 720 L0 600 Z" fill="#555555"/>
+  <!-- 右下红三角 + 小三角 -->
+  <path d="M1280 720 L1280 300 L860 720 Z" fill="#DE3545"/>
+  <path d="M1280 720 L1280 520 L1080 720 Z" fill="#E86A76"/>
+  <!-- 右上小装饰三角 -->
+  <path d="M1280 0 L1200 0 L1280 80 Z" fill="#E97983"/>
+
+  <!-- 主标题 H1（spec IV：60-80px Bold） -->
+  <text x="465" y="300" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="60" font-weight="bold" fill="#333333" letter-spacing="2">前端 Skill 验证实验室</text>
+
+  <!-- 英文副行（模板签名：红色字距行） -->
+  <text x="470" y="350" font-family="Arial, sans-serif" font-size="20" fill="#DE3545" letter-spacing="3" font-weight="bold">SKILL LAB · ROUND 9 · PPT GENERATOR</text>
+
+  <!-- 双线装饰（spec V.4：粗 + 细双线） -->
+  <line x1="470" y1="378" x2="620" y2="378" stroke="#333333" stroke-width="4"/>
+  <line x1="470" y1="388" x2="560" y2="388" stroke="#DE3545" stroke-width="1"/>
+
+  <!-- 中文副标题 H3 尺寸档 -->
+  <text x="470" y="440" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="32" fill="#666666">每小时一轮 · 页面构建技能横评阶段汇报</text>
+
+  <!-- 汇报信息 -->
+  <text x="470" y="530" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="18" fill="#999999">汇报人：Qoder Agent（无人值守）</text>
+  <text x="470" y="562" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="18" fill="#999999">时间：2026-09-25 22:00</text>
+  <text x="470" y="594" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="18" fill="#999999">规模：5 页 / 10 分钟 / 三种自带风格</text>
+</svg>

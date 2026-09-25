@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#FFFFFF"/>
+
+  <!-- 页眉（spec V：y=0 h=70 深蓝 + 6px 红竖条） -->
+  <rect x="0" y="0" width="1280" height="70" fill="#003366"/>
+  <rect x="0" y="0" width="6" height="70" fill="#CC0000"/>
+  <text x="40" y="46" fill="#FFFFFF" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="28" font-weight="bold">目 录</text>
+  <text x="1200" y="46" text-anchor="end" fill="#FFFFFF" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="18" font-weight="bold">SKILL LAB</text>
+
+  <!-- 目录项 01：浅蓝底卡片 + 左侧深蓝竖条（spec VI.2） -->
+  <rect x="80" y="115" width="540" height="90" fill="#E8F4FC" rx="8"/>
+  <rect x="80" y="115" width="6" height="90" fill="#003366" rx="3"/>
+  <text x="120" y="160" fill="#003366" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="36" font-weight="bold">01</text>
+  <text x="185" y="160" fill="#003366" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="24" font-weight="bold">方法与去重契约</text>
+  <text x="120" y="188" fill="#666666" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">独立会话，工作记录即唯一记忆</text>
+
+  <!-- 目录项 02 -->
+  <rect x="660" y="115" width="540" height="90" fill="#E8F4FC" rx="8"/>
+  <rect x="660" y="115" width="6" height="90" fill="#003366" rx="3"/>
+  <text x="700" y="160" fill="#003366" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="36" font-weight="bold">02</text>
+  <text x="765" y="160" fill="#003366" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="24" font-weight="bold">已试组合与留用判定</text>
+  <text x="700" y="188" fill="#666666" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">8 轮 · 4 个技能 · 全部留用</text>
+
+  <!-- 目录项 03：左侧竖条换强调蓝（spec VI.2 第 3、4 项用 #0066CC） -->
+  <rect x="80" y="230" width="540" height="90" fill="#E8F4FC" rx="8"/>
+  <rect x="80" y="230" width="6" height="90" fill="#0066CC" rx="3"/>
+  <text x="120" y="275" fill="#003366" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="36" font-weight="bold">03</text>
+  <text x="185" y="275" fill="#003366" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="24" font-weight="bold">质量闸门：断言与复核</text>
+  <text x="120" y="303" fill="#666666" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">累计 1,203 条断言 · 三风格互异实测</text>
+
+  <!-- 目录项 04 -->
+  <rect x="660" y="230" width="540" height="90" fill="#E8F4FC" rx="8"/>
+  <rect x="660" y="230" width="6" height="90" fill="#0066CC" rx="3"/>
+  <text x="700" y="275" fill="#003366" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="36" font-weight="bold">04</text>
+  <text x="765" y="275" fill="#003366" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="24" font-weight="bold">环境约束与下一步</text>
+  <text x="700" y="303" fill="#666666" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">网络限制矩阵 · 45 条环境笔记</text>
+
+  <!-- 目录项 05（可选，虚线边框，spec VI.2） -->
+  <rect x="80" y="345" width="540" height="90" fill="none" stroke="#D0D7E0" stroke-width="1" stroke-dasharray="4,4" rx="8"/>
+  <text x="350" y="398" text-anchor="middle" fill="#999999" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="16">附录：九份复现文档与产物索引</text>
+
+  <!-- 研究范围说明卡（spec XI.3 数据高亮块形态） -->
+  <rect x="660" y="345" width="540" height="90" fill="#F5F7FA" stroke="#D0D7E0" stroke-width="1" rx="8"/>
+  <text x="690" y="380" fill="#333333" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="18" font-weight="bold">本轮研究对象</text>
+  <text x="690" y="408" fill="#666666" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="16">ppt-generator × 演示汇报页（新场景）</text>
+
+  <line x1="40" y1="665" x2="1240" y2="665" stroke="#E8F4FC" stroke-width="1"/>
+  <text x="40" y="698" fill="#999999" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="12">目录 · 共 5 页</text>
+  <text x="1220" y="698" text-anchor="end" fill="#999999" font-family="'Microsoft YaHei', '微软雅黑', Arial, sans-serif" font-size="14">02 / 05</text>
+</svg>

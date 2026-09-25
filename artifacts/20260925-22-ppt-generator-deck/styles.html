@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><title>ppt-generator · 三风格对照</title>
+<style>
+body{margin:0;padding:38px 26px;background:#111827;color:#E5E7EB;
+font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto}
+h1{font-size:26px;margin:0 0 6px} .sub{color:#9CA3AF;font-size:13px;margin-bottom:26px}
+h2{font-size:15px;color:#D4AF37;letter-spacing:.1em;margin:30px 0 10px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid #374151;padding:8px 10px;text-align:left}
+th{color:#9CA3AF;font-weight:600;font-size:12px;letter-spacing:.06em}
+a{color:#93C5FD;text-decoration:none;border-bottom:1px dotted #93C5FD}
+ul{margin:0;padding-left:20px;font-size:13px} li{margin:4px 0}
+.note{background:#1F2937;border-left:3px solid #D4AF37;padding:12px 14px;font-size:13px;margin-top:14px}
+</style></head><body><div class="wrap">
+<h1>ppt-generator · 演示汇报页 · 三风格对照</h1>
+<div class="sub">2026-09-25 22:00 时段 · 第 9 轮 · 数据取自本实验室台账快照（tried=8 / runs=8 / used_styles=24）</div>
+<table><thead><tr><th>风格（技能自带模板目录）</th><th>页数</th><th>SVG 字节</th><th>预览 HTML 字节</th>
+<th>导出的 PPTX</th></tr></thead><tbody><tr><td><a href='preview/exhibit.html'>exhibit</a></td><td>5</td><td>20,906</td><td>24,369</td><td><a href='pptx/exhibit-intended.pptx'>intended</a> / <a href='pptx/exhibit-documented.pptx'>documented</a></td></tr><tr><td><a href='preview/academic_defense.html'>academic_defense</a></td><td>5</td><td>22,576</td><td>26,075</td><td><a href='pptx/academic_defense-intended.pptx'>intended</a> / <a href='pptx/academic_defense-documented.pptx'>documented</a></td></tr><tr><td><a href='preview/smart_red.html'>smart_red</a></td><td>5</td><td>20,626</td><td>24,097</td><td><a href='pptx/smart_red-intended.pptx'>intended</a> / <a href='pptx/smart_red-documented.pptx'>documented</a></td></tr></tbody></table>
+<h2>逐个打开</h2>
+<ul>
+<li><a href="preview/exhibit.html">exhibit</a> — 深色 + 蓝紫渐变条 + 金色 CONFIDENTIAL（每页都带渐变与网格装饰）</li>
+<li><a href="preview/academic_defense.html">academic_defense</a> — 白底 + 深蓝页眉 + 红色左竖条（论文答辩版式）</li>
+<li><a href="preview/smart_red.html">smart_red</a> — 浅灰底 + 红黑三角切角几何（红橙商务版式）</li>
+</ul>
+<h2>本轮结论摘要</h2>
+<ul>
+<li>三套风格各 5 页全部由技能自带 design_spec.md 约束生成，168 条断言全绿（scripts/check.py）。</li>
+<li>SVG→PPTX 走技能自带 svg_to_pptx：6 个 deck 共 0 张位图、0 个 &lt;p:pic&gt;，文本全部为可编辑 &lt;a:t&gt;，px→pt 恰为 ×0.75。</li>
+<li>缺陷：SKILL.md 的 <code>sorted(glob)</code> 会把 02_chapter 排到 02_toc 之前 —— 每套 deck 的第 2 页都会错位。</li>
+</ul>
+<div class="note">PPTX 需下载后用 PowerPoint / Keynote 打开；网页预览用的是同源 SVG，像素级一致。</div>
+</div></body></html>

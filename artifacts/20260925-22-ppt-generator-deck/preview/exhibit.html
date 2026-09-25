@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>ppt-generator · exhibit 演示汇报页（5 页）</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0D1117;color:#E5E7EB;font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;
+display:flex;flex-direction:column;height:100vh;overflow:hidden}
+header{display:flex;align-items:center;gap:16px;padding:10px 18px;border-bottom:3px solid #D4AF37}
+header h1{font-size:15px;font-weight:700;letter-spacing:.08em}
+header .hint{font-size:12px;opacity:.65;margin-left:auto}
+nav{display:flex;gap:6px;padding:8px 18px;border-bottom:1px solid rgba(255,255,255,.12)}
+nav button{background:transparent;color:inherit;border:1px solid #1E40AF;border-radius:4px;
+padding:5px 12px;font-size:12px;cursor:pointer;font-family:inherit}
+nav button[aria-current="true"]{background:#1E40AF;color:#fff;border-color:#1E40AF}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:14px;overflow:hidden}
+figure{width:100%;height:100%;display:none;flex-direction:column;gap:6px}
+figure[data-on="1"]{display:flex}
+.frame{flex:1;display:flex;align-items:center;justify-content:center;min-height:0}
+.frame svg{width:auto;height:auto;max-width:100%;max-height:100%;
+box-shadow:0 4px 22px rgba(0,0,0,.35);background:#fff}
+figcaption{font-size:12px;opacity:.7;text-align:center}
+footer{padding:8px 18px;font-size:11px;opacity:.55;border-top:1px solid rgba(255,255,255,.12)}
+</style>
+</head>
+<body>
+<header><h1>ppt-generator · exhibit 演示汇报页（5 页）</h1><span class="hint">← / → 翻页 · 1-5 直达</span></header>
+<nav><button type="button">封面</button><button type="button">提纲</button><button type="button">章节页</button><button type="button">内容页</button><button type="button">结尾页</button></nav>
+<main><figure><div class="frame"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <!-- 背景（spec VI.1：深色底 #0D1117） -->
+  <rect width="1280" height="720" fill="#0D1117"/>
+
+  <!-- 顶部渐变条（spec V：y=0 h=6，#1E40AF → #7C3AED） -->
+  <defs>
+    <linearGradient id="top-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1E40AF"/>
+      <stop offset="100%" style="stop-color:#7C3AED"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1280" height="6" fill="url(#top-gradient)"/>
+
+  <!-- 左侧金色装饰线（spec XI 签名元素） -->
+  <line x1="120" y1="240" x2="120" y2="480" stroke="#D4AF37" stroke-width="4"/>
+
+  <!-- 主标题 H1 56px Bold letter-spacing 2 -->
+  <text x="160" y="320" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="56" font-weight="bold" letter-spacing="2">前端 Skill 验证实验室</text>
+
+  <!-- 副标题 -->
+  <text x="160" y="380" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="24" letter-spacing="1">每小时一轮 · 页面构建技能横评阶段汇报</text>
+
+  <!-- 项目编号 -->
+  <text x="160" y="440" fill="#6366F1" font-family="Arial, sans-serif" font-size="16" letter-spacing="2">LAB-2026-09 · 8 RUNS · 4 SKILLS</text>
+
+  <!-- 右侧网格装饰（spec VI.1） -->
+  <g stroke="#1E40AF" stroke-width="0.5" stroke-opacity="0.3">
+    <line x1="800" y1="150" x2="800" y2="550"/>
+    <line x1="900" y1="150" x2="900" y2="550"/>
+    <line x1="1000" y1="150" x2="1000" y2="550"/>
+    <line x1="1100" y1="150" x2="1100" y2="550"/>
+    <line x1="750" y1="250" x2="1150" y2="250"/>
+    <line x1="750" y1="350" x2="1150" y2="350"/>
+    <line x1="750" y1="450" x2="1150" y2="450"/>
+  </g>
+
+  <!-- 底部信息（spec VI.1：日期 / 保密标签 / 汇报人） -->
+  <line x1="120" y1="620" x2="1160" y2="620" stroke="#1F2937" stroke-width="1"/>
+  <text x="120" y="670" fill="#6B7280" font-family="Arial, sans-serif" font-size="14">2026-09-25 22:00 · 第 9 轮汇报</text>
+  <text x="640" y="670" text-anchor="middle" fill="#D4AF37" font-family="Arial, sans-serif" font-size="12">CONFIDENTIAL</text>
+  <text x="1160" y="670" text-anchor="end" fill="#6B7280" font-family="Arial, sans-serif" font-size="14">汇报人：Qoder Agent（无人值守）</text>
+</svg></div><figcaption>1 / 5 · 封面 · 01_cover.svg · 2279 字节</figcaption></figure><figure><div class="frame"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect x="0" y="0" width="1280" height="720" fill="#0D1117"/>
+
+  <defs>
+    <linearGradient id="top-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1E40AF"/>
+      <stop offset="100%" style="stop-color:#7C3AED"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1280" height="6" fill="url(#top-gradient)"/>
+
+  <!-- Exhibit 标题条：深灰底 + 金色左饰（spec VI.2） -->
+  <rect x="40" y="30" width="1200" height="60" fill="#1F2937"/>
+  <rect x="40" y="30" width="6" height="60" fill="#D4AF37"/>
+  <text x="70" y="70" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFFFFF" letter-spacing="2">AGENDA</text>
+  <text x="220" y="70" font-family="Arial, sans-serif" font-size="16" fill="#9CA3AF">汇报提纲</text>
+
+  <!-- 目录项 01 -->
+  <rect x="60" y="120" width="560" height="130" fill="#1F2937" rx="8"/>
+  <text x="100" y="175" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="#1E40AF" fill-opacity="0.3">01</text>
+  <text x="180" y="170" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFFFFF" letter-spacing="1">方法与去重契约</text>
+  <text x="180" y="200" font-family="Arial, sans-serif" font-size="14" fill="#9CA3AF">独立会话 · 工作记录即唯一记忆 · 四道去重闸</text>
+  <line x1="180" y1="220" x2="560" y2="220" stroke="#374151" stroke-width="1"/>
+
+  <!-- 目录项 02 -->
+  <rect x="660" y="120" width="560" height="130" fill="#1F2937" rx="8"/>
+  <text x="700" y="175" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="#7C3AED" fill-opacity="0.3">02</text>
+  <text x="780" y="170" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFFFFF" letter-spacing="1">已试组合与留用判定</text>
+  <text x="780" y="200" font-family="Arial, sans-serif" font-size="14" fill="#9CA3AF">8 轮 · 4 个技能 · 8 个场景 · 全部判为留用</text>
+  <line x1="780" y1="220" x2="1160" y2="220" stroke="#374151" stroke-width="1"/>
+
+  <!-- 目录项 03 -->
+  <rect x="60" y="270" width="560" height="130" fill="#1F2937" rx="8"/>
+  <text x="100" y="325" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="#1E40AF" fill-opacity="0.3">03</text>
+  <text x="180" y="320" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFFFFF" letter-spacing="1">质量闸门：断言与视觉复核</text>
+  <text x="180" y="350" font-family="Arial, sans-serif" font-size="14" fill="#9CA3AF">累计 1,203 条断言 · 计算样式复核 · 逐字节同构</text>
+  <line x1="180" y1="370" x2="560" y2="370" stroke="#374151" stroke-width="1"/>
+
+  <!-- 目录项 04 -->
+  <rect x="660" y="270" width="560" height="130" fill="#1F2937" rx="8"/>
+  <text x="700" y="325" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="#7C3AED" fill-opacity="0.3">04</text>
+  <text x="780" y="320" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFFFFF" letter-spacing="1">环境约束与下一步</text>
+  <text x="780" y="350" font-family="Arial, sans-serif" font-size="14" fill="#9CA3AF">TLS 重置 · 镜像源可达清单 · 45 条环境笔记</text>
+  <line x1="780" y1="370" x2="1160" y2="370" stroke="#374151" stroke-width="1"/>
+
+  <!-- 目录项 05（可选，虚线框，spec VI.2 保留该形态） -->
+  <rect x="60" y="420" width="560" height="130" fill="none" stroke="#374151" stroke-width="1" stroke-dasharray="4,4" rx="8"/>
+  <text x="100" y="475" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="#374151" fill-opacity="0.3">05</text>
+  <text x="180" y="490" font-family="Arial, sans-serif" font-size="16" fill="#6B7280">附录：九份复现文档与产物索引</text>
+
+  <line x1="60" y1="600" x2="1220" y2="600" stroke="#374151" stroke-width="1"/>
+
+  <text x="60" y="680" font-family="Arial, sans-serif" font-size="12" fill="#6B7280">2026-09-25</text>
+  <text x="640" y="680" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#D4AF37">CONFIDENTIAL</text>
+  <text x="1220" y="680" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#6B7280">02 / 05</text>
+</svg></div><figcaption>2 / 5 · 提纲 · 02_toc.svg · 4270 字节</figcaption></figure><figure><div class="frame"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#0D1117"/>
+
+  <defs>
+    <linearGradient id="top-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1E40AF"/>
+      <stop offset="100%" style="stop-color:#7C3AED"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1280" height="6" fill="url(#top-gradient)"/>
+
+  <!-- 左侧金色装饰线（spec VI.3） -->
+  <line x1="100" y1="280" x2="100" y2="440" stroke="#D4AF37" stroke-width="4"/>
+
+  <!-- 大号半透明背景章节号（spec VI.3：180px / opacity 0.08） -->
+  <text x="140" y="380" fill="#FFFFFF" fill-opacity="0.08" font-family="Arial, sans-serif" font-size="180" font-weight="bold">02</text>
+
+  <!-- 章节标题 H3 48px -->
+  <text x="160" y="360" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="48" font-weight="bold" letter-spacing="2">已试组合与留用判定</text>
+
+  <!-- 章节描述 -->
+  <text x="160" y="420" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="20">4 个技能在 8 个场景上各做一轮，24 种风格无一重复</text>
+
+  <!-- 右侧网格装饰 -->
+  <g stroke="#1E40AF" stroke-width="0.5" stroke-opacity="0.2">
+    <line x1="850" y1="200" x2="850" y2="520"/>
+    <line x1="950" y1="200" x2="950" y2="520"/>
+    <line x1="1050" y1="200" x2="1050" y2="520"/>
+    <line x1="1150" y1="200" x2="1150" y2="520"/>
+    <line x1="800" y1="260" x2="1200" y2="260"/>
+    <line x1="800" y1="360" x2="1200" y2="360"/>
+    <line x1="800" y1="460" x2="1200" y2="460"/>
+  </g>
+
+  <!-- 页脚保密标签（spec XI：所有页面居中金色 CONFIDENTIAL） -->
+  <text x="640" y="670" text-anchor="middle" fill="#D4AF37" font-family="Arial, sans-serif" font-size="12">CONFIDENTIAL</text>
+</svg></div><figcaption>3 / 5 · 章节页 · 02_chapter.svg · 1796 字节</figcaption></figure><figure><div class="frame"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#FFFFFF"/>
+
+  <defs>
+    <linearGradient id="top-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1E40AF"/>
+      <stop offset="100%" style="stop-color:#7C3AED"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1280" height="4" fill="url(#top-gradient)"/>
+
+  <!-- Exhibit 核心观点条（spec XI：深底 + 金色左饰） -->
+  <rect x="40" y="20" width="1200" height="60" fill="#0D1117"/>
+  <rect x="40" y="20" width="6" height="60" fill="#D4AF37"/>
+  <text x="60" y="58" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="18" font-weight="bold" letter-spacing="1">八轮全部判为留用：单轮断言从 36 条增至 398 条，风格零重复</text>
+
+  <!-- ==================== KPI 四卡（内容区 y=100 起，卡片间隙 20px） ==================== -->
+  <rect x="40" y="100" width="285" height="90" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" rx="8"/>
+  <text x="64" y="152" fill="#111827" font-family="Arial, sans-serif" font-size="40" font-weight="bold">8</text>
+  <text x="112" y="152" fill="#6B7280" font-family="Arial, sans-serif" font-size="14">轮已试组合</text>
+  <text x="64" y="176" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="12">skill × 场景，无重复</text>
+
+  <rect x="345" y="100" width="285" height="90" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" rx="8"/>
+  <text x="369" y="152" fill="#111827" font-family="Arial, sans-serif" font-size="40" font-weight="bold">4</text>
+  <text x="417" y="152" fill="#6B7280" font-family="Arial, sans-serif" font-size="14">个技能已完成横评</text>
+  <text x="369" y="176" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="12">内置 1 + 本机自装 3</text>
+
+  <rect x="650" y="100" width="285" height="90" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" rx="8"/>
+  <text x="674" y="152" fill="#111827" font-family="Arial, sans-serif" font-size="40" font-weight="bold">1,203</text>
+  <text x="674" y="176" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="12">条断言（有记录的 6 轮累计）</text>
+
+  <rect x="955" y="100" width="285" height="90" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" rx="8"/>
+  <text x="979" y="152" fill="#111827" font-family="Arial, sans-serif" font-size="40" font-weight="bold">1.1MB</text>
+  <text x="979" y="176" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="12">单场景产物峰值 / 限额 50MB</text>
+
+  <!-- ==================== 左：柱状图 ==================== -->
+  <rect x="40" y="210" width="740" height="400" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" rx="8"/>
+  <text x="64" y="244" fill="#111827" font-family="Arial, sans-serif" font-size="18" font-weight="bold">每轮断言条数</text>
+  <text x="64" y="264" fill="#6B7280" font-family="Arial, sans-serif" font-size="12">16:00 起有量化记录 · 单位：条</text>
+
+  <!-- 网格线与刻度（0/100/200/300/400，比例 0.7px per 条） -->
+  <line x1="120" y1="560" x2="760" y2="560" stroke="#E5E7EB" stroke-width="1"/>
+  <line x1="120" y1="490" x2="760" y2="490" stroke="#E5E7EB" stroke-width="1" stroke-opacity="0.7"/>
+  <line x1="120" y1="420" x2="760" y2="420" stroke="#E5E7EB" stroke-width="1" stroke-opacity="0.7"/>
+  <line x1="120" y1="350" x2="760" y2="350" stroke="#E5E7EB" stroke-width="1" stroke-opacity="0.7"/>
+  <line x1="120" y1="280" x2="760" y2="280" stroke="#E5E7EB" stroke-width="1" stroke-opacity="0.7"/>
+  <text x="110" y="564" text-anchor="end" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="12">0</text>
+  <text x="110" y="494" text-anchor="end" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="12">100</text>
+  <text x="110" y="424" text-anchor="end" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="12">200</text>
+  <text x="110" y="354" text-anchor="end" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="12">300</text>
+  <text x="110" y="284" text-anchor="end" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="12">400</text>
+
+  <rect x="130" y="535" width="68" height="25" fill="#1E40AF"/>
+  <rect x="235" y="461" width="68" height="99" fill="#1E40AF"/>
+  <rect x="340" y="318" width="68" height="242" fill="#1E40AF"/>
+  <rect x="445" y="281" width="68" height="279" fill="#7C3AED"/>
+  <rect x="550" y="416" width="68" height="144" fill="#1E40AF"/>
+  <rect x="655" y="505" width="68" height="55" fill="#1E40AF"/>
+
+  <text x="164" y="525" text-anchor="middle" fill="#111827" font-family="Arial, sans-serif" font-size="14" font-weight="bold">36</text>
+  <text x="269" y="451" text-anchor="middle" fill="#111827" font-family="Arial, sans-serif" font-size="14" font-weight="bold">141</text>
+  <text x="374" y="308" text-anchor="middle" fill="#111827" font-family="Arial, sans-serif" font-size="14" font-weight="bold">345</text>
+  <text x="479" y="271" text-anchor="middle" fill="#7C3AED" font-family="Arial, sans-serif" font-size="14" font-weight="bold">398</text>
+  <text x="584" y="406" text-anchor="middle" fill="#111827" font-family="Arial, sans-serif" font-size="14" font-weight="bold">205</text>
+  <text x="689" y="495" text-anchor="middle" fill="#111827" font-family="Arial, sans-serif" font-size="14" font-weight="bold">78</text>
+
+  <text x="164" y="580" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="12">16:00</text>
+  <text x="269" y="580" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="12">17:00</text>
+  <text x="374" y="580" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="12">18:00</text>
+  <text x="479" y="580" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="12">19:00</text>
+  <text x="584" y="580" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="12">20:00</text>
+  <text x="689" y="580" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="12">21:00</text>
+  <line x1="64" y1="600" x2="100" y2="600" stroke="#D4AF37" stroke-width="3"/>
+  <text x="112" y="604" fill="#D4AF37" font-family="Arial, sans-serif" font-size="12">19:00 轮（定价页 · 双技能叠加）为迄今单轮最高</text>
+
+  <!-- ==================== 右：技能覆盖表（spec VII Table） ==================== -->
+  <rect x="800" y="210" width="440" height="400" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" rx="8"/>
+  <text x="824" y="244" fill="#111827" font-family="Arial, sans-serif" font-size="18" font-weight="bold">技能 × 轮次</text>
+  <rect x="824" y="260" width="392" height="30" fill="#0D1117"/>
+  <text x="838" y="280" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="12" font-weight="bold">SKILL</text>
+  <text x="1124" y="280" text-anchor="end" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="12" font-weight="bold">轮次</text>
+  <text x="1140" y="280" fill="#D4AF37" font-family="Arial, sans-serif" font-size="12" font-weight="bold">判定</text>
+
+  <text x="838" y="316" fill="#111827" font-family="Arial, sans-serif" font-size="13">sites:sites-building</text>
+  <text x="1124" y="316" text-anchor="end" fill="#111827" font-family="Arial, sans-serif" font-size="14" font-weight="bold">3</text>
+  <text x="1140" y="316" fill="#6B7280" font-family="Arial, sans-serif" font-size="13">留用</text>
+  <line x1="824" y1="330" x2="1216" y2="330" stroke="#E5E7EB" stroke-width="1"/>
+
+  <text x="838" y="358" fill="#111827" font-family="Arial, sans-serif" font-size="13">vercel-react-best-practices</text>
+  <text x="1124" y="358" text-anchor="end" fill="#111827" font-family="Arial, sans-serif" font-size="14" font-weight="bold">4</text>
+  <text x="1140" y="358" fill="#6B7280" font-family="Arial, sans-serif" font-size="13">留用</text>
+  <line x1="824" y1="372" x2="1216" y2="372" stroke="#E5E7EB" stroke-width="1"/>
+
+  <text x="838" y="400" fill="#111827" font-family="Arial, sans-serif" font-size="13">frontend-development</text>
+  <text x="1124" y="400" text-anchor="end" fill="#111827" font-family="Arial, sans-serif" font-size="14" font-weight="bold">1</text>
+  <text x="1140" y="400" fill="#6B7280" font-family="Arial, sans-serif" font-size="13">留用</text>
+  <line x1="824" y1="414" x2="1216" y2="414" stroke="#E5E7EB" stroke-width="1"/>
+
+  <text x="838" y="442" fill="#111827" font-family="Arial, sans-serif" font-size="13">drafter</text>
+  <text x="1124" y="442" text-anchor="end" fill="#111827" font-family="Arial, sans-serif" font-size="14" font-weight="bold">1</text>
+  <text x="1140" y="442" fill="#6B7280" font-family="Arial, sans-serif" font-size="13">留用（限定场景）</text>
+  <line x1="824" y1="456" x2="1216" y2="456" stroke="#E5E7EB" stroke-width="1"/>
+
+  <rect x="824" y="462" width="392" height="34" fill="none" stroke="#D4AF37" stroke-width="1"/>
+  <text x="838" y="484" fill="#111827" font-family="Arial, sans-serif" font-size="13" font-weight="bold">合计轮次</text>
+  <text x="1124" y="484" text-anchor="end" fill="#111827" font-family="Arial, sans-serif" font-size="16" font-weight="bold">8</text>
+  <text x="1140" y="484" fill="#D4AF37" font-family="Arial, sans-serif" font-size="13" font-weight="bold">全部留用</text>
+
+  <text x="824" y="524" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="12">19:00 轮由 vercel 与 sites-building 叠加完成，</text>
+  <text x="824" y="542" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="12">故技能轮次相加为 9、实际轮次为 8。</text>
+  <text x="824" y="586" fill="#6B7280" font-family="Arial, sans-serif" font-size="12">未安装来源：扩展市场 12 个候选（需用户确认）、</text>
+  <text x="824" y="604" fill="#6B7280" font-family="Arial, sans-serif" font-size="12">GitHub / skills.sh 本机不可达</text>
+
+  <!-- ==================== 页脚 ==================== -->
+  <line x1="40" y1="660" x2="1240" y2="660" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="40" y="695" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="12">Source: state/state.json 与 records/work-log.md @ 2026-09-25 22:00 快照</text>
+  <text x="640" y="695" text-anchor="middle" fill="#D4AF37" font-family="Arial, sans-serif" font-size="12">CONFIDENTIAL</text>
+  <text x="1220" y="695" text-anchor="end" fill="#6B7280" font-family="Arial, sans-serif" font-size="12">04 / 05</text>
+</svg></div><figcaption>4 / 5 · 内容页 · 03_content.svg · 10414 字节</figcaption></figure><figure><div class="frame"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#0D1117"/>
+
+  <defs>
+    <linearGradient id="top-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1E40AF"/>
+      <stop offset="100%" style="stop-color:#7C3AED"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1280" height="6" fill="url(#top-gradient)"/>
+
+  <!-- 网格装饰背景（spec VI.5） -->
+  <g stroke="#1E40AF" stroke-width="0.5" stroke-opacity="0.1">
+    <line x1="200" y1="100" x2="200" y2="620"/>
+    <line x1="400" y1="100" x2="400" y2="620"/>
+    <line x1="600" y1="100" x2="600" y2="620"/>
+    <line x1="800" y1="100" x2="800" y2="620"/>
+    <line x1="1000" y1="100" x2="1000" y2="620"/>
+    <line x1="100" y1="200" x2="1180" y2="200"/>
+    <line x1="100" y1="360" x2="1180" y2="360"/>
+    <line x1="100" y1="520" x2="1180" y2="520"/>
+  </g>
+
+  <!-- 感谢语 H1 -->
+  <text x="640" y="280" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="56" font-weight="bold" letter-spacing="4">谢谢评审</text>
+
+  <!-- 金色分隔线 -->
+  <line x1="500" y1="320" x2="780" y2="320" stroke="#D4AF37" stroke-width="3"/>
+
+  <!-- 口号 -->
+  <text x="640" y="380" text-anchor="middle" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="22" letter-spacing="2">下一轮：让风格来自技能，而不是来自临场发挥</text>
+
+  <!-- 联系信息卡片 -->
+  <rect x="440" y="440" width="400" height="100" fill="#1F2937" rx="8"/>
+  <text x="640" y="490" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="bold">前端 Skill 验证实验室 · 第 9 轮</text>
+  <text x="640" y="520" text-anchor="middle" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="14">artifacts/20260925-22-ppt-generator-deck · skill: ppt-generator</text>
+
+  <line x1="200" y1="640" x2="1080" y2="640" stroke="#1F2937" stroke-width="1"/>
+  <text x="640" y="680" text-anchor="middle" fill="#D4AF37" font-family="Arial, sans-serif" font-size="12">CONFIDENTIAL · 2026-09-25 Qoder Agent 无人值守产出</text>
+</svg></div><figcaption>5 / 5 · 结尾页 · 04_ending.svg · 2147 字节</figcaption></figure></main>
+<footer>生成日期 2026-09-25 · 页面由 exhibit/design_spec.md 约束 · PPTX 见 ../pptx/exhibit-intended.pptx · 本页零外链，双击即开</footer>
+<script>
+(function(){
+  var figs=[].slice.call(document.querySelectorAll("figure"));
+  var btns=[].slice.call(document.querySelectorAll("nav button"));
+  function show(i){
+    i=(i+figs.length)%figs.length;
+    figs.forEach(function(f,k){ if(k===i){f.setAttribute("data-on","1");}else{f.removeAttribute("data-on");} });
+    btns.forEach(function(b,k){ b.setAttribute("aria-current", k===i?"true":"false"); });
+  }
+  btns.forEach(function(b,k){ b.addEventListener("click",function(){show(k);}); });
+  document.addEventListener("keydown",function(e){
+    var n=parseInt(e.key,10);
+    if(e.key==="ArrowRight"){show(cur()+1);}
+    else if(e.key==="ArrowLeft"){show(cur()-1);}
+    else if(n>=1&&n<=figs.length){show(n-1);}
+  });
+  function cur(){ for(var i=0;i<figs.length;i++){ if(figs[i].getAttribute("data-on")==="1") return i; } return 0; }
+  show(0);
+})();
+</script>
+</body>
+</html>

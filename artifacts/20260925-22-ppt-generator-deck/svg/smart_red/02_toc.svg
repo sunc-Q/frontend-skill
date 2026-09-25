@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect x="0" y="0" width="1280" height="720" fill="#F5F5F7"/>
+
+  <!-- 左侧整幅红色多边形面板（spec VII.2 目录页专属） -->
+  <path d="M0 0 L400 0 L300 720 L0 720 Z" fill="#DE3545"/>
+  <!-- 左下深灰装饰三角 -->
+  <path d="M0 720 L180 720 L0 550 Z" fill="#4A4A4A"/>
+  <path d="M0 720 L80 720 L0 640 Z" fill="#666666"/>
+  <!-- 右下红色小三角 + 浅红 -->
+  <path d="M1280 720 L1280 580 L1140 720 Z" fill="#DE3545"/>
+  <path d="M1280 720 L1280 650 L1210 720 Z" fill="#E97983"/>
+  <!-- 右上小三角 -->
+  <path d="M1280 0 L1220 0 L1280 60 Z" fill="#E97983"/>
+
+  <!-- 面板标题区（绝对坐标，不用模板的 g transform） -->
+  <text x="60" y="200" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="72" font-weight="bold" fill="#FFFFFF">目录</text>
+  <text x="60" y="240" font-family="Arial, sans-serif" font-size="24" letter-spacing="4" fill="#FFC1C1">CATALOGUE · ROUND 9</text>
+  <line x1="60" y1="270" x2="160" y2="270" stroke="#FFFFFF" stroke-width="4"/>
+  <text x="60" y="330" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="18" fill="#FFC1C1">8 轮记录 · 4 个技能 · 1 个新场景</text>
+
+  <!-- 目录项 01（空心圆序号，spec VIII TOC Circular Numbering） -->
+  <circle cx="520" cy="190" r="32" fill="#FFFFFF" stroke="#DE3545" stroke-width="3"/>
+  <text x="520" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#DE3545">01</text>
+  <text x="575" y="195" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="32" font-weight="bold" fill="#333333">方法与去重契约</text>
+  <text x="575" y="228" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="16" fill="#666666">独立会话，工作记录即唯一记忆</text>
+
+  <!-- 目录项 02（实心红圆序号） -->
+  <circle cx="520" cy="300" r="32" fill="#DE3545"/>
+  <text x="520" y="310" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#FFFFFF">02</text>
+  <text x="575" y="305" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="32" font-weight="bold" fill="#333333">已试组合与留用判定</text>
+  <text x="575" y="338" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="16" fill="#666666">4 个技能全部留用，24 种风格无一重复</text>
+
+  <!-- 目录项 03 -->
+  <circle cx="520" cy="410" r="32" fill="#FFFFFF" stroke="#DE3545" stroke-width="3"/>
+  <text x="520" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#DE3545">03</text>
+  <text x="575" y="415" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="32" font-weight="bold" fill="#333333">质量闸门：断言与复核</text>
+  <text x="575" y="448" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="16" fill="#666666">累计 1,203 条断言 · 三风格互异实测</text>
+
+  <!-- 目录项 04 -->
+  <circle cx="520" cy="520" r="32" fill="#DE3545"/>
+  <text x="520" y="530" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#FFFFFF">04</text>
+  <text x="575" y="525" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="32" font-weight="bold" fill="#333333">环境约束与下一步</text>
+  <text x="575" y="558" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="16" fill="#666666">网络限制矩阵 · 45 条环境笔记</text>
+
+  <text x="1160" y="680" text-anchor="end" font-family="'Microsoft YaHei', 'SimHei', sans-serif" font-size="14" fill="#999999">02 / 05</text>
+</svg>
