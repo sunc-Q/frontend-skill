@@ -463,8 +463,8 @@
       "scenario": "多页站点",
       "result": "success",
       "artifact_size": "80.5KB（15 文件，最大单文件 8.7KB）",
-      "cleanup": "删 .tmp 全部（build/check/visual 三脚本+截图+输出已先抄送 reports/20260926-04-.../；playwright-core node_modules 一并删）；4317/4318/4319 三探针服务器均由脚本自关，ps 复查无残留监听；场景目录内零 node_modules/dist；未改技能目录",
-      "push": "待补"
+      "cleanup": "删 .tmp 全部（build/check/visual 三脚本+截图+输出已先抄送 reports/20260926-04-.../；playwright-core node_modules 一并删）；4317/4318/4319 三探针服务器均由脚本自关，ps 复查无残留监听；场景目录内零 node_modules/dist；未改技能目录；推送后 .tmp（含 known_hosts）整体删除",
+      "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit c7c6897，5d141f1..c7c6897；走 ssh.github.com:443，known_hosts 写在实验室 .tmp，命令与文件均无 token）"
     }
   ],
   "next_candidates": [
