@@ -92,8 +92,8 @@
       "template_created": false,
       "disk": {
         "df_k_avail_before": 20275132,
-        "df_k_avail_after": 20264548,
-        "lab_total_bytes_human": "4.0M",
+        "df_k_avail_after": 20291584,
+        "lab_total_bytes_human": "4.7M（含 .git 2.1M，提交后终值）",
         "scenario_dir_human": "1.5M"
       },
       "volume": {

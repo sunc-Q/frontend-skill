@@ -5,7 +5,7 @@
 - 风格：新粗野主义 `brutal` / 日式留白 `washi` / 莫兰迪色块 `morandi`（三者均在 `next_style_candidates` 且未进 `used_styles`；与上一轮的瑞士网格/Win95/暗色霓虹互斥）
 - 代码：`sites/fitness-studio-booking/{backend,web,scripts}`；复制自 `templates/go-gin-react/`（未从零脚手架）
 - 产物：`sites/fitness-studio-booking/web/dist/`（单入口 292,259B / gzip 84.5KB）+ `preview/{brutal,washi,morandi}.html`（292,831 / 292,826 / 292,833B）
-- 体量：场景目录 1.5M（目标 <5M）；LAB 合计 4.0M；df 可用 20,264,548 KB（约 19.3GiB，开工时 20,275,132 KB）
+- 体量：场景目录 1.5M（目标 <5M）；清理中间产物后 LAB 4.0M，提交后终值 4.7M（其中 `.git` 2.1M）；df 开工 20,275,132 KB → 收工 20,291,584 KB（约 19.4GiB，全程未足）
 
 ## 做了什么
 
