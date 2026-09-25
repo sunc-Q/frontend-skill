@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T18:45:00+08:00",
+  "updated": "2026-09-25T18:50:00+08:00",
   "tried": [
     {
       "skill": "sites:sites-building",
@@ -193,7 +193,7 @@
       "result": "success",
       "artifact_size": "1.0MB（3 页各 255-260KB + 源码 108KB + 校验脚本 32KB + 对照页与配置）",
       "cleanup": "删 node_modules 102MB + dist/shiguang.js 240KB + .npm-install.log + .cs-server.log；8128 端口 python3 -m http.server 先 ps 核对命令行再按 PID kill，端口确认关闭；校验脚本全部保留未删；实验室合计约 3.9MB，单场景 1.0MB ≪ 50MB",
-      "push": "待推送：git@github.com:sunc-Q/frontend-skill.git @ main（走 SSH，known_hosts 写在本机 .tmp/kh，命令与文件无 token）"
+      "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 3201f25，fedb91e..3201f25；走 ssh.github.com:443，known_hosts 写在实验室 .tmp/kh，命令与文件均无 token）"
     }
   ],
   "next_candidates": [
