@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T19:52:00+08:00",
+  "updated": "2026-09-25T21:00:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -39,12 +39,26 @@
       "result": "成功：3 表 8 接口（1 个 Bearer 写）+ 五国税则/运费/关税全后端美分整型折算（goods+freight+duty=total 恒等式接口层保证）；go build/vet/test 全绿（15 个表驱动测试函数）；api-smoke.sh 全过（购物车收敛矩阵、鉴权 401/403/201/409、无 token 503、注入与超长边界）；三风格单文件 preview 各 22 表行 / 3 购物车行、6 类 computedStyle 两两互异、零外链；UI 内真实加购 6→10 件后用 curl 取证确认移除还原。场景 1.4M",
       "code_dir": "sites/cross-border-commerce/{backend,web,scripts}",
       "artifact_dir": "sites/cross-border-commerce/{web/dist,preview}"
+    },
+    {
+      "time": "2026-09-25T20:57:00+08:00",
+      "scenario": "学阶公开课 · 在线课程平台与招生看板",
+      "slug": "online-course-platform",
+      "styles": [
+        "包豪斯原色",
+        "报章密排",
+        "航空仪表盘"
+      ],
+      "result": "成功：4 表 8 接口（3 个 Bearer 写）+ 早鸟价按截止日、老学员 95 折按历史生效报名数、满座事务内转候补且零扣费，实付=标价−立减为接口层恒等式；手机号 json:\"-\" 全链路只出脱敏值；go build/vet/test -count=1 全绿（3 包 58 用例）+ api-smoke.sh pass=42 fail=0；三风格单文件 preview 实机各 41 表行 / 10 KPI、≥6 类 computedStyle 两两互异、零外链；种子 6 讲师 / 16 课(13 在售) / 93 章 / 506 报名（含满座课 + 候补 59 + 老学员折扣样本）。场景 1.4M",
+      "code_dir": "sites/online-course-platform/{backend,web,scripts}",
+      "artifact_dir": "sites/online-course-platform/{web/dist,preview}"
     }
   ],
   "used_scenarios": [
     "saas-subscription-admin",
     "fitness-studio-booking",
-    "cross-border-commerce"
+    "cross-border-commerce",
+    "online-course-platform"
   ],
   "used_styles": [
     "瑞士网格",
@@ -55,7 +69,10 @@
     "莫兰迪色块",
     "暖纸编辑排版",
     "蒸汽波",
-    "终端绿字 CRT"
+    "终端绿字 CRT",
+    "包豪斯原色",
+    "报章密排",
+    "航空仪表盘"
   ],
   "runs": [
     {
@@ -172,6 +189,47 @@
         "commit": "bf6cb06（场景主提交，43 文件）+ 本记录回写提交",
         "note": "git fetch origin go-gin_react → rebase FETCH_HEAD（已是 up-to-date，无改写）→ git push origin go-gin_react，远端 3743462..bf6cb06；未 --force、未跳 hook、未碰 main、未改任何全局 git 配置，提交用 -c user.name/-c user.email 显式身份；node_modules/backend-data/二进制/日志/tmp 均不在提交内"
       }
+    },
+    {
+      "id": "20260925-21",
+      "slug": "online-course-platform",
+      "started": "2026-09-25T19:52:00+08:00",
+      "finished": "2026-09-25T21:00:00+08:00",
+      "scenario": "学阶公开课 · 在线课程平台与招生看板",
+      "styles": [
+        "包豪斯原色",
+        "报章密排",
+        "航空仪表盘"
+      ],
+      "template_created": false,
+      "disk": {
+        "df_k_avail_before": 20094272,
+        "df_k_avail_after": 20198752,
+        "lab_total_bytes_human": "8.8M（含 .git 2.9M，场景主提交后实测）",
+        "scenario_dir_human": "1.4M",
+        "note": "本轮承接上一轮会话继续，开工未单独留 df 值；20,094,272KB 是清理前（node_modules 仍在）实测，删 node_modules + 二进制后 20,201,368KB，收工 20,198,752KB ≈ 19.3GiB，全程未触发 1.5GiB 熔断"
+      },
+      "volume": {
+        "go_files": 16,
+        "go_test_files": 3,
+        "test_packages_ok": 3,
+        "test_cases": 58,
+        "endpoints": 8,
+        "tables": 4,
+        "seed_rows": "6 讲师 / 16 课(13 在售·2 草稿·1 归档，8 门早鸟在跑) / 93 章 / 506 报名(266 在读·138 结课·59 候补·43 退课)",
+        "frontend_src_files": 9,
+        "theme_css_files": 3,
+        "dist_bundle_bytes": 289089,
+        "preview_files": 3,
+        "preview_each_bytes": 289647,
+        "smoke_assertions": "pass=42 fail=0"
+      },
+      "push": {
+        "branch": "go-gin_react",
+        "result": "成功",
+        "commit": "352f5d8（场景主提交，44 文件 / 15,936 行新增）+ 本记录回写提交",
+        "note": "git fetch origin go-gin_react → rebase FETCH_HEAD（already up-to-date，无改写）→ git push origin go-gin_react，远端 0bd3921..352f5d8；未 --force、未跳 hook、未碰 main、未改任何全局 git 配置，提交用 -c user.name/-c user.email 显式身份；38MB 二进制建在 /tmp 已删，node_modules/db/日志均不在提交内（对 staged 文件名扫 node_modules|.db|.log|api-smoke 二进制|token 命中 0）"
+      }
     }
   ],
   "environment_notes": [
@@ -192,10 +250,13 @@
     "SQLite `SUM()` 在空表返回 NULL，Go 侧 Scan 到 int64 会报错：聚合列一律写 `COALESCE(SUM(...),0)`。",
     "校验不能只看长度：SKU 注入串（含 `\"` `\\` `;`）长度合规照样被放行，被表驱动测试逼出字符白名单（字母数字-_）。遇到这类失败改代码，不放宽测试预期。",
     "冒烟脚本会往运行库写数据（本轮 total 18→19）：验证完成后需 kill 旧实例 → 删 data/app.db* → 同 token 重启确认回到种子值，**再**生成 preview，否则交付物里带着测试脏数据。",
-    "绝不删除共享缓存 ~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache。"
+    "绝不删除共享缓存 ~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache。",
+    "SQLite 坑（第 4 轮）：**同一条 select 列表里不能引用其它列别名**——fill_ratio 想复用 occupied 别名直接报 `no such column: occupied`，且只有走另一条 SQL（按 code 读单行，报名路径）才 500，列表接口看着却正常。改法：子查询重复写一遍，别名只给外层用。同理 SUM(a) 与 COUNT(b) 放进同一条多表 LEFT JOIN 会互相放大（领域汇总 GMV 翻倍），必须先按主体聚合成子查询、再按维度分组。",
+    "browser-use 新坑（第 4 轮）：带**无限 CSS 动画**的主题页面上，一次 evaluate_script 里放 7 组 getComputedStyle 会 15s 超时（先导航重载页面、再一次只取一小批就稳）；且函数体源码里的换行字面量（反斜杠 n）经 MCP 传参会被解码成真实换行 → SyntaxError: Invalid or unexpected token，字符串拼接分隔符改用 ' | ' 这类无反斜杠的字面串。",
+    "冒烟脚本自身的坑会伪装成业务 bug（第 4 轮）：bash 单引号里再嵌 eval('d$1') 展开后变成 eval('d['x']')，是 Python 语法错（必须写 eval(\"d$1\")）；chk 名称 期望 \"$(req ...; jget ...)\" 会把 req 打印的 HTTP 状态码和字段值拼成 20014 —— 取字段前先 >/dev/null 吞掉 req 的 stdout。本轮 3 个 FAIL 全是这类假阴性，改脚本不改业务代码。",
+    "确定性种子的「业务分支覆盖」要当测试来设计（第 4 轮）：满座转候补是核心分支，但首轮随机目标数全部低于容量 → 分支永远走不到，靠表驱动测试暴露。改法：前 N 门可售课按 capacity+15 灌（预留余量对冲 10% 退课），其余用 9+(i*7)%23 制造不满的对照组。"
   ],
   "next_candidates": [
-    "在线课程平台",
     "餐饮外卖门店",
     "医院门诊排班与挂号",
     "物流运单跟踪",
@@ -207,14 +268,11 @@
     "二手交易平台撮合"
   ],
   "next_style_candidates": [
-    "包豪斯原色",
     "苹果玻璃拟态",
     "孟菲斯几何",
-    "报章密排",
     "高对比荧光运动风",
     "等距轴测工业风",
     "手账纸质拼贴",
-    "航空仪表盘",
     "乐高积木块面",
     "蓝图工程制图"
   ],
@@ -222,6 +280,9 @@
     "fitness-studio-booking：bookings 目前无 (session_id,member_id) 复合唯一索引，查重依赖事务内 SELECT + 单写者；若放开多连接必须先补索引（confirmed/waitlist 用部分索引）。",
     "templates/go-gin-react：可把 scripts/api-smoke.sh 的「鉴权矩阵 + 收敛断言」骨架回灌成模板通用件，省下一轮现场编排。",
     "cross-border-commerce：税则/价卡写死在 domain.Regions 常量里（无表、无后台编辑接口），加目的国要改代码；后续若做「多店铺/多目的国税率可配」需提升为第四张表 + Bearer 写接口 + 变更审计。",
-    "cross-border-commerce：cart_items 无归属维度（单店铺单会话演示），上线需引入 session/customer 外键与过期清理。"
+    "cross-border-commerce：cart_items 无归属维度（单店铺单会话演示），上线需引入 session/customer 外键与过期清理。",
+    "online-course-platform：dropped 记录永久占住 idx_course_phone 复合唯一索引，导致「退课后不能再报同一门课」——属产品决策而非技术限制；若要放开，改成部分唯一索引 WHERE status != 'dropped' 并保留历史行。",
+    "online-course-platform：早鸟（截止 +24h 宽限）与老学员 95 折（历史生效报名 ≥3 条、立减 5%）阈值写死在 service，没有可配置的促销活动/折扣表；看板也只有全量历史口径（stats 带 window 字段但不支持区间过滤）。",
+    "templates/go-gin-react：本轮又现场重写了 stats 聚合写法、seed 分支覆盖技巧与 api-smoke 的鉴权矩阵/取字段 helper，可固化进模板（与第 2 轮同类遗留合并处理）。"
   ]
 }
