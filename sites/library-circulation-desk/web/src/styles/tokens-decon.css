@@ -1,0 +1,129 @@
+/* ============================================================
+   风格三：解构主义拼版（deconstructivist paste-up）
+   主张：把版面拆成倾斜的纸片——衬线大标题压在无衬线正文上，
+   发丝线与灰黑块错位叠放，边距故意不齐，像被拆开重贴的样张。
+   ============================================================ */
+:root {
+  color-scheme: dark;
+
+  --font-body: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', sans-serif;
+  --font-head: 'Times New Roman', Georgia, 'Songti SC', serif;
+  --font-mono: 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --bg: #17181c;
+  --bg-texture: repeating-linear-gradient(
+      78deg,
+      rgba(200, 255, 44, 0.05) 0 1px,
+      transparent 1px 42px
+    ),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 96px);
+  --bg-panel: #202227;
+  --bg-alt: #1b1d21;
+  --bg-input: #101215;
+  --bg-head: #0e0f12;
+
+  --ink: #e9e6dd;
+  --ink-soft: #b9b5aa;
+  --ink-faint: #7e7f86;
+  --head-ink: #c8ff2c;
+
+  --accent: #c8ff2c;
+  --accent-2: #ff5c3b;
+  --accent-ink: #14160f;
+
+  --line: #3a3d44;
+  --line-strong: #6d7078;
+  --border: 1px solid #4a4d55;
+  --border-hair: 1px solid #333640;
+  --border-bottom-strong: 1px solid #6d7078;
+  --edge-w: 1px;
+  --edge-w-lg: 2px;
+  --shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04), 10px -8px 0 rgba(255, 92, 59, 0.16);
+  --btn-shadow: none;
+
+  --zebra: rgba(255, 255, 255, 0.028);
+  --hover: rgba(200, 255, 44, 0.09);
+  --sel-bg: #2c3020;
+  --sel-ink: #eaffb8;
+  --track: #2a2d33;
+  --idle: #7e7f86;
+
+  --ok: #9ede6a;
+  --ok-bg: rgba(158, 222, 106, 0.14);
+  --warn: #f0c14b;
+  --warn-bg: rgba(240, 193, 75, 0.14);
+  --bad: #ff6b57;
+  --bad-bg: rgba(255, 107, 87, 0.14);
+
+  --radius: 0px;
+  --radius-sm: 0px;
+  --chip-radius: 0px;
+
+  --fs-base: 14px;
+  --fs-small: 13px;
+  --fs-tiny: 11px;
+  --fs-label: 11px;
+  --fs-title: 26px;
+  --fs-brand: 30px;
+  --fs-kpi: 27px;
+  --lh: 1.62;
+
+  --fw-bold: 400;
+  --fw-normal: 300;
+  --fw-kpi: 700;
+
+  --head-tracking: -0.02em;
+  --head-transform: none;
+  --label-tracking: 0.04em;
+  --label-transform: none;
+  --label-style: italic;
+  --mono-tracking: 0.06em;
+
+  --maxw: 1200px;
+  --side-w: 360px;
+  --gap: 30px;
+  --gap-sm: 18px;
+  --pad: 16px;
+  --pad-sm: 11px;
+  --pad-xs: 5px;
+  --cell-pad: 8px 9px;
+  --field-min: 140px;
+  --kpi-min: 200px;
+  --fact-min: 200px;
+  --lede-w: 60ch;
+  --mark-size: 24px;
+  --icon-size: 14px;
+  --check-size: 14px;
+  --pager-w: 30px;
+  --bar-h: 6px;
+  --bar-h-sm: 6px;
+  --spark-w: 70px;
+  --focus-w: 2px;
+  --sticky-z: 2;
+  --t: 160ms ease;
+  --topbar-align: end;
+  --stamp-align: left;
+  --tilt-brand: rotate(-3deg);
+  --tilt-title: skewX(-8deg);
+  --tilt-kpi: rotate(0.5deg);
+}
+
+/* 气质补丁：拼版感——区块标题左侧压撕口，表头换衬线体，复本条斜贴 */
+.section-head {
+  border-left: var(--edge-w-lg) solid var(--accent);
+  padding-left: var(--pad-sm);
+  margin-left: calc(var(--pad) * -1);
+}
+
+.copyrow {
+  transform: rotate(-0.6deg);
+}
+
+.copyrow:nth-child(even) {
+  transform: rotate(0.7deg);
+  margin-left: var(--pad-sm);
+}
+
+.table th {
+  font-family: var(--font-head);
+}

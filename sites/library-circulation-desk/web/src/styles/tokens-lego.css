@@ -1,0 +1,114 @@
+/* ============================================================
+   风格一：乐高积木块面（Lego brick planes）
+   主张：浅灰底板上的原色积木——粗黑轮廓 + 硬底阴影 + 大圆角，
+   每一块面板都是一枚可以按下去的颗粒。
+   ============================================================ */
+:root {
+  color-scheme: light;
+
+  --font-body: 'Trebuchet MS', Verdana, 'PingFang SC', sans-serif;
+  --font-head: 'Trebuchet MS', Verdana, 'PingFang SC', sans-serif;
+  --font-mono: 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --bg: #e7ebf1;
+  --bg-texture: repeating-linear-gradient(
+      90deg,
+      rgba(27, 36, 48, 0.045) 0 1px,
+      transparent 1px 56px
+    ),
+    repeating-linear-gradient(0deg, rgba(27, 36, 48, 0.045) 0 1px, transparent 1px 56px);
+  --bg-panel: #ffffff;
+  --bg-alt: #f6f8fb;
+  --bg-input: #ffffff;
+  --bg-head: #1b2430;
+
+  --ink: #1b2430;
+  --ink-soft: #3d4b5c;
+  --ink-faint: #74839a;
+  --head-ink: #ffffff;
+
+  --accent: #e4192d;
+  --accent-2: #1f6feb;
+  --accent-ink: #ffffff;
+
+  --line: #c3ccd8;
+  --line-strong: #1b2430;
+  --border: 3px solid #1b2430;
+  --border-hair: 2px solid #d5dde8;
+  --border-bottom-strong: 3px solid #1b2430;
+  --edge-w: 2px;
+  --edge-w-lg: 6px;
+  --shadow: 0 6px 0 #1b2430;
+  --btn-shadow: 0 3px 0 #1b2430;
+
+  --zebra: #f6f8fb;
+  --hover: #eaf1fb;
+  --sel-bg: #1b2430;
+  --sel-ink: #ffffff;
+  --track: #d5dde8;
+  --idle: #74839a;
+
+  --ok: #0f8a4d;
+  --ok-bg: #e2f6ea;
+  --warn: #b06a00;
+  --warn-bg: #fdf0da;
+  --bad: #c8102e;
+  --bad-bg: #fbe6e9;
+
+  --radius: 14px;
+  --radius-sm: 9px;
+  --chip-radius: 999px;
+
+  --fs-base: 15px;
+  --fs-small: 14px;
+  --fs-tiny: 12px;
+  --fs-label: 12px;
+  --fs-title: 18px;
+  --fs-brand: 24px;
+  --fs-kpi: 34px;
+  --lh: 1.5;
+
+  --fw-bold: 700;
+  --fw-normal: 400;
+  --fw-kpi: 800;
+
+  --head-tracking: 0.01em;
+  --head-transform: none;
+  --label-tracking: 0.08em;
+  --label-transform: uppercase;
+  --label-style: normal;
+  --mono-tracking: 0.01em;
+
+  --maxw: 1360px;
+  --side-w: 340px;
+  --gap: 26px;
+  --gap-sm: 16px;
+  --pad: 18px;
+  --pad-sm: 12px;
+  --pad-xs: 6px;
+  --cell-pad: 11px 13px;
+  --field-min: 150px;
+  --kpi-min: 190px;
+  --fact-min: 210px;
+  --lede-w: 78ch;
+  --mark-size: 30px;
+  --icon-size: 17px;
+  --check-size: 17px;
+  --pager-w: 38px;
+  --bar-h: 14px;
+  --bar-h-sm: 12px;
+  --spark-w: 76px;
+  --focus-w: 3px;
+  --sticky-z: 2;
+  --t: 120ms ease;
+  --topbar-align: center;
+  --stamp-align: right;
+  --tilt-brand: none;
+  --tilt-title: none;
+  --tilt-kpi: none;
+}
+
+/* 气质补丁：积木颗粒顶部的圆形凸点，只出现在 KPI 卡上 */
+.kpi {
+  background-image: radial-gradient(circle at 22px 9px, rgba(27, 36, 48, 0.13) 0 4px, transparent 5px);
+}

@@ -1,0 +1,344 @@
+{
+ "lego": {
+  "theme": "lego",
+  "rowCount": 42,
+  "kpiCount": 9,
+  "badgeCount": 14,
+  "copyCount": 2,
+  "tabCount": 3,
+  "inlineScripts": 0,
+  "inlineStyles": 1,
+  "external": [],
+  "firstKpi": "11",
+  "firstBadge": "已还",
+  "shell": {
+   "fontFamily": "\"Trebuchet MS\", Verdana, \"PingFang SC\", sans-serif",
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "color": "rgb(27, 36, 48)"
+  },
+  "brand": {
+   "fontFamily": "\"Trebuchet MS\", Verdana, \"PingFang SC\", sans-serif",
+   "transform": "none",
+   "letterSpacing": "normal"
+  },
+  "kpi": {
+   "backgroundColor": "rgb(255, 255, 255)",
+   "backgroundImage": "radial-gradient(circle at 22px 9px, rgba(27, 36, 48, 0.13) 0px, rgba(27, 36, 48, 0.13) 4px, rgba(0, 0, 0, 0) 5px)",
+   "borderTopWidth": "6px",
+   "borderTopStyle": "solid",
+   "borderTopColor": "rgb(228, 25, 45)",
+   "borderTopLeftRadius": "14px",
+   "boxShadow": "rgb(27, 36, 48) 0px 6px 0px 0px",
+   "paddingTop": "18px",
+   "transform": "none"
+  },
+  "label": {
+   "fontFamily": "\"Trebuchet MS\", Verdana, \"PingFang SC\", sans-serif",
+   "fontSize": "12px",
+   "letterSpacing": "0.96px",
+   "textTransform": "uppercase",
+   "fontStyle": "normal"
+  },
+  "value": {
+   "fontFamily": "\"Trebuchet MS\", Verdana, \"PingFang SC\", sans-serif",
+   "fontSize": "34px",
+   "fontWeight": "800",
+   "color": "rgb(27, 36, 48)",
+   "fontStyle": "normal"
+  },
+  "head": {
+   "fontFamily": "\"Trebuchet MS\", Verdana, \"PingFang SC\", sans-serif",
+   "fontSize": "12px",
+   "color": "rgb(255, 255, 255)",
+   "backgroundColor": "rgb(27, 36, 48)",
+   "textTransform": "uppercase",
+   "borderBottomWidth": "3px",
+   "borderBottomStyle": "solid",
+   "letterSpacing": "0.96px"
+  },
+  "row": {
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "borderBottomStyle": "none",
+   "borderBottomWidth": "0px"
+  },
+  "btn": {
+   "backgroundColor": "rgb(255, 255, 255)",
+   "color": "rgb(27, 36, 48)",
+   "borderTopWidth": "3px",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "9px",
+   "textTransform": "uppercase",
+   "paddingTop": "6px",
+   "boxShadow": "rgb(27, 36, 48) 0px 3px 0px 0px"
+  },
+  "input": {
+   "backgroundColor": "rgb(255, 255, 255)",
+   "color": "rgb(27, 36, 48)",
+   "borderTopWidth": "3px",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "9px"
+  },
+  "badge": {
+   "backgroundColor": "rgb(246, 248, 251)",
+   "color": "rgb(116, 131, 154)",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "999px",
+   "letterSpacing": "0.96px"
+  },
+  "gap": {
+   "columnGap": "16px",
+   "rowGap": "16px"
+  },
+  "bar": {
+   "backgroundColor": "rgb(213, 221, 232)",
+   "height": "14px",
+   "borderTopLeftRadius": "999px"
+  },
+  "fill": {
+   "backgroundColor": "rgb(228, 25, 45)",
+   "backgroundImage": "none",
+   "borderTopLeftRadius": "0px"
+  },
+  "status": {
+   "fontFamily": "\"Trebuchet MS\", Verdana, \"PingFang SC\", sans-serif",
+   "fontSize": "15px",
+   "backgroundColor": "rgb(246, 248, 251)",
+   "borderTopWidth": "3px"
+  },
+  "stamp": {
+   "fontFamily": "SFMono-Regular, Menlo, Consolas, monospace",
+   "transform": "none",
+   "borderTopStyle": "none",
+   "color": "rgb(116, 131, 154)"
+  },
+  "consoleErrors": []
+ },
+ "riso": {
+  "theme": "riso",
+  "rowCount": 42,
+  "kpiCount": 9,
+  "badgeCount": 14,
+  "copyCount": 2,
+  "tabCount": 3,
+  "inlineScripts": 0,
+  "inlineStyles": 1,
+  "external": [],
+  "firstKpi": "11",
+  "firstBadge": "已还",
+  "shell": {
+   "fontFamily": "\"Avenir Next\", Futura, \"Century Gothic\", \"PingFang SC\", sans-serif",
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "color": "rgb(27, 26, 23)"
+  },
+  "brand": {
+   "fontFamily": "\"Avenir Next\", Futura, \"Century Gothic\", \"PingFang SC\", sans-serif",
+   "transform": "none",
+   "letterSpacing": "normal"
+  },
+  "kpi": {
+   "backgroundColor": "rgb(251, 246, 236)",
+   "backgroundImage": "none",
+   "borderTopWidth": "5px",
+   "borderTopStyle": "solid",
+   "borderTopColor": "rgb(255, 45, 120)",
+   "borderTopLeftRadius": "0px",
+   "boxShadow": "rgba(29, 90, 168, 0.45) 5px 5px 0px 0px",
+   "paddingTop": "14px",
+   "transform": "none"
+  },
+  "label": {
+   "fontFamily": "\"Avenir Next\", Futura, \"Century Gothic\", \"PingFang SC\", sans-serif",
+   "fontSize": "10px",
+   "letterSpacing": "2.2px",
+   "textTransform": "uppercase",
+   "fontStyle": "normal"
+  },
+  "value": {
+   "fontFamily": "\"Avenir Next\", Futura, \"Century Gothic\", \"PingFang SC\", sans-serif",
+   "fontSize": "33px",
+   "fontWeight": "800",
+   "color": "rgb(27, 26, 23)",
+   "fontStyle": "normal"
+  },
+  "head": {
+   "fontFamily": "\"Avenir Next\", Futura, \"Century Gothic\", \"PingFang SC\", sans-serif",
+   "fontSize": "10px",
+   "color": "rgb(253, 246, 234)",
+   "backgroundColor": "rgb(29, 90, 168)",
+   "textTransform": "uppercase",
+   "borderBottomWidth": "2px",
+   "borderBottomStyle": "solid",
+   "letterSpacing": "2.2px"
+  },
+  "row": {
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "borderBottomStyle": "none",
+   "borderBottomWidth": "0px"
+  },
+  "btn": {
+   "backgroundColor": "rgb(255, 253, 247)",
+   "color": "rgb(27, 26, 23)",
+   "borderTopWidth": "2px",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "0px",
+   "textTransform": "uppercase",
+   "paddingTop": "4px",
+   "boxShadow": "rgba(255, 45, 120, 0.5) 3px 3px 0px 0px"
+  },
+  "input": {
+   "backgroundColor": "rgb(255, 253, 247)",
+   "color": "rgb(27, 26, 23)",
+   "borderTopWidth": "2px",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "0px"
+  },
+  "badge": {
+   "backgroundColor": "rgb(239, 228, 211)",
+   "color": "rgb(140, 129, 114)",
+   "borderTopStyle": "dashed",
+   "borderTopLeftRadius": "2px",
+   "letterSpacing": "2.42px"
+  },
+  "gap": {
+   "columnGap": "14px",
+   "rowGap": "14px"
+  },
+  "bar": {
+   "backgroundColor": "rgb(226, 214, 193)",
+   "height": "10px",
+   "borderTopLeftRadius": "2px"
+  },
+  "fill": {
+   "backgroundColor": "rgb(255, 45, 120)",
+   "backgroundImage": "none",
+   "borderTopLeftRadius": "0px"
+  },
+  "status": {
+   "fontFamily": "\"Avenir Next\", Futura, \"Century Gothic\", \"PingFang SC\", sans-serif",
+   "fontSize": "15px",
+   "backgroundColor": "rgb(239, 228, 211)",
+   "borderTopWidth": "2px"
+  },
+  "stamp": {
+   "fontFamily": "SFMono-Regular, Menlo, Consolas, monospace",
+   "transform": "none",
+   "borderTopStyle": "none",
+   "color": "rgb(125, 115, 100)"
+  },
+  "consoleErrors": []
+ },
+ "decon": {
+  "theme": "decon",
+  "rowCount": 42,
+  "kpiCount": 9,
+  "badgeCount": 14,
+  "copyCount": 2,
+  "tabCount": 3,
+  "inlineScripts": 0,
+  "inlineStyles": 1,
+  "external": [],
+  "firstKpi": "11",
+  "firstBadge": "已还",
+  "shell": {
+   "fontFamily": "\"Helvetica Neue\", Helvetica, Arial, \"PingFang SC\", sans-serif",
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "color": "rgb(233, 230, 221)"
+  },
+  "brand": {
+   "fontFamily": "\"Helvetica Neue\", Helvetica, Arial, \"PingFang SC\", sans-serif",
+   "transform": "none",
+   "letterSpacing": "normal"
+  },
+  "kpi": {
+   "backgroundColor": "rgb(32, 34, 39)",
+   "backgroundImage": "none",
+   "borderTopWidth": "2px",
+   "borderTopStyle": "solid",
+   "borderTopColor": "rgb(200, 255, 44)",
+   "borderTopLeftRadius": "0px",
+   "boxShadow": "rgba(255, 255, 255, 0.04) 0px 0px 0px 1px inset, rgba(255, 92, 59, 0.16) 10px -8px 0px 0px",
+   "paddingTop": "16px",
+   "transform": "matrix(0.999962, 0.00872654, -0.00872654, 0.999962, 0, 0)"
+  },
+  "label": {
+   "fontFamily": "\"Helvetica Neue\", Helvetica, Arial, \"PingFang SC\", sans-serif",
+   "fontSize": "11px",
+   "letterSpacing": "0.44px",
+   "textTransform": "none",
+   "fontStyle": "italic"
+  },
+  "value": {
+   "fontFamily": "\"Times New Roman\", Georgia, \"Songti SC\", serif",
+   "fontSize": "27px",
+   "fontWeight": "700",
+   "color": "rgb(233, 230, 221)",
+   "fontStyle": "normal"
+  },
+  "head": {
+   "fontFamily": "\"Times New Roman\", Georgia, \"Songti SC\", serif",
+   "fontSize": "11px",
+   "color": "rgb(200, 255, 44)",
+   "backgroundColor": "rgb(14, 15, 18)",
+   "textTransform": "none",
+   "borderBottomWidth": "1px",
+   "borderBottomStyle": "solid",
+   "letterSpacing": "0.44px"
+  },
+  "row": {
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "borderBottomStyle": "none",
+   "borderBottomWidth": "0px"
+  },
+  "btn": {
+   "backgroundColor": "rgb(16, 18, 21)",
+   "color": "rgb(233, 230, 221)",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "0px",
+   "textTransform": "none",
+   "paddingTop": "5px",
+   "boxShadow": "none"
+  },
+  "input": {
+   "backgroundColor": "rgb(16, 18, 21)",
+   "color": "rgb(233, 230, 221)",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "0px"
+  },
+  "badge": {
+   "backgroundColor": "rgb(27, 29, 33)",
+   "color": "rgb(126, 127, 134)",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "0px",
+   "letterSpacing": "0.44px"
+  },
+  "gap": {
+   "columnGap": "18px",
+   "rowGap": "18px"
+  },
+  "bar": {
+   "backgroundColor": "rgb(42, 45, 51)",
+   "height": "6px",
+   "borderTopLeftRadius": "0px"
+  },
+  "fill": {
+   "backgroundColor": "rgb(200, 255, 44)",
+   "backgroundImage": "none",
+   "borderTopLeftRadius": "0px"
+  },
+  "status": {
+   "fontFamily": "\"Helvetica Neue\", Helvetica, Arial, \"PingFang SC\", sans-serif",
+   "fontSize": "14px",
+   "backgroundColor": "rgb(27, 29, 33)",
+   "borderTopWidth": "1px"
+  },
+  "stamp": {
+   "fontFamily": "SFMono-Regular, Menlo, Consolas, monospace",
+   "transform": "none",
+   "borderTopStyle": "none",
+   "color": "rgb(126, 127, 134)"
+  },
+  "consoleErrors": []
+ }
+}

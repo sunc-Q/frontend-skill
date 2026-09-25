@@ -1,0 +1,28 @@
+探针主题：decon, lego, riso；比较计算样式属性 70 项
+
+① 互斥性：每对主题至少 3 项计算样式不同
+ok   decon vs lego：53 项不同 -> shell.color, shell.fontFamily, brand.fontFamily, kpi.backgroundColor, kpi.backgroundImage, kpi.borderTopColor, kpi.borderTopLeftRadius, kpi.borderTopWidth, kpi.boxShadow
+ok   decon vs riso：50 项不同 -> shell.color, shell.fontFamily, brand.fontFamily, kpi.backgroundColor, kpi.borderTopColor, kpi.borderTopWidth, kpi.boxShadow, kpi.paddingTop, kpi.transform
+ok   lego vs riso：47 项不同 -> shell.color, shell.fontFamily, brand.fontFamily, kpi.backgroundColor, kpi.backgroundImage, kpi.borderTopColor, kpi.borderTopLeftRadius, kpi.borderTopWidth, kpi.boxShadow
+
+② 同构性：结构字段必须全等（同一份 DOM + 同一份 JS，只换 CSS）
+ok   rowCount 全等：42
+ok   kpiCount 全等：9
+ok   badgeCount 全等：14
+ok   copyCount 全等：2
+ok   tabCount 全等：3
+ok   inlineScripts 全等：0
+ok   inlineStyles 全等：1
+ok   external 全等：[]
+ok   firstKpi 全等且非空：'11'
+ok   firstBadge 全等且非空：'已还'
+ok   decon.consoleErrors 为空
+ok   lego.consoleErrors 为空
+ok   riso.consoleErrors 为空
+
+③ 内容取样（页面确实从接口取到了数）
+  decon: 行=42 KPI=9 徽标=14 首KPI='11' 首徽标='已还'
+  lego: 行=42 KPI=9 徽标=14 首KPI='11' 首徽标='已还'
+  riso: 行=42 KPI=9 徽标=14 首KPI='11' 首徽标='已还'
+
+失败项：0

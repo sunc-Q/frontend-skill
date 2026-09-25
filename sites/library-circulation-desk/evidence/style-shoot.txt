@@ -1,0 +1,4 @@
+lego: theme属性=lego 行=42 KPI=9 徽标=14 外链=0 错误=0
+riso: theme属性=riso 行=42 KPI=9 徽标=14 外链=0 错误=0
+decon: theme属性=decon 行=42 KPI=9 徽标=14 外链=0 错误=0
+写入 /Users/apple/Documents/workProject/试验/业务网站实验室/sites/library-circulation-desk/evidence/style-probe.json，截图 /tmp/lcd-shot-{lego,riso,decon}.png

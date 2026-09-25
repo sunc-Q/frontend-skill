@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T02:58:00+08:00",
+  "updated": "2026-09-26T03:58:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -104,6 +104,17 @@
       "result": "成功：5 表 / 8 读 + 6 写接口（单 ADMIN_TOKEN，503·401·403 三层）+ 业务日历 SLA 时钟（09-12/13-18 两段、假日与调休上班、只有 pending_customer 停表、时效快照不回溯、部分唯一索引去重同名在办单）；四条恒等式由 domain.ComputeClock/LedgerFor 唯一计算，列表/详情/统计共用同一份分解式；go build/vet/test 全绿，tsc --noEmit 0 错，api-smoke.sh 112 项断言 0 失败，ui-check.mjs 21 项真浏览器回归全过，style-diff 互斥 50/57/57 + 同构 12 字段三主题全等 + 零外链零 console 错误；base.css(63 token, 零裸色值) + tokens-<id>.css 由 derive-themes.py 拼装，缺 token 即失败。真浏览器回归抓出两处 go test 抓不到的缺陷（时间线一次动作写两条且 from=to；列表 UTC 与详情 +08:00 差 8 小时），均已修因并加断言钉住。场景 1.8M",
       "code_dir": "sites/support-ticket-sla-desk/{backend,web,scripts}",
       "artifact_dir": "sites/support-ticket-sla-desk/{web/dist,preview,evidence}"
+    },
+    {
+      "time": "2026-09-26T03:58:00+08:00",
+      "scenario": "苍岚图书馆 · 流通工作台",
+      "slug": "library-circulation-desk",
+      "styles": [
+        "乐高积木块面",
+        "Risograph 孔版印刷",
+        "解构主义拼版"
+      ],
+      "result": "成功：4 表 / 6 读 + 3 写接口（单 ADMIN_TOKEN，503·401·403 三层）+ 书别借期费率封顶、逾期费归还瞬间快照不回溯、续借 2 次顺延、欠费 30 元停借、证别配额 8/12/5、手机号 json:\"-\" 只出 phone_masked；库存/借阅恒等式由 /api/stats 自检并被冒烟复验。go build·vet·test 全绿，tsc 0 错，run-smoke.sh pass=212 fail=0（含只读不变量 18 项），style-diff 失败项 0（互斥 53/50/47 + 同构 8 字段全等 + 零外链零 console 错误），ui-check pass=19 fail=0（真浏览器借出→归还闭环 + 切风格 671 节点逐节点同构）。抓出并修掉 6 处真缺陷：by_category JOIN 放大复本数、趋势稀疏日、identity_issues 出 null、WAL/SHM 漏压 0600、续借门槛顺序、/api 缺 Cache-Control no-store。"
     }
   ],
   "used_scenarios": [
@@ -114,7 +125,8 @@
     "food-delivery-store",
     "online-assessment-exam",
     "homestay-booking-calendar",
-    "support-ticket-sla-desk"
+    "support-ticket-sla-desk",
+    "library-circulation-desk"
   ],
   "used_styles": [
     "瑞士网格",
@@ -140,7 +152,10 @@
     "酸性夜场海报",
     "冷灰账簿",
     "儿童绘本",
-    "深色企业台"
+    "深色企业台",
+    "乐高积木块面",
+    "Risograph 孔版印刷",
+    "解构主义拼版"
   ],
   "runs": [
     {
@@ -450,6 +465,37 @@
         "branch": "go-gin_react",
         "status": "已推送 09ce22d..d52bc28（fetch → rebase「up to date」无改写 → 普通 push；未 --force、未跳 hook、未碰 main、未改全局 git 配置）"
       }
+    },
+    {
+      "id": "20260926-03",
+      "slug": "library-circulation-desk",
+      "started": "2026-09-26T02:58:00+08:00",
+      "finished": "2026-09-26T03:58:00+08:00",
+      "scenario": "苍岚图书馆 · 流通工作台",
+      "styles": [
+        "乐高积木块面",
+        "Risograph 孔版印刷",
+        "解构主义拼版"
+      ],
+      "template_created": false,
+      "disk": {
+        "df_k_avail_before": 19642680,
+        "df_k_avail_after": 19580812,
+        "scenario_dir_human": "1.7M（上限 5MB）：backend 144K + web(含 dist) 516K + preview 924K + scripts 92K + evidence 40K",
+        "note": "开工 df 可用 19,642,680KB≈18.7GiB，全程远高于 1.5GiB 熔断线。删除：web/node_modules（64MB）、/tmp/lcd-build、/tmp/lcd-view、/tmp/lcd-smoke、/tmp/lcd-db{,2}、/tmp/lcd-*.log、/tmp/lcd-probe.json、/tmp/lcd-shot-*.png、/tmp/lcd-ui-*.png、/tmp/lcd-ddl。共享缓存（~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache）未动，没有 go clean -cache/-testcache。进程按端口→PID→ps -o command= 核对命令行后才 kill：:18401/:18402 = /tmp/lcd-build/api、:18409 = node scripts/serve-static.mjs，全部本轮自己起的，kill 后监听数 0。"
+      },
+      "verification": {
+        "go": "gofmt -l 空；go build/vet/test ./... 全绿（domain/repository/server 三包，表驱动覆盖字段校验、鉴权 401/403、注入与超长、罚金 min 口径、续借门槛顺序）",
+        "web": "tsc --noEmit 0 错；vite build dist/assets/app.js 313KB；inline-preview 产出 preview/{lego,riso,decon}.html 各 304KB",
+        "api": "run-smoke.sh（全新 /tmp 双实例）→ api-smoke.sh pass=212 fail=0，0 条 FAIL；check-read-invariants.py pass=18（另 20 组排序键×双向）；库文件三件套实测 -rw-------",
+        "style": "style-shoot（系统 Chrome + playwright-core）三主题行=42 KPI=9 徽标=14 外链=0 错误=0；style-diff.py 失败项 0：互斥 decon/lego 53、decon/riso 50、lego/riso 47 项，同构 rowCount/kpiCount/badgeCount/copyCount/tabCount/inlineStyles/inlineScripts/external 全等",
+        "ui": "ui-check.mjs pass=19 fail=0：空表单禁用 → 缺令牌仍禁用 → 填令牌解禁 → 真借出 201（在借数 +1、复本转借出、接口可查）→ 检索条码选中该单 → 真归还（快照 fine_cents=0、在借数回落）→ 切风格 data-theme 变而业务 DOM 671 节点逐节点同构；零 console 错误",
+        "themes": "base.css(1037 行, 零裸色值) + tokens-<id>.css(各 84 token) 由 derive-themes.py 拼装，缺 token 或 base 漏色值即失败"
+      },
+      "push": {
+        "commits": "待记录",
+        "range": "待记录"
+      }
     }
   ],
   "environment_notes": [
@@ -494,20 +540,27 @@
     "第 7 轮：**截图是数据质检，不只是审美**。接口断言全绿的情况下，种子房型名混进了英文残片（`layered 台地房`）——只有渲染出来才看得见。style-shoot.mjs 每主题存一张 PNG 的理由写进脚本头注释。",
     "第 7 轮：**模板 CSS 的固定栏数会撑破新页面，修法放在共用层而不是改 DOM**。本轮三处：`.form-row` 继承模板 5 栏网格（两个日期框各占 1/5 必溢出）→ `repeat(auto-fit,minmax(96px,1fr))`；`.kpi-label/.kpi-value/.kpi-hint` 是 `<span>`，基线排一行会让 52px 大数字压住说明文字 → `display:block`；`.cal-name` 定宽 168px 落在 58px 轨道里会溢到相邻格子下 → `grid-column: span 3; min-width:0; overflow:hidden`。全部写进 derive-themes.py 的 SHARED 段，三风格共用一条规则，「只换 CSS」的承诺不破。",
     "第 7 轮：**风格改名要主动避嫌**。第二套初稿叫「等距工业蓝图」，与第 6 轮已用的「蓝图工程制图」名字相邻（实现其实不同：轴测挤出体 vs 平面制图）。为避免「换名重用旧风格」的嫌疑，改名「等距轴测工业风」（正好是 next_style_candidates 里预置的名字），并把 CSS 注释里残留的「蓝图纸」字样一并换成「轴测网格」。下一轮起名前先跟 used_styles 做子串比对。",
-    "第 7 轮：**playwright-core 可以借用本机已有的一份**（`/Users/apple/Documents/workProject/试验/skill演示场/.tmp/pw2/node_modules/playwright-core`，只读引用，不修改他人目录），配合系统 Chrome（`/Applications/Google Chrome.app/Contents/MacOS/Google Chrome` + `executablePath`）就能拿到真视口与真截图，不必下载几百 MB 浏览器。脚本按 $PW_PATH → 本地 node_modules → 已知路径 顺序找，找不到就打印安装命令。注意 ESM 里 `await import('.../playwright-core/index.js')` 拿不到命名导出，要用 `createRequire`。"
+    "第 7 轮：**playwright-core 可以借用本机已有的一份**（`/Users/apple/Documents/workProject/试验/skill演示场/.tmp/pw2/node_modules/playwright-core`，只读引用，不修改他人目录），配合系统 Chrome（`/Applications/Google Chrome.app/Contents/MacOS/Google Chrome` + `executablePath`）就能拿到真视口与真截图，不必下载几百 MB 浏览器。脚本按 $PW_PATH → 本地 node_modules → 已知路径 顺序找，找不到就打印安装命令。注意 ESM 里 `await import('.../playwright-core/index.js')` 拿不到命名导出，要用 `createRequire`。",
+    "第 9 轮：**负向鉴权用例绝不能真的写库**。`bearer <tok>`（小写方案名）按 RFC 7235 是合法的，实现用 strings.EqualFold 放行；冒烟脚本第一版把它当 401 断言，结果真的借出一册，级联打翻 copy_unavailable / fine_gate / 201 借出 / 续借顺延一整串断言。正确姿势：鉴权探针走「不存在的资源」——404 说明穿过了鉴权，401/403 说明被拦下，两条路径都不碰数据。",
+    "第 9 轮：**写型冒烟不可重放，必须自带干净库**。借出去不还的脚本在同一库跑第二轮，会「把在架复本借空而没借满配额」（种子只有 7 册非参考书在架，学生证配额 5），配额断言从证据变成误报。解法是 scripts/run-smoke.sh：每轮 rm -rf 全新 /tmp 库、起带令牌与不带令牌两个实例、跑完按端口→PID→核对命令行 kill，并把库文件三件套权限打进输出（顺手验 0600）。脚本里凡是「一直借到上限」的段落，还要先归还该读者的旧单。",
+    "第 9 轮：**JOIN 聚合放大是口径级 bug，不是渲染 bug**。类别汇总里 items LEFT JOIN copies LEFT JOIN loans，复本数被历史借阅放大到 237（真实 40）。修法是先按 item_id 各自聚合再回接；防复发靠一条跨字段不变量「Σ by_category.copies == total_copies」——它只能被这类放大破坏，代价 3 行 SQL。",
+    "第 9 轮：**SQLite 权限要在首次写入后再压一遍**。-wal/-shm 只在有写入后才出现，Open() 里 chmod 会漏掉它们，结果库 0600 而 WAL 0644（WAL 里是完整数据页）。固定做法：repository.Harden(path) 在 Seed() 之后再调一次，冒烟脚本末尾 ls -l 三件套当证据。",
+    "第 9 轮：**macOS 自带 bash 3.2 解析不了 `$\\{…}` / `$( ... <<'PY' … PY)` 形态**（命令替换里套 heredoc 直接语法错）。把 Python 逻辑落成真实脚本文件，既绕过解析问题，又能单独复跑与 diff；shell 侧只留 eval 与断言。",
+    "第 9 轮：**UI 同构断言不能拿文案总长当结构**。归还后页面重取数据，数字位数变化就让 innerHTML/textContent 长度漂了 390 字符，而 DOM 结构其实一节点未动。可靠口径：排除装饰性 swatch（每风格一枚不同 SVG，本来就该不同）后的「标签+class 节点序列」+ 行/卡/徽标计数。"
   ],
   "next_candidates": [
     "医院门诊排班与挂号",
     "物流运单跟踪",
     "房产租赁管理",
     "招聘 ATS 候选人流水线",
-    "图书馆馆藏与借阅",
     "充电桩车队运营",
     "二手交易平台撮合",
     "宠物医院门诊排班",
     "二手车评估上架",
     "冷链运输调度台",
-    "图书馆特色馆藏借阅"
+    "社区医院门诊叫号与病历台",
+    "汽车维修工单与配件库存",
+    "健身房私教课包核销台"
   ],
   "next_style_candidates": [
     "乐高积木块面"
@@ -530,6 +583,9 @@
     "homestay-booking-calendar：促销日历的「成交」覆盖只有 1 间夜——seed.go 末尾的定向造单被随机阶段占满的夜挤掉（价格档分支仍全覆盖，仓库层断言 promoNights>0 通过）。若下一轮要拿它做「特价 ADR」对比，应把定向促销造单挪到随机造单之前，或按剩余库存 units=1 逐日补单。",
     "homestay-booking-calendar：五级优先价的档期（节假日倍率、特价绝对价、停售）写死在 seed.go 的 rate_days 行，没有价卡表/后台编辑接口；要做「运营可配价」需把 rate_days 提升为带 Bearer 写接口 + 变更审计的配置表。",
     "homestay-booking-calendar：库存排他靠事务内 `SUM(units)` 区间查询 + SetMaxOpenConns(1) 单写者保证，bookings/booking_nights 无 (room_code,date) 唯一约束；放开多连接前必须先引入夜次占位表 + 唯一索引。",
-    "templates/go-gin-react：把本轮的 scripts/style-shoot.mjs（真无头 Chrome + 计算属性探针 + PNG）与 api-smoke.sh 的「键名/条数断言」回灌成模板通用件——第 6/7 轮连续两次都在现场重编取证工具。"
+    "templates/go-gin-react：把本轮的 scripts/style-shoot.mjs（真无头 Chrome + 计算属性探针 + PNG）与 api-smoke.sh 的「键名/条数断言」回灌成模板通用件——第 6/7 轮连续两次都在现场重编取证工具。",
+    "library-circulation-desk：decon 风格下借阅台账列宽偏挤（衬线字宽把「条码」列压成三行），属观感问题；若要修应在 base.css 引入 table-layout:fixed + 列宽 token，不能改 DOM。",
+    "library-circulation-desk：种子仅 7 册非参考书在架，任何「借到配额上限」类断言天然依赖干净库；新增写接口时同步看种子饱和度，或把种子扩到 30+ 册可借复本。",
+    "templates/go-gin-react：把 run-smoke.sh（全新库双实例 + 权限证据）与 style-diff.py 的「互斥+同构」双指标骨架回灌成模板通用件。"
   ]
 }

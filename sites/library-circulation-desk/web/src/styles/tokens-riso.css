@@ -1,0 +1,115 @@
+/* ============================================================
+   风格二：Risograph 孔版印刷（two-ink riso print）
+   主张：荧光粉 + 湖蓝两色分套印刷，纸张颗粒、错位套准、
+   叠印混色——所有阴影都是「第二道墨」。
+   ============================================================ */
+:root {
+  color-scheme: light;
+
+  --font-body: 'Avenir Next', 'Futura', 'Century Gothic', 'PingFang SC', sans-serif;
+  --font-head: 'Avenir Next', 'Futura', 'Century Gothic', 'PingFang SC', sans-serif;
+  --font-mono: 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --bg: #f3ece0;
+  --bg-texture: repeating-linear-gradient(
+      45deg,
+      rgba(255, 0, 102, 0.045) 0 1px,
+      transparent 1px 4px
+    ),
+    repeating-linear-gradient(-45deg, rgba(0, 77, 153, 0.05) 0 1px, transparent 1px 5px);
+  --bg-panel: #fbf6ec;
+  --bg-alt: #efe4d3;
+  --bg-input: #fffdf7;
+  --bg-head: #1d5aa8;
+
+  --ink: #1b1a17;
+  --ink-soft: #3a3833;
+  --ink-faint: #7d7364;
+  --head-ink: #fdf6ea;
+
+  --accent: #ff2d78;
+  --accent-2: #1d5aa8;
+  --accent-ink: #fff7ef;
+
+  --line: #d8cbb6;
+  --line-strong: #1b1a17;
+  --border: 2px solid #1b1a17;
+  --border-hair: 1px dashed #b3a68e;
+  --border-bottom-strong: 2px solid #1d5aa8;
+  --edge-w: 1px;
+  --edge-w-lg: 5px;
+  --shadow: 5px 5px 0 rgba(29, 90, 168, 0.45);
+  --btn-shadow: 3px 3px 0 rgba(255, 45, 120, 0.5);
+
+  --zebra: rgba(29, 90, 168, 0.06);
+  --hover: rgba(255, 45, 120, 0.1);
+  --sel-bg: #1d5aa8;
+  --sel-ink: #fdf6ea;
+  --track: #e2d6c1;
+  --idle: #8c8172;
+
+  --ok: #1d7a5a;
+  --ok-bg: rgba(29, 122, 90, 0.14);
+  --warn: #a35c00;
+  --warn-bg: rgba(255, 168, 0, 0.22);
+  --bad: #d2194b;
+  --bad-bg: rgba(255, 45, 120, 0.14);
+
+  --radius: 0px;
+  --radius-sm: 0px;
+  --chip-radius: 2px;
+
+  --fs-base: 15px;
+  --fs-small: 13px;
+  --fs-tiny: 11px;
+  --fs-label: 10px;
+  --fs-title: 17px;
+  --fs-brand: 25px;
+  --fs-kpi: 33px;
+  --lh: 1.55;
+
+  --fw-bold: 800;
+  --fw-normal: 400;
+  --fw-kpi: 800;
+
+  --head-tracking: 0.06em;
+  --head-transform: uppercase;
+  --label-tracking: 0.22em;
+  --label-transform: uppercase;
+  --label-style: normal;
+  --mono-tracking: 0.04em;
+
+  --maxw: 1240px;
+  --side-w: 320px;
+  --gap: 22px;
+  --gap-sm: 14px;
+  --pad: 14px;
+  --pad-sm: 10px;
+  --pad-xs: 4px;
+  --cell-pad: 9px 10px;
+  --field-min: 132px;
+  --kpi-min: 176px;
+  --fact-min: 190px;
+  --lede-w: 66ch;
+  --mark-size: 26px;
+  --icon-size: 15px;
+  --check-size: 15px;
+  --pager-w: 32px;
+  --bar-h: 10px;
+  --bar-h-sm: 9px;
+  --spark-w: 64px;
+  --focus-w: 2px;
+  --sticky-z: 2;
+  --t: 140ms ease;
+  --topbar-align: start;
+  --stamp-align: left;
+  --tilt-brand: rotate(-1.2deg);
+  --tilt-title: none;
+  --tilt-kpi: none;
+}
+
+/* 气质补丁：套准错位——标题多印一道荧光粉 */
+.section-title,
+.form-title {
+  text-shadow: 1.5px 1.5px 0 rgba(255, 45, 120, 0.55);
+}

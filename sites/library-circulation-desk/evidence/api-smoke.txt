@@ -1,0 +1,259 @@
+· 构建后端…
+· 跑 api-smoke.sh（BASE=:18401，未配令牌实例=:18402）
+
+[1m⓪ 从接口反查测试样本（scripts/probe-samples.py）[0m
+  ok   样本 ITEM_CODE — ITEM_CODE=978-7-02-00017
+  ok   样本 BARCODE — BARCODE=BN-000036
+  ok   样本 BARCODE_REF — BARCODE_REF=BN-000039
+  ok   样本 CARD — CARD=R-2026-0001
+  ok   样本 CARD_SUSPENDED — CARD_SUSPENDED=R-2026-0014
+  ok   样本 CARD_FINE — CARD_FINE=R-2026-0008
+  ok   样本 LOAN_ACTIVE — LOAN_ACTIVE=227
+  ok   样本 LOAN_OVERDUE — LOAN_OVERDUE=215
+  ok   样本 LOAN_FINED — LOAN_FINED=1
+  ok   样本 CARD_STUDENT — CARD_STUDENT=R-2026-0012
+
+[1m① /api/health 与路由兜底[0m
+  ok   health 200 — 200
+  ok   health status=ok — {"status":"ok","time":"2026-09-25T20:01:50Z"}
+  ok   时间为 UTC RFC3339 — {"status":"ok","time":"2026-09-25T20:01:50Z"}
+  ok   带斜杠路径不 500（301）
+  ok   未知接口回 JSON 404 — {"code":"not_found","message":"接口不存在"}
+  ok   未知接口状态码 — 404
+  ok   编码穿越不返回文件内容 — 不含「root:」
+  ok   编码穿越不泄露前端 HTML — 不含「<!doctype」
+  ok   超大 ID 不 500 — 不含「goroutine」
+
+[1m② /api/stats：KPI 口径与恒等式[0m
+  ok   stats 200 — 200
+  ok   恒等式自检通过 — {"generated_at":"2026-09-25T20:01:50.483792Z","today":"2026-09-25","total_items":20,"total
+  ok   恒等式违例列表为空 — {"generated_at":"2026-09-25T20:01:50.483792Z","today":"2026-09-25","total_items":20,"total
+  ok   趋势 14 天 — 14
+  ok   类别 4 桶 — 4
+  ok   借出册数 == 在借单数 — copies=25 loans=25
+  ok   days 超上限被夹住 — 200
+  ok   days 非数字回落默认 — 200
+
+[1m③ /api/items：筛选、分页、注入边界[0m
+  ok   items sort=code&dir=asc — 200
+  ok   items sort=code&dir=desc — 200
+  ok   items sort=title&dir=asc — 200
+  ok   items sort=title&dir=desc — 200
+  ok   items sort=author&dir=asc — 200
+  ok   items sort=author&dir=desc — 200
+  ok   items sort=year&dir=asc — 200
+  ok   items sort=year&dir=desc — 200
+  ok   items sort=category&dir=asc — 200
+  ok   items sort=category&dir=desc — 200
+  ok   items sort=added&dir=asc — 200
+  ok   items sort=added&dir=desc — 200
+  ok   items sort=available&dir=asc — 200
+  ok   items sort=available&dir=desc — 200
+  ok   items sort=total&dir=asc — 200
+  ok   items sort=total&dir=desc — 200
+  ok   items sort=id&dir=asc — 200
+  ok   items sort=id&dir=desc — 200
+  ok   注入型 sort 回落默认 — 200
+  ok   错误响应不回显 SQL — 不含「SQL」
+  ok   page_size 上限收口 — 100
+  ok   非数字分页参数不 500 — 200
+  ok   非数字分页回落 page=1 — 1
+  ok   非法 status 回落全部 — 200
+  ok   可借书目 total=10
+  ok   LIKE 通配符按字面匹配（零命中） — {"items":[],"total":0,"page":1,"page_size":20,"served_at":"2026-09-25T20:01:51Z"}
+  ok   下划线通配同样被转义 — {"items":[],"total":0,"page":1,"page_size":20,"served_at":"2026-09-25T20:01:51Z"}
+  ok   引号+注入检索不 500 — 200
+  ok   注入检索零命中 — {"items":[],"total":0,"page":1,"page_size":20,"served_at":"2026-09-25T20:01:51Z"}
+  ok   超长检索不 500 — 200
+  ok   类别筛选 200 — 200
+  ok   类别筛选有样本 — {"items":[{"id":19,"code":"978-7-02-00019","title":"中国地名大辞典","author":"方�
+  ok   不存在书目 404 — 404
+  ok   空白书目码不 500 — 404
+
+[1m③b /api/items/:code 详情结构[0m
+  ok   详情 200 — 200
+  ok   含 item 与 copies — {"copies":[{"id":36,"item_id":17,"barcode":"BN-000036","location":"一层·B 区","conditi
+  ok   书目码一致 — {"copies":[{"id":36,"item_id":17,"barcode":"BN-000036","location":"一层·B 区","conditi
+  ok   借期口径随书别 — {"copies":[{"id":36,"item_id":17,"barcode":"BN-000036","location":"一层·B 区","conditi
+  ok   详情无裸手机号键 — 不含「"phone"」
+
+[1m④ /api/loans：排序、筛选、跨表检索[0m
+  ok   loans sort=due — 200
+  ok   loans sort=borrowed — 200
+  ok   loans sort=returned — 200
+  ok   loans sort=member — 200
+  ok   loans sort=item — 200
+  ok   loans sort=barcode — 200
+  ok   loans sort=fine — 200
+  ok   loans sort=renew — 200
+  ok   loans sort=status — 200
+  ok   loans sort=id — 200
+  ok   逾期在借单 total=14
+  ok   在借筛选 200 — 200
+  ok   已还筛选 200 — 200
+  ok   类别+状态组合筛选 — 200
+  ok   按证号前缀检索 200 — 200
+  ok   证号检索有命中
+  ok   布尔注入检索零命中 — {"items":[],"total":0,"page":1,"page_size":20,"served_at":"2026-09-25T20:01:51Z"}
+  ok   借阅详情 200 — 200
+  ok   详情含借阅单 — {"loan":{"id":227,"copy_id":20,"member_id":2,"status":"active","borrowed_at":"2026-09-24T0
+  ok   详情带读者与书目 — {"loan":{"id":227,"copy_id":20,"member_id":2,"status":"active","borrowed_at":"2026-09-24T0
+  ok   已还单详情含罚金快照 — {"loan":{"id":1,"copy_id":1,"member_id":8,"status":"returned","borrowed_at":"2026-06-17T09
+  ok   罚金大于零 — fine_cents=1200
+  ok   不存在借阅 404 — 404
+  ok   非数字 ID 400 — 400
+  ok   ID=0 400 — 400
+  ok   负 ID 不 500 — 400
+
+[1m⑤ /api/members/:card：脱敏与配额[0m
+  ok   读者详情 200 — 200
+  ok   响应无裸 phone 键 — 不含「"phone"」
+  ok   只有脱敏字段 — {"loans":[{"id":220,"copy_id":9,"member_id":1,"status":"active","borrowed_at":"2026-08-15T
+  ok   手机号脱敏格式「138****0000」
+  ok   配额随证别 — {"loans":[{"id":220,"copy_id":9,"member_id":1,"status":"active","borrowed_at":"2026-08-15T
+  ok   欠费口径字段 — {"loans":[{"id":220,"copy_id":9,"member_id":1,"status":"active","borrowed_at":"2026-08-15T
+  ok   借阅样本非空 — {"loans":[{"id":220,"copy_id":9,"member_id":1,"status":"active","borrowed_at":"2026-08-15T
+  ok   不存在证号 404 — 404
+  ok   注入型证号不 500 — 404
+
+[1m⑤b 只读不变量取证（scripts/check-read-invariants.py）[0m
+    ok   书目 18 个排序方向全部 200
+    ok   借阅 20 个排序方向全部 200
+    ok   逾期行全部为在借且 overdue_days>0 — []
+    ok   14 行逾期单的 fine_due == min(天数×费率, 封顶) — []
+    ok   100 行已还单走快照（returned_at 非空、overdue_days=0） — []
+    ok   存在带罚金的已还样本 — 20 行
+    ok   同一已还单连读两次罚金不变（不回溯） — 650 vs 650
+    ok   复本状态全部落在枚举内 — []
+    ok   25 册在借复本带借过人、其余一律不带 — []
+    ok   后端自检 identity_ok — []
+    ok   借出册数 == 在借单数 — 25 vs 25
+    ok   在架 + 借出 <= 复本总数（遗失/剔旧占余下） — 11+25 vs 40
+    ok   类别册数合计 == 复本总数 — 40 vs 40
+    ok   趋势天数 == 请求天数 — 14
+    ok   今日借出/归还为非负整数 — 0/0
+    ok   43 类响应均无裸 phone 键（只出 phone_masked） — []
+    ok   脱敏值形如 138****0001 或空 — ['138****0000', '138****5433', '138****9190']
+    ok   page_size 被夹到上限 — page_size=100 rows=100
+    · 只读不变量 pass=18 fail=0
+  ok   只读不变量全过 — 18 条
+
+[1m⑥ 写接口鉴权矩阵（503 · 401 · 403）[0m
+  ok   未配 ADMIN_TOKEN → 503 fail-closed — 503
+  ok   503 错误码 server_misconfigured — server_misconfigured
+  ok   归还同样 fail-closed 503 — 503
+  ok   缺令牌 → 401 — 401
+  ok   非 Bearer 头 → 401 — 401
+  ok   只有 Bearer 前缀 → 401 — 401
+  ok   小写 bearer 同样通过鉴权（走到业务层 404） — 404
+  ok   错令牌 → 403 — 403
+  ok   403 不回显期望令牌 — (needle 已脱敏)
+  ok   归还错令牌 → 403 — 403
+  ok   续借缺令牌 → 401 — 401
+
+[1m⑦ POST /api/admin/borrow：校验顺序与业务门槛[0m
+  ok   字段过短 → 400 — 400
+  ok   逐字段回显 barcode — {"code":"invalid_request","message":"参数校验未通过","fields":{"barcode":"条码长
+  ok   逐字段回显 card_no — {"code":"invalid_request","message":"参数校验未通过","fields":{"barcode":"条码长
+  ok   错误码 invalid_request — {"code":"invalid_request","message":"参数校验未通过","fields":{"barcode":"条码长
+  ok   注入型条码 → 400 — 400
+  ok   400 不回显数据库细节 — 不含「sqlite」
+  ok   中文证号 → 400 — 400
+  ok   70KB 超长条码 → 400 — 400
+  ok   超长响应不回显内容 — 不含「BBBBB」
+  ok   畸形 JSON → 400 — 400
+  ok   畸形 JSON 错误码 — {"code":"invalid_request","message":"请求体无法解析"}
+  ok   不存在条码 → 404 — 404
+  ok   参考书不外借 → 409 — 409
+  ok   错误码 reference_only — {"code":"reference_only","message":"参考工具书仅限馆内阅览，不外借"}
+  ok   门槛失败不留半成品（该册仍在架） — {"copies":[{"id":36,"item_id":17,"barcode":"BN-000036","location":"一层·B 区","conditi
+  ok   停用读者 → 409 — 409
+  ok   错误码 member_suspended — {"code":"member_suspended","message":"读者证已挂失/停用，无法借出"}
+  ok   欠费超门槛 → 409 — 409
+  ok   错误码 fine_gate — {"code":"fine_gate","message":"未缴逾期费已超过停借额度，请先缴费"}
+  ok   借出成功 → 201 — 201
+  ok   201 返回借阅单 — {"loan":{"id":230,"copy_id":36,"member_id":1,"status":"active","borrowed_at":"2026-09-25T2
+  ok   新单状态 active — {"loan":{"id":230,"copy_id":36,"member_id":1,"status":"active","borrowed_at":"2026-09-25T2
+  ok   新单指向所选复本 — {"loan":{"id":230,"copy_id":36,"member_id":1,"status":"active","borrowed_at":"2026-09-25T2
+  ok   新单指向所选读者 — {"loan":{"id":230,"copy_id":36,"member_id":1,"status":"active","borrowed_at":"2026-09-25T2
+  ok   同册重复借出 → 409 — 409
+  ok   错误码 copy_unavailable — {"code":"copy_unavailable","message":"该副本当前不在架，无法借出"}
+  ok   复本转借出 — {"copies":[{"id":36,"item_id":17,"barcode":"BN-000036","location":"一层·B 区","conditi
+  ok   在借人回填 — {"copies":[{"id":36,"item_id":17,"barcode":"BN-000036","location":"一层·B 区","conditi
+  ok   新单可查详情 — {"loan":{"id":230,"copy_id":36,"member_id":1,"status":"active","borrowed_at":"2026-09-25T2
+  ok   在借单数 +1 — active_loans=26
+  ok   续借 #1 → 200 — 200
+  ok   续借次数 1 — {"loan":{"id":230,"copy_id":36,"member_id":1,"status":"active","borrowed_at":"2026-09-25T2
+  ok   应还日顺延 2026-10-09T20:01:53.034214Z → 2026-10-16T20:01:53.034214Z
+  ok   续借 #2 → 200 — 200
+  ok   第二次续借继续顺延 2026-10-16T20:01:53.034214Z → 2026-10-23T20:01:53.034214Z
+  ok   续借 #3 → 409 用尽 — 409
+  ok   错误码 renew_exhausted — {"code":"renew_exhausted","message":"续借次数已用尽"}
+  ok   用尽后应还日不再变 — 2026-10-23T20:01:53.034214Z
+  ok   不存在单续借 → 404 — 404
+  ok   非法 ID 续借 → 400 — 400
+  ok   逾期单续借 → 409 — 409
+  ok   错误码 overdue_no_renew — {"code":"overdue_no_renew","message":"已逾期，请先归还并缴清逾期费"}
+  ok   配额前置：先归还该读者 218 223
+  ok   学生证跑到上限 → quota_exceeded — yes
+  ok   按期归还 → 200 — 200
+  ok   未逾期罚金为 0 — {"fine_cents":0,"loan":{"id":230,"copy_id":36,"member_id":1,"status":"returned","borrowed_
+  ok   状态转 returned — {"fine_cents":0,"loan":{"id":230,"copy_id":36,"member_id":1,"status":"returned","borrowed_
+  ok   归还时间落表 — {"fine_cents":0,"loan":{"id":230,"copy_id":36,"member_id":1,"status":"returned","borrowed_
+  ok   缴费标记生效 — {"fine_cents":0,"loan":{"id":230,"copy_id":36,"member_id":1,"status":"returned","borrowed_
+  ok   重复归还 → 409 — 409
+  ok   错误码 invalid_state — {"code":"invalid_state","message":"该借阅记录已归还"}
+  ok   已还单不可续借 → 409 — 409
+  ok   归还后该册回到在架 — available
+  ok   非法 ID 归还 → 400 — 400
+  ok   不存在单归还 → 404 — 404
+  ok   逾期归还 → 200 — 200
+  ok   结算额 == 归还前 fine_due 预估 — fine_cents=150 fine_due=150
+  ok   未缴标记 fine_paid=false — {"fine_cents":150,"loan":{"id":215,"copy_id":2,"member_id":23,"status":"returned","borrowe
+  ok   快照二次读取不变（不回溯） — again=150
+  ok   该单确实产生了逾期费（150 分）
+  ok   写操作后恒等式仍成立 — {"generated_at":"2026-09-25T20:01:54.368193Z","today":"2026-09-25","total_items":20,"total
+  ok   写后借出册数仍等于在借单数 — copies=27 loans=27
+
+[1m⑧ 响应头与 CORS[0m
+  ok   Content-Type JSON — HTTP/1.1 200 OK
+Cache-Control: no-store
+Content-Type: application/json; charset=utf-8
+P
+  ok   X-Content-Type-Options — HTTP/1.1 200 OK
+Cache-Control: no-store
+Content-Type: application/json; charset=utf-8
+P
+  ok   X-Frame-Options — HTTP/1.1 200 OK
+Cache-Control: no-store
+Content-Type: application/json; charset=utf-8
+P
+  ok   Cache-Control no-store — HTTP/1.1 200 OK
+Cache-Control: no-store
+Content-Type: application/json; charset=utf-8
+P
+  ok   本机来源预检放行 — HTTP/1.1 204 No Content
+Access-Control-Allow-Headers: Authorization, Content-Type
+Access
+  ok   外部来源不发放行头 — 不含「evil.example」
+
+[1m⑨ 错误响应不泄露内部信息[0m
+  ok   /api/items/%2E%2E → 404 非 500
+  ok   /api/items/%2E%2E 无 panic 栈 — 不含「goroutine」
+  ok   /api/items/%2E%2E 无 SQL 语句 — 不含「SELECT」
+  ok   /api/loans/-1 → 400 非 500
+  ok   /api/loans/-1 无 panic 栈 — 不含「goroutine」
+  ok   /api/loans/-1 无 SQL 语句 — 不含「SELECT」
+  ok   /api/members/%00bad → 404 非 500
+  ok   /api/members/%00bad 无 panic 栈 — 不含「goroutine」
+  ok   /api/members/%00bad 无 SQL 语句 — 不含「SELECT」
+  ok   /api/stats?days=99999 → 200 非 500
+  ok   /api/stats?days=99999 无 panic 栈 — 不含「goroutine」
+  ok   /api/stats?days=99999 无 SQL 语句 — 不含「SELECT」
+  ok   错误体无源码路径 — 不含「internal/repository」
+
+[1mpass=212 fail=0[0m
+· 库文件权限（应为 0600）
+    -rw------- /tmp/lcd-smoke/18401/api.db
+    -rw------- /tmp/lcd-smoke/18401/api.db-shm
+    -rw------- /tmp/lcd-smoke/18401/api.db-wal
