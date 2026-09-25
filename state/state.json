@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T21:00:00+08:00",
+  "updated": "2026-09-25T22:05:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -52,13 +52,27 @@
       "result": "成功：4 表 8 接口（3 个 Bearer 写）+ 早鸟价按截止日、老学员 95 折按历史生效报名数、满座事务内转候补且零扣费，实付=标价−立减为接口层恒等式；手机号 json:\"-\" 全链路只出脱敏值；go build/vet/test -count=1 全绿（3 包 58 用例）+ api-smoke.sh pass=42 fail=0；三风格单文件 preview 实机各 41 表行 / 10 KPI、≥6 类 computedStyle 两两互异、零外链；种子 6 讲师 / 16 课(13 在售) / 93 章 / 506 报名（含满座课 + 候补 59 + 老学员折扣样本）。场景 1.4M",
       "code_dir": "sites/online-course-platform/{backend,web,scripts}",
       "artifact_dir": "sites/online-course-platform/{web/dist,preview}"
+    },
+    {
+      "time": "2026-09-25T22:05:00+08:00",
+      "scenario": "椒麻快送 · 外卖门店出餐调度看板",
+      "slug": "food-delivery-store",
+      "styles": [
+        "孟菲斯几何",
+        "高对比荧光运动风",
+        "蓝图工程制图"
+      ],
+      "result": "成功：4 表 9 接口（3 个 Bearer 写）+ 6 态订单状态机与并锅出餐口径（prep=Σ(prep_min×⌈qty/2⌉)、ETA=prep+zone.eta、total=subtotal+delivery 恒等式接口层断言）；手机号 json:\"-\" 只出脱敏值；go build/vet/test 全绿（3 包 14 个测试函数 / 50 条含子测试）+ api-smoke.sh pass=63 fail=0；三风格单文件 preview 实机各 40 表行 / 6 KPI、computedStyle 两两 ≥3 项互异、零外链；种子 26 菜(23 在售)/5 区域(4 启用)/122 单(当天 23、6 态全覆盖)/458 明细 731 份。场景 1.4M",
+      "code_dir": "sites/food-delivery-store/{backend,web,scripts}",
+      "artifact_dir": "sites/food-delivery-store/{web/dist,preview}"
     }
   ],
   "used_scenarios": [
     "saas-subscription-admin",
     "fitness-studio-booking",
     "cross-border-commerce",
-    "online-course-platform"
+    "online-course-platform",
+    "food-delivery-store"
   ],
   "used_styles": [
     "瑞士网格",
@@ -72,7 +86,10 @@
     "终端绿字 CRT",
     "包豪斯原色",
     "报章密排",
-    "航空仪表盘"
+    "航空仪表盘",
+    "孟菲斯几何",
+    "高对比荧光运动风",
+    "蓝图工程制图"
   ],
   "runs": [
     {
@@ -230,6 +247,48 @@
         "commit": "352f5d8（场景主提交，44 文件 / 15,936 行新增）+ 本记录回写提交",
         "note": "git fetch origin go-gin_react → rebase FETCH_HEAD（already up-to-date，无改写）→ git push origin go-gin_react，远端 0bd3921..352f5d8；未 --force、未跳 hook、未碰 main、未改任何全局 git 配置，提交用 -c user.name/-c user.email 显式身份；38MB 二进制建在 /tmp 已删，node_modules/db/日志均不在提交内（对 staged 文件名扫 node_modules|.db|.log|api-smoke 二进制|token 命中 0）"
       }
+    },
+    {
+      "id": "20260925-22",
+      "slug": "food-delivery-store",
+      "started": "2026-09-25T21:05:00+08:00",
+      "finished": "2026-09-25T22:05:00+08:00",
+      "scenario": "椒麻快送 · 外卖门店出餐调度看板",
+      "styles": [
+        "孟菲斯几何",
+        "高对比荧光运动风",
+        "蓝图工程制图"
+      ],
+      "template_created": false,
+      "disk": {
+        "df_k_avail_before": 20114960,
+        "df_k_avail_after": 20070948,
+        "lab_total_bytes_human": "10M（含 .git，场景主提交前实测）",
+        "scenario_dir_human": "1.4M",
+        "note": "开工 df -k . 可用 20,114,960KB ≈ 19.2GiB，收工 20,070,948KB ≈ 19.1GiB，全程远高于 1.5GiB 熔断线；二进制与运行库全部建在 /tmp 并已删（38MB 级），web/node_modules 已删，共享缓存未动；收工 lsof 复核 8092/8093/8097/8098/8099 监听数 0"
+      },
+      "volume": {
+        "go_files": 16,
+        "go_test_files": 3,
+        "test_packages_ok": 3,
+        "test_functions": 14,
+        "test_cases": 50,
+        "endpoints": 9,
+        "tables": 4,
+        "seed_rows": "26 dishes(23 在售·3 沽清) / 5 zones(4 启用) / 122 orders(当天 23，6 态全覆盖) / 458 order_items(731 份，当天 93 条)",
+        "frontend_src_files": 7,
+        "theme_css_files": 3,
+        "dist_bundle_bytes": 282541,
+        "preview_files": 3,
+        "preview_each_bytes": 283090,
+        "smoke_assertions": "pass=63 fail=0",
+        "stats_verified": "GMV ¥16,947.00 / 今日 ¥3,470.00 / 客单价 ¥151.31 / 平均出餐 34min / 取消率 8.2%"
+      },
+      "push": {
+        "branch": "go-gin_react",
+        "result": "待本条提交后回填",
+        "note": "git fetch origin go-gin_react → rebase FETCH_HEAD → 普通 push；绝不 --force、绝不 --no-verify、绝不碰 main、不改任何全局 git 配置，身份只用 -c user.name/-c user.email 内联"
+      }
     }
   ],
   "environment_notes": [
@@ -254,10 +313,13 @@
     "SQLite 坑（第 4 轮）：**同一条 select 列表里不能引用其它列别名**——fill_ratio 想复用 occupied 别名直接报 `no such column: occupied`，且只有走另一条 SQL（按 code 读单行，报名路径）才 500，列表接口看着却正常。改法：子查询重复写一遍，别名只给外层用。同理 SUM(a) 与 COUNT(b) 放进同一条多表 LEFT JOIN 会互相放大（领域汇总 GMV 翻倍），必须先按主体聚合成子查询、再按维度分组。",
     "browser-use 新坑（第 4 轮）：带**无限 CSS 动画**的主题页面上，一次 evaluate_script 里放 7 组 getComputedStyle 会 15s 超时（先导航重载页面、再一次只取一小批就稳）；且函数体源码里的换行字面量（反斜杠 n）经 MCP 传参会被解码成真实换行 → SyntaxError: Invalid or unexpected token，字符串拼接分隔符改用 ' | ' 这类无反斜杠的字面串。",
     "冒烟脚本自身的坑会伪装成业务 bug（第 4 轮）：bash 单引号里再嵌 eval('d$1') 展开后变成 eval('d['x']')，是 Python 语法错（必须写 eval(\"d$1\")）；chk 名称 期望 \"$(req ...; jget ...)\" 会把 req 打印的 HTTP 状态码和字段值拼成 20014 —— 取字段前先 >/dev/null 吞掉 req 的 stdout。本轮 3 个 FAIL 全是这类假阴性，改脚本不改业务代码。",
-    "确定性种子的「业务分支覆盖」要当测试来设计（第 4 轮）：满座转候补是核心分支，但首轮随机目标数全部低于容量 → 分支永远走不到，靠表驱动测试暴露。改法：前 N 门可售课按 capacity+15 灌（预留余量对冲 10% 退课），其余用 9+(i*7)%23 制造不满的对照组。"
+    "确定性种子的「业务分支覆盖」要当测试来设计（第 4 轮）：满座转候补是核心分支，但首轮随机目标数全部低于容量 → 分支永远走不到，靠表驱动测试暴露。改法：前 N 门可售课按 capacity+15 灌（预留余量对冲 10% 退课），其余用 9+(i*7)%23 制造不满的对照组。",
+    "**单写者事务铁律（第 5 轮，代价最大的一次）**：DSN 带 txlock(immediate) 且 SetMaxOpenConns(1) 时，`Transaction(func(tx *gorm.DB))` 闭包内**任何**查询都必须走 `tx`；用 `r.db` 去查（本轮是查当日订单号流水）会去抢那条已被事务独占的唯一连接 → 直接死锁，症状是测试包 `FAIL ... 600.448s` 并 dump `connectionOpener` goroutine，看起来像 SQL 错误其实是连接饥饿。订单号唯一冲突的重试也因此必须放在同一个事务闭包里（计数 + 重算 + 重建，≤5 次）。",
+    "browser-use 升级版（第 5 轮）：含**无限 CSS 动画**的主题页，**导航后第一次 getComputedStyle 即使只取一个属性也会 15s 超时**；稳定节奏是「导航 → 先跑一个纯计数表达式（如 querySelectorAll(...).length）暖机 → 再逐次单属性取值」。点击/输入这类会触发重渲染的动作必须与取值拆成两次调用，且动作那次允许超时。",
+    "Bash 工具里 `cd \"中文路径\" && ...` 形式会被转义破坏（报 `no such file or directory`，路径里的中文变成 \\M-xx 序列）。改用工具的 `dir_path` 参数，或全程用相对路径。",
+    "复核种子数字的干净办法（第 5 轮）：不要在交付用的运行库上做 COUNT，另起一次性实例 `/tmp/xxx-check` + `/tmp/xxx.db`（同端口号递增避让），用 `~/Android/Sdk/platform-tools/sqlite3` 跑 `select count(*) ...`，随后 kill 并删库——这样 README/work-log 里写的行数是实测值而不是记忆值（本轮因此把「245 条明细」纠正为 458 条 / 731 份）。"
   ],
   "next_candidates": [
-    "餐饮外卖门店",
     "医院门诊排班与挂号",
     "物流运单跟踪",
     "房产租赁管理",
@@ -269,12 +331,9 @@
   ],
   "next_style_candidates": [
     "苹果玻璃拟态",
-    "孟菲斯几何",
-    "高对比荧光运动风",
     "等距轴测工业风",
     "手账纸质拼贴",
-    "乐高积木块面",
-    "蓝图工程制图"
+    "乐高积木块面"
   ],
   "backlog": [
     "fitness-studio-booking：bookings 目前无 (session_id,member_id) 复合唯一索引，查重依赖事务内 SELECT + 单写者；若放开多连接必须先补索引（confirmed/waitlist 用部分索引）。",
@@ -283,6 +342,9 @@
     "cross-border-commerce：cart_items 无归属维度（单店铺单会话演示），上线需引入 session/customer 外键与过期清理。",
     "online-course-platform：dropped 记录永久占住 idx_course_phone 复合唯一索引，导致「退课后不能再报同一门课」——属产品决策而非技术限制；若要放开，改成部分唯一索引 WHERE status != 'dropped' 并保留历史行。",
     "online-course-platform：早鸟（截止 +24h 宽限）与老学员 95 折（历史生效报名 ≥3 条、立减 5%）阈值写死在 service，没有可配置的促销活动/折扣表；看板也只有全量历史口径（stats 带 window 字段但不支持区间过滤）。",
-    "templates/go-gin-react：本轮又现场重写了 stats 聚合写法、seed 分支覆盖技巧与 api-smoke 的鉴权矩阵/取字段 helper，可固化进模板（与第 2 轮同类遗留合并处理）。"
+    "templates/go-gin-react：本轮又现场重写了 stats 聚合写法、seed 分支覆盖技巧与 api-smoke 的鉴权矩阵/取字段 helper，可固化进模板（与第 2 轮同类遗留合并处理）。",
+    "food-delivery-store：运费/时效/起送价写死在种子的 5 个 zone 行里，没有价卡表与后台编辑接口（加区域要改播种逻辑）；`⌈qty/2⌉` 并锅系数与促销门槛同为常量。",
+    "food-delivery-store：`order_items` 无 `(order_id, dish_code)` 复合唯一约束（同一道菜拆两行的输入会被接受）；下单也没有幂等键，取消单永久占位，同手机号可无限重下。",
+    "food-delivery-store：`stats` 只有「全历史 + 当天」两档口径（`window` 字段是声明而非过滤参数），没有按日期区间查询；看板列宽按 6 态固定，加状态要改前端 NEXT_STATUS 映射。"
   ]
 }
