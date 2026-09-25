@@ -349,8 +349,9 @@
       "seconds": 600,
       "artifact_size": "skill-showcase-pixel-retro.pptx 48873B + svg_slides/ 5 个 .svg(29KB) + build_pptx.py 883B + verify_pptx.py 3.9KB + output.log 3.8KB = demos 本轮 100KB（限 5MB）；LAB 见收尾核查",
       "cleanup": "已删 LAB/.tmp/pylibs（32MB，python-pptx+lxml+Pillow，产物 .pptx 已生成故不再需要）与 __pycache__；零 node_modules、零 npm 安装、零编译二进制；未起任何本地服务（浏览器仅导航 file://）；除 ppt-generator 一个全局技能（已登记 installed_by_this_task，按规约不自动卸载）外未装其它东西；全局 python site-packages 与全局缓存未动；产物与台账全部落在 LAB 内（技能原本要写 /tmp/ppt_svgs，已改道 demos）。",
-      "push": "见本轮 work-log 推送结果",
-      "notes": "5 页 pixel_retro 幻灯片 + 原生 .pptx；技能自带 checker 5/5，独立断言 13/13；最有价值发现：它自己的 checker 不查它自己定的边距（假通过），以及 python3 -m pip --target 这条依赖路线其实可用。"
+      "push": "已推送：fetch 确认远端 5175275 是本地 HEAD 祖先 → 普通 push origin skill-showcase 成功 5175275..ec14770；无 --force、无 --no-verify；main / go-gin_react 未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
+      "notes": "5 页 pixel_retro 幻灯片 + 原生 .pptx；技能自带 checker 5/5，独立断言 13/13；最有价值发现：它自己的 checker 不查它自己定的边距（假通过），以及 python3 -m pip --target 这条依赖路线其实可用。",
+      "final_check": "git status 干净；demos 本轮 100KB；LAB 18MB（.skills 16MB + .gitignore 排除项不入库）；磁盘 20290752 KB ≈ 19.4 GiB；lsof LISTEN=10 全属既有进程；.tmp/pylibs 32MB 已删"
     }
   ]
 }
