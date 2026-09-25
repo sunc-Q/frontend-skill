@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>前端 Skill 验证流水线 · 系统说明图</title>
+    <style>
+      :root {
+        --c-bg: #f8fafc;
+        --c-canvas: #ffffff;
+        --c-border: #cbd5e1;
+        --c-text-main: #0f172a;
+        --c-text-sub: #64748b;
+        --c-accent: #b4453a;
+        --font-ui: system-ui, -apple-system, 'Segoe UI', sans-serif;
+        --font-mono: 'SF Mono', Monaco, Consolas, monospace;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      body {
+        background: var(--c-bg);
+        font-family: var(--font-ui);
+        color: var(--c-text-main);
+        padding: 40px;
+      }
+
+      .diagram-canvas {
+        background: var(--c-canvas);
+        border: 2px solid var(--c-border);
+        padding: 32px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .diagram-header {
+        border-bottom: 1px solid var(--c-border);
+        padding-bottom: 16px;
+        margin-bottom: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 24px;
+      }
+
+      .diagram-title { font-size: 24px; font-weight: 600; }
+
+      .diagram-subtitle {
+        font-size: 12px; font-weight: 500;
+        color: var(--c-text-sub);
+        text-transform: uppercase; letter-spacing: 0.5px;
+        margin-top: 4px;
+      }
+
+      .sheet-meta {
+        font-family: var(--font-mono);
+        font-size: 11px; color: var(--c-text-sub);
+        text-align: right; line-height: 1.7;
+      }
+
+      .section { margin-bottom: 32px; }
+
+      .section-title {
+        font-size: 13px; font-weight: 600;
+        letter-spacing: 0.5px; text-transform: uppercase;
+        padding-bottom: 8px; margin-bottom: 16px;
+        border-bottom: 1px solid var(--c-border);
+        display: flex; justify-content: space-between; align-items: baseline;
+      }
+      .section-title span.hint {
+        font-family: var(--font-mono);
+        font-size: 10px; font-weight: 400;
+        text-transform: none; letter-spacing: 0;
+        color: var(--c-text-sub);
+      }
+
+      /* ---------- 拓扑：六阶段主链路 ---------- */
+      .flow {
+        display: flex; align-items: stretch;
+        gap: 0;
+      }
+      .stage {
+        flex: 1 1 0; min-width: 0;
+        border: 1px solid var(--c-border);
+        background: var(--c-canvas);
+        padding: 12px;
+        position: relative;
+      }
+      .stage + .stage { margin-left: 22px; }
+      .stage + .stage::before {
+        content: ''; position: absolute;
+        left: -23px; top: 50%;
+        width: 22px; height: 1px;
+        background: var(--c-text-main);
+      }
+      .stage + .stage::after {
+        content: ''; position: absolute;
+        left: -8px; top: 50%;
+        width: 7px; height: 7px;
+        margin-top: -3.5px;
+        border-top: 1px solid var(--c-text-main);
+        border-right: 1px solid var(--c-text-main);
+        transform: rotate(45deg);
+      }
+      .stage-no {
+        font-family: var(--font-mono);
+        font-size: 10px; color: var(--c-text-sub);
+      }
+      .stage-name { font-size: 14px; font-weight: 600; margin: 2px 0 8px; }
+      .stage ul { list-style: none; }
+      .stage li {
+        font-family: var(--font-mono);
+        font-size: 10.5px; line-height: 1.55;
+        color: var(--c-text-sub);
+        padding-left: 9px; position: relative;
+        word-break: break-word;
+      }
+      .stage li::before {
+        content: ''; position: absolute;
+        left: 0; top: 7px;
+        width: 4px; height: 1px; background: var(--c-border);
+      }
+      .stage.is-hot { border-color: var(--c-text-main); border-width: 2px; }
+      .badge {
+        display: inline-block; font-size: 10px;
+        font-family: var(--font-mono);
+        padding: 2px 6px; border: 1px solid var(--c-text-main);
+        text-transform: uppercase; margin-top: 8px;
+      }
+      .badge--filled { background: var(--c-text-main); color: var(--c-canvas); }
+
+      /* ---------- 回边说明条 ---------- */
+      .loopback {
+        margin-top: 14px;
+        border-top: 1px dashed var(--c-text-main);
+        padding-top: 8px;
+        font-family: var(--font-mono); font-size: 10.5px;
+        color: var(--c-text-sub);
+        display: flex; justify-content: space-between; gap: 16px;
+      }
+
+      /* ---------- 决策树 ---------- */
+      .tree { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+      .branch {
+        font-family: var(--font-mono); font-size: 11.5px; line-height: 1.9;
+        border: 1px solid var(--c-border); padding: 12px 14px;
+      }
+      .branch + .branch { margin-top: 12px; }
+      .branch h4 {
+        font-family: var(--font-ui); font-size: 11px; font-weight: 600;
+        text-transform: uppercase; letter-spacing: 0.5px;
+        color: var(--c-text-main); margin-bottom: 6px;
+      }
+      .kv { display: block; color: var(--c-text-sub); padding-left: 12px; }
+      .kv b { color: var(--c-text-main); font-weight: 600; }
+      .no { color: var(--c-accent); }
+
+      /* ---------- 表格 ---------- */
+      table { width: 100%; border-collapse: collapse; }
+      th, td {
+        border: 1px solid var(--c-border);
+        padding: 7px 9px; text-align: left;
+        font-size: 11.5px; vertical-align: top;
+      }
+      th {
+        font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px;
+        font-weight: 600; background: var(--c-bg);
+      }
+      td.mono, th.mono { font-family: var(--font-mono); font-size: 11px; }
+      td.num { font-family: var(--font-mono); text-align: right; }
+
+      /* ---------- 约束卡 ---------- */
+      .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+      .card { border: 1px solid var(--c-border); padding: 11px 12px; }
+      .card h5 {
+        font-size: 11px; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.5px; margin-bottom: 6px;
+      }
+      .card p { font-family: var(--font-mono); font-size: 10.5px; line-height: 1.6; color: var(--c-text-sub); }
+
+      /* ---------- 图例 ---------- */
+      .legend {
+        border-top: 1px solid var(--c-border);
+        padding-top: 12px; margin-top: 8px;
+        display: flex; flex-wrap: wrap; gap: 22px;
+        font-family: var(--font-mono); font-size: 10.5px; color: var(--c-text-sub);
+      }
+      .legend i { display: inline-block; width: 26px; vertical-align: middle; margin-right: 6px; }
+      .l-solid { border-top: 1px solid var(--c-text-main); }
+      .l-thick { border-top: 2px solid var(--c-text-main); }
+      .l-dashed { border-top: 1px dashed var(--c-text-main); }
+      .l-box { border: 1px solid var(--c-border); height: 10px; }
+
+      /* ---------- 交互（标注层开关） ---------- */
+      .toolbar { display: flex; gap: 8px; align-items: center; }
+      .toolbar button {
+        font-family: var(--font-mono); font-size: 10.5px;
+        border: 1px solid var(--c-text-main); background: var(--c-canvas);
+        color: var(--c-text-main); padding: 4px 8px; cursor: pointer;
+      }
+      .toolbar button[aria-pressed='true'] {
+        background: var(--c-text-main); color: var(--c-canvas);
+      }
+      .annotation { display: none; }
+      body[data-annot='on'] .annotation { display: block; }
+      .stage:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <div class="diagram-canvas">
+      <div class="diagram-header">
+        <div>
+          <h1 class="diagram-title">前端 Skill 验证流水线 · 系统说明图</h1>
+          <p class="diagram-subtitle">HOURLY FRONTEND-SKILL VERIFICATION PIPELINE — STRUCTURE &amp; DECISION FLOW</p>
+        </div>
+        <div class="toolbar">
+          <button id="t-annot" type="button" aria-pressed="false">标注 ANNOT</button>
+        </div>
+      </div>
+
+      <!-- 1. 主链路 -->
+      <div class="section">
+        <h2 class="section-title">A · 主控链路 <span class="hint">SINGLE SESSION, NO INHERITED CONTEXT</span></h2>
+        <div class="flow" id="flow">
+          <div class="stage is-hot" tabindex="0">
+            <div class="stage-no">01 / READ</div>
+            <div class="stage-name">读记忆</div>
+            <ul>
+              <li>records/work-log.md</li>
+              <li>state/state.json</li>
+              <li>tried · used_styles</li>
+            </ul>
+            <div class="annotation badge">唯一跨运行入口</div>
+          </div>
+          <div class="stage" tabindex="0">
+            <div class="stage-no">02 / PICK</div>
+            <div class="stage-name">选题去重</div>
+            <ul>
+              <li>skill × scenario</li>
+              <li>3 种未用过风格</li>
+              <li>跳过不可用来源</li>
+            </ul>
+            <div class="annotation badge">见 B 决策树</div>
+          </div>
+          <div class="stage" tabindex="0">
+            <div class="stage-no">03 / BUILD</div>
+            <div class="stage-name">按技能构建</div>
+            <ul>
+              <li>artifacts/&lt;run&gt;/</li>
+              <li>1 skill · 1 scenario</li>
+              <li>不扩大范围</li>
+            </ul>
+            <div class="annotation badge">失败也继续收尾</div>
+          </div>
+          <div class="stage" tabindex="0">
+            <div class="stage-no">04 / CHECK</div>
+            <div class="stage-name">校验</div>
+            <ul>
+              <li>node vm 语法桩</li>
+              <li>断言脚本</li>
+              <li>computed style 复核</li>
+            </ul>
+            <div class="annotation badge">缺陷在此暴露</div>
+          </div>
+          <div class="stage" tabindex="0">
+            <div class="stage-no">05 / CLEAN</div>
+            <div class="stage-name">收尾</div>
+            <ul>
+              <li>删 node_modules/dist</li>
+              <li>删 .tmp 与 /tmp</li>
+              <li>单场景 &lt; 50MB</li>
+            </ul>
+            <div class="annotation badge">脚本先抄进报告</div>
+          </div>
+          <div class="stage is-hot" tabindex="0">
+            <div class="stage-no">06 / WRITE</div>
+            <div class="stage-name">记录与推送</div>
+            <ul>
+              <li>reports/&lt;run&gt;.md</li>
+              <li>state.json 回写</li>
+              <li>git push (SSH)</li>
+            </ul>
+            <div class="annotation badge--filled badge">闭环</div>
+          </div>
+        </div>
+        <div class="loopback">
+          <span>◀ 回边：05 清理失败 → 03 重建（中间产物不入库，.gitignore 已排除）</span>
+          <span>06 推送不可达 → 记录留痕后退出，不留脏工作区</span>
+        </div>
+      </div>
+
+      <!-- 2. 决策树 -->
+      <div class="section">
+        <h2 class="section-title">B · 去重判定 <span class="hint">DEDUCTION: SKILL × SCENARIO × STYLE</span></h2>
+        <div class="tree">
+          <div>
+            <div class="branch">
+              <h4>B1 · 组合是否试过</h4>
+              <span class="kv">查 <b>state.tried[]</b> 的 <b>skill + scenario</b></span>
+              <span class="kv">命中 → <span class="no">弃用</span>，取下一候选</span>
+              <span class="kv">未命中 → 进入 B2</span>
+            </div>
+            <div class="branch">
+              <h4>B2 · 风格是否用过</h4>
+              <span class="kv">查 <b>state.used_styles[]</b>（当前 21 项）</span>
+              <span class="kv">要求 3 种彼此差异明显的新风格</span>
+              <span class="kv">冲突 → 换风格组合，不换场景</span>
+            </div>
+          </div>
+          <div>
+            <div class="branch">
+              <h4>B3 · 来源是否可用</h4>
+              <span class="kv">查 <b>state.skills_seen[]</b> 与 <b>environment_notes[]</b></span>
+              <span class="kv">网络不可达 / 需用户确认安装 / 产物不落盘 → <span class="no">不再探测</span></span>
+              <span class="kv">仅 ~/.qoder-cn/skills/ 已装技能可直接调用</span>
+            </div>
+            <div class="branch">
+              <h4>B4 · 无候选时</h4>
+              <span class="kv">work-log.md 追加「本次无新组合可试」+ 卡点</span>
+              <span class="kv">禁止重复已试组合</span>
+              <span class="kv">本轮直接结束</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 状态台账 -->
+      <div class="section">
+        <h2 class="section-title">C · 状态台账字段 <span class="hint">state/state.json — MACHINE-LEDGER</span></h2>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 15%">字段</th>
+              <th style="width: 33%">作用</th>
+              <th style="width: 34%">被谁消费</th>
+              <th class="num" style="width: 18%">当前规模</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono">tried[]</td><td>组合去重的唯一判据</td><td class="mono">步骤 02 PICK</td><td class="num">7 条</td></tr>
+            <tr><td class="mono">used_styles[]</td><td>风格去重</td><td class="mono">步骤 02 PICK</td><td class="num">21 项</td></tr>
+            <tr><td class="mono">skills_seen[]</td><td>技能可用性与已验证结论</td><td class="mono">步骤 02 / 03</td><td class="num">14 项</td></tr>
+            <tr><td class="mono">environment_notes[]</td><td>工具链与网络限制、断言范式</td><td class="mono">步骤 03 / 04</td><td class="num">38 项</td></tr>
+            <tr><td class="mono">runs[]</td><td>产物体积、清理与推送留痕</td><td class="mono">步骤 05 / 06</td><td class="num">7 轮</td></tr>
+            <tr><td class="mono">next_candidates[]</td><td>排队项，★ 为首选</td><td class="mono">步骤 02 回退顺序</td><td class="num">10 项</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 4. 环境约束 -->
+      <div class="section">
+        <h2 class="section-title">D · 环境约束 <span class="hint">WHAT THE PIPELINE CANNOT ASSUME</span></h2>
+        <div class="cards">
+          <div class="card">
+            <h5>网络</h5>
+            <p>github.com HTTPS 被 TLS 重置 → 只走 SSH；npm 走 registry.npmmirror.com；skills.sh / raw.githubusercontent 不可达</p>
+          </div>
+          <div class="card">
+            <h5>权限</h5>
+            <p>extension-market 安装强制用户确认 → 无人值守轮不得安装外部技能</p>
+          </div>
+          <div class="card">
+            <h5>预览</h5>
+            <p>框架构建产物为 ES Module，file:// 不执行 → 需内联成单文件版；本图原生 HTML 双击即开</p>
+          </div>
+          <div class="card">
+            <h5>磁盘</h5>
+            <p>单场景产物 &lt; 50MB；实验室总量按轮累加，收尾清单写入 runs[].cleanup</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. 产物目录 -->
+      <div class="section">
+        <h2 class="section-title">E · 产物与路径约定 <span class="hint">LAB ARTIFACT LAYOUT</span></h2>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 34%">路径</th>
+              <th style="width: 22%">内容</th>
+              <th>约束</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono">artifacts/&lt;YYYYMMDD-HH&gt;-&lt;skill&gt;-&lt;scenario&gt;/</td><td class="mono">页面产物</td><td>仅保留可直接打开预览的文件</td></tr>
+            <tr><td class="mono">reports/&lt;YYYYMMDD-HH&gt;-&lt;skill&gt;-&lt;scenario&gt;.md</td><td class="mono">复现文档</td><td>被删脚本须把内容抄进文档</td></tr>
+            <tr><td class="mono">records/work-log.md</td><td class="mono">流水账</td><td>历史行只追加不修改</td></tr>
+            <tr><td class="mono">state/state.json</td><td class="mono">台账</td><td>不存在则按空台账创建</td></tr>
+            <tr><td class="mono">.tmp/ · node_modules/ · dist/</td><td class="mono">中间产物</td><td class="mono">.gitignore 已排除，收尾即删</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="legend">
+        <span><i class="l-solid"></i>实线 = 必经阶段</span>
+        <span><i class="l-thick"></i>粗边 = 关键节点（读记忆 / 回写）</span>
+        <span><i class="l-dashed"></i>虚线 = 回边或失败通道</span>
+        <span><i class="l-box"></i>白底描边块 = 一个阶段</span>
+        <span class="mono">SHEET 21-A · REV 1 · 2026-09-25 · UNIT: LAB/</span>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var btn = document.getElementById('t-annot');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var on = document.body.getAttribute('data-annot') === 'on';
+          if (on) {
+            document.body.removeAttribute('data-annot');
+            btn.setAttribute('aria-pressed', 'false');
+          } else {
+            document.body.setAttribute('data-annot', 'on');
+            btn.setAttribute('aria-pressed', 'true');
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

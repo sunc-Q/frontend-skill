@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>前端 Skill 验证流水线 · 夜间制图版</title>
+    <style>
+      :root {
+        --c-bg: #0b0f14;
+        --c-canvas: #11161d;
+        --c-border: #2b3540;
+        --c-text-main: #e6edf3;
+        --c-text-sub: #8b98a8;
+        --c-warn: #d67d5a;
+        --font-ui: system-ui, -apple-system, 'Segoe UI', sans-serif;
+        --font-mono: 'SF Mono', Monaco, Consolas, monospace;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      body {
+        background: var(--c-bg);
+        font-family: var(--font-ui);
+        color: var(--c-text-main);
+        padding: 28px 20px;
+      }
+
+      .diagram-canvas {
+        background: var(--c-canvas);
+        border: 2px solid var(--c-border);
+        padding: 0;
+        max-width: 1240px;
+        margin: 0 auto;
+      }
+
+      .diagram-header {
+        border-bottom: 2px solid var(--c-border);
+        padding: 20px 28px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 20px;
+        align-items: center;
+      }
+      .diagram-title { font-size: 22px; font-weight: 600; letter-spacing: -0.2px; }
+      .diagram-subtitle {
+        font-family: var(--font-mono);
+        font-size: 11px; font-weight: 500;
+        color: var(--c-text-sub);
+        text-transform: uppercase; letter-spacing: 1px; margin-top: 5px;
+      }
+      .toolbar button {
+        font-family: var(--font-mono); font-size: 11px;
+        border: 1px solid var(--c-text-sub); background: transparent;
+        color: var(--c-text-main); padding: 6px 10px; cursor: pointer;
+      }
+      .toolbar button[aria-pressed='true'] { border-color: var(--c-text-main); background: var(--c-border); }
+
+      /* 左栏索引 + 右栏内容 */
+      .layout { display: grid; grid-template-columns: 218px 1fr; align-items: start; }
+
+      .rail {
+        border-right: 2px solid var(--c-border);
+        padding: 22px 18px;
+        position: sticky; top: 20px;
+      }
+      .rail h3 {
+        font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+        color: var(--c-text-sub); font-weight: 600; margin-bottom: 12px;
+      }
+      .rail ol { list-style: none; counter-reset: r; }
+      .rail li {
+        counter-increment: r;
+        font-family: var(--font-mono); font-size: 11px; line-height: 1.45;
+        padding: 7px 0 7px 26px; position: relative;
+        border-bottom: 1px dashed var(--c-border); color: var(--c-text-sub);
+      }
+      .rail li::before {
+        content: counter(r, decimal-leading-zero);
+        position: absolute; left: 0; top: 7px;
+        color: var(--c-text-main);
+      }
+      .rail .spec {
+        margin-top: 18px; font-family: var(--font-mono);
+        font-size: 10px; color: var(--c-text-sub); line-height: 1.8;
+      }
+
+      .content { padding: 22px 28px 28px; }
+      .block { margin-bottom: 30px; }
+      .block:last-child { margin-bottom: 0; }
+      .block-title {
+        font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+        text-transform: uppercase; letter-spacing: 1px;
+        color: var(--c-text-main);
+        padding-left: 9px; border-left: 3px solid var(--c-text-main);
+        margin-bottom: 14px;
+        display: flex; justify-content: space-between; gap: 14px; align-items: baseline;
+      }
+      .block-title em {
+        font-style: normal; font-size: 10px; font-weight: 400;
+        color: var(--c-text-sub); letter-spacing: 0.5px;
+      }
+
+      /* 时间线带 */
+      .timeline {
+        border: 1px solid var(--c-border);
+        padding: 16px 14px 12px;
+        overflow-x: auto;
+      }
+      .tl-track { display: flex; min-width: 760px; }
+      .tl-item { flex: 1 1 0; position: relative; padding-top: 18px; }
+      .tl-item::before {
+        content: ''; position: absolute; top: 6px; left: 0; right: 0;
+        border-top: 1px solid var(--c-border);
+      }
+      .tl-item:first-child::before { left: 50%; }
+      .tl-item:last-child::before { right: 50%; }
+      .tl-item::after {
+        content: ''; position: absolute; top: 2px; left: 50%;
+        width: 9px; height: 9px; margin-left: -4.5px;
+        background: var(--c-canvas); border: 1px solid var(--c-text-main);
+      }
+      .tl-item.done::after { background: var(--c-text-main); }
+      .tl-item.next::after { border-style: dashed; }
+      .tl-body { text-align: center; }
+      .tl-t { font-family: var(--font-mono); font-size: 10px; color: var(--c-text-main); }
+      .tl-d { font-size: 11px; color: var(--c-text-sub); margin-top: 2px; }
+
+      /* 阶段行 */
+      .rows { border: 1px solid var(--c-border); }
+      .row {
+        display: grid; grid-template-columns: 30px 118px 1fr 116px;
+        gap: 12px; padding: 11px 13px; align-items: start;
+        border-bottom: 1px solid var(--c-border);
+      }
+      .row:last-child { border-bottom: 0; }
+      .row .i { font-family: var(--font-mono); font-size: 11px; color: var(--c-text-sub); }
+      .row .k { font-size: 12.5px; font-weight: 600; }
+      .row .v { font-family: var(--font-mono); font-size: 10.5px; line-height: 1.7; color: var(--c-text-sub); }
+      .row .o { font-family: var(--font-mono); font-size: 10px; text-align: right; color: var(--c-text-main); }
+      .row:hover { background: #0e131a; }
+      .annotation { display: none; }
+      body[data-annot='on'] .annotation { display: block; color: var(--c-warn); }
+
+      /* 判定表 */
+      table { width: 100%; border-collapse: collapse; }
+      th, td {
+        border: 1px solid var(--c-border);
+        padding: 8px 10px; text-align: left; font-size: 11.5px; vertical-align: top;
+      }
+      th {
+        font-family: var(--font-mono); font-size: 10px;
+        text-transform: uppercase; letter-spacing: 0.6px;
+        color: var(--c-text-sub); font-weight: 600;
+      }
+      td.mono { font-family: var(--font-mono); font-size: 10.5px; }
+      td.k { font-weight: 600; }
+      .warn { color: var(--c-warn); }
+
+      /* 图例 */
+      .legend {
+        margin-top: 26px; padding-top: 12px;
+        border-top: 2px solid var(--c-border);
+        display: flex; flex-wrap: wrap; gap: 20px;
+        font-family: var(--font-mono); font-size: 10px; color: var(--c-text-sub);
+      }
+      .legend i { display: inline-block; width: 24px; vertical-align: middle; margin-right: 6px; }
+      .l-solid { border-top: 1px solid var(--c-text-main); }
+      .l-dashed { border-top: 1px dashed var(--c-text-main); }
+      .l-dot { width: 9px; height: 9px; border: 1px solid var(--c-text-main); }
+      .l-fill { width: 9px; height: 9px; background: var(--c-text-main); }
+    </style>
+  </head>
+  <body>
+    <div class="diagram-canvas">
+      <div class="diagram-header">
+        <div>
+          <h1 class="diagram-title">每小时前端 Skill 验证 · 夜间制图版</h1>
+          <p class="diagram-subtitle">run cadence 1/h · stateless session · memory = ledger on disk</p>
+        </div>
+        <div class="toolbar">
+          <button id="t-annot" type="button" aria-pressed="false">风险标注 RISK</button>
+        </div>
+      </div>
+
+      <div class="layout">
+        <aside class="rail">
+          <h3>索引 INDEX</h3>
+          <ol>
+            <li>单轮时序<br />T+0 → T+55</li>
+            <li>六阶段职责<br />与产物</li>
+            <li>去重判定<br />四道闸</li>
+            <li>环境不可假设项</li>
+          </ol>
+            <div class="spec">
+              SHEET 21-B<br />REV 1<br />LANG zh/mono<br />SCALE 1:1<br />DRAWN 2026-09-25
+            </div>
+        </aside>
+
+        <div class="content">
+          <div class="block">
+            <h2 class="block-title">01 · 单轮时序 <em>ONE HOUR, SIX PHASES</em></h2>
+            <div class="timeline">
+              <div class="tl-track">
+                <div class="tl-item done"><div class="tl-body"><div class="tl-t">T+00</div><div class="tl-d">读记忆</div></div></div>
+                <div class="tl-item done"><div class="tl-body"><div class="tl-t">T+05</div><div class="tl-d">选题</div></div></div>
+                <div class="tl-item done"><div class="tl-body"><div class="tl-t">T+12</div><div class="tl-d">构建</div></div></div>
+                <div class="tl-item done"><div class="tl-body"><div class="tl-t">T+38</div><div class="tl-d">校验</div></div></div>
+                <div class="tl-item next"><div class="tl-body"><div class="tl-t">T+48</div><div class="tl-d">收尾</div></div></div>
+                <div class="tl-item next"><div class="tl-body"><div class="tl-t">T+55</div><div class="tl-d">回写·推送</div></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="block">
+            <h2 class="block-title">02 · 阶段职责 <em>READ / PICK / BUILD / CHECK / CLEAN / WRITE</em></h2>
+            <div class="rows" id="flow">
+              <div class="row">
+                <div class="i">01</div>
+                <div class="k">读记忆 READ</div>
+                <div class="v">work-log.md 全量 + state.json 结构化字段<br />不继承任何对话，判断只能来自磁盘</div>
+                <div class="o">→ tried / used_styles<div class="annotation">漏读 = 重复已试组合</div></div>
+              </div>
+              <div class="row">
+                <div class="i">02</div>
+                <div class="k">选题 PICK</div>
+                <div class="v">next_candidates 里 ★ 优先<br />找不到未试组合即留痕退出</div>
+                <div class="o">→ 1 skill × 1 scenario<div class="annotation">范围外溢是最常见失误</div></div>
+              </div>
+              <div class="row">
+                <div class="i">03</div>
+                <div class="k">构建 BUILD</div>
+                <div class="v">严格按被验技能的流程与规则出 3 个风格页<br />中间产物一律进 .tmp/ 与 node_modules/</div>
+                <div class="o">→ artifacts/&lt;run&gt;/<div class="annotation">技能规则冲突在此暴露</div></div>
+              </div>
+              <div class="row">
+                <div class="i">04</div>
+                <div class="k">校验 CHECK</div>
+                <div class="v">内联脚本先过 node vm 语法桩<br />布局与配色用计算样式断言，不靠肉眼</div>
+                <div class="o">→ 断言 N/N<div class="annotation">静默不渲染类缺陷唯一防线</div></div>
+              </div>
+              <div class="row">
+                <div class="i">05</div>
+                <div class="k">收尾 CLEAN</div>
+                <div class="v">删依赖 / 构建缓存 / 临时脚本 / /tmp 文件<br />被删脚本先抄进 reports 再删</div>
+                <div class="o">→ &lt; 50MB / 场景<div class="annotation">失败轮同样必须收尾</div></div>
+              </div>
+              <div class="row">
+                <div class="i">06</div>
+                <div class="k">回写 WRITE</div>
+                <div class="v">reports/ + state.json + work-log.md 追加一行<br />commit 后走 SSH 推送</div>
+                <div class="o">→ origin/main<div class="annotation">HTTPS 通道不可用</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="block">
+            <h2 class="block-title">03 · 去重四道闸 <em>DEDUCTION GATES</em></h2>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 9%">闸</th>
+                  <th style="width: 22%">判据</th>
+                  <th style="width: 37%">读取位置</th>
+                  <th>不通过时</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="mono">G1</td><td class="k">组合未试过</td>
+                  <td class="mono">state.tried[].skill + .scenario</td>
+                  <td class="mono warn">弃用，取下一候选</td>
+                </tr>
+                <tr>
+                  <td class="mono">G2</td><td class="k">三种新风格</td>
+                  <td class="mono">state.used_styles[]（21 项已占用）</td>
+                  <td class="mono warn">换风格，不换场景</td>
+                </tr>
+                <tr>
+                  <td class="mono">G3</td><td class="k">来源可用</td>
+                  <td class="mono">state.skills_seen[] + environment_notes[]</td>
+                  <td class="mono warn">不再重复探测</td>
+                </tr>
+                <tr>
+                  <td class="mono">G4</td><td class="k">产物可预览</td>
+                  <td class="mono">收尾规则：双击可开、零外链</td>
+                  <td class="mono warn">内联为单文件版，否则排除该技能</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="block">
+            <h2 class="block-title">04 · 环境不可假设项 <em>DO NOT ASSUME</em></h2>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="k" style="width: 18%">GitHub</td>
+                  <td class="mono">HTTPS 被 TLS 层重置 → 只走 git@github.com（实经 ssh.github.com:443），known_hosts 写进 .tmp/</td>
+                </tr>
+                <tr>
+                  <td class="k">npm</td>
+                  <td class="mono">官方 registry 不可达 → registry.npmmirror.com；npx 会回落到不可达源，改用 ./node_modules/.bin/*</td>
+                </tr>
+                <tr>
+                  <td class="k">外部技能源</td>
+                  <td class="mono">skills.sh / raw.githubusercontent 不可达；扩展市场安装需用户确认 → 无人值守轮只用 ~/.qoder-cn/skills/ 已装技能</td>
+                </tr>
+                <tr>
+                  <td class="k">浏览器面板</td>
+                  <td class="mono">hidden 时 React 更新不落 DOM、innerWidth=0 使溢出断言假通过 → 交互断言走 jsdom，浏览器只留计算样式复核</td>
+                </tr>
+                <tr>
+                  <td class="k">计量</td>
+                  <td class="mono">体积一律 Buffer.byteLength，不用 String.length（UTF-8 中文比 UTF-16 码元多 2%+）</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="legend">
+            <span><i class="l-fill"></i>实心 = 已完成</span>
+            <span><i class="l-dot"></i>空心 = 未开始</span>
+            <span><i class="l-solid"></i>实线 = 必经</span>
+            <span><i class="l-dashed"></i>虚线 = 边界</span>
+            <span class="mono">DRAFTING · REVERSED PALETTE · 偏离技能默认色板（见报告 §4）</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var btn = document.getElementById('t-annot');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var on = document.body.getAttribute('data-annot') === 'on';
+          if (on) {
+            document.body.removeAttribute('data-annot');
+            btn.setAttribute('aria-pressed', 'false');
+          } else {
+            document.body.setAttribute('data-annot', 'on');
+            btn.setAttribute('aria-pressed', 'true');
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

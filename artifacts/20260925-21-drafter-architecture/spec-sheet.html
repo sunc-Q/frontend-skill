@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>前端 Skill 验证流水线 · 规格说明书</title>
+    <style>
+      :root {
+        --c-bg: #ffffff;
+        --c-canvas: #ffffff;
+        --c-border: #111111;
+        --c-rule: #9a9a9a;
+        --c-text-main: #111111;
+        --c-text-sub: #4a4a4a;
+        --c-void: #b4453a;
+        --font-ui: system-ui, -apple-system, 'Segoe UI', sans-serif;
+        --font-mono: 'SF Mono', Monaco, Consolas, monospace;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      body {
+        background: #e9e9e9;
+        font-family: var(--font-ui);
+        color: var(--c-text-main);
+        padding: 24px 0 48px;
+      }
+
+      /* A4 规格页：白底黑线，页边由内层网格控制 */
+      .diagram-canvas {
+        background: var(--c-canvas);
+        border: 1px solid var(--c-border);
+        width: 1000px;
+        max-width: calc(100% - 32px);
+        margin: 0 auto;
+        padding: 0;
+      }
+
+      /* 页眉：图号条 */
+      .sheet-head {
+        border-bottom: 2px solid var(--c-border);
+        display: grid;
+        grid-template-columns: 1fr 132px 132px 132px;
+      }
+      .sheet-head > div { border-right: 1px solid var(--c-border); padding: 10px 12px; }
+      .sheet-head > div:last-child { border-right: 0; }
+      .sheet-title { font-size: 17px; font-weight: 700; letter-spacing: -0.2px; }
+      .sheet-sub {
+        font-family: var(--font-mono); font-size: 9.5px; color: var(--c-text-sub);
+        text-transform: uppercase; letter-spacing: 0.8px; margin-top: 4px;
+      }
+      .cell-lab {
+        font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.8px;
+        text-transform: uppercase; color: var(--c-text-sub);
+      }
+      .cell-val { font-family: var(--font-mono); font-size: 13px; font-weight: 600; margin-top: 2px; }
+
+      /* 三栏正文 */
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        border-bottom: 2px solid var(--c-border);
+      }
+      .col { border-right: 1px solid var(--c-border); padding: 14px 14px 18px; }
+      .col:last-child { border-right: 0; }
+
+      h2.spec-h {
+        font-family: var(--font-mono); font-size: 9.5px; font-weight: 700;
+        letter-spacing: 1px; text-transform: uppercase;
+        border-bottom: 1px solid var(--c-border);
+        padding-bottom: 5px; margin: 16px 0 8px;
+      }
+      h2.spec-h:first-child { margin-top: 0; }
+      h2.spec-h .ref { float: right; font-weight: 400; color: var(--c-text-sub); }
+
+      /* 规格表：键值行，虚线分隔 */
+      .kv-table { width: 100%; border-collapse: collapse; }
+      .kv-table th, .kv-table td {
+        border: 0; border-bottom: 1px dotted var(--c-rule);
+        padding: 4px 3px; text-align: left; vertical-align: top;
+        font-size: 10.5px; line-height: 1.45;
+      }
+      .kv-table th {
+        font-family: var(--font-mono); font-size: 9px; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.5px; color: var(--c-text-sub);
+        width: 42%;
+      }
+      .kv-table td.mono { font-family: var(--font-mono); font-size: 9.5px; }
+
+      /* ASCII 拓扑：技能规则的“等高框”在规格件里改用等宽字符画 */
+      pre.art {
+        font-family: var(--font-mono); font-size: 8.6px; line-height: 1.32;
+        border: 1px solid var(--c-border); padding: 8px 9px;
+        white-space: pre; overflow-x: auto; color: var(--c-text-main);
+        background: #fbfbfb;
+      }
+
+      /* 编号条目 */
+      ol.n, ul.n { list-style: none; counter-reset: n; }
+      ol.n { counter-reset: n; }
+      ol.n > li, ul.n > li {
+        font-size: 10.5px; line-height: 1.5; padding: 4px 0 4px 22px;
+        position: relative; border-bottom: 1px dotted var(--c-rule);
+      }
+      ol.n > li { counter-increment: n; }
+      ol.n > li::before {
+        content: counter(n); position: absolute; left: 0; top: 4px;
+        font-family: var(--font-mono); font-size: 9px; font-weight: 700;
+      }
+      ul.n > li::before {
+        content: '—'; position: absolute; left: 2px; top: 4px;
+        font-family: var(--font-mono); font-size: 9px; color: var(--c-text-sub);
+      }
+      .ref-mark { font-family: var(--font-mono); font-size: 8px; vertical-align: super; color: var(--c-void); }
+      code.f { font-family: var(--font-mono); font-size: 9.5px; }
+
+      /* 判定矩阵：全框线，紧凑 */
+      table.matrix { width: 100%; border-collapse: collapse; }
+      table.matrix th, table.matrix td {
+        border: 1px solid var(--c-border); padding: 3px 4px;
+        font-family: var(--font-mono); font-size: 9px; text-align: center;
+      }
+      table.matrix th { background: #f0f0f0; font-weight: 700; }
+      table.matrix td:first-child, table.matrix th:first-child { text-align: left; }
+      .yes { font-weight: 700; }
+      .no { color: var(--c-void); font-weight: 700; }
+
+      /* 脚注 */
+      .notes { padding: 12px 14px 0; }
+      .notes h3 {
+        font-family: var(--font-mono); font-size: 9px; letter-spacing: 1px;
+        text-transform: uppercase; color: var(--c-text-sub); margin-bottom: 6px;
+      }
+      .notes ol { list-style: none; counter-reset: nn; }
+      .notes li {
+        counter-increment: nn; position: relative;
+        font-family: var(--font-mono); font-size: 9px; line-height: 1.6;
+        color: var(--c-text-sub); padding-left: 16px;
+      }
+      .notes li::before {
+        content: counter(nn) '.'; position: absolute; left: 0;
+        color: var(--c-void); font-weight: 700;
+      }
+
+      /* 页脚签署条 */
+      .sign {
+        border-top: 2px solid var(--c-border);
+        display: grid; grid-template-columns: repeat(4, 1fr);
+      }
+      .sign > div { border-right: 1px solid var(--c-border); padding: 8px 12px; min-height: 44px; }
+      .sign > div:last-child { border-right: 0; }
+      .sign .cell-val { font-size: 10px; font-weight: 400; margin-top: 3px; }
+
+      .void-stamp {
+        position: absolute;
+        font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px;
+        border: 1px solid var(--c-void); color: var(--c-void);
+        padding: 2px 6px; text-transform: uppercase;
+      }
+      .toolbar { padding: 0 14px 12px; }
+      .toolbar button {
+        font-family: var(--font-mono); font-size: 9.5px;
+        border: 1px solid var(--c-border); background: var(--c-canvas);
+        color: var(--c-text-main); padding: 4px 8px; cursor: pointer;
+      }
+      .toolbar button[aria-pressed='true'] { background: var(--c-text-main); color: var(--c-canvas); }
+      .rev { display: none; }
+      body[data-annot='on'] .rev { display: inline; }
+
+      @media print {
+        body { background: #ffffff; padding: 0; }
+        .diagram-canvas { width: 100%; max-width: none; border: 0; }
+        .toolbar { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="diagram-canvas">
+      <!-- 页眉 -->
+      <div class="sheet-head">
+        <div>
+          <div class="sheet-title">前端页面 Skill 验证流水线 — 规格说明书</div>
+          <div class="sheet-sub">SPECIFICATION SHEET · HOURLY VERIFICATION PIPELINE · LAB/ FRONTEND-SKILL</div>
+        </div>
+        <div>
+          <div class="cell-lab">图号 DWG NO.</div>
+          <div class="cell-val">21-C</div>
+        </div>
+        <div>
+          <div class="cell-lab">版本 REV</div>
+          <div class="cell-val">1.0</div>
+        </div>
+        <div>
+          <div class="cell-lab">日期 DATE</div>
+          <div class="cell-val">2026-09-25</div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <button id="t-annot" type="button" aria-pressed="false">显修订标记 REV</button>
+        <span class="rev void-stamp" style="position: static">REV 1 · 首次入册</span>
+      </div>
+
+      <!-- 三栏 -->
+      <div class="grid" id="flow">
+        <!-- 栏 1 -->
+        <div class="col">
+          <h2 class="spec-h">1. 总则 SCOPE <span class="ref">§1</span></h2>
+          <table class="kv-table">
+            <tbody>
+              <tr><th>目的</th><td>每小时验证 1 个前端页面构建技能在 1 个场景下的表现</td></tr>
+              <tr><th>交付</th><td class="mono">3 个风格互异的页面 + 复现文档 + 台账回写</td></tr>
+              <tr><th>会话性质</th><td>独立、无继承<span class="ref-mark">1</span>；跨运行记忆仅磁盘文件</td></tr>
+              <tr><th>禁止</th><td>重复已试组合、扩大范围、修改实验室外文件、向用户提问</td></tr>
+            </tbody>
+          </table>
+
+          <h2 class="spec-h">2. 主链路 TOPOLOGY <span class="ref">§2</span></h2>
+          <pre class="art">
++--------+   +--------+   +--------+
+| 01 READ|--&gt;| 02 PICK|--&gt;|03 BUILD|
++--------+   +--------+   +--------+
+   ^   记忆=磁盘 |              |
+   |             v              v
+   |        +---------+   +--------+
+   +--yes---| G1..G4  |---|04 CHECK|
+   回写      | 四道闸  |   +--------+
+            +---------+        |
+                               v
+        +----------+     +---------+
+        | 06 WRITE |&lt;----| 05 CLEAN|
+        +----------+     +---------+
+         reports/        rm 中间产物
+         state.json      &lt; 50MB/场景
+         git push(SSH)</pre>
+
+          <h2 class="spec-h">3. 记忆文件 <span class="ref">§3</span></h2>
+          <table class="kv-table">
+            <tbody>
+              <tr><th>records/work-log.md</th><td class="mono">人读流水账，每轮一行，历史行不修改</td></tr>
+              <tr><th>state/state.json</th><td class="mono">机读台账，7 个顶层字段</td></tr>
+              <tr><th>reports/&lt;run&gt;.md</th><td class="mono">复现文档；被删脚本须转录</td></tr>
+              <tr><th>artifacts/&lt;run&gt;/</th><td class="mono">仅最终可预览产物</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 栏 2 -->
+        <div class="col">
+          <h2 class="spec-h">4. 阶段规格 <span class="ref">§4</span></h2>
+          <ol class="n">
+            <li><b>读记忆</b> — 读全量 work-log 与 state 的 <code class="f">tried / used_styles / skills_seen / environment_notes / next_candidates</code><span class="rev ref-mark">R1</span></li>
+            <li><b>选题</b> — 候选来源优先级：★ 排队项 &gt; 本机 <code class="f">~/.qoder-cn/skills/</code> 已装 &gt; Web 检索；过 G1–G3</li>
+            <li><b>构建</b> — 按被验技能自身规则出 3 个风格页，中间产物只进 <code class="f">node_modules/</code>、<code class="f">dist/</code>、<code class="f">.tmp/</code></li>
+            <li><b>校验</b> — 内联脚本先 <code class="f">node vm</code> 语法桩<span class="ref-mark">2</span>；视觉差异用计算样式断言，不用肉眼</li>
+            <li><b>收尾</b> — 删依赖/缓存/临时脚本与 <code class="f">/tmp</code> 文件；端口占用先 <code class="f">ps</code> 核对命令行再 kill</li>
+            <li><b>记录推送</b> — 报告 → state → work-log 行 → commit → push 到 <code class="f">origin/main</code></li>
+          </ol>
+
+          <h2 class="spec-h">5. 去重四道闸 <span class="ref">§5</span></h2>
+          <table class="kv-table">
+            <tbody>
+              <tr><th>G1 组合</th><td class="mono">tried[].skill + .scenario 命中即弃</td></tr>
+              <tr><th>G2 风格</th><td class="mono">used_styles[] 不得出现，需 3 项全新</td></tr>
+              <tr><th>G3 来源</th><td class="mono">已记不可用者不再探测</td></tr>
+              <tr><th>G4 产物</th><td class="mono">须双击可开；ES Module 需内联</td></tr>
+            </tbody>
+          </table>
+
+          <h2 class="spec-h">6. 无候选处置 <span class="ref">§6</span></h2>
+          <ul class="n">
+            <li>work-log 追加「本次无新组合可试」并写明卡点</li>
+            <li>state 不新增 tried 条目</li>
+            <li>直接结束，仍须收尾清理</li>
+          </ul>
+        </div>
+
+        <!-- 栏 3 -->
+        <div class="col">
+          <h2 class="spec-h">7. 环境约束矩阵 <span class="ref">§7</span></h2>
+          <table class="matrix">
+            <thead>
+              <tr><th>通道 / 能力</th><th>可用</th><th>不可用</th><th>替代</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>GitHub HTTPS</td><td class="no">否</td><td class="yes">✓</td><td>SSH :443</td></tr>
+              <tr><td>npm 官方源</td><td class="no">否</td><td class="yes">✓</td><td>npmmirror</td></tr>
+              <tr><td>skills.sh</td><td class="no">否</td><td class="yes">✓</td><td>本机已装</td></tr>
+              <tr><td>市场安装</td><td class="no">否</td><td class="yes">✓</td><td>需用户确认</td></tr>
+              <tr><td>npx</td><td class="no">否</td><td class="yes">✓</td><td>.bin/*</td></tr>
+              <tr><td>内置 sites 技能</td><td class="yes">✓</td><td class="no">否</td><td>—</td></tr>
+              <tr><td>本机 skills/</td><td class="yes">✓</td><td class="no">否</td><td>—</td></tr>
+              <tr><td>file:// 预览</td><td class="yes">✓</td><td class="no">否</td><td>仅单文件版</td></tr>
+            </tbody>
+          </table>
+
+          <h2 class="spec-h">8. 计量与容差 <span class="ref">§8</span></h2>
+          <table class="kv-table">
+            <tbody>
+              <tr><th>体积单位</th><td class="mono">Buffer.byteLength（禁用 String.length）<span class="ref-mark">3</span></td></tr>
+              <tr><th>单场景上限</th><td class="mono">50 MB</td></tr>
+              <tr><th>本轮实测</th><td class="mono">3 页 &lt; 60 KB，零依赖</td></tr>
+              <tr><th>外链</th><td class="mono">允许 0；仅系统字体</td></tr>
+            </tbody>
+          </table>
+
+          <h2 class="spec-h">9. 技能规则符合性 <span class="ref">§9</span></h2>
+          <ul class="n">
+            <li>扁平：无阴影、无渐变、无圆角按钮、无模糊</li>
+            <li>描线：结构用 1–2px 实线，内容块白底</li>
+            <li>单色基座：仅 1 处语义色（本页用于作废/修订标记）</li>
+            <li>字体：标题无衬线，数据与代码等宽，全系统字体</li>
+            <li>高数据墨水比：图示即信息，不含营销装饰</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 脚注 -->
+      <div class="notes">
+        <h3>注 NOTES</h3>
+        <ol>
+          <li>不继承对话：任何「是否试过 / 能否用」的判断必须来自本轮读盘结果，不得凭技能名推断。</li>
+          <li>内联脚本语法错误会让整页静默不渲染且控制台无输出，故语法桩先于任何浏览器复核。</li>
+          <li>中文 UTF-8 字节数比 UTF-16 码元多 2% 以上，报告数字若按 String.length 计算将系统性偏小。</li>
+          <li>本规格页为三风格中的「印刷件」变体：三栏、A4 图号条、虚线键值表；与 21-A 单栏图纸、21-B 深色左索引版构成同技能风格能力横评。</li>
+        </ol>
+      </div>
+
+      <!-- 签署 -->
+      <div class="sign">
+        <div>
+          <div class="cell-lab">绘制 DRAWN BY</div>
+          <div class="cell-val">qoder agent / hourly run</div>
+        </div>
+        <div>
+          <div class="cell-lab">技能 SKILL</div>
+          <div class="cell-val">drafter 1.0.0</div>
+        </div>
+        <div>
+          <div class="cell-lab">状态 STATUS</div>
+          <div class="cell-val">RELEASED FOR REVIEW</div>
+        </div>
+        <div>
+          <div class="cell-lab">张数 SHEET</div>
+          <div class="cell-val">3 / 3</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var btn = document.getElementById('t-annot');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var on = document.body.getAttribute('data-annot') === 'on';
+          if (on) {
+            document.body.removeAttribute('data-annot');
+            btn.setAttribute('aria-pressed', 'false');
+          } else {
+            document.body.setAttribute('data-annot', 'on');
+            btn.setAttribute('aria-pressed', 'true');
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

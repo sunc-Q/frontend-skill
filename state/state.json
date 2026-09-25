@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T20:50:00+08:00",
+  "updated": "2026-09-25T21:00+08:00",
   "tried": [
     {
       "skill": "sites:sites-building",
@@ -95,9 +95,23 @@
       ],
       "time": "2026-09-25T20:00+08:00",
       "reason": "台账 next_candidates 首项（★）：async-* 5 条前三轮 0 落地，本轮造「必须取数」的场景 + mock 服务端正面攻坚",
-      "conclusion": "留用（第 4 次通过，关键补全轮）。async-* 4/5 落地且以服务端时间窗口为证据（三请求到达窗口<60ms、墙钟 410ms vs 串行 740ms；notices/vip 首屏零请求）；async-dependencies 记不适用（场景无部分依赖扇出，不凑题）。server-* 等价落地 4 条（single-flight：并发 2 请求上游 1 次；LRU cap4/TTL2s；after()：setImmediate 计数断言 afterH>=respondedH；设备令牌 401/403），RSC 专属 3 条仍需 Next.js。client-swr-dedup 手写等价物（资源注册表+5s TTL inflight，3 消费者 1 到达）。验证配方沉淀：传输层抽象让同一组件代码跑 fixture（file://）与真 HTTP 两世界 + 客户端 reqLog 计数 + 服务端 hrtime 到达日志 + 延迟表。乐观更新证明设计为「确认延迟 60ms > 轮询上限 45ms」使『先 +1 后确认』成为硬证据。205/205 断言绿（35 时序+130 DOM+40 风格/bundle），三页 265-266KB 逐字节同 JS 仅换 CSS。15 个坑里 4 个是真缺陷：LRU 存取形态不一致致命中路径返回空响应体、mock 包 {ok} 而客户端按裸数组消费、Hero/Register 缺 Suspense 边界、Schedule 渲染体残留无条件 loadResource 把 defer 证明打穿（页面照常工作肉眼不可见→延后取数必须配请求计数断言）。断言侧 3 坑：react-dom 自带已转义 <\/script 字面量使「转义计数」不成立→改整体逐字节相等；零外链须白名单 w3.org xmlns/react.dev 错误码数据串（标签级断言才是真约束）；minify 保留动态 import 绑定名→「首包不含实现」不能用符号名，改用 poster 独有串 width=\"640\"/等 12 组。测试装置：jsdom file:// 禁 localStorage→Map shim；setInterval 挂住进程→win.close()；固定 sleep 负载漂移→全量改条件轮询 waitFor；Node22 不能 import 无扩展名 .ts→esbuild 预打包；transport TTL 缓存反噬读数→新鲜读用新 transport，stale 读数本身即去重证据；fixture 不写 reqLog 使零请求断言假通过→计数器写入点要先验证",
+      "conclusion": "留用（第 4 次通过，关键补全轮）。async-* 4/5 落地且以服务端时间窗口为证据（三请求到达窗口<60ms、墙钟 410ms vs 串行 740ms；notices/vip 首屏零请求）；async-dependencies 记不适用（场景无部分依赖扇出，不凑题）。server-* 等价落地 4 条（single-flight：并发 2 请求上游 1 次；LRU cap4/TTL2s；after()：setImmediate 计数断言 afterH>=respondedH；设备令牌 401/403），RSC 专属 3 条仍需 Next.js。client-swr-dedup 手写等价物（资源注册表+5s TTL inflight，3 消费者 1 到达）。验证配方沉淀：传输层抽象让同一组件代码跑 fixture（file://）与真 HTTP 两世界 + 客户端 reqLog 计数 + 服务端 hrtime 到达日志 + 延迟表。乐观更新证明设计为「确认延迟 60ms > 轮询上限 45ms」使『先 +1 后确认』成为硬证据。205/205 断言绿（35 时序+130 DOM+40 风格/bundle），三页 265-266KB 逐字节同 JS 仅换 CSS。15 个坑里 4 个是真缺陷：LRU 存取形态不一致致命中路径返回空响应体、mock 包 {ok} 而客户端按裸数组消费、Hero/Register 缺 Suspense 边界、Schedule 渲染体残留无条件 loadResource 把 defer 证明打穿（页面照常工作肉眼不可见→延后取数必须配请求计数断言）。断言侧 3 坑：react-dom 自带已转义 </script 字面量使「转义计数」不成立→改整体逐字节相等；零外链须白名单 w3.org xmlns/react.dev 错误码数据串（标签级断言才是真约束）；minify 保留动态 import 绑定名→「首包不含实现」不能用符号名，改用 poster 独有串 width=\"640\"/等 12 组。测试装置：jsdom file:// 禁 localStorage→Map shim；setInterval 挂住进程→win.close()；固定 sleep 负载漂移→全量改条件轮询 waitFor；Node22 不能 import 无扩展名 .ts→esbuild 预打包；transport TTL 缓存反噬读数→新鲜读用新 transport，stale 读数本身即去重证据；fixture 不写 reqLog 使零请求断言假通过→计数器写入点要先验证",
       "artifacts": "artifacts/20260925-20-vercel-react-activity/",
       "report": "reports/20260925-20-vercel-react-activity.md"
+    },
+    {
+      "skill": "drafter",
+      "scenario": "架构说明页（新场景：把「每小时前端 Skill 验证流水线」自身画成工程图纸 —— 六阶段主链路 + 去重四道闸 + state.json 字段表 + 环境约束矩阵 + 产物路径约定；主题自指，内容与台账一一对得上）",
+      "styles": [
+        "蓝图浅色单栏 blueprint-light",
+        "夜间制图左索引 drafting-dark",
+        "规格说明书三栏印刷件 spec-sheet"
+      ],
+      "time": "2026-09-25T21:00+08:00",
+      "reason": "用户 17:23 装入 ~/.qoder-cn/skills/drafter（第 4 个可在无网络安装、无用户确认前提下自主调用的前端页面技能；台账 tried 里没有它）。选「架构说明页」这个此前 7 轮未用的新场景，因为它是技能自述的主场（architecture/flow/spec sheet），能把技能规则与真实需要画的内容对齐，而不是硬套到营销页上（技能明写 NOT marketing landing pages）。三风格按「同图同信息，只换色板/骨架/图示法」构造，其中 21-B 深色与 21-C 印刷件都是对技能默认令牌的显式偏离，用来测该技能的风格上限。",
+      "conclusion": "留用（限定场景）。产物天然满足实验室最硬三条约束：单文件 / 零依赖 / 零构建 / 双击可开，15-17KB 每页（对比 React 轮 265KB），本轮无 node_modules、无 dist、无临时脚本，场景目录仅 72KB。最大亮点是规则可机检：把技能的视觉条款（无阴影、无渐变、无模糊、按钮无圆角、1-2px 实线、系统字体、至多一种语义色）直接写成 C 组 24 条断言，已试 5 技能里独一份。短板四条：①单风格主张撑不起多风格横评（深色必须反相整套 :root 令牌，印刷件必须自行新增图号条/脚注/@media print）；②输出契约假定 HTML 直进对话，落盘/校验/推送全在技能话术之外；③无交互与多页条款，本轮标注开关与 styles.html 对照入口均为技能外补充；④无中文行高与表格密度话术。78/78 断言绿（A 语法 6 + B 零外链 9 + C 规则符合 24 + D 三风格互异 21 + E 体积 5 + F 内容同题 12 + G 台账互查 10）。首跑 6 条真失败全在断言侧：inlineScript 正则不许行首缩进；别名映射表把 G4 映到自身导致 21-A 恒判 3/4。为此补了 G 组（读 state.json 反推本轮前规模，逐字段互查页面抄写值），当场抓出 21-A 把 environment_notes 写 31（实 38）、next_candidates 写 9（实 10）——凭印象手打的台账数字肉眼查不出，必须读盘互查。浏览器计算样式复核三页互异成立（A 248,250,252 / B 11,15,20 + 6 row + 6 tl-item + 标注双向开关 / C 233,233,233 + 3 col + 32 矩阵格），控制台零消息，截图与横向溢出因面板 hidden 未验。复用姿势：drafter 出形（结构 + 描线纪律），另配规范型技能出码；变体偏离要写进 environment_notes 免下轮误判。",
+      "artifacts": "artifacts/20260925-21-drafter-architecture/（72KB：blueprint-light.html 17,304B + drafting-dark.html 15,401B + spec-sheet.html 16,468B + styles.html 对照入口 6,453B + scripts/check.mjs 9,221B + scripts/ledger-snapshot.json 302B，校验脚本与快照均保留未删）",
+      "report": "reports/20260925-21-drafter-architecture.md"
     }
   ],
   "skills_seen": [
@@ -177,6 +191,12 @@
       "name": "本机其他候选（未试）",
       "source": "~/.qoder-cn/skills/",
       "status": "golang-gin-api / nodejs-best-practices / SQLite-Database-Expert / express-nodejs-expert / golang-testing / sec-audit-cn —— 均为后端类，不做「前端页面」验证；若改场景为「前后端联调页」可考虑"
+    },
+    {
+      "name": "drafter",
+      "source": "用户 2026-09-25 17:23 装入 ~/.qoder-cn/skills/drafter（.skill-metadata.yaml 标 category: design-ui、version 1.0.0，未给上游仓库链接）",
+      "path": "/Users/apple/.qoder-cn/skills/drafter/SKILL.md",
+      "status": "已用于 21:00 架构说明页并留用（限定场景）。产物=单个自包含 HTML（内联 <style> + 系统字体 + 禁 CDN），零依赖零构建，15-17KB/页，双击即开 —— 收尾成本本轮为 0。独有优点：视觉条款可机检（无阴影/无渐变/无模糊/按钮无圆角/1-2px 实线/system-ui+等宽/:root 令牌齐备/语义色≤1），能整段转成回归断言。短板：①只有一种视觉声音，做深色或印刷件必须显式偏离它给死的 :root 令牌块与 max-width:1200 单栏图纸；②「只返回 HTML、不要 markdown 代码块」的输出契约假定产物直进对话，落盘/校验/推送都在技能外；③无交互、无多页/路由条款；④无中文行高与密集表格话术。适合汇报配图、文档配图、一页规格件；不适合产品页与风格横评。"
     }
   ],
   "runs": [
@@ -240,6 +260,15 @@
       "artifact_size": "1.0MB（3 页各 265,274/265,610/266,379 字节双击可用 + styles.html 对照入口 + src + scripts 校验脚本全保留 + server/mock-api.mjs + 配置与 lock）",
       "cleanup": "删 node_modules 102MB + dist/ + dist-split/ + .tmp/（esbuild 预打包产物）+ .npm-install.log；8141 端口 mock-api 服务先 ps 核对命令行（PID 31327，本任务自起）再 kill，lsof 确认端口释放；校验脚本未删（故无需转录进文档）；单场景 1.0MB ≪ 50MB",
       "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 644fa74，01e0922..644fa74；本机 HTTPS 被 TLS 重置故走 SSH，实际经 ssh.github.com:443，主机键写入实验室 .tmp/known_hosts 后即删；命令与文件里无任何 token，.npmrc 只有 registry 地址，grep 复核过新增文件）"
+    },
+    {
+      "time": "2026-09-25T21:00+08:00",
+      "skill": "drafter",
+      "scenario": "架构说明页",
+      "result": "success",
+      "artifact_size": "72KB（三页 17,304 / 15,401 / 16,468 字节 + styles.html 6,453 字节 + scripts/check.mjs 9,221 字节 + scripts/ledger-snapshot.json 302 字节，全部保留）",
+      "cleanup": "本轮无 node_modules、无 dist、无 .tmp 脚本：只删了 /tmp/lab-8151.log（http.server 日志）并 kill 8151 端口服务（先 ps 核对命令行确认 PID 36541 是本任务自起的 python3 -m http.server 再 kill，lsof 确认端口已释放）。校验脚本 scripts/check.mjs 保留未删（故无需转录进报告）。实验室总量约 7.9MB，单场景 72KB ≪ 50MB。",
+      "push": ""
     }
   ],
   "next_candidates": [
@@ -252,7 +281,9 @@
     "（需用户授权）市场技能 ui-ux-pro-max × 数据报表",
     "（已解决，仅备查）js-early-exit vs frontend-development「禁早期 return」→ 择一规则：控制流允许早退，渲染输出一律三元 + 显式空态（见 18:00 报告 §10）",
     "（已解决，仅备查）vercel + sites-building 叠加：无互斥，配方为「主张型定形 + 规范型定码」，19:00 报告 §8",
-    "（已解决，仅备查）vercel async-* 0 落地问题 → 20:00 用 Vite SPA + 零依赖 mock 服务端解决（到达窗口/请求计数断言配方见 20:00 报告 §2、§3）"
+    "（已解决，仅备查）vercel async-* 0 落地问题 → 20:00 用 Vite SPA + 零依赖 mock 服务端解决（到达窗口/请求计数断言配方见 20:00 报告 §2、§3）",
+    "drafter × 单张长链流程图/时序图（技能主场未测点：连接线在 12+ 节点、直角折线与跨行虚线下的可读性与塌陷风险；产物仍应 15-20KB）",
+    "drafter + 规范型技能叠加 × 数据看板（测「主张型定形 + 规范型定码」配方在纯静态图纸上是否仍互补，且能否把 C 组视觉断言与 bundle 断言并成一套）"
   ],
   "used_styles": [
     "瑞士极简",
@@ -275,7 +306,10 @@
     "工程蓝图 blueprint",
     "装饰艺术 deco",
     "蒸汽波 vapor",
-    "孔版印刷 riso"
+    "孔版印刷 riso",
+    "蓝图浅色单栏 blueprint-light",
+    "夜间制图左索引 drafting-dark",
+    "规格说明书三栏印刷件 spec-sheet"
   ],
   "environment_notes": [
     "本机无法直连 GitHub raw 与 skills.sh（curl exit 35 / WebFetch fetch failed），外部落地技能持续不可用",
@@ -315,6 +349,13 @@
     "split 构建「首包不含懒加载实现」不能断言符号名：minify 后动态 import 的绑定名（buildPoster）仍留在主包，且外壳组件文案（纪念票根）本就在首屏——要用只可能出现在被拆模块实现里的独有字符串（如 width=\\\"640\\\"、特定文案）做「主包无 + chunk 有」双向断言",
     "延后取数（async-defer-await）必须配请求计数断言兜底：渲染体内残留一句无条件 loadResource 就把整个 defer 证明打穿，而页面功能完全正常、肉眼零迹象。同理 mock 服务端的响应形态必须以客户端类型为准（包了 {ok,...} 而客户端按裸数组消费会静默错位）；缺 Suspense 边界的挂起会直接崩 root，每个数据组件都要有自己的边界+骨架",
     "用脚本/python str.replace 给测试文件打补丁可能静默 no-op（引号风格不匹配），测试照跑产生无法解释的 flaky——补丁一律用编辑工具并回读确认",
-    "zsh 的 echo === 会触发 =cmd 展开报错（echo 参数加引号）；macOS 无 timeout 命令，长任务用工具级超时控制"
+    "zsh 的 echo === 会触发 =cmd 展开报错（echo 参数加引号）；macOS 无 timeout 命令，长任务用工具级超时控制",
+    "从 HTML 取内联脚本的正则必须允许缩进：/^<script>/m 在实际页面里常匹配不到（标签前有空格），会连带把后续契约断言全打成假失败；用 /^[ \\t]*<script>([\\s\\S]*?)<\\/script>/m",
+    "断言里的别名/编号映射表要防自环：{G4:\"G4\"} 打错成映射自身，会让按 B1..B4 编号的那一页恒判「未覆盖」，看起来像内容缺陷其实是检查器 bug；每张别名表都要逐键确认指向另一套真实编号",
+    "单次 evaluate_script 里放 4 个以上 getComputedStyle 就会 15s 超时（页面侧其实已执行完，超时后再读状态能看到点击已生效）—— 视觉复核拆成每次 1-3 个属性，交互与读结果分两次调用",
+    "<pre> 里的 ASCII 字符画必须把 > 转义成 &gt;（`-->` 会被当标签收尾吃掉后半张图）；drafter 类技能示例未提这一点",
+    "风格命名带实现后缀（blueprint-light / drafting-dark / spec-sheet）以免与历史 used_styles 字面撞车：19:00 轮的「工程蓝图 blueprint」是定价页皮肤，本轮 21-A 是 drafter 规则的图纸骨架，语义不同必须可区分",
+    "产物里只要抄写 state.json 的规模数字，就必须配一组「读盘反推互查」断言（G 组：用台账现值减本轮新增还原本轮前规模，与页面值逐字段比）——本轮凭印象手打的 2 个数字（31/38、9/10）就是这么被抓出来的；同理别名映射表须防自环、取内联脚本的正则须允许行首缩进",
+    "跨文件互查「开工前状态」必须落显式快照（本轮 artifacts/.../scripts/ledger-snapshot.json），不能用「台账现值 - 本轮新增条数」反推：收尾时再往台账补记一条，写死的减数就自毁"
   ]
 }

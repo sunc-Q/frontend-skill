@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>drafter × 架构说明页 · 三风格对照</title>
+    <style>
+      :root {
+        --c-bg: #f8fafc;
+        --c-canvas: #ffffff;
+        --c-border: #cbd5e1;
+        --c-text-main: #0f172a;
+        --c-text-sub: #64748b;
+        --font-ui: system-ui, -apple-system, 'Segoe UI', sans-serif;
+        --font-mono: 'SF Mono', Monaco, Consolas, monospace;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { background: var(--c-bg); font-family: var(--font-ui); color: var(--c-text-main); padding: 40px; }
+      .diagram-canvas { background: var(--c-canvas); border: 2px solid var(--c-border); padding: 32px; max-width: 1200px; margin: 0 auto; }
+      .diagram-header { border-bottom: 1px solid var(--c-border); padding-bottom: 16px; margin-bottom: 24px; }
+      .diagram-title { font-size: 24px; font-weight: 600; }
+      .diagram-subtitle { font-size: 12px; font-weight: 500; color: var(--c-text-sub); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+      .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 26px; }
+      .card { border: 1px solid var(--c-border); padding: 14px; display: block; text-decoration: none; color: inherit; }
+      .card:hover { border-color: var(--c-text-main); border-width: 2px; }
+      .card h3 { font-size: 15px; font-weight: 600; }
+      .card .no { font-family: var(--font-mono); font-size: 10px; color: var(--c-text-sub); text-transform: uppercase; letter-spacing: 0.6px; }
+      .card p { font-family: var(--font-mono); font-size: 11px; line-height: 1.65; color: var(--c-text-sub); margin-top: 8px; }
+      .swatch { display: flex; gap: 0; margin-top: 10px; border: 1px solid var(--c-border); }
+      .swatch i { width: 26px; height: 14px; }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { border: 1px solid var(--c-border); padding: 7px 9px; text-align: left; font-size: 11.5px; }
+      th { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; background: var(--c-bg); }
+      td.mono { font-family: var(--font-mono); font-size: 11px; }
+      .note { font-family: var(--font-mono); font-size: 11px; color: var(--c-text-sub); line-height: 1.7; margin-top: 18px; border-top: 1px dashed var(--c-text-main); padding-top: 10px; }
+    </style>
+  </head>
+  <body>
+    <div class="diagram-canvas">
+      <div class="diagram-header">
+        <h1 class="diagram-title">drafter × 架构说明页 — 同图三风格对照</h1>
+        <p class="diagram-subtitle">SKILL: drafter 1.0.0 · SCENARIO: SYSTEM ARCHITECTURE SPEC PAGE · RUN 2026-09-25 21:00</p>
+      </div>
+
+      <div class="cards">
+        <a class="card" href="blueprint-light.html">
+          <div class="no">Sheet 21-A · 默认形态</div>
+          <h3>蓝图 · 浅色单栏</h3>
+          <p>技能规则原样落地：slate 描边 + 白图纸，六阶段横向箭头链，下方依次决策树 / 台账表 / 约束卡 / 图例。</p>
+          <div class="swatch"><i style="background:#f8fafc"></i><i style="background:#ffffff"></i><i style="background:#cbd5e1"></i><i style="background:#0f172a"></i><i style="background:#64748b"></i></div>
+        </a>
+        <a class="card" href="drafting-dark.html">
+          <div class="no">Sheet 21-B · 反色变体</div>
+          <h3>夜间制图 · 左索引双栏</h3>
+          <p>同一批信息改按时间轴阅读：吸顶索引栏 + 里程碑时序带 + 阶段职责行 + 四道闸矩阵。色板整体反相（偏离技能默认令牌，见报告）。</p>
+          <div class="swatch"><i style="background:#0b0f14"></i><i style="background:#11161d"></i><i style="background:#2b3540"></i><i style="background:#e6edf3"></i><i style="background:#8b98a8"></i></div>
+        </a>
+        <a class="card" href="spec-sheet.html">
+          <div class="no">Sheet 21-C · 印刷件变体</div>
+          <h3>规格说明书 · 三栏 A4</h3>
+          <p>图示降级为等宽字符画，信息改为图号条 + 三栏虚线键值表 + 约束矩阵 + 脚注 + 签署条，含 @media print 出片规则。</p>
+          <div class="swatch"><i style="background:#ffffff"></i><i style="background:#e9e9e9"></i><i style="background:#111111"></i><i style="background:#9a9a9a"></i><i style="background:#b4453a"></i></div>
+        </a>
+      </div>
+
+      <table>
+        <thead>
+          <tr><th style="width: 22%">维度</th><th>21-A 蓝图浅色</th><th>21-B 夜间制图</th><th>21-C 规格说明书</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>画布底色</td><td class="mono">#f8fafc / 白图纸</td><td class="mono">#0b0f14 / #11161d</td><td class="mono">#e9e9e9 / 纯白</td></tr>
+          <tr><td>骨架</td><td class="mono">单栏 + flex 阶段条</td><td class="mono">218px sticky 索引 + 内容</td><td class="mono">三栏等宽网格 + 页眉页脚</td></tr>
+          <tr><td>图示法</td><td class="mono">CSS 盒 + 伪元素箭头</td><td class="mono">时序带（空心/实心节点）</td><td class="mono">等宽字符画 ASCII</td></tr>
+          <tr><td>表格样式</td><td class="mono">全框线 + 灰表头</td><td class="mono">全框线 + 等宽小写表头</td><td class="mono">虚线键值行 + 密集矩阵</td></tr>
+          <tr><td>语义色用途</td><td class="mono">焦点轮廓</td><td class="mono">风险标注文字</td><td class="mono">修订/作废标记与脚注号</td></tr>
+          <tr><td>标注开关</td><td class="mono">显示 6 条阶段注记</td><td class="mono">显示 6 条风险说明</td><td class="mono">显示修订戳与 R1 标</td></tr>
+          <tr><td>技能规则符合</td><td class="mono">100%（原文照做）</td><td class="mono">9/10（反色偏离单色基座）</td><td class="mono">10/10（新增印刷件形态）</td></tr>
+        </tbody>
+      </table>
+
+      <p class="note">
+        三页共用同一份信息（六阶段链路 + 四道去重闸 + 台账字段 + 环境约束），差异只在色板、骨架与图示法 —— 校验脚本 scripts/check.mjs 断言 D 组（三页 --c-bg / --c-border / --c-text-main 互不相同、骨架正则各自命中）与 F 组（内容同题：六阶段与四道闸在三页均出现）。全部产物零外链、零依赖、双击即可预览。
+      </p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "_comment": "本轮（2026-09-25 21:00）开工前 state/state.json 各字段规模快照；页面里抄写的数字以本文件为准",
+  "taken_at": "2026-09-25T21:00+08:00",
+  "tried": 7,
+  "used_styles": 21,
+  "skills_seen": 14,
+  "environment_notes": 38,
+  "runs": 7,
+  "next_candidates": 10
+}
