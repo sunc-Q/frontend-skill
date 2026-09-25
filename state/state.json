@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T17:27:00+08:00",
+  "updated": "2026-09-25T17:50:00+08:00",
   "tried": [
     {
       "skill": "drafter",
@@ -12,6 +12,19 @@
       "report": "reports/20260925-1723-drafter.md",
       "installed_by_this_task": [
         "drafter (market id official79532076, canonicalName drafter-diagram) -> /Users/apple/.qoder-cn/skills/drafter/ —— 经 install_extension 安装；该条目不暴露可 clone 的公开仓库，只能走 MCP 安装，故未落在 LAB/.skills/"
+      ]
+    },
+    {
+      "skill": "ascii-project-dashboard",
+      "source": "Qoder 官方扩展市场 official_qzXG5ekf (publisher fabioc-aloha, tags 空=非镜像条目)",
+      "skill_path": "/Users/apple/.qoder-cn/skills/ascii-project-dashboard/SKILL.md",
+      "task": "读三实验室 state/state.json（只读）现场算 4 条泳道（DISCOVER/BUILD/CLEANUP/DELIVER），一次产出 Pattern A 横向泳道 + Pattern B 窄终端 + Pattern C 里程碑时间线 + Summary 框 + 跨实验室 Backlog 的纯文本看板",
+      "verdict": "留用。纯文本看板零依赖零渲染、可进 git diff；▓░ 规格与 Anti-Patterns（禁硬编码百分比）具体可执行，脚本一跑即自证。缺陷：宣称的 muscle script 未随包提供→无实现层，且「10 chars=10 chars」在中文/emoji 下崩（须自带 wcwidth 补位）。",
+      "time": "2026-09-25T17:37+08:00",
+      "artifact": "demos/20260925-1737-ascii-project-dashboard/dashboard.txt",
+      "report": "reports/20260925-1737-ascii-project-dashboard.md",
+      "installed_by_this_task": [
+        "ascii-project-dashboard (market id official_qzXG5ekf) -> /Users/apple/.qoder-cn/skills/ascii-project-dashboard/ —— 经 install_extension 安装，市场条目不暴露可 clone 仓库，无法落在 LAB/.skills/"
       ]
     }
   ],
@@ -85,19 +98,90 @@
       "url": "",
       "status": "unverified_this_run",
       "note": "本轮来源①（官方市场）第一个可用即止，未探测 SSH clone 通路。兄弟实验室 14:00-16:00 三次记录 raw.githubusercontent.com / www.skills.sh 连接被重置——注意那是 HTTPS，git@github.com SSH 按其 16:00 经验是通的，下轮值得一试"
+    },
+    {
+      "name": "ascii-project-dashboard",
+      "source": "Qoder 扩展市场 / keyword 'ascii'",
+      "url": "official_qzXG5ekf",
+      "status": "installed_used — 本轮已用并留用，勿再选",
+      "note": "tags 为空（非 skillatlas/modelscope 镜像），包格式合法，frontmatter 无问题"
+    },
+    {
+      "name": "doge (ASCII 柴犬表情包生成器)",
+      "source": "Qoder 扩展市场 / keyword 'ascii'",
+      "url": "official_A9htirhV",
+      "status": "candidate",
+      "note": "Python 字符串字符画，origin:skillatlas；下一轮可选，产物=纯文本 .txt"
+    },
+    {
+      "name": "bytesagain-chart-generator (ASCII 图表生成器)",
+      "source": "Qoder 扩展市场 / keyword 'ascii'",
+      "url": "official_KRhuv5QE",
+      "status": "candidate",
+      "note": "CSV→终端条形/折线/饼/散点图，origin:skillatlas，产物类型同样是终端文本（本轮已做过一类，下轮宜换语言/后端向）"
+    },
+    {
+      "name": "ascii-art-generator / aiskillstore-ascii-preview-generate / plantuml-ascii / diegosouzapw-asciinema-*",
+      "source": "Qoder 扩展市场 / keyword 'ascii'",
+      "url": "official_ldP75RrC 等 6 条",
+      "status": "candidate",
+      "note": "同一批 ASCII 向备选；asciinema 系需 .cast 录制文件"
+    },
+    {
+      "name": "svg-generator-pro / svg-artist / svg-draw / kbravh-svg-logo-creator / liuyunlong2021-wq-svg-skills",
+      "source": "Qoder 扩展市场 / keyword 'svg'",
+      "url": "official_JtVW97Da, official_Uh7rEBIf, official_u2PD5ljv, official_ehyM5bCW, official_RXaHu1k5",
+      "status": "candidate",
+      "note": "SVG 直写路线，产物 .svg 可双击打开；svg-draw/svg-artist 依赖 rsvg-convert（本机未验证是否安装），纯 SVG 无需转换器"
+    },
+    {
+      "name": "build-game (3D 游戏构建器) / github-game-engine",
+      "source": "Qoder 扩展市场 / keyword 'game'",
+      "url": "official_LaiVUmnK, official_DovAlFst",
+      "status": "candidate",
+      "note": "自然语言→单个可玩 HTML（Three.js）。风险：Three.js 走 CDN，本机 jsdelivr/unpkg HTTPS 被 TLS 重置 + file:// 下 ESM 不执行 → 可能验不了，选它前先进出网探测"
+    },
+    {
+      "name": "pdf-* 全家桶（extract-pdf-text / pdf-poppler-utils / pdf-to-ppt / mineru 系）",
+      "source": "Qoder 扩展市场 / keyword 'pdf'",
+      "url": "official_5x5slPCL, official_v2BPC2Hq 等",
+      "status": "candidate",
+      "note": "依赖 PyMuPDF / poppler / MinerU 二进制，未探测本机 python3+pip 可用性；mineru 属重依赖，排除"
+    },
+    {
+      "name": "aiskillstore-game-audio / majiayu000-audio-* / alicloud-ai-audio-tts",
+      "source": "Qoder 扩展市场 / keyword 'audio'",
+      "url": "official_rQ4ffIrg 等",
+      "status": "blocked",
+      "note": "游戏音频模式偏知识文档无本地产物；阿里云 TTS/ASR 需 DashScope key（付费凭据）→ 按选题标准排除"
+    },
+    {
+      "name": "pm-dashboard / realtime-dashboard / ascii-project-dashboard 同类看板技能",
+      "source": "Qoder 扩展市场 / keyword 'dashboard'",
+      "url": "official_987NhiHn, official_k8iXoOiP",
+      "status": "candidate",
+      "note": "pm-dashboard 要起本地服务+install/start 生命周期；realtime-dashboard 是 React 指南（重依赖）"
+    },
+    {
+      "name": "dlazy-vectorize (图像转 SVG 工具)",
+      "source": "Qoder 扩展市场 0ca5d12e",
+      "url": "official 非精选",
+      "status": "blocked",
+      "note": "把本地图 POST 到外部服务并返回 URL → 触安全闸门（内容外发），排除"
     }
   ],
   "in_progress": [],
   "next_candidates": [
-    "★ skill-mermaid-diagrams（OfficialSelection 之外先试 frontmatter）× 一页 Mermaid 时序图，产物 .html 内嵌渲染 —— 检验 mermaid 校验回环是否真能拦住语法错",
-    "diegosouzapw-2000s-visualization-expert × 用 Web Audio AnalyserNode + GLSL 做一段频谱响应动画（产物=可播放页面，换一类「动效」产物）",
-    "SQLite-Database-Expert（本机已装，零安装）× 建一个小库跑 FTS 全文检索，产物=output.log + .db —— 换一类「命令输出」产物",
-    "sec-audit-cn（本机已装，零安装）× 审计本轮那个 portfolio-site 或一个含漏洞的样例文件，产物=分级审计报告 .md",
-    "jackspace/k-dense scientific-visualization × matplotlib 多面板图（先探测 python3 -c 'import matplotlib'）",
-    "试通 git@github.com SSH shallow clone 一个 skills.sh 技能到 LAB/.skills/，打破「只有官方市场可用」的单点"
+    "★ doge（ASCII 字符画，official_A9htirhV）或 kbravh-svg-logo-creator/svg-artist（纯 SVG 矢量产物，无需 rsvg-convert）—— 换「生成图像文件」这一类产物",
+    "SQLite-Database-Expert（本机已装，零安装）× 建小库跑 FTS 全文检索，产物 = .db + output.log，换「数据库实验」类",
+    "sec-audit-cn（本机已装，零安装）× 审计 portfolio-site 或含漏洞样例，产物 = 分级审计报告 .md，换「安全审计」类",
+    "golang-testing / golang-gin-api（本机已装）× 一个小 Go 包跑 table-driven test，产物 = go test 真实输出，换「后端命令输出」类（注意 GOPROXY=goproxy.cn）",
+    "试通 git@github.com SSH shallow clone 一个 skills.sh/awesome-skills 仓库到 LAB/.skills/，打破「只有官方市场可用」单点（至今两轮都没验过这条通路）",
+    "build-game（Three.js 单文件游戏）—— 先探测 unpkg/cdn 可达性再决定，不可达就改记 blocked"
   ],
   "used_artifact_kinds": [
-    "单文件自包含 HTML 图表（工程图纸）×1"
+    "单文件自包含 HTML 图表（工程图纸）×1",
+    "纯文本终端 ASCII 看板（.txt，零依赖）×1"
   ],
   "environment_notes": [
     "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
@@ -107,7 +191,11 @@
     "browser-use 在本会话里 IDE 面板 viewport = 0x0（innerWidth 0），真实视口像素测量不可得：改用 position:fixed;left:-99999px 的强制宽度离屏容器 + 多档宽度扫描做确定性布局断言，比兄弟实验室的「只查计算样式」更强，值得沿用。",
     "CSS 陷阱（本轮实测暴露）：repeat(N,1fr) 的轨道下限是 min-content，会破坏等宽；等宽栅格一律写 repeat(N,minmax(0,1fr))。",
     "磁盘开工水位：可用 20955000 KB ≈ 20.0 GiB（>1.5 GiB 阈值），可正常做重活。",
-    "沿用兄弟实验室结论未重复探测：GitHub HTTPS 被 TLS 重置（仅 git@github.com SSH 可用）、npm 走 registry.npmmirror.com、npx 不可用、file:// 下 ES Module 不执行。"
+    "沿用兄弟实验室结论未重复探测：GitHub HTTPS 被 TLS 重置（仅 git@github.com SSH 可用）、npm 走 registry.npmmirror.com、npx 不可用、file:// 下 ES Module 不执行。",
+    "ASCII/文本类产物的对齐必须由「终端显示宽度」决定：CJK 与 emoji 记 2 列、U+FE0F 变体选择符记 0 列；JS 的 s.length（UTF-16 码单元）与 [...s].length（码点）都不等于显示列数，用它补位会让中文列错位（实测极差 26 列）。",
+    "extension-market 里 tags 为空的条目（如 ascii-project-dashboard/fabioc-aloha、dlazy-vectorize）比 origin:skillatlas|modelscope 镜像条目包格式更可靠，本轮 tags 空→一次装成。",
+    "兄弟实验室（前端skill实验室/业务网站实验室）的 state.json 在同一时段会被各自的每小时任务并发改写：本任务产物读取它们做数据源时数值会中途变化（本轮从 4 轮变 5 轮），写回自身 state.json 必须先重读再合并，禁止整文件覆盖。",
+    "Bash 与 Write/Read 工具在中文工作目录下路径解析可能不一致（工具侧出现 .sandbox 镜像路径与 does not exist 误报）；结论：以 Bash 的 ls 实况为准，脚本文件优先用 heredoc (cat > f <<'EOF') 落盘最稳。"
   ],
   "runs": [
     {
@@ -122,6 +210,19 @@
         "drafter -> /Users/apple/.qoder-cn/skills/drafter/"
       ],
       "notes": "首建 LAB 骨架（records/state/demos/reports/.skills/.tmp/.gitignore）。27 项风格与结构断言全 PASS；暴露并修复 skill 自身示例 CSS 的 1fr min-content 缺陷（六步条 45-97px 不等宽 → minmax(0,1fr) 后 spread 0.02px）；720-1600px 五档宽度零裁切零溢出。另：首次尝试 diagram-drawing 因 EXTENSION_SKILL_FRONTMATTER_INVALID 失败并已记 blocked。"
+    },
+    {
+      "time": "2026-09-25T17:37+08:00",
+      "skill": "ascii-project-dashboard",
+      "result": "success",
+      "seconds": 600,
+      "artifact_size": "dashboard.txt 2.8KB(52行) + 对照 naive 2.8KB + 两脚本 11KB + output.log 6.6KB = demos 本轮 32KB（限 5MB）；LAB 见收尾核查",
+      "cleanup": "零 node_modules/零构建缓存/零二进制；未起本地服务（lsof 监听数与开工一致，均属其它任务）；demos 只留可打开的 .txt + 复现脚本 + 日志；全局缓存未动",
+      "push": "",
+      "installed_by_this_task": [
+        "ascii-project-dashboard -> /Users/apple/.qoder-cn/skills/ascii-project-dashboard/"
+      ],
+      "notes": "10 PASS / 0 FAIL 断言（列边界/条长/版式一致/框线闭合/百分比==独立反算）；对照组按技能原文口径跑→7 PASS 3 FAIL，实测其「10 chars=10 chars」在中文下极差 26 列。"
     }
   ]
 }

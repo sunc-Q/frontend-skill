@@ -1,0 +1,112 @@
+# 本轮命令与真实输出 —— ascii-project-dashboard × 三实验室轮次看板
+# 工作目录: skill演示场/demos/20260925-1737-ascii-project-dashboard
+
+$ df -k . | tail -1
+/dev/disk1s2   118284248 78124664  20474236    80% 1233590 204742360    1%   /System/Volumes/Data
+
+$ node -v
+v22.23.2
+
+$ node render-dashboard.js
+written: dashboard.txt (display-width) + dashboard-naive.txt (code-point)
+  DISCOVER: 5/24 -> 21% ▓▓░░░░░░░░
+  BUILD: 5/5 -> 100% ▓▓▓▓▓▓▓▓▓▓
+  CLEANUP: 5/5 -> 100% ▓▓▓▓▓▓▓▓▓▓
+  DELIVER: 3/5 -> 60% ▓▓▓▓▓▓░░░░
+
+$ cat dashboard.txt
+ASCII PROJECT DASHBOARD · 无人值守 Skill 验证流水线（三实验室合计）
+generated 2026-09-25 09:47 UTC
+来源: 各实验室 state/state.json（只读）· 已试技能 4 · 候选池 17 · 已跑轮次 5 · 来源条目 24
+
+### Pattern A — Horizontal Lanes (宽屏)
+```
+  📥 DISCOVER           🏗 BUILD              🧹 CLEANUP            🚀 DELIVER
+  来源已定性/来源条目   成功轮次/总轮次       清理留痕/总轮次       推送留痕/总轮次
+  ───────────────────── ───────────────────── ───────────────────── ─────────────────────
+  ▓▓░░░░░░░░ 21%        ▓▓▓▓▓▓▓▓▓▓ 100%       ▓▓▓▓▓▓▓▓▓▓ 100%       ▓▓▓▓▓▓░░░░ 60%
+```
+
+### Pattern B — Vertical Lanes (窄终端 <=40 列)
+```
+📥 DISCOVER ▓▓░░░░░░░░  21%
+🏗 BUILD    ▓▓▓▓▓▓▓▓▓▓ 100%
+🧹 CLEANUP  ▓▓▓▓▓▓▓▓▓▓ 100%
+🚀 DELIVER  ▓▓▓▓▓▓░░░░  60%
+```
+
+### Pattern C — Milestone Timeline (已跑轮次，○=下一轮)
+```
+14:00 ●────15:00 ●────16:00 ●────17:00 ●────17:23 ●────○
+前端    前端    前端    前端    演示场
+```
+
+### Summary
+```
++-------------+---------------------+-------+------+-----------------+
+| Lane        | Focus               | Tasks | Done | Progress        |
++=============+=====================+=======+======+=================+
+| 📥 DISCOVER | 来源已定性/来源条目 | 24    | 5    | ▓▓░░░░░░░░ 21%  |
+| 🏗 BUILD    | 成功轮次/总轮次     | 5     | 5    | ▓▓▓▓▓▓▓▓▓▓ 100% |
+| 🧹 CLEANUP  | 清理留痕/总轮次     | 5     | 5    | ▓▓▓▓▓▓▓▓▓▓ 100% |
+| 🚀 DELIVER  | 推送留痕/总轮次     | 5     | 3    | ▓▓▓▓▓▓░░░░ 60%  |
+| TOTAL       | All lanes           | 39    | 18   | ▓▓▓▓▓░░░░░ 46%  |
++-------------+---------------------+-------+------+-----------------+
+```
+
+### Task Backlog — 跨实验室轮次留痕
+| Lab | Skill | Result | Clean | Push |
+| --- | ----- | ------ | ----- | ---- |
+| 前端 | sites:sites-building | ✅ | ✅ | ⬜ |
+| 前端 | sites:sites-building | ✅ | ✅ | ⬜ |
+| 前端 | frontend-development | ✅ | ✅ | ✅ |
+| 前端 | vercel-react-best-practices | ✅ | ✅ | ✅ |
+| 演示场 | drafter | ✅ | ✅ | ✅ |
+
+TOTAL 18/39 = 46%
+注: pct = round(done/total*100)，bar = ▓×round(pct/10) + ░×余量，全部由本脚本现场算出；
+    列对齐按终端显示宽度补位（CJK 与 emoji 记 2 列），不是 JS 字符串长度。
+$ node verify.js dashboard.txt          # 最终版：按显示宽度补位
+PASS  Pattern A 3 行 x 4 泳道列首对齐（分隔线段起点 2/24/46/68）  -> all hit
+PASS  进度条恒为 10 格（规范 Always 10 characters）  -> ▓▓░░░░░░░░ ▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓░░░░
+PASS  未混用其它条形字符（Anti-Pattern: Mix bar styles）
+PASS  Pattern B 行数=泳道数且 <=40 列（窄终端可读）  -> max=27
+PASS  A/B 两版式百分比一致  -> 21,100,100,60 vs 21,100,100,60
+PASS  汇总框每行显示宽度一致（框线闭合）  -> widths=70
+PASS  时间线仅用规范符号 ● ○ ─  -> 14:00 ●────15:00 ●────16:00 ●────17:00 ●────17:23 ●────○
+PASS  Backlog 每轮留痕图标限定 ✅/🔄/⬜/🚫  -> 5 行
+PASS  产物百分比 == 独立反算值（未硬编码）  -> artifact=21,100,100,60 recomputed=21,100,100,60
+PASS  全文 <=100 列（宽终端一屏读完）  -> max=90
+
+dashboard.txt: 10 PASS / 0 FAIL · lines=52
+exit=0
+
+$ node verify.js dashboard-naive.txt     # 对照版：技能原文口径（按 JS 字符串长度补位）
+FAIL  Pattern A 3 行 x 4 泳道列首对齐（分隔线段起点 2/24/46/68）  -> row1 lane1 @col24 got=" "
+PASS  进度条恒为 10 格（规范 Always 10 characters）  -> ▓▓░░░░░░░░ ▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓░░░░
+PASS  未混用其它条形字符（Anti-Pattern: Mix bar styles）
+PASS  Pattern B 行数=泳道数且 <=40 列（窄终端可读）  -> max=27
+PASS  A/B 两版式百分比一致  -> 21,100,100,60 vs 21,100,100,60
+FAIL  汇总框每行显示宽度一致（框线闭合）  -> widths=61,70,68
+PASS  时间线仅用规范符号 ● ○ ─  -> 14:00 ●────15:00 ●────16:00 ●────17:00 ●────17:23 ●────○
+PASS  Backlog 每轮留痕图标限定 ✅/🔄/⬜/🚫  -> 5 行
+PASS  产物百分比 == 独立反算值（未硬编码）  -> artifact=21,100,100,60 recomputed=21,100,100,60
+FAIL  全文 <=100 列（宽终端一屏读完）  -> max=106
+
+dashboard-naive.txt: 7 PASS / 3 FAIL · lines=52
+exit=1
+
+$ sed -n '5,9p' dashboard-naive.txt   # 对照版的错位实况
+### Pattern A — Horizontal Lanes (宽屏)
+```
+  📥 DISCOVER           🏗 BUILD              🧹 CLEANUP            🚀 DELIVER
+  来源已定性/来源条目            成功轮次/总轮次              清理留痕/总轮次              推送留痕/总轮次
+  ───────────────────── ───────────────────── ───────────────────── ─────────────────────
+
+# 追加：图例行改法（避免标签行被误读为与刻度对齐）
+$ sed -n '/Pattern C/,/```/p' dashboard.txt
+### Pattern C — Milestone Timeline (已跑轮次，○=下一轮)
+```
+$ node verify.js dashboard.txt | tail -2
+
+dashboard.txt: 10 PASS / 0 FAIL · lines=52
