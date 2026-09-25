@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nimbus 收入看板 · 深色密集分析</title>
+    <meta name="description" content="订阅收入仪表盘：MRR、新增、流失、ARPU 与交易明细，可按时间范围和区域筛选。示例数据。">
+    <style>
+      :root {
+        --bg: #0a0f1a;
+        --panel: #111827;
+        --panel-2: #0d1421;
+        --line: #1f2b3d;
+        --ink: #e6edf7;
+        --dim: #8b9bb3;
+        --up: #34d399;
+        --down: #f87171;
+        --warn: #fbbf24;
+        --accent: #38bdf8;
+        --accent-2: #818cf8;
+        --chart: #38bdf8;
+        --chart-prev: #818cf8;
+        --s1: #38bdf8;
+        --s2: #34d399;
+        --s3: #f87171;
+        --s4: #818cf8;
+      }
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body { margin: 0; background: var(--bg); color: var(--ink); font: 13px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+      h1, h2, h3 { margin: 0; font-weight: 600; }
+      a { color: var(--accent); }
+      :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      button, select, input { font: inherit; color: inherit; }
+      .num { font-variant-numeric: tabular-nums; }
+
+      .top { position: sticky; top: 0; z-index: 3; background: rgba(10, 15, 26, .96); border-bottom: 1px solid var(--line); }
+      .topin { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; padding: 10px 18px; }
+      .brand { display: flex; align-items: baseline; gap: 9px; }
+      .brand b { font-size: 15px; letter-spacing: -.01em; }
+      .brand span { font-size: 11px; color: var(--dim); }
+      .live { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--dim); }
+      .live i { width: 7px; height: 7px; border-radius: 50%; background: var(--up); box-shadow: 0 0 0 3px rgba(52, 211, 153, .18); }
+      .grow { margin-left: auto; }
+      .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--panel-2); }
+      .seg button { border: 0; background: transparent; color: var(--dim); padding: 6px 12px; cursor: pointer; font-size: 12px; }
+      .seg button + button { border-left: 1px solid var(--line); }
+      .seg button[aria-pressed="true"] { background: var(--panel); color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); }
+      .seg button:hover { color: var(--ink); }
+      select { background: var(--panel-2); border: 1px solid var(--line); border-radius: 6px; padding: 6px 9px; font-size: 12px; }
+
+      main { padding: 16px 18px 40px; max-width: 1420px; margin: 0 auto; }
+      .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
+      .card > header { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-bottom: 1px solid var(--line); }
+      .card h2 { font-size: 12.5px; letter-spacing: .02em; }
+      .card > header .hint { font-size: 11px; color: var(--dim); }
+
+      .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+      .kpi { padding: 12px 14px 8px; position: relative; overflow: hidden; }
+      .kpi .k { font-size: 11px; color: var(--dim); letter-spacing: .04em; }
+      .kpi .v { font-size: 26px; font-weight: 600; letter-spacing: -.02em; margin: 4px 0 2px; }
+      .kpi .d { font-size: 11.5px; display: flex; align-items: center; gap: 6px; }
+      .kpi .d .up { color: var(--up); } .kpi .d .down { color: var(--down); }
+      .kpi .spark { position: absolute; right: 0; bottom: 0; left: 0; height: 34px; opacity: .5; }
+      .kpi .spark svg { display: block; width: 100%; height: 34px; }
+      .kpi .cmp { color: var(--dim); }
+
+      .grid { display: grid; grid-template-columns: 1.62fr 1fr; gap: 12px; margin-top: 12px; }
+      .chart { padding: 6px 14px 12px; }
+      .chart svg { display: block; width: 100%; height: 240px; }
+      .axis { fill: var(--dim); font-size: 10.5px; }
+      .gl { stroke: var(--line); stroke-width: 1; }
+      .gl.dash { stroke-dasharray: 3 4; }
+      .line { fill: none; stroke: var(--accent); stroke-width: 2; }
+      .prev { fill: none; stroke: var(--accent-2); stroke-width: 1.4; stroke-dasharray: 4 4; opacity: .8; }
+      .cursor { stroke: var(--warn); stroke-width: 1; }
+      .dot { fill: var(--warn); }
+      .readout { display: flex; gap: 16px; flex-wrap: wrap; font-size: 11.5px; color: var(--dim); padding: 8px 14px 12px; border-top: 1px solid var(--line); }
+      .readout b { color: var(--ink); font-weight: 600; }
+      .legend { display: flex; gap: 14px; font-size: 11px; color: var(--dim); }
+      .legend i { display: inline-block; width: 10px; height: 3px; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
+
+      .plist { padding: 4px 0 8px; }
+      .prow { display: grid; grid-template-columns: 52px 1fr 62px; gap: 10px; align-items: center; padding: 7px 14px; font-size: 12px; }
+      .prow + .prow { border-top: 1px solid var(--panel-2); }
+      .bar { height: 8px; border-radius: 2px; background: var(--panel-2); overflow: hidden; }
+      .bar i { display: block; height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+      .prow .amt { text-align: right; color: var(--dim); }
+
+      table { width: 100%; border-collapse: collapse; font-size: 12px; }
+      th, td { text-align: left; padding: 8px 14px; border-bottom: 1px solid var(--panel-2); }
+      thead th { font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--dim); font-weight: 500; padding: 0; }
+      thead th button { width: 100%; text-align: left; background: none; border: 0; padding: 8px 14px; cursor: pointer; color: inherit; font: inherit; letter-spacing: inherit; text-transform: inherit; }
+      thead th button:hover { color: var(--ink); }
+      thead th button::after { content: ""; float: right; color: var(--accent); }
+      thead th[aria-sort="descending"] button::after { content: "▼"; font-size: 9px; }
+      thead th[aria-sort="ascending"] button::after { content: "▲"; font-size: 9px; }
+      tbody tr:hover { background: var(--panel-2); }
+      td.r { text-align: right; }
+      .tag { display: inline-block; padding: 1px 7px; border-radius: 4px; font-size: 11px; border: 1px solid var(--line); }
+      .tag.ok { color: var(--up); border-color: rgba(52, 211, 153, .35); background: rgba(52, 211, 153, .08); }
+      .tag.trial { color: var(--accent-2); border-color: rgba(129, 140, 248, .35); background: rgba(129, 140, 248, .08); }
+      .tag.refund { color: var(--warn); border-color: rgba(251, 191, 36, .35); background: rgba(251, 191, 36, .08); }
+      .tag.fail { color: var(--down); border-color: rgba(248, 113, 113, .35); background: rgba(248, 113, 113, .08); }
+      .sel-row { background: rgba(56, 189, 248, .07); box-shadow: inset 2px 0 0 var(--accent); }
+      .empty { padding: 26px 14px; color: var(--dim); text-align: center; }
+      .search { display: flex; align-items: center; gap: 8px; }
+      .search input { background: var(--panel-2); border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; width: 190px; }
+      .search input::placeholder { color: #5f708a; }
+      .grad-a { stop-color: var(--chart); stop-opacity: .34; }
+      .grad-b { stop-color: var(--chart); stop-opacity: 0; }
+      .wide { margin-top: 12px; }
+      .foot { margin-top: 18px; display: flex; gap: 14px; flex-wrap: wrap; align-items: baseline; font-size: 11.5px; color: var(--dim); }
+      .foot .grow { margin-left: auto; }
+      .scroll-x { overflow-x: auto; }
+
+      @media (max-width: 1080px) { .kpis { grid-template-columns: 1fr 1fr; } .grid { grid-template-columns: 1fr; } }
+      @media (max-width: 640px) { .kpis { grid-template-columns: 1fr; } .topin { padding: 10px 12px; } main { padding: 12px; } }
+      @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+    </style>
+  </head>
+  <body>
+    <div class="top">
+      <div class="topin">
+        <div class="brand"><b>Nimbus 收入看板</b><span>订阅业务经营视图</span></div>
+        <span class="live"><i aria-hidden="true"></i>示例数据 · 截至 2026-09-25</span>
+        <span class="grow"></span>
+        <div class="seg" id="ranges" role="group" aria-label="时间范围"></div>
+        <label style="font-size:11.5px;color:var(--dim)">区域
+          <select id="region">
+            <option value="all">全部区域</option>
+            <option value="east">华东</option>
+            <option value="north">华北</option>
+            <option value="south">华南</option>
+            <option value="over">海外</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <main>
+      <div class="kpis" id="kpis"></div>
+
+      <div class="grid">
+        <section class="card">
+          <header>
+            <h2>MRR 走势</h2>
+            <span class="grow"></span>
+            <span class="legend"><span><i style="background:var(--chart)"></i>本期</span><span><i style="background:var(--chart-prev)"></i>上期</span></span>
+          </header>
+          <div class="chart"><svg id="chart" viewBox="0 0 760 240" preserveAspectRatio="none" role="img" aria-label="MRR 走势折线图"></svg></div>
+          <div class="readout" id="readout" aria-live="polite"></div>
+        </section>
+
+        <section class="card">
+          <header><h2>套餐收入构成</h2><span class="grow"></span><span class="hint" id="plans-hint"></span></header>
+          <div class="plist" id="plans"></div>
+        </section>
+      </div>
+
+      <div class="grid">
+        <section class="card wide">
+          <header><h2>区域明细</h2><span class="grow"></span><span class="hint">按期末 MRR 排序 · 环比为区间后半段对前半段</span></header>
+          <div class="scroll-x">
+            <table id="regions">
+              <thead><tr><th>区域</th><th class="r">活跃订阅</th><th class="r">MRR</th><th class="r">月流失率</th><th class="r">环比</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card wide">
+          <header>
+            <h2>近期交易</h2>
+            <span class="hint" id="tx-hint"></span>
+            <span class="grow"></span>
+            <span class="search"><label for="q" style="font-size:11px;color:var(--dim)">筛选</label><input id="q" type="search" placeholder="订单号 / 区域 / 套餐 / 状态" autocomplete="off"></span>
+          </header>
+          <div class="scroll-x">
+            <table id="tx">
+              <thead><tr>
+                <th data-sort="t" aria-sort="descending"><button type="button">日期</button></th>
+                <th data-sort="id"><button type="button">订单号</button></th>
+                <th data-sort="region"><button type="button">区域</button></th>
+                <th data-sort="plan"><button type="button">套餐</button></th>
+                <th data-sort="amt" class="r"><button type="button" style="text-align:right">金额</button></th>
+                <th data-sort="status"><button type="button">状态</button></th>
+              </tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="empty" id="tx-empty" hidden>没有匹配的订单。换个关键词，或把区域切回「全部区域」。</div>
+        </section>
+      </div>
+
+      <p class="foot">
+        <span>数据为演示用随机样本（种子 20260925），非真实后端结果。</span>
+        <span class="grow"></span>
+        <span>同场景其它风格：</span>
+        <a href="../newsprint/index.html">报纸排版</a>
+        <a href="../retro-terminal/index.html">复古终端</a>
+        <a href="../index.html">目录</a>
+      </p>
+    </main>
+
+    <script>
+      (function () {
+        "use strict";
+        var REGIONS = [["east", "华东"], ["north", "华北"], ["south", "华南"], ["over", "海外"]];
+        var PLANS = [["basic", "基础", 39], ["pro", "专业", 129], ["team", "团队", 329], ["ent", "企业", 1290]];
+        var RANGES = [["7d", "7 天", 7, "day"], ["30d", "30 天", 30, "day"], ["90d", "90 天", 90, "week"], ["12m", "12 个月", 365, "month"]];
+        var DAY = 864e5, END = Date.UTC(2026, 8, 25);
+        var S = { range: "30d", region: "all", q: "", sort: "t", dir: -1 };
+        var CS = getComputedStyle(document.documentElement);
+        function cssv(n, fb) { var v = CS.getPropertyValue(n).trim(); return v || fb; }
+        var PAL = { spark: [cssv("--s1", "#38bdf8"), cssv("--s2", "#34d399"), cssv("--s3", "#f87171"), cssv("--s4", "#818cf8")] };
+
+        function mulberry(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+        var rnd = mulberry(20260925);
+        var RBASE = [46, 31, 22, 13], PBASE = [1.7, 2.5, 1.2, 0.45];
+
+        var rows = [];
+        for (var i = 364; i >= 0; i--) {
+          var t = END - i * DAY, dw = new Date(t).getUTCDay();
+          var growth = 0.72 + (364 - i) / 364 * 0.66;
+          var season = (dw === 0 || dw === 6) ? 0.84 : 1;
+          for (var r = 0; r < 4; r++) {
+            for (var p = 0; p < 4; p++) {
+              var subs = Math.max(2, Math.round(RBASE[r] * PBASE[p] * growth * season * (0.88 + rnd() * 0.24)));
+              rows.push({
+                t: t, r: REGIONS[r][0], p: PLANS[p][0], subs: subs,
+                news: subs * (0.008 + rnd() * 0.022),
+                churn: subs * (0.0006 + rnd() * 0.0018),
+                mrr: subs * PLANS[p][2]
+              });
+            }
+          }
+        }
+
+        var STATUS = ["成功", "成功", "成功", "成功", "试用", "退款", "失败"];
+        var TX = [];
+        for (var k = 0; k < rows.length; k++) {
+          var o = rows[k];
+          if (rnd() > 0.02) continue;
+          var months = 1 + Math.floor(rnd() * 12);
+          TX.push({
+            t: o.t, id: "NB-" + (104800 + Math.floor(rnd() * 89000)), r: o.r, p: o.p,
+            amt: priceOf(o.p) * months, months: months, status: STATUS[Math.floor(rnd() * STATUS.length)]
+          });
+        }
+        function priceOf(id) { for (var j = 0; j < PLANS.length; j++) if (PLANS[j][0] === id) return PLANS[j][2]; return 0; }
+        function nameOf(list, id) { for (var j = 0; j < list.length; j++) if (list[j][0] === id) return list[j][1]; return id; }
+
+        function money(v) { return "¥" + Math.round(v).toLocaleString("zh-CN"); }
+        function num(v) { return Math.round(v).toLocaleString("zh-CN"); }
+        function pct(v, digits) { return (v * 100).toFixed(digits === 0 ? 0 : 1) + "%"; }
+        function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+        function dateLabel(t, kind) {
+          var d = new Date(t);
+          if (kind === "month") return d.getUTCFullYear() + "-" + String(d.getUTCMonth() + 1).padStart(2, "0");
+          return (d.getUTCMonth() + 1) + "/" + d.getUTCDate();
+        }
+        function fullDate(t) { var d = new Date(t); return d.getUTCFullYear() + "-" + String(d.getUTCMonth() + 1).padStart(2, "0") + "-" + String(d.getUTCDate()).padStart(2, "0"); }
+        function rangeOf() { for (var j = 0; j < RANGES.length; j++) if (RANGES[j][0] === S.range) return RANGES[j]; return RANGES[1]; }
+
+        function seriesFrom(list, kind) {
+          var byDay = {};
+          for (var i = 0; i < list.length; i++) {
+            var o = list[i], d = byDay[o.t] || (byDay[o.t] = { mrr: 0, subs: 0, news: 0, churn: 0 });
+            d.mrr += o.mrr; d.subs += o.subs; d.news += o.news; d.churn += o.churn;
+          }
+          var keys = Object.keys(byDay).map(Number).sort(function (a, b) { return a - b; });
+          var out = [], map = {};
+          keys.forEach(function (t) {
+            var d = new Date(t), key;
+            if (kind === "day") key = t;
+            else if (kind === "week") key = t - ((d.getUTCDay() + 6) % 7) * DAY;
+            else key = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1);
+            var b = map[key] || (map[key] = { t: key, mrr: 0, subs: 0, news: 0, churn: 0 });
+            b.t2 = t; b.mrr = byDay[t].mrr; b.subs = byDay[t].subs;
+            b.news += byDay[t].news; b.churn += byDay[t].churn;
+          });
+          Object.keys(map).forEach(function (kk) { out.push(map[kk]); });
+          out.sort(function (a, b) { return a.t - b.t; });
+          return out;
+        }
+
+        function deltaText(v, invert) {
+          var good = invert ? v < 0 : v > 0;
+          var cls = Math.abs(v) < 0.0005 ? "" : (good ? "up" : "down");
+          var arrow = Math.abs(v) < 0.0005 ? "→" : (v > 0 ? "▲" : "▼");
+          return '<span class="' + cls + '">' + arrow + " " + pct(Math.abs(v), 1) + "</span>";
+        }
+
+        function spark(vals, color) {
+          if (!vals.length) return "";
+          var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals), span = hi - lo || 1;
+          var pts = vals.map(function (v, i) {
+            return (i / (vals.length - 1 || 1) * 120).toFixed(1) + "," + (30 - (v - lo) / span * 26).toFixed(1);
+          });
+          return '<svg viewBox="0 0 120 32" preserveAspectRatio="none" aria-hidden="true">' +
+            '<polygon points="0,32 ' + pts.join(" ") + ' 120,32" fill="' + color + '" opacity=".14"></polygon>' +
+            '<polyline points="' + pts.join(" ") + '" fill="none" stroke="' + color + '" stroke-width="1.6"></polyline></svg>';
+        }
+
+        var els = {
+          ranges: document.getElementById("ranges"), region: document.getElementById("region"),
+          kpis: document.getElementById("kpis"), chart: document.getElementById("chart"),
+          readout: document.getElementById("readout"), plans: document.getElementById("plans"),
+          plansHint: document.getElementById("plans-hint"), regions: document.querySelector("#regions tbody"),
+          tx: document.querySelector("#tx tbody"), q: document.getElementById("q"), empty: document.getElementById("tx-empty"),
+          txHint: document.getElementById("tx-hint")
+        };
+
+        RANGES.forEach(function (rg) {
+          var b = document.createElement("button");
+          b.type = "button"; b.textContent = rg[1]; b.dataset.range = rg[0];
+          b.setAttribute("aria-pressed", String(rg[0] === S.range));
+          b.addEventListener("click", function () {
+            S.range = rg[0];
+            Array.prototype.forEach.call(els.ranges.children, function (c) { c.setAttribute("aria-pressed", String(c.dataset.range === S.range)); });
+            render();
+          });
+          els.ranges.appendChild(b);
+        });
+        els.region.addEventListener("change", function () { S.region = els.region.value; render(); });
+        els.q.addEventListener("input", function () { S.q = els.q.value.trim(); renderTx(); });
+        Array.prototype.forEach.call(document.querySelectorAll("#tx thead th"), function (th) {
+          th.querySelector("button").addEventListener("click", function () {
+            var key = th.dataset.sort;
+            S.dir = (S.sort === key) ? -S.dir : -1;
+            S.sort = key;
+            Array.prototype.forEach.call(document.querySelectorAll("#tx thead th"), function (o) { o.removeAttribute("aria-sort"); });
+            th.setAttribute("aria-sort", S.dir === 1 ? "ascending" : "descending");
+            renderTx();
+          });
+        });
+
+        var current = null;
+
+        function render() {
+          var rg = range(), days = rg[2], start = END - (days - 1) * DAY;
+          var inRange = rows.filter(function (o) { return o.t >= start; });
+          var F = inRange.filter(function (o) { return S.region === "all" || o.r === S.region; });
+          var ser = seriesFrom(F, rg[3]);
+          var prevStart = start - days * DAY;
+          var prevSer = seriesFrom(inRange.filter(function (o) { return o.t < start && o.t >= prevStart && (S.region === "all" || o.r === S.region); }), rg[3]);
+          current = { rg: rg, ser: ser, days: days };
+
+          var first = ser[0] || { mrr: 0, subs: 0 }, last = ser[ser.length - 1] || first;
+          var sumNews = F.reduce(function (a, o) { return a + o.news; }, 0);
+          var sumChurn = F.reduce(function (a, o) { return a + o.churn; }, 0);
+          var avgSubs = ser.reduce(function (a, b) { return a + b.subs; }, 0) / (ser.length || 1);
+          var half = Math.floor(ser.length / 2) || 1;
+          var newsH1 = ser.slice(0, half).reduce(function (a, b) { return a + b.news; }, 0);
+          var newsH2 = ser.slice(half).reduce(function (a, b) { return a + b.news; }, 0);
+          var churnH1 = ser.slice(0, half).reduce(function (a, b) { return a + b.churn; }, 0);
+          var churnH2 = ser.slice(half).reduce(function (a, b) { return a + b.churn; }, 0);
+
+          var cards = [
+            { k: "MRR（期末）", v: money(last.mrr), d: last.mrr / (first.mrr || 1) - 1, s: ser.map(function (b) { return b.mrr; }), c: PAL.spark[0], cmp: "对比期初 " + money(first.mrr) },
+            { k: "新增订阅（区间）", v: num(sumNews), d: newsH2 / (newsH1 || 1) - 1, s: ser.map(function (b) { return b.news; }), c: PAL.spark[1], cmp: "后半段对前半段" },
+            { k: "月流失率", v: pct(sumChurn / (avgSubs * days || 1) * 30, 1), d: churnH2 / (churnH1 || 1) - 1, inv: true, s: ser.map(function (b) { return b.churn; }), c: PAL.spark[2], cmp: "区间流失 " + num(sumChurn) + " 份" },
+            { k: "ARPU", v: money(last.mrr / (last.subs || 1)), d: (last.mrr / (last.subs || 1)) / (first.mrr / (first.subs || 1)) - 1, s: ser.map(function (b) { return b.mrr / (b.subs || 1); }), c: PAL.spark[3], cmp: "在册 " + num(last.subs) + " 份" }
+          ];
+          els.kpis.innerHTML = cards.map(function (c) {
+            return '<div class="card kpi"><p class="k">' + c.k + '</p><p class="v num">' + c.v + '</p>' +
+              '<p class="d num">' + deltaText(c.d, c.inv) + '<span class="cmp">' + c.cmp + "</span></p>" +
+              '<div class="spark">' + spark(c.s, c.c) + "</div></div>";
+          }).join("");
+
+          renderChart(ser, prevSer, rg[3]);
+          renderPlans(F, last);
+          renderRegions(inRange, days, start);
+          renderTx();
+        }
+
+        function renderChart(ser, prevSer, kind) {
+          var W = 760, H = 240, L = 54, R = 12, T = 14, B = 26;
+          var vals = ser.map(function (b) { return b.mrr; });
+          var pvals = prevSer.map(function (b) { return b.mrr; });
+          var hi = Math.max.apply(null, vals.concat(pvals.length ? pvals : [0])) || 1;
+          hi = Math.ceil(hi / 50000) * 50000;
+          var n = ser.length;
+          function x(i) { return L + (n < 2 ? (W - L - R) / 2 : i / (n - 1) * (W - L - R)); }
+          function y(v) { return T + (1 - v / hi) * (H - T - B); }
+          var g = "";
+          for (var i = 0; i <= 4; i++) {
+            var v = hi / 4 * i, yy = y(v);
+            g += '<line class="gl' + (i ? " dash" : "") + '" x1="' + L + '" y1="' + yy.toFixed(1) + '" x2="' + (W - R) + '" y2="' + yy.toFixed(1) + '"></line>' +
+              '<text class="axis" x="' + (L - 8) + '" y="' + (yy + 3.5).toFixed(1) + '" text-anchor="end">' + (v / 10000).toFixed(0) + "万</text>";
+          }
+          function path(arr) {
+            if (!arr.length) return "";
+            return arr.map(function (v, i) { return (i ? "L" : "M") + x(i).toFixed(1) + " " + y(v).toFixed(1); }).join(" ");
+          }
+          var line = path(vals);
+          var area = n ? line + " L" + x(n - 1).toFixed(1) + " " + y(0) + " L" + x(0).toFixed(1) + " " + y(0) + " Z" : "";
+          var ticks = "";
+          [0, Math.floor((n - 1) / 2), n - 1].filter(function (v, idx, a) { return idx === 0 || a.indexOf(v) === idx; }).forEach(function (i2) {
+            if (!ser[i2]) return;
+            ticks += '<text class="axis" x="' + x(i2).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="' + (i2 === 0 ? "start" : i2 === n - 1 ? "end" : "middle") + '">' + dateLabel(ser[i2].t, kind) + "</text>";
+          });
+          var defs = '<defs><linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">' +
+            '<stop class="grad-a" offset="0%"></stop><stop class="grad-b" offset="100%"></stop></linearGradient></defs>';
+          els.chart.innerHTML = defs + g +
+            '<path d="' + area + '" fill="url(#fill)"></path>' +
+            (pvals.length ? '<path class="prev" d="' + path(pvals) + '"></path>' : "") +
+            '<path class="line" d="' + line + '"></path>' +
+            '<g id="hover" opacity="0"><line class="cursor" y1="' + T + '" y2="' + (H - B) + '"></line><circle class="dot" r="3.5"></circle></g>' + ticks;
+
+          var hover = document.getElementById("hover");
+          function show(i2) {
+            if (!ser[i2]) return;
+            var px = x(i2), py = y(ser[i2].mrr);
+            hover.setAttribute("opacity", "1");
+            hover.querySelector("line").setAttribute("x1", px); hover.querySelector("line").setAttribute("x2", px);
+            hover.querySelector("circle").setAttribute("cx", px); hover.querySelector("circle").setAttribute("cy", py);
+            var b = ser[i2];
+            els.readout.innerHTML = "<span><b>" + fullDate(b.t2) + "</b></span><span>MRR <b>" + money(b.mrr) + "</b></span>" +
+              "<span>活跃订阅 <b>" + num(b.subs) + "</b></span><span>本期新增 <b>" + num(b.news) + "</b></span><span>本期流失 <b>" + num(b.churn) + "</b></span>";
+          }
+          els.chart.onpointermove = function (e) {
+            var rect = els.chart.getBoundingClientRect();
+            var ratio = (e.clientX - rect.left) / rect.width * W;
+            var i2 = Math.round((ratio - L) / ((W - L - R) / Math.max(1, n - 1)));
+            show(Math.max(0, Math.min(n - 1, i2)));
+          };
+          els.chart.onpointerleave = function () { hover.setAttribute("opacity", "0"); show(n - 1); };
+          show(n - 1);
+        }
+
+        function renderPlans(F, last) {
+          var totals = {}, all = 0;
+          F.forEach(function (o) { if (o.t === last.t2) { totals[o.p] = (totals[o.p] || 0) + o.mrr; all += o.mrr; } });
+          els.plansHint.textContent = "期末 MRR 拆分 · 共 " + money(all);
+          els.plans.innerHTML = PLANS.map(function (pl) {
+            var v = totals[pl[0]] || 0, share = all ? v / all : 0;
+            return '<div class="prow"><span>' + pl[1] + '</span><span class="bar"><i style="width:' + (share * 100).toFixed(1) + '%"></i></span><span class="amt num">' + money(v) + " · " + pct(share, 0) + "</span></div>";
+          }).join("");
+        }
+
+        function renderRegions(inRange, days, start) {
+          var mid = start + Math.floor(days / 2) * DAY;
+          var acc = {};
+          REGIONS.forEach(function (rg) { acc[rg[0]] = { subs: 0, mrr: 0, churn: 0, h1: 0, h2: 0, lastT: 0, lastMrr: 0 }; });
+          inRange.forEach(function (o) {
+            var a = acc[o.r];
+            a.churn += o.churn;
+            if (o.t < mid) a.h1 += o.mrr; else a.h2 += o.mrr;
+            if (o.t > a.lastT) { a.lastT = o.t; a.lastMrr = 0; a.subs = 0; }
+            if (o.t === a.lastT) { a.lastMrr += o.mrr; a.subs += o.subs; }
+          });
+          var avgDays = {};
+          REGIONS.forEach(function (rg) {
+            var list = inRange.filter(function (o) { return o.r === rg[0]; });
+            var byDay = {};
+            list.forEach(function (o) { byDay[o.t] = (byDay[o.t] || 0) + o.subs; });
+            var ks = Object.keys(byDay);
+            avgDays[rg[0]] = ks.reduce(function (a, k) { return a + byDay[k]; }, 0) / (ks.length || 1);
+          });
+          var out = REGIONS.map(function (rg) {
+            var a = acc[rg[0]];
+            return { id: rg[0], name: rg[1], subs: a.subs, mrr: a.lastMrr, churn: a.churn / (avgDays[rg[0]] * days || 1) * 30, mom: a.h1 ? a.h2 / a.h1 - 1 : 0 };
+          }).sort(function (x1, y1) { return y1.mrr - x1.mrr; });
+          els.regions.innerHTML = out.map(function (o) {
+            return "<tr" + (S.region === o.id ? ' class="sel-row"' : "") + '><td>' + o.name + '</td><td class="r num">' + num(o.subs) +
+              '</td><td class="r num">' + money(o.mrr) + '</td><td class="r num">' + pct(o.churn, 1) +
+              '</td><td class="r num">' + deltaText(o.mom) + "</td></tr>";
+          }).join("");
+        }
+
+        function renderTx() {
+          var txStart = END - (rangeOf()[2] - 1) * DAY;
+          var q = S.q.toLowerCase();
+          var list = TX.filter(function (o) {
+            if (o.t < txStart) return false;
+            if (S.region !== "all" && o.r !== S.region) return false;
+            if (!q) return true;
+            return (o.id + " " + nameOf(REGIONS, o.r) + " " + nameOf(PLANS, o.p) + " " + o.status).toLowerCase().indexOf(q) >= 0;
+          });
+          var key = S.sort;
+          list.sort(function (a, b) {
+            var av = key === "region" ? nameOf(REGIONS, a.r) : key === "plan" ? nameOf(PLANS, a.p) : a[key];
+            var bv = key === "region" ? nameOf(REGIONS, b.r) : key === "plan" ? nameOf(PLANS, b.p) : b[key];
+            if (typeof av === "string") return av.localeCompare(bv, "zh-CN") * S.dir;
+            return (av - bv) * S.dir;
+          });
+          var cls = { "成功": "ok", "试用": "trial", "退款": "refund", "失败": "fail" };
+          els.tx.innerHTML = list.slice(0, 60).map(function (o) {
+            return "<tr><td class='num'>" + fullDate(o.t) + "</td><td>" + o.id + "</td><td>" + nameOf(REGIONS, o.r) +
+              "</td><td>" + nameOf(PLANS, o.p) + " × " + o.months + "月</td><td class='r num'>" + money(o.amt) +
+              "</td><td><span class='tag " + cls[o.status] + "'>" + o.status + "</span></td></tr>";
+          }).join("");
+          els.txHint.textContent = "近 " + rangeOf()[2] + " 天 · 共 " + list.length + " 笔";
+          var msg = "";
+          if (!list.length) msg = "没有匹配「" + esc(S.q || "当前筛选") + "」的订单。换个关键词，或把区域切回「全部区域」。";
+          else if (list.length > 60) msg = "共 " + list.length + " 笔，仅显示前 60 笔。";
+          els.empty.textContent = msg;
+          els.empty.hidden = !msg;        }
+
+        function range() { return rangeOf(); }
+        render();
+      })();
+    </script>
+  </body>
+</html>

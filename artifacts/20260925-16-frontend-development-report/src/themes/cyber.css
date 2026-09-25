@@ -1,0 +1,179 @@
+/* 主题 C · 暗色霓虹（cyber）：深空底色、渐变描边、发光数字、玻璃卡片，趋势图更像示波器。 */
+
+:root.theme-cyber {
+  --bg: #080a12;
+  --fg: #eaf0ff;
+  --fg-dim: #7f8bb0;
+  --fg-body: #b9c4e6;
+  --surface: rgba(20, 25, 44, 0.72);
+  --surface-raised: #131a30;
+  --accent: #22d3ee;
+  --accent-soft: rgba(34, 211, 238, 0.16);
+  --line: rgba(126, 148, 214, 0.26);
+  --rule: 1px solid rgba(126, 148, 214, 0.26);
+  --rule-soft: 1px solid rgba(126, 148, 214, 0.14);
+  --grid: rgba(126, 148, 214, 0.13);
+  --track: rgba(126, 148, 214, 0.18);
+  --head-bg: rgba(28, 35, 62, 0.9);
+  --row-open: rgba(34, 211, 238, 0.07);
+  --card-border: 1px solid rgba(126, 148, 214, 0.26);
+  --card-shadow: 0 18px 40px -28px rgba(34, 211, 238, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --good: #34e0a1;
+  --bad: #fb6f92;
+  --warn: #f7c66b;
+  --on-accent: #04121a;
+  --s1: #22d3ee;
+  --s2: #a78bfa;
+  --s3: #f472b6;
+  --s4: #34e0a1;
+  --s5: #f7c66b;
+  --font-display: -apple-system, 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  --font-body: -apple-system, 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  --font-num: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+  --measure: 1180px;
+  --pad-page: clamp(22px, 4vw, 46px) clamp(16px, 3.4vw, 40px) 64px;
+  --gap-block: 34px;
+  --gap-tight: 8px;
+  --gap-cards: 16px;
+  --gap-inner: 6px;
+  --gap-bar: 16px;
+  --gap-facts: 26px;
+  --pad-block: 18px;
+  --pad-card: 16px 18px;
+  --pad-cell: 10px 13px;
+  --pad-seg: 9px 16px;
+  --pad-input: 9px 13px;
+  --fs-body: 15px;
+  --fs-title: clamp(30px, 4.6vw, 48px);
+  --fs-h2: 15px;
+  --fs-h3: 16px;
+  --fs-kpi: clamp(28px, 3vw, 38px);
+  --fs-small: 13.5px;
+  --fs-micro: 11px;
+  --fw-title: 700;
+  --fw-h2: 600;
+  --fw-h3: 600;
+  --fw-kpi: 500;
+  --fw-head: 600;
+  --fw-cell-strong: 600;
+  --lh: 1.62;
+  --track-title: -0.025em;
+  --track-h2: 0.14em;
+  --track-label: 0.14em;
+  --track-num: -0.02em;
+  --r-card: 16px;
+  --r-seg: 999px;
+  --r-input: 10px;
+  --r-tag: 999px;
+  --kpi-cols: repeat(auto-fit, minmax(198px, 1fr));
+  --insight-cols: repeat(auto-fit, minmax(310px, 1fr));
+  --foot-cols: repeat(auto-fit, minmax(230px, 1fr));
+  --insight-edge: 2px solid rgba(34, 211, 238, 0.5);
+}
+
+.theme-cyber body {
+  background-image: radial-gradient(120% 90% at 8% -20%, rgba(34, 211, 238, 0.17), transparent 55%),
+    radial-gradient(110% 80% at 96% 4%, rgba(244, 114, 182, 0.14), transparent 52%),
+    linear-gradient(rgba(126, 148, 214, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(126, 148, 214, 0.05) 1px, transparent 1px);
+  background-size: auto, auto, 44px 44px, 44px 44px;
+  background-attachment: fixed;
+}
+
+.theme-cyber .rp-head {
+  border-bottom: 1px solid rgba(34, 211, 238, 0.3);
+}
+
+.theme-cyber .rp-head__title {
+  background: linear-gradient(96deg, #22d3ee 8%, #a78bfa 52%, #f472b6 92%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 42px rgba(167, 139, 250, 0.28);
+}
+
+.theme-cyber .rp-badge {
+  color: var(--s1);
+}
+
+.theme-cyber .rp-seg {
+  background: rgba(12, 16, 30, 0.8);
+  border-color: rgba(126, 148, 214, 0.3);
+}
+
+.theme-cyber .rp-seg__btn + .rp-seg__btn {
+  border-left: 1px solid rgba(126, 148, 214, 0.22);
+}
+
+.theme-cyber .rp-seg__btn[aria-pressed='true'] {
+  background: linear-gradient(120deg, #22d3ee, #a78bfa);
+  color: #04121a;
+  box-shadow: 0 0 22px -6px rgba(34, 211, 238, 0.8);
+}
+
+.theme-cyber .rp-kpi__value,
+.theme-cyber .rp-insight__tone,
+.theme-cyber .rp-sec__note {
+  font-family: var(--font-num);
+}
+
+.theme-cyber .rp-kpi {
+  backdrop-filter: blur(6px);
+}
+
+.theme-cyber .rp-kpi__value {
+  text-shadow: 0 0 26px rgba(34, 211, 238, 0.35);
+}
+
+.theme-cyber .rp-kpi__spark-line {
+  filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.55));
+}
+
+.theme-cyber .rp-chart__pv {
+  filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.5));
+}
+
+.theme-cyber .rp-chart__uv {
+  filter: drop-shadow(0 0 6px rgba(167, 139, 250, 0.45));
+}
+
+.theme-cyber .rp-table thead th {
+  backdrop-filter: blur(4px);
+}
+
+.theme-cyber .rp-table tbody tr:hover td {
+  background: rgba(34, 211, 238, 0.05);
+}
+
+.theme-cyber .rp-insight {
+  backdrop-filter: blur(6px);
+}
+
+.theme-cyber .rp-insight[data-tone='risk'] {
+  box-shadow: 0 18px 40px -30px rgba(251, 111, 146, 0.8);
+}
+
+.theme-cyber .rp-skel {
+  background: rgba(126, 148, 214, 0.22);
+}
+
+@media print {
+  .theme-cyber {
+    --bg: #fff;
+    --fg: #111;
+    --fg-dim: #555;
+    --fg-body: #222;
+    --surface: #fff;
+    --card-border: 1px solid #bbb;
+    background-image: none;
+  }
+  .theme-cyber .rp-head__title {
+    background: none;
+    color: #111;
+    text-shadow: none;
+  }
+  .theme-cyber .rp-bar {
+    display: none !important;
+  }
+}

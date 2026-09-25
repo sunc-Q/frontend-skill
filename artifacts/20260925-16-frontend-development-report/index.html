@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>数据报表 · 三种风格（frontend-development 验证）</title>
+    <meta name="description" content="同一套 Vue 3 + Pinia 报表组件，用三个入口与三套主题呈现：暖纸数据新闻、冷灰对账单、暗色霓虹。" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f4f4f5;
+        --fg: #18181b;
+        --dim: #52525b;
+        --line: #d4d4d8;
+        --card: #fff;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #101014;
+          --fg: #e4e4e7;
+          --dim: #a1a1aa;
+          --line: #2c2c33;
+          --card: #17171c;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: clamp(24px, 6vw, 64px);
+        background: var(--bg);
+        color: var(--fg);
+        font: 15px/1.65 -apple-system, 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+      }
+      main {
+        max-width: 860px;
+        margin: 0 auto;
+        display: grid;
+        gap: 22px;
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(24px, 4vw, 34px);
+        letter-spacing: -0.02em;
+      }
+      p.lede {
+        margin: 0;
+        color: var(--dim);
+        max-width: 62ch;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 12px;
+      }
+      li {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 16px 18px;
+        display: grid;
+        gap: 6px;
+      }
+      a {
+        color: inherit;
+        font-weight: 600;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+      }
+      a:hover {
+        text-decoration-color: #a8371b;
+      }
+      span {
+        color: var(--dim);
+        font-size: 13.5px;
+      }
+      code {
+        font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+        font-size: 12.5px;
+        background: color-mix(in srgb, var(--line) 45%, transparent);
+        padding: 1px 5px;
+        border-radius: 4px;
+      }
+      footer {
+        color: var(--dim);
+        font-size: 13px;
+        border-top: 1px solid var(--line);
+        padding-top: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>流量与作品表现报表 · 三种风格</h1>
+      <p class="lede">
+        验证 <code>frontend-development</code> 技能：同一套 <code>&lt;script setup lang="ts"&gt;</code> 组件、同一个
+        Pinia store，只有入口 HTML 与主题令牌不同。数据为本地确定性样例（种子 20260925），非真实统计。
+      </p>
+      <ul>
+        <li>
+          <a href="./preview/editorial.html">A · 暖纸数据新闻 editorial</a>
+          <span>衬线大标题、双线分隔、KPI 顶部粗黑边、洞察卡去底色——报表当长文读。</span>
+        </li>
+        <li>
+          <a href="./preview/statement.html">B · 冷灰对账单 statement</a>
+          <span>窄版 940px、等宽数字、KPI 变账簿点线行、表格斑马线、<code>@page A4</code> 打印规则。</span>
+        </li>
+        <li>
+          <a href="./preview/cyber.html">C · 暗色霓虹 cyber</a>
+          <span>深空底 + 网格、渐变标题文字、发光折线、胶囊分段控件与玻璃卡片。</span>
+        </li>
+      </ul>
+      <footer>
+        构建：<code>npm install &amp;&amp; npx vite build</code>（Vite 8.3.1 / Vue 3.5 / Pinia 3）。校验：
+        <code>npx vue-tsc --noEmit</code> 全绿。<code>preview/</code> 下三个页面是 JS/CSS 内联的单文件版本，双击即可打开；
+        <code>THEME=editorial npx vite build --config vite.single.config.ts</code> 可重新生成。
+      </footer>
+    </main>
+  </body>
+</html>

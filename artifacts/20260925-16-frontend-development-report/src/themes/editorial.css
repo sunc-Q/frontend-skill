@@ -1,0 +1,135 @@
+/* 主题 A · 暖纸数据新闻（editorial）：衬线大标题、宽松阅读节奏、单一点缀色，报表像一篇长文。
+   结构样式来自 base.css，本文件只提供设计令牌与少量风格化覆写。 */
+
+:root.theme-editorial {
+  --bg: #f6efe4;
+  --fg: #1f1a15;
+  --fg-dim: #7d7264;
+  --fg-body: #362e26;
+  --surface: #fffaf1;
+  --surface-raised: #fffaf1;
+  --accent: #a8371b;
+  --accent-soft: rgba(168, 55, 27, 0.12);
+  --line: #ddcfba;
+  --rule: 1px solid #ddcfba;
+  --rule-soft: 1px solid #ece0cd;
+  --grid: rgba(31, 26, 21, 0.09);
+  --track: #e8dcc8;
+  --head-bg: #f1e7d8;
+  --row-open: #f8f0e2;
+  --card-border: 1px solid #ddcfba;
+  --card-shadow: none;
+  --good: #1f6b45;
+  --bad: #a8371b;
+  --warn: #9a6b12;
+  --on-accent: #fff7ea;
+  --s1: #a8371b;
+  --s2: #1f6b45;
+  --s3: #6b5396;
+  --s4: #9a6b12;
+  --s5: #2f6b7a;
+  --font-display: 'Songti SC', 'Noto Serif SC', Georgia, 'Times New Roman', serif;
+  --font-body: -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-num: 'Songti SC', Georgia, serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+  --measure: 1140px;
+  --pad-page: clamp(20px, 5vw, 64px) clamp(16px, 4vw, 48px) 72px;
+  --gap-block: 44px;
+  --gap-tight: 8px;
+  --gap-cards: 18px;
+  --gap-inner: 6px;
+  --gap-bar: 18px;
+  --gap-facts: 34px;
+  --pad-block: 22px;
+  --pad-card: 18px 20px;
+  --pad-cell: 11px 14px;
+  --pad-seg: 8px 15px;
+  --pad-input: 8px 12px;
+  --fs-body: 16px;
+  --fs-title: clamp(34px, 5.4vw, 56px);
+  --fs-h2: 24px;
+  --fs-h3: 19px;
+  --fs-kpi: clamp(30px, 3.4vw, 42px);
+  --fs-small: 14.5px;
+  --fs-micro: 11.5px;
+  --fw-title: 700;
+  --fw-h2: 700;
+  --fw-h3: 600;
+  --fw-kpi: 600;
+  --fw-head: 600;
+  --fw-cell-strong: 600;
+  --lh: 1.68;
+  --track-title: -0.02em;
+  --track-h2: -0.01em;
+  --track-label: 0.08em;
+  --track-num: -0.01em;
+  --r-card: 2px;
+  --r-seg: 2px;
+  --r-input: 2px;
+  --r-tag: 2px;
+  --kpi-cols: repeat(auto-fit, minmax(210px, 1fr));
+  --insight-cols: repeat(auto-fit, minmax(330px, 1fr));
+  --foot-cols: repeat(auto-fit, minmax(240px, 1fr));
+  --insight-edge: 3px solid var(--accent);
+}
+
+.theme-editorial {
+  background-image: radial-gradient(circle at 12% -8%, rgba(168, 55, 27, 0.07), transparent 46%),
+    radial-gradient(circle at 92% 4%, rgba(107, 83, 150, 0.06), transparent 40%);
+  background-attachment: fixed;
+}
+
+.theme-editorial .rp-head {
+  border-bottom: 3px double #cbb99f;
+}
+
+.theme-editorial .rp-head__title {
+  max-width: 22ch;
+}
+
+.theme-editorial .rp-sec__head h2 {
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--accent);
+}
+
+.theme-editorial .rp-kpi {
+  border-top: 3px solid var(--fg);
+}
+
+.theme-editorial .rp-kpi__value {
+  font-feature-settings: 'lnum';
+}
+
+.theme-editorial .rp-insight {
+  background: transparent;
+}
+
+.theme-editorial .rp-insight__title {
+  font-style: italic;
+}
+
+.theme-editorial .rp-table thead th {
+  border-bottom: 2px solid var(--fg);
+}
+
+.theme-editorial .rp-seg__btn[aria-pressed='true'] {
+  background: var(--fg);
+}
+
+@media print {
+  .theme-editorial {
+    background: #fff;
+    --bg: #fff;
+    --surface: #fff;
+    --fg: #000;
+    --fg-dim: #444;
+    --line: #999;
+  }
+  .theme-editorial .rp-bar,
+  .theme-editorial .rp-chart__readout {
+    display: none !important;
+  }
+  .theme-editorial .rp-sec {
+    break-inside: avoid;
+  }
+}

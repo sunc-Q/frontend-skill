@@ -1,0 +1,21 @@
+{
+  "name": "fda-report",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "pinia": "^3.0.3",
+    "vue": "^3.5.24"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.2",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.1",
+    "vue-tsc": "^3.2.1"
+  }
+}

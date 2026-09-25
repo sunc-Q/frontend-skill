@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>墨记 Moji · 落地页三风格验证目录</title>
+    <meta name="description" content="同一落地页简报的三种视觉风格：瑞士极简、玻璃极光、新粗野主义。sites-building skill 本地静态站验证产物。">
+    <style>
+      :root { color-scheme: light dark; }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; padding: 40px 20px 60px; background: #f6f6f4; color: #141414;
+        font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      }
+      main { max-width: 900px; margin: 0 auto; }
+      h1 { font-size: 26px; margin: 0 0 6px; letter-spacing: -.01em; }
+      p.meta { margin: 0 0 28px; color: #6a6a6a; font-size: 14.5px; }
+      ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+      li a {
+        display: block; padding: 20px 22px; background: #fff; border: 1px solid #d9d9d4; border-radius: 10px;
+        color: inherit; text-decoration: none;
+      }
+      li a:hover { border-color: #141414; box-shadow: 0 2px 0 #141414; }
+      b { display: block; font-size: 17px; margin-bottom: 4px; }
+      span { color: #6a6a6a; font-size: 14.5px; }
+      code { font-family: ui-monospace, Menlo, monospace; font-size: .9em; }
+      footer { margin-top: 26px; color: #6a6a6a; font-size: 13.5px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>墨记 Moji · 落地页三风格</h1>
+      <p class="meta">同一份文案与版块结构，三种完全不同的视觉方向。点击任意条目直接打开该风格的完整落地页。</p>
+      <ul>
+        <li><a href="swiss-minimal/index.html"><b>瑞士极简 / Swiss Minimal</b><span>黑白主色 + 单一红点强调、1px 网格线、大写小字号标签、超大左对齐标题、方角无阴影</span></a></li>
+        <li><a href="glass-aurora/index.html"><b>玻璃极光 / Glassmorphism</b><span>深蓝底 + 三团极光渐变、半透明磨砂卡片（backdrop-filter）、大圆角、渐变文字、胶囊吸顶导航</span></a></li>
+        <li><a href="neo-brutal/index.html"><b>新粗野主义 / Neo-brutalism</b><span>酸性黄/青/粉撞色、3px 黑描边、硬偏移阴影、倾斜贴纸、跑马灯条、Arial Black 大写标题</span></a></li>
+      </ul>
+      <footer>验证用 skill：<code>sites:sites-building</code>（简单静态站路径，仅本地预览，不做云端准备）· 生成于 2026-09-25 14:00 时段 · 产品与数据均为虚构演示内容</footer>
+    </main>
+  </body>
+</html>

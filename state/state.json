@@ -1,0 +1,157 @@
+{
+  "updated": "2026-09-25T16:40:00+08:00",
+  "tried": [
+    {
+      "skill": "sites:sites-building",
+      "scenario": "落地页（landing page）",
+      "styles": ["瑞士极简", "玻璃极光", "新粗野主义"],
+      "time": "2026-09-25T14:00+08:00",
+      "reason": "内置技能，唯一可在无网络安装、无用户确认前提下走通的页面构建路径；Simple site 分支零依赖零构建",
+      "conclusion": "留用。产物 72KB/4 文件全自包含，本地预览校验通过；发现并修复共用 Markdown 渲染器的引用行分支缺陷（esc 先行导致 /^>/ 永不匹配）",
+      "artifacts": "artifacts/20260925-14-sites-building-landing-page/",
+      "report": "reports/20260925-14-sites-building-landing-page.md"
+    },
+    {
+      "skill": "sites:sites-building",
+      "scenario": "仪表盘（订阅收入看板，working surface）",
+      "styles": ["深色密集分析", "报纸排版", "复古终端"],
+      "time": "2026-09-25T15:00+08:00",
+      "reason": "台账排队项；市场 9 个仪表盘技能全部未安装且 install_extension 强制用户确认，GitHub/skills.sh 仍不可达，故沿用唯一可自主调用的内置技能换新场景",
+      "conclusion": "继续留用。同一 DOM + 逐字节相同的 JS 换三套 CSS 即得三种成立风格；交互（范围/区域/排序/搜索/悬停读数）实测生效。自查修复 3 处：JS 语法错误致整页空白（vm.Script 定位）、月流失率 12 个月窗口算出 111.8% 的口径失真、交易表未跟随时间范围过滤。限制：IDE 浏览器面板 hidden 导致无像素级截图，仅用计算样式断言替代",
+      "artifacts": "artifacts/20260925-15-sites-building-dashboard/",
+      "report": "reports/20260925-15-sites-building-dashboard.md"
+    },
+    {
+      "skill": "frontend-development",
+      "scenario": "数据报表（个人站流量与作品表现月报：KPI + 趋势 + 渠道表 + 页面明细 + 洞察）",
+      "styles": ["暖纸数据新闻 editorial", "冷灰对账单 statement", "暗色霓虹 cyber"],
+      "time": "2026-09-25T16:00+08:00",
+      "reason": "台账 next_candidates 首项；用户已把该技能装入 ~/.qoder-cn/skills/ 故无需安装与确认；与前两轮构成跨 skill 对照（真框架工程 vs 零依赖单文件）。工具链靠 registry.npmmirror.com 打通（Vite 8.3.1 + Vue 3.5 + Pinia 3 + TS 5.9 strict）",
+      "conclusion": "留用（该技能第 1 次通过）。属「规范型」技能：features/{api,components,hooks,helpers,types} 结构、strict TS 无 any、shallowRef、350ms 防抖、typed props/emits、不用早期 return 等条款在 Vue 3 上全部可直接落地；strict + noUncheckedIndexedAccess 直接暴露并修掉 12 处真实缺陷。但它不提供任何视觉主张（唯一样式指引绑定 MUI sx/theme.palette），React 专属条款约占 70% 篇幅（React.FC/useSuspenseQuery/SuspenseLoader/useMuiSnackbar/~features 别名/MUI v7 Grid）需逐条判为不适用——三风格仍须自行定主张，建议与 sites-building 或 vercel-react-best-practices 组合使用。产物 552KB；数据口径 36 项断言全 PASS（渠道合计=日合计、加权跳出率=KPI、ratio-of-sums、跨区间同日数值一致），KPI 与表格交叉核对一致",
+      "artifacts": "artifacts/20260925-16-frontend-development-report/",
+      "report": "reports/20260925-16-frontend-development-report.md"
+    }
+  ],
+  "skills_seen": [
+    {
+      "name": "sites:sites-building",
+      "source": "Qoder 内置插件 qoder.sites",
+      "path": "/Applications/Qoder CN.app/Contents/Resources/extensions/qoder.sites/cli/sites/skills/sites-building/SKILL.md",
+      "status": "已用于 14:00 落地页、15:00 仪表盘，两次均留用；属「设计主张型」，与 frontend-development 互补"
+    },
+    {
+      "name": "frontend-development",
+      "source": "用户于 2026-09-25 15 时段前后装入 ~/.qoder-cn/skills/",
+      "path": "/Users/apple/.qoder-cn/skills/frontend-development/SKILL.md",
+      "status": "已用于 16:00 数据报表并留用：规范有效但 React 条款占七成、Vue 3 章节仅 60 行且无报表/路由细节；不建议单独承担「多风格」任务"
+    },
+    {
+      "name": "vercel-react-best-practices",
+      "source": "用户于 2026-09-25 15 时段装入 ~/.qoder-cn/skills/",
+      "status": "候选（下一时段首选）：与 frontend-development 叠加验证「规范型技能组合」，React 栈才是其主场"
+    },
+    {
+      "name": "qoder-canvas:canvas",
+      "source": "Qoder 内置插件 qoder.canvas",
+      "path": "/Applications/Qoder CN.app/Contents/Resources/extensions/qoder.canvas/cli/canvas/skills/canvas/SKILL.md",
+      "status": "暂缓：产物为 .canvas.tsx 只在 IDE 面板渲染，不落盘为可独立打开的页面；且文档限定仅斜杠命令调用"
+    },
+    {
+      "name": "ui-designer",
+      "source": "Qoder 扩展市场（publisher: daymade）",
+      "id": "official86382844",
+      "status": "未安装：install_extension 要求用户确认（用户偏好亦为逐项确认），定时无人值守运行不得安装"
+    },
+    {
+      "name": "diegosouzapw-ui-ux-pro-max-corsal2025",
+      "source": "Qoder 扩展市场（VueUI设计，50 风格/21 调色板/50 字体配对/9 框架栈）",
+      "id": "official_mAVyCiL7",
+      "status": "未安装：同上；适合风格横评，优先待授权尝试"
+    },
+    {
+      "name": "diegosouzapw-ui-ux-intelligence-expert",
+      "source": "Qoder 扩展市场（UI设计，67 风格/96 配色/57 字体搭配/99 UX 指南）",
+      "id": "official_kgmrEas7",
+      "status": "未安装：同上"
+    },
+    {
+      "name": "realtime-dashboard / dicklesworthstone-kpi-dashboard-template / diegosouzapw-aibi-dashboards / pm-dashboard / chatandbuild-dashboard-create-screen 等 9 个",
+      "source": "Qoder 扩展市场，关键词 dashboard 检索结果",
+      "status": "全部 installed:false，需用户确认安装，暂不可用于定时任务"
+    },
+    {
+      "name": "ibelick/ui-skills",
+      "source": "GitHub / skills.sh",
+      "status": "不可达：raw.githubusercontent.com 与 www.skills.sh 均连接被重置（14:00、15:00、16:00 三次复测）"
+    },
+    {
+      "name": "BuilderIO/agent-native",
+      "source": "skills.sh（14 skills）",
+      "status": "不可达：同上网络限制"
+    },
+    {
+      "name": "design-anti-slop",
+      "source": "tool.lu 技能聚合站",
+      "status": "不可达：同上网络限制"
+    },
+    {
+      "name": "Gitee giteesunc/agent-work-record @skill 分支",
+      "source": "skill_ctl.py list（32 个技能包）",
+      "status": "无前端页面构建类技能，本轮排除"
+    },
+    {
+      "name": "本机其他候选（未试）",
+      "source": "~/.qoder-cn/skills/",
+      "status": "golang-gin-api / nodejs-best-practices / SQLite-Database-Expert / express-nodejs-expert / golang-testing / sec-audit-cn —— 均为后端类，不做「前端页面」验证；若改场景为「前后端联调页」可考虑"
+    }
+  ],
+  "runs": [
+    {
+      "time": "2026-09-25T14:00+08:00",
+      "skill": "sites:sites-building",
+      "scenario": "落地页",
+      "result": "success",
+      "artifact_size": "72KB",
+      "cleanup": "已删 .tmp 与 /tmp 日志；无 node_modules/lock/构建缓存；自建 http.server PID 34045 已核对命令行后 kill，端口已关"
+    },
+    {
+      "time": "2026-09-25T15:00+08:00",
+      "skill": "sites:sites-building",
+      "scenario": "仪表盘",
+      "result": "success",
+      "artifact_size": "100KB（单页 30-31KB）",
+      "cleanup": "已删 .tmp（临时替换脚本 + 两份临时 CSS）与 /tmp 两个服务日志；无 node_modules/lock/构建缓存；PID 39831 与 40996 均先 ps 核对命令行再 kill，端口已关；实验室合计 192KB"
+    },
+    {
+      "time": "2026-09-25T16:00+08:00",
+      "skill": "frontend-development",
+      "scenario": "数据报表",
+      "result": "success",
+      "artifact_size": "552KB（3 页双击版各 114KB + 源码 128KB + 配置/lock）",
+      "cleanup": "删 node_modules 75MB、dist/、.single/、.preview.log、.tmp/{probe,single,kh,inline.mjs}；8098/8099 两个 http.server 已按端口 PID 核对后 kill；check-consistency.mjs 内容已抄进 reports 文档后再删临时目录；实验室合计约 740KB，单场景 552KB ≪ 50MB",
+      "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（HTTPS 被 TLS 重置，改走 ssh.github.com:443 + 127.0.0.1:7897 代理；空仓库首推，无 token 出现在命令中）"
+    }
+  ],
+  "next_candidates": [
+    "★ vercel-react-best-practices × 管理后台（React 栈，与 frontend-development 叠加验证「规范型技能组合」）",
+    "frontend-development × 管理后台（同 skill 换场景，检验其在多表单/权限界面上是否仍够具体）",
+    "frontend-development × 数据报表（React 版，与本轮 Vue 版做同 skill 跨框架对照）",
+    "sites:sites-building × 个人主页（杂志排版 / 极简黑白 / 赛博霓虹之外，避开已用 9 种风格）",
+    "sites:sites-building × 定价页（玻璃拟态 / 复古像素 / 瑞士极简）",
+    "（需用户授权）市场技能 ui-ux-pro-max × 数据报表"
+  ],
+  "used_styles": ["瑞士极简", "玻璃极光", "新粗野主义", "深色密集分析", "报纸排版", "复古终端", "暖纸数据新闻", "冷灰对账单", "暗色霓虹"],
+  "environment_notes": [
+    "本机无法直连 GitHub raw 与 skills.sh（curl exit 35 / WebFetch fetch failed），外部落地技能持续不可用",
+    "extension-market 的 install_extension 强制用户确认，定时无人值守运行不得安装；用户本人亦持「装技能须逐项确认」偏好",
+    "browser-use 仅改 hash 的导航不会重新加载页面，复核改动前必须 reload(ignoreCache)",
+    "browser-use take_screenshot 在 IDE 内置浏览器面板不可见时报 NATIVE_BROWSER_VIEWPORT_UNAVAILABLE；此时改用 getComputedStyle 断言做视觉复核",
+    "内联 <script> 先用 node vm.Script 做语法检查再看浏览器：语法错误会让整页不渲染且控制台静默",
+    "跨运行相对链接需以 artifacts/ 为服务器根，否则 http.server 禁止上跳返回 404",
+    "npm 官方 registry 与 GitHub 均不可达，但 registry.npmmirror.com 可达：真实框架工具链（vite/vue/pinia/typescript）可正常安装；npx 会去不可达 registry，故改用产物目录内 ./node_modules/.bin/*",
+    "Vite 多入口产物是 ES Module，file:// 下不执行（前两轮单文件产物双击可用，这轮不行）：另建 vite.single.config.ts 用 inlineDynamicImports 单入口构建，再把 JS/CSS 内联成单文件版",
+    "把 JS/CSS 内联进 HTML 时，String.replace 的替换串里 $' / $& / $` 会被展开——必须传 replacer 函数，否则文档自我复制且页面静默不渲染（无控制台报错）",
+    "browser-use evaluate_script 内含 await 的调用常 15s 超时（页面侧其实已执行）：断言写成同步、交互与读结果分两次调用",
+    "github.com 的 HTTPS 被 TLS 重置，但 SSH 可用：~/.ssh/config 已让 github.com 经 ssh.github.com:443 + 127.0.0.1:7897 代理，id_ed25519 认证为 sunc-Q；known_hosts 写到实验室内 .tmp/kh 以免越界改文件"
+  ]
+}

@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>墨记 Moji — 本地优先的 Markdown 笔记工具</title>
+    <meta name="description" content="墨记把笔记存成本机上的一堆 .md 文件：无云端账号、无索引等待、支持全文检索与双向链接。">
+    <style>
+      :root {
+        --ink: #0a0a0a;
+        --paper: #ffffff;
+        --rule: #0a0a0a;
+        --muted: #6b6b6b;
+        --wash: #f2f2f0;
+        --accent: #e5342a;
+      }
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font: 16px/1.55 "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      }
+      a { color: inherit; text-decoration: none; }
+      :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+      .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+      .bar { border-top: 1px solid var(--rule); }
+      header.bar { border-top: 3px solid var(--rule); }
+      .nav { display: flex; align-items: center; gap: 32px; height: 72px; }
+      .brand { font-weight: 700; font-size: 17px; letter-spacing: .16em; text-transform: uppercase; }
+      .brand span { color: var(--accent); }
+      .nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
+      .nav li a { border-bottom: 1px solid transparent; padding-bottom: 3px; }
+      .nav li a:hover { border-bottom-color: var(--ink); }
+      .nav .grow { margin-left: auto; }
+      .btn {
+        display: inline-block; border: 1px solid var(--ink); background: var(--ink); color: var(--paper);
+        padding: 13px 22px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; font-family: inherit;
+      }
+      .btn.ghost { background: transparent; color: var(--ink); }
+      .btn:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+
+      .label { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+      .hero { display: grid; grid-template-columns: 1.35fr .65fr; gap: 48px; padding: 72px 0 56px; border-bottom: 1px solid var(--rule); }
+      h1 {
+        margin: 18px 0 24px; font-size: clamp(44px, 7.2vw, 92px); line-height: .95; font-weight: 700;
+        letter-spacing: -.02em; text-transform: none;
+      }
+      h1 em { font-style: normal; color: var(--accent); }
+      .hero p.lede { font-size: 19px; max-width: 46ch; margin: 0 0 32px; }
+      .hero .cta { display: flex; gap: 14px; flex-wrap: wrap; }
+      .facts { border-left: 1px solid var(--rule); padding-left: 28px; display: flex; flex-direction: column; gap: 26px; }
+      .facts dt { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+      .facts dd { margin: 6px 0 0; font-size: 34px; line-height: 1; font-weight: 700; letter-spacing: -.01em; }
+      .facts dd small { font-size: 14px; font-weight: 400; letter-spacing: 0; }
+
+      .strip { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--rule); }
+      .strip div { padding: 20px 24px; border-right: 1px solid var(--rule); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+      .strip div:last-child { border-right: 0; }
+      .strip b { display: block; font-size: 11px; letter-spacing: .2em; color: var(--muted); margin-bottom: 6px; font-weight: 400; }
+
+      section { padding: 72px 0; border-bottom: 1px solid var(--rule); }
+      h2 { font-size: 13px; letter-spacing: .22em; text-transform: uppercase; margin: 0 0 8px; font-weight: 400; color: var(--muted); }
+      h3 { font-size: clamp(26px, 3.4vw, 40px); line-height: 1.1; letter-spacing: -.01em; margin: 0 0 32px; font-weight: 700; }
+
+      .demo { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ink); }
+      .demo > div { padding: 20px; }
+      .demo > div + div { border-left: 1px solid var(--ink); }
+      .demo textarea {
+        width: 100%; height: 208px; border: 0; resize: vertical; background: var(--wash); padding: 14px;
+        font: 14px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--ink);
+      }
+      .out { min-height: 208px; font-size: 15px; line-height: 1.7; }
+      .out h1, .out h2, .out h3 { font-size: 20px; margin: 0 0 10px; letter-spacing: 0; }
+      .out h2 { font-size: 17px; } .out h3 { font-size: 15px; text-transform: uppercase; letter-spacing: .1em; }
+      .out ul, .out ol { padding-left: 22px; margin: 0 0 12px; }
+      .out code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--wash); padding: 1px 5px; }
+      .out p { margin: 0 0 12px; }
+      .out a { border-bottom: 1px solid var(--accent); color: var(--accent); }
+      .demo-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+      .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+      .cell { background: var(--paper); padding: 28px 24px; }
+      .cell svg { width: 30px; height: 30px; stroke: var(--ink); fill: none; stroke-width: 1.4; margin-bottom: 40px; }
+      .cell h4 { margin: 0 0 10px; font-size: 18px; }
+      .cell p { margin: 0; font-size: 14.5px; color: #3a3a3a; }
+      .cell .no { font-size: 11px; letter-spacing: .2em; color: var(--muted); }
+
+      table { width: 100%; border-collapse: collapse; font-size: 15px; }
+      caption { text-align: left; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); padding-bottom: 12px; }
+      th, td { text-align: left; padding: 15px 16px; border-bottom: 1px solid var(--rule); }
+      thead th { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; border-bottom-width: 3px; }
+      td.num { font-variant-numeric: tabular-nums; font-weight: 700; }
+      .yes { color: var(--accent); font-weight: 700; }
+
+      .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+      .plan { background: var(--paper); padding: 28px 24px 32px; display: flex; flex-direction: column; }
+      .plan.feat { background: var(--ink); color: var(--paper); }
+      .plan.feat .label { color: #a8a8a8; }
+      .plan .price { font-size: 46px; font-weight: 700; line-height: 1; margin: 18px 0 4px; letter-spacing: -.02em; }
+      .plan .price sup { font-size: 16px; font-weight: 400; }
+      .plan ul { list-style: none; margin: 22px 0 26px; padding: 0; font-size: 14.5px; display: flex; flex-direction: column; gap: 9px; }
+      .plan li::before { content: "— "; color: var(--accent); }
+      .plan .btn { margin-top: auto; align-self: flex-start; }
+      .plan.feat .btn { background: var(--paper); color: var(--ink); }
+
+      .quote { font-size: clamp(22px, 2.8vw, 30px); line-height: 1.35; max-width: 62ch; margin: 0; letter-spacing: -.01em; }
+      .quote-src { margin-top: 18px; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+
+      footer { padding: 40px 0 56px; }
+      .foot { display: flex; gap: 24px; flex-wrap: wrap; align-items: baseline; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+      .foot a { color: var(--ink); }
+      .foot .grow { margin-left: auto; }
+
+      @media (max-width: 900px) {
+        .hero { grid-template-columns: 1fr; gap: 40px; padding: 48px 0; }
+        .facts { border-left: 0; border-top: 1px solid var(--rule); padding-left: 0; padding-top: 26px; }
+        .strip, .grid4 { grid-template-columns: 1fr 1fr; }
+        .strip div:nth-child(2) { border-right: 0; }
+        .strip div:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+        .demo { grid-template-columns: 1fr; }
+        .demo > div + div { border-left: 0; border-top: 1px solid var(--ink); }
+        .plans { grid-template-columns: 1fr; }
+        .nav ul { display: none; }
+        section { padding: 48px 0; }
+        .scroll { overflow-x: auto; }
+      }
+      @media (max-width: 520px) {
+        .strip, .grid4 { grid-template-columns: 1fr; }
+        .strip div { border-right: 0; border-bottom: 1px solid var(--rule); }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        html { scroll-behavior: smooth; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="bar">
+      <div class="wrap nav">
+        <a class="brand" href="#top">墨记<span>/</span>MOJI</a>
+        <ul>
+          <li><a href="#demo">演示</a></li>
+          <li><a href="#features">能力</a></li>
+          <li><a href="#compare">对比</a></li>
+          <li><a href="#pricing">价格</a></li>
+        </ul>
+        <span class="grow"></span>
+        <a class="btn" href="#pricing">下载 1.4.2</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <div class="wrap">
+        <div class="hero bar">
+          <div>
+            <p class="label">本地优先 · Markdown · macOS / Windows / Linux</p>
+            <h1>笔记是<em>文件</em>，<br>不是别人的数据库。</h1>
+            <p class="lede">墨记把你的知识库存成本机上一目录普通 <code>.md</code> 文件。打开就能改，拷走就能用，十年后仍然可读。</p>
+            <div class="cta">
+              <a class="btn" href="#pricing">获取桌面版</a>
+              <a class="btn ghost" href="#demo">先试一段 Markdown</a>
+            </div>
+          </div>
+          <dl class="facts">
+            <div><dt>索引 12,000 篇笔记</dt><dd>0.42<small> 秒</small></dd></div>
+            <div><dt>单篇打开耗时</dt><dd>11<small> 毫秒</small></dd></div>
+            <div><dt>离线可用</dt><dd>100<small>%</small></dd></div>
+            <div><dt>自有数据格式</dt><dd>UTF-8<small> .md</small></dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="wrap"><div class="strip bar">
+        <div><b>存储</b>本机目录，无厂商锁定</div>
+        <div><b>同步</b>任选 iCloud / Git / Syncthing</div>
+        <div><b>检索</b>全文 + 正则 + 标签</div>
+        <div><b>链接</b><code>[[双向引用]]</code> 自动建图</div>
+      </div></div>
+
+      <section id="demo">
+        <div class="wrap">
+          <h2>01 — 实时渲染</h2>
+          <h3>左边是你写的字，右边是墨记排出的版。</h3>
+          <div class="demo">
+            <div>
+              <p class="label">输入 · 可直接编辑</p>
+              <textarea id="src" spellcheck="false" aria-label="Markdown 输入区"># 周会要点
+
+- 索引重构**已完成**，冷启动 0.42s
+- 待办：导出 `docx` 的样式对齐
+- 见 [[性能基线报告]]
+
+> 文件即数据，编辑器只是视图。
+
+1. 建立 `~/Notes` 目录
+2. 打开墨记并指向它
+3. 开始写</textarea>
+            </div>
+            <div>
+              <p class="label">渲染结果</p>
+              <div class="out" id="out" aria-live="polite"></div>
+            </div>
+          </div>
+          <div class="demo-foot">
+            <span>示例内容 · 全部在本地浏览器内渲染，不上传</span>
+            <span>Ctrl / ⌘ + Enter 重排</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="features">
+        <div class="wrap">
+          <h2>02 — 四件核心事</h2>
+          <h3>不做云端社交，不做 AI 陪聊，只做写入与取出。</h3>
+          <div class="grid4">
+            <div class="cell">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h11l5 5v11H4z"/><path d="M15 4v5h5"/></svg>
+              <p class="no">01</p>
+              <h4>纯文本仓库</h4>
+              <p>每篇笔记是一个 UTF-8 文件，YAML 头存元数据。diff、版本、备份都沿用你已有的习惯。</p>
+            </div>
+            <div class="cell">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M15.5 15.5 21 21"/></svg>
+              <p class="no">02</p>
+              <h4>毫秒级检索</h4>
+              <p>倒排索引常驻内存，支持正则、路径过滤与标签组合，输入即出结果。</p>
+            </div>
+            <div class="cell">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="7" r="3"/><circle cx="18" cy="7" r="3"/><circle cx="12" cy="18" r="3"/><path d="M8.6 8.6 10 15.6M15.4 8.6 14 15.6M9 7h6"/></svg>
+              <p class="no">03</p>
+              <h4>链接成图</h4>
+              <p><code>[[引用]]</code> 自动建反向链接面板与知识图谱，孤儿笔记会被列出。</p>
+            </div>
+            <div class="cell">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11"/><path d="M8 10.5 12 14.5 16 10.5"/><path d="M4 18h16"/></svg>
+              <p class="no">04</p>
+              <h4>随时离开</h4>
+              <p>导出整站静态 HTML 或原始 md 目录，不留专有格式，不索要账号。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="compare">
+        <div class="wrap">
+          <h2>03 — 同一台机器实测</h2>
+          <h3>12,000 篇笔记下的冷启动与检索。</h3>
+          <div class="scroll">
+            <table>
+              <caption>示例数据：2026-09-20，M1 / 16GB，同一目录同一索引任务</caption>
+              <thead>
+                <tr><th>工具</th><th>首次索引</th><th>单篇打开</th><th>全文检索</th><th>离线</th><th>文件自主</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>墨记 1.4.2</td><td class="num">0.42s</td><td class="num">11ms</td><td class="num">8ms</td><td class="yes">是</td><td class="yes">是</td></tr>
+                <tr><td>云端笔记 A</td><td class="num">14.6s</td><td class="num">480ms</td><td class="num">310ms</td><td>部分</td><td>导出受限</td></tr>
+                <tr><td>本地编辑器 B + 插件</td><td class="num">2.10s</td><td class="num">35ms</td><td class="num">1.2s</td><td class="yes">是</td><td class="yes">是</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <blockquote class="quote">「我把 11 年的笔记搬进墨记，唯一需要迁移的东西是文件夹本身。」</blockquote>
+          <p class="quote-src">— 示例引用 · 内部试用用户 · 后端工程师</p>
+        </div>
+      </section>
+
+      <section id="pricing">
+        <div class="wrap">
+          <h2>04 — 价格</h2>
+          <h3>一次买断，或免费用简版。</h3>
+          <div class="plans">
+            <div class="plan">
+              <p class="label">简版</p>
+              <p class="price"><sup>¥</sup>0</p>
+              <p class="label">永久</p>
+              <ul><li>无限笔记与文件</li><li>全文检索</li><li>单窗口</li></ul>
+              <a class="btn ghost" href="#top">下载</a>
+            </div>
+            <div class="plan feat">
+              <p class="label">专业版 · 买断</p>
+              <p class="price"><sup>¥</sup>168</p>
+              <p class="label">3 台设备</p>
+              <ul><li>知识图谱与反向链接</li><li>正则检索与批量替换</li><li>自定义模板 / 片语</li><li>两年版更新</li></ul>
+              <a class="btn ghost" href="#top">获取专业版</a>
+            </div>
+            <div class="plan">
+              <p class="label">团队</p>
+              <p class="price"><sup>¥</sup>40<sup>/人/年</sup></p>
+              <p class="label">最低 5 人</p>
+              <ul><li>共享 Git 仓库工作流</li><li>统一模板与审校记录</li><li>自托管索引节点</li></ul>
+              <a class="btn ghost" href="#top">联系我们</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap" style="display:flex;gap:32px;align-items:flex-end;flex-wrap:wrap">
+          <div>
+            <p class="label">开始使用</p>
+            <h3 style="margin-bottom:12px">指向一个文件夹，第一秒就在写。</h3>
+            <p style="margin:0;color:var(--muted)">支持 macOS 12+ / Windows 10+ / Linux（AppImage、deb）。简版永久免费。</p>
+          </div>
+          <a class="btn" href="#top" style="margin-left:auto">下载 1.4.2 · 48MB</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bar">
+      <div class="wrap foot">
+        <span>© 2026 墨记 · 虚构演示产品</span>
+        <a href="#demo">演示</a>
+        <a href="#pricing">价格</a>
+        <span class="grow">同场景其它风格：</span>
+        <a href="../glass-aurora/index.html">玻璃极光</a>
+        <a href="../neo-brutal/index.html">新粗野主义</a>
+        <a href="../index.html">目录</a>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var src = document.getElementById('src');
+        var out = document.getElementById('out');
+
+        function esc(s) {
+          return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+        function inline(s) {
+          return s
+            .replace(/\[\[([^\]]+)\]\]/g, '<a href="#top">$1</a>')
+            .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+            .replace(/`([^`]+)`/g, '<code>$1</code>');
+        }
+        function render(md) {
+          var lines = esc(md).split(/\r?\n/);
+          var html = '';
+          var list = null;
+          function close() { if (list) { html += '</' + list + '>'; list = null; } }
+          lines.forEach(function (raw) {
+            var line = raw.trim();
+            if (!line) { close(); return; }
+            var h = /^(#{1,3})\s+(.*)$/.exec(line);
+            if (h) { close(); var lv = h[1].length; html += '<h' + (lv + 1) + '>' + inline(h[2]) + '</h' + (lv + 1) + '>'; return; }
+            if (/^&gt;\s?/.test(line)) { close(); html += '<p style="border-left:3px solid var(--accent);padding-left:16px;margin:0 0 12px">' + inline(line.replace(/^&gt;\s?/, '')) + '</p>'; return; }
+            if (/^[-*]\s+/.test(line)) { if (list !== 'ul') { close(); html += '<ul>'; list = 'ul'; } html += '<li>' + inline(line.slice(2)) + '</li>'; return; }
+            if (/^\d+\.\s+/.test(line)) { if (list !== 'ol') { close(); html += '<ol>'; list = 'ol'; } html += '<li>' + inline(line.replace(/^\d+\.\s+/, '')) + '</li>'; return; }
+            close(); html += '<p>' + inline(line) + '</p>';
+          });
+          close();
+          return html;
+        }
+        function paint() { out.innerHTML = render(src.value); }
+        src.addEventListener('input', paint);
+        document.addEventListener('keydown', function (e) {
+          if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') paint();
+        });
+        paint();
+      })();
+    </script>
+  </body>
+</html>

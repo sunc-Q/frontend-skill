@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nimbus 收入看板 · 三风格验证目录</title>
+    <meta name="description" content="同一份订阅收入仪表盘数据与交互，三种视觉系统：深色密集分析、报纸排版、复古终端。sites-building skill 本地静态站验证产物。">
+    <style>
+      :root { color-scheme: light dark; }
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 40px 20px 60px; background: #f6f6f4; color: #141414; font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+      main { max-width: 900px; margin: 0 auto; }
+      h1 { font-size: 26px; margin: 0 0 6px; letter-spacing: -.01em; }
+      p.meta { margin: 0 0 26px; color: #6a6a6a; font-size: 14.5px; }
+      ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+      li a { display: block; padding: 20px 22px; background: #fff; border: 1px solid #d9d9d4; border-radius: 10px; color: inherit; text-decoration: none; }
+      li a:hover { border-color: #141414; box-shadow: 0 2px 0 #141414; }
+      b { display: block; font-size: 17px; margin-bottom: 4px; }
+      span { color: #6a6a6a; font-size: 14.5px; }
+      code { font-family: ui-monospace, Menlo, monospace; font-size: .9em; }
+      footer { margin-top: 26px; color: #6a6a6a; font-size: 13.5px; }
+      footer a { color: #141414; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Nimbus 收入看板 · 三风格</h1>
+      <p class="meta">同一份示例数据（种子 20260925）与同一套交互（时间范围 / 区域筛选 / 折线悬停读数 / 表格排序与搜索），只替换视觉系统。</p>
+      <ul>
+        <li><a href="dark-analytics/index.html"><b>深色密集分析 / Dark Dense Analytics</b><span>深蓝灰底 + 青靛状态色、13px 密集字号、等宽数字、吸顶筛选条、渐变面积图与悬停读数</span></a></li>
+        <li><a href="newsprint/index.html"><b>报纸排版 / Newsprint</b><span>米白纸面、双线栏规、衬线小标题（small-caps）、斜体注释、45° 网纹条形与去填充折线，全部去掉卡片底色</span></a></li>
+        <li><a href="retro-terminal/index.html"><b>复古终端 / Retro Terminal</b><span>荧光绿等宽字符、扫描线覆盖层、闪烁光标块、发光折线（drop-shadow）、方括号式分段控件与等宽表格</span></a></li>
+      </ul>
+      <footer>验证用 skill：<code>sites:sites-building</code>（简单静态站路径，仅本地预览，不做云端准备）· 2026-09-25 15 时段 · 上一轮同 skill 的落地页产物见 <a href="../20260925-14-sites-building-landing-page/index.html">20260925-14</a> · 数据均为演示随机样本</footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,222 @@
+/* 主题 B · 冷灰对账单（statement）：无衬线窄体、等宽数字、斑马线表格、直角硬边框，为 A4 打印优化。 */
+
+:root.theme-statement {
+  --bg: #eceff3;
+  --fg: #16202b;
+  --fg-dim: #5d6b7a;
+  --fg-body: #2a3745;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --accent: #17548c;
+  --accent-soft: rgba(23, 84, 140, 0.1);
+  --line: #c3ccd6;
+  --rule: 1px solid #c3ccd6;
+  --rule-soft: 1px solid #e2e8ef;
+  --grid: #dfe6ed;
+  --track: #e6ebf1;
+  --head-bg: #f2f5f8;
+  --row-open: #eef3f8;
+  --card-border: 1px solid #b9c4d0;
+  --card-shadow: none;
+  --good: #146349;
+  --bad: #a02020;
+  --warn: #8a610f;
+  --on-accent: #ffffff;
+  --s1: #17548c;
+  --s2: #146349;
+  --s3: #a02020;
+  --s4: #6a4b9c;
+  --s5: #8a610f;
+  --font-display: 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  --font-body: 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  --font-num: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+  --measure: 940px;
+  --pad-page: 28px 24px 56px;
+  --gap-block: 26px;
+  --gap-tight: 5px;
+  --gap-cards: 0px;
+  --gap-inner: 2px;
+  --gap-bar: 12px;
+  --gap-facts: 0px;
+  --pad-block: 12px;
+  --pad-card: 8px 10px;
+  --pad-cell: 6px 10px;
+  --pad-seg: 5px 11px;
+  --pad-input: 5px 9px;
+  --fs-body: 13px;
+  --fs-title: 26px;
+  --fs-h2: 13px;
+  --fs-h3: 13px;
+  --fs-kpi: 19px;
+  --fs-small: 12.5px;
+  --fs-micro: 10px;
+  --fw-title: 700;
+  --fw-h2: 700;
+  --fw-h3: 600;
+  --fw-kpi: 600;
+  --fw-head: 700;
+  --fw-cell-strong: 600;
+  --lh: 1.5;
+  --track-title: 0;
+  --track-h2: 0.09em;
+  --track-label: 0.07em;
+  --track-num: 0;
+  --r-card: 0px;
+  --r-seg: 0px;
+  --r-input: 0px;
+  --r-tag: 0px;
+  --kpi-cols: 1fr;
+  --insight-cols: 1fr;
+  --foot-cols: repeat(3, minmax(0, 1fr));
+  --insight-edge: 0 solid transparent;
+}
+
+.theme-statement body {
+  background: var(--bg);
+}
+
+.theme-statement .rp {
+  background: var(--surface);
+  border: 1px solid #9fb0c1;
+  padding-top: 30px;
+}
+
+.theme-statement .rp-head {
+  border-bottom: 2px solid var(--fg);
+  padding-bottom: 12px;
+}
+
+.theme-statement .rp-head__title {
+  text-transform: none;
+}
+
+.theme-statement .rp-head__facts {
+  border: 1px solid var(--line);
+  background: #f7f9fb;
+}
+
+.theme-statement .rp-fact {
+  flex: 1 1 190px;
+  padding: 7px 10px;
+  border-right: 1px solid var(--line);
+}
+
+.theme-statement .rp-fact:last-child {
+  border-right: 0;
+}
+
+.theme-statement .rp-sec__head {
+  border-bottom: 1px solid var(--fg);
+  padding-bottom: 4px;
+}
+
+.theme-statement .rp-sec__note {
+  font-size: var(--fs-micro);
+}
+
+/* KPI 改为账簿式横向条目，而不是卡片 */
+.theme-statement .rp-kpi {
+  grid-template-columns: 1.4fr auto auto 90px;
+  align-items: baseline;
+  gap: 12px;
+  border: 0;
+  border-bottom: 1px dotted var(--line);
+  border-radius: 0;
+  padding: 9px 10px;
+}
+
+.theme-statement .rp-kpi:nth-child(even) {
+  background: #f7f9fb;
+}
+
+.theme-statement .rp-kpi__label::after {
+  content: '········································';
+  letter-spacing: -1px;
+  color: var(--line);
+  margin-left: 8px;
+  text-transform: none;
+  font-size: 10px;
+}
+
+.theme-statement .rp-kpi__spark {
+  height: 20px;
+}
+
+.theme-statement .rp-kpi__note {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.theme-statement .rp-tablewrap {
+  border-radius: 0;
+}
+
+.theme-statement .rp-table tbody tr:nth-child(even):not(.rp-detail) {
+  background: #f7f9fb;
+}
+
+.theme-statement .rp-table thead th {
+  border-bottom: 1px solid var(--fg);
+}
+
+.theme-statement .rp-chart {
+  border-radius: 0;
+}
+
+.theme-statement .rp-insight {
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  padding: 10px 10px 12px;
+  counter-increment: rp-insight;
+}
+
+.theme-statement .rp-insight::before {
+  content: '§' counter(rp-insight) '  ';
+  font-family: var(--font-num);
+  font-size: 10px;
+  color: var(--fg-dim);
+  display: block;
+}
+
+.theme-statement .rp-foot__cols {
+  border-top: 2px solid var(--fg);
+  padding-top: 10px;
+}
+
+.theme-statement .rp-foot__cols > div {
+  border-right: 1px solid var(--line);
+  padding-right: 12px;
+}
+
+.theme-statement .rp-foot__cols > div:last-child {
+  border-right: 0;
+}
+
+@media print {
+  .theme-statement body {
+    background: #fff;
+  }
+  .theme-statement .rp {
+    border: 0;
+    padding: 0;
+    max-width: none;
+  }
+  .theme-statement .rp-bar {
+    display: none !important;
+  }
+  .theme-statement .rp-sec,
+  .theme-statement .rp-insight,
+  .theme-statement tr {
+    break-inside: avoid;
+  }
+  .theme-statement .rp-kpi:nth-child(even),
+  .theme-statement .rp-table tbody tr:nth-child(even) {
+    background: transparent;
+  }
+  @page {
+    size: A4;
+    margin: 16mm 14mm;
+  }
+}
