@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>柯屿 · 观测台｜独立开发者个人主页</title>
+<meta name="description" content="柯屿的个人主页：以星表形式记录的五件作品（潮汐、光斑、汉字谱、字节盒、漫游）、观测日志与当前轨道状态。">
+<meta name="author" content="柯屿">
+<style>
+/* 视觉主张：深空星图 —— 近黑靛蓝底 + 发丝金线 + 等宽数字。
+   版式不是「卡片流」而是「星表 + 日志」：数据靠左对齐、数字靠右对齐、
+   层次靠 hairline 与字号对比，不靠阴影（暗底上阴影不可见）与圆角。 */
+:root{
+  --void:#070b16;
+  --panel:#0b1220;
+  --line:rgba(201,162,74,.34);
+  --line-soft:rgba(201,162,74,.16);
+  --ink:#e2e6ee;
+  --dim:#949db1;
+  --gold:#c9a24a;
+  --cyan:#6fd3e0;
+  --hot:#ff7a6b;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--void);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.8;
+}
+a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line-soft)}
+a:hover{color:var(--gold);border-bottom-color:var(--gold)}
+a:focus-visible{outline:1px solid var(--cyan);outline-offset:3px}
+h1,h2,h3{margin:0;font-weight:500}
+p{margin:0 0 1em}
+ul{margin:0;padding:0;list-style:none}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.wrap{max-width:64rem;margin:0 auto;padding:0 1.25rem}
+
+/* ── 顶部：星图 + 姓名 ─────────────────────── */
+.sky{
+  position:relative;
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(1px 1px at 12% 28%,rgba(255,255,255,.9) 50%,transparent 51%),
+    radial-gradient(1px 1px at 78% 18%,rgba(255,255,255,.7) 50%,transparent 51%),
+    radial-gradient(1.5px 1.5px at 62% 72%,rgba(255,255,255,.55) 50%,transparent 51%),
+    radial-gradient(1px 1px at 32% 82%,rgba(255,255,255,.5) 50%,transparent 51%),
+    radial-gradient(1px 1px at 90% 56%,rgba(255,255,255,.6) 50%,transparent 51%),
+    radial-gradient(1px 1px at 46% 12%,rgba(255,255,255,.45) 50%,transparent 51%),
+    var(--void);
+  overflow:hidden;
+}
+.sky .chart{position:absolute;inset:0;width:100%;height:100%;color:var(--line)}
+.sky .chart line{stroke:currentColor;stroke-width:.7}
+.sky .chart circle{fill:var(--gold)}
+.sky .chart text{fill:var(--dim);font-family:var(--mono);font-size:12px;letter-spacing:.08em}
+.sky .wrap{position:relative;padding:5.5rem 1.25rem 3rem}
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.32em;
+  color:var(--gold);margin:0 0 1rem;text-transform:uppercase;
+}
+h1{font-size:clamp(2.6rem,9vw,4.4rem);line-height:1.08;letter-spacing:.04em}
+h1 .latin{display:block;font-family:var(--mono);font-size:clamp(.9rem,2.4vw,1.05rem);letter-spacing:.4em;color:var(--dim);margin-top:.9rem}
+.tagline{max-width:34rem;margin:1.4rem 0 0;color:var(--dim);font-size:1rem}
+.coords{
+  display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;align-items:center;
+  margin-top:2rem;font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;color:var(--dim);
+}
+.status{display:inline-flex;align-items:center;gap:.5rem;color:var(--ink)}
+.dot{width:7px;height:7px;background:var(--cyan);border-radius:50%;box-shadow:0 0 0 3px rgba(111,211,224,.16)}
+
+/* ── 区块头 ───────────────────────────────── */
+section{padding:3.4rem 0}
+section+section{border-top:1px solid var(--line-soft)}
+.hd{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.8rem;flex-wrap:wrap}
+.hd h2{font-size:1.35rem;letter-spacing:.14em}
+.hd .id{font-family:var(--mono);font-size:12px;color:var(--gold);letter-spacing:.2em}
+.hd .note{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--dim)}
+
+/* ── 星表（作品）───────────────────────────── */
+table{width:100%;border-collapse:collapse;font-size:15px}
+caption{text-align:left;font-size:14px;color:var(--dim);padding-bottom:.8rem}
+th{
+  text-align:left;font-family:var(--mono);font-size:12px;font-weight:400;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--gold);
+  padding:.4rem .6rem .6rem 0;border-bottom:1px solid var(--line);
+}
+td{padding:.95rem .6rem .95rem 0;border-bottom:1px solid var(--line-soft);vertical-align:top}
+tr:hover td{background:var(--panel)}
+td.n{font-family:var(--mono);color:var(--gold);white-space:nowrap}
+td.name{font-size:1rem;min-width:11rem}
+td.name small{display:block;font-size:14px;color:var(--dim);letter-spacing:.02em;margin-top:.15rem}
+td.kind{color:var(--dim);white-space:nowrap}
+td.right{text-align:right;font-family:var(--mono);white-space:nowrap}
+.tag{font-family:var(--mono);font-size:12px;letter-spacing:.12em;border:1px solid var(--line);padding:.1rem .45rem;white-space:nowrap}
+.tag.live{color:var(--cyan);border-color:rgba(111,211,224,.5)}
+.tag.plan{color:var(--gold)}
+
+/* ── 观测日志（随记）───────────────────────── */
+.log li{
+  display:grid;grid-template-columns:5.6rem 1fr;gap:1.2rem;
+  padding:.9rem 0;border-bottom:1px solid var(--line-soft);
+}
+.log time{font-family:var(--mono);font-size:13px;color:var(--gold);letter-spacing:.06em;padding-top:.15rem}
+.log h3{font-size:1.02rem;display:inline}
+.log p{display:inline;color:var(--dim);font-size:15px;margin:0 0 0 .7rem}
+
+/* ── 遥测（近况）──────────────────────────── */
+.telemetry{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
+.tcell{background:var(--panel);padding:1.2rem 1.3rem}
+.tcell h3{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:.9rem}
+.tcell li{display:flex;justify-content:space-between;gap:1rem;font-size:15px;padding:.28rem 0;color:var(--dim)}
+.tcell li b{font-weight:400;color:var(--ink)}
+.tcell li span{font-family:var(--mono);font-size:13px;color:var(--ink)}
+.spark{display:block;width:100%;height:2.6rem;margin-top:.9rem;color:var(--cyan)}
+.spark path{fill:none;stroke:currentColor;stroke-width:1.3}
+.spark .axis{stroke:var(--line);stroke-width:.7}
+
+/* ── 通信 ─────────────────────────────────── */
+.contact{border-top:1px solid var(--line);padding:3.2rem 0}
+.contact .wrap{display:grid;grid-template-columns:1fr auto;gap:1.6rem;align-items:center}
+.beam{font-family:var(--mono);font-size:clamp(1.05rem,3.4vw,1.5rem);letter-spacing:.06em;color:var(--ink);border-bottom:1px solid var(--gold);display:inline-block;padding-bottom:.25rem}
+.contact .sub{font-size:14px;color:var(--dim);margin:.7rem 0 0}
+.btn{
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;
+  background:transparent;color:var(--gold);border:1px solid var(--gold);
+  padding:.7rem 1.3rem;cursor:pointer;
+}
+.btn:hover{background:var(--gold);color:var(--void)}
+.btn:focus-visible{outline:1px solid var(--cyan);outline-offset:3px}
+footer{padding:1.6rem 0 2.6rem;font-family:var(--mono);font-size:12px;color:var(--dim);border-top:1px solid var(--line-soft);letter-spacing:.06em}
+footer .wrap{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;z-index:9;background:var(--panel);border:1px solid var(--gold);padding:.4rem .8rem}
+
+@media (max-width:52rem){
+  .sky .wrap{padding-top:3.6rem}
+  .telemetry{grid-template-columns:1fr}
+  .contact .wrap{grid-template-columns:1fr}
+  td.kind{display:none}
+  th.kind{display:none}
+  .log li{grid-template-columns:1fr;gap:.2rem}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="sky">
+  <svg class="chart" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <g>
+      <line x1="140" y1="300" x2="330" y2="150"/>
+      <line x1="330" y1="150" x2="560" y2="240"/>
+      <line x1="560" y1="240" x2="800" y2="120"/>
+      <line x1="800" y1="120" x2="1040" y2="260"/>
+      <circle cx="140" cy="300" r="3"/>
+      <circle cx="330" cy="150" r="4"/>
+      <circle cx="560" cy="240" r="3"/>
+      <circle cx="800" cy="120" r="4.5"/>
+      <circle cx="1040" cy="260" r="3"/>
+      <text x="152" y="316">Bytebox</text>
+      <text x="342" y="146">Roamer</text>
+      <text x="572" y="256">Lumen</text>
+      <text x="812" y="116">TideNote</text>
+      <text x="1052" y="276">Atlas</text>
+    </g>
+  </svg>
+  <div class="wrap">
+    <p class="eyebrow">Personal Station · 个人观测台</p>
+    <h1>柯屿<span class="latin">KE YU — INDEPENDENT SOFTWARE</span></h1>
+    <p class="tagline">一个人做软件，五年。这里是我把自己手上的东西按星表列出来的地方：五件还在运行的作品、若干判断、以及现在的轨道状态。</p>
+    <div class="coords">
+      <span>30°15′N 120°10′E · 杭州</span>
+      <span>2019 至今</span>
+      <span class="status"><span class="dot" aria-hidden="true"></span>潮汐 v2 内测中 · 每周三发版</span>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section>
+  <div class="wrap">
+    <div class="hd">
+      <span class="id">CAT-01</span>
+      <h2>作品星表</h2>
+      <span class="note">五颗 · 按首发时间排列 · 全部仍在运行</span>
+    </div>
+    <table>
+      <caption>编号为自订记录号；「亮度」是我每周实际花在这件事上的小时数（演示数据）。</caption>
+      <thead>
+        <tr>
+          <th scope="col">编号</th>
+          <th scope="col">名称</th>
+          <th scope="col" class="kind">形态</th>
+          <th scope="col" class="right">首发</th>
+          <th scope="col" class="right">亮度</th>
+          <th scope="col" class="right">状态</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="n">K-05</td>
+          <td class="name">潮汐 TideNote<small>离线优先笔记：本地 SQLite 存历史，CRDT 合并，断网可写</small></td>
+          <td class="kind">Web · 桌面</td>
+          <td class="right">2025-03</td>
+          <td class="right">22h</td>
+          <td class="right"><span class="tag live">内测</span></td>
+        </tr>
+        <tr>
+          <td class="n">K-04</td>
+          <td class="name">汉字谱 Typeface Atlas<small>137 套中文字体同屏对照，按笔画密度与可商用筛选</small></td>
+          <td class="kind">Web</td>
+          <td class="right">2024-09</td>
+          <td class="right">4h</td>
+          <td class="right"><span class="tag">运行中</span></td>
+        </tr>
+        <tr>
+          <td class="n">K-03</td>
+          <td class="name">光斑 Lumen<small>长曝光计算：把光圈快门 ISO 还原成一条可视曝光带</small></td>
+          <td class="kind">iOS · Web</td>
+          <td class="right">2024-02</td>
+          <td class="right">3h</td>
+          <td class="right"><span class="tag">运行中</span></td>
+        </tr>
+        <tr>
+          <td class="n">K-02</td>
+          <td class="name">字节盒 Bytebox<small>命令行习惯追踪，数据是一个纯文本文件，无账号无云</small></td>
+          <td class="kind">CLI · Go</td>
+          <td class="right">2023-06</td>
+          <td class="right">1h</td>
+          <td class="right"><span class="tag">稳定</span></td>
+        </tr>
+        <tr>
+          <td class="n">K-01</td>
+          <td class="name">漫游 Roamer<small>给一条地铁线和一个出发站，生成不重复的步行路线</small></td>
+          <td class="kind">小程序</td>
+          <td class="right">2022-10</td>
+          <td class="right">0.5h</td>
+          <td class="right"><span class="tag plan">维护</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="hd">
+      <span class="id">LOG-02</span>
+      <h2>观测日志</h2>
+      <span class="note">四则 · 更新不定期</span>
+    </div>
+    <ul class="log">
+      <li>
+        <time datetime="2025-08-14">2025-08-14</time>
+        <div><h3>为什么我把设置存成纯文本</h3><p>数据库会过期，账号会注销，缩进两空格的 key=value 不会。</p></div>
+      </li>
+      <li>
+        <time datetime="2025-05-02">2025-05-02</time>
+        <div><h3>一次重构留下的三个坑</h3><p>缓存把测试读数吃掉了：写计数器之前，先证明计数器被写过。</p></div>
+      </li>
+      <li>
+        <time datetime="2024-11-19">2024-11-19</time>
+        <div><h3>中文字体的行高怎么调才不抖</h3><p>汉字视觉基线比拉丁字母低，行高要按各字体的字面率给。</p></div>
+      </li>
+      <li>
+        <time datetime="2024-06-07">2024-06-07</time>
+        <div><h3>一个人做产品的节奏</h3><p>把「每周三发一版」写进日历之后，功能范围自然瘦下来了。</p></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="hd">
+      <span class="id">TEL-03</span>
+      <h2>遥测</h2>
+      <span class="note">以下全部为演示数据</span>
+    </div>
+    <div class="telemetry">
+      <div class="tcell">
+        <h3>当前轨道</h3>
+        <ul>
+          <li><b>潮汐 v2 同步层</b><span>进行中</span></li>
+          <li><b>《设计的观念》</b><span>118 / 320 页</span></li>
+          <li><b>Rust</b><span>初学</span></li>
+        </ul>
+      </div>
+      <div class="tcell">
+        <h3>本站</h3>
+        <ul>
+          <li><b>近 30 天访问</b><span>2,418</span></li>
+          <li><b>最常被点开</b><span>汉字谱</span></li>
+          <li><b>托管</b><span>一台小机器</span></li>
+        </ul>
+        <svg class="spark" viewBox="0 0 240 40" role="img" aria-label="近 12 周访问量趋势，缓慢上升">
+          <path class="axis" d="M0 39 H240"/>
+          <path d="M0 30 L20 32 L40 26 L60 28 L80 21 L100 23 L120 18 L140 20 L160 14 L180 16 L200 11 L220 9 L240 7"/>
+        </svg>
+      </div>
+      <div class="tcell">
+        <h3>桌面以外</h3>
+        <ul>
+          <li><b>摄影</b><span>长曝光</span></li>
+          <li><b>骑行</b><span>绕城 60km</span></li>
+          <li><b>咖啡</b><span>手冲 · 中浅焙</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <a class="beam" href="mailto:hey@keyu.example">hey@keyu.example</a>
+      <p class="sub">合作以能一句话说清的事为先。示例邮箱，不可送达。</p>
+    </div>
+    <button class="btn" id="copyMail" type="button">复制地址</button>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 柯屿</span>
+    <span>本页为技能验证用的虚构演示内容，人名、作品与数字均属示例</span>
+    <span>CAT-01 / LOG-02 / TEL-03</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var btn=document.getElementById("copyMail");
+  var MAIL="hey@keyu.example";
+  var original=btn.textContent;
+  var timer=null;
+  function say(msg){
+    btn.textContent=msg;
+    if(timer){clearTimeout(timer);}
+    timer=setTimeout(function(){btn.textContent=original;},2400);
+  }
+  btn.addEventListener("click",function(){
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(MAIL).then(function(){say("已复制");},function(){say("请手动复制");});
+      return;
+    }
+    say("请手动复制");
+  });
+})();
+</script>
+</body>
+</html>

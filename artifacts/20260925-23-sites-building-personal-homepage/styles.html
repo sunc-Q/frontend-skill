@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>对照入口 · 个人主页 × sites-building × 3 风格</title>
+<meta name="description" content="同一份个人主页事实内容的三种视觉主张对照：和纸浮世绘、深空星图、像素掌机。附设计决策与校验结果。">
+<style>
+:root{--bg:#f7f6f3;--ink:#191817;--dim:#6b6862;--line:#d8d5cd;--a:#b8342a;--b:#c9a24a;--c:#306230}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.75 "PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;padding:2.5rem 1.25rem 4rem}
+.wrap{max-width:60rem;margin:0 auto}
+h1{font-size:1.6rem;margin:0 0 .4rem;letter-spacing:.02em}
+p.lead{color:var(--dim);margin:0 0 2.2rem;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem;margin-bottom:2.4rem}
+a.card{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);background:#fff;padding:1.1rem 1.2rem;border-top-width:4px}
+a.card:hover{box-shadow:0 1px 0 var(--line)}
+a.card:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.u{border-top-color:var(--a)}.s{border-top-color:var(--b)}.p{border-top-color:var(--c)}
+h2{font-size:1.05rem;margin:0 0 .35rem}
+.card .en{font:12px/1.4 ui-monospace,Menlo,monospace;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+.card .why{font-size:14px;color:var(--dim);margin:.5rem 0 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border:1px solid var(--line)}
+th,td{text-align:left;padding:.6rem .8rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);font-weight:500;background:#f2f0ec}
+td:first-child{white-space:nowrap;font-weight:600}
+code{font:13px/1.5 ui-monospace,Menlo,monospace;background:#efedea;padding:0 .25rem}
+footer{margin-top:2rem;font-size:13px;color:var(--dim);border-top:1px solid var(--line);padding-top:1rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>个人主页 × sites:sites-building × 3 种风格</h1>
+<p class="lead">同一份事实内容（一位虚构独立开发者的作品、随记、近况与联系方式），三种互不相同的视觉主张。三页均为单个自包含 HTML，零依赖、零构建、零外链，直接双击打开。</p>
+
+<div class="grid">
+  <a class="card u" href="ukiyo/index.html"><span class="en">Style A</span><h2>和纸浮世绘 ukiyo</h2><p class="why">竖排名牌 + 引札式清单 + 版画水纹。纸色分三层代替阴影，一色朱红作关键线。</p></a>
+  <a class="card s" href="astro/index.html"><span class="en">Style B</span><h2>深空星图 astro</h2><p class="why">近黑靛蓝 + 发丝金线 + 等宽数字。作品排成「星表」表格，随记是日志流，近况是三格遥测。</p></a>
+  <a class="card p" href="pixel-console/index.html"><span class="en">Style C</span><h2>像素掌机 pixel-console</h2><span class="en"></span><p class="why">四色绿阶屏 + 注塑灰外壳 + 4px 硬边。作品是五张卡带，投入时长用方格仪表读出。</p></a>
+</div>
+
+<table>
+  <caption style="caption-side:bottom;padding:.6rem .8rem;font-size:12px;color:#6b6862">三页共享同一组事实，仅设计主张不同；校验脚本 <code>scripts/check.mjs</code> 同时断言「事实一致」与「版式不同」。</caption>
+  <thead><tr><th scope="col">维度</th><th scope="col">A 和纸浮世绘</th><th scope="col">B 深空星图</th><th scope="col">C 像素掌机</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">色板</th><td>和纸三色 + 墨 + 朱红 + 绀蓝（8 色）</td><td>虚空/面板 + 金线 + 青 + 暖红（7 色）</td><td>外壳两灰 + 屏四绿阶 + 一红（8 色）</td></tr>
+    <tr><th scope="row">主字族</th><td>宋体标题 / 黑体正文</td><td>黑体正文 / 等宽承载全部数字</td><td>等宽承担标题与元数据</td></tr>
+    <tr><th scope="row">首屏构件</th><td>竖排姓名印章</td><td>姓名 + 连线星图</td><td>开机文本 + 反白姓名块</td></tr>
+    <tr><th scope="row">作品呈现</th><td>年份引札行列表（<code>&lt;ul&gt;</code>）</td><td>星表（<code>&lt;table&gt;</code> + caption）</td><td>卡带网格（<code>&lt;article&gt;</code>）</td></tr>
+    <tr><th scope="row">深度手法</th><td>纸色分层 + 1px 墨线</td><td>hairline 金线 + 字号对比</td><td>实心偏移色块（无模糊阴影）</td></tr>
+    <tr><th scope="row">唯一交互</th><td>复制邮箱按钮</td><td>复制地址按钮</td><td>A 键复制按钮</td></tr>
+  </tbody>
+</table>
+
+<footer>
+  产物目录：<code>20260925-23-sites-building-personal-homepage/</code> · 断言脚本：<code>scripts/check.mjs</code>（运行 <code>node scripts/check.mjs</code>）· 复现文档见 <code>../../reports/20260925-23-sites-building-personal-homepage.md</code><br>
+  本页与三张风格页上的所有人名、作品、访问数字与邮箱均为虚构演示内容。
+</footer>
+</div>
+</body>
+</html>

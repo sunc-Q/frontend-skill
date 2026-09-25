@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>柯屿 · 独立开发者｜潮汐笔记 · 光斑 · 汉字谱</title>
+<meta name="description" content="柯屿的个人主页：离线优先笔记「潮汐 TideNote」、长曝光计算器「光斑 Lumen」、中文字体检索「汉字谱」等作品，以及随记与近况。">
+<meta name="author" content="柯屿">
+<style>
+/* 视觉主张：和纸浮世绘 —— 木版水印的平面色块 + 一色关键线 + 竖排名牌。
+   不用阴影、不用圆角、不用渐变；层次靠「纸色分层」和 1px 墨线完成。 */
+:root{
+  --paper:#f4ede2;
+  --paper-2:#ece2d3;
+  --paper-3:#e2d5c2;
+  --ink:#2a2521;
+  --ink-soft:#5f5449;
+  --vermillion:#b8342a;
+  --indigo:#3a5a78;
+  --keyline:#c9b99f;
+  --serif:"Songti SC","Noto Serif CJK SC","Source Han Serif SC","SimSun",serif;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.75;
+  /* 和纸纹理：两道极淡的斜向纸筋，纯 CSS，无图片 */
+  background-image:
+    repeating-linear-gradient(96deg,rgba(160,140,110,.045) 0 1px,transparent 1px 7px),
+    repeating-linear-gradient(4deg,rgba(160,140,110,.035) 0 1px,transparent 1px 11px);
+}
+a{color:inherit;text-decoration:none;border-bottom:1px solid var(--keyline)}
+a:hover{border-bottom-color:var(--vermillion);color:var(--vermillion)}
+a:focus-visible{outline:2px solid var(--vermillion);outline-offset:3px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;margin:0}
+p{margin:0 0 1em}
+ul{margin:0;padding:0;list-style:none}
+
+.wrap{max-width:60rem;margin:0 auto;padding:0 1.25rem}
+
+/* ── 名牌：竖排 ───────────────────────────── */
+.nameplate{
+  border-bottom:2px solid var(--ink);
+  background:var(--paper-2);
+}
+.nameplate .wrap{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:2rem;
+  align-items:end;
+  padding-top:2.5rem;
+  padding-bottom:0;
+}
+.seal{
+  writing-mode:vertical-rl;
+  font-family:var(--serif);
+  font-size:clamp(2.4rem,7vw,3.6rem);
+  line-height:1.15;
+  letter-spacing:.12em;
+  padding:.6rem .55rem;
+  border:2px solid var(--vermillion);
+  color:var(--vermillion);
+  background:var(--paper);
+}
+.intro{padding-bottom:2.5rem}
+.intro .role{
+  font-family:var(--serif);
+  font-size:1.35rem;
+  line-height:1.6;
+  margin:0 0 .6rem;
+}
+.intro .meta{
+  font-size:14px;
+  color:var(--ink-soft);
+  letter-spacing:.05em;
+  margin:0;
+}
+.now{
+  display:inline-block;
+  margin-top:1.1rem;
+  padding:.35rem .8rem;
+  border:1px solid var(--indigo);
+  color:var(--indigo);
+  font-size:14px;
+}
+.now b{font-weight:600}
+
+/* ── 波纹分隔（版画水纹，内联 SVG） ─────────── */
+.wave{display:block;width:100%;height:2.2rem;color:var(--keyline)}
+.wave path{fill:none;stroke:currentColor;stroke-width:1.4}
+
+/* ── 分节 ─────────────────────────────────── */
+section{padding:3rem 0}
+section+section{border-top:1px solid var(--keyline)}
+.schead{
+  display:flex;
+  align-items:baseline;
+  gap:.9rem;
+  margin-bottom:1.6rem;
+}
+.schead h2{font-size:1.6rem;letter-spacing:.06em}
+.schead .tategaki{
+  writing-mode:vertical-rl;
+  font-family:var(--serif);
+  font-size:12px;
+  letter-spacing:.3em;
+  color:var(--vermillion);
+  border-left:1px solid var(--keyline);
+  padding-left:.35rem;
+  height:3.4rem;
+}
+.schead .count{margin-left:auto;font-size:14px;color:var(--ink-soft)}
+
+/* ── 作品：引札式清单行 ─────────────────────── */
+.works li{
+  display:grid;
+  grid-template-columns:4.2rem 1fr auto;
+  gap:1rem 1.2rem;
+  align-items:baseline;
+  padding:1.05rem 0;
+  border-top:1px solid var(--keyline);
+}
+.works li:last-child{border-bottom:1px solid var(--keyline)}
+.works .yr{
+  font-family:var(--serif);
+  font-size:14px;
+  color:var(--vermillion);
+  letter-spacing:.06em;
+}
+.works h3{font-size:1.15rem;margin:0 0 .25rem}
+.works h3 .en{font-family:var(--sans);font-size:14px;color:var(--ink-soft);letter-spacing:.04em;margin-left:.5rem}
+.works .desc{margin:0;font-size:15px;color:var(--ink-soft)}
+.works .form{
+  font-size:12px;
+  letter-spacing:.12em;
+  color:var(--indigo);
+  border:1px solid currentColor;
+  padding:.15rem .5rem;
+  white-space:nowrap;
+}
+.works li.is-live .form{color:var(--vermillion)}
+
+/* ── 随记：两张一组的札 ─────────────────────── */
+.notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.1rem}
+.note{
+  background:var(--paper-2);
+  border:1px solid var(--keyline);
+  border-left:3px solid var(--indigo);
+  padding:1rem 1.1rem;
+}
+.note time{font-size:12px;letter-spacing:.1em;color:var(--ink-soft)}
+.note h3{font-size:1.05rem;margin:.3rem 0 .35rem;line-height:1.55}
+.note p{font-size:15px;color:var(--ink-soft);margin:0}
+
+/* ── 近况 / 杂项：三栏纸片 ───────────────────── */
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem}
+.card{background:var(--paper-3);border:1px solid var(--keyline);padding:1.1rem}
+.card h3{font-size:1rem;margin:0 0 .6rem;letter-spacing:.08em}
+.card li{font-size:15px;padding:.2rem 0;border-bottom:1px dotted var(--keyline)}
+.card li:last-child{border-bottom:0}
+.card li span{float:right;font-size:14px;color:var(--ink-soft)}
+
+/* ── 通信 ─────────────────────────────────── */
+.contact{
+  background:var(--paper-2);
+  border-top:2px solid var(--ink);
+  padding:2.6rem 0;
+}
+.contact .wrap{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center}
+.mail{
+  font-family:var(--serif);
+  font-size:clamp(1.2rem,4vw,1.7rem);
+  border-bottom:2px solid var(--vermillion);
+  padding-bottom:.1rem;
+}
+.copy{
+  font:inherit;font-size:14px;
+  font-family:var(--sans);
+  padding:.5rem 1.1rem;
+  background:var(--paper);
+  color:var(--ink);
+  border:1px solid var(--ink);
+  cursor:pointer;
+}
+.copy:hover{background:var(--ink);color:var(--paper)}
+.copy:focus-visible{outline:2px solid var(--vermillion);outline-offset:2px}
+.copy[aria-live]{min-width:6.5rem}
+
+footer{padding:1.8rem 0 3rem;font-size:13px;color:var(--ink-soft);border-top:1px solid var(--keyline)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem}
+
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;z-index:9;background:var(--paper);border:1px solid var(--ink);padding:.4rem .8rem}
+
+@media (max-width:46rem){
+  .nameplate .wrap{grid-template-columns:1fr;gap:1.25rem}
+  .seal{writing-mode:horizontal-tb;justify-self:start}
+  .notes,.grid3{grid-template-columns:1fr}
+  .works li{grid-template-columns:1fr;gap:.3rem}
+  .works .form{justify-self:start}
+  .contact .wrap{grid-template-columns:1fr}
+  .schead .tategaki{display:none}
+}
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="nameplate">
+  <div class="wrap">
+    <h1 class="seal">柯屿</h1>
+    <div class="intro">
+      <p class="role">一个人做软件。写工具，也写它们背后的取舍。</p>
+      <p class="meta">独立开发者 · 前端与交互 · 现居杭州 · 2019 年至今</p>
+      <p class="now"><b>正在做：</b>「潮汐 TideNote」v2 内测，每周三发一版</p>
+    </div>
+  </div>
+</header>
+
+<svg class="wave" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+  <path d="M0 26 q30 -18 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0"/>
+  <path d="M0 34 q30 -14 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0"/>
+</svg>
+
+<main id="main">
+<section>
+  <div class="wrap">
+    <div class="schead">
+      <span class="tategaki">さくひん</span>
+      <h2>作品</h2>
+      <span class="count">五件 · 全部仍在运行</span>
+    </div>
+    <ul class="works">
+      <li class="is-live">
+        <span class="yr">2025</span>
+        <div>
+          <h3>潮汐 TideNote<span class="en">离线优先笔记</span></h3>
+          <p class="desc">本地 SQLite 存全部历史，同步走 CRDT，断网时写、联网后合。为「五年后还能打开」而设计。</p>
+        </div>
+        <span class="form">内测</span>
+      </li>
+      <li>
+        <span class="yr">2024</span>
+        <div>
+          <h3>光斑 Lumen<span class="en">长曝光计算</span></h3>
+          <p class="desc">把光圈、快门、ISO 与滤镜还原成一条看得见的曝光带，按住就能比较两档设置的差别。</p>
+        </div>
+        <span class="form">iOS · Web</span>
+      </li>
+      <li>
+        <span class="yr">2024</span>
+        <div>
+          <h3>汉字谱 Typeface Atlas<span class="en">中文字体检索</span></h3>
+          <p class="desc">137 套中文字体，同一句话同屏对照；按笔画密度、字面率与版权可商用筛选。</p>
+        </div>
+        <span class="form">Web</span>
+      </li>
+      <li>
+        <span class="yr">2023</span>
+        <div>
+          <h3>字节盒 Bytebox<span class="en">习惯追踪</span></h3>
+          <p class="desc">命令行打卡，数据是一个纯文本文件。没有账号，没有云，git 里就能看五年曲线。</p>
+        </div>
+        <span class="form">CLI · Go</span>
+      </li>
+      <li>
+        <span class="yr">2022</span>
+        <div>
+          <h3>漫游 Roamer<span class="en">城市漫步路线</span></h3>
+          <p class="desc">给一条地铁线和一个出发站，生成一段不重复的步行路线。周末两个人各走各的再会合。</p>
+        </div>
+        <span class="form">小程序</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="schead">
+      <span class="tategaki">ざっぴつ</span>
+      <h2>随记</h2>
+      <span class="count">更新不定期 · 共四篇</span>
+    </div>
+    <div class="notes">
+      <article class="note">
+        <time datetime="2025-08-14">2025-08-14</time>
+        <h3>为什么我把设置存成纯文本</h3>
+        <p>数据库会过期，账号会注销，缩进两空格的 key=value 不会。</p>
+      </article>
+      <article class="note">
+        <time datetime="2025-05-02">2025-05-02</time>
+        <h3>一次重构留下的三个坑</h3>
+        <p>缓存把测试读数吃掉了：写计数器之前，先证明计数器被写过。</p>
+      </article>
+      <article class="note">
+        <time datetime="2024-11-19">2024-11-19</time>
+        <h3>中文字体的行高怎么调才不抖</h3>
+        <p>汉字的视觉基线比拉丁字母低，行高要按字体各自的字面率给。</p>
+      </article>
+      <article class="note">
+        <time datetime="2024-06-07">2024-06-07</time>
+        <h3>一个人做产品的节奏</h3>
+        <p>把「每周三发一版」写进日历之后，功能范围自然就瘦下来了。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="schead">
+      <span class="tategaki">きんきょう</span>
+      <h2>近况与杂项</h2>
+      <span class="count">以下均为演示数据</span>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <h3>手上</h3>
+        <ul>
+          <li>潮汐 v2 同步层<span>进行中</span></li>
+          <li>《设计的观念》<span>读到 118 页</span></li>
+          <li>Rust<span>初学</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>本站</h3>
+        <ul>
+          <li>近 30 天访问<span>2,418 次</span></li>
+          <li>最常被点开<span>汉字谱</span></li>
+          <li>构建与托管<span>一台小机器</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>桌面以外</h3>
+        <ul>
+          <li>摄影<span>长曝光</span></li>
+          <li>骑行<span>绕城 60km</span></li>
+          <li>咖啡<span>手冲 · 中浅焙</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <p class="mail"><a href="mailto:hey@keyu.example">hey@keyu.example</a></p>
+      <p style="font-size:14px;color:var(--ink-soft);margin:.5rem 0 0">合作以能一句话说清的事为先。示例邮箱，不可送达。</p>
+    </div>
+    <button class="copy" id="copyMail" type="button">复制邮箱</button>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 柯屿</span>
+    <span>本页为技能验证用的虚构演示内容，人名、作品与数字均属示例</span>
+    <span>排版参考：木版水印的平面色块与单色关键线</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var btn=document.getElementById("copyMail");
+  var MAIL="hey@keyu.example";
+  var original=btn.textContent;
+  var timer=null;
+  function say(msg){
+    btn.textContent=msg;
+    if(timer){clearTimeout(timer);}
+    timer=setTimeout(function(){btn.textContent=original;},2400);
+  }
+  btn.addEventListener("click",function(){
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(MAIL).then(function(){say("已复制");},function(){say("请手动复制");});
+      return;
+    }
+    say("请手动复制");
+  });
+})();
+</script>
+</body>
+</html>

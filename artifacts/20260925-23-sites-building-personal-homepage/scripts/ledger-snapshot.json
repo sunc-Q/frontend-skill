@@ -1,0 +1,45 @@
+{
+ "taken_at": "2026-09-25T22:35+08:00",
+ "purpose": "本轮开工前的台账快照：报告与断言里引用的规模数字以此为准，不要用「现值减本轮新增」反推",
+ "tried_count": 9,
+ "runs_count": 9,
+ "skills_seen_count": 16,
+ "used_styles_count": 27,
+ "environment_notes_count": 51,
+ "next_candidates_count": 21,
+ "skills_represented": [
+  "drafter",
+  "frontend-development",
+  "ppt-generator",
+  "sites:sites-building",
+  "vercel-react-best-practices",
+  "vercel-react-best-practices + sites:sites-building（叠加）"
+ ],
+ "scenarios_tried_count": 9,
+ "work_log_bytes": 30363,
+ "work_log_entries_below_divider": 1,
+ "artifact_dirs_before": [
+  "20260925-14-sites-building-landing-page",
+  "20260925-15-sites-building-dashboard",
+  "20260925-16-frontend-development-report",
+  "20260925-17-vercel-react-best-practices-admin",
+  "20260925-18-vercel-react-best-practices-landing",
+  "20260925-19-sites-react-pricing",
+  "20260925-20-vercel-react-activity",
+  "20260925-21-drafter-architecture",
+  "20260925-22-ppt-generator-deck",
+  "20260925-23-sites-building-personal-homepage"
+ ],
+ "this_round_scenario": "20260925-23-sites-building-personal-homepage",
+ "page_bytes": {
+  "ukiyo": 13705,
+  "astro": 15914,
+  "pixel-console": 14329,
+  "styles.html": 5116
+ },
+ "assertions": {
+  "check_mjs": 219,
+  "interact_mjs": 24
+ },
+ "work_log_pipe_lines": 1
+}

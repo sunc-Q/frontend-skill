@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>柯屿 · KEYU.SOFT｜个人主页（像素掌机版）</title>
+<meta name="description" content="柯屿的个人主页，做成一台掌机的样子：五张卡带（潮汐、光斑、汉字谱、字节盒、漫游）、记录存档与当前状态。">
+<meta name="author" content="柯屿">
+<style>
+/* 视觉主张：像素掌机 —— 四色绿阶屏 + 灰白外壳 + 4px 硬边。
+   规则：零圆角、零渐变、零模糊；所有「深度」用实心偏移色块表达；
+   字号只取 12/14/16/20/28 五档，正文不低于 16px，靠字重与色阶区分层级。 */
+:root{
+  --shell:#d9d6cd;
+  --shell-2:#c3bfb3;
+  --bezel:#3a3b3c;
+  --s0:#0f380f;   /* 最暗：正文与边框 */
+  --s1:#306230;   /* 次暗：副文本 */
+  --s2:#8bac0f;   /* 亮：高亮块 */
+  --s3:#9bbc0f;   /* 最亮：屏底 */
+  --hot:#e53d2a;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Courier New",monospace;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--shell);
+  color:var(--s0);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.7;
+  padding:1.25rem 1rem 3rem;
+  /* 外壳的注塑点阵纹理，纯 CSS */
+  background-image:radial-gradient(rgba(58,59,60,.09) 1px,transparent 1px);
+  background-size:6px 6px;
+}
+h1,h2,h3,p,ul{margin:0;padding:0}
+ul{list-style:none}
+a{color:inherit;text-decoration:none;border-bottom:2px solid var(--s1)}
+a:hover{background:var(--s2);border-bottom-color:var(--s0)}
+a:focus-visible{outline:4px solid var(--hot);outline-offset:2px}
+.mono{font-family:var(--mono)}
+
+.hull{max-width:56rem;margin:0 auto}
+
+/* ── 掌机外壳 ─────────────────────────────── */
+.shell{
+  background:var(--shell);
+  border:4px solid var(--s0);
+  box-shadow:10px 10px 0 var(--shell-2);
+  padding:1.1rem;
+}
+.brandbar{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  font-family:var(--mono);font-size:12px;letter-spacing:.24em;
+  border-bottom:4px solid var(--s0);padding-bottom:.6rem;margin-bottom:1.1rem;
+}
+.brandbar .led{display:inline-flex;align-items:center;gap:.5rem}
+.led i{width:10px;height:10px;background:var(--hot);display:inline-block}
+
+/* ── 屏幕 ─────────────────────────────────── */
+.screen{
+  background:var(--s3);
+  border:4px solid var(--bezel);
+  box-shadow:inset 0 0 0 4px var(--s0);
+  padding:1.6rem 1.3rem;
+  color:var(--s0);
+}
+.boot{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--s1);margin-bottom:1.2rem}
+h1{
+  font-family:var(--mono);
+  font-size:clamp(1.75rem,7vw,2.5rem);
+  line-height:1.15;
+  letter-spacing:.06em;
+  background:var(--s0);
+  color:var(--s3);
+  display:inline-block;
+  padding:.35rem .7rem;
+}
+.h1sub{font-family:var(--mono);font-size:14px;letter-spacing:.2em;margin-top:.9rem}
+.pitch{font-size:17px;line-height:1.75;margin-top:1.1rem;max-width:36rem}
+.statline{
+  display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;
+  font-family:var(--mono);font-size:13px;letter-spacing:.1em;margin-top:1.2rem;
+  border-top:2px dashed var(--s1);padding-top:.8rem;
+}
+.statline b{font-weight:400;background:var(--s2);padding:0 .35rem}
+
+/* ── 方向键导航 ───────────────────────────── */
+nav.jump{
+  display:flex;flex-wrap:wrap;gap:.5rem;
+  margin:1.2rem 0 0;
+  font-family:var(--mono);font-size:13px;letter-spacing:.14em;
+}
+nav.jump a{
+  display:inline-block;border:3px solid var(--s0);padding:.4rem .9rem;
+  box-shadow:4px 4px 0 var(--s1);
+}
+nav.jump a:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--s1)}
+nav.jump a:focus-visible{outline:4px solid var(--hot);outline-offset:3px}
+
+/* ── 区块 ─────────────────────────────────── */
+section{margin-top:2.6rem}
+.hd{
+  display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap;
+  border-bottom:4px solid var(--s0);padding-bottom:.5rem;margin-bottom:1.1rem;
+}
+.hd h2{font-family:var(--mono);font-size:1.15rem;letter-spacing:.16em}
+.hd .sub{margin-left:auto;font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--s1)}
+
+/* 卡带 */
+.carts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.cart{
+  border:3px solid var(--s0);
+  background:var(--s3);
+  box-shadow:6px 6px 0 var(--s1);
+  padding:.9rem 1rem 1.05rem;
+}
+.cart .label{
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--s1);
+  border-bottom:2px solid var(--s0);padding-bottom:.35rem;margin-bottom:.55rem;
+  display:flex;justify-content:space-between;gap:.6rem;
+}
+.cart h3{font-size:18px;font-family:var(--mono);letter-spacing:.04em}
+.cart h3 .en{font-size:13px;color:var(--s1);letter-spacing:.1em;margin-left:.4rem}
+.cart p{font-size:15px;line-height:1.7;color:var(--s1);margin-top:.4rem}
+.cart .gauge{display:flex;align-items:center;gap:.5rem;margin-top:.7rem;font-family:var(--mono);font-size:12px}
+.blocks{display:flex;gap:3px}
+.blocks i{width:12px;height:12px;border:2px solid var(--s0);display:block}
+.blocks i.on{background:var(--s0)}
+
+/* 存档（随记） */
+.saves li{
+  display:grid;grid-template-columns:6.2rem 1fr;gap:.9rem;
+  padding:.7rem 0;border-bottom:2px dotted var(--s1);
+}
+.saves time{font-family:var(--mono);font-size:13px;letter-spacing:.06em;color:var(--s1)}
+.saves h3{font-size:16px;display:inline}
+.saves p{display:inline;font-size:15px;color:var(--s1);margin-left:.6rem}
+
+/* 状态 */
+.state{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.pane{border:3px solid var(--s0);padding:.85rem .95rem;background:var(--s3)}
+.pane h3{font-family:var(--mono);font-size:12px;letter-spacing:.18em;border-bottom:2px solid var(--s0);padding-bottom:.4rem;margin-bottom:.6rem}
+.pane li{display:flex;justify-content:space-between;gap:.8rem;font-size:15px;padding:.22rem 0}
+.pane li span{font-family:var(--mono);font-size:13px}
+
+/* 通信 */
+.link{display:grid;grid-template-columns:1fr auto;gap:1.2rem;align-items:center}
+.mail{font-family:var(--mono);font-size:clamp(1rem,4vw,1.3rem);letter-spacing:.06em;display:inline-block}
+.hint{font-family:var(--mono);font-size:13px;color:var(--s1);margin-top:.5rem}
+.btn{
+  font-family:var(--mono);font-size:14px;letter-spacing:.16em;
+  background:var(--s2);color:var(--s0);border:3px solid var(--s0);
+  box-shadow:5px 5px 0 var(--s0);
+  padding:.65rem 1.2rem;cursor:pointer;
+}
+.btn:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--s0)}
+.btn:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--s0)}
+.btn:focus-visible{outline:4px solid var(--hot);outline-offset:3px}
+
+footer{
+  margin-top:1.4rem;border-top:4px solid var(--s0);padding-top:.7rem;
+  display:flex;flex-wrap:wrap;gap:.3rem 1.4rem;
+  font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--s1);
+}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;z-index:9;background:var(--s2);border:3px solid var(--s0);padding:.4rem .8rem;color:var(--s0)}
+
+@media (max-width:48rem){
+  .carts,.state,.link{grid-template-columns:1fr}
+  .saves li{grid-template-columns:1fr;gap:.15rem}
+  .shell{box-shadow:6px 6px 0 var(--shell-2)}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<div class="hull">
+<div class="shell">
+  <div class="brandbar">
+    <span>KEYU·SOFT MODEL-K1</span>
+    <span class="led"><i aria-hidden="true"></i>电源开 · 潮汐 v2 内测中</span>
+  </div>
+
+  <header class="screen">
+    <p class="boot">&gt; 载入存档 KEYU.SAV … OK<br>&gt; 五张卡带已插入<br>&gt; 按 A 继续</p>
+    <h1>柯屿 KE YU</h1>
+    <p class="h1sub">独立开发者 · 前端与交互 · 杭州</p>
+    <p class="pitch">一个人做软件，五年。这一屏是我把自己的东西按「卡带」摆出来的样子：五张还在跑的卡带、几段存档记录，以及此刻的状态。</p>
+    <div class="statline">
+      <span>自 <b>2019</b> 年独立</span>
+      <span>在售卡带 <b>05</b></span>
+      <span>本周工时 <b>30.5h</b></span>
+    </div>
+    <nav class="jump" aria-label="页内导航">
+      <a href="#works">作品卡带</a>
+      <a href="#saves">存档记录</a>
+      <a href="#state">状态</a>
+      <a href="#link">连线</a>
+    </nav>
+  </header>
+
+  <main id="main">
+  <section id="works">
+    <div class="hd">
+      <h2>作品卡带</h2>
+      <span class="sub">CARTRIDGES 05 / 全部仍在运行 · 每格≈5 小时（四舍五入）</span>
+    </div>
+    <div class="carts">
+      <article class="cart">
+        <p class="label"><span>CARD-05</span><span>2025 · Web/桌面</span></p>
+        <h3>潮汐 TideNote<span class="en">内测</span></h3>
+        <p>离线优先笔记：本地 SQLite 存全部历史，同步走 CRDT。为「五年后还能打开」而设计。</p>
+        <div class="gauge"><span>投入</span><span class="blocks" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span>22h/周</span></div>
+      </article>
+      <article class="cart">
+        <p class="label"><span>CARD-04</span><span>2024 · Web</span></p>
+        <h3>汉字谱<span class="en">Typeface Atlas</span></h3>
+        <p>137 套中文字体同屏对照，按笔画密度、字面率与是否可商用筛选。</p>
+        <div class="gauge"><span>投入</span><span class="blocks" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></span><span>4h/周</span></div>
+      </article>
+      <article class="cart">
+        <p class="label"><span>CARD-03</span><span>2024 · iOS/Web</span></p>
+        <h3>光斑 Lumen<span class="en">长曝光</span></h3>
+        <p>把光圈、快门、ISO 与滤镜还原成一条看得见的曝光带，按住即可比较两档设置。</p>
+        <div class="gauge"><span>投入</span><span class="blocks" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></span><span>3h/周</span></div>
+      </article>
+      <article class="cart">
+        <p class="label"><span>CARD-02</span><span>2023 · CLI/Go</span></p>
+        <h3>字节盒<span class="en">Bytebox</span></h3>
+        <p>命令行打卡，数据是一个纯文本文件。没有账号没有云，git 里就能看五年曲线。</p>
+        <div class="gauge"><span>投入</span><span class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span>1h/周</span></div>
+      </article>
+      <article class="cart">
+        <p class="label"><span>CARD-01</span><span>2022 · 小程序</span></p>
+        <h3>漫游 Roamer<span class="en">维护</span></h3>
+        <p>给一条地铁线和一个出发站，生成一段不重复的步行路线，周末各走各的再会合。</p>
+        <div class="gauge"><span>投入</span><span class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span>0.5h/周</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="saves">
+    <div class="hd">
+      <h2>存档记录</h2>
+      <span class="sub">SAVES 04 · 更新不定期</span>
+    </div>
+    <ul class="saves">
+      <li><time datetime="2025-08-14">2025-08-14</time><div><h3>为什么我把设置存成纯文本</h3><p>数据库会过期，账号会注销，缩进两空格的 key=value 不会。</p></div></li>
+      <li><time datetime="2025-05-02">2025-05-02</time><div><h3>一次重构留下的三个坑</h3><p>缓存把测试读数吃掉了：写计数器之前，先证明计数器被写过。</p></div></li>
+      <li><time datetime="2024-11-19">2024-11-19</time><div><h3>中文字体的行高怎么调才不抖</h3><p>汉字视觉基线比拉丁字母低，行高要按各字体的字面率给。</p></div></li>
+      <li><time datetime="2024-06-07">2024-06-07</time><div><h3>一个人做产品的节奏</h3><p>把「每周三发一版」写进日历之后，功能范围自然瘦下来了。</p></div></li>
+    </ul>
+  </section>
+
+  <section id="state">
+    <div class="hd">
+      <h2>状态</h2>
+      <span class="sub">以下数值全部为演示数据</span>
+    </div>
+    <div class="state">
+      <div class="pane">
+        <h3>手上</h3>
+        <ul>
+          <li>潮汐同步层<span>进行中</span></li>
+          <li>设计的观念<span>118/320</span></li>
+          <li>Rust<span>初学</span></li>
+        </ul>
+      </div>
+      <div class="pane">
+        <h3>本站</h3>
+        <ul>
+          <li>近30天访问<span>2418</span></li>
+          <li>最常被点开<span>汉字谱</span></li>
+          <li>托管<span>小机器</span></li>
+        </ul>
+      </div>
+      <div class="pane">
+        <h3>关机以后</h3>
+        <ul>
+          <li>摄影<span>长曝光</span></li>
+          <li>骑行<span>60km</span></li>
+          <li>咖啡<span>中浅焙</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="link">
+    <div class="hd">
+      <h2>连线</h2>
+      <span class="sub">交易 · 合作 · 报错都可以</span>
+    </div>
+    <div class="link">
+      <div>
+        <a class="mail" href="mailto:hey@keyu.example">hey@keyu.example</a>
+        <p class="hint">示例邮箱，不可送达。合作以能一句话说清的事为先。</p>
+      </div>
+      <button class="btn" id="copyMail" type="button">A · 复制</button>
+    </div>
+  </section>
+  </main>
+
+  <footer>
+    <span>© 2026 柯屿</span>
+    <span>虚构演示内容：人名/作品/数值均为示例</span>
+    <span>PRESS ANY KEY</span>
+  </footer>
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var btn=document.getElementById("copyMail");
+  var MAIL="hey@keyu.example";
+  var original=btn.textContent;
+  var timer=null;
+  function say(msg){
+    btn.textContent=msg;
+    if(timer){clearTimeout(timer);}
+    timer=setTimeout(function(){btn.textContent=original;},2400);
+  }
+  btn.addEventListener("click",function(){
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(MAIL).then(function(){say("已复制 ✔");},function(){say("手动复制");});
+      return;
+    }
+    say("手动复制");
+  });
+})();
+</script>
+</body>
+</html>
