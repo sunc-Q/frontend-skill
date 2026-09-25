@@ -1,0 +1,184 @@
+/* ============================================================
+   风格二：高定时装屋排版（couture atelier sheet）
+   主张：一张裁缝量体单——象牙纸、发丝线、大面积留白，
+   标题用极细高对比衬线，标签是小一号的全大写宽字距脚注，
+   没有阴影、没有圆角，只有线。
+   ============================================================ */
+:root {
+  color-scheme: light;
+
+  --font-body: 'Helvetica Neue', Helvetica, 'PingFang SC', sans-serif;
+  --font-head: 'Didot', 'Bodoni MT', 'Playfair Display', 'Songti SC', Georgia, serif;
+  --font-mono: 'SFMono-Regular', Menlo, 'Courier New', monospace;
+
+  --bg: #f7f3ea;
+  --bg-texture:
+    repeating-linear-gradient(0deg, rgba(26, 23, 20, 0.028) 0 1px, transparent 1px 32px),
+    repeating-linear-gradient(90deg, rgba(26, 23, 20, 0.02) 0 1px, transparent 1px 32px);
+  --bg-panel: #fffdf8;
+  --bg-alt: #f1ebdd;
+  --bg-input: #fffdf8;
+  --bg-head: #f7f3ea;
+
+  --ink: #1a1714;
+  --ink-soft: #4c463d;
+  --ink-faint: #8d8577;
+  --head-ink: #1a1714;
+
+  --accent: #7a1f3d;
+  --accent-2: #2f4c46;
+  --accent-ink: #fffdf8;
+
+  --line: rgba(26, 23, 20, 0.22);
+  --line-strong: #1a1714;
+  --border: 1px solid rgba(26, 23, 20, 0.28);
+  --border-hair: 1px solid rgba(26, 23, 20, 0.16);
+  --border-bottom-strong: 1px solid rgba(26, 23, 20, 0.7);
+  --edge-w: 1px;
+  --edge-w-lg: 1px;
+  --shadow: none;
+  --btn-shadow: none;
+
+  --zebra: rgba(26, 23, 20, 0.026);
+  --hover: rgba(122, 31, 61, 0.07);
+  --sel-bg: #1a1714;
+  --sel-ink: #fffdf8;
+  --track: rgba(26, 23, 20, 0.12);
+  --idle: #8d8577;
+
+  --ok: #2f4c46;
+  --ok-bg: rgba(47, 76, 70, 0.1);
+  --warn: #9a6a12;
+  --warn-bg: rgba(154, 106, 18, 0.1);
+  --bad: #7a1f3d;
+  --bad-bg: rgba(122, 31, 61, 0.09);
+
+  --radius: 0px;
+  --radius-sm: 0px;
+  --chip-radius: 0px;
+
+  --fs-base: 15px;
+  --fs-small: 13px;
+  --fs-tiny: 10.5px;
+  --fs-label: 10px;
+  --fs-title: 34px;
+  --fs-brand: 40px;
+  --fs-kpi: 42px;
+  --lh: 1.75;
+
+  --fw-bold: 400;
+  --fw-normal: 400;
+  --fw-kpi: 400;
+
+  --head-tracking: 0.01em;
+  --head-transform: none;
+  --label-tracking: 0.3em;
+  --label-transform: uppercase;
+  --label-style: normal;
+  --mono-tracking: 0.08em;
+
+  --maxw: 1140px;
+  --side-w: 320px;
+  --gap: 44px;
+  --gap-sm: 26px;
+  --pad: 20px;
+  --pad-sm: 14px;
+  --pad-xs: 6px;
+  --cell-pad: 12px 14px;
+  --field-min: 150px;
+  --kpi-min: 210px;
+  --fact-min: 200px;
+  --lede-w: 58ch;
+  --mark-size: 26px;
+  --icon-size: 13px;
+  --check-size: 13px;
+  --pager-w: 40px;
+  --bar-h: 2px;
+  --bar-h-sm: 2px;
+  --spark-w: 84px;
+  --focus-w: 1px;
+  --sticky-z: 3;
+  --t: 220ms ease;
+  --topbar-align: baseline;
+  --stamp-align: right;
+  --tilt-brand: none;
+  --tilt-title: none;
+  --tilt-kpi: none;
+}
+
+/* 气质补丁：量体单——区块标题上方一条细线拉出编号感，
+   徽章改成描边小字，KPI 数字与单位分家，表体只留横线。 */
+.section-head {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 42px;
+  height: 1px;
+  margin-top: 6px;
+  background-color: var(--accent);
+}
+
+.badge {
+  background-color: transparent;
+  border: 1px solid currentColor;
+  color: var(--badge-ink, var(--ink-soft));
+  border-radius: 0;
+  letter-spacing: 0.22em;
+  padding: 2px 7px;
+}
+
+.kpi {
+  border: 0;
+  border-top: 1px solid var(--line-strong);
+  padding-left: 0;
+}
+
+.kpi-label {
+  margin-bottom: 14px;
+}
+
+.table th {
+  border-bottom: 1px solid var(--line-strong);
+  background-color: transparent;
+  font-family: var(--font-body);
+}
+
+.table td {
+  border-bottom: 1px solid var(--line);
+}
+
+.table tbody tr[data-active='true'] {
+  box-shadow: none;
+}
+
+.fact {
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background-color: transparent;
+  padding-left: 0;
+}
+
+.fact dd {
+  font-family: var(--font-head);
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.lotrow {
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.btn {
+  background-color: transparent;
+  border-color: var(--line-strong);
+  border-radius: 0;
+  letter-spacing: 0.22em;
+}

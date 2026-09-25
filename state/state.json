@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T04:10:00+08:00",
+  "updated": "2026-09-26T06:32:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -115,6 +115,19 @@
         "解构主义拼版"
       ],
       "result": "成功：4 表 / 6 读 + 3 写接口（单 ADMIN_TOKEN，503·401·403 三层）+ 书别借期费率封顶、逾期费归还瞬间快照不回溯、续借 2 次顺延、欠费 30 元停借、证别配额 8/12/5、手机号 json:\"-\" 只出 phone_masked；库存/借阅恒等式由 /api/stats 自检并被冒烟复验。go build·vet·test 全绿，tsc 0 错，run-smoke.sh pass=212 fail=0（含只读不变量 18 项），style-diff 失败项 0（互斥 53/50/47 + 同构 8 字段全等 + 零外链零 console 错误），ui-check pass=19 fail=0（真浏览器借出→归还闭环 + 切风格 671 节点逐节点同构）。抓出并修掉 6 处真缺陷：by_category JOIN 放大复本数、趋势稀疏日、identity_issues 出 null、WAL/SHM 漏压 0600、续借门槛顺序、/api 缺 Cache-Control no-store。"
+    },
+    {
+      "time": "2026-09-26T06:30:00+08:00",
+      "scenario": "社区汽修店工单与配件批次台账",
+      "slug": "auto-repair-workorder",
+      "styles": [
+        "机车搪瓷牌照风",
+        "高定时装屋排版",
+        "塔罗神谕卡牌风"
+      ],
+      "result": "成功：5 表 7 读 4 写（单 ADMIN_TOKEN，503/401/403 三层）+ 八态机与明细锁定 + FIFO 纯函数扣批 + 作废按原批次原量退料 + 工时费率取整 + 手机号只出掩码；go build/vet/test 全绿，api-smoke.sh pass=338 fail=0，style-diff 失败项 0（互斥 47/44/49 + 同构 8 字段全等 + 零外链零 console 错误），ui-check pass=153 fail=0（dist 与单文件 preview 两种托管各一遍，修掉竞态后同库连跑三次全绿）。抓出 2 处真前端缺陷：批次预填编码显示却不提交、自动批次号顶破 20 位上限",
+      "code_dir": "sites/auto-repair-workorder/{backend,web,scripts}",
+      "artifact_dir": "sites/auto-repair-workorder/{web/dist,preview,evidence}"
     }
   ],
   "used_scenarios": [
@@ -126,7 +139,8 @@
     "online-assessment-exam",
     "homestay-booking-calendar",
     "support-ticket-sla-desk",
-    "library-circulation-desk"
+    "library-circulation-desk",
+    "auto-repair-workorder"
   ],
   "used_styles": [
     "瑞士网格",
@@ -155,7 +169,10 @@
     "深色企业台",
     "乐高积木块面",
     "Risograph 孔版印刷",
-    "解构主义拼版"
+    "解构主义拼版",
+    "机车搪瓷牌照风",
+    "高定时装屋排版",
+    "塔罗神谕卡牌风"
   ],
   "runs": [
     {
@@ -496,6 +513,37 @@
         "commits": "1 笔工作提交（40ef7a6）+ 1 笔收工审计",
         "range": "676ded7..40ef7a6（第 9 轮工作提交，普通 push，无 --force/--no-verify）"
       }
+    },
+    {
+      "id": "20260926-04",
+      "slug": "auto-repair-workorder",
+      "started": "2026-09-26T04:09:00+08:00",
+      "finished": "2026-09-26T06:32:00+08:00",
+      "scenario": "铁砧汽修 · 工单与配件台",
+      "styles": [
+        "机车搪瓷牌照风",
+        "高定时装屋排版",
+        "塔罗神谕卡牌风"
+      ],
+      "template_created": false,
+      "disk": {
+        "df_k_avail_before": 18687840,
+        "df_k_avail_after": 18561452,
+        "scenario_dir_human": "4.0M / 59 文件（上限 5MB）：backend 228K + web(含 dist) 592K + preview 1.0M + scripts 108K + evidence 2.1M（三张整页截图占大头）",
+        "note": "开工 df 可用 18,687,840KB≈17.8GiB，全程远高于 1.5GiB 熔断线。删除：web/node_modules、/tmp/arw-build、/tmp/arw-doc、/tmp/arw-v2、/tmp/arw-pv、/tmp/arw-recheck*、/tmp/arw-f*、/tmp/arw-*.png/.json/.log；仓库内 0 个 db/wal/shm 残留（.gitignore 已排除）。共享缓存（~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache）未动，没有 go clean -cache/-testcache。进程按端口→PID→`ps -o command=` 核对命令行后才 kill：:18477/:18478/:18411 = /tmp/arw-build/api，:18412 = node scripts/serve-static.mjs，全是本轮自己起的，kill 后这四个端口监听数 0。"
+      },
+      "verification": {
+        "go": "gofmt -l 空；go build/vet/test ./... 全绿（30 个 Test：domain 11 / repository 12 / server 7；8 处 []struct 表、14 个 range 用例循环，覆盖字段校验、鉴权 401/403/503、注入与超长、FIFO 计划、状态机跃迁表、退料与恒等式）",
+        "web": "tsc --noEmit 0 错；vite build 产出 web/dist；derive-themes.py 断言 base.css(377 处 var() / 零裸色值) + 三套各 84 token 全覆盖后拼出 theme-*.css",
+        "api": "run-smoke.sh（全新 /tmp 双实例，无令牌实例用 env -u ADMIN_TOKEN 起）→ api-smoke.sh 16 节 pass=338 fail=0；db/-shm/-wal 实测 -rw-------",
+        "style": "style-shoot + style-diff：dist 与单文件 preview 两份探针均「失败项：0」，互斥 garage-plate/couture 47、couture/tarot 44、garage-plate/tarot 49 项（70 项计算样式）；同构 rowCount=63 kpiCount=12 badgeCount=55 lotCount=3 tabCount=3 inlineScripts=0 inlineStyles=1 external=[] 全等，console 错误 0",
+        "ui": "ui-check.mjs 10 节全流程：pass=153 fail=0（dist 托管）与 153/0（preview 托管）。首轮在脏库上连跑抓到 3 次两类读侧竞态（见 environment_notes），加 poll() 后同库连跑 3 遍全绿。UI 里真开单→工时行 ¥390.00→批次出库 2 件（在库 −2、流水 −2/出库）→状态推到已提车（结算快照 = 390+2×挂牌价）→第二张单出库 3 件后作废（退料 +3、库存复原、原因回显）→到货入库 5 件（留空批次号自动生成）",
+        "themes": "同一份 App.tsx/DOM/JS，只有 theme-garage-plate.css / theme-couture.css / theme-tarot.css 三份产物不同"
+      },
+      "push": {
+        "commits": "待本轮收尾填写",
+        "range": "待填"
+      }
     }
   ],
   "environment_notes": [
@@ -547,7 +595,13 @@
     "第 9 轮：**SQLite 权限要在首次写入后再压一遍**。-wal/-shm 只在有写入后才出现，Open() 里 chmod 会漏掉它们，结果库 0600 而 WAL 0644（WAL 里是完整数据页）。固定做法：repository.Harden(path) 在 Seed() 之后再调一次，冒烟脚本末尾 ls -l 三件套当证据。",
     "第 9 轮：**macOS 自带 bash 3.2 解析不了 `$\\{…}` / `$( ... <<'PY' … PY)` 形态**（命令替换里套 heredoc 直接语法错）。把 Python 逻辑落成真实脚本文件，既绕过解析问题，又能单独复跑与 diff；shell 侧只留 eval 与断言。",
     "第 9 轮：**UI 同构断言不能拿文案总长当结构**。归还后页面重取数据，数字位数变化就让 innerHTML/textContent 长度漂了 390 字符，而 DOM 结构其实一节点未动。可靠口径：排除装饰性 swatch（每风格一枚不同 SVG，本来就该不同）后的「标签+class 节点序列」+ 行/卡/徽标计数。",
-    "第 9 轮：**「未配置」类断言必须把变量从子进程环境里显式摘掉**。fail-closed 的测试实例靠「不 export」来保证没令牌是假的——调用方 `ADMIN_TOKEN=xxx bash run-smoke.sh` 会让它继承环境，实测 503 断言返回 201，写接口整层形同未测。固定写法：用 `env -u ADMIN_TOKEN` 起那个实例，并在断言里比对状态码而不是只看「没报错」。"
+    "第 9 轮：**「未配置」类断言必须把变量从子进程环境里显式摘掉**。fail-closed 的测试实例靠「不 export」来保证没令牌是假的——调用方 `ADMIN_TOKEN=xxx bash run-smoke.sh` 会让它继承环境，实测 503 断言返回 201，写接口整层形同未测。固定写法：用 `env -u ADMIN_TOKEN` 起那个实例，并在断言里比对状态码而不是只看「没报错」。",
+    "第 10 轮：**bash 的 `[[ \"$b\" == *\"$k\" ]]` 是整串模式匹配，不是包含**。少一个尾部 `*` 就整段静默失效，`bash -n` 也不报错——24 行字段校验断言因此假通过。判「响应含某键」两头都要 `*`，并先用独立 `[[ … ]] && echo MATCH` 验证一次模式本身。",
+    "第 10 轮：**请求体里带嵌套引号的断言绝不能内联进 `$( )`**。`chk … \"$(status_of \"$(req POST … \\\"{…}\\\"})\")\"` 会把引号吞掉，后端只收到畸形 JSON，等到 400「请求体无法解析」而不是 409。固定写法：payload 先落变量、响应先落变量，再断言。",
+    "第 10 轮：**冒烟样本必须服务端筛选，且缺样本就硬退出**。种子有 124 张单，在「第一页 100 条」里找 `settled`/`cancelled` 会拿空 → URL 塌成 `/api/work-orders/` → Gin 301 → 断言读到 `<a href=…Moved Permanently</a>`，10 条失败全指向同一个上游空值。改成 `?status=settled&page_size=5`，并在样本缺失时立刻 `exit 1`。",
+    "第 10 轮：**UI 套件的读侧竞态只在重复跑时暴露**（同一实例连跑三种失败）：① `factWait('工单号','WO-')` 的等待条件用「含 WO-」——上一单本来就含，于是立刻返回旧值；② 出库后马上读流水表，拿到占位文案「库存流水 正在读取…」。规则：**等待条件必须用目标值本身**，并给套件加 `poll(read,test)`。另注意 `locator.isDisabled()` 返回 Promise，写 `String(…isDisabled())` 得到 `[object Promise]`，条件永不成立、只留一次超时。补好后同库连跑 3 遍 dist + 1 遍 preview 全 `pass=153 fail=0`。",
+    "第 10 轮：**探针别量透明容器**：`.shell` 的背景画在 `body`/`.topbar` 上，量 `.shell` 三套主题都会拿到全等的 `rgba(0,0,0,0)`，误判「风格没生效」。改量 body 与 topbar。",
+    "第 10 轮：**工具输出把 `YYYY/MM/DD` 里的 `/` 渲染成 `-` 一事再次复现**（页面文案、断言输出都受影响）。别据此改代码；要判字节用 `python3 -c \"import binascii;print(binascii.hexlify(s.encode()))\"`（本机这个 python3 没有 `str.hex()`）。"
   ],
   "next_candidates": [
     "医院门诊排班与挂号",
@@ -560,11 +614,25 @@
     "二手车评估上架",
     "冷链运输调度台",
     "社区医院门诊叫号与病历台",
-    "汽车维修工单与配件库存",
-    "健身房私教课包核销台"
+    "健身房私教课包核销台",
+    "汽修门店会员卡与储值核销",
+    "牙科诊所预约与器材灭菌台账",
+    "洗衣连锁收派与衣物洗护追踪",
+    "渔船渔获拍卖与冷链出库台"
   ],
   "next_style_candidates": [
-    "乐高积木块面"
+    "构成主义建筑海报",
+    "苏式工程晒图纸",
+    "老式登机牌/票证打孔",
+    "暗房相纸显影",
+    "和纸浮世绘",
+    "像素机街机 CRT",
+    "包豪斯纺织样卡",
+    "米其林指南烫金卡",
+    "航海图罗盘",
+    "陶瓷开片冰裂",
+    "黑胶唱片封套",
+    "医用腕带标签"
   ],
   "backlog": [
     "fitness-studio-booking：bookings 目前无 (session_id,member_id) 复合唯一索引，查重依赖事务内 SELECT + 单写者；若放开多连接必须先补索引（confirmed/waitlist 用部分索引）。",
@@ -587,6 +655,8 @@
     "templates/go-gin-react：把本轮的 scripts/style-shoot.mjs（真无头 Chrome + 计算属性探针 + PNG）与 api-smoke.sh 的「键名/条数断言」回灌成模板通用件——第 6/7 轮连续两次都在现场重编取证工具。",
     "library-circulation-desk：decon 风格下借阅台账列宽偏挤（衬线字宽把「条码」列压成三行），属观感问题；若要修应在 base.css 引入 table-layout:fixed + 列宽 token，不能改 DOM。",
     "library-circulation-desk：种子仅 7 册非参考书在架，任何「借到配额上限」类断言天然依赖干净库；新增写接口时同步看种子饱和度，或把种子扩到 30+ 册可借复本。",
-    "templates/go-gin-react：把 run-smoke.sh（全新库双实例 + 权限证据）与 style-diff.py 的「互斥+同构」双指标骨架回灌成模板通用件。"
+    "templates/go-gin-react：把 run-smoke.sh（全新库双实例 + 权限证据）与 style-diff.py 的「互斥+同构」双指标骨架回灌成模板通用件。",
+    "auto-repair-workorder：在库/库存金额/批次成本全部由 stock_lots 与 stock_moves 实时聚合派生（parts 表刻意不放 on_hand 列），读放大随批次数线性增长；若要上量需加物化列或增量维护，并配一条「派生值 vs 聚合值」对账任务（现在只有 /api/stats 的 stock_issues 自检）。",
+    "auto-repair-workorder：FIFO 只在 service 层纯函数里挑批，`stock_lots.qty_remaining` 由触发器兜底非负，但同一配件并发领料靠 SetMaxOpenConns(1) 串行化保证；放开多连接前必须把扣批改成 `UPDATE … WHERE qty_remaining>=?` 的乐观条件或显式事务锁。"
   ]
 }

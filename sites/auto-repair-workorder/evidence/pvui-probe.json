@@ -1,0 +1,30 @@
+{
+ "summary": {
+  "garage-plate": {
+   "shellBg": "rgb(13, 47, 99)/rgb(20, 61, 120)",
+   "shellFont": "Avenir Next Condensed",
+   "order": "WO-20260925-0009",
+   "order2": "WO-20260925-0010",
+   "part": "BR-CAL-03",
+   "expTotalCents": 69400
+  },
+  "couture": {
+   "shellBg": "rgb(247, 243, 234)/rgb(255, 253, 248)",
+   "shellFont": "Helvetica Neue",
+   "order": "WO-20260925-0011",
+   "order2": "WO-20260925-0012",
+   "part": "BR-CAL-03",
+   "expTotalCents": 69400
+  },
+  "tarot": {
+   "shellBg": "rgb(26, 19, 38)/rgb(36, 26, 51)",
+   "shellFont": "Iowan Old Style",
+   "order": "WO-20260925-0013",
+   "order2": "WO-20260925-0014",
+   "part": "BR-CAL-03",
+   "expTotalCents": 69400
+  }
+ },
+ "pass": 153,
+ "fail": 0
+}

@@ -1,0 +1,176 @@
+/* ============================================================
+   风格三：塔罗神谕卡牌风（tarot oracle deck）
+   主张：每张卡片是一张牌——午夜紫底、金线双框、拱形圆角，
+   标题是斜体衬线牌名，标签像牌脚的小谶语，
+   页面上撒一层星点，行与行之间以金线分隔。
+   ============================================================ */
+:root {
+  color-scheme: dark;
+
+  --font-body: 'Iowan Old Style', Palatino, 'Songti SC', Georgia, serif;
+  --font-head: 'Baskerville', 'Hoefler Text', 'Songti SC', Georgia, serif;
+  --font-mono: 'Menlo', 'SFMono-Regular', Consolas, monospace;
+
+  --bg: #1a1326;
+  --bg-texture:
+    repeating-linear-gradient(63deg, rgba(216, 178, 94, 0.05) 0 1px, transparent 1px 34px),
+    repeating-linear-gradient(-63deg, rgba(143, 107, 214, 0.07) 0 1px, transparent 1px 21px);
+  --bg-panel: #241a33;
+  --bg-alt: #201730;
+  --bg-input: #16101f;
+  --bg-head: #120c1c;
+
+  --ink: #f0e6d2;
+  --ink-soft: #cab9d8;
+  --ink-faint: #9a86ad;
+  --head-ink: #e9c877;
+
+  --accent: #d8b25e;
+  --accent-2: #a780e6;
+  --accent-ink: #1a1326;
+
+  --line: #4a3568;
+  --line-strong: #d8b25e;
+  --border: 1px solid #6b5295;
+  --border-hair: 1px solid #3a2b52;
+  --border-bottom-strong: 1px solid #d8b25e;
+  --edge-w: 1px;
+  --edge-w-lg: 3px;
+  --shadow: 0 0 0 1px rgba(216, 178, 94, 0.5), 0 14px 26px rgba(8, 4, 14, 0.62);
+  --btn-shadow: none;
+
+  --zebra: rgba(216, 178, 94, 0.045);
+  --hover: rgba(167, 128, 230, 0.16);
+  --sel-bg: #38265099;
+  --sel-ink: #f7e9c6;
+  --track: #2c2040;
+  --idle: #9a86ad;
+
+  --ok: #8dd6a8;
+  --ok-bg: rgba(141, 214, 168, 0.13);
+  --warn: #e9c877;
+  --warn-bg: rgba(233, 200, 119, 0.14);
+  --bad: #ef7f8f;
+  --bad-bg: rgba(239, 127, 143, 0.14);
+
+  --radius: 18px;
+  --radius-sm: 9px;
+  --chip-radius: 999px;
+
+  --fs-base: 15px;
+  --fs-small: 13.5px;
+  --fs-tiny: 11px;
+  --fs-label: 11px;
+  --fs-title: 27px;
+  --fs-brand: 32px;
+  --fs-kpi: 30px;
+  --lh: 1.66;
+
+  --fw-bold: 600;
+  --fw-normal: 400;
+  --fw-kpi: 600;
+
+  --head-tracking: 0.05em;
+  --head-transform: none;
+  --label-tracking: 0.18em;
+  --label-transform: uppercase;
+  --label-style: italic;
+  --mono-tracking: 0.1em;
+
+  --maxw: 1180px;
+  --side-w: 350px;
+  --gap: 32px;
+  --gap-sm: 20px;
+  --pad: 18px;
+  --pad-sm: 12px;
+  --pad-xs: 5px;
+  --cell-pad: 10px 12px;
+  --field-min: 148px;
+  --kpi-min: 206px;
+  --fact-min: 190px;
+  --lede-w: 60ch;
+  --mark-size: 27px;
+  --icon-size: 15px;
+  --check-size: 14px;
+  --pager-w: 40px;
+  --bar-h: 8px;
+  --bar-h-sm: 7px;
+  --spark-w: 80px;
+  --focus-w: 2px;
+  --sticky-z: 2;
+  --t: 200ms ease;
+  --topbar-align: center;
+  --stamp-align: center;
+  --tilt-brand: none;
+  --tilt-title: none;
+  --tilt-kpi: rotate(-0.4deg);
+}
+
+/* 气质补丁：牌面感——卡片描双金框，区块标题两侧加牌角符号，
+   表头与徽章收成尖角菱形语气，批次条像排开的三张牌。 */
+.kpi,
+.topbar,
+.panel-form {
+  border-width: 1px;
+  box-shadow: var(--shadow), inset 0 0 0 4px rgba(26, 19, 38, 1), inset 0 0 0 5px rgba(216, 178, 94, 0.55);
+}
+
+.section-title {
+  font-style: italic;
+  text-align: center;
+}
+
+.section-title::before,
+.section-title::after {
+  content: '✦';
+  font-style: normal;
+  margin: 0 10px;
+  color: var(--accent);
+  font-size: 0.6em;
+  vertical-align: 0.45em;
+}
+
+.section-head {
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  border-bottom-style: double;
+  border-bottom-width: 3px;
+}
+
+.table th {
+  font-family: var(--font-head);
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0.06em;
+}
+
+.badge {
+  border-color: currentColor;
+  background-color: transparent;
+}
+
+.bar-track {
+  border-radius: var(--chip-radius);
+}
+
+.lotrow {
+  border-radius: var(--radius);
+  border-left-width: var(--edge-w-lg);
+  background-image: linear-gradient(150deg, rgba(216, 178, 94, 0.08), transparent 60%);
+}
+
+.fact {
+  border-radius: var(--radius-sm);
+  border-color: var(--line);
+}
+
+.stamp {
+  border: var(--border-hair);
+  border-radius: var(--chip-radius);
+  padding: var(--pad-xs) var(--pad-sm);
+}
+
+.brand-name {
+  font-style: italic;
+}

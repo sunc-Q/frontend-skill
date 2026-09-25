@@ -1,0 +1,158 @@
+/* ============================================================
+   风格一：机车搪瓷牌照风（enamel registration plate）
+   主张：整页是一块冲压搪瓷牌照——牌蓝底、白釉面板、反光黄压字，
+   所有文字像漆面凸字一样大写、宽字距，边界是粗白釉线与四角铆钉。
+   ============================================================ */
+:root {
+  color-scheme: dark;
+
+  --font-body: 'Avenir Next Condensed', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-head: 'DIN Alternate', 'Avenir Next Condensed', 'Haettenschweiler', 'Impact', sans-serif;
+  --font-mono: 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --bg: #0d2f63;
+  --bg-texture:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.055) 0 2px, transparent 2px 22px),
+    repeating-linear-gradient(-45deg, rgba(7, 28, 63, 0.55) 0 1px, transparent 1px 9px);
+  --bg-panel: #143d78;
+  --bg-alt: #10366b;
+  --bg-input: #0a2551;
+  --bg-head: #071c3f;
+
+  --ink: #f4f8ff;
+  --ink-soft: #c3d5f0;
+  --ink-faint: #8aa6cd;
+  --head-ink: #ffd429;
+
+  --accent: #ffd429;
+  --accent-2: #4fd6b0;
+  --accent-ink: #0a1f43;
+
+  --line: #3a6098;
+  --line-strong: #ffffff;
+  --border: 2px solid #dbe6f7;
+  --border-hair: 1px solid #3a6098;
+  --border-bottom-strong: 2px solid #ffffff;
+  --edge-w: 2px;
+  --edge-w-lg: 4px;
+  --shadow: 0 0 0 1px rgba(10, 31, 67, 0.9), 6px 6px 0 rgba(7, 28, 63, 0.85);
+  --btn-shadow: 2px 2px 0 rgba(7, 28, 63, 0.9);
+
+  --zebra: rgba(255, 255, 255, 0.05);
+  --hover: rgba(255, 212, 41, 0.14);
+  --sel-bg: #24477f;
+  --sel-ink: #ffffff;
+  --track: #0a2551;
+  --idle: #93aede;
+
+  --ok: #7ee6b0;
+  --ok-bg: #10402f;
+  --warn: #ffcf5c;
+  --warn-bg: #46340a;
+  --bad: #ff8f7a;
+  --bad-bg: #4a1a17;
+
+  --radius: 10px;
+  --radius-sm: 5px;
+  --chip-radius: 999px;
+
+  --fs-base: 15px;
+  --fs-small: 13.5px;
+  --fs-tiny: 11px;
+  --fs-label: 11.5px;
+  --fs-title: 24px;
+  --fs-brand: 30px;
+  --fs-kpi: 34px;
+  --lh: 1.5;
+
+  --fw-bold: 700;
+  --fw-normal: 500;
+  --fw-kpi: 700;
+
+  --head-tracking: 0.06em;
+  --head-transform: uppercase;
+  --label-tracking: 0.14em;
+  --label-transform: uppercase;
+  --label-style: normal;
+  --mono-tracking: 0.04em;
+
+  --maxw: 1280px;
+  --side-w: 340px;
+  --gap: 26px;
+  --gap-sm: 16px;
+  --pad: 14px;
+  --pad-sm: 10px;
+  --pad-xs: 4px;
+  --cell-pad: 9px 10px;
+  --field-min: 132px;
+  --kpi-min: 186px;
+  --fact-min: 178px;
+  --lede-w: 66ch;
+  --mark-size: 28px;
+  --icon-size: 16px;
+  --check-size: 15px;
+  --pager-w: 42px;
+  --bar-h: 10px;
+  --bar-h-sm: 8px;
+  --spark-w: 76px;
+  --focus-w: 3px;
+  --sticky-z: 2;
+  --t: 120ms ease;
+  --topbar-align: center;
+  --stamp-align: right;
+  --tilt-brand: none;
+  --tilt-title: none;
+  --tilt-kpi: none;
+}
+
+/* 气质补丁：釉面冲压——面板加内白圈与四角铆钉，KPI 像凸字牌，表头是牌照上的小字 */
+.kpi,
+.topbar,
+.panel-form {
+  position: relative;
+  box-shadow: var(--shadow), inset 0 0 0 1px rgba(255, 255, 255, 0.34);
+}
+
+.kpi::before,
+.kpi::after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--line-strong);
+  box-shadow: 0 100px 0 var(--line-strong);
+}
+
+.kpi::before {
+  left: 7px;
+}
+
+.kpi::after {
+  right: 7px;
+}
+
+.table th {
+  font-family: var(--font-head);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.badge {
+  border-width: 2px;
+  font-weight: 700;
+  padding: 1px 8px;
+}
+
+.brand-name {
+  padding: 2px 10px;
+  border: var(--border-hair);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-input);
+}
+
+.fact dd {
+  font-family: var(--font-head);
+  letter-spacing: 0.02em;
+}

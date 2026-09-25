@@ -1,0 +1,350 @@
+{
+ "garage-plate": {
+  "theme": "garage-plate",
+  "rowCount": 63,
+  "kpiCount": 12,
+  "badgeCount": 55,
+  "lotCount": 3,
+  "tabCount": 3,
+  "inlineScripts": 0,
+  "inlineStyles": 1,
+  "external": [],
+  "firstKpi": "17",
+  "firstBadge": "普通",
+  "firstLot": "FIFO #1LOT-2605-055厂家大促批 · 入 2026-05-12 · ¥134.68/件87/99效期 2027-11-03出库此件 →",
+  "firstRow": "WO-20260925-000816,842 km · 3 行粤B·Q2456丰田凯美瑞 2.5L · 陈镜湖 138****77642026-09-25 10:58超承诺 · 在厂 11 小时2026-09-25 17:59发动机故障灯亮，报氧传感器¥1,576.67工时 ¥1577 / 配件 ¥0骆致和普通已结算",
+  "shell": {
+   "fontFamily": "\"Avenir Next Condensed\", \"Helvetica Neue\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "color": "rgb(244, 248, 255)"
+  },
+  "brand": {
+   "fontFamily": "\"Avenir Next Condensed\", \"Helvetica Neue\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+   "transform": "none",
+   "letterSpacing": "normal"
+  },
+  "kpi": {
+   "backgroundColor": "rgb(20, 61, 120)",
+   "backgroundImage": "none",
+   "borderTopWidth": "4px",
+   "borderTopStyle": "solid",
+   "borderTopColor": "rgb(255, 212, 41)",
+   "borderTopLeftRadius": "10px",
+   "boxShadow": "rgba(10, 31, 67, 0.9) 0px 0px 0px 1px, rgba(7, 28, 63, 0.85) 6px 6px 0px 0px, rgba(255, 255, 255, 0.34) 0px 0px 0px 1px inset",
+   "paddingTop": "14px",
+   "transform": "none"
+  },
+  "label": {
+   "fontFamily": "\"Avenir Next Condensed\", \"Helvetica Neue\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+   "fontSize": "11.5px",
+   "letterSpacing": "1.61px",
+   "textTransform": "uppercase",
+   "fontStyle": "normal"
+  },
+  "value": {
+   "fontFamily": "\"DIN Alternate\", \"Avenir Next Condensed\", Haettenschweiler, Impact, sans-serif",
+   "fontSize": "34px",
+   "fontWeight": "700",
+   "color": "rgb(244, 248, 255)",
+   "fontStyle": "normal"
+  },
+  "head": {
+   "fontFamily": "\"DIN Alternate\", \"Avenir Next Condensed\", Haettenschweiler, Impact, sans-serif",
+   "fontSize": "11.5px",
+   "color": "rgb(255, 212, 41)",
+   "backgroundColor": "rgb(7, 28, 63)",
+   "textTransform": "uppercase",
+   "borderBottomWidth": "2px",
+   "borderBottomStyle": "solid",
+   "letterSpacing": "1.15px"
+  },
+  "row": {
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "borderBottomStyle": "none",
+   "borderBottomWidth": "0px"
+  },
+  "btn": {
+   "backgroundColor": "rgb(10, 37, 81)",
+   "color": "rgb(244, 248, 255)",
+   "borderTopWidth": "2px",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "5px",
+   "textTransform": "uppercase",
+   "paddingTop": "4px",
+   "boxShadow": "rgba(7, 28, 63, 0.9) 2px 2px 0px 0px"
+  },
+  "input": {
+   "backgroundColor": "rgb(10, 37, 81)",
+   "color": "rgb(244, 248, 255)",
+   "borderTopWidth": "2px",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "5px"
+  },
+  "badge": {
+   "backgroundColor": "rgb(16, 54, 107)",
+   "color": "rgb(147, 174, 222)",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "999px",
+   "letterSpacing": "1.54px"
+  },
+  "gap": {
+   "columnGap": "16px",
+   "rowGap": "16px"
+  },
+  "bar": {
+   "backgroundColor": "rgb(10, 37, 81)",
+   "height": "10px",
+   "borderTopLeftRadius": "999px"
+  },
+  "fill": {
+   "backgroundColor": "rgb(255, 212, 41)",
+   "backgroundImage": "none",
+   "borderTopLeftRadius": "0px"
+  },
+  "status": {
+   "fontFamily": "\"Avenir Next Condensed\", \"Helvetica Neue\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+   "fontSize": "15px",
+   "backgroundColor": "rgb(16, 54, 107)",
+   "borderTopWidth": "2px"
+  },
+  "stamp": {
+   "fontFamily": "SFMono-Regular, Menlo, Consolas, monospace",
+   "transform": "none",
+   "borderTopStyle": "none",
+   "color": "rgb(138, 166, 205)"
+  },
+  "consoleErrors": []
+ },
+ "couture": {
+  "theme": "couture",
+  "rowCount": 63,
+  "kpiCount": 12,
+  "badgeCount": 55,
+  "lotCount": 3,
+  "tabCount": 3,
+  "inlineScripts": 0,
+  "inlineStyles": 1,
+  "external": [],
+  "firstKpi": "17",
+  "firstBadge": "普通",
+  "firstLot": "FIFO #1LOT-2605-055厂家大促批 · 入 2026-05-12 · ¥134.68/件87/99效期 2027-11-03出库此件 →",
+  "firstRow": "WO-20260925-000816,842 km · 3 行粤B·Q2456丰田凯美瑞 2.5L · 陈镜湖 138****77642026-09-25 10:58超承诺 · 在厂 11 小时2026-09-25 17:59发动机故障灯亮，报氧传感器¥1,576.67工时 ¥1577 / 配件 ¥0骆致和普通已结算",
+  "shell": {
+   "fontFamily": "\"Helvetica Neue\", Helvetica, \"PingFang SC\", sans-serif",
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "color": "rgb(26, 23, 20)"
+  },
+  "brand": {
+   "fontFamily": "\"Helvetica Neue\", Helvetica, \"PingFang SC\", sans-serif",
+   "transform": "none",
+   "letterSpacing": "normal"
+  },
+  "kpi": {
+   "backgroundColor": "rgb(255, 253, 248)",
+   "backgroundImage": "none",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "borderTopColor": "rgb(26, 23, 20)",
+   "borderTopLeftRadius": "0px",
+   "boxShadow": "none",
+   "paddingTop": "20px",
+   "transform": "none"
+  },
+  "label": {
+   "fontFamily": "\"Helvetica Neue\", Helvetica, \"PingFang SC\", sans-serif",
+   "fontSize": "10px",
+   "letterSpacing": "3px",
+   "textTransform": "uppercase",
+   "fontStyle": "normal"
+  },
+  "value": {
+   "fontFamily": "Didot, \"Bodoni MT\", \"Playfair Display\", \"Songti SC\", Georgia, serif",
+   "fontSize": "42px",
+   "fontWeight": "400",
+   "color": "rgb(26, 23, 20)",
+   "fontStyle": "normal"
+  },
+  "head": {
+   "fontFamily": "\"Helvetica Neue\", Helvetica, \"PingFang SC\", sans-serif",
+   "fontSize": "10px",
+   "color": "rgb(26, 23, 20)",
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "textTransform": "uppercase",
+   "borderBottomWidth": "1px",
+   "borderBottomStyle": "solid",
+   "letterSpacing": "3px"
+  },
+  "row": {
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "borderBottomStyle": "none",
+   "borderBottomWidth": "0px"
+  },
+  "btn": {
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "color": "rgb(26, 23, 20)",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "0px",
+   "textTransform": "uppercase",
+   "paddingTop": "6px",
+   "boxShadow": "none"
+  },
+  "input": {
+   "backgroundColor": "rgb(255, 253, 248)",
+   "color": "rgb(26, 23, 20)",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "0px"
+  },
+  "badge": {
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "color": "rgb(141, 133, 119)",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "0px",
+   "letterSpacing": "2.31px"
+  },
+  "gap": {
+   "columnGap": "26px",
+   "rowGap": "26px"
+  },
+  "bar": {
+   "backgroundColor": "rgba(26, 23, 20, 0.12)",
+   "height": "2px",
+   "borderTopLeftRadius": "0px"
+  },
+  "fill": {
+   "backgroundColor": "rgb(122, 31, 61)",
+   "backgroundImage": "none",
+   "borderTopLeftRadius": "0px"
+  },
+  "status": {
+   "fontFamily": "\"Helvetica Neue\", Helvetica, \"PingFang SC\", sans-serif",
+   "fontSize": "15px",
+   "backgroundColor": "rgb(241, 235, 221)",
+   "borderTopWidth": "1px"
+  },
+  "stamp": {
+   "fontFamily": "SFMono-Regular, Menlo, \"Courier New\", monospace",
+   "transform": "none",
+   "borderTopStyle": "none",
+   "color": "rgb(141, 133, 119)"
+  },
+  "consoleErrors": []
+ },
+ "tarot": {
+  "theme": "tarot",
+  "rowCount": 63,
+  "kpiCount": 12,
+  "badgeCount": 55,
+  "lotCount": 3,
+  "tabCount": 3,
+  "inlineScripts": 0,
+  "inlineStyles": 1,
+  "external": [],
+  "firstKpi": "17",
+  "firstBadge": "普通",
+  "firstLot": "FIFO #1LOT-2605-055厂家大促批 · 入 2026-05-12 · ¥134.68/件87/99效期 2027-11-03出库此件 →",
+  "firstRow": "WO-20260925-000816,842 km · 3 行粤B·Q2456丰田凯美瑞 2.5L · 陈镜湖 138****77642026-09-25 10:58超承诺 · 在厂 11 小时2026-09-25 17:59发动机故障灯亮，报氧传感器¥1,576.67工时 ¥1577 / 配件 ¥0骆致和普通已结算",
+  "shell": {
+   "fontFamily": "\"Iowan Old Style\", Palatino, \"Songti SC\", Georgia, serif",
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "color": "rgb(240, 230, 210)"
+  },
+  "brand": {
+   "fontFamily": "\"Iowan Old Style\", Palatino, \"Songti SC\", Georgia, serif",
+   "transform": "none",
+   "letterSpacing": "normal"
+  },
+  "kpi": {
+   "backgroundColor": "rgb(36, 26, 51)",
+   "backgroundImage": "none",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "borderTopColor": "rgb(216, 178, 94)",
+   "borderTopLeftRadius": "18px",
+   "boxShadow": "rgba(216, 178, 94, 0.5) 0px 0px 0px 1px, rgba(8, 4, 14, 0.62) 0px 14px 26px 0px, rgb(26, 19, 38) 0px 0px 0px 4px inset, rgba(216, 178, 94, 0.55) 0px 0px 0px 5px inset",
+   "paddingTop": "18px",
+   "transform": "matrix(0.999976, -0.00698126, 0.00698126, 0.999976, 0, 0)"
+  },
+  "label": {
+   "fontFamily": "\"Iowan Old Style\", Palatino, \"Songti SC\", Georgia, serif",
+   "fontSize": "11px",
+   "letterSpacing": "1.98px",
+   "textTransform": "uppercase",
+   "fontStyle": "italic"
+  },
+  "value": {
+   "fontFamily": "Baskerville, \"Hoefler Text\", \"Songti SC\", Georgia, serif",
+   "fontSize": "30px",
+   "fontWeight": "600",
+   "color": "rgb(240, 230, 210)",
+   "fontStyle": "normal"
+  },
+  "head": {
+   "fontFamily": "Baskerville, \"Hoefler Text\", \"Songti SC\", Georgia, serif",
+   "fontSize": "11px",
+   "color": "rgb(233, 200, 119)",
+   "backgroundColor": "rgb(18, 12, 28)",
+   "textTransform": "none",
+   "borderBottomWidth": "1px",
+   "borderBottomStyle": "solid",
+   "letterSpacing": "0.66px"
+  },
+  "row": {
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "borderBottomStyle": "none",
+   "borderBottomWidth": "0px"
+  },
+  "btn": {
+   "backgroundColor": "rgb(22, 16, 31)",
+   "color": "rgb(240, 230, 210)",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "9px",
+   "textTransform": "uppercase",
+   "paddingTop": "5px",
+   "boxShadow": "none"
+  },
+  "input": {
+   "backgroundColor": "rgb(22, 16, 31)",
+   "color": "rgb(240, 230, 210)",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "9px"
+  },
+  "badge": {
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "color": "rgb(154, 134, 173)",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "999px",
+   "letterSpacing": "1.98px"
+  },
+  "gap": {
+   "columnGap": "20px",
+   "rowGap": "20px"
+  },
+  "bar": {
+   "backgroundColor": "rgb(44, 32, 64)",
+   "height": "8px",
+   "borderTopLeftRadius": "999px"
+  },
+  "fill": {
+   "backgroundColor": "rgb(216, 178, 94)",
+   "backgroundImage": "none",
+   "borderTopLeftRadius": "0px"
+  },
+  "status": {
+   "fontFamily": "\"Iowan Old Style\", Palatino, \"Songti SC\", Georgia, serif",
+   "fontSize": "15px",
+   "backgroundColor": "rgb(32, 23, 48)",
+   "borderTopWidth": "1px"
+  },
+  "stamp": {
+   "fontFamily": "Menlo, SFMono-Regular, Consolas, monospace",
+   "transform": "none",
+   "borderTopStyle": "solid",
+   "color": "rgb(154, 134, 173)"
+  },
+  "consoleErrors": []
+ }
+}
