@@ -170,7 +170,7 @@
       "result": "success",
       "artifact_size": "980KB（3 页各 248KB + 源码 92KB + 校验脚本 28KB + 配置）",
       "cleanup": "删 node_modules 102MB（含临时 --no-save 的 jsdom）+ dist/ + .npm-install.log + .jsdom.log；8123 端口 python3 -m http.server 先 ps 核对命令行再 kill，端口已关；实验室合计约 1.7MB，单场景 980KB ≪ 50MB",
-      "push": "待填"
+      "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 1c51e57，走 ssh.github.com:443；known_hosts 写在本机 .tmp/kh，命令与文件均无 token）"
     }
   ],
   "next_candidates": [
