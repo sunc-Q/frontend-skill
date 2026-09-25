@@ -334,7 +334,7 @@
    "result": "success",
    "artifact_size": "80KB（三页 13,705/15,914/14,329 字节 + styles.html 5,116 字节 + scripts/check.mjs 15,036 字节 + interact.mjs 3,288 字节 + ledger-snapshot.json 1,375 字节；断言 219+24 全绿）",
    "cleanup": "本轮零中间产物：无 node_modules、无 dist、无 pip 包、无构建缓存、未起 http.server（三页走 file://）、/tmp 零写入；技能目录零写入（只读 SKILL.md 与 references/）；全盘探测 node_modules|dist|*.log|.tmp|__pycache__ 结果为空；实验室合计 9.1MB，单场景 80KB ≪ 50MB",
-   "push": "已提交并推送：commit 480b667 → origin/main（9f91623..480b667，分支 main，仓库 git@github.com:sunc-Q/frontend-skill.git，走 SSH：~/.ssh/config 让 github.com 经 ssh.github.com:443 + 127.0.0.1:7897，主机键写入 LAB/.tmp/kh，命令与文件里无任何 token）。本轮 10 个变更文件（三页 + styles.html + 两个校验脚本 + 台账快照 + report + work-log + state）；推送后已删除 .tmp/kh，实验室无残留。"
+   "push": "已提交并推送：git@github.com:sunc-Q/frontend-skill.git main 分支 9f91623..480b667（SSH，known_hosts 写 LAB/.tmp 后即删；命令与文件零 token）。提交物=三页 + styles.html + 两个校验脚本 + 台账快照 + report + work-log 行 + state 台账"
   }
  ],
  "next_candidates": [
