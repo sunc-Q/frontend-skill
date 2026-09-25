@@ -357,7 +357,7 @@
    "assertions": "353/353 全绿（scripts/check.py，A–K 十一组；写回台账前后各跑一次均全绿）",
    "artifact_size": "479KB（490,790B，限额 50MB）",
    "cleanup": "已删 .tmp/pylibs + .tmp/pipprobe（43MB pip 隔离安装与 wheel 缓存）；无 node_modules/dist/构建缓存；未起 http.server（预览走 file://）；技能目录零写入（find ~/.qoder-cn/skills/ppt-generator -newer 判空）；artifacts 仅保留可直接打开产物（svg/pptx/preview/styles.html）与全部脚本",
-   "push": "pending"
+   "push": "已提交并推送：git@github.com:sunc-Q/frontend-skill.git main 分支 816a5f9..6cc0301（SSH 经 ssh.github.com:443，known_hosts 写 LAB/.tmp 后即删；命令与文件零 token）。提交物=18 页 SVG + 3 份 PPTX + 3 份预览 + styles.html + data.json/themes.json + scripts 全套（generate/template_audit/check/export_pptx/build_preview + template-audit.json + export-result.json + ledger-snapshot.json）+ report + work-log 行 + state 台账（38 文件，3957 插入）"
   }
  ],
  "next_candidates": [
