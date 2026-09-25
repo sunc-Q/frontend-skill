@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T19:46:00+08:00",
+  "updated": "2026-09-25T19:52:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -147,9 +147,10 @@
       "template_created": false,
       "disk": {
         "df_k_avail_before": null,
-        "df_k_avail_after": 20276500,
-        "lab_total_bytes_human": "6.1M（含 .git，提交前）",
-        "scenario_dir_human": "1.4M"
+        "df_k_avail_after": 20273788,
+        "lab_total_bytes_human": "6.7M（含 .git 2.2M，场景主提交后实测）",
+        "scenario_dir_human": "1.4M",
+        "note": "本轮开工未单独留 df 读数（上一轮收工末次 20,294,196KB），收工 20,273,788KB ≈ 19.3GiB 可用，全程远高于 1.5GiB 熔断线；收尾时 8080/8092 监听数已为 0"
       },
       "volume": {
         "go_files": 15,
@@ -167,8 +168,9 @@
       },
       "push": {
         "branch": "go-gin_react",
-        "result": "待补",
-        "note": ""
+        "result": "成功",
+        "commit": "bf6cb06（场景主提交，43 文件）+ 本记录回写提交",
+        "note": "git fetch origin go-gin_react → rebase FETCH_HEAD（已是 up-to-date，无改写）→ git push origin go-gin_react，远端 3743462..bf6cb06；未 --force、未跳 hook、未碰 main、未改任何全局 git 配置，提交用 -c user.name/-c user.email 显式身份；node_modules/backend-data/二进制/日志/tmp 均不在提交内"
       }
     }
   ],

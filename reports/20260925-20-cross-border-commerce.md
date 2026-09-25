@@ -56,7 +56,7 @@
 
 清理：kill 31442(/tmp/novacart-api) 与 31459(serve-static.mjs preview 8092)（均先核对命令行）、端口监听归零；删 `backend/data`、`web/node_modules`、`/tmp/novacart-{api,token,log,static.log}`；未碰任何全局共享缓存。
 
-- 场景目录 **1.4M**（上限 5MB / 硬上限 40MB，通过）；LAB 6.1M（含 .git）。
-- df：开工 20,425,872KB → 收工 20,276,500KB（未触发熔断）。
+- 场景目录 **1.4M**（上限 5MB / 硬上限 40MB，通过）；LAB 终值 6.7M（其中 .git 2.2M）。
+- df：开工未单独留值（上轮收工末次 20,294,196KB）→ 收工 20,273,788KB（≈19.3GiB 可用，全程未触发 1.5GiB 熔断）。
 - 交付：`sites/cross-border-commerce/{backend,web,web/dist,preview,scripts,README.md}` + 本报告。
-- 推送：`go-gin_react` 分支（origin SSH），`-c user.name/-c user.email` 显式身份，先 `git fetch origin go-gin_react` + `rebase FETCH_HEAD` 再普通推送；未 --force、未跳 hook、未碰 main。
+- 推送：`go-gin_react` 分支（origin SSH），`-c user.name/-c user.email` 显式身份，先 `git fetch origin go-gin_react` + `rebase FETCH_HEAD`（up-to-date，无改写）再普通推送 `3743462..bf6cb06`（43 文件）；未 --force、未跳 hook、未碰 main。收尾复核：`git status` 干净、8080/8092 监听数为 0。
