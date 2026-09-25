@@ -418,7 +418,7 @@
    "assertions": "155 条（写回前 149/155，F 组 6 条台账幂等锁写回后闭合）",
    "artifact_size": "3.1MB（GIF 合计 2.5MB，限额 50MB）",
    "cleanup": "删 LAB/.tmp（node_modules 12MB + probe 装置）；无 dist/构建缓存；未起 http.server；技能目录零写入",
-   "push": "pending"
+   "push": "已推送 8881e05..c875912 main（SSH via ssh.github.com:443）"
   }
  ],
  "next_candidates": [
