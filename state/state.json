@@ -382,7 +382,7 @@
    "assertions": "394 条（写回前 390/394，K 组 4 条为台账幂等锁，写回后复跑闭合）",
    "artifact_size": "516KB（SVG 111,008B/18 页 + PPTX 3×~50KB + 预览 3×36-44.5KB + 脚本数据），限额 50MB",
    "cleanup": "已删 .tmp/pylibs + .tmp/pipcache（43MB pip 隔离安装与缓存）；无 node_modules/dist/构建缓存；技能目录零写入；artifacts 仅保留可直接打开产物与全部复现脚本",
-   "push": "待补记"
+   "push": "已提交并推送：git@github.com:sunc-Q/frontend-skill.git main 分支 f85e53c..a296420（SSH 经 ssh.github.com:443，known_hosts 写 LAB/.tmp 即删；命令与文件零 token）。提交物=18 页 SVG + 3 份 PPTX + 3 份预览 + styles.html + data.json + 五件套脚本与三份 JSON 测量 + report + work-log 行 + state 台账（37 文件）；随后补记本条推送结果"
   }
  ],
  "next_candidates": [
