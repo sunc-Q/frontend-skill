@@ -1,0 +1,576 @@
+{
+ "govblue": {
+  "export_ok": true,
+  "pptx": "pptx/echoisle-2025-govblue.pptx",
+  "bytes": 51795,
+  "svg_pages": [
+   {
+    "texts": 34,
+    "sizes": [
+     14.0,
+     16.0,
+     18.0,
+     24.0,
+     28.0,
+     36.0
+    ],
+    "name": "01_kpi.svg"
+   },
+   {
+    "texts": 27,
+    "sizes": [
+     14.0,
+     16.0,
+     24.0,
+     28.0
+    ],
+    "name": "02_trend.svg"
+   },
+   {
+    "texts": 22,
+    "sizes": [
+     14.0,
+     16.0,
+     24.0,
+     28.0
+    ],
+    "name": "03_compare.svg"
+   },
+   {
+    "texts": 19,
+    "sizes": [
+     14.0,
+     16.0,
+     18.0,
+     24.0,
+     28.0,
+     36.0
+    ],
+    "name": "04_composition.svg"
+   },
+   {
+    "texts": 29,
+    "sizes": [
+     14.0,
+     16.0,
+     24.0,
+     28.0
+    ],
+    "name": "05_ranking.svg"
+   },
+   {
+    "texts": 17,
+    "sizes": [
+     14.0,
+     16.0,
+     20.0,
+     24.0,
+     28.0
+    ],
+    "name": "06_funnel.svg"
+   }
+  ],
+  "pptx_probe": {
+   "slides": 6,
+   "media": 0,
+   "per_slide": [
+    {
+     "at_runs": 34,
+     "sp": 50,
+     "pic": 0,
+     "blip": 0,
+     "gradFill": 1,
+     "effectLst_blur": 0,
+     "solidFill": 53,
+     "custGeom": 3,
+     "alpha": 0,
+     "sizes_pt": [
+      10.5,
+      12.0,
+      13.5,
+      18.0,
+      21.0,
+      27.0
+     ],
+     "emu_min": 0,
+     "emu_max": 11131772
+    },
+    {
+     "at_runs": 27,
+     "sp": 65,
+     "pic": 0,
+     "blip": 0,
+     "gradFill": 1,
+     "effectLst_blur": 0,
+     "solidFill": 64,
+     "custGeom": 8,
+     "alpha": 0,
+     "sizes_pt": [
+      10.5,
+      12.0,
+      18.0,
+      21.0
+     ],
+     "emu_min": 0,
+     "emu_max": 11093434
+    },
+    {
+     "at_runs": 22,
+     "sp": 37,
+     "pic": 0,
+     "blip": 0,
+     "gradFill": 1,
+     "effectLst_blur": 0,
+     "solidFill": 36,
+     "custGeom": 6,
+     "alpha": 0,
+     "sizes_pt": [
+      10.5,
+      12.0,
+      18.0,
+      21.0
+     ],
+     "emu_min": 0,
+     "emu_max": 11093434
+    },
+    {
+     "at_runs": 19,
+     "sp": 34,
+     "pic": 0,
+     "blip": 0,
+     "gradFill": 1,
+     "effectLst_blur": 0,
+     "solidFill": 33,
+     "custGeom": 5,
+     "alpha": 0,
+     "sizes_pt": [
+      10.5,
+      12.0,
+      13.5,
+      18.0,
+      21.0,
+      27.0
+     ],
+     "emu_min": 0,
+     "emu_max": 11093434
+    },
+    {
+     "at_runs": 29,
+     "sp": 48,
+     "pic": 0,
+     "blip": 0,
+     "gradFill": 1,
+     "effectLst_blur": 0,
+     "solidFill": 47,
+     "custGeom": 7,
+     "alpha": 0,
+     "sizes_pt": [
+      10.5,
+      12.0,
+      18.0,
+      21.0
+     ],
+     "emu_min": 0,
+     "emu_max": 11430000
+    },
+    {
+     "at_runs": 17,
+     "sp": 26,
+     "pic": 0,
+     "blip": 0,
+     "gradFill": 1,
+     "effectLst_blur": 0,
+     "solidFill": 25,
+     "custGeom": 5,
+     "alpha": 0,
+     "sizes_pt": [
+      10.5,
+      12.0,
+      15.0,
+      18.0,
+      21.0
+     ],
+     "emu_min": 0,
+     "emu_max": 11093434
+    }
+   ]
+  },
+  "documented_order_matches": true
+ },
+ "psych": {
+  "export_ok": true,
+  "pptx": "pptx/echoisle-2025-psych.pptx",
+  "bytes": 52037,
+  "svg_pages": [
+   {
+    "texts": 33,
+    "sizes": [
+     14.0,
+     16.0,
+     18.0,
+     24.0,
+     32.0,
+     40.0
+    ],
+    "name": "01_kpi.svg"
+   },
+   {
+    "texts": 26,
+    "sizes": [
+     14.0,
+     16.0,
+     32.0
+    ],
+    "name": "02_trend.svg"
+   },
+   {
+    "texts": 21,
+    "sizes": [
+     14.0,
+     16.0,
+     32.0
+    ],
+    "name": "03_compare.svg"
+   },
+   {
+    "texts": 18,
+    "sizes": [
+     14.0,
+     16.0,
+     18.0,
+     32.0,
+     40.0
+    ],
+    "name": "04_composition.svg"
+   },
+   {
+    "texts": 28,
+    "sizes": [
+     14.0,
+     16.0,
+     32.0
+    ],
+    "name": "05_ranking.svg"
+   },
+   {
+    "texts": 16,
+    "sizes": [
+     14.0,
+     16.0,
+     20.0,
+     32.0
+    ],
+    "name": "06_funnel.svg"
+   }
+  ],
+  "pptx_probe": {
+   "slides": 6,
+   "media": 0,
+   "per_slide": [
+    {
+     "at_runs": 33,
+     "sp": 50,
+     "pic": 0,
+     "blip": 0,
+     "gradFill": 1,
+     "effectLst_blur": 0,
+     "solidFill": 53,
+     "custGeom": 3,
+     "alpha": 3,
+     "sizes_pt": [
+      10.5,
+      12.0,
+      13.5,
+      18.0,
+      24.0,
+      30.0
+     ],
+     "emu_min": 0,
+     "emu_max": 11322272
+    },
+    {
+     "at_runs": 26,
+     "sp": 65,
+     "pic": 0,
+     "blip": 0,
+     "gradFill": 1,
+     "effectLst_blur": 0,
+     "solidFill": 64,
+     "custGeom": 8,
+     "alpha": 3,
+     "sizes_pt": [
+      10.5,
+      12.0,
+      24.0
+     ],
+     "emu_min": 0,
+     "emu_max": 11315700
+    },
+    {
+     "at_runs": 21,
+     "sp": 37,
+     "pic": 0,
+     "blip": 0,
+     "gradFill": 1,
+     "effectLst_blur": 0,
+     "solidFill": 36,
+     "custGeom": 6,
+     "alpha": 3,
+     "sizes_pt": [
+      10.5,
+      12.0,
+      24.0
+     ],
+     "emu_min": 0,
+     "emu_max": 11315700
+    },
+    {
+     "at_runs": 18,
+     "sp": 34,
+     "pic": 0,
+     "blip": 0,
+     "gradFill": 1,
+     "effectLst_blur": 0,
+     "solidFill": 33,
+     "custGeom": 5,
+     "alpha": 3,
+     "sizes_pt": [
+      10.5,
+      12.0,
+      13.5,
+      24.0,
+      30.0
+     ],
+     "emu_min": 0,
+     "emu_max": 11315700
+    },
+    {
+     "at_runs": 28,
+     "sp": 48,
+     "pic": 0,
+     "blip": 0,
+     "gradFill": 1,
+     "effectLst_blur": 0,
+     "solidFill": 47,
+     "custGeom": 7,
+     "alpha": 3,
+     "sizes_pt": [
+      10.5,
+      12.0,
+      24.0
+     ],
+     "emu_min": 0,
+     "emu_max": 11430000
+    },
+    {
+     "at_runs": 16,
+     "sp": 26,
+     "pic": 0,
+     "blip": 0,
+     "gradFill": 1,
+     "effectLst_blur": 0,
+     "solidFill": 25,
+     "custGeom": 5,
+     "alpha": 3,
+     "sizes_pt": [
+      10.5,
+      12.0,
+      15.0,
+      24.0
+     ],
+     "emu_min": 0,
+     "emu_max": 11315700
+    }
+   ]
+  },
+  "documented_order_matches": true
+ },
+ "pixel": {
+  "export_ok": true,
+  "pptx": "pptx/echoisle-2025-pixel.pptx",
+  "bytes": 51746,
+  "svg_pages": [
+   {
+    "texts": 32,
+    "sizes": [
+     14.0,
+     16.0,
+     18.0,
+     22.0,
+     36.0,
+     48.0
+    ],
+    "name": "01_kpi.svg"
+   },
+   {
+    "texts": 25,
+    "sizes": [
+     14.0,
+     16.0,
+     36.0
+    ],
+    "name": "02_trend.svg"
+   },
+   {
+    "texts": 20,
+    "sizes": [
+     14.0,
+     16.0,
+     36.0
+    ],
+    "name": "03_compare.svg"
+   },
+   {
+    "texts": 17,
+    "sizes": [
+     14.0,
+     16.0,
+     18.0,
+     36.0,
+     48.0
+    ],
+    "name": "04_composition.svg"
+   },
+   {
+    "texts": 27,
+    "sizes": [
+     14.0,
+     16.0,
+     36.0
+    ],
+    "name": "05_ranking.svg"
+   },
+   {
+    "texts": 15,
+    "sizes": [
+     14.0,
+     16.0,
+     20.0,
+     36.0
+    ],
+    "name": "06_funnel.svg"
+   }
+  ],
+  "pptx_probe": {
+   "slides": 6,
+   "media": 0,
+   "per_slide": [
+    {
+     "at_runs": 32,
+     "sp": 52,
+     "pic": 0,
+     "blip": 0,
+     "gradFill": 0,
+     "effectLst_blur": 0,
+     "solidFill": 56,
+     "custGeom": 3,
+     "alpha": 5,
+     "sizes_pt": [
+      10.5,
+      12.0,
+      13.5,
+      16.5,
+      27.0,
+      36.0
+     ],
+     "emu_min": 0,
+     "emu_max": 11715750
+    },
+    {
+     "at_runs": 25,
+     "sp": 67,
+     "pic": 0,
+     "blip": 0,
+     "gradFill": 0,
+     "effectLst_blur": 0,
+     "solidFill": 67,
+     "custGeom": 8,
+     "alpha": 5,
+     "sizes_pt": [
+      10.5,
+      12.0,
+      27.0
+     ],
+     "emu_min": 0,
+     "emu_max": 11715750
+    },
+    {
+     "at_runs": 20,
+     "sp": 39,
+     "pic": 0,
+     "blip": 0,
+     "gradFill": 0,
+     "effectLst_blur": 0,
+     "solidFill": 39,
+     "custGeom": 6,
+     "alpha": 5,
+     "sizes_pt": [
+      10.5,
+      12.0,
+      27.0
+     ],
+     "emu_min": 0,
+     "emu_max": 11715750
+    },
+    {
+     "at_runs": 17,
+     "sp": 36,
+     "pic": 0,
+     "blip": 0,
+     "gradFill": 0,
+     "effectLst_blur": 0,
+     "solidFill": 36,
+     "custGeom": 5,
+     "alpha": 5,
+     "sizes_pt": [
+      10.5,
+      12.0,
+      13.5,
+      27.0,
+      36.0
+     ],
+     "emu_min": 0,
+     "emu_max": 11715750
+    },
+    {
+     "at_runs": 27,
+     "sp": 50,
+     "pic": 0,
+     "blip": 0,
+     "gradFill": 0,
+     "effectLst_blur": 0,
+     "solidFill": 50,
+     "custGeom": 7,
+     "alpha": 5,
+     "sizes_pt": [
+      10.5,
+      12.0,
+      27.0
+     ],
+     "emu_min": 0,
+     "emu_max": 11715750
+    },
+    {
+     "at_runs": 15,
+     "sp": 28,
+     "pic": 0,
+     "blip": 0,
+     "gradFill": 0,
+     "effectLst_blur": 0,
+     "solidFill": 28,
+     "custGeom": 5,
+     "alpha": 5,
+     "sizes_pt": [
+      10.5,
+      12.0,
+      15.0,
+      27.0
+     ],
+     "emu_min": 0,
+     "emu_max": 11715750
+    }
+   ]
+  },
+  "documented_order_matches": true
+ }
+}

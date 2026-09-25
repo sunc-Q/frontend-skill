@@ -1,0 +1,51 @@
+{
+  "_source": "每个风格的 colors/fonts/sizes/safe/slot 逐项取自 design_spec.md（路径见 each._spec），未做任何插值或发明色。",
+  "govblue": {
+    "_spec": "~/.qoder-cn/skills/ppt-generator/ppt-master-assets/templates/layouts/government_blue/design_spec.md",
+    "display_zh": "政务蓝",
+    "background": "#FFFFFF",
+    "colors": ["#003366", "#0050B3", "#00B4D8", "#1A1A1A", "#3182CE", "#38A169", "#4A5568", "#718096", "#90E0EF", "#E53E3E", "#E6F4FF", "#FFFFFF"],
+    "series": ["#0050B3", "#00B4D8", "#38A169", "#3182CE", "#E53E3E"],
+    "roles": {"title": "#1A1A1A", "body": "#4A5568", "muted": "#718096", "grid": "#E6F4FF", "axis": "#718096", "card_stroke": "#E6F4FF", "good": "#38A169", "bad": "#E53E3E", "flat": "#3182CE", "on_dark": "#FFFFFF", "block": "#0050B3", "deep": "#003366", "sky": "#90E0EF", "wash": "#E6F4FF"},
+    "font_title": "'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif",
+    "font_body": "'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif",
+    "radius": 8,
+    "sizes": {"h2": 28, "h3": 24, "body": 18, "data": 36, "sub": 14, "min": 14},
+    "safe": {"x0": 60, "x1": 1220},
+    "slot": "rect(60,30,50,50) fill block, white number 24 bold anchor middle (85,63); title x=130"
+  },
+  "psych": {
+    "_spec": "~/.qoder-cn/skills/ppt-generator/ppt-master-assets/templates/layouts/psychology_attachment/design_spec.md",
+    "display_zh": "疗愈蓝绿",
+    "background": "#F8FAFC",
+    "colors": ["#000000", "#1E293B", "#1E3A5F", "#2E5C8E", "#374151", "#3D8B7A", "#64748B", "#6B7280", "#94A3B8", "#B54545", "#D4EDDA", "#E07843", "#E0F2FE", "#E2E8F0", "#E5E7EB", "#F8FAFC", "#FECACA", "#FED7AA", "#FFFFFF"],
+    "series": ["#2E5C8E", "#3D8B7A", "#E07843", "#64748B", "#B54545"],
+    "roles": {"title": "#1E293B", "body": "#374151", "muted": "#64748B", "helper": "#6B7280", "english": "#94A3B8", "grid": "#E2E8F0", "axis": "#94A3B8", "card_stroke": "#E5E7EB", "good": "#3D8B7A", "bad": "#B54545", "flat": "#2E5C8E", "on_dark": "#FFFFFF", "block": "#2E5C8E", "deep": "#1E3A5F", "sky": "#3D8B7A", "wash": "#E0F2FE"},
+    "font_title": "'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif",
+    "font_body": "'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif",
+    "radius": 14,
+    "sizes": {"h2": 32, "h3": 24, "body": 18, "data": 40, "sub": 14, "min": 14},
+    "safe": {"x0": 40, "x1": 1240},
+    "slot": "title x=40 y=95 32 bold; english sub 14 english; gradient rule rect(40,112,64,4); 三个同心圆在右上"
+  },
+  "pixel": {
+    "_spec": "~/.qoder-cn/skills/ppt-generator/ppt-master-assets/templates/layouts/pixel_retro/design_spec.md",
+    "display_zh": "霓虹像素",
+    "background": "#0D1117",
+    "colors": ["#00D4FF", "#0D1117", "#161B22", "#1F6FEB", "#238636", "#30363D", "#39FF14", "#8B2252", "#8B949E", "#E6EDF3", "#FF2E97", "#FFD700", "#FFFFFF"],
+    "series": ["#39FF14", "#FF2E97", "#00D4FF", "#FFD700", "#1F6FEB"],
+    "roles": {"title": "#39FF14", "body": "#E6EDF3", "muted": "#8B949E", "grid": "#30363D", "axis": "#8B949E", "card_stroke": "#30363D", "good": "#238636", "bad": "#FF2E97", "flat": "#00D4FF", "neon": "#39FF14", "neon_fade": "#238636", "hot": "#FF2E97", "cool": "#00D4FF", "gold": "#FFD700", "card": "#161B22", "on_dark": "#FFFFFF"},
+    "font_title": "'Consolas', 'Monaco', 'Courier New', monospace",
+    "font_body": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif",
+    "radius": 0,
+    "sizes": {"h2": 36, "h3": 22, "body": 18, "data": 48, "sub": 14, "code": 16, "min": 14},
+    "safe": {"x0": 60, "x1": 1220},
+    "slot": "neon double lines y0=0 h=4 main + y=6 h=2 opacity .35; mono title 36 glow; 右上角三层像素方块 opacity 1/.6/.3; 底部双装饰线"
+  },
+  "card_slot": {
+    "revenue": {"govblue": "#0050B3", "psych": "#2E5C8E", "pixel": "#39FF14"},
+    "profit": {"govblue": "#38A169", "psych": "#3D8B7A", "pixel": "#00D4FF"},
+    "mau": {"govblue": "#00B4D8", "psych": "#E07843", "pixel": "#FFD700"},
+    "subs": {"govblue": "#E53E3E", "psych": "#B54545", "pixel": "#FF2E97"}
+  }
+}

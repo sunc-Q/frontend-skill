@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-25T23:35+08:00",
+ "updated": "2026-09-26T00:00+08:00",
  "tried": [
   {
    "skill": "sites:sites-building",
@@ -148,6 +148,19 @@
     "artifacts/20260925-23-sites-building-personal-homepage/scripts/ledger-snapshot.json"
    ],
    "report": "reports/20260925-23-sites-building-personal-homepage.md"
+  },
+  {
+   "skill": "ppt-generator",
+   "scenario": "图表密集分析页（虚构内容平台「回声岛 Echo Isle」2025 年度经营分析：每风格 6 页 = KPI 四卡 / 双序列 12 月趋势折线 / 六业务线横向对比条 / 收入构成 donut / TOP8 创作者排行 / 注册→付费五级漏斗；三风格同数据同版式，全部几何从 data.json 现算。收入 Σ=3,846万、成本 Σ=3,258、五业务线 1286/864/712/603/381 加总=3,846、漏斗 2,860,000→1,543,000→401,000→188,000→52,000、排行 4820→1327 万次）",
+   "styles": [
+    "政务蓝图表件 government-blue-charts",
+    "疗愈蓝绿图表件 psych-healing-charts",
+    "霓虹像素图表件 pixel-neon-charts"
+   ],
+   "time": "2026-09-26T00:00+08:00",
+   "reason": "state.json next_candidates 的 ★ 首选项「ppt-generator × 图表密集分析页：templates/charts/ 33 张图模板 SKILL.md 正文只字未提，真用它们出图，验『SVG 图模板 → 原生可编辑图表』的距离与 charts_index.json 是否与磁盘同样不符」——22:00 轮柱状图只能手画，本轮补验",
+   "conclusion": "留用（升级为图表类汇报件首选路径）。353/353 断言绿（A 结构与按锚点估宽安全区 144 + B 零外链 18 + C 色板封闭与序列槽用满 21 + D 三风格互异 9 + E 从 data.json 现算复算 30 + F 跨风格数值一致 15 + G 台账契约 9 + H 模板血统与诚实度 33 + I PPTX 探针 60 + J 预览件与入口 11 + K 磁盘纪律 3）。核心量化答案：①charts_index.json 与磁盘完全一致（meta_total=33==目录数==条目数、引用零缺失），是 layouts_index（20 vs 13）的反例——真正缺口在 SKILL.md 正文 0 提及；②模板样例数据算术不诚实：donut 五段标注 126/100.8/72/43.2/18° 与按路径端点反推的实际扫角 [119.4,104.1,63.0,55.9,17.6] 偏差最大 +12.7°/-9.0°（加总仍=360°，只查加总的断言永远放行）；funnel 五级顶宽 600/510/420/330 是等差 −90px，与标称 100/45/18/6.5% 无比例关系——结论：模板只能继承结构常量（坐标/半径/基线/字号槽），任何编码长度或角度必须从数据现算，E 组 62 条即按公式复算；③PPTX 导出实测丢弃一切滤镜：三份 a:blur 均 0（模板 6/6 有 feGaussianBlur、pixel 封面 glow 全丢），而 a:alpha（gov 0/psych 18/pixel 30）、a:gradFill（6/6/0）、custGeom（34/份）、文本 run 逐页相等全保留、media 部件 0 → 霓虹观感在 PPTX 里必然退化，SVG 预览与 PPTX 不等效；④模板图表颜色与三个 layouts spec 色板交集为 0，必须两级换色（themes.json 序列槽 5 色×三主题，C 组断言每主题 5 个序列色全部出现且属于封闭色板）；⑤结构常量必须脚本现读不能手抄：我把 kpi 卡 x 记成 640，模板审计查出真实值 660，已改 TPL 重生成。缺陷续记：funnel 模板用 marker 箭头（技能自己的 SVG 硬约束禁止）、line/funnel 裸 opacity 属性（PPT 兼容规则禁止）、6/6 模板带 filter——技能自家图模板违反技能自家条款。我自己 7 个坑：legend「合计 3,258」与排行 4,820 标签两处真实安全区溢出（A6 按锚点估宽抓到，非误报）；T() 缺 fam 时吐字面量占位符；header() 返回 body[1:] 丢掉背景 rect；ink_dark 值写成 int 触发 TypeError；I10 阈值 sp≥50 是检查器 bug（漏斗页天然 26 形状）改逐页>0+最大≥40；正则 [^—]+ 跨行把六行百分比并成一行；float(rect.get('x')) 在背景 rect 上 None 崩。浏览器复核：gov/pixel 两页 file:// 直开计算样式正确（rgb(232,232,232)/rgb(10,12,16)、各 6 张内联 SVG、text[filter] 在 DOM、控制台零消息），面板仍 hidden 无像素级复核。未验项：其余 27 张 chart 模板、svg_quality_checker.py 黑盒、transition/notesSlide、Office 实际打开效果。报告见 reports/20260926-00-ppt-generator-charts.md。台账类断言必须写成幂等式（快照+增量==现值），初版写成「本轮风格/组合未见于台账」会在写回后自毁，已改并复跑至 353/353",
+   "artifacts": "artifacts/20260926-00-ppt-generator-charts/（479KB：svg/ 3×6=18 页 + pptx/ 3 份 51,795/52,037/51,746B + preview/ 3 页 43-46KB + styles.html + data.json + themes.json + scripts/ 全保留含 template-audit.json 与 ledger-snapshot.json）"
   }
  ],
  "skills_seen": [
@@ -238,7 +251,7 @@
    "name": "ppt-generator",
    "source": "用户 2026-09-25 19:06 装入 ~/.qoder-cn/skills/ppt-generator（SVG-based PPT generator，ppt-master-assets 2.1MB：13 个 layouts + 33 张 charts + icons 索引 + svg_to_pptx/svg_finalize 脚本）",
    "path": "/Users/apple/.qoder-cn/skills/ppt-generator/SKILL.md",
-   "status": "已用于 22:00 演示汇报页并留用（限定场景：需交付 PPT/汇报稿）。独有优点：第一个自带可机检风格系统的技能（design_spec.md 给色板/字级/安全区/页面结构/签名构件/SVG 硬约束，A/C/D 三组 86 条断言全部来自它），且导出真是可编辑原生 DrawingML（零 media、文本逐页保真、px→pt 精确 0.75、渐变/分组/自由形/文本对齐全转换）。硬伤：SKILL.md 与磁盘资产大面积不一致（假 sys.path、index 20 vs 实际 13、菜单漏 5 套、charts/ 与 icons/ 与另一套质量脚本均未提及）、sorted(glob) 页序缺陷、spec 色板与自家模板互相不认。用法要点：色板取「spec ∪ 模板」两级、字号取 spec 下限、页序显式列表、图标当不存在（离线不可靠）"
+   "status": "已用于 22:00 演示汇报页并留用（限定场景：需交付 PPT/汇报稿）。独有优点：第一个自带可机检风格系统的技能（design_spec.md 给色板/字级/安全区/页面结构/签名构件/SVG 硬约束，A/C/D 三组 86 条断言全部来自它），且导出真是可编辑原生 DrawingML（零 media、文本逐页保真、px→pt 精确 0.75、渐变/分组/自由形/文本对齐全转换）。硬伤：SKILL.md 与磁盘资产大面积不一致（假 sys.path、index 20 vs 实际 13、菜单漏 5 套、charts/ 与 icons/ 与另一套质量脚本均未提及）、sorted(glob) 页序缺陷、spec 色板与自家模板互相不认。用法要点：色板取「spec ∪ 模板」两级、字号取 spec 下限、页序显式列表、图标当不存在（离线不可靠）｜09-26 00:00 图表密集分析页第 2 次使用仍留用并升级为图表类汇报件首选。新增事实：①charts_index.json 与磁盘 33 张完全一致（layouts_index 的反例），缺口只是 SKILL.md 正文 0 提及；②模板样例数据算术不诚实——donut 标注角与路径端点反推差最大 +12.7°（加总仍 360°，加总断言查不出）、funnel 顶宽是等差 −90px 与标称百分比无关 → 正确姿势=只继承结构常量、编码几何一律从数据现算；③svg_to_pptx 实测丢弃一切 filter（三份 pptx a:blur=0，pixel 霓虹 glow 全丢），alpha/gradFill/custGeom/文本 run 全保留、media 仍 0 → SVG 预览与 PPTX 不等效；④模板颜色与 layouts spec 色板交集 0，序列色必须走 themes.json 槽位两级换色；⑤技能自家 charts 模板违反自家 SKILL.md 条款（funnel 用 marker、line/funnel 裸 opacity、6/6 带 filter）。用法要点追加：模板骨架常量用脚本现读（kpi 卡真实 x=660 而非 640）、结构安全区断言（按 text-anchor 估宽）能抓真实溢出不必怀疑误报"
   },
   {
    "name": "ascii-project-dashboard",
@@ -335,14 +348,27 @@
    "artifact_size": "80KB（三页 13,705/15,914/14,329 字节 + styles.html 5,116 字节 + scripts/check.mjs 15,036 字节 + interact.mjs 3,288 字节 + ledger-snapshot.json 1,375 字节；断言 219+24 全绿）",
    "cleanup": "本轮零中间产物：无 node_modules、无 dist、无 pip 包、无构建缓存、未起 http.server（三页走 file://）、/tmp 零写入；技能目录零写入（只读 SKILL.md 与 references/）；全盘探测 node_modules|dist|*.log|.tmp|__pycache__ 结果为空；实验室合计 9.1MB，单场景 80KB ≪ 50MB",
    "push": "已提交并推送：git@github.com:sunc-Q/frontend-skill.git main 分支 9f91623..480b667（SSH，known_hosts 写 LAB/.tmp 后即删；命令与文件零 token）。提交物=三页 + styles.html + 两个校验脚本 + 台账快照 + report + work-log 行 + state 台账"
+  },
+  {
+   "time": "2026-09-26T00:00+08:00",
+   "skill": "ppt-generator",
+   "scenario": "图表密集分析页",
+   "result": "success",
+   "assertions": "353/353 全绿（scripts/check.py，A–K 十一组；写回台账前后各跑一次均全绿）",
+   "artifact_size": "479KB（490,790B，限额 50MB）",
+   "cleanup": "已删 .tmp/pylibs + .tmp/pipprobe（43MB pip 隔离安装与 wheel 缓存）；无 node_modules/dist/构建缓存；未起 http.server（预览走 file://）；技能目录零写入（find ~/.qoder-cn/skills/ppt-generator -newer 判空）；artifacts 仅保留可直接打开产物（svg/pptx/preview/styles.html）与全部脚本",
+   "push": "pending"
   }
  ],
  "next_candidates": [
+  "★ ppt-generator × 其余 27 张 chart 模板诚实度横筛：本轮只真用了 6 类（bar/line/donut/hbar/funnel/kpi），把 template_audit.py 的「标注值 vs 端点反推」式子自动套到全部模板，产出「哪些图型可继承骨架、哪些必须整段重写」清单——donut/funnel 已证不诚实，area/box_plot/radar/gauge 等待测",
+  "★ ppt-generator × 中文商务提案（未用过的 layouts：government_red / medical_university / ai_ops / consultant / dark_warm / 科技蓝商务 等，注意 consultant/dark_warm 在 layouts_index 里漏列、cloud_orange 零 SVG）：继续验「风格来自技能自带规范」在暖色/红色/深色族上是否仍成立，并复测模板色板与 spec 的交集是否仍为 0",
+  "ppt-generator × charts_index.json 的 bestFor/avoidFor 选图决策：33 条目带适用/回避场景描述，本轮未验——给同一份数据故意配错图型（如漏斗数据画 donut），断言技能文档能否让 Agent 事后指出错配（选图条款第一次可测）",
+  "ppt-generator × svg_quality_checker.py / batch_validate.py 黑盒：22:00 轮记的「另一套未接线的质量脚本」，把它当第三方 linter 跑本轮 18 页 SVG，对照 check.py 的 350 条看谁抓到更多（验技能自带 QA 与自研 QA 的覆盖差）",
   "★ 把本轮发明的「色板封闭 + 七项指纹差异≥3 + 色板两两零交集」三条式子移植回 14:00/16:00/17:00/18:00 的历史产物做横检：验证那几轮的「三风格」是否真的只换了配色（这是实验室第一次能反问自己这个问题）",
   "★ sites:sites-building × 多页站点（references/static-site.md 的静态导出与 SPA 路由条款至今未验，Simple site 单页已验四轮）",
   "三技能叠加 sites-building（定形+反膨胀）+ vercel-react（定码）+ drafter（定图）：验 F 组「不许加分包以外的功能」与 vercel「鼓励分包/懒加载」是否互斥；19:00 轮的先例是先解控制流冲突再叠加",
   "sites:sites-building × 活动报名页（与 20:00 React 轮同场景零框架对照，本轮 15KB 已可作为成本基线）",
-  "ppt-generator × 图表密集分析页（templates/charts/ 33 张图模板仍未真用）",
   "vercel-react-best-practices × 真 Next.js 工程（server-serialization / server-dedup-props / React.cache 本体与流式 SSR 形态的 suspense-boundaries 只有 Next.js 能验；npmmirror 可装 next，需先确认 Node 22 兼容与构建时长配额）",
   "graphic-gif × 动效横幅（需 Playwright + Chromium 下载；产物 .gif 不属于「可直接双击打开的页面」，落盘与预览策略要先定）",
   "★ vercel-react-best-practices × 真 Next.js 工程：server-* 剩余 3 条 RSC 专属（server-serialization / server-dedup-props / React.cache 本体）与流式 SSR 形态的 suspense-boundaries 只有 Next.js 能验；npmmirror 可装 next，但需先确认 Node 22 兼容与构建时长配额",
@@ -353,8 +379,6 @@
   "（需用户授权）市场技能 ui-ux-pro-max × 数据报表",
   "drafter × 单张长链流程图/时序图（技能主场未测点：连接线在 12+ 节点、直角折线与跨行虚线下的可读性与塌陷风险；产物仍应 15-20KB）",
   "drafter + 规范型技能叠加 × 数据看板（测「主张型定形 + 规范型定码」配方在纯静态图纸上是否仍互补，且能否把 C 组视觉断言与 bundle 断言并成一套）",
-  "★ ppt-generator × 图表密集分析页：技能自带 templates/charts/ 有 33 张图模板（bar/area/box_plot/bullet/butterfly…）而 SKILL.md 正文只字未提，下轮真用它们出图，验「SVG 图模板 → 原生可编辑图表」的距离与 charts_index.json 是否与磁盘同样不符",
-  "ppt-generator × 中文商务提案（用未在菜单上的 5 套之一：government_blue / government_red / medical_university / psychology_attachment，或 dark_warm/consultant 这些 index 漏列项）：继续检验「风格来自技能自带规范」在不同风格族上是否仍成立",
   "graphic-gif × 动效横幅（~/.qoder-cn/skills/graphic-gif，用户 19:37 装入；需要 Playwright + Chromium 下载，先验 npmmirror 能否装 playwright 与本机是否已有缓存浏览器；产物 .gif 不属于「可直接双击打开的页面」，落盘与预览策略要先想清楚）",
   "ascii-project-dashboard × 项目进度看板（~/.qoder-cn/skills/，用户 17:36 装入；纯 ASCII 看板，可顺带对照本实验室 work-log 的真实形态）",
   "★ vercel-react-best-practices × 真 Next.js 工程：server-* 剩余 3 条 RSC 专属（server-serialization / server-dedup-props / React.cache 本体）与流式 SSR 形态的 suspense-boundaries 只有 Next.js 能验；npmmirror 可装 next，但需先确认 Node 22 兼容与构建时长配额",
@@ -396,7 +420,10 @@
   "红黑几何切角 smart_red",
   "和纸浮世绘 ukiyo",
   "深空星图 astro",
-  "像素掌机 pixel-console"
+  "像素掌机 pixel-console",
+  "政务蓝图表件 government-blue-charts",
+  "疗愈蓝绿图表件 psych-healing-charts",
+  "霓虹像素图表件 pixel-neon-charts"
  ],
  "environment_notes": [
   "本机无法直连 GitHub raw 与 skills.sh（curl exit 35 / WebFetch fetch failed），外部落地技能持续不可用",
@@ -454,6 +481,14 @@
   "零位图（几何全用内联 SVG/CSS，人物/场景不配图）能让「零外链」断言第一次不需要白名单：前几轮在 React 产物上必须放行 w3.org xmlns 与 react.dev 错误码文案。个人主页/图纸/报表这类页面可直接采用该策略",
   "把「一个连贯视觉主张」写成可机检断言的三条式子（本轮验证有效，可移植回历史轮做横检）：①色板封闭——页内出现的任何十六进制色必须属于该页声明色板；②风格七项指纹（grid-template-columns / font-family / border-radius / 是否用 table / 是否用竖排 / 是否方格仪表 / 阴影手法）两两差异 ≥3；③色板两两零交集。注意第③条会把「我自己在清单里误列的颜色」变成假失败，色板必须由脚本从 :root 解析而不是手抄",
   "交互层的零依赖验证配方（不需要 jsdom，也就不需要 102MB node_modules）：vm.createContext + 30 行桩 DOM（getElementById/addEventListener/setTimeout/navigator.clipboard），分别跑「无 clipboard API」与「有 clipboard」两条分支，断言回退文案、是否安排复原定时器、复原后是否等于「从 HTML 里正则读出的初始文案」（不能写死字符串，否则改文案就假通过）",
-  "技能自带「不做浏览器 QA」的默认（Browser screenshots/DOM inspection/interaction QA require a user request），与实验室「必须复核产物」冲突。已验证的分工：浏览器只读不需要事件驱动的计算样式（每次 ≤3 属性），交互一律走 vm 桩，真实视口溢出记为未验项并改用静态防线（repeat() 必配 minmax(0,…)、无 ≥500px 固定宽、容器 max-width、nowrap 预算 ≤6）"
+  "技能自带「不做浏览器 QA」的默认（Browser screenshots/DOM inspection/interaction QA require a user request），与实验室「必须复核产物」冲突。已验证的分工：浏览器只读不需要事件驱动的计算样式（每次 ≤3 属性），交互一律走 vm 桩，真实视口溢出记为未验项并改用静态防线（repeat() 必配 minmax(0,…)、无 ≥500px 固定宽、容器 max-width、nowrap 预算 ≤6）",
+  "ppt-generator 的 charts_index.json 与磁盘完全一致（meta_total=33==目录数==引用零缺失）——与 layouts_index.json（声称 20、磁盘 13）相反，说明该技能的索引 bug 是逐个文件人工维护出来的，不能推广为「索引都不可信」；真正的缺口统一在 SKILL.md 正文：charts/、icons/、svg_quality_checker 等一套脚本全部未接线",
+  "图表模板「样例数据算术不诚实」的检测式：把标注百分比/数值编码到的几何量（弧的起止角、条长、顶宽）从路径端点或 rect width 反推回来与标注比对。只查「角度加总=360°」或「百分比加总=100%」的断言永远放行（donut 五段偏差 +12.7°/-9.0° 但加总恰为 360°；funnel 顶宽 600/510/420/330 是等差数列、与标称 100/45/18/6.5% 无任何比例关系）。结论：继承模板只能取结构常量（坐标轴/半径/基线/字号槽），任何编码几何必须从数据现算",
+  "svg_to_pptx 实测丢弃 SVG filter：三份含 feGaussianBlur 的页面导出的 pptx 里 a:blur 部件均为 0（pixel 霓虹 glow 全丢），而 a:alpha（18/30 处）、a:gradFill（6/6/0）、custGeom（34/份）、<a:t> 与 SVG <text> 逐页相等、media 0 全部保留 → 依赖 filter 的风格（pixel_retro 的 glow）在 PPTX 端必然退化，「SVG 预览 ≈ PPTX 效果」不成立，交付前必须按 OOXML 复核而不是按 SVG 目视",
+  "模板/素材颜色与 layouts design_spec 色板交集可以为 0（charts/ 33 张模板用的 12 色与本轮三套 spec 色板零重合）→ 跨素材族复用模板时必须做两级换色：themes.json 里给每主题定 5 个序列色槽，生成器只按槽取色；并配「每主题序列槽全部出现且属于封闭色板」断言，否则换色漏槽会静默产生同色柱条",
+  "技能自带模板骨架的坐标常量必须脚本现读、不可手抄：我把 kpi 第二列卡片的 x 记成 640，实际模板是 660（模板审计按 rect 现读才发现），错的常量会让整套间距推导偏移而肉眼看不出；同理 funnel 模板 6 级骨架塞 5 级数据需要显式改 pitch 并在文档里记为「结构常量偏离」",
+  "正则从 SVG/HTML 模板抽标注时 [^—]+ 这类否定字符类会跨换行把多行并成一次命中（本轮六行百分比被并成一个值），一律加 \\n 排除（[^—\\n]）；遍历 SVG 元素属性前先挡 None（背景 rect 常无 x/y），float(el.get('x')) 直接崩",
+  "安全区断言按 text-anchor 分锚点估算文本宽度（start 向右、middle 双向、end 向左）能抓到真实溢出：本轮 legend「合计 3,258」与排行页 4,820 标签两处肉眼易漏的越界都是它first 抓的，这不是检查器误报——历轮「检查器 bug 伪装成内容缺陷」的模式不适用于这条，别因为怕误报而放宽",
+  "台账/去重类断言一律写成幂等式「快照值 + 本轮增量 == 台账现值」（含 used_styles 末三条须与快照 this_round_styles 逐字相同），不要写成「本轮内容未出现在台账里」——后者在写回台账的那一刻必然翻转成失败，让复现文档自毁；改完后写回前后各跑一次 check.py 都应全绿才算通过"
  ]
 }

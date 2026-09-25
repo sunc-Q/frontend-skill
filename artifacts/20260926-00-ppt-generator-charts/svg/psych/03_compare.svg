@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<defs><linearGradient id="secBar" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#1E3A5F;stop-opacity:1"/><stop offset="100%" style="stop-color:#3D8B7A;stop-opacity:1"/></linearGradient></defs>
+<!-- skeleton from ppt-generator/templates/charts (structure constants in generate.py TPL) -->
+<rect x="0" y="0" width="1280" height="720" fill="#F8FAFC"/>
+<circle cx="1200" cy="70" r="44" fill="none" stroke="#94A3B8" stroke-opacity="0.15" stroke-width="1.5"/>
+<circle cx="1200" cy="70" r="28" fill="none" stroke="#94A3B8" stroke-opacity="0.25" stroke-width="1.5"/>
+<circle cx="1200" cy="70" r="12" fill="none" stroke="#94A3B8" stroke-opacity="0.35" stroke-width="1.5"/>
+<text x="40" y="95" font-size="32" fill="#1E293B" font-weight="bold" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="40" dy="0">各内容线年度营收</tspan></text>
+<text x="40" y="116" font-size="14" fill="#94A3B8" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="40" dy="0">REVENUE BY LINE</tspan></text>
+<rect x="40" y="126" width="64" height="4" fill="url(#secBar)"/>
+<text x="1240" y="95" font-size="14" fill="#64748B" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="1240" dy="0">单位：万元 · 五条内容线</tspan></text>
+<text x="125" y="555" font-size="14" fill="#64748B" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="125" dy="0">0</tspan></text>
+<line x1="140" y1="450" x2="1160" y2="450" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="125" y="455" font-size="14" fill="#64748B" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="125" dy="0">400</tspan></text>
+<line x1="140" y1="350" x2="1160" y2="350" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="125" y="355" font-size="14" fill="#64748B" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="125" dy="0">800</tspan></text>
+<line x1="140" y1="250" x2="1160" y2="250" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="125" y="255" font-size="14" fill="#64748B" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="125" dy="0">1,200</tspan></text>
+<line x1="140" y1="150" x2="1160" y2="150" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="125" y="155" font-size="14" fill="#64748B" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="125" dy="0">1,600</tspan></text>
+<line x1="140" y1="150" x2="140" y2="550" stroke="#94A3B8" stroke-width="2"/>
+<line x1="140" y1="550" x2="1160" y2="550" stroke="#94A3B8" stroke-width="2"/>
+<rect x="220" y="228.5" width="50" height="321.5" fill="#2E5C8E" rx="4"/>
+<text x="245" y="214.5" font-size="16" fill="#1E293B" text-anchor="middle" font-weight="600" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="245" dy="0">1,286</tspan></text>
+<text x="245" y="580" font-size="16" fill="#374151" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="245" dy="0">声音内容</tspan></text>
+<rect x="400" y="334" width="50" height="216" fill="#3D8B7A" rx="4"/>
+<text x="425" y="320" font-size="16" fill="#1E293B" text-anchor="middle" font-weight="600" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="425" dy="0">864</tspan></text>
+<text x="425" y="580" font-size="16" fill="#374151" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="425" dy="0">付费社区</tspan></text>
+<rect x="580" y="372" width="50" height="178" fill="#E07843" rx="4"/>
+<text x="605" y="358" font-size="16" fill="#1E293B" text-anchor="middle" font-weight="600" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="605" dy="0">712</tspan></text>
+<text x="605" y="580" font-size="16" fill="#374151" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="605" dy="0">直播打赏</tspan></text>
+<rect x="760" y="399.25" width="50" height="150.75" fill="#64748B" rx="4"/>
+<text x="785" y="385.25" font-size="16" fill="#1E293B" text-anchor="middle" font-weight="600" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="785" dy="0">603</tspan></text>
+<text x="785" y="580" font-size="16" fill="#374151" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="785" dy="0">品牌合作</tspan></text>
+<rect x="940" y="454.75" width="50" height="95.25" fill="#B54545" rx="4"/>
+<text x="965" y="440.75" font-size="16" fill="#1E293B" text-anchor="middle" font-weight="600" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="965" dy="0">381</tspan></text>
+<text x="965" y="580" font-size="16" fill="#374151" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="965" dy="0">衍生周边</tspan></text>
+<text x="140" y="630" font-size="14" fill="#64748B" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="140" dy="0">五条内容线合计 3,846 万元 · 单位：万元</tspan></text>
+<text x="40" y="668" font-size="14" fill="#94A3B8" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="40" dy="0">演示数据（虚构）· 图表骨架取自 ppt-generator templates/charts/</tspan></text>
+<text x="1240" y="668" font-size="14" fill="#64748B" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="1240" dy="0">03 / 06</tspan></text>
+</svg>

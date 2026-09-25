@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<defs><filter id="glowGreen" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<!-- skeleton from ppt-generator/templates/charts (structure constants in generate.py TPL) -->
+<rect x="0" y="0" width="1280" height="720" fill="#0D1117"/>
+<rect x="0" y="0" width="1280" height="4" fill="#39FF14"/>
+<rect x="0" y="6" width="1280" height="2" fill="#39FF14" fill-opacity="0.35"/>
+<text filter="url(#glowGreen)" x="60" y="64" font-size="36" fill="#39FF14" font-weight="bold" font-family="'Consolas', 'Monaco', 'Courier New', monospace"><tspan x="60" dy="0">CONVERSION FUNNEL</tspan></text>
+<text x="60" y="90" font-size="14" fill="#8B949E" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif"><tspan x="60" dy="0">用户转化漏斗 · 五级 · 单位：人</tspan></text>
+<rect x="1198" y="20" width="10" height="10" fill="#39FF14" fill-opacity="1"/>
+<rect x="1214" y="20" width="8" height="8" fill="#39FF14" fill-opacity="0.6"/>
+<rect x="1230" y="20" width="6" height="6" fill="#39FF14" fill-opacity="0.3"/>
+<path d="M 340,160 L 940,160 L 829.48,240 L 450.52,240 Z" fill="#39FF14"/>
+<text x="640" y="194" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif"><tspan x="640" dy="0">到访 · 2,860,000 人</tspan></text>
+<text x="640" y="218" font-size="16" fill="#FFFFFF" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif"><tspan x="640" dy="0">占首级 100.0% · 入口</tspan></text>
+<path d="M 450.52,265 L 829.48,265 L 733.65,345 L 546.35,345 Z" fill="#FF2E97"/>
+<text x="640" y="299" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif"><tspan x="640" dy="0">试听 · 1,543,000 人</tspan></text>
+<text x="640" y="323" font-size="16" fill="#FFFFFF" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif"><tspan x="640" dy="0">占首级 54.0% · 上级转化 54.0%</tspan></text>
+<path d="M 546.35,370 L 733.65,370 L 715.78,450 L 564.22,450 Z" fill="#00D4FF"/>
+<text x="640" y="404" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif"><tspan x="640" dy="0">注册 · 401,000 人</tspan></text>
+<text x="640" y="428" font-size="16" fill="#FFFFFF" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif"><tspan x="640" dy="0">占首级 14.0% · 上级转化 26.0%</tspan></text>
+<path d="M 564.22,475 L 715.78,475 L 704.36,555 L 575.64,555 Z" fill="#FFD700"/>
+<text x="640" y="509" font-size="20" fill="#0D1117" text-anchor="middle" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif"><tspan x="640" dy="0">月活 · 188,000 人</tspan></text>
+<text x="640" y="533" font-size="16" fill="#0D1117" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif"><tspan x="640" dy="0">占首级 6.6% · 上级转化 46.9%</tspan></text>
+<path d="M 575.64,580 L 704.36,580 L 704.36,660 L 575.64,660 Z" fill="#1F6FEB"/>
+<text x="640" y="614" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif"><tspan x="640" dy="0">付费订阅 · 52,000 人</tspan></text>
+<text x="640" y="638" font-size="16" fill="#FFFFFF" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif"><tspan x="640" dy="0">占首级 1.8% · 上级转化 27.7%</tspan></text>
+<text x="60" y="662" font-size="14" fill="#8B949E" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif"><tspan x="60" dy="0">宽度编码：120 + 480 × 占首级比例（含基线宽度，防末级不可读）· 首→末 1.8%</tspan></text>
+<rect x="0" y="712" width="1280" height="2" fill="#39FF14" fill-opacity="0.35"/>
+<rect x="0" y="716" width="1280" height="4" fill="#39FF14"/>
+<text x="60" y="692" font-size="14" fill="#8B949E" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif"><tspan x="60" dy="0">演示数据（虚构）· 图表骨架取自 ppt-generator templates/charts/</tspan></text>
+<text x="1220" y="692" font-size="14" fill="#8B949E" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif"><tspan x="1220" dy="0">06 / 06</tspan></text>
+</svg>

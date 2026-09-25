@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<defs><linearGradient id="topBar" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#00B4D8;stop-opacity:1"/><stop offset="100%" style="stop-color:#0050B3;stop-opacity:1"/></linearGradient></defs>
+<!-- skeleton from ppt-generator/templates/charts (structure constants in generate.py TPL) -->
+<rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+<rect x="0" y="0" width="1280" height="6" fill="url(#topBar)"/>
+<rect x="60" y="30" width="50" height="50" fill="#0050B3"/>
+<text x="85" y="63" font-size="24" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="85" dy="0">04</tspan></text>
+<text x="130" y="62" font-size="28" fill="#1A1A1A" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="130" dy="0">营收构成占比</tspan></text>
+<text x="130" y="84" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="130" dy="0">五项构成 · 角度与占比同源计算</tspan></text>
+<text x="1220" y="62" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1220" dy="0">回声岛 · 2025 年 1—12 月</tspan></text>
+<path d="M 400,230 A 180,180 0 0,1 555.29,501.02 L 486.27,460.56 A 100,100 0 0,0 400,310 Z" fill="#0050B3"/>
+<path d="M 555.29,501.02 A 180,180 0 0,1 334.77,577.76 L 363.76,503.2 A 100,100 0 0,0 486.27,460.56 Z" fill="#00B4D8"/>
+<path d="M 334.77,577.76 A 180,180 0 0,1 220.12,416.61 L 300.07,413.67 A 100,100 0 0,0 363.76,503.2 Z" fill="#38A169"/>
+<path d="M 220.12,416.61 A 180,180 0 0,1 295.06,263.76 L 341.7,328.75 A 100,100 0 0,0 300.07,413.67 Z" fill="#3182CE"/>
+<path d="M 295.06,263.76 A 180,180 0 0,1 400,230 L 400,310 A 100,100 0 0,0 341.7,328.75 Z" fill="#E53E3E"/>
+<circle cx="400" cy="410" r="100" fill="#FFFFFF"/>
+<text x="400" y="402" font-size="36" fill="#1A1A1A" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="400" dy="0">3,846</tspan></text>
+<text x="400" y="432" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="400" dy="0">年营收（万元）</tspan></text>
+<rect x="720" y="186" width="18" height="18" fill="#0050B3" rx="4"/>
+<text x="750" y="200" font-size="18" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">声音内容</tspan></text>
+<text x="750" y="224" font-size="16" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">33.4% · 1,286 万元 · 扇形 120.4°</tspan></text>
+<rect x="720" y="256" width="18" height="18" fill="#00B4D8" rx="4"/>
+<text x="750" y="270" font-size="18" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">付费社区</tspan></text>
+<text x="750" y="294" font-size="16" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">22.5% · 864 万元 · 扇形 80.9°</tspan></text>
+<rect x="720" y="326" width="18" height="18" fill="#38A169" rx="4"/>
+<text x="750" y="340" font-size="18" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">直播打赏</tspan></text>
+<text x="750" y="364" font-size="16" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">18.5% · 712 万元 · 扇形 66.6°</tspan></text>
+<rect x="720" y="396" width="18" height="18" fill="#3182CE" rx="4"/>
+<text x="750" y="410" font-size="18" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">品牌合作</tspan></text>
+<text x="750" y="434" font-size="16" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">15.7% · 603 万元 · 扇形 56.4°</tspan></text>
+<rect x="720" y="466" width="18" height="18" fill="#E53E3E" rx="4"/>
+<text x="750" y="480" font-size="18" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">衍生周边</tspan></text>
+<text x="750" y="504" font-size="16" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">9.9% · 381 万元 · 扇形 35.7°</tspan></text>
+<text x="720" y="570" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="720" dy="0">占比合计 100.0% · 角度合计 360.0°</tspan></text>
+<rect x="0" y="716" width="1280" height="4" fill="#0050B3"/>
+<text x="60" y="692" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="60" dy="0">演示数据（虚构）· 图表骨架取自 ppt-generator templates/charts/</tspan></text>
+<text x="1220" y="692" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1220" dy="0">04 / 06</tspan></text>
+</svg>

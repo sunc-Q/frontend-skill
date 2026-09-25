@@ -1,0 +1,73 @@
+{
+  "product": {
+    "name_zh": "回声岛",
+    "name_en": "Echo Isle",
+    "org": "回声岛内容与商业化中心",
+    "period": "2025 年 1—12 月",
+    "footer_note": "演示数据（虚构）· 图表骨架取自 ppt-generator templates/charts/"
+  },
+  "trend": {
+    "months": ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+    "revenue": [248, 265, 279, 301, 315, 327, 338, 342, 331, 349, 362, 389],
+    "cost": [231, 242, 248, 259, 266, 274, 281, 286, 277, 289, 297, 308],
+    "y_max": 400,
+    "y_step": 100,
+    "series_names": ["营收", "成本"]
+  },
+  "lines": {
+    "items": [
+      {"label": "声音内容", "value": 1286},
+      {"label": "付费社区", "value": 864},
+      {"label": "直播打赏", "value": 712},
+      {"label": "品牌合作", "value": 603},
+      {"label": "衍生周边", "value": 381}
+    ],
+    "y_max": 1600,
+    "y_step": 400
+  },
+  "composition": {
+    "center_value": 3846,
+    "center_label": "年营收"
+  },
+  "ranking": {
+    "items": [
+      {"label": "深夜电台", "value": 4820},
+      {"label": "城市声音志", "value": 3655},
+      {"label": "历史回音壁", "value": 3102},
+      {"label": "亲子共读夜", "value": 2688},
+      {"label": "独立音乐场", "value": 2341},
+      {"label": "职场树洞", "value": 1956},
+      {"label": "科幻频段", "value": 1644},
+      {"label": "晨光英语", "value": 1327}
+    ],
+    "x_max": 5000,
+    "x_step": 1000
+  },
+  "funnel": {
+    "stages": [
+      {"label": "到访", "count": 2860000},
+      {"label": "试听", "count": 1543000},
+      {"label": "注册", "count": 401000},
+      {"label": "月活", "count": 188000},
+      {"label": "付费订阅", "count": 52000}
+    ],
+    "w_base": 120,
+    "w_span": 480,
+    "w_max": 600
+  },
+  "kpi": {
+    "given": [
+      {"key": "revenue", "label_zh": "年度营收", "value_prefix": "¥", "value_suffix": "万", "delta_text": "+23.8% 同比", "delta_kind": "up", "note": "12 个月营收合计"},
+      {"key": "profit", "label_zh": "年度利润", "value_prefix": "¥", "value_suffix": "万", "delta_text": "利润率 {margin}%（推算）", "delta_kind": "up", "note": "营收合计 − 成本合计（推算）"},
+      {"key": "mau", "label_zh": "月活用户", "value_suffix": "万", "delta_text": "注册→月活 {rate_mau}%（推算）", "delta_kind": "flat", "note": "转化漏斗第 4 级"},
+      {"key": "subs", "label_zh": "付费订阅", "value_suffix": "万", "delta_text": "月活→付费 {rate_subs}%（推算）", "delta_kind": "down", "note": "转化漏斗第 5 级"}
+    ],
+    "derived_from": {
+      "revenue": "trend.revenue 之和（万元）",
+      "profit": "trend.revenue 之和 − trend.cost 之和",
+      "mau": "funnel.stages[3].count",
+      "subs": "funnel.stages[4].count",
+      "margin": "profit / revenue × 100，保留 1 位小数"
+    }
+  }
+}

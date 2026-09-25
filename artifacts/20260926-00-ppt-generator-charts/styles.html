@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>回声岛 2025 年度经营分析 · 三风格对照（ppt-generator charts 模板血统）</title>
+<style>
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:#101418;color:#DDE4EA;margin:0;padding:40px}
+h1{font-size:22px}a{color:#7EB6FF;text-decoration:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;max-width:960px}
+.card{background:#181E26;border:1px solid #2A323C;padding:18px;border-radius:6px}
+.meta{color:#8B98A6;font-size:13px;line-height:1.7}
+</style></head><body>
+<h1>回声岛 Echo Isle · 2025 年度经营分析（styles:3 / pages:18 / chart-templates-used:6）</h1>
+<p class="meta">第 11 轮验证：ppt-generator × 图表密集分析页。六类图表（KPI / 趋势 / 对比 / 构成 / 排行 / 漏斗）的
+骨架常量取自技能 templates/charts/ 33 张模板，几何全部由 scripts/generate.py 从 data.json 现算；
+风格系统（色板 / 字体 / 字级 / 安全区 / 签名构件）取自三个未用过的 layouts 规范。</p>
+<div class="grid">
+<div class="card"><h2>政务蓝 government_blue</h2><p class="meta">浅色 · 深蓝题块 + 顶部科技渐变条<br>字号下限 14px · 圆角 8 · 安全区 x60–1220</p><a href="preview/govblue.html">打开六页翻页预览 →</a></div>
+<div class="card"><h2>疗愈蓝绿 psychology_attachment</h2><p class="meta">浅色 · 同心圆装饰 + 蓝绿渐变题标尺<br>字号下限 14px · 圆角 14 · 安全区 x40–1240</p><a href="preview/psych.html">打开六页翻页预览 →</a></div>
+<div class="card"><h2>霓虹像素 pixel_retro</h2><p class="meta">深色 · 霓虹双装饰线 + 等宽发光标题（filter 仅 SVG 侧，PPTX 导出实测丢弃）<br>字号下限 14px · 圆角 0 · 安全区 x60–1220</p><a href="preview/pixel.html">打开六页翻页预览 →</a></div>
+</div>
+<p class="meta">原生 PPTX：pptx/echoisle-2025-{govblue,psych,pixel}.pptx（零位图，文本逐页可编辑）。<br>
+校验：<code>python3 scripts/check.py</code> · 审计：<code>scripts/template_audit.py</code> → template-audit.json<br>
+数据为虚构演示数据；三风格同源同数据，仅规范驱动外观差异。</p>
+</body></html>

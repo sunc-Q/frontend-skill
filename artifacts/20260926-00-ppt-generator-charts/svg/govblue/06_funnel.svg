@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<defs><linearGradient id="topBar" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#00B4D8;stop-opacity:1"/><stop offset="100%" style="stop-color:#0050B3;stop-opacity:1"/></linearGradient></defs>
+<!-- skeleton from ppt-generator/templates/charts (structure constants in generate.py TPL) -->
+<rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+<rect x="0" y="0" width="1280" height="6" fill="url(#topBar)"/>
+<rect x="60" y="30" width="50" height="50" fill="#0050B3"/>
+<text x="85" y="63" font-size="24" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="85" dy="0">06</tspan></text>
+<text x="130" y="62" font-size="28" fill="#1A1A1A" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="130" dy="0">用户转化漏斗</tspan></text>
+<text x="130" y="84" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="130" dy="0">五级 · 单位：人</tspan></text>
+<text x="1220" y="62" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1220" dy="0">回声岛 · 2025 年 1—12 月</tspan></text>
+<path d="M 340,160 L 940,160 L 829.48,240 L 450.52,240 Z" fill="#0050B3"/>
+<text x="640" y="194" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">到访 · 2,860,000 人</tspan></text>
+<text x="640" y="218" font-size="16" fill="#FFFFFF" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">占首级 100.0% · 入口</tspan></text>
+<path d="M 450.52,265 L 829.48,265 L 733.65,345 L 546.35,345 Z" fill="#00B4D8"/>
+<text x="640" y="299" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">试听 · 1,543,000 人</tspan></text>
+<text x="640" y="323" font-size="16" fill="#FFFFFF" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">占首级 54.0% · 上级转化 54.0%</tspan></text>
+<path d="M 546.35,370 L 733.65,370 L 715.78,450 L 564.22,450 Z" fill="#38A169"/>
+<text x="640" y="404" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">注册 · 401,000 人</tspan></text>
+<text x="640" y="428" font-size="16" fill="#FFFFFF" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">占首级 14.0% · 上级转化 26.0%</tspan></text>
+<path d="M 564.22,475 L 715.78,475 L 704.36,555 L 575.64,555 Z" fill="#3182CE"/>
+<text x="640" y="509" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">月活 · 188,000 人</tspan></text>
+<text x="640" y="533" font-size="16" fill="#FFFFFF" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">占首级 6.6% · 上级转化 46.9%</tspan></text>
+<path d="M 575.64,580 L 704.36,580 L 704.36,660 L 575.64,660 Z" fill="#E53E3E"/>
+<text x="640" y="614" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">付费订阅 · 52,000 人</tspan></text>
+<text x="640" y="638" font-size="16" fill="#FFFFFF" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">占首级 1.8% · 上级转化 27.7%</tspan></text>
+<text x="60" y="662" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="60" dy="0">宽度编码：120 + 480 × 占首级比例（含基线宽度，防末级不可读）· 首→末 1.8%</tspan></text>
+<rect x="0" y="716" width="1280" height="4" fill="#0050B3"/>
+<text x="60" y="692" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="60" dy="0">演示数据（虚构）· 图表骨架取自 ppt-generator templates/charts/</tspan></text>
+<text x="1220" y="692" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1220" dy="0">06 / 06</tspan></text>
+</svg>

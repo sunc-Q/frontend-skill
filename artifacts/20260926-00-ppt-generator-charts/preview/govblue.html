@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>政务蓝 · 图表密集分析 · 回声岛 Echo Isle 2025 年度分析</title>
+<style>
+body{margin:0;background:#E8E8E8;font-family:'PingFang SC','Microsoft YaHei',sans-serif}
+header{display:flex;gap:8px;align-items:center;padding:10px 16px;color:#4A5568}
+button{background:#FFFFFF;color:#4A5568;border:1px solid #E6F4FF;padding:6px 10px;cursor:pointer;font-size:13px;border-radius:8px}
+button[aria-current="true"]{background:#0050B3;color:#FFFFFF}
+main{max-width:1320px;margin:0 auto}
+.page{display:none}.page[data-on="1"]{display:block}
+svg{display:block;width:100%;height:auto}
+</style></head><body>
+<header><strong>政务蓝 · 图表密集分析</strong><button data-i="0" aria-current="false">年度核心指标</button><button data-i="1" aria-current="false">月度趋势</button><button data-i="2" aria-current="false">内容线对比</button><button data-i="3" aria-current="false">营收构成</button><button data-i="4" aria-current="false">TOP8 排行</button><button data-i="5" aria-current="false">转化漏斗</button><span id="pos"></span></header>
+<main><div class="page" data-on="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<defs><linearGradient id="topBar" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#00B4D8;stop-opacity:1"/><stop offset="100%" style="stop-color:#0050B3;stop-opacity:1"/></linearGradient></defs>
+<!-- skeleton from ppt-generator/templates/charts (structure constants in generate.py TPL) -->
+<rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+<rect x="0" y="0" width="1280" height="6" fill="url(#topBar)"/>
+<rect x="60" y="30" width="50" height="50" fill="#0050B3"/>
+<text x="85" y="63" font-size="24" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="85" dy="0">01</tspan></text>
+<text x="130" y="62" font-size="28" fill="#1A1A1A" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="130" dy="0">年度核心指标</tspan></text>
+<text x="130" y="84" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="130" dy="0">四项指标 · 两项由趋势与漏斗数据推算</tspan></text>
+<text x="1220" y="62" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1220" dy="0">回声岛 · 2025 年 1—12 月</tspan></text>
+<rect x="60" y="150" width="560" height="250" fill="#FFFFFF" rx="8" stroke="#E6F4FF" stroke-width="1"/>
+<rect x="76" y="170" width="8" height="70" fill="#0050B3" rx="4"/>
+<text x="100" y="190" font-size="18" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="100" dy="0">年度营收</tspan></text>
+<text x="100" y="213" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="100" dy="0">ANNUAL REVENUE</tspan></text>
+<text x="100" y="285" font-size="36" fill="#1A1A1A" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="100" dy="0">¥3,846</tspan></text>
+<text x="233.28" y="285" font-size="24" fill="#4A5568" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="233.28" dy="0">万</tspan></text>
+<text x="100" y="327" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="100" dy="0">利润率 15.3% · 12 个月合计</tspan></text>
+<path d="M 100,336 l 6,-9 l 6,9 Z" fill="#38A169"/>
+<text x="118" y="336" font-size="16" fill="#38A169" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="118" dy="0">+23.8% 同比</tspan></text>
+<text x="100" y="374" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="100" dy="0">12 个月营收合计</tspan></text>
+<rect x="660" y="150" width="560" height="250" fill="#FFFFFF" rx="8" stroke="#E6F4FF" stroke-width="1"/>
+<rect x="676" y="170" width="8" height="70" fill="#38A169" rx="4"/>
+<text x="700" y="190" font-size="18" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="700" dy="0">年度利润</tspan></text>
+<text x="700" y="213" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="700" dy="0">NET PROFIT</tspan></text>
+<text x="700" y="285" font-size="36" fill="#1A1A1A" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="700" dy="0">¥588</tspan></text>
+<text x="791.52" y="285" font-size="24" fill="#4A5568" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="791.52" dy="0">万</tspan></text>
+<text x="700" y="327" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="700" dy="0">营收 3,846 − 成本 3,258</tspan></text>
+<path d="M 700,336 l 6,-9 l 6,9 Z" fill="#38A169"/>
+<text x="718" y="336" font-size="16" fill="#38A169" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="718" dy="0">利润率 15.3%（推算）</tspan></text>
+<text x="700" y="374" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="700" dy="0">营收合计 − 成本合计（推算）</tspan></text>
+<rect x="60" y="440" width="560" height="250" fill="#FFFFFF" rx="8" stroke="#E6F4FF" stroke-width="1"/>
+<rect x="76" y="460" width="8" height="70" fill="#00B4D8" rx="4"/>
+<text x="100" y="480" font-size="18" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="100" dy="0">月活用户</tspan></text>
+<text x="100" y="503" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="100" dy="0">MONTHLY ACTIVE</tspan></text>
+<text x="100" y="575" font-size="36" fill="#1A1A1A" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="100" dy="0">18.8</tspan></text>
+<text x="191.52" y="575" font-size="24" fill="#4A5568" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="191.52" dy="0">万</tspan></text>
+<text x="100" y="617" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="100" dy="0">188,000 人</tspan></text>
+<rect x="100" y="618" width="12" height="6" fill="#3182CE"/>
+<text x="118" y="626" font-size="16" fill="#3182CE" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="118" dy="0">注册→月活 46.9%（推算）</tspan></text>
+<text x="100" y="664" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="100" dy="0">转化漏斗第 4 级</tspan></text>
+<rect x="660" y="440" width="560" height="250" fill="#FFFFFF" rx="8" stroke="#E6F4FF" stroke-width="1"/>
+<rect x="676" y="460" width="8" height="70" fill="#E53E3E" rx="4"/>
+<text x="700" y="480" font-size="18" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="700" dy="0">付费订阅</tspan></text>
+<text x="700" y="503" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="700" dy="0">PAID SUBSCRIBERS</tspan></text>
+<text x="700" y="575" font-size="36" fill="#1A1A1A" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="700" dy="0">5.2</tspan></text>
+<text x="770.64" y="575" font-size="24" fill="#4A5568" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="770.64" dy="0">万</tspan></text>
+<text x="700" y="617" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="700" dy="0">52,000 人</tspan></text>
+<path d="M 700,617 l 6,9 l 6,-9 Z" fill="#E53E3E"/>
+<text x="718" y="626" font-size="16" fill="#E53E3E" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="718" dy="0">月活→付费 27.7%（推算）</tspan></text>
+<text x="700" y="664" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="700" dy="0">转化漏斗第 5 级</tspan></text>
+<rect x="0" y="716" width="1280" height="4" fill="#0050B3"/>
+<text x="60" y="692" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="60" dy="0">演示数据（虚构）· 图表骨架取自 ppt-generator templates/charts/</tspan></text>
+<text x="1220" y="692" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1220" dy="0">01 / 06</tspan></text>
+</svg></div><div class="page" data-on="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<defs><linearGradient id="topBar" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#00B4D8;stop-opacity:1"/><stop offset="100%" style="stop-color:#0050B3;stop-opacity:1"/></linearGradient></defs>
+<!-- skeleton from ppt-generator/templates/charts (structure constants in generate.py TPL) -->
+<rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+<rect x="0" y="0" width="1280" height="6" fill="url(#topBar)"/>
+<rect x="60" y="30" width="50" height="50" fill="#0050B3"/>
+<text x="85" y="63" font-size="24" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="85" dy="0">02</tspan></text>
+<text x="130" y="62" font-size="28" fill="#1A1A1A" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="130" dy="0">月度营收与成本趋势</tspan></text>
+<text x="130" y="84" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="130" dy="0">单位：万元 · 12 个月</tspan></text>
+<text x="1220" y="62" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1220" dy="0">回声岛 · 2025 年 1—12 月</tspan></text>
+<text x="125" y="555" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="125" dy="0">0</tspan></text>
+<line x1="140" y1="450" x2="1160" y2="450" stroke="#E6F4FF" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="125" y="455" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="125" dy="0">100</tspan></text>
+<line x1="140" y1="350" x2="1160" y2="350" stroke="#E6F4FF" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="125" y="355" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="125" dy="0">200</tspan></text>
+<line x1="140" y1="250" x2="1160" y2="250" stroke="#E6F4FF" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="125" y="255" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="125" dy="0">300</tspan></text>
+<line x1="140" y1="150" x2="1160" y2="150" stroke="#E6F4FF" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="125" y="155" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="125" dy="0">400</tspan></text>
+<line x1="140" y1="150" x2="140" y2="550" stroke="#718096" stroke-width="2"/>
+<line x1="140" y1="550" x2="1160" y2="550" stroke="#718096" stroke-width="2"/>
+<text x="225" y="580" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="225" dy="0">1月</tspan></text>
+<text x="310" y="580" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="310" dy="0">2月</tspan></text>
+<text x="395" y="580" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="395" dy="0">3月</tspan></text>
+<text x="480" y="580" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="480" dy="0">4月</tspan></text>
+<text x="565" y="580" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="565" dy="0">5月</tspan></text>
+<text x="650" y="580" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="650" dy="0">6月</tspan></text>
+<text x="735" y="580" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="735" dy="0">7月</tspan></text>
+<text x="820" y="580" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="820" dy="0">8月</tspan></text>
+<text x="905" y="580" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="905" dy="0">9月</tspan></text>
+<text x="990" y="580" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="990" dy="0">10月</tspan></text>
+<text x="1075" y="580" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1075" dy="0">11月</tspan></text>
+<text x="1160" y="580" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1160" dy="0">12月</tspan></text>
+<polyline points="225,302 310,285 395,271 480,249 565,235 650,223 735,212 820,208 905,219 990,201 1075,188 1160,161" fill="none" stroke="#0050B3" stroke-width="3"/>
+<circle cx="225" cy="302" r="5" fill="#0050B3"/>
+<circle cx="310" cy="285" r="5" fill="#0050B3"/>
+<circle cx="395" cy="271" r="5" fill="#0050B3"/>
+<circle cx="480" cy="249" r="5" fill="#0050B3"/>
+<circle cx="565" cy="235" r="5" fill="#0050B3"/>
+<circle cx="650" cy="223" r="5" fill="#0050B3"/>
+<circle cx="735" cy="212" r="5" fill="#0050B3"/>
+<circle cx="820" cy="208" r="5" fill="#0050B3"/>
+<circle cx="905" cy="219" r="5" fill="#0050B3"/>
+<circle cx="990" cy="201" r="5" fill="#0050B3"/>
+<circle cx="1075" cy="188" r="5" fill="#0050B3"/>
+<circle cx="1160" cy="161" r="5" fill="#0050B3"/>
+<polyline points="225,319 310,308 395,302 480,291 565,284 650,276 735,269 820,264 905,273 990,261 1075,253 1160,242" fill="none" stroke="#00B4D8" stroke-width="3"/>
+<circle cx="225" cy="319" r="5" fill="#00B4D8"/>
+<circle cx="310" cy="308" r="5" fill="#00B4D8"/>
+<circle cx="395" cy="302" r="5" fill="#00B4D8"/>
+<circle cx="480" cy="291" r="5" fill="#00B4D8"/>
+<circle cx="565" cy="284" r="5" fill="#00B4D8"/>
+<circle cx="650" cy="276" r="5" fill="#00B4D8"/>
+<circle cx="735" cy="269" r="5" fill="#00B4D8"/>
+<circle cx="820" cy="264" r="5" fill="#00B4D8"/>
+<circle cx="905" cy="273" r="5" fill="#00B4D8"/>
+<circle cx="990" cy="261" r="5" fill="#00B4D8"/>
+<circle cx="1075" cy="253" r="5" fill="#00B4D8"/>
+<circle cx="1160" cy="242" r="5" fill="#00B4D8"/>
+<text x="1152" y="230" font-size="16" fill="#1A1A1A" text-anchor="end" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1152" dy="0">308</tspan></text>
+<rect x="950" y="122" width="14" height="14" fill="#0050B3" rx="3"/>
+<text x="972" y="134" font-size="16" fill="#4A5568" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="972" dy="0">营收</tspan></text>
+<rect x="1060" y="122" width="14" height="14" fill="#00B4D8" rx="3"/>
+<text x="1082" y="134" font-size="16" fill="#4A5568" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1082" dy="0">成本</tspan></text>
+<text x="140" y="630" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="140" dy="0">利润 = 营收合计 3,846 − 成本合计 3,258 = 588（万元）</tspan></text>
+<rect x="0" y="716" width="1280" height="4" fill="#0050B3"/>
+<text x="60" y="692" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="60" dy="0">演示数据（虚构）· 图表骨架取自 ppt-generator templates/charts/</tspan></text>
+<text x="1220" y="692" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1220" dy="0">02 / 06</tspan></text>
+</svg></div><div class="page" data-on="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<defs><linearGradient id="topBar" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#00B4D8;stop-opacity:1"/><stop offset="100%" style="stop-color:#0050B3;stop-opacity:1"/></linearGradient></defs>
+<!-- skeleton from ppt-generator/templates/charts (structure constants in generate.py TPL) -->
+<rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+<rect x="0" y="0" width="1280" height="6" fill="url(#topBar)"/>
+<rect x="60" y="30" width="50" height="50" fill="#0050B3"/>
+<text x="85" y="63" font-size="24" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="85" dy="0">03</tspan></text>
+<text x="130" y="62" font-size="28" fill="#1A1A1A" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="130" dy="0">各内容线年度营收</tspan></text>
+<text x="130" y="84" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="130" dy="0">单位：万元 · 五条内容线</tspan></text>
+<text x="1220" y="62" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1220" dy="0">回声岛 · 2025 年 1—12 月</tspan></text>
+<text x="125" y="555" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="125" dy="0">0</tspan></text>
+<line x1="140" y1="450" x2="1160" y2="450" stroke="#E6F4FF" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="125" y="455" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="125" dy="0">400</tspan></text>
+<line x1="140" y1="350" x2="1160" y2="350" stroke="#E6F4FF" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="125" y="355" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="125" dy="0">800</tspan></text>
+<line x1="140" y1="250" x2="1160" y2="250" stroke="#E6F4FF" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="125" y="255" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="125" dy="0">1,200</tspan></text>
+<line x1="140" y1="150" x2="1160" y2="150" stroke="#E6F4FF" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="125" y="155" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="125" dy="0">1,600</tspan></text>
+<line x1="140" y1="150" x2="140" y2="550" stroke="#718096" stroke-width="2"/>
+<line x1="140" y1="550" x2="1160" y2="550" stroke="#718096" stroke-width="2"/>
+<rect x="220" y="228.5" width="50" height="321.5" fill="#0050B3" rx="4"/>
+<text x="245" y="214.5" font-size="16" fill="#1A1A1A" text-anchor="middle" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="245" dy="0">1,286</tspan></text>
+<text x="245" y="580" font-size="16" fill="#4A5568" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="245" dy="0">声音内容</tspan></text>
+<rect x="400" y="334" width="50" height="216" fill="#00B4D8" rx="4"/>
+<text x="425" y="320" font-size="16" fill="#1A1A1A" text-anchor="middle" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="425" dy="0">864</tspan></text>
+<text x="425" y="580" font-size="16" fill="#4A5568" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="425" dy="0">付费社区</tspan></text>
+<rect x="580" y="372" width="50" height="178" fill="#38A169" rx="4"/>
+<text x="605" y="358" font-size="16" fill="#1A1A1A" text-anchor="middle" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="605" dy="0">712</tspan></text>
+<text x="605" y="580" font-size="16" fill="#4A5568" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="605" dy="0">直播打赏</tspan></text>
+<rect x="760" y="399.25" width="50" height="150.75" fill="#3182CE" rx="4"/>
+<text x="785" y="385.25" font-size="16" fill="#1A1A1A" text-anchor="middle" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="785" dy="0">603</tspan></text>
+<text x="785" y="580" font-size="16" fill="#4A5568" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="785" dy="0">品牌合作</tspan></text>
+<rect x="940" y="454.75" width="50" height="95.25" fill="#E53E3E" rx="4"/>
+<text x="965" y="440.75" font-size="16" fill="#1A1A1A" text-anchor="middle" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="965" dy="0">381</tspan></text>
+<text x="965" y="580" font-size="16" fill="#4A5568" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="965" dy="0">衍生周边</tspan></text>
+<text x="140" y="630" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="140" dy="0">五条内容线合计 3,846 万元 · 单位：万元</tspan></text>
+<rect x="0" y="716" width="1280" height="4" fill="#0050B3"/>
+<text x="60" y="692" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="60" dy="0">演示数据（虚构）· 图表骨架取自 ppt-generator templates/charts/</tspan></text>
+<text x="1220" y="692" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1220" dy="0">03 / 06</tspan></text>
+</svg></div><div class="page" data-on="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<defs><linearGradient id="topBar" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#00B4D8;stop-opacity:1"/><stop offset="100%" style="stop-color:#0050B3;stop-opacity:1"/></linearGradient></defs>
+<!-- skeleton from ppt-generator/templates/charts (structure constants in generate.py TPL) -->
+<rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+<rect x="0" y="0" width="1280" height="6" fill="url(#topBar)"/>
+<rect x="60" y="30" width="50" height="50" fill="#0050B3"/>
+<text x="85" y="63" font-size="24" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="85" dy="0">04</tspan></text>
+<text x="130" y="62" font-size="28" fill="#1A1A1A" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="130" dy="0">营收构成占比</tspan></text>
+<text x="130" y="84" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="130" dy="0">五项构成 · 角度与占比同源计算</tspan></text>
+<text x="1220" y="62" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1220" dy="0">回声岛 · 2025 年 1—12 月</tspan></text>
+<path d="M 400,230 A 180,180 0 0,1 555.29,501.02 L 486.27,460.56 A 100,100 0 0,0 400,310 Z" fill="#0050B3"/>
+<path d="M 555.29,501.02 A 180,180 0 0,1 334.77,577.76 L 363.76,503.2 A 100,100 0 0,0 486.27,460.56 Z" fill="#00B4D8"/>
+<path d="M 334.77,577.76 A 180,180 0 0,1 220.12,416.61 L 300.07,413.67 A 100,100 0 0,0 363.76,503.2 Z" fill="#38A169"/>
+<path d="M 220.12,416.61 A 180,180 0 0,1 295.06,263.76 L 341.7,328.75 A 100,100 0 0,0 300.07,413.67 Z" fill="#3182CE"/>
+<path d="M 295.06,263.76 A 180,180 0 0,1 400,230 L 400,310 A 100,100 0 0,0 341.7,328.75 Z" fill="#E53E3E"/>
+<circle cx="400" cy="410" r="100" fill="#FFFFFF"/>
+<text x="400" y="402" font-size="36" fill="#1A1A1A" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="400" dy="0">3,846</tspan></text>
+<text x="400" y="432" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="400" dy="0">年营收（万元）</tspan></text>
+<rect x="720" y="186" width="18" height="18" fill="#0050B3" rx="4"/>
+<text x="750" y="200" font-size="18" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">声音内容</tspan></text>
+<text x="750" y="224" font-size="16" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">33.4% · 1,286 万元 · 扇形 120.4°</tspan></text>
+<rect x="720" y="256" width="18" height="18" fill="#00B4D8" rx="4"/>
+<text x="750" y="270" font-size="18" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">付费社区</tspan></text>
+<text x="750" y="294" font-size="16" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">22.5% · 864 万元 · 扇形 80.9°</tspan></text>
+<rect x="720" y="326" width="18" height="18" fill="#38A169" rx="4"/>
+<text x="750" y="340" font-size="18" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">直播打赏</tspan></text>
+<text x="750" y="364" font-size="16" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">18.5% · 712 万元 · 扇形 66.6°</tspan></text>
+<rect x="720" y="396" width="18" height="18" fill="#3182CE" rx="4"/>
+<text x="750" y="410" font-size="18" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">品牌合作</tspan></text>
+<text x="750" y="434" font-size="16" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">15.7% · 603 万元 · 扇形 56.4°</tspan></text>
+<rect x="720" y="466" width="18" height="18" fill="#E53E3E" rx="4"/>
+<text x="750" y="480" font-size="18" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">衍生周边</tspan></text>
+<text x="750" y="504" font-size="16" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="750" dy="0">9.9% · 381 万元 · 扇形 35.7°</tspan></text>
+<text x="720" y="570" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="720" dy="0">占比合计 100.0% · 角度合计 360.0°</tspan></text>
+<rect x="0" y="716" width="1280" height="4" fill="#0050B3"/>
+<text x="60" y="692" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="60" dy="0">演示数据（虚构）· 图表骨架取自 ppt-generator templates/charts/</tspan></text>
+<text x="1220" y="692" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1220" dy="0">04 / 06</tspan></text>
+</svg></div><div class="page" data-on="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<defs><linearGradient id="topBar" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#00B4D8;stop-opacity:1"/><stop offset="100%" style="stop-color:#0050B3;stop-opacity:1"/></linearGradient></defs>
+<!-- skeleton from ppt-generator/templates/charts (structure constants in generate.py TPL) -->
+<rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+<rect x="0" y="0" width="1280" height="6" fill="url(#topBar)"/>
+<rect x="60" y="30" width="50" height="50" fill="#0050B3"/>
+<text x="85" y="63" font-size="24" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="85" dy="0">05</tspan></text>
+<text x="130" y="62" font-size="28" fill="#1A1A1A" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="130" dy="0">节目播放量 TOP8</tspan></text>
+<text x="130" y="84" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="130" dy="0">单位：万次 · 降序</tspan></text>
+<text x="1220" y="62" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1220" dy="0">回声岛 · 2025 年 1—12 月</tspan></text>
+<text x="300" y="650" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="300" dy="0">0</tspan></text>
+<line x1="480" y1="140" x2="480" y2="620" stroke="#E6F4FF" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="480" y="650" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="480" dy="0">1,000</tspan></text>
+<line x1="660" y1="140" x2="660" y2="620" stroke="#E6F4FF" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="660" y="650" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="660" dy="0">2,000</tspan></text>
+<line x1="840" y1="140" x2="840" y2="620" stroke="#E6F4FF" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="840" y="650" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="840" dy="0">3,000</tspan></text>
+<line x1="1020" y1="140" x2="1020" y2="620" stroke="#E6F4FF" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="1020" y="650" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1020" dy="0">4,000</tspan></text>
+<line x1="1200" y1="140" x2="1200" y2="620" stroke="#E6F4FF" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="1200" y="650" font-size="14" fill="#718096" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1200" dy="0">5,000</tspan></text>
+<line x1="300" y1="140" x2="300" y2="620" stroke="#718096" stroke-width="2"/>
+<line x1="300" y1="620" x2="1200" y2="620" stroke="#718096" stroke-width="2"/>
+<text x="290" y="179" font-size="16" fill="#4A5568" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="290" dy="0">深夜电台</tspan></text>
+<rect x="300" y="155" width="867.6" height="36" fill="#0050B3" rx="4"/>
+<text x="1159.6" y="179" font-size="16" fill="#FFFFFF" text-anchor="end" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1159.6" dy="0">4,820</tspan></text>
+<text x="290" y="239" font-size="16" fill="#4A5568" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="290" dy="0">城市声音志</tspan></text>
+<rect x="300" y="215" width="657.9" height="36" fill="#0050B3" rx="4"/>
+<text x="967.9" y="239" font-size="16" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="967.9" dy="0">3,655</tspan></text>
+<text x="290" y="299" font-size="16" fill="#4A5568" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="290" dy="0">历史回音壁</tspan></text>
+<rect x="300" y="275" width="558.36" height="36" fill="#0050B3" rx="4"/>
+<text x="868.36" y="299" font-size="16" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="868.36" dy="0">3,102</tspan></text>
+<text x="290" y="359" font-size="16" fill="#4A5568" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="290" dy="0">亲子共读夜</tspan></text>
+<rect x="300" y="335" width="483.84" height="36" fill="#0050B3" rx="4"/>
+<text x="793.84" y="359" font-size="16" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="793.84" dy="0">2,688</tspan></text>
+<text x="290" y="419" font-size="16" fill="#4A5568" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="290" dy="0">独立音乐场</tspan></text>
+<rect x="300" y="395" width="421.38" height="36" fill="#0050B3" rx="4"/>
+<text x="731.38" y="419" font-size="16" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="731.38" dy="0">2,341</tspan></text>
+<text x="290" y="479" font-size="16" fill="#4A5568" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="290" dy="0">职场树洞</tspan></text>
+<rect x="300" y="455" width="352.08" height="36" fill="#0050B3" rx="4"/>
+<text x="662.08" y="479" font-size="16" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="662.08" dy="0">1,956</tspan></text>
+<text x="290" y="539" font-size="16" fill="#4A5568" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="290" dy="0">科幻频段</tspan></text>
+<rect x="300" y="515" width="295.92" height="36" fill="#0050B3" rx="4"/>
+<text x="605.92" y="539" font-size="16" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="605.92" dy="0">1,644</tspan></text>
+<text x="290" y="599" font-size="16" fill="#4A5568" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="290" dy="0">晨光英语</tspan></text>
+<rect x="300" y="575" width="238.86" height="36" fill="#0050B3" rx="4"/>
+<text x="548.86" y="599" font-size="16" fill="#1A1A1A" font-weight="600" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="548.86" dy="0">1,327</tspan></text>
+<text x="300" y="664" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="300" dy="0">单位：万次 · 降序</tspan></text>
+<rect x="0" y="716" width="1280" height="4" fill="#0050B3"/>
+<text x="60" y="692" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="60" dy="0">演示数据（虚构）· 图表骨架取自 ppt-generator templates/charts/</tspan></text>
+<text x="1220" y="692" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1220" dy="0">05 / 06</tspan></text>
+</svg></div><div class="page" data-on="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<defs><linearGradient id="topBar" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#00B4D8;stop-opacity:1"/><stop offset="100%" style="stop-color:#0050B3;stop-opacity:1"/></linearGradient></defs>
+<!-- skeleton from ppt-generator/templates/charts (structure constants in generate.py TPL) -->
+<rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+<rect x="0" y="0" width="1280" height="6" fill="url(#topBar)"/>
+<rect x="60" y="30" width="50" height="50" fill="#0050B3"/>
+<text x="85" y="63" font-size="24" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="85" dy="0">06</tspan></text>
+<text x="130" y="62" font-size="28" fill="#1A1A1A" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="130" dy="0">用户转化漏斗</tspan></text>
+<text x="130" y="84" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="130" dy="0">五级 · 单位：人</tspan></text>
+<text x="1220" y="62" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1220" dy="0">回声岛 · 2025 年 1—12 月</tspan></text>
+<path d="M 340,160 L 940,160 L 829.48,240 L 450.52,240 Z" fill="#0050B3"/>
+<text x="640" y="194" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">到访 · 2,860,000 人</tspan></text>
+<text x="640" y="218" font-size="16" fill="#FFFFFF" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">占首级 100.0% · 入口</tspan></text>
+<path d="M 450.52,265 L 829.48,265 L 733.65,345 L 546.35,345 Z" fill="#00B4D8"/>
+<text x="640" y="299" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">试听 · 1,543,000 人</tspan></text>
+<text x="640" y="323" font-size="16" fill="#FFFFFF" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">占首级 54.0% · 上级转化 54.0%</tspan></text>
+<path d="M 546.35,370 L 733.65,370 L 715.78,450 L 564.22,450 Z" fill="#38A169"/>
+<text x="640" y="404" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">注册 · 401,000 人</tspan></text>
+<text x="640" y="428" font-size="16" fill="#FFFFFF" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">占首级 14.0% · 上级转化 26.0%</tspan></text>
+<path d="M 564.22,475 L 715.78,475 L 704.36,555 L 575.64,555 Z" fill="#3182CE"/>
+<text x="640" y="509" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">月活 · 188,000 人</tspan></text>
+<text x="640" y="533" font-size="16" fill="#FFFFFF" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">占首级 6.6% · 上级转化 46.9%</tspan></text>
+<path d="M 575.64,580 L 704.36,580 L 704.36,660 L 575.64,660 Z" fill="#E53E3E"/>
+<text x="640" y="614" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">付费订阅 · 52,000 人</tspan></text>
+<text x="640" y="638" font-size="16" fill="#FFFFFF" text-anchor="middle" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="640" dy="0">占首级 1.8% · 上级转化 27.7%</tspan></text>
+<text x="60" y="662" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="60" dy="0">宽度编码：120 + 480 × 占首级比例（含基线宽度，防末级不可读）· 首→末 1.8%</tspan></text>
+<rect x="0" y="716" width="1280" height="4" fill="#0050B3"/>
+<text x="60" y="692" font-size="14" fill="#718096" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="60" dy="0">演示数据（虚构）· 图表骨架取自 ppt-generator templates/charts/</tspan></text>
+<text x="1220" y="692" font-size="14" fill="#718096" text-anchor="end" font-family="'Microsoft YaHei', '微软雅黑', 'SimHei', 'Source Han Sans SC', Arial, sans-serif"><tspan x="1220" dy="0">06 / 06</tspan></text>
+</svg></div></main>
+<script>
+(function(){
+  var pages=[].slice.call(document.querySelectorAll('.page'));
+  var btns=[].slice.call(document.querySelectorAll('button[data-i]'));
+  var n=0;
+  function show(i){n=(i+pages.length)%pages.length;
+    pages.forEach(function(p,k){p.setAttribute('data-on',k===n?'1':'0');});
+    btns.forEach(function(b,k){b.setAttribute('aria-current',k===n?'true':'false');});
+    document.getElementById('pos').textContent=(n+1)+' / '+pages.length;}
+  btns.forEach(function(b,k){b.addEventListener('click',function(){show(k);});});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight')show(n+1); if(e.key==='ArrowLeft')show(n-1);});
+  show(0);
+})();
+</script></body></html>

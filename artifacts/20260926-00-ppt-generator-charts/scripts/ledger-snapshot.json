@@ -1,0 +1,47 @@
+{
+ "taken_at": "2026-09-25T23:01 (system clock; previous round recorded updated=23:35)",
+ "prev_run_state_updated": "2026-09-25T23:35+08:00",
+ "tried_n": 10,
+ "runs_n": 10,
+ "used_styles_n": 30,
+ "skills_seen_n": 17,
+ "env_n": 56,
+ "next_n": 27,
+ "last_run": {
+  "time": "2026-09-25T23:00+08:00",
+  "skill": "sites:sites-building",
+  "scenario": "个人主页",
+  "result": "success",
+  "artifact_size": "80KB（三页 13,705/15,914/14,329 字节 + styles.html 5,116 字节 + scripts/check.mjs 15,036 字节 + interact.mjs 3,288 字节 + ledger-snapshot.json 1,375 字节；断言 219+24 全绿）",
+  "cleanup": "本轮零中间产物：无 node_modules、无 dist、无 pip 包、无构建缓存、未起 http.server（三页走 file://）、/tmp 零写入；技能目录零写入（只读 SKILL.md 与 references/）；全盘探测 node_modules|dist|*.log|.tmp|__pycache__ 结果为空；实验室合计 9.1MB，单场景 80KB ≪ 50MB",
+  "push": "已提交并推送：git@github.com:sunc-Q/frontend-skill.git main 分支 9f91623..480b667（SSH，known_hosts 写 LAB/.tmp 后即删；命令与文件零 token）。提交物=三页 + styles.html + 两个校验脚本 + 台账快照 + report + work-log 行 + state 台账"
+ },
+ "last_tried": {
+  "skill": "sites:sites-building",
+  "scenario": "个人主页（虚构独立开发者「柯屿 KE YU」：五件作品潮汐/汉字谱/光斑/字节盒/漫游 + 四则随记 + 近况三格 + 不可送达的示例邮箱 hey@keyu.example；三页共享同一份事实，只有设计主张不同，三页合计 37,928 字符）",
+  "styles": [
+   "和纸浮世绘 ukiyo",
+   "深空星图 astro",
+   "像素掌机 pixel-console"
+  ],
+  "time": "2026-09-25T23:00+08:00",
+  "reason": "next_candidates 里的「sites:sites-building × 个人主页（避开已用风格）」；个人主页是前 9 轮未覆盖的新场景，且是该技能 Simple site 路径第 3 次使用、第一次单独承担内容型单页",
+  "conclusion": "留用（第 3 次通过，内容型单页首选）。219+24=243 条断言全绿（初跑 207/212）。①把技能最易被忽略的「反功能膨胀」条款第一次提成断言组 F（零 form/input/localStorage/fetch、至多 1 个按钮、唯一 h1、id 不重复）——它正是产物从 18:00 轮 React 落地页 255KB 掉到 13.7-15.9KB（约 17 倍）的原因；②发明并把「一个连贯视觉主张」写成可机检式子：色板封闭（页内任何十六进制色必须属于该页声明色板）+ 三对风格七项指纹（栅格/字族/圆角/是否 table/是否竖排/是否方格仪表）差异≥3 + 色板两两零交集，成本 6 行；③抓到 4 处 astro 字号滑到 11.5px/10px（技能说更小字号只留给次要元数据，写码时极易把表格列头/标签/按钮都划成元数据）→ 全部上提 12px，教训：底线必须写成断言不能靠措辞；④抓到 C 页方格仪表与图例不自洽（1h/周 画 1 格，按 round(h/5) 应为 0）→ 改 0 格 + 图例改为可验式「每格≈5 小时（四舍五入）」+ 加 pixel-gauge-math 断言，这是本轮唯一一处「页面功能正常但数据说谎」；⑤校验脚本自身两个假失败：把「本页无 SVG」判成失败、我在 astro 色板清单误列 #3a3b3c（C 页边框色）→「历轮反复出现的检查器 bug 伪装成内容缺陷」又多一例；⑥零位图策略让「零外链」断言第一次不需要任何白名单（前几轮必须放行 w3.org xmlns 与 react.dev 文案）；⑦局限：该技能给设计纪律不给设计素材（无色板库/组件/图模板），换风格成本比 ppt-generator 高",
+  "artifacts": [
+   "artifacts/20260925-23-sites-building-personal-homepage/ukiyo/index.html",
+   "artifacts/20260925-23-sites-building-personal-homepage/astro/index.html",
+   "artifacts/20260925-23-sites-building-personal-homepage/pixel-console/index.html",
+   "artifacts/20260925-23-sites-building-personal-homepage/styles.html",
+   "artifacts/20260925-23-sites-building-personal-homepage/scripts/check.mjs",
+   "artifacts/20260925-23-sites-building-personal-homepage/scripts/interact.mjs",
+   "artifacts/20260925-23-sites-building-personal-homepage/scripts/ledger-snapshot.json"
+  ],
+  "report": "reports/20260925-23-sites-building-personal-homepage.md"
+ },
+ "this_round_styles_note": "本轮选定的三个风格名（开工前依 design_spec 冻结于 themes.json，写回台账时必须逐字相同）",
+ "this_round_styles": [
+  "政务蓝图表件 government-blue-charts",
+  "疗愈蓝绿图表件 psych-healing-charts",
+  "霓虹像素图表件 pixel-neon-charts"
+ ]
+}

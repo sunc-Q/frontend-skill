@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<defs><linearGradient id="secBar" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#1E3A5F;stop-opacity:1"/><stop offset="100%" style="stop-color:#3D8B7A;stop-opacity:1"/></linearGradient></defs>
+<!-- skeleton from ppt-generator/templates/charts (structure constants in generate.py TPL) -->
+<rect x="0" y="0" width="1280" height="720" fill="#F8FAFC"/>
+<circle cx="1200" cy="70" r="44" fill="none" stroke="#94A3B8" stroke-opacity="0.15" stroke-width="1.5"/>
+<circle cx="1200" cy="70" r="28" fill="none" stroke="#94A3B8" stroke-opacity="0.25" stroke-width="1.5"/>
+<circle cx="1200" cy="70" r="12" fill="none" stroke="#94A3B8" stroke-opacity="0.35" stroke-width="1.5"/>
+<text x="40" y="95" font-size="32" fill="#1E293B" font-weight="bold" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="40" dy="0">营收构成占比</tspan></text>
+<text x="40" y="116" font-size="14" fill="#94A3B8" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="40" dy="0">REVENUE MIX</tspan></text>
+<rect x="40" y="126" width="64" height="4" fill="url(#secBar)"/>
+<text x="1240" y="95" font-size="14" fill="#64748B" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="1240" dy="0">五项构成 · 角度与占比同源计算</tspan></text>
+<path d="M 400,230 A 180,180 0 0,1 555.29,501.02 L 486.27,460.56 A 100,100 0 0,0 400,310 Z" fill="#2E5C8E"/>
+<path d="M 555.29,501.02 A 180,180 0 0,1 334.77,577.76 L 363.76,503.2 A 100,100 0 0,0 486.27,460.56 Z" fill="#3D8B7A"/>
+<path d="M 334.77,577.76 A 180,180 0 0,1 220.12,416.61 L 300.07,413.67 A 100,100 0 0,0 363.76,503.2 Z" fill="#E07843"/>
+<path d="M 220.12,416.61 A 180,180 0 0,1 295.06,263.76 L 341.7,328.75 A 100,100 0 0,0 300.07,413.67 Z" fill="#64748B"/>
+<path d="M 295.06,263.76 A 180,180 0 0,1 400,230 L 400,310 A 100,100 0 0,0 341.7,328.75 Z" fill="#B54545"/>
+<circle cx="400" cy="410" r="100" fill="#F8FAFC"/>
+<text x="400" y="402" font-size="40" fill="#1E293B" text-anchor="middle" font-weight="bold" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="400" dy="0">3,846</tspan></text>
+<text x="400" y="432" font-size="14" fill="#64748B" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="400" dy="0">年营收（万元）</tspan></text>
+<rect x="720" y="186" width="18" height="18" fill="#2E5C8E" rx="4"/>
+<text x="750" y="200" font-size="18" fill="#1E293B" font-weight="600" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="750" dy="0">声音内容</tspan></text>
+<text x="750" y="224" font-size="16" fill="#64748B" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="750" dy="0">33.4% · 1,286 万元 · 扇形 120.4°</tspan></text>
+<rect x="720" y="256" width="18" height="18" fill="#3D8B7A" rx="4"/>
+<text x="750" y="270" font-size="18" fill="#1E293B" font-weight="600" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="750" dy="0">付费社区</tspan></text>
+<text x="750" y="294" font-size="16" fill="#64748B" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="750" dy="0">22.5% · 864 万元 · 扇形 80.9°</tspan></text>
+<rect x="720" y="326" width="18" height="18" fill="#E07843" rx="4"/>
+<text x="750" y="340" font-size="18" fill="#1E293B" font-weight="600" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="750" dy="0">直播打赏</tspan></text>
+<text x="750" y="364" font-size="16" fill="#64748B" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="750" dy="0">18.5% · 712 万元 · 扇形 66.6°</tspan></text>
+<rect x="720" y="396" width="18" height="18" fill="#64748B" rx="4"/>
+<text x="750" y="410" font-size="18" fill="#1E293B" font-weight="600" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="750" dy="0">品牌合作</tspan></text>
+<text x="750" y="434" font-size="16" fill="#64748B" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="750" dy="0">15.7% · 603 万元 · 扇形 56.4°</tspan></text>
+<rect x="720" y="466" width="18" height="18" fill="#B54545" rx="4"/>
+<text x="750" y="480" font-size="18" fill="#1E293B" font-weight="600" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="750" dy="0">衍生周边</tspan></text>
+<text x="750" y="504" font-size="16" fill="#64748B" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="750" dy="0">9.9% · 381 万元 · 扇形 35.7°</tspan></text>
+<text x="720" y="570" font-size="14" fill="#64748B" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="720" dy="0">占比合计 100.0% · 角度合计 360.0°</tspan></text>
+<text x="40" y="668" font-size="14" fill="#94A3B8" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="40" dy="0">演示数据（虚构）· 图表骨架取自 ppt-generator templates/charts/</tspan></text>
+<text x="1240" y="668" font-size="14" fill="#64748B" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="1240" dy="0">04 / 06</tspan></text>
+</svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<defs><linearGradient id="secBar" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#1E3A5F;stop-opacity:1"/><stop offset="100%" style="stop-color:#3D8B7A;stop-opacity:1"/></linearGradient></defs>
+<!-- skeleton from ppt-generator/templates/charts (structure constants in generate.py TPL) -->
+<rect x="0" y="0" width="1280" height="720" fill="#F8FAFC"/>
+<circle cx="1200" cy="70" r="44" fill="none" stroke="#94A3B8" stroke-opacity="0.15" stroke-width="1.5"/>
+<circle cx="1200" cy="70" r="28" fill="none" stroke="#94A3B8" stroke-opacity="0.25" stroke-width="1.5"/>
+<circle cx="1200" cy="70" r="12" fill="none" stroke="#94A3B8" stroke-opacity="0.35" stroke-width="1.5"/>
+<text x="40" y="95" font-size="32" fill="#1E293B" font-weight="bold" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="40" dy="0">节目播放量 TOP8</tspan></text>
+<text x="40" y="116" font-size="14" fill="#94A3B8" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="40" dy="0">TOP PROGRAMS</tspan></text>
+<rect x="40" y="126" width="64" height="4" fill="url(#secBar)"/>
+<text x="1240" y="95" font-size="14" fill="#64748B" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="1240" dy="0">单位：万次 · 降序</tspan></text>
+<text x="300" y="650" font-size="14" fill="#64748B" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="300" dy="0">0</tspan></text>
+<line x1="480" y1="140" x2="480" y2="620" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="480" y="650" font-size="14" fill="#64748B" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="480" dy="0">1,000</tspan></text>
+<line x1="660" y1="140" x2="660" y2="620" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="660" y="650" font-size="14" fill="#64748B" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="660" dy="0">2,000</tspan></text>
+<line x1="840" y1="140" x2="840" y2="620" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="840" y="650" font-size="14" fill="#64748B" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="840" dy="0">3,000</tspan></text>
+<line x1="1020" y1="140" x2="1020" y2="620" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="1020" y="650" font-size="14" fill="#64748B" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="1020" dy="0">4,000</tspan></text>
+<line x1="1200" y1="140" x2="1200" y2="620" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="1200" y="650" font-size="14" fill="#64748B" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="1200" dy="0">5,000</tspan></text>
+<line x1="300" y1="140" x2="300" y2="620" stroke="#94A3B8" stroke-width="2"/>
+<line x1="300" y1="620" x2="1200" y2="620" stroke="#94A3B8" stroke-width="2"/>
+<text x="290" y="179" font-size="16" fill="#374151" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="290" dy="0">深夜电台</tspan></text>
+<rect x="300" y="155" width="867.6" height="36" fill="#2E5C8E" rx="4"/>
+<text x="1177.6" y="179" font-size="16" fill="#1E293B" font-weight="600" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="1177.6" dy="0">4,820</tspan></text>
+<text x="290" y="239" font-size="16" fill="#374151" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="290" dy="0">城市声音志</tspan></text>
+<rect x="300" y="215" width="657.9" height="36" fill="#2E5C8E" rx="4"/>
+<text x="967.9" y="239" font-size="16" fill="#1E293B" font-weight="600" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="967.9" dy="0">3,655</tspan></text>
+<text x="290" y="299" font-size="16" fill="#374151" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="290" dy="0">历史回音壁</tspan></text>
+<rect x="300" y="275" width="558.36" height="36" fill="#2E5C8E" rx="4"/>
+<text x="868.36" y="299" font-size="16" fill="#1E293B" font-weight="600" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="868.36" dy="0">3,102</tspan></text>
+<text x="290" y="359" font-size="16" fill="#374151" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="290" dy="0">亲子共读夜</tspan></text>
+<rect x="300" y="335" width="483.84" height="36" fill="#2E5C8E" rx="4"/>
+<text x="793.84" y="359" font-size="16" fill="#1E293B" font-weight="600" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="793.84" dy="0">2,688</tspan></text>
+<text x="290" y="419" font-size="16" fill="#374151" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="290" dy="0">独立音乐场</tspan></text>
+<rect x="300" y="395" width="421.38" height="36" fill="#2E5C8E" rx="4"/>
+<text x="731.38" y="419" font-size="16" fill="#1E293B" font-weight="600" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="731.38" dy="0">2,341</tspan></text>
+<text x="290" y="479" font-size="16" fill="#374151" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="290" dy="0">职场树洞</tspan></text>
+<rect x="300" y="455" width="352.08" height="36" fill="#2E5C8E" rx="4"/>
+<text x="662.08" y="479" font-size="16" fill="#1E293B" font-weight="600" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="662.08" dy="0">1,956</tspan></text>
+<text x="290" y="539" font-size="16" fill="#374151" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="290" dy="0">科幻频段</tspan></text>
+<rect x="300" y="515" width="295.92" height="36" fill="#2E5C8E" rx="4"/>
+<text x="605.92" y="539" font-size="16" fill="#1E293B" font-weight="600" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="605.92" dy="0">1,644</tspan></text>
+<text x="290" y="599" font-size="16" fill="#374151" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="290" dy="0">晨光英语</tspan></text>
+<rect x="300" y="575" width="238.86" height="36" fill="#2E5C8E" rx="4"/>
+<text x="548.86" y="599" font-size="16" fill="#1E293B" font-weight="600" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="548.86" dy="0">1,327</tspan></text>
+<text x="300" y="664" font-size="14" fill="#64748B" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="300" dy="0">单位：万次 · 降序</tspan></text>
+<text x="40" y="668" font-size="14" fill="#94A3B8" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="40" dy="0">演示数据（虚构）· 图表骨架取自 ppt-generator templates/charts/</tspan></text>
+<text x="1240" y="668" font-size="14" fill="#64748B" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif"><tspan x="1240" dy="0">05 / 06</tspan></text>
+</svg>

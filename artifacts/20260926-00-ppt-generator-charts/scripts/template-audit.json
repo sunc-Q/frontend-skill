@@ -1,0 +1,250 @@
+{
+ "index_vs_disk": {
+  "meta_total": 33,
+  "disk_svg_count": 33,
+  "category_refs_missing_on_disk": [],
+  "quicklookup_refs_missing": [],
+  "charts_entries": 33,
+  "entries_missing_detail_fields": [],
+  "disk_not_in_index": [],
+  "viewbox_all_1280x720": true
+ },
+ "templates": {
+  "bar_chart": {
+   "honest": true,
+   "bars": [
+    {
+     "value": 185,
+     "height": 370.0,
+     "expect": 370.0,
+     "err_pct": 0.0,
+     "baseline": 550.0
+    },
+    {
+     "value": 142,
+     "height": 284.0,
+     "expect": 284.0,
+     "err_pct": 0.0,
+     "baseline": 550.0
+    },
+    {
+     "value": 128,
+     "height": 256.0,
+     "expect": 256.0,
+     "err_pct": 0.0,
+     "baseline": 550.0
+    },
+    {
+     "value": 96,
+     "height": 192.0,
+     "expect": 192.0,
+     "err_pct": 0.0,
+     "baseline": 550.0
+    },
+    {
+     "value": 73,
+     "height": 146.0,
+     "expect": 146.0,
+     "err_pct": 0.0,
+     "baseline": 550.0
+    },
+    {
+     "value": 52,
+     "height": 104.0,
+     "expect": 104.0,
+     "err_pct": 0.0,
+     "baseline": 550.0
+    }
+   ]
+  },
+  "horizontal_bar_chart": {
+   "widths": [
+    828.0,
+    702.0,
+    585.0,
+    468.0,
+    405.0,
+    342.0,
+    225.0,
+    108.0
+   ],
+   "claimed_pct": [
+    92,
+    78,
+    65,
+    52,
+    45,
+    38,
+    25,
+    12
+   ],
+   "expect": [
+    828.0,
+    702.0,
+    585.0,
+    468.0,
+    405.0,
+    342.0,
+    225.0,
+    108.0
+   ],
+   "honest": true
+  },
+  "donut_chart": {
+   "claimed_pct": [
+    35,
+    28,
+    20,
+    12,
+    5
+   ],
+   "claimed_angle": [
+    126.0,
+    100.8,
+    72.0,
+    43.2,
+    18.0
+   ],
+   "measured_sweep": [
+    119.4,
+    104.1,
+    63.0,
+    55.9,
+    17.6
+   ],
+   "drift_deg": [
+    -6.6,
+    3.3,
+    -9.0,
+    12.7,
+    -0.4
+   ],
+   "sum_measured": 360.0,
+   "honest": false
+  },
+  "funnel_chart": {
+   "stage_counts_pct": [
+    [
+     10000,
+     100.0
+    ],
+    [
+     4500,
+     45.0
+    ],
+    [
+     1800,
+     18.0
+    ],
+    [
+     650,
+     6.5
+    ]
+   ],
+   "measured_top_widths": [
+    600.0,
+    510.0,
+    420.0,
+    330.0
+   ],
+   "expect_if_prop": [
+    600.0,
+    270.0,
+    108.0,
+    39.0
+   ],
+   "honest": false,
+   "note": "实测顶宽 600/510/420/330 —— 等差 −90px，与占比无关"
+  },
+  "line_chart": {
+   "series": 2,
+   "x_gaps": [
+    85
+   ],
+   "value_labels_on_points": false
+  },
+  "kpi_cards": {
+   "card_rects": [
+    [
+     60.0,
+     150.0
+    ],
+    [
+     660.0,
+     150.0
+    ],
+    [
+     60.0,
+     440.0
+    ],
+    [
+     660.0,
+     440.0
+    ]
+   ],
+   "label_x_by_card": {
+    "60.0,150.0": [
+     40.0
+    ],
+    "60.0,440.0": [
+     40.0
+    ],
+    "660.0,150.0": [
+     40.0
+    ],
+    "660.0,440.0": [
+     40.0
+    ]
+   },
+   "all_offsets_equal": true
+  }
+ },
+ "spec_conflicts": {
+  "bar_chart": {
+   "marker": 0,
+   "filter_feGaussianBlur": 1,
+   "bare_opacity_attr": 0,
+   "rgba": 0,
+   "foreignObject": 0
+  },
+  "line_chart": {
+   "marker": 0,
+   "filter_feGaussianBlur": 1,
+   "bare_opacity_attr": 2,
+   "rgba": 0,
+   "foreignObject": 0
+  },
+  "donut_chart": {
+   "marker": 0,
+   "filter_feGaussianBlur": 1,
+   "bare_opacity_attr": 0,
+   "rgba": 0,
+   "foreignObject": 0
+  },
+  "horizontal_bar_chart": {
+   "marker": 0,
+   "filter_feGaussianBlur": 1,
+   "bare_opacity_attr": 0,
+   "rgba": 0,
+   "foreignObject": 0
+  },
+  "funnel_chart": {
+   "marker": 1,
+   "filter_feGaussianBlur": 1,
+   "bare_opacity_attr": 3,
+   "rgba": 0,
+   "foreignObject": 0
+  },
+  "kpi_cards": {
+   "marker": 0,
+   "filter_feGaussianBlur": 1,
+   "bare_opacity_attr": 0,
+   "rgba": 0,
+   "foreignObject": 0
+  }
+ },
+ "skillmd_charts_mentions": {
+  "body_mentions": 0,
+  "description_has_30plus_charts": true
+ }
+}
