@@ -427,9 +427,19 @@
       "seconds": 900,
       "artifact_size": "192KB（本轮 demos；含 4 抽样帧 96KB，gif 47KB）",
       "cleanup": "已删 frames/(1.2MB,48 帧 PNG 中间物)、node_modules/(13MB playwright-core)、palette.png、package-lock.json；零新增进程与监听；全局 site-packages 未碰；未装除 graphic-gif 外任何技能",
-      "push": "待推",
+      "push": "已推送：git push origin skill-showcase 成功（19dbcaf..857a690，普通推送，无 --force / 无 --no-verify）；远端是本地祖先故无需 rebase；main / go-gin_react 未触碰",
       "notes": "实现层（export-gif.sh/capture-and-encode.mjs/两个 references）包内全缺→按 SKILL.md 规范自补 capture.mjs；KLING(ai-generated) 路线需付费凭据+上传本图，按闸门排除并走它自带的降级条款。",
-      "seconds_note": "19:50 开工→20:05 出纪要，约 15 分钟；其中 48 帧捕获+编码 7 秒"
+      "seconds_note": "19:50 开工→20:05 出纪要，约 15 分钟；其中 48 帧捕获+编码 7 秒",
+      "final_checks": {
+        "git_status": "干净（回填 commit 后二次推送）",
+        "demos_this_round": "192KB",
+        "lab_total": "19MB（含 .skills 16MB gitignored）",
+        "disk_free_kb": 19750288,
+        "disk_free_gib": "18.8 GiB",
+        "listen_total": 18,
+        "listen_from_this_run": 0,
+        "note": "8123/8124 两条 node 监听属兄弟实验室既有服务，未触碰；chrome 相关 5 进程全是 18Sep 起的历史用户进程，本轮 headless 实例已随 browser.close() 退出"
+      }
     }
   ]
 }
