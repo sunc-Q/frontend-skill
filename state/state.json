@@ -111,8 +111,9 @@
       },
       "push": {
         "branch": "go-gin_react",
-        "result": "待推送（本轮结束时更新）",
-        "note": "push 前先 git fetch origin go-gin_react + rebase FETCH_HEAD；只碰 go-gin_react，不 --force、不 --no-verify、不碰 main、不改全局配置；提交用 -c user.name/-c user.email 显式身份"
+        "result": "成功",
+        "commit": "ed47eba",
+        "note": "git fetch origin go-gin_react + rebase FETCH_HEAD（已是 fast-forward）后 git push origin go-gin_react，远端 53153f4..ed47eba；未 --force、未跳 hook、未碰 main、未改任何全局 git 配置，提交用 -c user.name/-c user.email 显式身份；46 个文件全为源码 + web/dist + preview + 文档，node_modules/.tmp/二进制/日志均被 .gitignore 排除"
       }
     }
   ],
