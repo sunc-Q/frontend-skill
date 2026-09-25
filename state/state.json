@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T19:20:00+08:00",
+  "updated": "2026-09-25T19:46:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -26,11 +26,25 @@
       "result": "成功：4 表 7 接口（2 个 Bearer 写）+ 事务化容量/查重/候补/扣次；go build/vet/test 全绿，api-smoke.sh 逐接口断言全过（401/403/400/201/409/503 矩阵与收敛）；三风格单文件 preview 各 8 卡 44 行真数据、8 类 computedStyle 两两互异、零外链；UI 内完成一次真实占座（11/12→12/12，名单出现新记录）",
       "code_dir": "sites/fitness-studio-booking/{backend,web,scripts}",
       "artifact_dir": "sites/fitness-studio-booking/{web/dist,preview}"
+    },
+    {
+      "time": "2026-09-25T19:44:00+08:00",
+      "scenario": "跨境电商商品详情 + 多目的国到手价购物车",
+      "slug": "cross-border-commerce",
+      "styles": [
+        "暖纸编辑排版",
+        "蒸汽波",
+        "终端绿字 CRT"
+      ],
+      "result": "成功：3 表 8 接口（1 个 Bearer 写）+ 五国税则/运费/关税全后端美分整型折算（goods+freight+duty=total 恒等式接口层保证）；go build/vet/test 全绿（15 个表驱动测试函数）；api-smoke.sh 全过（购物车收敛矩阵、鉴权 401/403/201/409、无 token 503、注入与超长边界）；三风格单文件 preview 各 22 表行 / 3 购物车行、6 类 computedStyle 两两互异、零外链；UI 内真实加购 6→10 件后用 curl 取证确认移除还原。场景 1.4M",
+      "code_dir": "sites/cross-border-commerce/{backend,web,scripts}",
+      "artifact_dir": "sites/cross-border-commerce/{web/dist,preview}"
     }
   ],
   "used_scenarios": [
     "saas-subscription-admin",
-    "fitness-studio-booking"
+    "fitness-studio-booking",
+    "cross-border-commerce"
   ],
   "used_styles": [
     "瑞士网格",
@@ -38,7 +52,10 @@
     "暗色霓虹 cyber",
     "新粗野主义",
     "日式留白",
-    "莫兰迪色块"
+    "莫兰迪色块",
+    "暖纸编辑排版",
+    "蒸汽波",
+    "终端绿字 CRT"
   ],
   "runs": [
     {
@@ -115,6 +132,44 @@
         "commit": "ed47eba（场景主提交）+ 7a26d2f / 8b0e49c 等记录回写提交",
         "note": "git fetch origin go-gin_react + rebase FETCH_HEAD（已是 fast-forward）后 git push origin go-gin_react，远端 53153f4..ed47eba..8b0e49c；未 --force、未跳 hook、未碰 main、未改任何全局 git 配置，提交用 -c user.name/-c user.email 显式身份；46 个文件全为源码 + web/dist + preview + 文档，node_modules/.tmp/二进制/日志均被 .gitignore 排除"
       }
+    },
+    {
+      "id": "20260925-20",
+      "slug": "cross-border-commerce",
+      "started": "2026-09-25T19:22:00+08:00",
+      "finished": "2026-09-25T19:46:00+08:00",
+      "scenario": "跨境电商商品详情 + 多目的国到手价购物车",
+      "styles": [
+        "暖纸编辑排版",
+        "蒸汽波",
+        "终端绿字 CRT"
+      ],
+      "template_created": false,
+      "disk": {
+        "df_k_avail_before": null,
+        "df_k_avail_after": 20276500,
+        "lab_total_bytes_human": "6.1M（含 .git，提交前）",
+        "scenario_dir_human": "1.4M"
+      },
+      "volume": {
+        "go_files": 15,
+        "go_test_files": 3,
+        "test_packages_ok": 3,
+        "test_functions": 15,
+        "endpoints": 8,
+        "tables": 3,
+        "seed_rows": "18 SKU(17 在架/2 零库存) / 每 SKU 3-8 条评价 / 购物车 3 行 6 件 605g",
+        "frontend_src_files": 10,
+        "theme_css_files": 3,
+        "dist_bundle_bytes": 283991,
+        "preview_files": 3,
+        "preview_each_bytes": 284542
+      },
+      "push": {
+        "branch": "go-gin_react",
+        "result": "待补",
+        "note": ""
+      }
     }
   ],
   "environment_notes": [
@@ -131,10 +186,13 @@
     "重启后端前必须核对监听者身份：`lsof -nP -iTCP:<port> -sTCP:LISTEN -t` → `ps -o command= -p <pid>` → kill → 确认监听数为 0 → 再 curl。第 2 轮踩过：新实例因端口占用静默退出，curl 打到旧进程 + 已 rm 的 db inode，看到的全是旧种子数据。",
     "zsh 的 nomatch：`rm -f foo.db*` 在无匹配时直接中断整条 && 链（看起来像命令没生效）。清理语句要么列全文件名，要么 setopt no_nomatch。",
     "编译产物别留在场景目录里：`go build -o api ./cmd/api` 单个二进制 38MB，会让场景目录从 1.5M 涨到 39M；收工必须删（node_modules 64M 同理）。",
+    "GORM 列名坑（第 3 轮）：Go 字段 `Sold30` 默认映射 `sold30`、`LeadMin` 默认映射 `lead_min`，与 JSON 口径 `sold_30`/`lead_min_days` 不一致时 SQL 直接 no such column——凡此类字段必须显式 `gorm:\"column:...\"`（含只用于聚合回填的视图结构体）。",
+    "SQLite `SUM()` 在空表返回 NULL，Go 侧 Scan 到 int64 会报错：聚合列一律写 `COALESCE(SUM(...),0)`。",
+    "校验不能只看长度：SKU 注入串（含 `\"` `\\` `;`）长度合规照样被放行，被表驱动测试逼出字符白名单（字母数字-_）。遇到这类失败改代码，不放宽测试预期。",
+    "冒烟脚本会往运行库写数据（本轮 total 18→19）：验证完成后需 kill 旧实例 → 删 data/app.db* → 同 token 重启确认回到种子值，**再**生成 preview，否则交付物里带着测试脏数据。",
     "绝不删除共享缓存 ~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache。"
   ],
   "next_candidates": [
-    "跨境电商商品详情+购物车",
     "在线课程平台",
     "餐饮外卖门店",
     "医院门诊排班与挂号",
@@ -142,13 +200,12 @@
     "房产租赁管理",
     "招聘 ATS 候选人流水线",
     "图书馆馆藏与借阅",
-    "充电桩车队运营"
+    "充电桩车队运营",
+    "客服中心工单与 SLA",
+    "二手交易平台撮合"
   ],
   "next_style_candidates": [
-    "暖纸编辑排版",
-    "蒸汽波",
     "包豪斯原色",
-    "终端绿字 CRT",
     "苹果玻璃拟态",
     "孟菲斯几何",
     "报章密排",
@@ -156,10 +213,13 @@
     "等距轴测工业风",
     "手账纸质拼贴",
     "航空仪表盘",
-    "乐高积木块面"
+    "乐高积木块面",
+    "蓝图工程制图"
   ],
   "backlog": [
     "fitness-studio-booking：bookings 目前无 (session_id,member_id) 复合唯一索引，查重依赖事务内 SELECT + 单写者；若放开多连接必须先补索引（confirmed/waitlist 用部分索引）。",
-    "templates/go-gin-react：可把 scripts/api-smoke.sh 的「鉴权矩阵 + 收敛断言」骨架回灌成模板通用件，省下一轮现场编排。"
+    "templates/go-gin-react：可把 scripts/api-smoke.sh 的「鉴权矩阵 + 收敛断言」骨架回灌成模板通用件，省下一轮现场编排。",
+    "cross-border-commerce：税则/价卡写死在 domain.Regions 常量里（无表、无后台编辑接口），加目的国要改代码；后续若做「多店铺/多目的国税率可配」需提升为第四张表 + Bearer 写接口 + 变更审计。",
+    "cross-border-commerce：cart_items 无归属维度（单店铺单会话演示），上线需引入 session/customer 外键与过期清理。"
   ]
 }
