@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T19:13:00+08:00",
+  "updated": "2026-09-25T19:20:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -112,8 +112,8 @@
       "push": {
         "branch": "go-gin_react",
         "result": "成功",
-        "commit": "ed47eba",
-        "note": "git fetch origin go-gin_react + rebase FETCH_HEAD（已是 fast-forward）后 git push origin go-gin_react，远端 53153f4..ed47eba；未 --force、未跳 hook、未碰 main、未改任何全局 git 配置，提交用 -c user.name/-c user.email 显式身份；46 个文件全为源码 + web/dist + preview + 文档，node_modules/.tmp/二进制/日志均被 .gitignore 排除"
+        "commit": "ed47eba（场景主提交）+ 7a26d2f / 8b0e49c 等记录回写提交",
+        "note": "git fetch origin go-gin_react + rebase FETCH_HEAD（已是 fast-forward）后 git push origin go-gin_react，远端 53153f4..ed47eba..8b0e49c；未 --force、未跳 hook、未碰 main、未改任何全局 git 配置，提交用 -c user.name/-c user.email 显式身份；46 个文件全为源码 + web/dist + preview + 文档，node_modules/.tmp/二进制/日志均被 .gitignore 排除"
       }
     }
   ],
