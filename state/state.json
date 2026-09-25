@@ -511,7 +511,7 @@
       "assertions": "329 条（check.mjs 239 + visual.mjs 90；写回前 239/245，6 条为 G 组台账幂等锁，写回后闭合）",
       "artifact_size": "308KB（三页单文件 52,118/53,745/53,192B；上限 50MB）",
       "cleanup": "删 LAB/.tmp 全部（jsdom 26MB + playwright-core + pngjs + shots 截图 6 张；帧统计先落 scripts/frame-stats.json）；场景目录内零 node_modules/dist（D 组断言）；未起 http.server（全程 file://）；技能目录零写入；推送后 .tmp（含 known_hosts）整体删除",
-      "push": "待推送（见 work-log 收尾行）"
+      "push": "已提交并推送：git@github.com:sunc-Q/frontend-skill.git main 分支 bb6510d..50ba7b1（commit 50ba7b1，走 ssh.github.com:443，known_hosts 写 LAB/.tmp/known_hosts 后随 .tmp 一并删除；命令与文件内无任何 token）"
     }
   ],
   "next_candidates": [
