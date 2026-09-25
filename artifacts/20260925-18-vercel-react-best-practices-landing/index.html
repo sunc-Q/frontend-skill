@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>拾光 Shiguang · 落地页三风格对照（vercel-react-best-practices 验证）</title>
+<style>
+  :root { color-scheme: light; }
+  body {
+    margin: 0;
+    padding: 48px 24px 72px;
+    font: 15px/1.75 -apple-system, 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    color: #23211d;
+    background: #f7f6f3;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; }
+  h1 { font-size: 26px; margin: 0 0 6px; }
+  p.lead { color: #6a655c; margin: 0 0 28px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  a.card {
+    display: block;
+    padding: 20px 22px;
+    text-decoration: none;
+    color: inherit;
+    background: #fff;
+    border: 1px solid #e3ded4;
+    border-radius: 10px;
+  }
+  a.card:hover { border-color: #23211d; }
+  .sw { display: flex; gap: 5px; margin-bottom: 12px; }
+  .sw i { width: 26px; height: 14px; border-radius: 3px; display: block; }
+  h2 { font-size: 16px; margin: 0 0 4px; }
+  small { color: #7d776c; display: block; }
+  ul.notes { margin: 34px 0 0; padding-left: 20px; color: #4d4840; font-size: 13.5px; }
+  code { font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>拾光 Shiguang · 落地页三风格对照</h1>
+  <p class="lead">
+    同一份 React 19 代码构建出的单个 JS bundle（245KB，三页逐字节相同），只替换 <code>&lt;style&gt;</code> 里的两套 CSS，
+    得到三种互不重复的页面性格。用于验证 <code>vercel-react-best-practices</code> 在内容型页面上还剩多少可落地条款。
+  </p>
+
+  <div class="grid">
+    <a class="card" href="preview/landing-wabi.html">
+      <span class="sw"><i style="background:#efece4"></i><i style="background:#6f7a5f"></i><i style="background:#b8ac97"></i></span>
+      <h2>侘寂留白 wabi</h2>
+      <small>暖灰宣纸底 · 细衬线 · 148px 分区留白 · 几乎无描边 · 指针是一团水渍</small>
+    </a>
+    <a class="card" href="preview/landing-construct.html">
+      <span class="sw"><i style="background:#f3efe7"></i><i style="background:#17161a"></i><i style="background:#d1372a"></i></span>
+      <h2>构成主义 construct</h2>
+      <small>纸白 + 墨黑 + 革命红 · 粗黑体全大写 · 3px 描边零圆角 · 硬阴影 · 标题斜切</small>
+    </a>
+    <a class="card" href="preview/landing-memphis.html">
+      <span class="sw"><i style="background:#fdf6e8"></i><i style="background:#ff5fa2"></i><i style="background:#23bfb1"></i></span>
+      <h2>孟菲斯 memphis</h2>
+      <small>奶油波点底 · 品红/青绿/柠檬撞色 · 虚线描边 · 贴纸圆角与歪斜 · 指针是漂浮糖果</small>
+    </a>
+  </div>
+
+  <ul class="notes">
+    <li>双击任意卡片链接的目标文件即可预览，无需服务器、无外链。</li>
+    <li>交互可试：顶栏滚动高亮与投影、相册墙「整理前/整理后」切换与分类筛选、memo 渲染计数器、使用者标签筛选、问答搜索与手风琴、定价选择与邮箱校验（写入本机 localStorage，带版本号 schema）。</li>
+    <li>三页数据由固定种子生成，因此任何视觉差异都只可能来自 CSS。</li>
+    <li>从零复现：<code>bash scripts/verify.sh</code>（284 项交互断言 + 61 项风格/级联/bundle 一致性断言）。</li>
+    <li>复现文档：<code>../../reports/20260925-18-vercel-react-landing.md</code></li>
+  </ul>
+</div>
+</body>
+</html>

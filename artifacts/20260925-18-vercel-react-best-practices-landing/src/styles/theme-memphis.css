@@ -1,0 +1,389 @@
+/* ============================================================
+   主题三：孟菲斯 memphis
+   主张：奶油底 + 波点/斜纹纹理，青绿与品红撞色，粗黑虚线描边，
+   圆角忽大忽小（贴纸感），块面歪 2–3 度，指针位置是一颗漂浮糖果。
+   ============================================================ */
+
+:root[data-theme='memphis'] {
+  --bg: #fdf6e8;
+  --bg-2: #fffdf7;
+  --panel: #ffffff;
+  --ink: #221d2e;
+  --ink-2: #3a3350;
+  --muted: #7a7291;
+  --line: #221d2e;
+  --accent: #ff5fa2;
+  --accent-ink: #221d2e;
+  --accent-2: #23bfb1;
+  --radius: 20px;
+  --radius-sm: 3px;
+  --border-w: 2px;
+  --shadow: 6px 6px 0 #23bfb1;
+  --sec-pad: 84px;
+  --gap: 20px;
+  --maxw: 1160px;
+  --nav-bg: #fdf6e8;
+  --nav-on-bg: #ffd447;
+  --icon-bg: #ffd447;
+  --cell-h: 84px;
+  --title-size: 40px;
+  --hero-size: 58px;
+  --track: 0em;
+  --font-body: 'PingFang SC', 'Trebuchet MS', 'Hiragino Sans GB', sans-serif;
+  --font-display: 'Trebuchet MS', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  --font-mono: 'Menlo', monospace;
+}
+
+:root[data-theme='memphis'] body {
+  background-image: radial-gradient(#221d2e1a 1.2px, transparent 1.3px),
+    repeating-linear-gradient(135deg, #23bfb114 0 6px, transparent 6px 18px);
+  background-size: 22px 22px, auto;
+}
+
+:root[data-theme='memphis'] .nav {
+  border-bottom: 3px dashed #221d2e;
+}
+
+:root[data-theme='memphis'] .brand {
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+}
+
+:root[data-theme='memphis'] .brand svg {
+  color: #ff5fa2;
+  transform: rotate(-8deg);
+}
+
+:root[data-theme='memphis'] .nav-link {
+  font-weight: 700;
+  border-radius: 12px 3px 12px 3px;
+}
+
+:root[data-theme='memphis'] .nav-link--on {
+  background: #ffd447;
+  color: #221d2e;
+  border: 2px solid #221d2e;
+}
+
+:root[data-theme='memphis'] .nav-theme {
+  color: #ff5fa2;
+  font-weight: 700;
+}
+
+:root[data-theme='memphis'] .hero {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  gap: 34px;
+  padding: 74px 0 92px;
+}
+
+:root[data-theme='memphis'] .hero-title {
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+}
+
+:root[data-theme='memphis'] .hero-title em {
+  font-style: normal;
+  display: inline-block;
+  background: #23bfb1;
+  color: #221d2e;
+  padding: 2px 12px;
+  border-radius: 22px 4px 22px 4px;
+  transform: rotate(-1.6deg);
+}
+
+:root[data-theme='memphis'] .eyebrow {
+  display: inline-block;
+  color: #221d2e;
+  background: #fff;
+  border: 2px solid #221d2e;
+  border-radius: 999px;
+  padding: 4px 12px;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+:root[data-theme='memphis'] .hero-visual {
+  border: 3px solid #221d2e;
+  border-radius: 26px 8px 26px 8px;
+  background-color: #fff;
+  background-image: radial-gradient(#221d2e26 1.4px, transparent 1.5px);
+  background-size: 16px 16px;
+  box-shadow: 8px 8px 0 #ff5fa2;
+  transform: rotate(1.4deg);
+}
+
+/* 指针 = 一颗跟着走的糖果 */
+:root[data-theme='memphis'] .hero-visual::after {
+  content: '';
+  position: absolute;
+  left: var(--px, 55%);
+  top: var(--py, 45%);
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
+  border: 3px solid #221d2e;
+  border-radius: 50% 12% 50% 12%;
+  background: #ffd447;
+  box-shadow: 4px 4px 0 #23bfb1;
+}
+
+:root[data-theme='memphis'] .ph {
+  border: 2px dashed #221d2e;
+  border-radius: 14px 4px 14px 4px;
+  background: #fff8ea;
+  color: #221d2e;
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
+:root[data-theme='memphis'] .ph--2 {
+  transform: rotate(-1.2deg);
+}
+
+:root[data-theme='memphis'] .ph--3 {
+  transform: rotate(1.1deg);
+}
+
+:root[data-theme='memphis'] .arrow {
+  background: repeating-linear-gradient(180deg, #221d2e 0 6px, transparent 6px 12px);
+  width: 4px;
+}
+
+:root[data-theme='memphis'] .grp {
+  border: 2px solid #221d2e;
+  border-radius: 18px 5px 18px 5px;
+  font-weight: 700;
+}
+
+:root[data-theme='memphis'] .grp:nth-child(2) {
+  background: #23bfb1;
+}
+
+:root[data-theme='memphis'] .grp:nth-child(3) {
+  background: #ffd447;
+  color: #221d2e;
+}
+
+:root[data-theme='memphis'] .section {
+  border-top: 3px dashed #221d2e;
+}
+
+:root[data-theme='memphis'] .section-title {
+  display: inline-block;
+  font-weight: 800;
+  border-bottom: 8px solid #ffd447;
+  transform: rotate(-0.8deg);
+}
+
+:root[data-theme='memphis'] .card {
+  border: 3px solid #221d2e;
+  border-radius: 22px 6px 22px 6px;
+  box-shadow: 6px 6px 0 #23bfb1;
+}
+
+:root[data-theme='memphis'] .card:nth-child(2) {
+  border-radius: 6px 22px 6px 22px;
+  box-shadow: 6px 6px 0 #ff5fa2;
+  transform: rotate(0.9deg);
+}
+
+:root[data-theme='memphis'] .card:nth-child(3) {
+  box-shadow: 6px 6px 0 #ffd447;
+  transform: rotate(-1deg);
+}
+
+:root[data-theme='memphis'] .card-icon {
+  border: 2px solid #221d2e;
+  border-radius: 50% 16% 50% 16%;
+  color: #221d2e;
+}
+
+:root[data-theme='memphis'] .step {
+  border: 3px solid #221d2e;
+  border-radius: 8px;
+  box-shadow: 5px 5px 0 #221d2e;
+  background: #fff8ea;
+}
+
+:root[data-theme='memphis'] .step-n {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #ff5fa2;
+  color: #fff;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+:root[data-theme='memphis'] .stats {
+  background: #221d2e;
+  border: 3px solid #221d2e;
+  border-radius: 24px 8px 24px 8px;
+  gap: 3px;
+}
+
+:root[data-theme='memphis'] .stat {
+  background: #fdf6e8;
+}
+
+:root[data-theme='memphis'] .stat-v {
+  font-family: 'Trebuchet MS', sans-serif;
+  font-weight: 800;
+  font-size: 38px;
+  color: #ff5fa2;
+}
+
+:root[data-theme='memphis'] .btn {
+  border: 3px solid #221d2e;
+  border-radius: 999px;
+  font-weight: 800;
+  box-shadow: 4px 4px 0 #221d2e;
+}
+
+:root[data-theme='memphis'] .btn--primary {
+  background: #ff5fa2;
+  color: #221d2e;
+}
+
+:root[data-theme='memphis'] .btn--ghost {
+  background: #fff;
+  border-color: #221d2e;
+}
+
+:root[data-theme='memphis'] .cell {
+  border: 2px solid #221d2e;
+  border-radius: 12px 3px 12px 3px;
+  background: hsl(var(--h) 62% 68%);
+}
+
+:root[data-theme='memphis'] .cell--wide {
+  border-radius: 3px 14px 3px 14px;
+}
+
+:root[data-theme='memphis'] .albums,
+:root[data-theme='memphis'] .wall {
+  gap: 10px;
+}
+
+:root[data-theme='memphis'] .album {
+  border: 3px solid #221d2e;
+  border-radius: 18px 6px 18px 6px;
+  box-shadow: 5px 5px 0 #ffd447;
+}
+
+:root[data-theme='memphis'] .album-cover {
+  border: 2px solid #221d2e;
+  border-radius: 50% 14% 50% 14%;
+}
+
+:root[data-theme='memphis'] .seg {
+  border: 3px solid #221d2e;
+  border-radius: 999px;
+  background: #fff;
+}
+
+:root[data-theme='memphis'] .seg-b {
+  font-weight: 700;
+  background: transparent;
+}
+
+:root[data-theme='memphis'] .seg-b--on {
+  background: #23bfb1;
+  color: #221d2e;
+}
+
+:root[data-theme='memphis'] .chip,
+:root[data-theme='memphis'] .platform {
+  border: 2px solid #221d2e;
+  border-radius: 999px;
+  background: #fff;
+  font-weight: 700;
+}
+
+:root[data-theme='memphis'] .chip--on,
+:root[data-theme='memphis'] .platform--on {
+  background: #ffd447;
+  color: #221d2e;
+  box-shadow: 3px 3px 0 #221d2e;
+}
+
+:root[data-theme='memphis'] .voice {
+  border: 3px solid #221d2e;
+  border-radius: 20px;
+  background: #fff;
+}
+
+:root[data-theme='memphis'] .voice-avatar {
+  border: 2px solid #221d2e;
+  border-radius: 50%;
+  background: #23bfb1;
+  color: #221d2e;
+  font-weight: 800;
+}
+
+:root[data-theme='memphis'] .faq {
+  border-bottom: 2px dotted #221d2e;
+}
+
+:root[data-theme='memphis'] .faq-q {
+  font-weight: 700;
+}
+
+:root[data-theme='memphis'] .faq-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 2px solid #221d2e;
+  border-radius: 50%;
+  background: #ffd447;
+  color: #221d2e;
+  font-size: 16px;
+}
+
+:root[data-theme='memphis'] .search-i,
+:root[data-theme='memphis'] .field-i {
+  border: 3px solid #221d2e;
+  border-radius: 14px 4px 14px 4px;
+  background: #fff;
+}
+
+:root[data-theme='memphis'] .plan {
+  border: 3px solid #221d2e;
+  border-radius: 24px 8px 24px 8px;
+  box-shadow: 6px 6px 0 #23bfb1;
+}
+
+:root[data-theme='memphis'] .plan--on {
+  background: #fff8ea;
+  box-shadow: 8px 8px 0 #ff5fa2;
+  transform: translateY(-4px);
+}
+
+:root[data-theme='memphis'] .plan-p {
+  font-family: 'Trebuchet MS', sans-serif;
+  font-weight: 800;
+  color: #ff5fa2;
+}
+
+:root[data-theme='memphis'] .cta-form {
+  border: 3px dashed #221d2e;
+  border-radius: 26px;
+  background: #fff;
+}
+
+:root[data-theme='memphis'] .toast {
+  border: 2px solid #221d2e;
+  border-radius: 14px 4px 14px 4px;
+  background: #ffd447;
+  color: #221d2e;
+  box-shadow: 4px 4px 0 #221d2e;
+}
+
+:root[data-theme='memphis'] .foot {
+  border-top: 3px dashed #221d2e;
+}

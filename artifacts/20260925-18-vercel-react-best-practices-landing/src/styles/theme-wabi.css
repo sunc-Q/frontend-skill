@@ -1,0 +1,154 @@
+/* ============================================================
+   主题一：侘寂留白 wabi
+   主张：暖灰宣纸底 + 细衬线 + 极大留白 + 几乎看不见描边；
+   强调色是石绿与铁锈，圆角极小，阴影只用一层极淡的纸影。
+   ============================================================ */
+
+:root[data-theme='wabi'] {
+  --bg: #efece4;
+  --bg-2: #f4f1ea;
+  --panel: #f7f5f0;
+  --ink: #2c2a26;
+  --ink-2: #4e4b45;
+  --muted: #8d887e;
+  --line: #ddd7cb;
+  --accent: #6f7a5f;
+  --accent-ink: #f4f1ea;
+  --accent-2: #b8ac97;
+  --radius: 2px;
+  --radius-sm: 1px;
+  --border-w: 1px;
+  --shadow: 0 10px 30px rgba(60, 52, 40, 0.07);
+  --sec-pad: 148px;
+  --gap: 40px;
+  --maxw: 1040px;
+  --nav-bg: rgba(239, 236, 228, 0.9);
+  --icon-bg: #e6e2d7;
+  --cell-h: 96px;
+  --title-size: 30px;
+  --hero-size: 46px;
+  --track: 0.055em;
+  --font-body: 'Hiragino Mincho ProN', 'Songti SC', 'Source Han Serif SC', Georgia, serif;
+  --font-display: 'Hiragino Mincho ProN', 'Songti SC', Georgia, serif;
+  --font-mono: 'SFMono-Regular', Menlo, monospace;
+}
+
+:root[data-theme='wabi'] body {
+  font-weight: 400;
+}
+
+/* 指针位置 = 纸上的一团水渍 */
+:root[data-theme='wabi'] .hero-visual {
+  background:
+    radial-gradient(340px 240px at var(--px, 62%) var(--py, 34%), rgba(111, 122, 95, 0.16), transparent 70%),
+    var(--bg-2);
+  border-color: #ded8cc;
+}
+
+:root[data-theme='wabi'] .hero-title {
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+}
+
+:root[data-theme='wabi'] .hero-title em {
+  font-style: normal;
+  border-bottom: 1px solid var(--accent-2);
+  padding-bottom: 4px;
+}
+
+:root[data-theme='wabi'] .section {
+  border-top-color: transparent;
+}
+
+:root[data-theme='wabi'] .section-title {
+  font-weight: 400;
+  letter-spacing: 0.12em;
+}
+
+:root[data-theme='wabi'] .section-title::after {
+  content: '';
+  display: block;
+  width: 42px;
+  height: 1px;
+  margin-top: 16px;
+  background: var(--accent-2);
+}
+
+:root[data-theme='wabi'] .card,
+:root[data-theme='wabi'] .step,
+:root[data-theme='wabi'] .voice,
+:root[data-theme='wabi'] .album,
+:root[data-theme='wabi'] .plan {
+  background: transparent;
+  border-color: transparent;
+  border-bottom: 1px solid #dfd9cd;
+  border-radius: 0;
+  padding: 26px 2px;
+}
+
+:root[data-theme='wabi'] .stats {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+:root[data-theme='wabi'] .stat {
+  background: transparent;
+  border-top: 1px solid #dfd9cd;
+}
+
+:root[data-theme='wabi'] .btn {
+  border-radius: 0;
+  padding: 15px 26px;
+  letter-spacing: 0.18em;
+  font-size: 13px;
+}
+
+:root[data-theme='wabi'] .btn--primary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+:root[data-theme='wabi'] .btn--ghost {
+  border-color: transparent;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+:root[data-theme='wabi'] .grp,
+:root[data-theme='wabi'] .plan-badge,
+:root[data-theme='wabi'] .voice-avatar,
+:root[data-theme='wabi'] .seg-b--on {
+  background: #7d8770;
+  border-radius: 0;
+}
+
+:root[data-theme='wabi'] .cell {
+  border-radius: 0;
+  border-color: transparent;
+  opacity: 0.78;
+  background: hsl(var(--h) 14% 68%);
+}
+
+:root[data-theme='wabi'] .chip,
+:root[data-theme='wabi'] .hero-badges li,
+:root[data-theme='wabi'] .platform {
+  border-radius: 0;
+  background: transparent;
+}
+
+:root[data-theme='wabi'] .nav {
+  border-bottom-color: #e0dad0;
+  backdrop-filter: blur(3px);
+}
+
+:root[data-theme='wabi'] .nav-link--on {
+  color: var(--ink);
+  border-bottom: 1px solid var(--accent);
+  border-radius: 0;
+}
+
+:root[data-theme='wabi'] .faq-a {
+  line-height: 2.1;
+}

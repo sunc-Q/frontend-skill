@@ -1,0 +1,288 @@
+/* ============================================================
+   主题二：构成主义 construct
+   主张：纸白 + 墨黑 + 一色革命红；粗黑体、全部大写、3px 实描边、
+   零圆角、硬阴影（offset 实色），标题斜切，指针位置驱动一根红条。
+   ============================================================ */
+
+:root[data-theme='construct'] {
+  --bg: #f3efe7;
+  --bg-2: #ffffff;
+  --panel: #f7f4ee;
+  --ink: #17161a;
+  --ink-2: #24222a;
+  --muted: #5c5a63;
+  --line: #17161a;
+  --accent: #d1372a;
+  --accent-ink: #f7f4ee;
+  --accent-2: #17161a;
+  --radius: 0;
+  --radius-sm: 0;
+  --border-w: 3px;
+  --shadow: 7px 7px 0 #17161a;
+  --sec-pad: 56px;
+  --gap: 0px;
+  --maxw: 1240px;
+  --nav-bg: #17161a;
+  --nav-on-bg: #d1372a;
+  --icon-bg: #d1372a;
+  --cell-h: 108px;
+  --title-size: 46px;
+  --hero-size: 78px;
+  --track: 0.01em;
+  --font-body: 'Helvetica Neue', 'Arial Unicode MS', HeiTi, sans-serif;
+  --font-display: 'Arial Black', 'Helvetica Bold', Impact, sans-serif;
+  --font-mono: 'Courier New', monospace;
+}
+
+:root[data-theme='construct'] .nav {
+  background: #17161a;
+  border-bottom: 3px solid #d1372a;
+}
+
+:root[data-theme='construct'] .brand,
+:root[data-theme='construct'] .nav-link {
+  color: #f3efe7;
+  font-family: 'Arial Black', Impact, sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+:root[data-theme='construct'] .nav-link--on {
+  color: #17161a;
+  background: #d1372a;
+}
+
+:root[data-theme='construct'] .nav-theme {
+  color: #8f8c96;
+}
+
+:root[data-theme='construct'] .hero {
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 0;
+  border-bottom: 3px solid #17161a;
+  padding: 64px 0 72px;
+}
+
+:root[data-theme='construct'] .hero-copy {
+  padding-right: 40px;
+  border-right: 3px solid #17161a;
+}
+
+:root[data-theme='construct'] .hero-title {
+  font-family: 'Arial Black', Impact, sans-serif;
+  text-transform: uppercase;
+  line-height: 0.94;
+  letter-spacing: -0.01em;
+  transform: rotate(-2.5deg);
+}
+
+:root[data-theme='construct'] .hero-title em {
+  font-style: normal;
+  display: inline-block;
+  background: #d1372a;
+  color: #f7f4ee;
+  padding: 0 10px;
+}
+
+:root[data-theme='construct'] .eyebrow {
+  font-weight: 700;
+  color: #17161a;
+  border-left: 8px solid #d1372a;
+  padding-left: 10px;
+  letter-spacing: 0.16em;
+}
+
+:root[data-theme='construct'] .hero-visual {
+  position: relative;
+  border: 0;
+  border-radius: 0;
+  background: #f3efe7;
+  padding: 34px;
+  overflow: hidden;
+}
+
+/* 指针 = 一根竖直红条 */
+:root[data-theme='construct'] .hero-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--px, 40%);
+  border-right: 6px solid #d1372a;
+  opacity: 0.9;
+}
+
+:root[data-theme='construct'] .hero-visual::after {
+  content: '';
+  position: absolute;
+  left: var(--px, 40%);
+  top: var(--py, 30%);
+  width: 74px;
+  height: 74px;
+  background: #17161a;
+  transform: translate(-50%, -50%) rotate(24deg);
+  opacity: 0.12;
+}
+
+:root[data-theme='construct'] .ph,
+:root[data-theme='construct'] .grp {
+  border: 3px solid #17161a;
+  border-radius: 0;
+  background: #fff;
+  color: #17161a;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0 #d1372a;
+}
+
+:root[data-theme='construct'] .arrow {
+  background: #17161a;
+  width: 4px;
+  height: 34px;
+}
+
+:root[data-theme='construct'] .section {
+  border-top: 3px solid #17161a;
+}
+
+:root[data-theme='construct'] .section-title,
+:root[data-theme='construct'] .card h3,
+:root[data-theme='construct'] .step h3,
+:root[data-theme='construct'] .plan-name {
+  font-family: 'Arial Black', Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+}
+
+:root[data-theme='construct'] .cards,
+:root[data-theme='construct'] .steps,
+:root[data-theme='construct'] .voices,
+:root[data-theme='construct'] .plans,
+:root[data-theme='construct'] .albums,
+:root[data-theme='construct'] .wall {
+  gap: 0;
+  border: 3px solid #17161a;
+}
+
+:root[data-theme='construct'] .card,
+:root[data-theme='construct'] .step,
+:root[data-theme='construct'] .voice,
+:root[data-theme='construct'] .plan,
+:root[data-theme='construct'] .album {
+  border: 0;
+  border-right: 3px solid #17161a;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+:root[data-theme='construct'] .plan--on {
+  background: #17161a;
+  color: #f3efe7;
+  box-shadow: none;
+}
+
+:root[data-theme='construct'] .plan--on .plan-limit,
+:root[data-theme='construct'] .plan--on .plan-lines {
+  color: #cfc9bd;
+}
+
+:root[data-theme='construct'] .stats {
+  border: 3px solid #17161a;
+  gap: 0;
+  margin-top: 40px;
+}
+
+:root[data-theme='construct'] .stat-v {
+  font-family: 'Arial Black', Impact, sans-serif;
+  font-size: 44px;
+  color: #d1372a;
+}
+
+:root[data-theme='construct'] .btn {
+  border-radius: 0;
+  border: 3px solid #17161a;
+  text-transform: uppercase;
+  font-family: 'Arial Black', Impact, sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  box-shadow: 5px 5px 0 #17161a;
+}
+
+:root[data-theme='construct'] .btn--primary {
+  background: #d1372a;
+  border-color: #17161a;
+  color: #f7f4ee;
+}
+
+:root[data-theme='construct'] .cell {
+  border: 0;
+  border-right: 2px solid #17161a;
+  border-bottom: 2px solid #17161a;
+  border-radius: 0;
+  background: hsl(var(--h) 4% 22%);
+}
+
+:root[data-theme='construct'] .chip,
+:root[data-theme='construct'] .platform,
+:root[data-theme='construct'] .hero-badges li {
+  border: 2px solid #17161a;
+  border-radius: 0;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: #fff;
+}
+
+:root[data-theme='construct'] .chip--on,
+:root[data-theme='construct'] .platform--on {
+  background: #d1372a;
+  color: #f7f4ee;
+  border-color: #17161a;
+}
+
+:root[data-theme='construct'] .seg {
+  border: 3px solid #17161a;
+  border-radius: 0;
+}
+
+:root[data-theme='construct'] .seg-b {
+  font-family: 'Arial Black', Impact, sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+:root[data-theme='construct'] .faq {
+  border-bottom: 2px solid #17161a;
+}
+
+:root[data-theme='construct'] .faq-q {
+  font-family: 'Arial Black', Impact, sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+:root[data-theme='construct'] .faq-mark {
+  font-size: 22px;
+  color: #d1372a;
+}
+
+:root[data-theme='construct'] .search-i,
+:root[data-theme='construct'] .field-i {
+  border: 3px solid #17161a;
+  border-radius: 0;
+  background: #fff;
+  font-family: 'Courier New', monospace;
+}
+
+:root[data-theme='construct'] .cta-form {
+  border: 3px solid #17161a;
+  border-radius: 0;
+  box-shadow: 9px 9px 0 #d1372a;
+}
+
+:root[data-theme='construct'] .toast {
+  border-radius: 0;
+  border: 3px solid #17161a;
+  box-shadow: 5px 5px 0 #d1372a;
+  font-family: 'Courier New', monospace;
+}
