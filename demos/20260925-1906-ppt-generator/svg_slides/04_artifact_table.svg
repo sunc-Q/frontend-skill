@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <filter id="glowGreen" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+  </defs>
+  <rect width="1280" height="720" fill="#0D1117" />
+  <rect x="0" y="0" width="1280" height="4" fill="#39FF14" fill-opacity="0.8" />
+  <rect x="0" y="4" width="1280" height="2" fill="#39FF14" fill-opacity="0.4" />
+  <text x="60" y="76" font-family="Consolas, Monaco, Courier New, monospace" font-size="36" font-weight="bold" fill="#39FF14" filter="url(#glowGreen)">🎯 四种产物，四条不同的发现</text>
+  <text x="60" y="106" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Microsoft YaHei, sans-serif" font-size="18" fill="#8B949E">ARTIFACT × SOURCE × VERDICT · 每一行都是真实落盘文件，双击可开</text>
+  <line x1="60" y1="126" x2="1220" y2="126" stroke="#30363D" stroke-width="2" />
+
+  <rect x="60" y="150" width="1160" height="42" fill="#161B22" stroke="#30363D" stroke-width="2" />
+  <text x="80" y="177" font-family="Consolas, monospace" font-size="16" fill="#39FF14">#</text>
+  <text x="120" y="177" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="17" font-weight="600" fill="#FFFFFF">产物类型</text>
+  <text x="440" y="177" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="17" font-weight="600" fill="#FFFFFF">技能 / 来源</text>
+  <text x="760" y="177" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="17" font-weight="600" fill="#FFFFFF">本轮被证伪或证实的那一条</text>
+
+  <rect x="60" y="192" width="1160" height="94" fill="#161B22" stroke="#30363D" stroke-width="2" />
+  <rect x="60" y="192" width="8" height="94" fill="#39FF14" />
+  <text x="84" y="228" font-family="Consolas, monospace" font-size="20" fill="#39FF14">01</text>
+  <text x="120" y="228" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="19" fill="#E6EDF3">单文件 HTML 工程图纸</text>
+  <text x="120" y="256" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="17" fill="#8B949E">15KB · 零 JS 零外链 · 双击可开</text>
+  <text x="440" y="228" font-family="Consolas, monospace" font-size="18" fill="#E6EDF3">drafter</text>
+  <text x="440" y="256" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="16" fill="#8B949E">来源①Qoder 官方市场</text>
+  <text x="760" y="228" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="17" fill="#FFD700">它自己的示例 CSS 违反它自己的对齐规则</text>
+  <text x="760" y="256" font-family="Consolas, monospace" font-size="15" fill="#8B949E">repeat(6,1fr) 被 min-content 顶住</text>
+
+  <rect x="60" y="286" width="1160" height="94" fill="#161B22" stroke="#30363D" stroke-width="2" />
+  <rect x="60" y="286" width="8" height="94" fill="#00D4FF" />
+  <text x="84" y="322" font-family="Consolas, monospace" font-size="20" fill="#00D4FF">02</text>
+  <text x="120" y="322" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="19" fill="#E6EDF3">纯文本终端看板</text>
+  <text x="120" y="350" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="17" fill="#8B949E">52 行 2.8KB · 可进 git diff · 10 PASS</text>
+  <text x="440" y="322" font-family="Consolas, monospace" font-size="18" fill="#E6EDF3">ascii-project-dashboard</text>
+  <text x="440" y="350" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="16" fill="#8B949E">来源①Qoder 官方市场</text>
+  <text x="760" y="322" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="17" fill="#FF2E97">「10 chars = 10 chars」在中文下直接崩</text>
+  <text x="760" y="350" font-family="Consolas, monospace" font-size="16" fill="#8B949E">须自算显示宽度：CJK/emoji=2 列，FE0F=0 列</text>
+
+  <rect x="60" y="380" width="1160" height="94" fill="#161B22" stroke="#30363D" stroke-width="2" />
+  <rect x="60" y="380" width="8" height="94" fill="#FFD700" />
+  <text x="84" y="416" font-family="Consolas, monospace" font-size="20" fill="#FFD700">03</text>
+  <text x="120" y="416" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="19" fill="#E6EDF3">可交互生成艺术</text>
+  <text x="120" y="444" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="17" fill="#8B949E">998KB 自包含 · 31 项断言 · 滑杆调参</text>
+  <text x="440" y="416" font-family="Consolas, monospace" font-size="18" fill="#E6EDF3">algorithmic-art</text>
+  <text x="440" y="444" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="16" fill="#8B949E">来源②git@github.com SSH clone</text>
+  <text x="760" y="416" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="17" fill="#39FF14">「same seed ALWAYS identical」被像素哈希验穿</text>
+  <text x="760" y="444" font-family="Consolas, monospace" font-size="16" fill="#8B949E">本实验室唯一带可证伪硬承诺的生成艺术技能</text>
+
+  <rect x="60" y="474" width="1160" height="94" fill="#161B22" stroke="#30363D" stroke-width="2" />
+  <rect x="60" y="474" width="8" height="94" fill="#FF2E97" />
+  <text x="84" y="510" font-family="Consolas, monospace" font-size="20" fill="#FF2E97">04</text>
+  <text x="120" y="510" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="19" fill="#E6EDF3">SQLite FTS5 检索库</text>
+  <text x="120" y="538" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="17" fill="#8B949E">299KB .db + 检索 CLI · 14/14 PASS</text>
+  <text x="440" y="510" font-family="Consolas, monospace" font-size="18" fill="#E6EDF3">SQLite-Database-Expert</text>
+  <text x="440" y="538" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="16" fill="#8B949E">来源③本机已装（零安装零联网）</text>
+  <text x="760" y="510" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="17" fill="#FFD700">默认 unicode61 对中文静默漏检</text>
+  <text x="760" y="538" font-family="Consolas, monospace" font-size="16" fill="#8B949E">'安全闸门' LIKE=4 / MATCH=3；trigram 又要求 ≥3 字</text>
+
+  <rect x="60" y="588" width="1160" height="74" fill="#161B22" stroke="#00D4FF" stroke-width="2" />
+  <text x="84" y="618" font-family="Consolas, Monaco, Courier New, monospace" font-size="19" fill="#00D4FF">▸ 共性缺陷：规范指得到、实现层不在包里</text>
+  <text x="84" y="646" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Microsoft YaHei, sans-serif" font-size="17" fill="#E6EDF3">第 2 轮缺它点名的 muscle script，第 4 轮缺它要求必读的 references/ 两文件 —— 无人值守时必须自带复现脚本兜底。</text>
+  <text x="1220" y="694" text-anchor="end" font-family="Consolas, monospace" font-size="16" fill="#8B949E">04 / 05</text>
+</svg>

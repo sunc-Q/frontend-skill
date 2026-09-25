@@ -1,0 +1,73 @@
+=== 环境（开工实况）===
+2026-09-25 19:13:50 +0800
+/dev/disk1s2   118284248 78338204  20260696    80% 1236765 202606960    1%   /System/Volumes/Data
+Python 3.14.7
+v22.23.2
+ModuleNotFoundError: No module named 'pptx'
+--- 全局 python 无 office 库、pip3 包装脚本坏 ---
+ModuleNotFoundError: No module named 'pptx'
+ModuleNotFoundError: No module named 'openpyxl'
+/Users/apple/Library/Application Support/DoubaoWork/sandbox_runtime/bases/e74152cd379ba45d7ca7f16dfa51b727/bin/pip3: line 2: exec: /Users/apple/Documents/workProject/试验/skill演示场/python3.14: cannot execute: No such file or directory
+
+=== 1) 技能自带的 SVG 质量闸门（skill 自己的 svg_quality_checker.py）===
+
+[OK] 05_ending.svg - Passed
+   viewBox: 0 0 1280 720
+
+================================================================================
+[SUMMARY] Check Summary
+================================================================================
+
+Total files: 5
+  [OK] Fully passed: 5 (100%)
+  [WARN] With warnings: 0 (0%)
+  [ERROR] With errors: 0 (0%)
+
+=== 2) SVG -> 原生 DrawingML PPTX（技能 Phase 3 原样调用）===
+  Slide dimensions: 1280 x 720 px
+  SVG file count: 5
+  Mode: Native DrawingML shapes (directly editable)
+  Transition effect: Fade
+  Speaker notes: Enabled (no notes files found)
+
+  Converted 38 elements, skipped 0
+  [1/5] 01_cover.svg (Native)
+  Converted 39 elements, skipped 0
+  [2/5] 02_toc.svg (Native)
+  Converted 45 elements, skipped 0
+  [3/5] 03_duration_chart.svg (Native)
+  Converted 51 elements, skipped 0
+  [4/5] 04_artifact_table.svg (Native)
+  Converted 38 elements, skipped 0
+  [5/5] 05_ending.svg (Native)
+
+[Done] Saved: /Users/apple/Documents/workProject/试验/skill演示场/demos/20260925-1906-ppt-generator/skill-showcase-pixel-retro.pptx
+  Succeeded: 5, Failed: 0
+SLIDES: 5
+OUTPUT: /Users/apple/Documents/workProject/试验/skill演示场/demos/20260925-1906-ppt-generator/skill-showcase-pixel-retro.pptx 48873 bytes
+
+=== 3) 独立验证 verify_pptx.py ===
+PASS zip 完整且可解  :: 56 entries
+PASS 5 页 slide XML  :: ppt/slides/slide1.xml, ppt/slides/slide2.xml, ppt/slides/slide3.xml, ppt/slides/slide4.xml, ppt/slides/slide5.xml
+PASS 无 media 图片(=不是整页贴图)  :: media=[]
+PASS 每页都是原生 shape（无 <p:pic>）  :: sp=211 pic=0 a:t=106
+PASS python-pptx 能打开（合法 OOXML）  :: slides=5
+PASS 画布 16:9 12192000x6858000 EMU  :: 12192000x6858000 EMU = 16.00:9.00
+PASS 文本可编辑：能读回中文标题  :: text runs=211
+PASS 文本可编辑：真实数值在文本框内  :: 抽样 420/1140/5 / 5
+PASS 无占位符残留（{{...}} 全部替换）  :: 残留=[]
+PASS 柱状图 4 根柱体作为独立形状存在  :: bars=4
+PASS 柱高与真实秒数成正比(比例尺 300px/1140s)  :: px=[115.3, 137.9, 300.0, 205.3] exp=[115.3, 137.9, 300.0, 205.3]
+PASS 霓虹绿 #39FF14 已进入 srgbClr  :: count=25
+PASS 空 notesSlide 不夹带脏文本  :: notesSlide=5 文本=[]
+
+TOTAL 13/13 PASS
+
+=== 4) 浏览器真实渲染几何（browser-use getBBox，viewport 0x0 不影响 SVG 用户坐标）===
+slide03 bars(h px, 属性与渲染一致) = [115.3, 137.9, 300, 205.3]  比例尺 300px/1140s；标题 bbox x=59 y=40 w=455 h=45；轴标签 x≈115-132；预算线标签右端 1155
+slide04（最密页）texts=37 beyond-1280=0；修 safe-area 前有 1 行右端 1248 > 安全区 1220 —— 技能自带 checker 当时也判 [OK]，即它不检查自己在 design_spec §II 定的边距
+修 safe-area 后：texts=37 beyond-safe-right=0
+
+=== 5. 踩到的两个假失败（我自己的断言预设错，已按实况改）===
+bars=8：130px 宽的柱体与它 10px 高的顶部高光条同宽，须再加 height>50px 才是柱体
+notesSlide：转换器打印 'Speaker notes: Enabled (no notes files found)' 却仍逐页写出 5 个空 notesSlideN.xml

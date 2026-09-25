@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <filter id="glowGreen" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+    <filter id="glowBlue" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+  </defs>
+  <rect width="1280" height="720" fill="#0D1117" />
+  <line x1="0" y1="120" x2="1280" y2="120" stroke="#39FF14" stroke-width="1" stroke-opacity="0.1" />
+  <line x1="0" y1="600" x2="1280" y2="600" stroke="#39FF14" stroke-width="1" stroke-opacity="0.1" />
+  <rect x="40" y="30" width="1200" height="8" fill="#39FF14" fill-opacity="0.8" />
+  <rect x="40" y="42" width="1200" height="4" fill="#39FF14" fill-opacity="0.4" />
+
+  <text x="640" y="196" text-anchor="middle" font-family="Consolas, Monaco, Courier New, monospace" font-size="52" font-weight="bold" fill="#39FF14" filter="url(#glowGreen)">💾 GAME SAVED</text>
+  <text x="640" y="242" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Microsoft YaHei, sans-serif" font-size="22" font-weight="600" fill="#E6EDF3">第五轮的产物就是这份文件本身 —— SVG 已被转成原生可编辑形状</text>
+
+  <rect x="60" y="286" width="368" height="180" fill="#161B22" stroke="#39FF14" stroke-width="3" />
+  <text x="244" y="348" text-anchor="middle" font-family="Consolas, monospace" font-size="48" font-weight="bold" fill="#39FF14">5 / 5</text>
+  <text x="244" y="386" text-anchor="middle" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="19" fill="#E6EDF3">轮次判定为「留用」</text>
+  <text x="244" y="418" text-anchor="middle" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="16" fill="#8B949E">前四轮均给出可复现断言，无一空转</text>
+  <rect x="86" y="440" width="40" height="10" fill="#39FF14" />
+  <rect x="132" y="440" width="40" height="10" fill="#39FF14" />
+  <rect x="178" y="440" width="40" height="10" fill="#39FF14" />
+  <rect x="224" y="440" width="40" height="10" fill="#39FF14" />
+  <rect x="270" y="440" width="40" height="10" fill="#39FF14" fill-opacity="0.4" />
+
+  <rect x="456" y="286" width="368" height="180" fill="#161B22" stroke="#00D4FF" stroke-width="3" />
+  <text x="640" y="348" text-anchor="middle" font-family="Consolas, monospace" font-size="48" font-weight="bold" fill="#00D4FF">0</text>
+  <text x="640" y="386" text-anchor="middle" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="19" fill="#E6EDF3">付费凭据 / 外部 API 调用</text>
+  <text x="640" y="418" text-anchor="middle" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="16" fill="#8B949E">内容不外发：海报类技能正因会 POST 而被排除</text>
+  <rect x="540" y="440" width="200" height="10" fill="#1F6FEB" />
+  <rect x="540" y="440" width="200" height="10" fill="#00D4FF" fill-opacity="0.85" />
+
+  <rect x="852" y="286" width="368" height="180" fill="#161B22" stroke="#FF2E97" stroke-width="3" />
+  <text x="1036" y="348" text-anchor="middle" font-family="Consolas, monospace" font-size="48" font-weight="bold" fill="#FF2E97">5</text>
+  <text x="1036" y="386" text-anchor="middle" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="19" fill="#E6EDF3">种互不相同的产物类型</text>
+  <text x="1036" y="418" text-anchor="middle" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif" font-size="16" fill="#8B949E">HTML 图纸 / ASCII / 生成艺术 / .db / 办公文档</text>
+  <rect x="932" y="440" width="30" height="10" fill="#39FF14" />
+  <rect x="968" y="440" width="30" height="10" fill="#00D4FF" />
+  <rect x="1004" y="440" width="30" height="10" fill="#FFD700" />
+  <rect x="1040" y="440" width="30" height="10" fill="#FF2E97" />
+  <rect x="1076" y="440" width="30" height="10" fill="#E6EDF3" />
+
+  <rect x="60" y="496" width="1160" height="90" fill="#161B22" stroke="#30363D" stroke-width="2" />
+  <text x="84" y="530" font-family="Consolas, Monaco, Courier New, monospace" font-size="19" fill="#FFD700">▸ NEXT：webapp-testing（已 clone 未试）· sec-audit-cn（本机已装）· golang-testing（go 1.27.1 在路径上）</text>
+  <text x="84" y="560" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Microsoft YaHei, sans-serif" font-size="17" fill="#8B949E">已排除：需要 PIL / openpyxl 的路线（pip3 包装脚本缺 realpath，只能用 python3 -m pip --target 装进 LAB 内）</text>
+
+  <text x="640" y="640" text-anchor="middle" font-family="Consolas, Monaco, Courier New, monospace" font-size="20" fill="#00D4FF" filter="url(#glowBlue)">CONTINUE?  Y / N</text>
+  <rect x="40" y="668" width="1200" height="4" fill="#39FF14" fill-opacity="0.4" />
+  <rect x="40" y="676" width="1200" height="8" fill="#39FF14" fill-opacity="0.8" />
+  <text x="1220" y="652" text-anchor="end" font-family="Consolas, monospace" font-size="16" fill="#8B949E">05 / 05</text>
+</svg>

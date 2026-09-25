@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <filter id="glowGreen" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+  </defs>
+  <rect width="1280" height="720" fill="#0D1117" />
+  <rect x="0" y="0" width="1280" height="4" fill="#39FF14" fill-opacity="0.8" />
+  <rect x="0" y="4" width="1280" height="2" fill="#39FF14" fill-opacity="0.4" />
+  <text x="60" y="76" font-family="Consolas, Monaco, Courier New, monospace" font-size="36" font-weight="bold" fill="#39FF14" filter="url(#glowGreen)">📍 本轮路线</text>
+  <text x="60" y="106" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Microsoft YaHei, sans-serif" font-size="18" fill="#8B949E">TABLE OF CONTENTS · 5 ROUNDS OF THE UNATTENDED SKILL LAB</text>
+  <line x1="60" y1="126" x2="1220" y2="126" stroke="#30363D" stroke-width="2" />
+
+  <rect x="60" y="160" width="540" height="112" fill="#161B22" stroke="#30363D" stroke-width="2" />
+  <rect x="60" y="160" width="8" height="112" fill="#FF2E97" />
+  <text x="92" y="200" font-family="Consolas, Monaco, Courier New, monospace" font-size="22" font-weight="600" fill="#E6EDF3">01  一条无人值守的流水线</text>
+  <text x="92" y="230" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Microsoft YaHei, sans-serif" font-size="18" fill="#8B949E">它每 30 分钟醒来一次：找技能 → 过安全闸门 → 出产物 → 写台账</text>
+  <rect x="92" y="244" width="130" height="22" fill="#FF2E97" fill-opacity="0.18" stroke="#FF2E97" stroke-width="2" />
+  <text x="157" y="260" text-anchor="middle" font-family="Consolas, monospace" font-size="14" fill="#FF2E97">MUST KNOW</text>
+
+  <rect x="620" y="160" width="540" height="112" fill="#161B22" stroke="#30363D" stroke-width="2" />
+  <rect x="620" y="160" width="8" height="112" fill="#FFD700" />
+  <text x="652" y="200" font-family="Consolas, Monaco, Courier New, monospace" font-size="22" font-weight="600" fill="#E6EDF3">02  前四轮跑掉了什么</text>
+  <text x="652" y="230" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Microsoft YaHei, sans-serif" font-size="18" fill="#8B949E">工程图纸 / 终端看板 / 生成艺术 / 全文检索库 —— 四种产物四类结论</text>
+  <rect x="652" y="244" width="150" height="22" fill="#FFD700" fill-opacity="0.18" stroke="#FFD700" stroke-width="2" />
+  <text x="727" y="260" text-anchor="middle" font-family="Consolas, monospace" font-size="14" fill="#FFD700">RECOMMENDED</text>
+
+  <rect x="60" y="300" width="540" height="112" fill="#161B22" stroke="#30363D" stroke-width="2" />
+  <rect x="60" y="300" width="8" height="112" fill="#00D4FF" />
+  <text x="92" y="340" font-family="Consolas, Monaco, Courier New, monospace" font-size="22" font-weight="600" fill="#E6EDF3">03  单轮耗时与产物体积</text>
+  <text x="92" y="370" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Microsoft YaHei, sans-serif" font-size="18" fill="#8B949E">四条真实计时：420s / 600s / 1140s / 780s，中位数落在预算内</text>
+  <rect x="92" y="384" width="120" height="22" fill="#00D4FF" fill-opacity="0.18" stroke="#00D4FF" stroke-width="2" />
+  <text x="152" y="400" text-anchor="middle" font-family="Consolas, monospace" font-size="14" fill="#00D4FF">DATA</text>
+
+  <rect x="620" y="300" width="540" height="112" fill="#161B22" stroke="#30363D" stroke-width="2" />
+  <rect x="620" y="300" width="8" height="112" fill="#39FF14" />
+  <text x="652" y="340" font-family="Consolas, Monaco, Courier New, monospace" font-size="22" font-weight="600" fill="#E6EDF3">04  第五轮：SVG 变可编辑 PPT</text>
+  <text x="652" y="370" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Microsoft YaHei, sans-serif" font-size="18" fill="#8B949E">像素复古主题 + 原生 DrawingML 形状，双击即可改字</text>
+  <rect x="652" y="384" width="120" height="22" fill="#39FF14" fill-opacity="0.18" stroke="#39FF14" stroke-width="2" />
+  <text x="712" y="400" text-anchor="middle" font-family="Consolas, monospace" font-size="14" fill="#39FF14">OPTIONAL</text>
+
+  <rect x="60" y="440" width="1100" height="120" fill="#161B22" stroke="#39FF14" stroke-width="2" />
+  <text x="84" y="482" font-family="Consolas, Monaco, Courier New, monospace" font-size="20" fill="#39FF14">▸ 去重契约（所有轮次共用的记忆）</text>
+  <text x="84" y="512" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Microsoft YaHei, sans-serif" font-size="18" fill="#E6EDF3">state.json 的 tried 里出现过的技能一律不再选；skills_seen 标了 blocked / needs_user_confirm 的来源不再探测。</text>
+  <text x="84" y="540" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Microsoft YaHei, sans-serif" font-size="18" fill="#8B949E">本轮开工读到 tried = drafter · ascii-project-dashboard · algorithmic-art · SQLite-Database-Expert</text>
+
+  <rect x="60" y="586" width="1100" height="60" fill="#161B22" stroke="#30363D" stroke-width="2" />
+  <text x="84" y="624" font-family="Consolas, Monaco, Courier New, monospace" font-size="18" fill="#8B949E">SOURCE 1 Qoder 官方扩展市场 · SOURCE 2 git@github.com SSH clone · SOURCE 3 本机已装技能</text>
+
+  <text x="1220" y="676" text-anchor="end" font-family="Consolas, monospace" font-size="16" fill="#8B949E">02 / 05</text>
+  <rect x="60" y="682" width="1160" height="6" fill="#30363D" />
+  <rect x="60" y="682" width="464" height="6" fill="#39FF14" fill-opacity="0.8" />
+</svg>
