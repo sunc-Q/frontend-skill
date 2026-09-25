@@ -268,7 +268,7 @@
       "result": "success",
       "artifact_size": "72KB（三页 17,304 / 15,401 / 16,468 字节 + styles.html 6,453 字节 + scripts/check.mjs 9,221 字节 + scripts/ledger-snapshot.json 302 字节，全部保留）",
       "cleanup": "本轮无 node_modules、无 dist、无 .tmp 脚本：只删了 /tmp/lab-8151.log（http.server 日志）并 kill 8151 端口服务（先 ps 核对命令行确认 PID 36541 是本任务自起的 python3 -m http.server 再 kill，lsof 确认端口已释放）。校验脚本 scripts/check.mjs 保留未删（故无需转录进报告）。实验室总量约 7.9MB，单场景 72KB ≪ 50MB。",
-      "push": ""
+      "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main（commit 3a126e3，5de329c..3a126e3；本机 HTTPS 被 TLS 重置故走 SSH，实际经 ssh.github.com:443，主机键写入实验室 .tmp/known_hosts 后随 .tmp 一并删除；命令与文件里无任何 token，已 grep 复核本轮新增/修改文件无密钥样式）"
     }
   ],
   "next_candidates": [
