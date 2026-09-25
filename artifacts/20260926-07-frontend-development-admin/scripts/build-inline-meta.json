@@ -1,0 +1,21 @@
+{
+  "bundleBytes": 720722,
+  "scriptEscapes": 0,
+  "pages": [
+    {
+      "id": "neumorph",
+      "file": "preview/admin-neumorph.html",
+      "bytes": 721194
+    },
+    {
+      "id": "bitmap",
+      "file": "preview/admin-bitmap.html",
+      "bytes": 721199
+    },
+    {
+      "id": "phosphor",
+      "file": "preview/admin-phosphor.html",
+      "bytes": 721194
+    }
+  ]
+}
