@@ -135,4 +135,5 @@ BASE=http://127.0.0.1:18401 PAGE=http://127.0.0.1:18409/lego.html \
 - **bash 3.2（macOS 自带）解析不了 `$( ... <<'PY' ... PY)`**：双引号里的命令替换套 heredoc 直接语法错。把 Python 落成真实脚本文件，既绕过解析问题又能单独复跑。
 - **`body_of`/`status_of` 要同时支持位置参数和管道**：`req … | body_of | jget …` 写法在 `set -u` 下会因 `$1` 未绑定而中断。
 - **写型冒烟不可重放**：借出去不还，同一库第二轮就会「把在架借空而没借满配额」，配额断言变误报。所以有 `run-smoke.sh` 每轮起全新 /tmp 库。
+- **503 fail-closed 断言会被继承的环境变量打穿**：`run-smoke.sh` 里那个「不带令牌的实例」如果只是 `"$BIN" &`，而调用方是 `ADMIN_TOKEN=xxx bash scripts/run-smoke.sh`，令牌就顺着进程环境漏给了它——实测 503 断言变成 201，书真的被借了出去。必须 `env -u ADMIN_TOKEN` 显式摘掉。
 - **`preview/*.html` 双击打不开数据**：`file://` 的 `Origin: null` 被 CORS 明确拒绝（放行等于对所有本地程序开门），要用 `serve-static.mjs` 在同机 http 下打开。

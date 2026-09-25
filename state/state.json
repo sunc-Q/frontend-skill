@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T03:58:00+08:00",
+  "updated": "2026-09-26T04:10:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -482,7 +482,7 @@
         "df_k_avail_before": 19642680,
         "df_k_avail_after": 19580812,
         "scenario_dir_human": "1.7M（上限 5MB）：backend 144K + web(含 dist) 516K + preview 924K + scripts 92K + evidence 40K",
-        "note": "开工 df 可用 19,642,680KB≈18.7GiB，全程远高于 1.5GiB 熔断线。删除：web/node_modules（64MB）、/tmp/lcd-build、/tmp/lcd-view、/tmp/lcd-smoke、/tmp/lcd-db{,2}、/tmp/lcd-*.log、/tmp/lcd-probe.json、/tmp/lcd-shot-*.png、/tmp/lcd-ui-*.png、/tmp/lcd-ddl。共享缓存（~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache）未动，没有 go clean -cache/-testcache。进程按端口→PID→ps -o command= 核对命令行后才 kill：:18401/:18402 = /tmp/lcd-build/api、:18409 = node scripts/serve-static.mjs，全部本轮自己起的，kill 后监听数 0。"
+        "note": "开工 df 可用 19,642,680KB≈18.7GiB，全程远高于 1.5GiB 熔断线。删除：web/node_modules（64MB）、/tmp/lcd-build、/tmp/lcd-view、/tmp/lcd-smoke、/tmp/lcd-db{,2}、/tmp/lcd-*.log、/tmp/lcd-probe.json、/tmp/lcd-shot-*.png、/tmp/lcd-ui-*.png、/tmp/lcd-ddl。共享缓存（~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache）未动，没有 go clean -cache/-testcache。进程按端口→PID→ps -o command= 核对命令行后才 kill：:18401/:18402 = /tmp/lcd-build/api、:18409 = node scripts/serve-static.mjs，全部本轮自己起的，kill 后监听数 0。另：本轮收尾时发现一个自埋的坑——run-smoke.sh 的「无令牌实例」若只靠不设置 ADMIN_TOKEN 来保证，调用方 `ADMIN_TOKEN=… bash run-smoke.sh` 会让令牌顺着环境漏进子进程，503 断言实测变成 201（书真被借出去）。已改为 env -u ADMIN_TOKEN 显式摘除，并补进 README 坑清单。"
       },
       "verification": {
         "go": "gofmt -l 空；go build/vet/test ./... 全绿（domain/repository/server 三包，表驱动覆盖字段校验、鉴权 401/403、注入与超长、罚金 min 口径、续借门槛顺序）",
@@ -493,8 +493,8 @@
         "themes": "base.css(1037 行, 零裸色值) + tokens-<id>.css(各 84 token) 由 derive-themes.py 拼装，缺 token 或 base 漏色值即失败"
       },
       "push": {
-        "commits": "待记录",
-        "range": "待记录"
+        "commits": "1 笔工作提交（40ef7a6）+ 1 笔收工审计",
+        "range": "676ded7..40ef7a6（第 9 轮工作提交，普通 push，无 --force/--no-verify）"
       }
     }
   ],
@@ -546,7 +546,8 @@
     "第 9 轮：**JOIN 聚合放大是口径级 bug，不是渲染 bug**。类别汇总里 items LEFT JOIN copies LEFT JOIN loans，复本数被历史借阅放大到 237（真实 40）。修法是先按 item_id 各自聚合再回接；防复发靠一条跨字段不变量「Σ by_category.copies == total_copies」——它只能被这类放大破坏，代价 3 行 SQL。",
     "第 9 轮：**SQLite 权限要在首次写入后再压一遍**。-wal/-shm 只在有写入后才出现，Open() 里 chmod 会漏掉它们，结果库 0600 而 WAL 0644（WAL 里是完整数据页）。固定做法：repository.Harden(path) 在 Seed() 之后再调一次，冒烟脚本末尾 ls -l 三件套当证据。",
     "第 9 轮：**macOS 自带 bash 3.2 解析不了 `$\\{…}` / `$( ... <<'PY' … PY)` 形态**（命令替换里套 heredoc 直接语法错）。把 Python 逻辑落成真实脚本文件，既绕过解析问题，又能单独复跑与 diff；shell 侧只留 eval 与断言。",
-    "第 9 轮：**UI 同构断言不能拿文案总长当结构**。归还后页面重取数据，数字位数变化就让 innerHTML/textContent 长度漂了 390 字符，而 DOM 结构其实一节点未动。可靠口径：排除装饰性 swatch（每风格一枚不同 SVG，本来就该不同）后的「标签+class 节点序列」+ 行/卡/徽标计数。"
+    "第 9 轮：**UI 同构断言不能拿文案总长当结构**。归还后页面重取数据，数字位数变化就让 innerHTML/textContent 长度漂了 390 字符，而 DOM 结构其实一节点未动。可靠口径：排除装饰性 swatch（每风格一枚不同 SVG，本来就该不同）后的「标签+class 节点序列」+ 行/卡/徽标计数。",
+    "第 9 轮：**「未配置」类断言必须把变量从子进程环境里显式摘掉**。fail-closed 的测试实例靠「不 export」来保证没令牌是假的——调用方 `ADMIN_TOKEN=xxx bash run-smoke.sh` 会让它继承环境，实测 503 断言返回 201，写接口整层形同未测。固定写法：用 `env -u ADMIN_TOKEN` 起那个实例，并在断言里比对状态码而不是只看「没报错」。"
   ],
   "next_candidates": [
     "医院门诊排班与挂号",
