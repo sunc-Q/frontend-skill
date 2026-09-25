@@ -1,0 +1,32 @@
+{
+  "papercut": {
+    "lineupCols": "repeat(auto-fill, minmax(232px, 1fr))",
+    "headFont": "\"Avenir Next\", \"Trebuchet MS\", system-ui, sans-serif",
+    "bodyFont": "system-ui, \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", sans-serif",
+    "radius": "26px",
+    "sessionsTrick": "thead-hidden",
+    "vertical": false,
+    "transform": "none",
+    "shadow": "hard-offset"
+  },
+  "ticket": {
+    "lineupCols": "1fr",
+    "headFont": "ui-monospace, \"SF Mono\", \"Menlo\", \"Consolas\", monospace",
+    "bodyFont": "ui-monospace, \"SF Mono\", \"Menlo\", \"Consolas\", monospace",
+    "radius": "0",
+    "sessionsTrick": "zebra-table",
+    "vertical": false,
+    "transform": "none",
+    "shadow": "none"
+  },
+  "isometric": {
+    "lineupCols": "repeat(2, minmax(0, 1fr))",
+    "headFont": "Georgia, \"Songti SC\", \"Times New Roman\", serif",
+    "bodyFont": "\"Helvetica Neue\", \"PingFang SC\", \"Hiragino Sans GB\", system-ui, sans-serif",
+    "radius": "3px",
+    "sessionsTrick": "zebra-table",
+    "vertical": true,
+    "transform": "perspective",
+    "shadow": "glow"
+  }
+}

@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>星屿·声浪岛音乐节 · 2026 报名</title>
+<meta name="description" content="星屿·声浪岛音乐节 2026.10.16-10.18 于长沙湘江中央星屿举行：12 组阵容、25 场演出、三档门票在线报名与免费接驳轮渡信息。">
+<style>
+/* 结构层：只负责骨架、栅格槽位、可读性与状态样式；一律用 var(--x) 取色取字，
+   出现任何十六进制色即视为分层失效（G 组断言：剥掉 :root 后本文件零 hex）。 */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh);
+  overflow-wrap: break-word;
+}
+h1, h2, h3, h4, h5, p, dl, dd, figure { margin: 0; }
+code, pre { font-family: var(--font-mono); }
+a { color: inherit; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+[hidden] { display: none !important; }
+
+.scroll-bar {
+  position: fixed; inset: 0 auto auto 0; z-index: 9;
+  width: var(--sw, 0%); height: var(--bar-h);
+  background: var(--accent);
+}
+
+.frame {
+  display: flex; flex-wrap: wrap; gap: var(--sp-2);
+  align-items: baseline;
+  padding: var(--sp-3) var(--pad);
+  border-bottom: var(--line);
+}
+.brand { font-family: var(--font-head); font-size: var(--fs-lg); font-weight: 700; letter-spacing: var(--ls-tight); }
+.brand span { font-size: var(--fs-sm); font-weight: 400; opacity: .7; }
+.nav { display: flex; gap: var(--sp-2); margin-left: auto; font-size: var(--fs-sm); }
+.nav a { text-decoration: var(--nav-deco); padding: 2px var(--sp-1); }
+.state-flag { font-size: var(--fs-xs); opacity: .65; width: 100%; }
+.foot { border-bottom: 0; border-top: var(--line); font-size: var(--fs-sm); }
+.foot .fine { opacity: .6; font-size: var(--fs-xs); width: 100%; }
+
+main { max-width: var(--page-max); margin: 0 auto; padding: 0 var(--pad) var(--sp-6); }
+.section { padding: var(--sp-5) 0; border-bottom: var(--line-soft); }
+.section:last-child { border-bottom: 0; }
+.sec-head { display: flex; flex-wrap: wrap; align-items: end; gap: var(--sp-2); margin-bottom: var(--sp-3); }
+.sec-head h2 { font-family: var(--font-head); font-size: var(--fs-h2); letter-spacing: var(--ls-tight); }
+.hint { font-size: var(--fs-sm); opacity: .7; }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); margin-left: auto; }
+.seg { display: inline-flex; gap: 0; }
+.seg button { border: var(--ctl-border); background: var(--ctl-bg); padding: var(--ctl-pad); }
+.cta, .ghost, .ghost-btn { display: inline-block; border: var(--ctl-border); padding: var(--ctl-pad-lg); text-decoration: none; }
+.cta { background: var(--accent); color: var(--on-accent); }
+.ghost, .ghost-btn { background: transparent; }
+.cta-row, .btn-row { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-3); }
+
+.hero { padding-top: var(--sp-6); }
+.eyebrow { font-size: var(--fs-sm); letter-spacing: var(--ls-wide); text-transform: uppercase; opacity: .75; }
+.hero h1 { font-family: var(--font-head); font-size: var(--fs-h1); line-height: 1.06; margin: var(--sp-2) 0; max-width: 18ch; }
+.lede { max-width: 46ch; font-size: var(--fs-lg); opacity: .9; }
+.countdown { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin: var(--sp-4) 0; }
+.cd-cell { display: flex; flex-direction: column; align-items: center; min-width: var(--cd-w); padding: var(--sp-2); border: var(--card-border); background: var(--card-bg); }
+.cd-cell b { font-family: var(--font-mono); font-size: var(--fs-cd); font-weight: 700; font-variant-numeric: tabular-nums; }
+.cd-cell span { font-size: var(--fs-xs); opacity: .65; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--kpi-min), 1fr)); gap: var(--sp-2); margin-bottom: var(--sp-3); }
+.kpi { padding: var(--sp-2); border: var(--card-border); background: var(--card-bg); }
+.kpi dt { font-size: var(--fs-xs); opacity: .7; }
+.kpi dd { font-family: var(--font-mono); font-size: var(--fs-kpi); font-weight: 700; font-variant-numeric: tabular-nums; }
+.progress { height: var(--bar-h); background: var(--track); overflow: hidden; }
+.progress-fill { width: var(--pct, 0%); height: 100%; background: var(--accent); }
+.progress-text { font-size: var(--fs-sm); margin-top: var(--sp-1); opacity: .8; }
+
+.lineup-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--card-min), 1fr)); gap: var(--gap); }
+.artist { position: relative; display: flex; flex-direction: column; gap: var(--sp-1); padding: var(--sp-3); border: var(--card-border); background: var(--card-bg); }
+.artist .rank { font-family: var(--font-mono); font-size: var(--fs-xs); opacity: .55; }
+.a-name { font-family: var(--font-head); font-size: var(--fs-lg); font-weight: 700; }
+.a-en { font-size: var(--fs-xs); opacity: .65; }
+.a-meta { display: flex; flex-wrap: wrap; gap: 6px; font-size: var(--fs-xs); }
+.genre { opacity: .8; }
+.hl { border: var(--tag-border); padding: 1px 6px; }
+.artist .vote { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: var(--sp-1); border: var(--ctl-border); background: var(--ctl-bg); padding: var(--ctl-pad); }
+.vote .votes { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.vote.voted { border-color: var(--accent); }
+
+.sched-pane-wrap { display: grid; gap: var(--gap); }
+.stage-block { margin-bottom: var(--sp-4); }
+.stage-name { font-family: var(--font-head); font-size: var(--fs-lg); margin-bottom: var(--sp-1); }
+.sessions { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+.sessions th { text-align: left; font-weight: 600; font-size: var(--fs-xs); opacity: .6; border-bottom: var(--line); }
+.sessions td { padding: var(--sp-1) 6px; border-bottom: var(--line-soft); vertical-align: top; }
+.sessions .t b { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.sessions .t .to { font-family: var(--font-mono); opacity: .6; font-size: var(--fs-xs); display: block; }
+.sessions .title { font-weight: 600; }
+.sessions .act { opacity: .8; }
+.sessions .tag { font-size: var(--fs-xs); opacity: .65; white-space: nowrap; }
+.pane { margin-top: var(--sp-2); }
+.loading, .empty, .error { font-size: var(--fs-sm); opacity: .75; padding: var(--sp-2) 0; }
+.error { opacity: 1; color: var(--danger); }
+.notice { padding: var(--sp-2) 0; border-bottom: var(--line-soft); }
+.notice h5 { font-family: var(--font-head); font-size: var(--fs-lg); margin-bottom: 4px; }
+.notice p { font-size: var(--fs-sm); max-width: 62ch; opacity: .9; }
+
+.tier-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--tier-min), 1fr)); gap: var(--gap); margin-bottom: var(--sp-3); }
+.tier { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: var(--sp-3); border: var(--card-border); background: var(--card-bg); text-align: left; }
+.tier[aria-pressed="true"] { border-color: var(--accent); background: var(--card-bg-active); }
+.t-name { font-family: var(--font-head); font-size: var(--fs-lg); }
+.t-price { font-family: var(--font-mono); font-size: var(--fs-kpi); font-weight: 700; }
+.t-note { font-size: var(--fs-xs); opacity: .7; }
+.vip-box { font-size: var(--fs-sm); padding: var(--sp-2); border: var(--card-border); background: var(--card-bg); margin-bottom: var(--sp-3); }
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--field-min), 1fr)); gap: var(--gap); align-items: end; }
+.lbl { display: flex; flex-direction: column; gap: 6px; font-size: var(--fs-xs); opacity: .85; }
+.lbl input, .lbl select { padding: var(--ctl-pad); border: var(--ctl-border); background: var(--input-bg); }
+.stepper { display: inline-flex; align-items: center; border: var(--ctl-border); }
+.stepper button { border: 0; background: transparent; padding: var(--ctl-pad); min-width: 2.4em; }
+.stepper output { font-family: var(--font-mono); font-size: var(--fs-lg); min-width: 2em; text-align: center; }
+.summary-line { display: flex; flex-direction: column; gap: 4px; }
+.summary-line .total { font-family: var(--font-mono); font-size: var(--fs-kpi); }
+.status { font-size: var(--fs-sm); padding: var(--sp-2); border: var(--line-soft); margin-top: var(--sp-2); }
+.status[data-kind="error"] { color: var(--danger); border-color: var(--danger); }
+.status[data-kind="ok"] { color: var(--ok); border-color: var(--ok); }
+.poster-host { margin-top: var(--sp-3); overflow-x: auto; }
+#poster-host svg { max-width: 100%; height: auto; }
+.p-bg { fill: var(--poster-bg); stroke: var(--poster-line); stroke-width: 2; }
+.p-cut { stroke: var(--poster-line); stroke-dasharray: 6 6; stroke-width: 2; }
+.p-hole { fill: var(--bg); stroke: var(--poster-line); stroke-width: 2; }
+.p-title { font-family: var(--font-head); font-size: 26px; fill: var(--ink); }
+.p-sub { font-family: var(--font-body); font-size: 13px; fill: var(--ink); opacity: .75; }
+.p-label { font-size: 11px; letter-spacing: .12em; fill: var(--ink); opacity: .6; }
+.p-value { font-family: var(--font-mono); font-size: 16px; fill: var(--ink); }
+.p-stub { font-size: 12px; letter-spacing: .3em; fill: var(--ink); opacity: .6; }
+.p-amount { font-family: var(--font-mono); font-size: 30px; font-weight: 700; fill: var(--ink); }
+.p-mini { font-size: 12px; fill: var(--ink); opacity: .7; }
+.p-bar { fill: var(--ink); }
+
+@media (max-width: 620px) {
+  .hero h1 { font-size: var(--fs-h1s); }
+  .controls { margin-left: 0; width: 100%; }
+}
+
+</style>
+<style>
+/* 风格 C · 等距轴测 isometric —— 深空底上立起的斜切面板：serif 大标题 + 竖排舞台标签 +
+   transform 透视把日程压成轴测台面，霓虹描边发光。与 A/B 共用的结构层完全相同。 */
+:root {
+  --is-void: #0E1620;
+  --is-panel: #162330;
+  --is-panel-hi: #1F3040;
+  --is-ink: #E7F1F7;
+  --is-ink-dim: #93AAB9;
+  --is-cyan: #35D6C0;
+  --is-magenta: #FF5C8A;
+  --is-amber: #F2B94B;
+  --is-line: #2C4257;
+  --poster-bg-is: #162330;
+}
+body {
+  --bg: var(--is-void);
+  --ink: var(--is-ink);
+  --font-head: Georgia, "Songti SC", "Times New Roman", serif;
+  --font-body: "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --fs-body: 16px;
+  --lh: 1.62;
+  --fs-xs: 11px; --fs-sm: 13px; --fs-lg: 19px;
+  --fs-h1: clamp(38px, 7vw, 76px); --fs-h1s: 34px; --fs-h2: 26px;
+  --fs-cd: 32px; --fs-kpi: 30px;
+  --sp-1: 5px; --sp-2: 9px; --sp-3: 15px; --sp-4: 22px; --sp-5: 38px; --sp-6: 56px;
+  --pad: 24px;
+  --page-max: 1240px;
+  --ls-tight: -0.015em; --ls-wide: 0.22em;
+  --line: 1px solid var(--is-line);
+  --line-soft: 1px solid var(--is-panel-hi);
+  --card-border: 1px solid var(--is-line);
+  --card-bg: var(--is-panel);
+  --card-bg-active: var(--is-panel-hi);
+  --tag-border: 1px solid var(--is-amber);
+  --ctl-border: 1px solid var(--is-line);
+  --ctl-bg: var(--is-panel);
+  --ctl-pad: 6px 13px; --ctl-pad-lg: 12px 26px;
+  --accent: var(--is-cyan);
+  --on-accent: var(--is-void);
+  --danger: var(--is-magenta);
+  --ok: var(--is-cyan);
+  --track: var(--is-panel-hi);
+  --bar-h: 8px;
+  --kpi-min: 160px; --card-min: 320px; --tier-min: 220px; --field-min: 180px; --cd-w: 78px;
+  --gap: 14px;
+  --input-bg: var(--is-panel-hi);
+  --poster-bg: var(--poster-bg-is);
+  --poster-line: var(--is-cyan);
+  --nav-deco: none;
+}
+
+/* 轴测底纹：整页铺一层等距网格光 */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(30deg, var(--is-panel) 0 1px, transparent 1px 46px),
+    repeating-linear-gradient(-30deg, var(--is-panel) 0 1px, transparent 1px 46px);
+  opacity: .5;
+}
+main { padding-left: max(var(--pad), 4vw); }
+
+.frame { border-bottom: 1px solid var(--is-line); background: linear-gradient(180deg, var(--is-panel) 0%, transparent 100%); }
+.brand { font-family: var(--font-head); font-weight: 400; font-size: var(--fs-lg); letter-spacing: .02em; }
+.nav a { border-left: 1px solid var(--is-line); padding: 2px 12px; text-transform: uppercase; font-size: var(--fs-xs); letter-spacing: var(--ls-wide); }
+.nav a:hover { color: var(--is-cyan); }
+.state-flag { font-family: var(--font-mono); color: var(--is-ink-dim); }
+
+.hero h1 { font-weight: 400; font-style: italic; }
+.eyebrow { color: var(--is-amber); font-family: var(--font-mono); }
+.lede { color: var(--is-ink-dim); }
+/* 轴测指纹 1：所有面板被斜切成平行四边形（内容再斜回来），像立在等距网格上 */
+.cd-cell, .kpi {
+  transform: skewY(-2deg);
+  border: 1px solid var(--is-line);
+  background: var(--is-panel);
+  box-shadow: 6px 8px 0 -1px var(--is-panel-hi), 0 0 0 1px var(--is-line) inset;
+}
+.cd-cell b { color: var(--is-cyan); text-shadow: 0 0 12px var(--is-cyan); }
+.kpi dd { color: var(--is-ink); }
+.kpi dt { text-transform: uppercase; letter-spacing: var(--ls-wide); color: var(--is-ink-dim); }
+.progress { border: 1px solid var(--is-line); }
+.progress-fill { background: linear-gradient(90deg, var(--is-cyan) 0%, var(--is-amber) 100%); box-shadow: 0 0 14px var(--is-cyan); }
+.cta { border: 1px solid var(--is-cyan); background: transparent; color: var(--is-cyan); text-transform: uppercase; letter-spacing: .14em; box-shadow: 0 0 18px -4px var(--is-cyan); border-radius: 2px; }
+.ghost, .ghost-btn { border: 1px solid var(--is-line); color: var(--is-ink); border-radius: 2px; }
+
+/* 轴测指纹 2：阵容固定双列，卡内左侧一条竖向霓虹轨道 */
+.lineup-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.artist {
+  border-radius: 3px; background: var(--is-panel);
+  border-left: 3px solid var(--is-cyan);
+  box-shadow: 10px 12px 0 -2px var(--is-panel-hi);
+}
+.artist .rank { font-family: var(--font-mono); color: var(--is-amber); }
+.a-name { font-family: var(--font-head); font-weight: 400; font-size: 22px; }
+.hl { color: var(--is-magenta); border-color: var(--is-magenta); }
+.vote { border-radius: 2px; background: var(--is-panel-hi); border-color: var(--is-line); }
+.vote.voted { background: var(--is-cyan); color: var(--is-void); border-color: var(--is-cyan); }
+
+/* 轴测指纹 3：舞台名竖排在左，日程表整体压成轴测台面 */
+.sec-head { border-bottom: 1px solid var(--is-line); }
+.stage-block { display: flex; gap: var(--sp-3); align-items: stretch; }
+.stage-name {
+  writing-mode: vertical-rl; text-orientation: mixed;
+  border: 1px solid var(--is-line); border-radius: 2px;
+  background: var(--is-panel); color: var(--is-amber);
+  font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .2em;
+  padding: 8px 4px; margin-bottom: 0;
+}
+/* rotateX 会让近端（下沿）比 100% 宽：留 6% 收边，否则整表在 1280 视口上溢出 ~7px（真浏览器溢出断言抓到的） */
+.sessions { width: 94%; transform: perspective(760px) rotateX(11deg); border-collapse: separate; border-spacing: 0; }
+.sessions th { color: var(--is-ink-dim); text-transform: uppercase; letter-spacing: .12em; border-bottom: 1px solid var(--is-cyan); }
+.sessions tr:nth-child(odd) td { background: var(--is-panel); }
+.sessions tr:nth-child(even) td { background: var(--is-panel-hi); }
+.sessions td { border-bottom: 1px solid var(--is-line); }
+.sessions .t b { color: var(--is-cyan); }
+.sessions .tag { color: var(--is-magenta); }
+.stage-wrap { flex: 1; min-width: 0; }
+.notice { border-left: 3px solid var(--is-amber); padding-left: var(--sp-3); }
+.notice h5 { font-family: var(--font-head); font-weight: 400; color: var(--is-amber); }
+.notice p { color: var(--is-ink-dim); }
+.loading, .empty, .error { border: 1px dashed var(--is-line); padding: 10px; }
+
+.tier-box { gap: var(--gap); }
+.tier { border-radius: 3px; box-shadow: 8px 10px 0 -2px var(--is-panel-hi); }
+.tier[aria-pressed="true"] { border-color: var(--is-cyan); box-shadow: 0 0 22px -6px var(--is-cyan), 8px 10px 0 -2px var(--is-panel-hi); }
+.t-price { color: var(--is-cyan); }
+.vip-box { border-left: 3px solid var(--is-amber); }
+.lbl input, .lbl select { border-radius: 2px; border-color: var(--is-line); }
+.summary-line .total { color: var(--is-amber); }
+.status { border-radius: 2px; background: var(--is-panel); }
+.poster-host { padding: var(--sp-3); background: var(--is-panel); border: 1px solid var(--is-line); }
+.p-amount { fill: var(--is-amber); }
+.p-bar { fill: var(--is-cyan); }
+.foot { color: var(--is-ink-dim); }
+
+</style>
+</head>
+<body>
+<div id="scroll-bar" class="scroll-bar" aria-hidden="true"></div>
+
+<header class="frame">
+  <p class="brand">星屿 <span>Sound Isle</span></p>
+  <nav class="nav" aria-label="页面导航">
+    <a href="#hero">开票</a><a href="#lineup">阵容</a><a href="#schedule">日程</a><a href="#register">报名</a><a href="#poster">票根</a>
+  </nav>
+  <p class="state-flag">数据源 <code id="boot-flag">booting</code> · 本地产物，非真实票务系统</p>
+</header>
+
+<main>
+  <section id="hero" class="section hero">
+    <p class="eyebrow">2026.10.16 — 10.18 · 长沙 · 湘江中央星屿</p>
+    <h1>把整个秋天调成同一种音量</h1>
+    <p class="lede">三日三舞台，江风与低频同场。开票已进入第三轮，前区平台余量按报名时时变化。</p>
+    <div class="countdown" role="timer" aria-live="off">
+      <div class="cd-cell"><b id="cd-d">—</b><span>天</span></div>
+      <div class="cd-cell"><b id="cd-h">—</b><span>时</span></div>
+      <div class="cd-cell"><b id="cd-m">—</b><span>分</span></div>
+      <div class="cd-cell"><b id="cd-s">—</b><span>秒</span></div>
+    </div>
+    <dl class="kpis">
+      <div class="kpi"><dt>已报名</dt><dd id="kpi-signed">—</dd></div>
+      <div class="kpi"><dt>剩余票量</dt><dd id="kpi-left">—</dd></div>
+      <div class="kpi"><dt>品牌合作</dt><dd id="kpi-partners">—</dd></div>
+    </dl>
+    <div class="progress" role="img" aria-label="开票进度">
+      <div id="progress-fill" class="progress-fill"></div>
+    </div>
+    <p id="progress-text" class="progress-text">开票进度载入中…</p>
+    <p class="cta-row"><a class="cta" href="#register">立即报名</a><a class="ghost" href="#lineup">看看阵容</a></p>
+  </section>
+
+  <section id="lineup" class="section lineup">
+    <div class="sec-head">
+      <h2>12 组阵容</h2>
+      <div id="sort-box" class="controls">
+        <span class="seg" role="group" aria-label="排序方式">
+          <button type="button" data-sort="votes" aria-pressed="true">人气</button>
+          <button type="button" data-sort="signed" aria-pressed="false">官宣顺序</button>
+        </span>
+        <span id="sort-hint" class="hint"></span>
+      </div>
+    </div>
+    <div id="lineup-grid" class="lineup-grid"></div>
+  </section>
+
+  <section id="schedule" class="section schedule">
+    <div class="sec-head">
+      <h2>日程与公告</h2>
+      <div class="controls">
+        <span class="seg" role="group" aria-label="按日期筛选">
+          <button type="button" class="day-tab" data-day="all" aria-pressed="true">全部</button>
+          <button type="button" class="day-tab" data-day="fri" aria-pressed="false">10.16</button>
+          <button type="button" class="day-tab" data-day="sat" aria-pressed="false">10.17</button>
+          <button type="button" class="day-tab" data-day="sun" aria-pressed="false">10.18</button>
+        </span>
+        <label class="lbl">舞台
+          <select id="sel-stage">
+            <option value="all">全部舞台</option>
+            <option value="main">主舞台 · 潮声</option>
+            <option value="isle">屿林舞台</option>
+            <option value="lounge">江畔静舞台</option>
+          </select>
+        </label>
+        <span class="seg" role="tablist" aria-label="日程或公告">
+          <button type="button" id="tab-sched" class="pane-tab" role="tab" aria-selected="true">演出日程</button>
+          <button type="button" id="tab-notices" class="pane-tab" role="tab" aria-selected="false">观众公告</button>
+        </span>
+        <span id="sched-count" class="hint"></span>
+      </div>
+    </div>
+    <div id="sched-pane" class="pane" role="tabpanel"><div id="schedule-list"></div></div>
+    <div id="notice-pane" class="pane" role="tabpanel" hidden><div id="notice-host"></div></div>
+  </section>
+
+  <section id="register" class="section register">
+    <div class="sec-head"><h2>报名</h2><p class="hint">姓名与手机号用于入场核验；余票随提交即时变化。</p></div>
+    <div id="tier-box" class="tier-box" role="group" aria-label="选择票档"></div>
+    <p id="vip-box" class="vip-box" hidden></p>
+    <div class="form-grid">
+      <label class="lbl" for="in-name">姓名
+        <input id="in-name" name="name" type="text" autocomplete="name" maxlength="20" placeholder="真实姓名">
+      </label>
+      <label class="lbl" for="in-phone">手机号
+        <input id="in-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="11" placeholder="11 位手机号">
+      </label>
+      <div class="lbl">数量
+        <div class="stepper">
+          <button type="button" id="qty-minus" aria-label="减少一张">−</button>
+          <output id="qty-out" aria-live="polite">2</output>
+          <button type="button" id="qty-plus" aria-label="增加一张">＋</button>
+        </div>
+      </div>
+      <div class="summary-line">
+        <span id="reg-unit" class="unit">—</span>
+        <strong id="reg-total" class="total">—</strong>
+      </div>
+    </div>
+    <p class="btn-row">
+      <button type="button" id="btn-submit" class="cta">提交报名</button>
+      <button type="button" id="btn-clear" class="ghost-btn">清除本机偏好</button>
+    </p>
+    <p id="reg-status" class="status" role="status" aria-live="polite" data-kind="idle"></p>
+  </section>
+
+  <section id="poster" class="section poster">
+    <div class="sec-head"><h2>纪念票根</h2><p id="poster-hint" class="hint">报名成功后再点生成，票根会把单号与金额印进条码左侧。</p></div>
+    <p><button type="button" id="btn-poster" class="cta">生成纪念票根</button></p>
+    <div id="poster-host" class="poster-host"></div>
+  </section>
+</main>
+
+<footer class="frame foot">
+  <p>星屿·声浪岛音乐节 · Sound Isle Festival · 湘江三号码头 ↔ 星屿东埠每 20 分钟一班轮渡</p>
+  <p class="fine">本页为 skill 验证用的本地演示：阵容、日程、余票均为固定样例数据，不连接任何真实票务服务。</p>
+</footer>
+
+<script>
+"use strict";
+(function () {
+/* 事实源：与 2026-09-25 20:00 轮（vercel-react-best-practices × 活动报名页）逐字段相同，
+   复制自 artifacts/20260925-20-vercel-react-activity/src/lib/content.ts。
+   目的是让「同一张活动页、两种 skill 实现」的字节数/LOC/能力差成为受控对照。 */
+const EVENT = {
+  name: '星屿·声浪岛音乐节',
+  enName: 'Sound Isle Festival',
+  city: '长沙 · 湘江中央星屿',
+  startsAt: new Date('2026-10-16T18:00:00+08:00').getTime(),
+  days: [
+    { key: 'fri', label: '10.16 周五', stage: '开幕夜' },
+    { key: 'sat', label: '10.17 周六', stage: '全日' },
+    { key: 'sun', label: '10.18 周日', stage: '收官日' },
+  ],
+  tiers: [
+    { id: 'day', name: '单日通票', price: 380, note: '任选一日入场' },
+    { id: 'full', name: '三日全通', price: 980, note: '含露营位预订资格' },
+    { id: 'vip', name: '内场 VIP', price: 1580, note: '前区平台 + 专属通道' },
+  ],
+};
+
+const FIXTURE_SUMMARY = {
+  signedCount: 12483,
+  ticketsLeft: 642,
+  capacity: 18000,
+  brandPartners: 23,
+  serverNow: 1760000000000,
+};
+
+const FIXTURE_ARTISTS = [
+  { id: 'a01', name: '潮汐地图', enName: 'Tidemap', genre: '数学摇滚', city: '长沙', votes: 3121, headliner: true },
+  { id: 'a02', name: '岛屿信号', enName: 'Isle Signal', genre: '合成器流行', city: '上海', votes: 2980, headliner: true },
+  { id: 'a03', name: '南墙乐队', enName: 'Southwall', genre: '民谣摇滚', city: '广州', votes: 2218, headliner: false },
+  { id: 'a04', name: '电子羊', enName: 'Electronic Sheep', genre: 'Techno', city: '柏林', votes: 2530, headliner: true },
+  { id: 'a05', name: '芥末汽水', enName: 'Mustard Soda', genre: '盯鞋', city: '成都', votes: 2714, headliner: false },
+  { id: 'a06', name: '夜航班机', enName: 'Nightflight', genre: 'City Pop', city: '东京', votes: 2044, headliner: false },
+  { id: 'a07', name: '白噪音研究所', enName: 'White Lab', genre: '氛围电子', city: '杭州', votes: 1876, headliner: false },
+  { id: 'a08', name: '铜锣湾少年', enName: 'Causeway Boys', genre: '冲浪摇滚', city: '厦门', votes: 1690, headliner: false },
+  { id: 'a09', name: '低多边形', enName: 'Low Poly', genre: '独立电子', city: '武汉', votes: 1455, headliner: false },
+  { id: 'a10', name: '橘子罐头', enName: 'Tangerine Tin', genre: '车库摇滚', city: '西安', votes: 1320, headliner: false },
+  { id: 'a11', name: '雾中列车', enName: 'Fog Train', genre: '后摇', city: '重庆', votes: 1176, headliner: false },
+  { id: 'a12', name: '银河录像厅', enName: 'Galaxy Video', genre: 'Disco', city: '北京', votes: 998, headliner: false },
+];
+
+const FIXTURE_SESSIONS = [
+  ['m01', 'fri', 'main', '18:30', '19:20', '开幕：鼓圈巡游', '星屿鼓班', '开幕'],
+  ['m02', 'fri', 'main', '19:40', '20:40', '潮汐地图 全专首演', '潮汐地图', '头牌'],
+  ['m03', 'fri', 'isle', '20:00', '20:50', '不插电黄昏场', '南墙乐队', '不插电'],
+  ['m04', 'fri', 'lounge', '21:00', '23:00', '黑胶静默迪斯科', 'DJ 白噪音', '静音'],
+  ['m05', 'fri', 'main', '21:10', '22:10', '岛屿信号 宇宙电波', '岛屿信号', '头牌'],
+  ['m06', 'fri', 'isle', '21:30', '22:30', 'City Pop 霓虹夜', '夜航班机', '复古'],
+  ['m07', 'fri', 'lounge', '23:00', '01:00', '日场收声派对', '电子羊', '派对'],
+  ['m08', 'sat', 'main', '13:00', '13:50', '开场：声音装置导览', '白噪音研究所', '装置'],
+  ['m09', 'sat', 'main', '14:20', '15:10', '芥末汽水 盯鞋风暴', '芥末汽水', '盯鞋'],
+  ['m10', 'sat', 'isle', '13:30', '14:20', '少年冲浪声', '铜锣湾少年', '冲浪'],
+  ['m11', 'sat', 'isle', '15:00', '15:50', '低多边形 现场编程', '低多边形', '生成'],
+  ['m12', 'sat', 'lounge', '14:00', '17:00', '唱片市集：厂牌擂台', '六厂牌', '市集'],
+  ['m13', 'sat', 'main', '16:00', '17:00', '橘子罐头 车库狂想', '橘子罐头', '车库'],
+  ['m14', 'sat', 'main', '18:00', '19:00', '雾中列车 慢速轰鸣', '雾中列车', '后摇'],
+  ['m15', 'sat', 'isle', '17:30', '18:30', '落日对唱会', '南墙 × 芥末', '联名'],
+  ['m16', 'sat', 'main', '20:00', '21:10', '银河录像厅 舞池重启', '银河录像厅', 'Disco'],
+  ['m17', 'sat', 'lounge', '21:30', '23:30', '氛围场：江面回声', '白噪音研究所', '氛围'],
+  ['m18', 'sat', 'main', '21:40', '22:50', '电子羊 三小时装置 Techno', '电子羊', '头牌'],
+  ['m19', 'sun', 'main', '13:30', '14:20', '亲子声浪工坊', '星屿剧团', '亲子'],
+  ['m20', 'sun', 'isle', '14:00', '15:00', '新声竞演：八支Demo', '八支新声', '竞演'],
+  ['m21', 'sun', 'main', '15:30', '16:30', '城市之声圆桌演出', '长沙音乐人联盟', '在地'],
+  ['m22', 'sun', 'lounge', '15:00', '18:00', '交换唱片下午茶', '乐迷会', '市集'],
+  ['m23', 'sun', 'main', '17:30', '18:40', '潮汐地图 × 交响组曲', '潮汐地图', '联名'],
+  ['m24', 'sun', 'isle', '19:00', '20:00', '告别的轮盘：观众点歌', '夜航班机', '互动'],
+  ['m25', 'sun', 'main', '20:30', '22:00', '闭幕大合奏 + 江面烟花', '全体阵容', '闭幕'],
+].map(function (r) {
+  return { id: r[0], day: r[1], stage: r[2], start: r[3], end: r[4], title: r[5], artist: r[6], tag: r[7] };
+});
+
+const FIXTURE_NOTICES = [
+  { id: 'n1', kind: 'shuttle', title: '免费接驳轮渡', body: '湘江三号码头 ↔ 星屿东埠，12:00-23:30 每 20 分钟一班；凭票根登船。散场后加开 22:30 / 23:00 / 23:30 三班大船。' },
+  { id: 'n2', kind: 'entry', title: '入场与安检', body: '每日 12:00 开闸。禁止携带玻璃容器、冷焰火、长度超过 50cm 的应援物。现场设寄存处（¥10/件，支持扫码）。' },
+  { id: 'n3', kind: 'weather', title: '天气预案', body: '据 10 日预报，三日晴间多云、江边夜间约 16℃。中雨以上演出照常（主舞台顶棚覆盖 70%）；暴雨红色预警时启动闭幕日顺延预案，票务自动保留。' },
+  { id: 'n4', kind: 'camp', title: '露营区守则', body: '三日全通票可预订湖东营地（200 顶限额）。15:00 后禁止生明火；营地 24h 有值守与热水站，撤营请带走垃圾可换纪念徽章。' },
+];
+
+const STAGES = [
+  { id: 'main', name: '主舞台 · 潮声' },
+  { id: 'isle', name: '屿林舞台' },
+  { id: 'lounge', name: '江畔静舞台' },
+];
+
+/* 零框架「服务端」等价物：页面内 promise + 延迟表 + 请求日志。
+   规则与 20:00 轮 server/mock-api.mjs 一致：
+   - 姓名含「风控」→ 409 risk_hold（回滚）
+   - 手机 000 开头 → 403 device_denied（回滚）
+   - qty > ticketsLeft → 409 sold_out
+   - 同一艺人二次投票 → 409 already_voted
+   - VIP 前区 left = min(46, ticketsLeft)
+   对照意义：React 轮用 node:http 真服务端做时序证据；本轮没有构建期也没有进程外服务，
+   所以时序断言只能落在「同一页内的请求日志 + setTimeout 延迟档」上，证明强度低于上一轮（报告 §7 记录）。 */
+const LATENCY = { summary: 40, lineup: 120, schedule: 90, notices: 320, vip: 260, register: 60, vote: 45 };
+
+function createSvc() {
+  const state = {
+    summary: Object.assign({}, FIXTURE_SUMMARY),
+    artists: FIXTURE_ARTISTS.map(function (a) { return Object.assign({}, a); }),
+    voted: {},
+    registrations: 0,
+  };
+  const reqLog = [];
+  const t0 = Date.now();
+
+  function log(path, dir) {
+    reqLog.push({ path: path, dir: dir, at: Date.now() - t0 });
+  }
+  function later(ms, fn) {
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        try { resolve(fn()); } catch (e) { reject(e); }
+      }, ms);
+    });
+  }
+
+  return {
+    reqLog: reqLog,
+    state: state,
+    serverNow: function () { return FIXTURE_SUMMARY.serverNow + (Date.now() - t0); },
+
+    /* 聚合入口：hero/schedule/lineup 一次拿齐，对应 React 轮 bootstrap() 的并行发起 */
+    boot: function () {
+      log('/api/boot', 'GET');
+      return later(LATENCY.summary, function () {
+        return {
+          summary: Object.assign({}, state.summary),
+          schedule: FIXTURE_SESSIONS.slice(),
+          artists: state.artists.slice(),
+        };
+      });
+    },
+    vipLeft: function () {
+      log('/api/tickets/vip', 'GET');
+      return later(LATENCY.vip, function () {
+        return { left: Math.min(46, state.summary.ticketsLeft) };
+      });
+    },
+    notices: function () {
+      log('/api/notices', 'GET');
+      return later(LATENCY.notices, function () { return FIXTURE_NOTICES.slice(); });
+    },
+    register: function (payload) {
+      log('/api/register', 'POST');
+      return later(LATENCY.register, function () {
+        if (payload.name.indexOf('风控') >= 0) throw svcError('risk_hold', '姓名触发实名风控，报名已回滚');
+        if (payload.phone.indexOf('000') === 0) throw svcError('device_denied', '风控拦截：该手机号被暂时限制');
+        if (payload.qty > state.summary.ticketsLeft) throw svcError('sold_out', '余票不足，剩 ' + state.summary.ticketsLeft + ' 张');
+        state.registrations += 1;
+        state.summary.signedCount += payload.qty;
+        state.summary.ticketsLeft = Math.max(0, state.summary.ticketsLeft - payload.qty);
+        return { ok: true, registrationId: 'R-' + String(1000 + state.registrations), signedCount: state.summary.signedCount, ticketsLeft: state.summary.ticketsLeft };
+      });
+    },
+    vote: function (artistId) {
+      log('/api/vote/' + artistId, 'POST');
+      return later(LATENCY.vote, function () {
+        if (state.voted[artistId]) throw svcError('already_voted', '每位乐迷每档只有一次投票机会');
+        state.voted[artistId] = true;
+        var hit = null;
+        for (var i = 0; i < state.artists.length; i++) if (state.artists[i].id === artistId) hit = state.artists[i];
+        if (!hit) throw svcError('not_found', '阵容中未找到该艺人');
+        hit.votes += 1;
+        return { id: artistId, votes: hit.votes };
+      });
+    },
+  };
+
+  function svcError(code, message) {
+    var e = new Error(message);
+    e.code = code;
+    return e;
+  }
+}
+
+/* 零框架实现：一个 IIFE（build.mjs 把 content/svc/storage/app 串进同一个闭包）。
+   三条自设纪律，全部有对应断言：
+   1. 数据只经 textContent / createElementNS 落 DOM，不用 innerHTML 拼用户输入（XSS 面为零）。
+   2. 卡片/表格行「建一次、之后只复排不重建」（这是 vanilla 下 rerender-memo 的等价物，可机检）。
+   3. 正则与静态常量提升到模块层，不在事件回调里重建。 */
+const KEY = 'soundisle.prefs.v1';
+const PHONE_RE = /^1[3-9]\d{9}$/;
+const NAME_RE = /^[\p{L}\p{M}\s·•-]{2,20}$/u;
+const VOTE_ID_RE = /^a\d\d$/;
+const TIER_IDS = ['day', 'full', 'vip'];
+
+function readPrefs() {
+  const fallback = { voted: [], tier: 'day' };
+  let raw = null;
+  try { raw = window.localStorage.getItem(KEY); } catch (e) { return fallback; }
+  if (!raw) return fallback;
+  let parsed = null;
+  try { parsed = JSON.parse(raw); } catch (e) { return fallback; }
+  if (!parsed || typeof parsed !== 'object' || parsed.v !== 1 || !parsed.data || typeof parsed.data !== 'object') return fallback;
+  return sanitizePrefs(parsed.data);
+}
+function sanitizePrefs(d) {
+  const voted = Array.isArray(d.voted) ? d.voted.filter(function (x) { return typeof x === 'string' && VOTE_ID_RE.test(x); }) : [];
+  const tier = typeof d.tier === 'string' && TIER_IDS.indexOf(d.tier) >= 0 ? d.tier : 'day';
+  return { voted: voted, tier: tier };
+}
+function writePrefs(patch, prefs) {
+  const next = sanitizePrefs(Object.assign({}, prefs, patch));
+  try { window.localStorage.setItem(KEY, JSON.stringify({ v: 1, data: next })); } catch (e) { /* 存储不可用时保持内存视图 */ }
+  return next;
+}
+
+const nf = new Intl.NumberFormat('en-US');
+function pad2(n) { return n < 10 ? '0' + n : String(n); }
+
+function startApp() {
+  const doc = document;
+  const svc = createSvc();
+  const prefs0 = readPrefs();
+  const stats = { cardsBuilt: 0, rowsBuilt: 0, postersBuilt: 0, reorders: 0, noticesLoads: 0, loopIterations: 0, voteFlash: 0, scrollTicks: 0 };
+  window.__lab = { svc: svc, stats: stats, prefs: prefs0, state: null, timers: [] };
+
+  /* ---------- 工具 ---------- */
+  function el(tag, cls, text) {
+    const n = doc.createElement(tag);
+    if (cls) n.setAttribute('class', cls);
+    if (text !== undefined && text !== null) n.textContent = text;
+    return n;
+  }
+  function slot(id) { return doc.getElementById(id); }
+  function fmtTokens(ms) {
+    const total = Math.max(0, Math.floor(ms / 1000));
+    return {
+      d: Math.floor(total / 86400),
+      h: Math.floor(total / 3600) % 24,
+      m: Math.floor(total / 60) % 60,
+      s: total % 60,
+    };
+  }
+
+  /* ---------- HERO：倒计时 + 3 KPI + 开票进度 ---------- */
+  const heroState = { signed: 0, left: 0 };
+  const cdNode = { d: slot('cd-d'), h: slot('cd-h'), m: slot('cd-m'), s: slot('cd-s') };
+  function paintHero() {
+    slot('kpi-signed').textContent = nf.format(heroState.signed);
+    slot('kpi-left').textContent = nf.format(heroState.left);
+    const sold = svc.state.summary.capacity - heroState.left;    const pct = Math.min(100, Math.max(0, (sold / svc.state.summary.capacity) * 100));
+    slot('progress-fill').style.setProperty('--pct', pct.toFixed(2) + '%');
+    slot('progress-text').textContent = '已出 ' + nf.format(sold) + ' 张 / 容量 ' + nf.format(svc.state.summary.capacity) + '（' + pct.toFixed(1) + '%）';
+    slot('kpi-partners').textContent = nf.format(svc.state.summary.brandPartners);
+  }
+  /* 双时钟：一律以 svc.serverNow() 为准（页面本地 Date.now() 不参与），
+     历轮踩过「两个时钟口径差 8 小时」的坑，这里配 G/H 组断言钉住。 */
+  function tickCountdown() {
+    const t = fmtTokens(EVENT.startsAt - svc.serverNow());
+    cdNode.d.textContent = String(t.d);
+    cdNode.h.textContent = pad2(t.h);
+    cdNode.m.textContent = pad2(t.m);
+    cdNode.s.textContent = pad2(t.s);
+    window.__lab.lastCountdown = t;
+  }
+  stats.timers = [setInterval(tickCountdown, 1000)];
+
+  /* ---------- LINEUP：12 卡建一次 + 复排 + 乐观投票 ---------- */
+  const lineupWrap = slot('lineup-grid');
+  const cards = {};
+  function buildCard(a) {
+    stats.cardsBuilt += 1;
+    const card = el('article', 'artist');
+    card.setAttribute('data-id', a.id);
+    const rank = el('span', 'rank');
+    const head = el('div', 'a-head');
+    head.append(el('h3', 'a-name', a.name), el('p', 'a-en', a.enName + ' · ' + a.city));
+    const meta = el('p', 'a-meta');
+    meta.append(el('span', 'genre', a.genre));
+    if (a.headliner) meta.append(el('span', 'hl', '头牌'));
+    const voteBtn = el('button', 'vote');
+    voteBtn.setAttribute('type', 'button');
+    const votes = el('b', 'votes', nf.format(a.votes));
+    voteBtn.append(doc.createTextNode('投票 '), votes);
+    voteBtn.addEventListener('click', function () { castVote(a.id, votes, voteBtn); });
+    card.append(rank, head, meta, voteBtn);
+    cards[a.id] = { node: card, votes: votes, genre: meta.querySelector('.genre'), hl: meta.querySelector('.hl') };
+    return card;
+  }
+  function paintRanks(order) {
+    for (let i = 0; i < order.length; i++) {
+      const c = cards[order[i].id];
+      if (c) c.node.querySelector('.rank').textContent = pad2(i + 1);
+    }
+  }
+  let sortMode = 'votes';
+  function applySort(next) {
+    sortMode = next;
+    const list = svc.state.artists.slice();
+    if (next === 'votes') {
+      list.sort(function (p, q) { return q.votes - p.votes || (p.id < q.id ? -1 : 1); });
+    } else {
+      list.sort(function (p, q) { return p.id < q.id ? -1 : 1; });
+    }
+    /* 复排而非重建：appendChild 移动既有节点（boot 前卡片尚未建好，跳过即空列表） */
+    for (let i = 0; i < list.length; i++) {
+      const c = cards[list[i].id];
+      if (!c) continue;
+      lineupWrap.appendChild(c.node);
+      stats.reorders += 1;
+    }
+    paintRanks(list);
+    slot('sort-hint').textContent = next === 'votes' ? '按人气（票数）降序 · 平票按官宣编号' : '按官宣顺序（编号 a01→a12）';
+    doc.querySelectorAll('#sort-box .seg button').forEach(function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-sort') === next ? 'true' : 'false');
+    });
+  }
+  function castVote(id, votesNode, btn) {
+    const before = Number(votesNode.textContent.replace(/,/g, ''));
+    votesNode.textContent = nf.format(before + 1);
+    stats.voteFlash += 1;
+    btn.disabled = true;
+    svc.vote(id).then(function (ok) {
+      votesNode.textContent = nf.format(ok.votes);
+      prefs = writePrefs({ voted: prefs.voted.concat([id]) }, prefs);
+      window.__lab.prefs = prefs;
+      btn.classList.add('voted');
+      btn.disabled = false;
+    }).catch(function (err) {
+      votesNode.textContent = nf.format(before);
+      btn.disabled = false;
+      showStatus('notice', '投票未计入：' + err.message);
+    });
+  }
+
+  /* ---------- SCHEDULE：Map 单循环分组 + 公告延后载入 ---------- */
+  const scheduleWrap = slot('schedule-list');
+  let scheduleData = [];
+  let dayFilter = 'all';
+  let stageFilter = 'all';
+  let noticesLoaded = null;
+  function renderSchedule() {
+    scheduleWrap.textContent = '';
+    const byStage = new Map();
+    let shown = 0;
+    for (let i = 0; i < scheduleData.length; i++) {
+      stats.loopIterations += 1;
+      const s = scheduleData[i];
+      if (dayFilter !== 'all' && s.day !== dayFilter) continue;
+      if (stageFilter !== 'all' && s.stage !== stageFilter) continue;
+      shown += 1;
+      if (!byStage.has(s.stage)) byStage.set(s.stage, []);
+      byStage.get(s.stage).push(s);
+    }
+    STAGES.forEach(function (st) {
+      const rows = byStage.get(st.id);
+      if (!rows || !rows.length) return;
+      rows.sort(function (p, q) { return p.start < q.start ? -1 : 1; });
+      const block = el('div', 'stage-block');
+      block.setAttribute('data-stage', st.id);
+      block.append(el('h4', 'stage-name', st.name));
+      const table = el('table', 'sessions');
+      const thead = el('thead');
+      const trh = el('tr');
+      ['时间', '演出', '阵容', '标签'].forEach(function (t) { trh.append(el('th', null, t)); });
+      thead.append(trh);
+      const tbody = el('tbody');
+      rows.forEach(function (r) {
+        stats.rowsBuilt += 1;
+        const tr = el('tr');
+        tr.setAttribute('data-id', r.id);
+        const tdTime = el('td', 't');
+        tdTime.append(el('b', null, r.start), el('span', 'to', '–' + r.end));
+        tr.append(tdTime, el('td', 'title', r.title), el('td', 'act', r.artist), el('td', 'tag', r.tag));
+        tbody.append(tr);
+      });
+      table.append(thead, tbody);
+      block.append(table);
+      scheduleWrap.append(block);
+    });
+    slot('sched-count').textContent = shown === scheduleData.length
+      ? '全部 ' + shown + ' 场'
+      : '筛选出 ' + shown + ' / ' + scheduleData.length + ' 场';
+    if (shown === 0) scheduleWrap.append(el('p', 'empty', '该组合下没有场次：换一个日期或舞台试试。'));
+  }
+
+  /* ---------- 公告 tab：点开才取数（defer），取到后复用（dedup） ---------- */
+  function loadNotices(host) {
+    if (noticesLoaded) { paintNotices(host, noticesLoaded); return; }
+    stats.noticesLoads += 1;
+    host.textContent = '';
+    host.append(el('p', 'loading', '正在载入公告…'));
+    svc.notices().then(function (list) {
+      noticesLoaded = list;
+      paintNotices(host, list);
+    }).catch(function () {
+      host.textContent = '';
+      host.append(el('p', 'error', '公告载入失败，可稍后重试'));
+    });
+  }
+  function paintNotices(host, list) {
+    host.textContent = '';
+    list.forEach(function (n) {
+      const item = el('div', 'notice');
+      item.setAttribute('data-kind', n.kind);
+      item.append(el('h5', null, n.title), el('p', null, n.body));
+      host.append(item);
+    });
+  }
+
+  /* ---------- REGISTER：三档票 + VIP 分支 + 乐观落单 + 回滚 ---------- */
+  let prefs = prefs0;
+  let qty = 2;
+  let tier = EVENT.tiers.some(function (t) { return t.id === prefs.tier; }) ? prefs.tier : 'day';
+  let vip = { left: null, loading: false };
+  let lock = false;
+
+  const tierBox = slot('tier-box');
+  EVENT.tiers.forEach(function (t) {
+    const b = el('button', 'tier');
+    b.setAttribute('type', 'button');
+    b.setAttribute('data-tier', t.id);
+    b.append(el('b', 't-name', t.name), el('span', 't-price', '¥' + t.price), el('span', 't-note', t.note));
+    b.addEventListener('click', function () { pickTier(t.id); });
+    tierBox.append(b);
+  });
+  function paintRegister() {
+    const unit = EVENT.tiers.filter(function (t) { return t.id === tier; })[0] || EVENT.tiers[0];
+    doc.querySelectorAll('#tier-box .tier').forEach(function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-tier') === tier ? 'true' : 'false');
+    });
+    slot('qty-out').textContent = String(qty);
+    slot('reg-unit').textContent = unit.name + ' ¥' + unit.price;
+    slot('reg-total').textContent = '¥' + nf.format(unit.price * qty);
+    const vipBox = slot('vip-box');
+    if (tier !== 'vip') {
+      vip = { left: null, loading: false };
+      vipBox.setAttribute('hidden', '');
+    } else {
+      vipBox.removeAttribute('hidden');
+      if (vip.loading) vipBox.textContent = '前区余量查询中…';
+      else if (vip.left !== null) vipBox.textContent = '前区平台余量 ' + vip.left + ' 席（含专属通道与休息区）';
+    }
+    paintHero();
+  }
+  function ensureVip() {
+    if (tier !== 'vip' || vip.left !== null || vip.loading) return;
+    vip = { left: null, loading: true };
+    paintRegister();
+    svc.vipLeft().then(function (v) {
+      vip = { left: v.left, loading: false };
+      paintRegister();
+    }).catch(function () {
+      vip = { left: null, loading: false };
+      slot('vip-box').textContent = '前区库存查询失败，可稍后再试';
+    });
+  }
+  function pickTier(next) {
+    tier = next;
+    prefs = writePrefs({ tier: next }, prefs);
+    window.__lab.prefs = prefs;
+    ensureVip();
+    paintRegister();
+  }
+  const nameIn = slot('in-name');
+  const phoneIn = slot('in-phone');
+  slot('qty-minus').addEventListener('click', function () { qty = Math.max(1, qty - 1); paintRegister(); });
+  slot('qty-plus').addEventListener('click', function () { qty = Math.min(8, qty + 1); paintRegister(); });
+
+  function showStatus(kind, text) {
+    const box = slot('reg-status');
+    box.setAttribute('data-kind', kind);
+    box.textContent = text;
+  }
+  function submit() {
+    if (lock) return;
+    const name = (nameIn.value || '').trim();
+    if (!NAME_RE.test(name)) { showStatus('error', '请填写 2-20 位真实姓名（报名表将用于入场核验）'); return; }
+    const phone = (phoneIn.value || '').trim();
+    if (!PHONE_RE.test(phone)) { showStatus('error', '手机号格式不正确：需 11 位、1 开头'); return; }
+    const unit = EVENT.tiers.filter(function (t) { return t.id === tier; })[0];
+    const total = unit.price * qty;
+    lock = true;
+    slot('btn-submit').disabled = true;
+    const snapshot = Object.assign({}, svc.state.summary);
+    heroState.signed = svc.state.summary.signedCount + qty;
+    heroState.left = Math.max(0, svc.state.summary.ticketsLeft - qty);
+    paintHero();
+    showStatus('pending', '正在提交报名…');
+    svc.register({ name: name, phone: phone, qty: qty, tier: tier }).then(function (ok) {
+      heroState.signed = ok.signedCount;
+      heroState.left = ok.ticketsLeft;
+      paintHero();
+      showStatus('ok', '报名成功 · 单号 ' + ok.registrationId + ' · ' + unit.name + ' ×' + qty + ' · 应付 ¥' + nf.format(total));
+      slot('poster-hint').textContent = '单号 ' + ok.registrationId + '：可生成纪念票根。';
+      window.__lab.lastOrder = { id: ok.registrationId, total: total, qty: qty, tier: tier };
+    }).catch(function (err) {
+      svc.state.summary = snapshot;
+      heroState.signed = snapshot.signedCount;
+      heroState.left = snapshot.ticketsLeft;
+      paintHero();
+      showStatus('error', err.message + '（已回滚至 ' + nf.format(snapshot.signedCount) + ' 人）');
+    }).then(function () {
+      lock = false;
+      slot('btn-submit').disabled = false;
+    });
+  }
+  slot('btn-submit').addEventListener('click', submit);
+
+  /* ---------- POSTER：点击才建 SVG（零框架下的按需渲染） ---------- */
+  slot('btn-poster').addEventListener('click', function () {
+    const host = slot('poster-host');
+    stats.postersBuilt += 1;
+    host.textContent = '';
+    host.append(buildPoster(window.__lab.lastOrder || null));
+    slot('btn-poster').textContent = '重新生成票根';
+  });
+  function buildPoster(order) {
+    const NS = 'http://www.w3.org/2000/svg';
+    const svg = doc.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', '0 0 640 260');
+    svg.setAttribute('width', '640');
+    svg.setAttribute('height', '260');
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', '声浪岛纪念票根');
+    function s(tag, attrs, text) {
+      const n = doc.createElementNS(NS, tag);
+      for (const k in attrs) n.setAttribute(k, attrs[k]);
+      if (text !== undefined) n.textContent = text;
+      return n;
+    }
+    const id = order ? order.id : 'R-待报名';
+    const g = s('g', {});
+    g.append(
+      s('rect', { x: 0, y: 0, width: 640, height: 260, class: 'p-bg' }),
+      s('path', { d: 'M440 0 L440 260', class: 'p-cut' }),
+      s('circle', { cx: 440, cy: 24, r: 10, class: 'p-hole' }),
+      s('circle', { cx: 440, cy: 236, r: 10, class: 'p-hole' })
+    );
+    g.append(s('text', { x: 34, y: 62, class: 'p-title' }, EVENT.name));
+    g.append(s('text', { x: 34, y: 92, class: 'p-sub' }, EVENT.enName + ' · ' + EVENT.city));
+    g.append(s('text', { x: 34, y: 148, class: 'p-label' }, 'NO.'));
+    g.append(s('text', { x: 78, y: 148, class: 'p-value' }, id));
+    g.append(s('text', { x: 34, y: 186, class: 'p-label' }, '日期'));
+    g.append(s('text', { x: 78, y: 186, class: 'p-value' }, EVENT.days.map(function (d) { return d.label; }).join(' / ')));
+    g.append(s('text', { x: 34, y: 224, class: 'p-label' }, '票档'));
+    g.append(s('text', { x: 78, y: 224, class: 'p-value' }, order ? order.tier + ' ×' + order.qty : '—'));
+    g.append(s('text', { x: 474, y: 62, class: 'p-stub' }, '存根'));
+    g.append(s('text', { x: 474, y: 108, class: 'p-amount' }, order ? '¥' + nf.format(order.total) : '¥—'));
+    g.append(s('text', { x: 474, y: 142, class: 'p-mini' }, '凭此根登船'));
+    for (let i = 0; i < 28; i++) {
+      g.append(s('rect', { x: 474 + i * 5, y: 176, width: (i % 3) + 1, height: 46, class: 'p-bar' }));
+    }
+    svg.append(g);
+    return svg;
+  }
+
+  /* ---------- 滚动进度（passive） ---------- */
+  const bar = slot('scroll-bar');
+  window.addEventListener('scroll', function () {
+    stats.scrollTicks += 1;
+    const max = doc.documentElement.scrollHeight - window.innerHeight;
+    const y = window.scrollY || doc.documentElement.scrollTop || 0;
+    bar.style.setProperty('--sw', (max > 0 ? Math.min(100, (y / max) * 100) : 0).toFixed(2) + '%');
+  }, { passive: true });
+
+  /* ---------- 控件绑定 ---------- */
+  doc.querySelectorAll('#sort-box .seg button').forEach(function (b) {
+    b.addEventListener('click', function () { applySort(b.getAttribute('data-sort')); });
+  });
+  doc.querySelectorAll('.day-tab').forEach(function (b) {
+    b.addEventListener('click', function () {
+      dayFilter = b.getAttribute('data-day');
+      doc.querySelectorAll('.day-tab').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      renderSchedule();
+    });
+  });
+  slot('sel-stage').addEventListener('change', function (e) {
+    stageFilter = e.target.value;
+    renderSchedule();
+  });
+  slot('tab-notices').addEventListener('click', function () {
+    slot('sched-pane').setAttribute('hidden', '');
+    slot('notice-pane').removeAttribute('hidden');
+    doc.querySelectorAll('.pane-tab').forEach(function (b) { b.setAttribute('aria-selected', b.id === 'tab-notices' ? 'true' : 'false'); });
+    loadNotices(slot('notice-host'));
+  });
+  slot('tab-sched').addEventListener('click', function () {
+    slot('notice-pane').setAttribute('hidden', '');
+    slot('sched-pane').removeAttribute('hidden');
+    doc.querySelectorAll('.pane-tab').forEach(function (b) { b.setAttribute('aria-selected', b.id === 'tab-sched' ? 'true' : 'false'); });
+  });
+  slot('btn-clear').addEventListener('click', function () {
+    try { window.localStorage.removeItem(KEY); } catch (e) { /* 忽略 */ }
+    prefs = { voted: [], tier: 'day' };
+    window.__lab.prefs = prefs;
+    Object.keys(cards).forEach(function (k) { cards[k].node.querySelector('.vote').classList.remove('voted'); });
+    showStatus('idle', '本机偏好已清空（票档回到单日通票，已投记录清除）');
+  });
+
+  /* ---------- 启动：一次 boot，分段填充 ---------- */
+  slot('lineup-grid').append(el('p', 'loading', '阵容载入中…'));
+  applySort('votes');
+  slot('reg-status').setAttribute('data-kind', 'idle');
+  slot('reg-status').textContent = '填写姓名与手机号即可完成报名，余票会随提交即时变化。';
+  svc.boot().then(function (boot) {
+    svc.state.summary = boot.summary;
+    svc.state.artists = boot.artists;
+    scheduleData = boot.schedule;
+    heroState.signed = boot.summary.signedCount;
+    heroState.left = boot.summary.ticketsLeft;
+    lineupWrap.textContent = '';
+    const list = boot.artists.slice().sort(function (p, q) { return q.votes - p.votes || (p.id < q.id ? -1 : 1); });
+    list.forEach(function (a) { lineupWrap.append(buildCard(a)); });
+    paintRanks(list);
+    prefs.voted.forEach(function (id) {
+      if (cards[id]) {
+        const b = cards[id].node.querySelector('.vote');
+        b.classList.add('voted');
+        b.textContent = '';
+        const votes = el('b', 'votes', nf.format(svc.state.artists.filter(function (x) { return x.id === id; })[0].votes));
+        b.append(doc.createTextNode('已投 '), votes);
+        cards[id].votes = votes;
+      }
+    });
+    tickCountdown();
+    renderSchedule();
+    paintRegister();
+    ensureVip();
+    slot('boot-flag').textContent = 'ready';
+    window.__lab.ready = true;
+  });
+}
+
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', startApp);
+else startApp();
+
+})();
+</script>
+</body>
+</html>

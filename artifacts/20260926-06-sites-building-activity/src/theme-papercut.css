@@ -1,0 +1,123 @@
+/* 风格 A · 剪纸层叠 papercut —— 暖米纸 + 番茄红/芥末黄/苔绿的厚剪纸条，
+   大圆角、双层硬偏移影（像叠了第二张纸），日程表在纸上被打散成剪纸条目。 */
+:root {
+  --pc-paper: #F6EFE2;
+  --pc-card: #FFFDF7;
+  --pc-tomato: #D9491F;
+  --pc-marigold: #E9A22E;
+  --pc-moss: #2E5B3E;
+  --pc-ink: #22301F;
+  --pc-ink-soft: #55604E;
+  --pc-line: #CDBFA3;
+  --pc-on-accent: #FFF6E7;
+  --pc-danger: #9E2B17;
+  --pc-ok: #22693F;
+  --poster-bg-pc: #FFFDF7;
+}
+body {
+  --bg: var(--pc-paper);
+  --ink: var(--pc-ink);
+  --font-head: "Avenir Next", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --fs-body: 17px;
+  --lh: 1.72;
+  --fs-xs: 12px; --fs-sm: 14px; --fs-lg: 21px;
+  --fs-h1: clamp(42px, 8.4vw, 92px); --fs-h1s: 40px; --fs-h2: 30px;
+  --fs-cd: 40px; --fs-kpi: 34px;
+  --sp-1: 6px; --sp-2: 10px; --sp-3: 16px; --sp-4: 24px; --sp-5: 40px; --sp-6: 64px;
+  --pad: 22px;
+  --page-max: 1080px;
+  --ls-tight: -0.03em; --ls-wide: 0.02em;
+  --line: 2px solid var(--pc-line);
+  --line-soft: 1px dashed var(--pc-line);
+  --card-border: 2px solid var(--pc-ink);
+  --card-bg: var(--pc-card);
+  --card-bg-active: var(--pc-paper);
+  --tag-border: 2px solid var(--pc-moss);
+  --ctl-border: 2px solid var(--pc-ink);
+  --ctl-bg: var(--pc-card);
+  --ctl-pad: 7px 14px; --ctl-pad-lg: 13px 26px;
+  --accent: var(--pc-tomato);
+  --on-accent: var(--pc-on-accent);
+  --danger: var(--pc-danger);
+  --ok: var(--pc-ok);
+  --track: var(--pc-line);
+  --bar-h: 12px;
+  --kpi-min: 150px; --card-min: 232px; --tier-min: 200px; --field-min: 190px; --cd-w: 88px;
+  --gap: 18px;
+  --input-bg: var(--pc-card);
+  --poster-bg: var(--poster-bg-pc);
+  --poster-line: var(--pc-ink);
+  --nav-deco: underline 3px;
+  border-radius: 0;
+}
+
+/* 剪纸：所有块面都是大圆角 + 两层硬偏移影 */
+.cd-cell, .kpi, .artist, .tier, .cta, .ghost, .ghost-btn, .vip-box, .seg button, .poster-host svg, .status, .lbl input, .lbl select {
+  border-radius: 26px;
+}
+.kpi, .cd-cell, .artist { box-shadow: 0 7px 0 var(--pc-marigold), 0 14px 0 -3px var(--pc-moss); }
+.tier { box-shadow: 0 6px 0 var(--pc-line); }
+.tier[aria-pressed="true"] { box-shadow: 0 6px 0 var(--pc-tomato); background: var(--pc-paper); }
+.cta, .ghost-btn, .seg button { box-shadow: 0 5px 0 var(--pc-ink); }
+.cta:active, .ghost-btn:active, .seg button:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--pc-ink); }
+
+.frame { border-bottom: 3px solid var(--pc-ink); background: var(--pc-marigold); }
+.brand { font-weight: 900; }
+.nav a { border-radius: 999px; padding: 4px 12px; background: var(--pc-card); box-shadow: 0 3px 0 var(--pc-moss); text-underline-offset: 4px; }
+.state-flag { color: var(--pc-ink-soft); }
+.hero h1 { font-weight: 900; }
+.hero h1::after { content: ""; display: block; width: 168px; height: 12px; margin-top: 14px; border-radius: 999px; background: var(--pc-tomato); }
+.lede { color: var(--pc-ink-soft); }
+.eyebrow { font-weight: 700; color: var(--pc-moss); letter-spacing: 0.14em; }
+
+.countdown { gap: 14px; }
+.cd-cell b { color: var(--pc-tomato); }
+.cd-cell span { color: var(--pc-ink-soft); }
+.kpi dd { color: var(--pc-moss); }
+.progress { border-radius: 999px; border: 2px solid var(--pc-ink); background: var(--pc-card); }
+.progress-fill { background: repeating-linear-gradient(135deg, var(--pc-tomato) 0 12px, var(--pc-marigold) 12px 24px); border-radius: 999px; }
+
+/* 剪纸指纹 1：阵容为宽卡多列网格，卡片右上角贴一枚圆片 */
+.lineup-grid { grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); }
+.artist { padding: 22px; }
+.artist .rank {
+  position: absolute; top: -10px; right: 14px;
+  width: 44px; height: 44px; border-radius: 999px;
+  display: grid; place-items: center;
+  background: var(--pc-moss); color: var(--pc-on-accent);
+  font-size: 14px; opacity: 1; box-shadow: 0 4px 0 var(--pc-ink);
+}
+.hl { border-radius: 999px; background: var(--pc-marigold); color: var(--pc-ink); font-weight: 700; }
+.vote { color: var(--pc-ink); }
+.vote.voted { background: var(--pc-moss); color: var(--pc-on-accent); border-color: var(--pc-moss); }
+
+/* 剪纸指纹 2：日程的表格语义被打散成块状剪纸条（保留 <table> 结构，改呈现） */
+.sessions thead { position: absolute; left: -9999px; }
+.sessions, .sessions tbody, .sessions tr, .sessions td { display: block; width: 100%; }
+.sessions tr {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px;
+  margin-bottom: 12px; padding: 12px 16px;
+  border: 2px solid var(--pc-ink); border-radius: 22px; background: var(--pc-card);
+  box-shadow: 0 5px 0 var(--pc-line);
+}
+.sessions td { border: 0; padding: 0; }
+.sessions .t { flex: 0 0 auto; }
+.sessions .t .to { display: inline; margin-left: 4px; }
+.sessions .title { flex: 1 1 14ch; }
+.sessions .act { flex: 0 1 auto; }
+.sessions .tag { margin-left: auto; }
+.sessions .tag { display: inline-block; border: 2px solid var(--pc-tomato); border-radius: 999px; padding: 0 10px; color: var(--pc-tomato); font-weight: 700; }
+.stage-name { display: inline-block; background: var(--pc-moss); color: var(--pc-on-accent); border-radius: 999px; padding: 4px 16px; }
+
+.notice h5 { color: var(--pc-tomato); }
+.t-price { color: var(--pc-tomato); }
+.summary-line .total { color: var(--pc-tomato); }
+.status { border-style: dashed; background: var(--pc-card); }
+.foot { background: var(--pc-moss); color: var(--pc-on-accent); border-top: 3px solid var(--pc-ink); }
+.foot .fine { color: var(--pc-paper); opacity: .85; }
+
+/* 剪纸指纹 3：条码改成圆角厚条，存根底色压成暖米 */
+.p-bar { rx: 3; fill: var(--pc-tomato); }
+.p-cut { stroke: var(--pc-moss); }

@@ -1,0 +1,32 @@
+{
+ "papercut": {
+  "n": 43976,
+  "w": 1280,
+  "h": 6679,
+  "mean": 232.3,
+  "sigma": 45.2,
+  "span": 209.2,
+  "midPct": 11.3,
+  "viewport": "1280x-auto(fullPage)"
+ },
+ "ticket": {
+  "n": 45568,
+  "w": 1280,
+  "h": 3553,
+  "mean": 219.4,
+  "sigma": 30.8,
+  "span": 211.1,
+  "midPct": 3.4,
+  "viewport": "1280x-auto(fullPage)"
+ },
+ "isometric": {
+  "n": 47034,
+  "w": 1280,
+  "h": 4422,
+  "mean": 33.4,
+  "sigma": 24.6,
+  "span": 213.4,
+  "midPct": 16.2,
+  "viewport": "1280x-auto(fullPage)"
+ }
+}

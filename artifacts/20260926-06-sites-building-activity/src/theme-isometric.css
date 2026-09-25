@@ -1,0 +1,135 @@
+/* 风格 C · 等距轴测 isometric —— 深空底上立起的斜切面板：serif 大标题 + 竖排舞台标签 +
+   transform 透视把日程压成轴测台面，霓虹描边发光。与 A/B 共用的结构层完全相同。 */
+:root {
+  --is-void: #0E1620;
+  --is-panel: #162330;
+  --is-panel-hi: #1F3040;
+  --is-ink: #E7F1F7;
+  --is-ink-dim: #93AAB9;
+  --is-cyan: #35D6C0;
+  --is-magenta: #FF5C8A;
+  --is-amber: #F2B94B;
+  --is-line: #2C4257;
+  --poster-bg-is: #162330;
+}
+body {
+  --bg: var(--is-void);
+  --ink: var(--is-ink);
+  --font-head: Georgia, "Songti SC", "Times New Roman", serif;
+  --font-body: "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --fs-body: 16px;
+  --lh: 1.62;
+  --fs-xs: 11px; --fs-sm: 13px; --fs-lg: 19px;
+  --fs-h1: clamp(38px, 7vw, 76px); --fs-h1s: 34px; --fs-h2: 26px;
+  --fs-cd: 32px; --fs-kpi: 30px;
+  --sp-1: 5px; --sp-2: 9px; --sp-3: 15px; --sp-4: 22px; --sp-5: 38px; --sp-6: 56px;
+  --pad: 24px;
+  --page-max: 1240px;
+  --ls-tight: -0.015em; --ls-wide: 0.22em;
+  --line: 1px solid var(--is-line);
+  --line-soft: 1px solid var(--is-panel-hi);
+  --card-border: 1px solid var(--is-line);
+  --card-bg: var(--is-panel);
+  --card-bg-active: var(--is-panel-hi);
+  --tag-border: 1px solid var(--is-amber);
+  --ctl-border: 1px solid var(--is-line);
+  --ctl-bg: var(--is-panel);
+  --ctl-pad: 6px 13px; --ctl-pad-lg: 12px 26px;
+  --accent: var(--is-cyan);
+  --on-accent: var(--is-void);
+  --danger: var(--is-magenta);
+  --ok: var(--is-cyan);
+  --track: var(--is-panel-hi);
+  --bar-h: 8px;
+  --kpi-min: 160px; --card-min: 320px; --tier-min: 220px; --field-min: 180px; --cd-w: 78px;
+  --gap: 14px;
+  --input-bg: var(--is-panel-hi);
+  --poster-bg: var(--poster-bg-is);
+  --poster-line: var(--is-cyan);
+  --nav-deco: none;
+}
+
+/* 轴测底纹：整页铺一层等距网格光 */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(30deg, var(--is-panel) 0 1px, transparent 1px 46px),
+    repeating-linear-gradient(-30deg, var(--is-panel) 0 1px, transparent 1px 46px);
+  opacity: .5;
+}
+main { padding-left: max(var(--pad), 4vw); }
+
+.frame { border-bottom: 1px solid var(--is-line); background: linear-gradient(180deg, var(--is-panel) 0%, transparent 100%); }
+.brand { font-family: var(--font-head); font-weight: 400; font-size: var(--fs-lg); letter-spacing: .02em; }
+.nav a { border-left: 1px solid var(--is-line); padding: 2px 12px; text-transform: uppercase; font-size: var(--fs-xs); letter-spacing: var(--ls-wide); }
+.nav a:hover { color: var(--is-cyan); }
+.state-flag { font-family: var(--font-mono); color: var(--is-ink-dim); }
+
+.hero h1 { font-weight: 400; font-style: italic; }
+.eyebrow { color: var(--is-amber); font-family: var(--font-mono); }
+.lede { color: var(--is-ink-dim); }
+/* 轴测指纹 1：所有面板被斜切成平行四边形（内容再斜回来），像立在等距网格上 */
+.cd-cell, .kpi {
+  transform: skewY(-2deg);
+  border: 1px solid var(--is-line);
+  background: var(--is-panel);
+  box-shadow: 6px 8px 0 -1px var(--is-panel-hi), 0 0 0 1px var(--is-line) inset;
+}
+.cd-cell b { color: var(--is-cyan); text-shadow: 0 0 12px var(--is-cyan); }
+.kpi dd { color: var(--is-ink); }
+.kpi dt { text-transform: uppercase; letter-spacing: var(--ls-wide); color: var(--is-ink-dim); }
+.progress { border: 1px solid var(--is-line); }
+.progress-fill { background: linear-gradient(90deg, var(--is-cyan) 0%, var(--is-amber) 100%); box-shadow: 0 0 14px var(--is-cyan); }
+.cta { border: 1px solid var(--is-cyan); background: transparent; color: var(--is-cyan); text-transform: uppercase; letter-spacing: .14em; box-shadow: 0 0 18px -4px var(--is-cyan); border-radius: 2px; }
+.ghost, .ghost-btn { border: 1px solid var(--is-line); color: var(--is-ink); border-radius: 2px; }
+
+/* 轴测指纹 2：阵容固定双列，卡内左侧一条竖向霓虹轨道 */
+.lineup-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.artist {
+  border-radius: 3px; background: var(--is-panel);
+  border-left: 3px solid var(--is-cyan);
+  box-shadow: 10px 12px 0 -2px var(--is-panel-hi);
+}
+.artist .rank { font-family: var(--font-mono); color: var(--is-amber); }
+.a-name { font-family: var(--font-head); font-weight: 400; font-size: 22px; }
+.hl { color: var(--is-magenta); border-color: var(--is-magenta); }
+.vote { border-radius: 2px; background: var(--is-panel-hi); border-color: var(--is-line); }
+.vote.voted { background: var(--is-cyan); color: var(--is-void); border-color: var(--is-cyan); }
+
+/* 轴测指纹 3：舞台名竖排在左，日程表整体压成轴测台面 */
+.sec-head { border-bottom: 1px solid var(--is-line); }
+.stage-block { display: flex; gap: var(--sp-3); align-items: stretch; }
+.stage-name {
+  writing-mode: vertical-rl; text-orientation: mixed;
+  border: 1px solid var(--is-line); border-radius: 2px;
+  background: var(--is-panel); color: var(--is-amber);
+  font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .2em;
+  padding: 8px 4px; margin-bottom: 0;
+}
+/* rotateX 会让近端（下沿）比 100% 宽：留 6% 收边，否则整表在 1280 视口上溢出 ~7px（真浏览器溢出断言抓到的） */
+.sessions { width: 94%; transform: perspective(760px) rotateX(11deg); border-collapse: separate; border-spacing: 0; }
+.sessions th { color: var(--is-ink-dim); text-transform: uppercase; letter-spacing: .12em; border-bottom: 1px solid var(--is-cyan); }
+.sessions tr:nth-child(odd) td { background: var(--is-panel); }
+.sessions tr:nth-child(even) td { background: var(--is-panel-hi); }
+.sessions td { border-bottom: 1px solid var(--is-line); }
+.sessions .t b { color: var(--is-cyan); }
+.sessions .tag { color: var(--is-magenta); }
+.stage-wrap { flex: 1; min-width: 0; }
+.notice { border-left: 3px solid var(--is-amber); padding-left: var(--sp-3); }
+.notice h5 { font-family: var(--font-head); font-weight: 400; color: var(--is-amber); }
+.notice p { color: var(--is-ink-dim); }
+.loading, .empty, .error { border: 1px dashed var(--is-line); padding: 10px; }
+
+.tier-box { gap: var(--gap); }
+.tier { border-radius: 3px; box-shadow: 8px 10px 0 -2px var(--is-panel-hi); }
+.tier[aria-pressed="true"] { border-color: var(--is-cyan); box-shadow: 0 0 22px -6px var(--is-cyan), 8px 10px 0 -2px var(--is-panel-hi); }
+.t-price { color: var(--is-cyan); }
+.vip-box { border-left: 3px solid var(--is-amber); }
+.lbl input, .lbl select { border-radius: 2px; border-color: var(--is-line); }
+.summary-line .total { color: var(--is-amber); }
+.status { border-radius: 2px; background: var(--is-panel); }
+.poster-host { padding: var(--sp-3); background: var(--is-panel); border: 1px solid var(--is-line); }
+.p-amount { fill: var(--is-amber); }
+.p-bar { fill: var(--is-cyan); }
+.foot { color: var(--is-ink-dim); }

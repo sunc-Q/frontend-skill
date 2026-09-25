@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>星屿·声浪岛音乐节 · 2026 报名</title>
+<meta name="description" content="星屿·声浪岛音乐节 2026.10.16-10.18 于长沙湘江中央星屿举行：12 组阵容、25 场演出、三档门票在线报名与免费接驳轮渡信息。">
+<style>/*__BASE__*/</style>
+<style>/*__THEME__*/</style>
+</head>
+<body>
+<div id="scroll-bar" class="scroll-bar" aria-hidden="true"></div>
+
+<header class="frame">
+  <p class="brand">星屿 <span>Sound Isle</span></p>
+  <nav class="nav" aria-label="页面导航">
+    <a href="#hero">开票</a><a href="#lineup">阵容</a><a href="#schedule">日程</a><a href="#register">报名</a><a href="#poster">票根</a>
+  </nav>
+  <p class="state-flag">数据源 <code id="boot-flag">booting</code> · 本地产物，非真实票务系统</p>
+</header>
+
+<main>
+  <section id="hero" class="section hero">
+    <p class="eyebrow">2026.10.16 — 10.18 · 长沙 · 湘江中央星屿</p>
+    <h1>把整个秋天调成同一种音量</h1>
+    <p class="lede">三日三舞台，江风与低频同场。开票已进入第三轮，前区平台余量按报名时时变化。</p>
+    <div class="countdown" role="timer" aria-live="off">
+      <div class="cd-cell"><b id="cd-d">—</b><span>天</span></div>
+      <div class="cd-cell"><b id="cd-h">—</b><span>时</span></div>
+      <div class="cd-cell"><b id="cd-m">—</b><span>分</span></div>
+      <div class="cd-cell"><b id="cd-s">—</b><span>秒</span></div>
+    </div>
+    <dl class="kpis">
+      <div class="kpi"><dt>已报名</dt><dd id="kpi-signed">—</dd></div>
+      <div class="kpi"><dt>剩余票量</dt><dd id="kpi-left">—</dd></div>
+      <div class="kpi"><dt>品牌合作</dt><dd id="kpi-partners">—</dd></div>
+    </dl>
+    <div class="progress" role="img" aria-label="开票进度">
+      <div id="progress-fill" class="progress-fill"></div>
+    </div>
+    <p id="progress-text" class="progress-text">开票进度载入中…</p>
+    <p class="cta-row"><a class="cta" href="#register">立即报名</a><a class="ghost" href="#lineup">看看阵容</a></p>
+  </section>
+
+  <section id="lineup" class="section lineup">
+    <div class="sec-head">
+      <h2>12 组阵容</h2>
+      <div id="sort-box" class="controls">
+        <span class="seg" role="group" aria-label="排序方式">
+          <button type="button" data-sort="votes" aria-pressed="true">人气</button>
+          <button type="button" data-sort="signed" aria-pressed="false">官宣顺序</button>
+        </span>
+        <span id="sort-hint" class="hint"></span>
+      </div>
+    </div>
+    <div id="lineup-grid" class="lineup-grid"></div>
+  </section>
+
+  <section id="schedule" class="section schedule">
+    <div class="sec-head">
+      <h2>日程与公告</h2>
+      <div class="controls">
+        <span class="seg" role="group" aria-label="按日期筛选">
+          <button type="button" class="day-tab" data-day="all" aria-pressed="true">全部</button>
+          <button type="button" class="day-tab" data-day="fri" aria-pressed="false">10.16</button>
+          <button type="button" class="day-tab" data-day="sat" aria-pressed="false">10.17</button>
+          <button type="button" class="day-tab" data-day="sun" aria-pressed="false">10.18</button>
+        </span>
+        <label class="lbl">舞台
+          <select id="sel-stage">
+            <option value="all">全部舞台</option>
+            <option value="main">主舞台 · 潮声</option>
+            <option value="isle">屿林舞台</option>
+            <option value="lounge">江畔静舞台</option>
+          </select>
+        </label>
+        <span class="seg" role="tablist" aria-label="日程或公告">
+          <button type="button" id="tab-sched" class="pane-tab" role="tab" aria-selected="true">演出日程</button>
+          <button type="button" id="tab-notices" class="pane-tab" role="tab" aria-selected="false">观众公告</button>
+        </span>
+        <span id="sched-count" class="hint"></span>
+      </div>
+    </div>
+    <div id="sched-pane" class="pane" role="tabpanel"><div id="schedule-list"></div></div>
+    <div id="notice-pane" class="pane" role="tabpanel" hidden><div id="notice-host"></div></div>
+  </section>
+
+  <section id="register" class="section register">
+    <div class="sec-head"><h2>报名</h2><p class="hint">姓名与手机号用于入场核验；余票随提交即时变化。</p></div>
+    <div id="tier-box" class="tier-box" role="group" aria-label="选择票档"></div>
+    <p id="vip-box" class="vip-box" hidden></p>
+    <div class="form-grid">
+      <label class="lbl" for="in-name">姓名
+        <input id="in-name" name="name" type="text" autocomplete="name" maxlength="20" placeholder="真实姓名">
+      </label>
+      <label class="lbl" for="in-phone">手机号
+        <input id="in-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="11" placeholder="11 位手机号">
+      </label>
+      <div class="lbl">数量
+        <div class="stepper">
+          <button type="button" id="qty-minus" aria-label="减少一张">−</button>
+          <output id="qty-out" aria-live="polite">2</output>
+          <button type="button" id="qty-plus" aria-label="增加一张">＋</button>
+        </div>
+      </div>
+      <div class="summary-line">
+        <span id="reg-unit" class="unit">—</span>
+        <strong id="reg-total" class="total">—</strong>
+      </div>
+    </div>
+    <p class="btn-row">
+      <button type="button" id="btn-submit" class="cta">提交报名</button>
+      <button type="button" id="btn-clear" class="ghost-btn">清除本机偏好</button>
+    </p>
+    <p id="reg-status" class="status" role="status" aria-live="polite" data-kind="idle"></p>
+  </section>
+
+  <section id="poster" class="section poster">
+    <div class="sec-head"><h2>纪念票根</h2><p id="poster-hint" class="hint">报名成功后再点生成，票根会把单号与金额印进条码左侧。</p></div>
+    <p><button type="button" id="btn-poster" class="cta">生成纪念票根</button></p>
+    <div id="poster-host" class="poster-host"></div>
+  </section>
+</main>
+
+<footer class="frame foot">
+  <p>星屿·声浪岛音乐节 · Sound Isle Festival · 湘江三号码头 ↔ 星屿东埠每 20 分钟一班轮渡</p>
+  <p class="fine">本页为 skill 验证用的本地演示：阵容、日程、余票均为固定样例数据，不连接任何真实票务服务。</p>
+</footer>
+
+<script>/*__APP__*/</script>
+</body>
+</html>

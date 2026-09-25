@@ -1,0 +1,15 @@
+{
+  "taken_at": "2026-09-26T05:50+08:00",
+  "note": "本轮开工前的台账快照（G 组幂等锁的基准）。公式：快照值 + 本轮增量 == 收尾时的台账现值。",
+  "tried": 16,
+  "runs": 16,
+  "used_styles": 48,
+  "environment_notes": 90,
+  "skills_seen": 19,
+  "next_candidates": 41,
+  "new_env_notes": 6,
+  "this_round_styles": ["剪纸层叠 papercut", "票据存根 ticket-stub", "等距轴测 isometric"],
+  "this_round_skill": "sites:sites-building（Simple site 静态路径，第 4 次使用）",
+  "this_round_scenario": "活动报名页（与 2026-09-25 20:00 vercel-react 轮同场景零框架对照）",
+  "baseline_bytes": {"papercut_vs_react_round": "对照目标 = artifacts/20260925-20-vercel-react-activity/preview/activity-{deco,vapor,riso}.html，由 D 组现读磁盘，不在此写死"}
+}

@@ -1,0 +1,137 @@
+/* 风格 B · 票据存根 ticket-stub —— 整页就是一张可撕的车票：等宽字、零圆角、
+   虚线齿孔、斑马纹严格表格、红色骑缝章。没有任何阴影，层次全靠线宽与底色差。 */
+:root {
+  --tk-paper: #E8E3D5;
+  --tk-stub: #F2EEE3;
+  --tk-ink: #1B1B1B;
+  --tk-ink-soft: #4C4A44;
+  --tk-rule: #9C9787;
+  --tk-stamp: #B43A28;
+  --tk-punch: #2B4C7E;
+  --tk-zebra: #DED8C7;
+  --tk-on-accent: #F7F4EA;
+  --poster-bg-tk: #F2EEE3;
+}
+body {
+  --bg: var(--tk-paper);
+  --ink: var(--tk-ink);
+  --font-head: ui-monospace, "SF Mono", "Menlo", "Consolas", monospace;
+  --font-body: ui-monospace, "SF Mono", "Menlo", "Consolas", monospace;
+  --font-mono: ui-monospace, "SF Mono", "Menlo", "Consolas", monospace;
+  --fs-body: 15px;
+  --lh: 1.55;
+  --fs-xs: 11px; --fs-sm: 12px; --fs-lg: 17px;
+  --fs-h1: clamp(30px, 5.6vw, 52px); --fs-h1s: 28px; --fs-h2: 20px;
+  --fs-cd: 26px; --fs-kpi: 26px;
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 18px; --sp-5: 30px; --sp-6: 44px;
+  --pad: 18px;
+  --page-max: 760px;
+  --ls-tight: 0em; --ls-wide: 0.18em;
+  --line: 2px solid var(--tk-ink);
+  --line-soft: 1px dotted var(--tk-rule);
+  --card-border: 1px solid var(--tk-rule);
+  --card-bg: var(--tk-stub);
+  --card-bg-active: var(--tk-zebra);
+  --tag-border: 1px solid var(--tk-punch);
+  --ctl-border: 1px solid var(--tk-ink);
+  --ctl-bg: var(--tk-stub);
+  --ctl-pad: 4px 10px; --ctl-pad-lg: 9px 20px;
+  --accent: var(--tk-stamp);
+  --on-accent: var(--tk-on-accent);
+  --danger: var(--tk-stamp);
+  --ok: var(--tk-punch);
+  --track: var(--tk-zebra);
+  --bar-h: 6px;
+  --kpi-min: 120px; --card-min: 100%; --tier-min: 180px; --field-min: 160px; --cd-w: 64px;
+  --gap: 10px;
+  --input-bg: var(--tk-on-accent);
+  --poster-bg: var(--poster-bg-tk);
+  --poster-line: var(--tk-ink);
+  --nav-deco: none;
+  text-transform: none;
+}
+
+/* 齿孔：所有分区边界用圆点链充当撕口 */
+.section { border-bottom: 0; padding: var(--sp-4) 0; position: relative; }
+.section::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 6px;
+  background-image: radial-gradient(circle at 5px 3px, var(--tk-paper) 0 3px, transparent 3.5px);
+  background-size: 12px 6px;
+  border-top: 1px dashed var(--tk-rule);
+}
+.frame { padding: 10px var(--pad); border-bottom: 2px solid var(--tk-ink); background: var(--tk-zebra); }
+.brand { letter-spacing: var(--ls-wide); font-weight: 700; }
+.nav a { border: 1px solid transparent; padding: 3px 8px; text-transform: uppercase; }
+.nav a:hover { border-color: var(--tk-ink); }
+.state-flag { color: var(--tk-punch); letter-spacing: .08em; }
+
+.hero { padding-top: var(--sp-5); }
+.eyebrow { color: var(--tk-punch); font-weight: 700; }
+.hero h1 { letter-spacing: -0.01em; font-weight: 700; text-transform: none; }
+.lede { color: var(--tk-ink-soft); max-width: 54ch; }
+.cd-cell { border: 1px dashed var(--tk-ink); background: transparent; }
+.cd-cell b { color: var(--tk-stamp); }
+.kpi { border: 1px solid var(--tk-ink); background: var(--tk-stub); }
+.kpi dt { text-transform: uppercase; letter-spacing: var(--ls-wide); color: var(--tk-ink-soft); }
+.kpi dd { color: var(--tk-ink); }
+/* 票据指纹 1：进度条是打孔色带（点阵），不是实色条 */
+.progress { border-top: 1px solid var(--tk-ink); border-bottom: 1px solid var(--tk-ink); background: transparent; height: 10px; }
+.progress-fill { background: repeating-linear-gradient(90deg, var(--tk-stamp) 0 2px, transparent 2px 6px); }
+.progress-text { font-size: var(--fs-xs); letter-spacing: .06em; color: var(--tk-ink-soft); }
+.cta { border: 2px solid var(--tk-ink); background: var(--tk-stamp); color: var(--tk-on-accent); text-transform: uppercase; letter-spacing: var(--ls-wide); }
+.ghost, .ghost-btn { border: 1px solid var(--tk-ink); text-transform: uppercase; letter-spacing: var(--ls-wide); background: transparent; }
+
+.sec-head { border-bottom: 2px solid var(--tk-ink); padding-bottom: 6px; }
+.hint { color: var(--tk-ink-soft); }
+.seg button[aria-pressed="true"] { background: var(--tk-ink); color: var(--tk-on-accent); }
+.seg button { border-right: 0; }
+.seg button:last-child { border-right: 1px solid var(--tk-ink); }
+
+/* 票据指纹 2：阵容是一列打印明细行（单列网格 + 虚线分隔），不是卡片 */
+.lineup-grid { grid-template-columns: 1fr; gap: 0; }
+.artist {
+  flex-direction: row; align-items: baseline; gap: 12px;
+  border: 0; border-bottom: 1px dotted var(--tk-rule); border-radius: 0;
+  background: transparent; padding: 9px 4px;
+}
+.artist:nth-child(even) { background: var(--tk-zebra); }
+.artist .rank { font-weight: 700; color: var(--tk-stamp); min-width: 2.6em; }
+.a-head { flex: 1; }
+.a-name { font-size: var(--fs-lg); }
+.hl { color: var(--tk-punch); font-weight: 700; }
+.vote { justify-content: center; min-width: 92px; border: 1px solid var(--tk-ink); background: var(--tk-stub); }
+.vote.voted { background: var(--tk-punch); color: var(--tk-on-accent); border-color: var(--tk-punch); }
+
+/* 票据指纹 3：日程严格用表格排版（thead 可见 + 斑马纹 + 制表线） */
+.stage-block { margin-bottom: var(--sp-4); }
+.stage-name { text-transform: uppercase; letter-spacing: var(--ls-wide); font-size: var(--fs-sm); color: var(--tk-punch); border-bottom: 1px dashed var(--tk-rule); }
+.sessions { font-size: var(--fs-sm); }
+.sessions th { border-bottom: 2px solid var(--tk-ink); text-transform: uppercase; letter-spacing: .1em; opacity: 1; color: var(--tk-ink); }
+.sessions tr:nth-child(even) td { background: var(--tk-zebra); }
+.sessions td { border-bottom: 1px dotted var(--tk-rule); }
+.sessions .title { font-weight: 700; }
+.sessions .tag { text-align: right; }
+.notice { display: flex; gap: 10px; border-bottom: 1px dotted var(--tk-rule); }
+.notice h5 { min-width: 8.5em; text-transform: uppercase; letter-spacing: .1em; font-size: var(--fs-sm); color: var(--tk-ink); }
+.notice p { color: var(--tk-ink-soft); }
+.loading, .empty, .error { border: 1px dashed var(--tk-rule); padding: 8px; background: var(--tk-stub); }
+
+.tier-box { gap: 0; border: 2px solid var(--tk-ink); }
+.tier { border: 0; border-right: 1px dashed var(--tk-rule); background: var(--tk-stub); border-radius: 0; }
+.tier:last-child { border-right: 0; }
+.tier[aria-pressed="true"] { background: var(--tk-ink); color: var(--tk-on-accent); border-color: var(--tk-ink); }
+.tier[aria-pressed="true"] .t-note, .tier[aria-pressed="true"] .t-price { color: var(--tk-on-accent); }
+.t-name { text-transform: uppercase; letter-spacing: .06em; }
+.t-price { color: var(--tk-stamp); }
+.vip-box { border-left: 4px solid var(--tk-punch); background: var(--tk-zebra); }
+.lbl input, .lbl select { border: 1px solid var(--tk-ink); border-radius: 0; font-family: var(--font-mono); }
+.stepper { border: 1px solid var(--tk-ink); }
+.summary-line .total { color: var(--tk-stamp); }
+/* 票据指纹 4：状态框是一枚红色骑缝章 */
+.status { border: 2px solid var(--tk-rule); border-radius: 0; letter-spacing: .04em; }
+.status[data-kind="ok"] { border: 2px double var(--tk-punch); color: var(--tk-punch); }
+.status[data-kind="error"] { border: 2px double var(--tk-stamp); color: var(--tk-stamp); }
+.poster-host { border: 1px dashed var(--tk-rule); padding: 6px; background: var(--tk-stub); }
+.p-amount { fill: var(--tk-stamp); }
+.foot { background: var(--tk-zebra); border-top: 2px solid var(--tk-ink); letter-spacing: .04em; }
+.foot .fine { color: var(--tk-ink-soft); }

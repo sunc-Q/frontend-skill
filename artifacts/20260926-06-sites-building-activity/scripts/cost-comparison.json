@@ -1,0 +1,36 @@
+{
+  "thisRound": {
+    "bytesPerStyle": {
+      "papercut": {
+        "bytes": 52118
+      },
+      "ticket": {
+        "bytes": 53745
+      },
+      "isometric": {
+        "bytes": 53192
+      }
+    },
+    "totalBytes": 159055,
+    "loc": 1298,
+    "files": 8
+  },
+  "baselineReact": {
+    "bytesPerStyle": [
+      {
+        "bytes": 265274
+      },
+      {
+        "bytes": 266379
+      },
+      {
+        "bytes": 265610
+      }
+    ],
+    "totalBytes": 797263,
+    "loc": 1332,
+    "files": 16
+  },
+  "ratio_bytes": 5.01,
+  "ratio_loc": 1.03
+}
