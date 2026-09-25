@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T17:50:00+08:00",
+  "updated": "2026-09-25T09:50:30.971Z",
   "tried": [
     {
       "skill": "drafter",
@@ -218,7 +218,7 @@
       "seconds": 600,
       "artifact_size": "dashboard.txt 2.8KB(52行) + 对照 naive 2.8KB + 两脚本 11KB + output.log 6.6KB = demos 本轮 32KB（限 5MB）；LAB 见收尾核查",
       "cleanup": "零 node_modules/零构建缓存/零二进制；未起本地服务（lsof 监听数与开工一致，均属其它任务）；demos 只留可打开的 .txt + 复现脚本 + 日志；全局缓存未动",
-      "push": "",
+      "push": "已推送 f23b5ae → origin/skill-showcase（fetch 比对后普通推送 2311b94..f23b5ae，无 force/无 --no-verify）；main 与其它分支未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行无 token",
       "installed_by_this_task": [
         "ascii-project-dashboard -> /Users/apple/.qoder-cn/skills/ascii-project-dashboard/"
       ],
