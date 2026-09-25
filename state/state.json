@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T06:32:00+08:00",
+  "updated": "2026-09-26T06:36:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -530,7 +530,9 @@
         "df_k_avail_before": 18687840,
         "df_k_avail_after": 18561452,
         "scenario_dir_human": "4.0M / 59 文件（上限 5MB）：backend 228K + web(含 dist) 592K + preview 1.0M + scripts 108K + evidence 2.1M（三张整页截图占大头）",
-        "note": "开工 df 可用 18,687,840KB≈17.8GiB，全程远高于 1.5GiB 熔断线。删除：web/node_modules、/tmp/arw-build、/tmp/arw-doc、/tmp/arw-v2、/tmp/arw-pv、/tmp/arw-recheck*、/tmp/arw-f*、/tmp/arw-*.png/.json/.log；仓库内 0 个 db/wal/shm 残留（.gitignore 已排除）。共享缓存（~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache）未动，没有 go clean -cache/-testcache。进程按端口→PID→`ps -o command=` 核对命令行后才 kill：:18477/:18478/:18411 = /tmp/arw-build/api，:18412 = node scripts/serve-static.mjs，全是本轮自己起的，kill 后这四个端口监听数 0。"
+        "note": "开工 df 可用 18,687,840KB≈17.8GiB，全程远高于 1.5GiB 熔断线。删除：web/node_modules、/tmp/arw-build、/tmp/arw-doc、/tmp/arw-v2、/tmp/arw-pv、/tmp/arw-recheck*、/tmp/arw-f*、/tmp/arw-*.png/.json/.log；仓库内 0 个 db/wal/shm 残留（.gitignore 已排除）。共享缓存（~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache）未动，没有 go clean -cache/-testcache。进程按端口→PID→`ps -o command=` 核对命令行后才 kill：:18477/:18478/:18411 = /tmp/arw-build/api，:18412 = node scripts/serve-static.mjs，全是本轮自己起的，kill 后这四个端口监听数 0。",
+        "df_k_avail_final": 18551596,
+        "lab_total_human": "LAB 28M（其中 .git 9.7M）；场景目录 4.0M / 59 文件（上限 5MB，硬顶 40MB）"
       },
       "verification": {
         "go": "gofmt -l 空；go build/vet/test ./... 全绿（30 个 Test：domain 11 / repository 12 / server 7；8 处 []struct 表、14 个 range 用例循环，覆盖字段校验、鉴权 401/403/503、注入与超长、FIFO 计划、状态机跃迁表、退料与恒等式）",
@@ -541,8 +543,9 @@
         "themes": "同一份 App.tsx/DOM/JS，只有 theme-garage-plate.css / theme-couture.css / theme-tarot.css 三份产物不同"
       },
       "push": {
-        "commits": "待本轮收尾填写",
-        "range": "待填"
+        "commits": "1 笔工作提交（d049b84）+ 1 笔收工审计",
+        "range": "2f482ce..d049b84（普通 push，无 --force / 无 --no-verify / 未碰 main；提交身份走命令行内联 -c user.name/-c user.email，未改任何全局配置；SSH 推送，命令行与文件里无令牌）",
+        "remote_head_after": "d049b8473c18956658bab4a567642e1200c56775"
       }
     }
   ],

@@ -58,4 +58,6 @@ UI 里真实走完的闭环：开加急单（承诺 +6h）→ 90 分钟中级工
 
 - 删除：`web/node_modules`、`/tmp/arw-build`、`/tmp/arw-doc`、`/tmp/arw-v2`、`/tmp/arw-pv`、`/tmp/arw-recheck*`、`/tmp/arw-f*` 及全部临时 png/json/log。保留：源码 + `web/dist/` + `preview/` + `scripts/` + `evidence/` + `README.md`。共享缓存（`~/Library/Caches/go-build`、`~/go/pkg/mod`、`~/.npm/_cacache`）未动，无 `go clean -cache/-testcache`。
 - 进程：:18477 / :18478 / :18411（`/tmp/arw-build/api`）与 :18412（`node scripts/serve-static.mjs`）按端口→PID→`ps -o command=` 核对命令行后 kill，全部本轮自己起的；kill 后监听数 0。
-- 推送：仅 `go-gin_react` 分支，SSH，提交身份用命令行内联 `-c user.name/-c user.email`（不改全局配置），无 `--force`、无 `--no-verify`、不碰 `main`，命令行与文件内均无令牌。
+- 推送：仅 `go-gin_react` 分支（`2f482ce..d049b84`，1 笔工作提交 + 1 笔收工审计），SSH，提交身份用命令行内联 `-c user.name/-c user.email`（不改全局配置），无 `--force`、无 `--no-verify`、不碰 `main`，命令行与文件内均无令牌。
+- 收尾终值：`git status` 0 项；LAB 28M（`.git` 9.7M）；场景 4.0M / 59 文件；df 可用 18,551,596KB；本轮四个临时端口监听数 0；远端 `refs/heads/go-gin_react` == `d049b8473c18956658bab4a567642e1200c56775`。
+- 一句话教训：**「套件全绿」不等于「套件可靠」**——首次 153/0 之后在同一脏库上重跑才暴露两类读侧竞态，等待条件必须写成目标值本身。
