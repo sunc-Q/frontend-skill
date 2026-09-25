@@ -1,0 +1,17 @@
+mode=playing
+crystals=0/8
+timeLeft=51.75
+score=0
+best=2122
+hits=1
+player=0.000,-2.200,0.000
+playerVel=0.000,0.000
+camYaw=-1.9140
+nearestWraith=4.676
+wraithStates=chase|patrol|patrol
+lights=5
+sceneMeshes=66
+foxPrims=23
+activeParticles=0
+steps=4468
+hud=0 / 8 | 51.8 | 0

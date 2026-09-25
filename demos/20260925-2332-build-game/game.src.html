@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>Frostlight Gather · 冰原拾光</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { overflow:hidden; background:#0d1420; font-family:'Segoe UI',system-ui,-apple-system,sans-serif; }
+canvas { display:block; }
+#hud { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:10; }
+#hud * { pointer-events:none; }
+.hud-panel { position:absolute; background:rgba(12,22,38,0.38); backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:10px 16px;
+  color:#eaf3ff; text-shadow:0 1px 3px rgba(0,0,0,.5); box-shadow:0 8px 28px rgba(0,0,0,.25); }
+#p-left { top:18px; left:18px; }
+#p-mid { top:18px; left:50%; transform:translateX(-50%); text-align:center; min-width:190px; }
+#p-right { top:18px; right:18px; text-align:right; }
+.label { font-size:11px; letter-spacing:2px; text-transform:uppercase; opacity:.72; }
+.big { font-size:30px; font-weight:700; line-height:1.05; font-variant-numeric:tabular-nums; }
+.mid { font-size:13px; opacity:.9; }
+#timebar { height:6px; border-radius:3px; background:rgba(255,255,255,.18); margin-top:6px; overflow:hidden; }
+#timebar > i { display:block; height:100%; width:100%; border-radius:3px;
+  background:linear-gradient(90deg,#8ce8ff,#ffd479); transition:width .18s linear; }
+#hurt { position:fixed; inset:0; z-index:9; opacity:0; transition:opacity .35s ease;
+  background:radial-gradient(ellipse at center, rgba(255,40,40,0) 42%, rgba(214,32,48,.62) 100%); }
+#vig { position:fixed; inset:0; z-index:8; pointer-events:none;
+  background:radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(6,12,24,.45) 100%); }
+.screen { position:fixed; inset:0; z-index:20; display:flex; align-items:center; justify-content:center;
+  background:radial-gradient(ellipse at 50% 45%, rgba(10,22,42,.30), rgba(5,10,20,.72)); }
+.card { pointer-events:auto; cursor:pointer; text-align:center; max-width:min(560px,88vw);
+  background:rgba(12,24,44,.52); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(180,220,255,.22); border-radius:20px; padding:34px 40px; color:#eef6ff;
+  box-shadow:0 24px 70px rgba(0,0,0,.45); }
+.card h1 { font-size:40px; letter-spacing:2px; margin-bottom:4px;
+  background:linear-gradient(180deg,#ffffff,#9fd8ff); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.card h2 { font-size:14px; font-weight:500; letter-spacing:6px; text-transform:uppercase; opacity:.8; margin-bottom:20px; }
+.card p { font-size:14px; line-height:1.75; opacity:.88; }
+.keys { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:18px 0 6px; }
+kbd { font-family:inherit; font-size:12px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25);
+  border-bottom-width:2px; border-radius:7px; padding:5px 9px; }
+.cta { margin-top:22px; font-size:17px; font-weight:700; letter-spacing:1px; color:#0b1a2e;
+  background:linear-gradient(160deg,#ffe9a8,#ffc85c); border-radius:999px; padding:12px 26px; display:inline-block;
+  box-shadow:0 10px 26px rgba(255,200,92,.32); animation:pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-3px) scale(1.03)} }
+.stats { display:flex; gap:26px; justify-content:center; margin-top:16px; }
+.stats b { display:block; font-size:26px; font-variant-numeric:tabular-nums; }
+.stats span { font-size:11px; letter-spacing:2px; text-transform:uppercase; opacity:.7; }
+#hint { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); font-size:12px; opacity:.7; }
+.hidden { display:none !important; }
+</style>
+<script>/*__THREE__*/</script>
+<script>/*__POSTFX__*/</script>
+</head>
+<body>
+<div id="hud">
+  <div class="hud-panel" id="p-left"><div class="label">Crystals 冰晶</div><div class="big" id="crystals">0 / 8</div><div class="mid" id="zone">Frostfield</div></div>
+  <div class="hud-panel" id="p-mid"><div class="label">Time 剩余</div><div class="big" id="timer">60.0</div><div id="timebar"><i></i></div></div>
+  <div class="hud-panel" id="p-right"><div class="label">Score 得分</div><div class="big" id="score">0</div><div class="mid" id="best">Best —</div></div>
+  <div class="hud-panel hidden" id="toast" style="bottom:22%; left:50%; transform:translateX(-50%)"></div>
+  <div class="hud-panel" id="hint">WASD 移动 · 拖拽转视角 · 空格跳 · Shift 疾跑 · 靠近冰晶自动拾取</div>
+</div>
+<div id="vig"></div><div id="hurt"></div>
+<div class="screen" id="title">
+  <div class="card"><h1>FROSTLIGHT GATHER</h1><h2>冰原拾光</h2>
+    <p>风暴将至。在 <b>60 秒</b>内拾取荒原上全部 <b>8 枚冰晶</b>，<br>躲开游荡的霜灵 —— 被触碰会吞掉 5 秒。</p>
+    <div class="keys"><kbd>W A S D</kbd><kbd>Shift</kbd><kbd>Space</kbd><kbd>Drag</kbd></div>
+    <div class="cta">点击开始 · Click to Play</div></div>
+</div>
+<div class="screen hidden" id="over">
+  <div class="card"><h1 id="over-title">STORM ARRIVED</h1><h2 id="over-sub">结局</h2>
+    <p id="over-text"></p><div class="stats"><div><b id="s-cr">0</b><span>Crystals</span></div><div><b id="s-score">0</b><span>Score</span></div><div><b id="s-hits">0</b><span>Hits</span></div><div><b id="s-time">0</b><span>Seconds left</span></div></div>
+    <div class="cta">再来一次 · Click to Restart</div></div>
+</div>
+<script>
+/* ============================================================
+   FROSTLIGHT GATHER — 3D browser game generated with the
+   build-game skill (Qoder market official_LaiVUmnK v1.0.0)
+   Renderer: three.js r160 (inlined, no CDN in this sandbox)
+   Sections follow SKILL.md "Phase 3 Code Structure" order.
+   ============================================================ */
+/* ---------- 2. CONSTANTS (SKILL: all magic numbers at the top) ---------- */
+const CONSTANTS = {
+  WORLD_RADIUS: 52,
+  GRAVITY: 26, JUMP_SPEED: 8.6,
+  WALK: 7.4, SPRINT: 12.2, TURN_LERP: 12, MOVE_LERP: 9,
+  CRYSTAL_COUNT: 8, PICKUP_R: 2.6,
+  ROUND_TIME: 60, HIT_TIME_COST: 5, HIT_COOLDOWN: 1.4,
+  ENEMY_COUNT: 3, ENEMY_SPEED: 3.5, ENEMY_CHASE_SPEED: 5.4, ENEMY_SEE_R: 16, ENEMY_HIT_R: 1.7,
+  FOV: 60, CAM_DIST: 9.5, CAM_HEIGHT: 3.4, CAM_LERP: 8, ORBIT_SENS: 0.006,
+  TONE_EXPOSURE: 1.22, SHADOW_MAP: 2048,
+  SCORE_PER_CRYSTAL: 150, SCORE_TIME_BONUS: 20,
+  // mid-tone rule from SKILL Phase 4: no near-black on any large surface
+  COLORS: {
+    snowHi: 0xf4f8fc, snowLow: 0xd9e6f2, ice: 0xa9d6ee, rock: 0x707a89,
+    fog: 0xcfe2f2, skyTop: 0x5b9bd8, skyBottom: 0xe6f2fb, sun: 0xfff3cf,
+    foxBody: 0xe9eef6, foxDark: 0x3b4250, foxMark: 0x9fb2c8,
+    wraith: 0x9fe4ff, crystal: 0x8ff0ff, pine: 0x3f6b57, trunk: 0x6b5644
+  }
+};
+
+/* ---------- 3. DATA DEFINITIONS ---------- */
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+const rng = mulberry32(20260925);              // seeded: the field is reproducible
+function rnd(a,b){ return a + rng()*(b-a); }
+function terrainHeight(x,z){
+  const d = Math.hypot(x,z);
+  let h = Math.sin(x*0.08)*Math.cos(z*0.07)*2.0
+        + Math.sin(x*0.19+z*0.11)*0.9
+        + Math.cos(z*0.31-x*0.05)*0.4;
+  h += Math.max(0, d-30)*0.14;                 // rim rises toward the boundary
+  h -= Math.max(0, 26-d)*0.10;                 // shallow bowl in the middle
+  return h;
+}
+function crystalSpots(){
+  const out = [], r = mulberry32(777);
+  for(let i=0;i<CONSTANTS.CRYSTAL_COUNT;i++){
+    const a = (i/CONSTANTS.CRYSTAL_COUNT)*Math.PI*2 + r()*0.5;
+    const d = 13 + r()*26;
+    out.push({ x: Math.cos(a)*d, z: Math.sin(a)*d });
+  }
+  return out;
+}
+
+/* ---------- 4. GAME STATE ---------- */
+const state = {
+  mode:'title', t:0, timeLeft:CONSTANTS.ROUND_TIME, score:0, collected:0, hits:0,
+  shake:0, hurtCool:0, hitFlash:0, best:0, steps:0,
+  player:{ pos:new THREE.Vector3(0,0,10), vel:new THREE.Vector3(), facing:0, onGround:true, vy:0, speedNorm:0 },
+  cam:{ yaw:0, pitch:0.35, dragging:false },
+  keys:Object.create(null)
+};
+
+/* ---------- 5. SAVE / LOAD (localStorage) ---------- */
+const SAVE_KEY = 'frostlight-gather-best';
+function loadBest(){ try{ state.best = Number(localStorage.getItem(SAVE_KEY)||0) || 0; }catch(e){ state.best = 0; } }
+function saveBest(){ try{ localStorage.setItem(SAVE_KEY, String(state.best)); }catch(e){} }
+
+/* ---------- 6. SCENE SETUP ---------- */
+const renderer = new THREE.WebGLRenderer({ antialias:true, powerPreference:'high-performance' });
+renderer.setSize(innerWidth, innerHeight);
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = CONSTANTS.TONE_EXPOSURE;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.insertBefore(renderer.domElement, document.body.firstChild);
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(CONSTANTS.COLORS.fog, 0.0125);
+const camera = new THREE.PerspectiveCamera(CONSTANTS.FOV, innerWidth/innerHeight, 0.1, 900);
+camera.position.set(0, 10, 26);
+
+/* ---------- 7. LIGHTING RIG (5 lights) ---------- */
+const lights = [];
+const key = new THREE.DirectionalLight(0xfff2d8, 2.6);
+key.position.set(34, 46, 22); key.castShadow = true;
+key.shadow.mapSize.set(CONSTANTS.SHADOW_MAP, CONSTANTS.SHADOW_MAP);
+key.shadow.camera.left = -62; key.shadow.camera.right = 62; key.shadow.camera.top = 62; key.shadow.camera.bottom = -62;
+key.shadow.camera.far = 180; key.shadow.bias = -0.0006; key.shadow.normalBias = 0.02;
+scene.add(key); lights.push(key);
+const fill = new THREE.DirectionalLight(0x9dc4ff, 0.75); fill.position.set(-30,18,-26); scene.add(fill); lights.push(fill);
+const hemi = new THREE.HemisphereLight(0xdcefff, 0x6a7c8c, 0.55); scene.add(hemi); lights.push(hemi);
+const amb = new THREE.AmbientLight(0xcfe0f2, 0.62); scene.add(amb); lights.push(amb);
+const rim = new THREE.PointLight(0xffd9a0, 1.8, 70, 2); rim.position.set(-6, 9, -14); scene.add(rim); lights.push(rim);
+
+/* ---------- sky dome (reference/graphics-quality.md createSkyDome) ---------- */
+function createSkyDome(topColor, bottomColor, sunColor){
+  const geo = new THREE.SphereGeometry(500, 32, 32);
+  const mat = new THREE.ShaderMaterial({
+    side: THREE.BackSide, depthWrite:false,
+    uniforms:{ topColor:{value:new THREE.Color(topColor)}, bottomColor:{value:new THREE.Color(bottomColor)},
+      sunColor:{value:new THREE.Color(sunColor)}, sunDirection:{value:new THREE.Vector3(0.4,0.6,0.3).normalize()}, sunSize:{value:0.03} },
+    vertexShader:'varying vec3 vWorldPosition; void main(){ vec4 w=modelMatrix*vec4(position,1.0); vWorldPosition=w.xyz; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }',
+    fragmentShader:'uniform vec3 topColor,bottomColor,sunColor,sunDirection; uniform float sunSize; varying vec3 vWorldPosition;' +
+      'void main(){ vec3 d=normalize(vWorldPosition); float h=d.y*0.5+0.5; vec3 sky=mix(bottomColor,topColor,pow(h,0.8));' +
+      ' float s=max(dot(d,sunDirection),0.0); sky+=sunColor*pow(s,1.0/sunSize)*0.5; sky+=sunColor*0.15*pow(s,8.0); gl_FragColor=vec4(sky,1.0); }'
+  });
+  return new THREE.Mesh(geo, mat);
+}
+scene.add(createSkyDome(CONSTANTS.COLORS.skyTop, CONSTANTS.COLORS.skyBottom, CONSTANTS.COLORS.sun));
+
+
+/* ---------- 7. POST-PROCESSING (SKILL Phase 4 stack; addons converted to a global build) ---------- */
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const bloomPass = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.38, 0.6, 0.82);
+composer.addPass(bloomPass);
+const GradeShader = {
+  uniforms: { tDiffuse:{value:null}, contrast:{value:1.07}, saturation:{value:1.10},
+              vignette:{value:0.26}, warm:{value:0.05}, flash:{value:0.0} },
+  vertexShader: 'varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }',
+  fragmentShader:
+    'uniform sampler2D tDiffuse; uniform float contrast,saturation,vignette,warm,flash; varying vec2 vUv;' +
+    'void main(){ vec4 t=texture2D(tDiffuse,vUv); vec3 c=t.rgb;' +
+    ' float g=dot(c,vec3(0.2126,0.7152,0.0722)); c=mix(vec3(g),c,saturation);' +
+    ' c=(c-0.5)*contrast+0.5; c.r+=warm; c.b-=warm*0.6;' +
+    ' c=mix(c,vec3(0.86,0.93,1.0),flash*0.35);' +                                   // pickup flash tint
+    ' float d=length(vUv-0.5); c*=smoothstep(0.86,0.32,d)*vignette+(1.0-vignette);' +  // vignette <= 0.3
+    ' gl_FragColor=vec4(c,t.a); }'
+};
+const gradePass = new ShaderPass(GradeShader);
+composer.addPass(gradePass);
+const fxaaPass = new ShaderPass(FXAAShader);
+function setFxaaResolution(){
+  const pr = renderer.getPixelRatio();
+  fxaaPass.material.uniforms['resolution'].value.set(1/(innerWidth*pr), 1/(innerHeight*pr));
+}
+setFxaaResolution();
+composer.addPass(fxaaPass);
+composer.addPass(new OutputPass());
+function renderFrame(){ gradePass.uniforms.flash.value = Math.max(0, state.hitFlash*0.5); composer.render(); }
+/* ---------- 8. ASSET FACTORIES (procedural texture helper) ---------- */
+function createNoiseTexture(w,h,scale,c1,c2){
+  const cv=document.createElement('canvas'); cv.width=w; cv.height=h;
+  const ctx=cv.getContext('2d'); const img=ctx.createImageData(w,h);
+  for(let y=0;y<h;y++) for(let x=0;x<w;x++){
+    const i=(y*w+x)*4, nx=x/scale, ny=y/scale;
+    const n=(Math.sin(nx*1.3+ny*0.7)*Math.cos(nx*0.8-ny*1.1)+1)*0.5, t=n*n;
+    img.data[i]=c1[0]+(c2[0]-c1[0])*t; img.data[i+1]=c1[1]+(c2[1]-c1[1])*t; img.data[i+2]=c1[2]+(c2[2]-c1[2])*t; img.data[i+3]=255;
+  }
+  ctx.putImageData(img,0,0);
+  const tex=new THREE.CanvasTexture(cv); tex.wrapS=tex.wrapT=THREE.RepeatWrapping; tex.colorSpace=THREE.SRGBColorSpace; return tex;
+}
+const snowTex = createNoiseTexture(256,256,15,[214,228,242],[176,196,216]); snowTex.repeat.set(30,30);
+
+/* ---------- 9. ENVIRONMENT: displaced terrain + vertex-coloured biomes ---------- */
+const terrainGeo = new THREE.PlaneGeometry(150,150,96,96);
+terrainGeo.rotateX(-Math.PI/2);
+{
+  const pos = terrainGeo.attributes.position, colors = new Float32Array(pos.count*3);
+  const cSnow = new THREE.Color(CONSTANTS.COLORS.snowHi), cIce = new THREE.Color(CONSTANTS.COLORS.ice), cRock = new THREE.Color(CONSTANTS.COLORS.rock);
+  const tmp = new THREE.Color(), a = new THREE.Color(), b = new THREE.Color();
+  for(let i=0;i<pos.count;i++){
+    const x=pos.getX(i), z=pos.getZ(i), h=terrainHeight(x,z);
+    pos.setY(i,h);
+    const k = Math.min(1, Math.max(0, (h+2.2)/7.0));
+    if (k < 0.5){ a.copy(cSnow); b.copy(cIce); } else { a.copy(cIce); b.copy(cRock); }
+    tmp.copy(a).lerp(b, k < 0.5 ? k*2 : (k-0.5)*2);
+    colors[i*3]=tmp.r; colors[i*3+1]=tmp.g; colors[i*3+2]=tmp.b;
+  }
+  terrainGeo.setAttribute('color', new THREE.BufferAttribute(colors,3));
+  terrainGeo.computeVertexNormals();
+}
+const terrain = new THREE.Mesh(terrainGeo,
+  new THREE.MeshStandardMaterial({ map:snowTex, vertexColors:true, roughness:0.8, metalness:0.02 }));
+terrain.name = 'terrain'; terrain.receiveShadow = true; scene.add(terrain);
+
+function addInstance(geo, mat, count, place){
+  const m = new THREE.InstancedMesh(geo, mat, count);
+  m.castShadow = true; m.receiveShadow = true;
+  const d = new THREE.Object3D();
+  for(let i=0;i<count;i++){ place(d,i); d.updateMatrix(); m.setMatrixAt(i,d.matrix); }
+  m.instanceMatrix.needsUpdate = true; scene.add(m); return m;
+}
+const pines = [];
+for(let i=0;i<92;i++){ const a=rng()*Math.PI*2, d=rnd(13,49); const x=Math.cos(a)*d, z=Math.sin(a)*d; pines.push({x,z,s:rnd(0.55,1.15)}); }
+addInstance(new THREE.ConeGeometry(1.5,5,7), new THREE.MeshStandardMaterial({color:CONSTANTS.COLORS.pine, roughness:0.85, flatShading:true}), pines.length, (o,i)=>{
+  const p=pines[i]; o.position.set(p.x, terrainHeight(p.x,p.z)+2.4*p.s, p.z); o.scale.setScalar(p.s); o.rotation.y=i*1.7; }).name='pines';
+addInstance(new THREE.CylinderGeometry(0.17,0.24,1.4,5), new THREE.MeshStandardMaterial({color:CONSTANTS.COLORS.trunk, roughness:0.9}), pines.length, (o,i)=>{
+  const p=pines[i]; o.position.set(p.x, terrainHeight(p.x,p.z)+0.5*p.s, p.z); o.scale.setScalar(p.s); });
+const rocks = [];
+for(let i=0;i<60;i++){ const a=rng()*Math.PI*2, d=rnd(6,50); rocks.push({x:Math.cos(a)*d, z:Math.sin(a)*d, s:rnd(0.4,1.5)}); }
+addInstance(new THREE.DodecahedronGeometry(0.9,0), new THREE.MeshStandardMaterial({color:0x8b95a4, roughness:0.7, metalness:0.1, flatShading:true}), rocks.length, (o,i)=>{
+  const r=rocks[i]; o.position.set(r.x, terrainHeight(r.x,r.z)+0.25*r.s, r.z); o.scale.set(r.s,r.s*0.7,r.s*1.1); o.rotation.set(i,i*2.3,i*0.7); }).name='rocks';
+// frozen ponds — MeshPhysicalMaterial transmission/thickness/ior (SKILL: ice/glass recipe)
+[[-18,22],[24,-14],[6,38]].forEach(([x,z])=>{
+  const pond = new THREE.Mesh(new THREE.CircleGeometry(rnd(4.5,6.5), 40),
+    new THREE.MeshPhysicalMaterial({ color:0xbfe6f7, roughness:0.08, metalness:0.0, transmission:0.85, thickness:1.2, ior:1.31, transparent:true, opacity:0.95 }));
+  pond.name='pond'; pond.rotation.x=-Math.PI/2; pond.position.set(x, terrainHeight(x,z)+0.06, z); pond.receiveShadow=true; scene.add(pond);
+});
+// boundary markers so the edge of the play space reads visually
+const boundary = new THREE.Mesh(new THREE.TorusGeometry(CONSTANTS.WORLD_RADIUS+0.6, 0.12, 6, 90),
+  new THREE.MeshStandardMaterial({ color:0xffd479, emissive:0x8a5f14, emissiveIntensity:0.8, roughness:0.4 }));
+boundary.rotation.x = -Math.PI/2; boundary.name = 'boundary'; scene.add(boundary);
+const boundaryPosts = [];
+for(let i=0;i<26;i++){ const a=(i/26)*Math.PI*2; boundaryPosts.push({ x:Math.cos(a)*(CONSTANTS.WORLD_RADIUS+0.6), z:Math.sin(a)*(CONSTANTS.WORLD_RADIUS+0.6) }); }
+addInstance(new THREE.BoxGeometry(0.28,3.2,0.28), new THREE.MeshStandardMaterial({ color:0x93a4b8, roughness:0.6, metalness:0.25 }), boundaryPosts.length, (o,i)=>{
+  const p=boundaryPosts[i]; o.position.set(p.x, terrainHeight(p.x,p.z)+1.6, p.z); });
+
+/* ---------- 10. PLAYER (procedural arctic fox, 20+ primitives) ---------- */
+function buildFox(){
+  const g = new THREE.Group();
+  const fur = new THREE.MeshStandardMaterial({ color:CONSTANTS.COLORS.foxBody, roughness:0.65, metalness:0.0 });
+  const dark = new THREE.MeshStandardMaterial({ color:CONSTANTS.COLORS.foxDark, roughness:0.6 });
+  const mark = new THREE.MeshStandardMaterial({ color:CONSTANTS.COLORS.foxMark, roughness:0.7 });
+  const parts=[];
+  function add(geo,mat,x,y,z,rx,ry,rz,name){
+    const m=new THREE.Mesh(geo,mat); m.position.set(x,y,z); m.rotation.set(rx||0,ry||0,rz||0);
+    m.castShadow=true; m.name=name||''; g.add(m); parts.push(m); return m;
+  }
+  add(new THREE.BoxGeometry(0.62,0.52,1.15), fur, 0,0.78,0, 0,0,0, 'body');
+  add(new THREE.BoxGeometry(0.5,0.16,0.9), mark, 0,1.06,0.02, 0,0,0, 'back');
+  const head = add(new THREE.BoxGeometry(0.5,0.46,0.5), fur, 0,1.06,0.72, 0,0,0, 'head');
+  add(new THREE.BoxGeometry(0.26,0.22,0.34), mark, 0,0.98,1.02, 0,0,0, 'snout');
+  add(new THREE.BoxGeometry(0.1,0.1,0.1), dark, 0,0.99,1.2, 0,0,0, 'nose');
+  add(new THREE.ConeGeometry(0.14,0.34,4), fur, -0.17,1.4,0.68, 0,0.7,0, 'earL');
+  add(new THREE.ConeGeometry(0.14,0.34,4), fur, 0.17,1.4,0.68, 0,0.7,0, 'earR');
+  add(new THREE.ConeGeometry(0.08,0.16,4), dark, -0.17,1.5,0.68, 0,0.7,0, 'earLt');
+  add(new THREE.ConeGeometry(0.08,0.16,4), dark, 0.17,1.5,0.68, 0,0.7,0, 'earRt');
+  add(new THREE.SphereGeometry(0.06,8,8), dark, -0.15,1.14,0.94, 0,0,0, 'eyeL');
+  add(new THREE.SphereGeometry(0.06,8,8), dark, 0.15,1.14,0.94, 0,0,0, 'eyeR');
+  const legGeo = new THREE.BoxGeometry(0.16,0.62,0.16);
+  const legs = [
+    add(legGeo, fur, -0.22,0.34,0.42, 0,0,0,'legFL'), add(legGeo, fur, 0.22,0.34,0.42, 0,0,0,'legFR'),
+    add(legGeo, fur, -0.22,0.34,-0.42, 0,0,0,'legBL'), add(legGeo, fur, 0.22,0.34,-0.42, 0,0,0,'legBR')
+  ];
+  const pawGeo = new THREE.BoxGeometry(0.18,0.12,0.22);
+  legs.forEach((l,i)=>add(pawGeo, dark, l.position.x,0.06,l.position.z, 0,0,0,'paw'+i));
+  const tail=[];
+  tail.push(add(new THREE.BoxGeometry(0.3,0.3,0.4), mark, 0,0.92,-0.72, 0.3,0,0,'tail1'));
+  tail.push(add(new THREE.BoxGeometry(0.26,0.26,0.38), mark, 0,1.06,-1.02, 0.5,0,0,'tail2'));
+  tail.push(add(new THREE.BoxGeometry(0.24,0.24,0.34), fur, 0,1.26,-1.24, 0.7,0,0,'tail3'));
+  add(new THREE.BoxGeometry(0.2,0.2,0.2), fur, 0,1.42,-1.44, 0.8,0,0,'tailTip');
+  g.userData = { head, legs, tail, parts, count: parts.length };
+  return g;
+}
+const fox = buildFox(); scene.add(fox);
+
+/* ---------- 11. ENTITY SYSTEM: wraiths (FSM patrol / chase / repel) ---------- */
+const wraiths = [];
+function buildWraith(){
+  const g = new THREE.Group();
+  const bodyMat = new THREE.MeshPhysicalMaterial({ color:CONSTANTS.COLORS.wraith, roughness:0.15, metalness:0.0,
+    transmission:0.6, thickness:1.0, ior:1.2, transparent:true, opacity:0.8,
+    emissive:0x2f7fa8, emissiveIntensity:0.9 });
+  const body = new THREE.Mesh(new THREE.ConeGeometry(0.62,2.0,7,1,true), bodyMat);
+  body.rotation.x = Math.PI; body.castShadow = true; g.add(body);
+  const core = new THREE.Mesh(new THREE.IcosahedronGeometry(0.3,0),
+    new THREE.MeshStandardMaterial({ color:0xffffff, emissive:0x9fe4ff, emissiveIntensity:2.4, roughness:0.3 }));
+  core.position.y = 1.15; g.add(core);
+  const shards = [];
+  for(let i=0;i<3;i++){
+    const s = new THREE.Mesh(new THREE.OctahedronGeometry(0.2,0),
+      new THREE.MeshStandardMaterial({ color:0xdff4ff, emissive:0x6fd0ff, emissiveIntensity:1.6, flatShading:true }));
+    g.add(s); shards.push(s);
+  }
+  g.userData = { core, shards, body };
+  return g;
+}
+for(let i=0;i<CONSTANTS.ENEMY_COUNT;i++){
+  const a = (i/CONSTANTS.ENEMY_COUNT)*Math.PI*2 + 0.9;
+  const d = 26 + i*4;
+  const w = buildWraith();
+  const x = Math.cos(a)*d, z = Math.sin(a)*d;
+  w.position.set(x, terrainHeight(x,z), z);
+  scene.add(w);
+  wraiths.push({ obj:w, home:new THREE.Vector3(x,0,z), state:'patrol', t:rnd(0,10),
+    dir:new THREE.Vector3(rnd(-1,1),0,rnd(-1,1)).normalize(), repel:0, bob:rnd(0,6.28) });
+}
+
+/* ---------- crystals ---------- */
+const crystals = [];
+const crysMat = new THREE.MeshPhysicalMaterial({ color:0xdffaff, roughness:0.05, metalness:0.0, transmission:0.9,
+  thickness:0.9, ior:1.6, transparent:true, emissive:CONSTANTS.COLORS.crystal, emissiveIntensity:1.15 });
+crystalSpots().forEach((s,i)=>{
+  const g = new THREE.Group();
+  const c = new THREE.Mesh(new THREE.OctahedronGeometry(0.5,0), crysMat);
+  c.position.y = 1.15; c.castShadow = true; g.add(c);
+  const halo = new THREE.Mesh(new THREE.RingGeometry(0.75,1.15,28),
+    new THREE.MeshBasicMaterial({ color:0x9ff2ff, transparent:true, opacity:0.35, side:THREE.DoubleSide }));
+  halo.rotation.x = -Math.PI/2; halo.position.y = 0.08; g.add(halo);
+  const y = terrainHeight(s.x,s.z);
+  g.position.set(s.x, y, s.z); g.userData = { spin:0, i };
+  scene.add(g);
+  crystals.push({ obj:g, core:c, halo, taken:false });
+});
+
+/* ---------- 19. PARTICLE SYSTEM (shader-based, pooled) ---------- */
+const PARTICLE_MAX = 420;
+const pPos = new Float32Array(PARTICLE_MAX*3), pAlpha = new Float32Array(PARTICLE_MAX), pSize = new Float32Array(PARTICLE_MAX);
+const pVel = new Float32Array(PARTICLE_MAX*3), pLife = new Float32Array(PARTICLE_MAX);
+const pGeo = new THREE.BufferGeometry();
+pGeo.setAttribute('position', new THREE.BufferAttribute(pPos,3));
+pGeo.setAttribute('alpha', new THREE.BufferAttribute(pAlpha,1));
+pGeo.setAttribute('psize', new THREE.BufferAttribute(pSize,1));
+const pMat = new THREE.ShaderMaterial({
+  transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
+  uniforms:{ uColor:{ value:new THREE.Color(0x9ff2ff) } },
+  vertexShader:'attribute float alpha; attribute float psize; varying float vA; void main(){ vA=alpha; vec4 mv=modelViewMatrix*vec4(position,1.0); gl_PointSize=psize*(240.0/-mv.z); gl_Position=projectionMatrix*mv; }',
+  fragmentShader:'uniform vec3 uColor; varying float vA; void main(){ float d=length(gl_PointCoord-0.5); if(d>0.5) discard; gl_FragColor=vec4(uColor, vA*(1.0-d*2.0)); }'
+});
+const particlePoints = new THREE.Points(pGeo, pMat); particlePoints.frustumCulled=false; scene.add(particlePoints);
+let pCursor = 0;
+function emitBurst(pos, n, spread, life, size){
+  for(let i=0;i<n;i++){
+    const k = pCursor % PARTICLE_MAX; pCursor++;
+    pPos[k*3]=pos.x; pPos[k*3+1]=pos.y+0.9; pPos[k*3+2]=pos.z;
+    pVel[k*3]=rnd(-spread,spread); pVel[k*3+1]=rnd(0.6,spread); pVel[k*3+2]=rnd(-spread,spread);
+    pLife[k]=rnd(life*0.6,life); pAlpha[k]=1; pSize[k]=rnd(size*0.6,size);
+  }
+}
+function updateParticles(dt){
+  for(let k=0;k<PARTICLE_MAX;k++){
+    if(pLife[k] <= 0){ pAlpha[k]=0; continue; }
+    pLife[k]-=dt; pVel[k*3+1]-=dt*1.4;
+    pPos[k*3]+=pVel[k*3]*dt; pPos[k*3+1]+=pVel[k*3+1]*dt; pPos[k*3+2]+=pVel[k*3+2]*dt;
+    pAlpha[k]=Math.max(0, pLife[k]);
+  }
+  pGeo.attributes.position.needsUpdate=true; pGeo.attributes.alpha.needsUpdate=true; pGeo.attributes.psize.needsUpdate=true;
+}
+
+/* ---------- ambient snow ---------- */
+const SNOW_N = 900;
+const snowPos = new Float32Array(SNOW_N*3), snowSpd = new Float32Array(SNOW_N);
+for(let i=0;i<SNOW_N;i++){ snowPos[i*3]=rnd(-60,60); snowPos[i*3+1]=rnd(0,34); snowPos[i*3+2]=rnd(-60,60); snowSpd[i]=rnd(1.4,3.4); }
+const snowGeo = new THREE.BufferGeometry(); snowGeo.setAttribute('position', new THREE.BufferAttribute(snowPos,3));
+const snow = new THREE.Points(snowGeo, new THREE.PointsMaterial({ color:0xffffff, size:0.16, transparent:true, opacity:0.75, sizeAttenuation:true }));
+snow.frustumCulled=false; scene.add(snow);
+function updateSnow(dt){
+  for(let i=0;i<SNOW_N;i++){
+    snowPos[i*3+1]-=snowSpd[i]*dt;
+    snowPos[i*3]+=Math.sin(state.t*0.7+i)*dt*0.5;
+    if(snowPos[i*3+1] < -1){ snowPos[i*3+1]=32; }
+  }
+  snowGeo.attributes.position.needsUpdate=true;
+}
+
+/* ---------- 21. AUDIO (procedural Web Audio) ---------- */
+let actx=null, master=null, convolver=null, wet=null, soundOn=true;
+function audio(){
+  if(!actx){
+    actx = new (window.AudioContext||window.webkitAudioContext)();
+    master = actx.createGain(); master.gain.value=0.42; master.connect(actx.destination);
+    const len = Math.floor(actx.sampleRate*1.2), imp = actx.createBuffer(2,len,actx.sampleRate);
+    for(let ch=0;ch<2;ch++){ const d=imp.getChannelData(ch); for(let i=0;i<len;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2.6); }
+    convolver = actx.createConvolver(); convolver.buffer=imp;
+    wet = actx.createGain(); wet.gain.value=0.16; convolver.connect(wet); wet.connect(master);
+  }
+  if(actx.state==='suspended') actx.resume();
+  return actx;
+}
+function tone(freq, freqTo, dur, type, gain){
+  if(!soundOn) return;
+  const c=audio(), t=c.currentTime, o=c.createOscillator(), g=c.createGain();
+  o.type=type||'sine'; o.frequency.setValueAtTime(freq,t);
+  o.frequency.exponentialRampToValueAtTime(Math.max(30,freqTo), t+dur);
+  g.gain.setValueAtTime(0.0001,t); g.gain.linearRampToValueAtTime(gain||0.25, t+0.012);
+  g.gain.exponentialRampToValueAtTime(0.0008, t+dur);
+  o.connect(g); g.connect(master); g.connect(convolver); o.start(t); o.stop(t+dur+0.02);
+}
+function noiseHit(dur, f0, f1, gain){
+  if(!soundOn) return;
+  const c=audio(), t=c.currentTime, n=Math.floor(c.sampleRate*dur);
+  const b=c.createBuffer(1,n,c.sampleRate), d=b.getChannelData(0);
+  for(let i=0;i<n;i++) d[i]=Math.random()*2-1;
+  const src=c.createBufferSource(); src.buffer=b;
+  const bp=c.createBiquadFilter(); bp.type='bandpass'; bp.Q.value=1.1;
+  bp.frequency.setValueAtTime(f0,t); bp.frequency.exponentialRampToValueAtTime(Math.max(60,f1),t+dur);
+  const g=c.createGain(); g.gain.setValueAtTime(gain||0.3,t); g.gain.exponentialRampToValueAtTime(0.001,t+dur);
+  src.connect(bp); bp.connect(g); g.connect(master); g.connect(convolver); src.start(t); src.stop(t+dur);
+}
+const SFX = {
+  pickup(){ tone(880,1760,0.16,'triangle',0.3); tone(1320,2640,0.22,'sine',0.16); },
+  hit(){ noiseHit(0.3,1200,120,0.36); tone(180,60,0.32,'sawtooth',0.2); },
+  jump(){ tone(320,620,0.12,'sine',0.14); },
+  step(){ noiseHit(0.05,900,300,0.05); },
+  win(){ [523,659,784,1046].forEach((f,i)=>setTimeout(()=>tone(f,f,0.3,'triangle',0.24), i*130)); },
+  lose(){ [440,349,262].forEach((f,i)=>setTimeout(()=>tone(f,f*0.9,0.4,'sawtooth',0.16), i*180)); }
+};
+
+/* ---------- 20. HUD ---------- */
+const el = id => document.getElementById(id);
+const HUD = { crystals:el('crystals'), timer:el('timer'), score:el('score'), best:el('best'),
+  bar:document.querySelector('#timebar > i'), zone:el('zone'), toast:el('toast'),
+  hurt:el('hurt'), title:el('title'), over:el('over'), hint:el('hint') };
+let toastT = 0;
+function toast(msg){ HUD.toast.textContent = msg; HUD.toast.classList.remove('hidden'); toastT = 1.6; }
+function updateHUD(){
+  HUD.crystals.textContent = state.collected + ' / ' + CONSTANTS.CRYSTAL_COUNT;
+  HUD.timer.textContent = state.timeLeft.toFixed(1);
+  HUD.score.textContent = String(state.score);
+  HUD.best.textContent = 'Best ' + (state.best || '—');
+  HUD.bar.style.width = Math.max(0, state.timeLeft/CONSTANTS.ROUND_TIME*100) + '%';
+  const d = Math.hypot(state.player.pos.x, state.player.pos.z);
+  HUD.zone.textContent = d>42 ? 'Rim Crags' : (d<16 ? 'Hollow' : 'Frostfield');
+  HUD.toast.classList.toggle('hidden', toastT<=0);
+  HUD.hurt.style.opacity = String(Math.min(0.95, state.hitFlash));
+}
+
+/* ---------- 23/24. SCREENS + GAME FLOW ---------- */
+function startGame(){
+  state.mode='playing'; state.timeLeft=CONSTANTS.ROUND_TIME; state.score=0; state.collected=0; state.hits=0;
+  state.hurtCool=0; state.hitFlash=0;
+  state.player.pos.set(0, terrainHeight(0,10), 10); state.player.vel.set(0,0,0); state.player.vy=0; state.player.onGround=true;
+  crystals.forEach(c=>{ c.taken=false; c.obj.visible=true; });
+  wraiths.forEach((w,i)=>{ const a=(i/CONSTANTS.ENEMY_COUNT)*Math.PI*2+0.9, d=26+i*4;
+    w.obj.position.set(Math.cos(a)*d, 0, Math.sin(a)*d); w.state='patrol'; w.repel=0; });
+  HUD.title.classList.add('hidden'); HUD.over.classList.add('hidden'); HUD.hint.classList.remove('hidden');
+  try{ audio(); }catch(e){}
+}
+function endGame(win){
+  state.mode = win ? 'win' : 'lose';
+  if(win) state.score += Math.round(state.timeLeft*CONSTANTS.SCORE_TIME_BONUS);
+  if(state.score > state.best){ state.best = state.score; saveBest(); }
+  el('over-title').textContent = win ? 'LIGHT RESTORED' : 'STORM ARRIVED';
+  el('over-sub').textContent = win ? '全部冰晶已拾取' : '风暴吞没了荒原';
+  el('over-text').textContent = win
+    ? '你带着 ' + CONSTANTS.CRYSTAL_COUNT + ' 枚冰晶离开了荒原。剩余 ' + state.timeLeft.toFixed(1) + ' 秒。'
+    : '拾取 ' + state.collected + ' / ' + CONSTANTS.CRYSTAL_COUNT + ' 枚冰晶。再试一次，别被霜灵碰到。';
+  el('s-cr').textContent = state.collected; el('s-score').textContent = state.score;
+  el('s-hits').textContent = state.hits; el('s-time').textContent = state.timeLeft.toFixed(1);
+  HUD.over.classList.remove('hidden'); HUD.hint.classList.add('hidden');
+  if(win) SFX.win(); else SFX.lose();
+}
+
+/* ---------- 10/12/18. PLAYER PHYSICS + CAMERA-RELATIVE CONTROLS ---------- */
+let stepAccum = 0;
+function updatePlayer(dt){
+  const p = state.player;
+  const fwd = new THREE.Vector3(-Math.sin(state.cam.yaw), 0, -Math.cos(state.cam.yaw));
+  const right = new THREE.Vector3(-fwd.z, 0, fwd.x);
+  const wish = new THREE.Vector3();
+  if(state.keys['w']||state.keys['arrowup']) wish.add(fwd);
+  if(state.keys['s']||state.keys['arrowdown']) wish.sub(fwd);
+  if(state.keys['d']||state.keys['arrowright']) wish.add(right);
+  if(state.keys['a']||state.keys['arrowleft']) wish.sub(right);
+  const moving = wish.lengthSq() > 0.0001;
+  const maxSpeed = state.keys['shift'] ? CONSTANTS.SPRINT : CONSTANTS.WALK;
+  if(moving) wish.normalize().multiplyScalar(maxSpeed);
+  const lerp = moving ? CONSTANTS.MOVE_LERP : CONSTANTS.MOVE_LERP*1.4;
+  p.vel.x += (wish.x - p.vel.x) * Math.min(1, lerp*dt);
+  p.vel.z += (wish.z - p.vel.z) * Math.min(1, lerp*dt);
+  p.speedNorm = Math.hypot(p.vel.x, p.vel.z);
+  p.pos.x += p.vel.x*dt; p.pos.z += p.vel.z*dt;
+  const d = Math.hypot(p.pos.x, p.pos.z);
+  if(d > CONSTANTS.WORLD_RADIUS){ const k = CONSTANTS.WORLD_RADIUS/d; p.pos.x*=k; p.pos.z*=k; p.vel.multiplyScalar(0.3); }
+  const gy = terrainHeight(p.pos.x, p.pos.z);
+  if(state.keys[' '] && p.onGround){ p.vy = CONSTANTS.JUMP_SPEED; p.onGround=false; SFX.jump(); }
+  p.vy -= CONSTANTS.GRAVITY*dt;
+  p.pos.y += p.vy*dt;
+  if(p.pos.y <= gy){
+    p.pos.y = gy;
+    if(!p.onGround){ SFX.step(); emitBurst(p.pos, 8, 1.2, 0.35, 3); }
+    p.vy = 0; p.onGround = true;
+  }
+  if(p.speedNorm > 0.4){
+    const want = Math.atan2(p.vel.x, p.vel.z);
+    let diff = want - p.facing;
+    while(diff > Math.PI) diff -= Math.PI*2;
+    while(diff < -Math.PI) diff += Math.PI*2;
+    p.facing += diff * Math.min(1, CONSTANTS.TURN_LERP*dt);
+  }
+  fox.position.copy(p.pos);
+  fox.rotation.y = p.facing;
+  const gait = state.t * (6 + p.speedNorm*0.9);
+  fox.userData.legs.forEach((l,i)=>{ l.rotation.x = Math.sin(gait + (i%2?Math.PI:0) + (i>1?Math.PI:0)) * Math.min(0.9, 0.2+p.speedNorm*0.08); });
+  fox.userData.tail.forEach((t,i)=>{ t.rotation.y = Math.sin(state.t*(2+p.speedNorm*0.4) + i*0.7)*0.22; });
+  const air = p.onGround ? 1 : 0.88;
+  fox.scale.set(2-air, air, 2-air);
+  if(p.onGround && p.speedNorm > 3){ stepAccum += dt*p.speedNorm; if(stepAccum > 4){ stepAccum=0; emitBurst(p.pos, 3, 0.5, 0.3, 2); SFX.step(); } }
+}
+function updateCamera(dt){
+  const p = state.player;
+  const dist = CONSTANTS.CAM_DIST;
+  const wide = state.mode === 'playing' ? 1 : 1.75;      // title & results read as an establishing shot
+  const cx = p.pos.x + Math.sin(state.cam.yaw)*dist*wide*Math.cos(state.cam.pitch);
+  const cz = p.pos.z + Math.cos(state.cam.yaw)*dist*wide*Math.cos(state.cam.pitch);
+  let cy = p.pos.y + CONSTANTS.CAM_HEIGHT*(0.6+state.cam.pitch*1.6)*wide;
+  const groundY = terrainHeight(cx, cz) + 1.2;
+  if(cy < groundY) cy = groundY;
+  const k = Math.min(1, CONSTANTS.CAM_LERP*dt);
+  camera.position.x += (cx-camera.position.x)*k;
+  camera.position.y += (cy-camera.position.y)*k;
+  camera.position.z += (cz-camera.position.z)*k;
+  camera.lookAt(p.pos.x, p.pos.y+1.2, p.pos.z);
+  if(state.shake > 0.001){
+    camera.position.x += rnd(-state.shake,state.shake);
+    camera.position.y += rnd(-state.shake,state.shake);
+    camera.position.z += rnd(-state.shake,state.shake);
+    state.shake = Math.max(0, state.shake - dt*2.4);
+  }
+}
+
+/* ---------- 11/12. WRAITH AI + DAMAGE ---------- */
+function updateWraiths(dt){
+  const p = state.player.pos;
+  wraiths.forEach(w=>{
+    w.t += dt;
+    const toP = new THREE.Vector3(p.x - w.obj.position.x, 0, p.z - w.obj.position.z);
+    const dist = toP.length();
+    if(w.repel > 0){ w.repel -= dt; w.state='repel'; }
+    else if(dist < CONSTANTS.ENEMY_SEE_R){ w.state='chase'; }
+    else { w.state='patrol'; }
+    let speed = CONSTANTS.ENEMY_SPEED, dir = w.dir;
+    if(w.state==='chase'){ speed = CONSTANTS.ENEMY_CHASE_SPEED; dir = toP.clone().normalize(); }
+    else if(w.state==='repel'){ speed = CONSTANTS.ENEMY_SPEED*1.7; dir = toP.clone().normalize().multiplyScalar(-1); }
+    else if(w.t > 4.5){ w.t = 0; w.dir.set(rnd(-1,1),0,rnd(-1,1)).normalize(); dir = w.dir; }
+    w.obj.position.x += dir.x*speed*dt; w.obj.position.z += dir.z*speed*dt;
+    const dd = Math.hypot(w.obj.position.x, w.obj.position.z);
+    if(dd > CONSTANTS.WORLD_RADIUS-1){
+      w.dir.multiplyScalar(-1);
+      w.obj.position.x *= (CONSTANTS.WORLD_RADIUS-1)/dd; w.obj.position.z *= (CONSTANTS.WORLD_RADIUS-1)/dd;
+    }
+    w.obj.position.y = terrainHeight(w.obj.position.x, w.obj.position.z) + Math.sin(state.t*1.8 + w.bob)*0.35 + 0.4;
+    w.obj.rotation.y += dt*0.9;
+    w.obj.userData.core.material.emissiveIntensity = 1.8 + Math.sin(state.t*4+w.bob)*0.7 + (w.state==='chase'?1.4:0);
+    w.obj.userData.shards.forEach((s,i)=>{
+      const a = state.t*1.9 + i*2.1;
+      s.position.set(Math.cos(a)*1.15, 1.0+Math.sin(a*1.7)*0.4, Math.sin(a)*1.15);
+    });
+    if(dist < CONSTANTS.ENEMY_HIT_R && state.hurtCool <= 0 && state.mode==='playing'){
+      state.hurtCool = CONSTANTS.HIT_COOLDOWN; state.hits++;
+      state.timeLeft = Math.max(0.1, state.timeLeft - CONSTANTS.HIT_TIME_COST);
+      state.hitFlash = 1; state.shake = 0.5; w.repel = 1.2;
+      emitBurst(p, 26, 3.2, 0.5, 5); SFX.hit(); toast('霜灵侵袭 −5s');
+    }
+  });
+  state.hurtCool = Math.max(0, state.hurtCool - dt);
+  state.hitFlash = Math.max(0, state.hitFlash - dt*1.6);
+}
+
+/* ---------- 13. COLLECTION ---------- */
+function updateCrystals(dt){
+  crystals.forEach(c=>{
+    if(c.taken) return;
+    c.core.rotation.y += dt*1.5;
+    c.core.position.y = 1.15 + Math.sin(state.t*2 + c.obj.userData.i)*0.16;
+    c.halo.material.opacity = 0.28 + Math.sin(state.t*3 + c.obj.userData.i)*0.12;
+    const d = Math.hypot(c.obj.position.x - state.player.pos.x, c.obj.position.z - state.player.pos.z);
+    if(d < CONSTANTS.PICKUP_R){
+      c.taken = true; c.obj.visible = false; state.collected++;
+      state.score += CONSTANTS.SCORE_PER_CRYSTAL;
+      emitBurst(c.obj.position, 34, 2.6, 0.7, 4.5); SFX.pickup(); toast('冰晶 +150');
+      if(state.collected === CONSTANTS.CRYSTAL_COUNT) endGame(true);
+    }
+  });
+}
+
+/* ---------- 25. MAIN LOOP ---------- */
+function update(dt){
+  state.t += dt;
+  if(state.mode === 'playing'){
+    updatePlayer(dt); updateWraiths(dt); updateCrystals(dt);
+    state.timeLeft -= dt;
+    if(state.timeLeft <= 0){ state.timeLeft = 0; endGame(false); }
+  } else {
+    state.cam.yaw += dt*0.12;
+  }
+  updateCamera(dt); updateParticles(dt); updateSnow(dt);
+  toastT = Math.max(0, toastT - dt);
+  key.target.position.set(state.player.pos.x, state.player.pos.y+1, state.player.pos.z);
+  updateHUD();
+}
+const clock = new THREE.Clock();
+function frame(){
+  requestAnimationFrame(frame);
+  const dt = Math.min(0.05, clock.getDelta());
+  update(dt);
+  renderFrame();
+}
+scene.add(key.target);
+
+/* ---------- 26. EVENTS ---------- */
+addEventListener('keydown', e=>{
+  const k = e.key === ' ' ? ' ' : e.key.toLowerCase();
+  state.keys[k] = true;
+  if(e.key === 'Shift') state.keys['shift'] = true;
+  if(k === ' ') e.preventDefault();
+});
+addEventListener('keyup', e=>{
+  const k = e.key === ' ' ? ' ' : e.key.toLowerCase();
+  state.keys[k] = false;
+  if(e.key === 'Shift') state.keys['shift'] = false;
+});
+renderer.domElement.addEventListener('pointerdown', ()=>{ if(state.mode !== 'playing') startGame(); });
+addEventListener('pointerup', ()=> state.cam.dragging=false);
+addEventListener('pointermove', e=>{
+  if(!state.cam.dragging) return;
+  state.cam.yaw -= (e.movementX||0)*CONSTANTS.ORBIT_SENS;
+  state.cam.pitch = Math.max(0.05, Math.min(1.15, state.cam.pitch + (e.movementY||0)*CONSTANTS.ORBIT_SENS));
+});
+document.addEventListener('pointerdown', e=>{
+  if(state.mode==='playing') state.cam.dragging = true;
+});
+HUD.title.addEventListener('click', ()=>{ if(state.mode!=='playing') startGame(); });
+HUD.over.addEventListener('click', ()=>{ if(state.mode!=='playing') startGame(); });
+addEventListener('resize', ()=>{ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth,innerHeight); composer.setSize(innerWidth,innerHeight); setFxaaResolution(); });
+loadBest();
+state.cam.pitch = 0.35;
+fox.position.copy(state.player.pos);
+frame();
+
+/* ---------- 27. DEBUG HOOKS (SKILL.md mandatory) ---------- */
+window.advanceTime = function(ms){
+  const dt = 1/60;
+  const n = Math.max(0, Math.round(ms/1000/dt));
+  for(let i=0;i<n;i++){ state.steps++; update(dt); }
+  return state.steps;
+};
+window.render_game_to_text = function(){
+  const p = state.player.pos;
+  const nearest = Math.min.apply(null, wraiths.map(w=>w.obj.position.distanceTo(state.player.pos)));
+  let meshes = 0; scene.traverse(o=>{ if(o.isMesh||o.isPoints) meshes++; });
+  let alive = 0; for(let k=0;k<PARTICLE_MAX;k++) if(pLife[k]>0) alive++;
+  return [
+    'mode=' + state.mode,
+    'crystals=' + state.collected + '/' + CONSTANTS.CRYSTAL_COUNT,
+    'timeLeft=' + state.timeLeft.toFixed(2),
+    'score=' + state.score,
+    'best=' + state.best,
+    'hits=' + state.hits,
+    'player=' + p.x.toFixed(3) + ',' + p.y.toFixed(3) + ',' + p.z.toFixed(3),
+    'playerVel=' + state.player.vel.x.toFixed(3) + ',' + state.player.vel.z.toFixed(3),
+    'camYaw=' + state.cam.yaw.toFixed(4),
+    'nearestWraith=' + nearest.toFixed(3),
+    'wraithStates=' + wraiths.map(w=>w.state).join('|'),
+    'lights=' + lights.length,
+    'sceneMeshes=' + meshes,
+    'foxPrims=' + fox.userData.count,
+    'activeParticles=' + alive,
+    'steps=' + state.steps,
+    'hud=' + HUD.crystals.textContent + ' | ' + HUD.timer.textContent + ' | ' + HUD.score.textContent
+  ].join('\n');
+};
+window.__game = { state, CONSTANTS, crystals, wraiths, lights, scene, camera, renderer, fox, composer, bloomPass, gradePass, fxaaPass,
+  terrainHeight: terrainHeight,
+  setSound(on){ soundOn = !!on; },
+  teleport(x,z){ const p=state.player.pos; p.x=x; p.z=z; p.y=terrainHeight(x,z); state.player.vel.set(0,0,0); },
+  setYaw(deg){ state.cam.yaw = deg*Math.PI/180; } };
+
+</script>
+</body>
+</html>

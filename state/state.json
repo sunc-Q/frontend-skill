@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T20:08+08:00",
+  "updated": "2026-09-25T23:56+08:00",
   "tried": [
     {
       "skill": "drafter",
@@ -73,6 +73,19 @@
       "report": "reports/20260925-1950-graphic-gif.md",
       "installed_by_this_task": [
         "graphic-gif (market id official_nhsK8Qra) -> /Users/apple/.qoder-cn/skills/graphic-gif/ 经 install_extension 安装（包内仅 12225B 的 SKILL.md，无可 clone 仓库）；playwright-core 装在 demos 内并已收尾删除（未下载任何浏览器）"
+      ]
+    },
+    {
+      "skill": "build-game",
+      "source": "Qoder 官方扩展市场 official_LaiVUmnK（canonicalName build-game，publisher '-'，tags 含 origin:skillatlas）→ 经 install_extension 装到 ~/.qoder-cn/skills/build-game/",
+      "skill_path": "~/.qoder-cn/skills/build-game/SKILL.md（430 行）+ reference/ 6 篇 4447 行 + scripts/serve.sh",
+      "task": "第三人称 3D 网页游戏《冰原拾光》：低多边形北极狐 60 秒拾取 8 枚冰晶，3 只霜灵三态 FSM 巡逻/追击/击退，触碰吞 5 秒，标题→玩法→胜/败三段式 + localStorage 最高分",
+      "verdict": "留用（强推荐）：7 轮里唯一把「可验证规格」写进 SKILL.md 的技能——强制调试钩子 render_game_to_text()/advanceTime(ms) 让无人值守代理能不看像素就断言状态机，Phase 4 每条强制项（相机相对 WASD / exposure≥1.0 / vignette≤0.3 / 灯≥4 / 禁近黑大表面）均可量化复核。23 条断言 23 PASS / 0 FAIL。",
+      "time": "2026-09-25T23:32+08:00",
+      "artifact": "demos/20260925-2332-build-game/frostlight-gather.html（750,620B 单文件可玩 3D 游戏，three r160 + EffectComposer/UnrealBloom/自定义调色/FXAA/OutputPass 全内联，零外链，file:// 双击即玩）+ verify.mjs/output.log（23 断言）+ shots/ 3 张 1280x720 真截图 + render_game_to_text.txt",
+      "report": "reports/20260925-2332-build-game.md",
+      "installed_by_this_task": [
+        "build-game → ~/.qoder-cn/skills/build-game/（mcp__extension-market__install_extension，Full Access 未弹确认）"
       ]
     }
   ],
@@ -298,18 +311,35 @@
       "source": "Qoder 扩展市场 / query 'animation'",
       "status": "candidate",
       "note": "纯 CSS/Web Animations 动画知识型技能，产物仍是 HTML；与 graphic-gif 有重叠，优先选带可验证运动规格的那类。"
+    },
+    {
+      "name": "build-game",
+      "source": "Qoder 扩展市场 official_LaiVUmnK / query \"build-game\"",
+      "status": "installed_used — 本轮已用并留用，勿再选",
+      "note": "包体完整（SKILL.md + 6 references + serve.sh，208KB），与第 6 轮 graphic-gif「只搬 SKILL.md 丢实现层」相反。Phase 5 的 here.now 上传步骤触安全闸门（本地内容外发），已拒绝；serve.sh 把 PID 写死 /tmp 之外，改用等价 python3 -m http.server --bind 127.0.0.1。"
+    },
+    {
+      "name": "three.js r160 离线内联路线（环境能力，非技能）",
+      "source": "registry.npmmirror.com/three/-/three-160.0.tgz → 9.4MB tgz，含 build/three.min.js(670KB, UMD 全局 THREE) 与 examples/jsm/*(ESM)",
+      "status": "working_source",
+      "note": "★以后任何 three.js 类技能都走这条：classic 脚本用 three.min.js（r160 仍在包里，只 console.warn deprecated），产物 file:// 双击可跑；后处理/控制器需 examples/jsm 时用 inline-jsm.mjs 的三条正则转成读全局 THREE 的 IIFE 链（Pass→CopyShader→LuminosityHighPass→FXAA→ShaderPass→MaskPass→RenderPass→EffectComposer→UnrealBloom→OutputShader→OutputPass，11 模块 39.8KB 一次通过）。SSAOPass 依赖更多（SimplexNoise 等着色器），本轮放弃。"
+    },
+    {
+      "name": "build-game 的迭代能力（同一 HTML 继续加系统）",
+      "source": "demos/20260925-2332-build-game/game.src.html",
+      "status": "candidate",
+      "note": "SKILL Phase 0/2B 主打「持续迭代」：加背包/合成/昼夜/天气/回合制战斗。若要验证迭代路径，下轮可指定「给冰原拾光加 X 系统」而不是新做一个游戏。"
     }
   ],
   "in_progress": [],
   "next_candidates": [
-    "★优先吃掉第 6 轮新能力：build-game / github-game-engine 或 diegosouzapw-2000s-visualization-expert（WebGL+WebAudio FFT 音乐可视化）——Three.js/p5 走 npmmirror tgz 内联 + 系统 Chrome 真截图做像素级验证，产物=可玩 HTML 或音乐可视化动画。第 6 轮前这条路验不了，现在能。",
-    "★excel-spreadsheet-handler(tjade273) × 把台账做成带真公式与图表的 .xlsx（openpyxl：python3 -m pip install --target LAB/.tmp/pylibs --index-url 清华/aliyun），换『电子表格』类；与第 5 轮 pptx 同属办公文档，务必靠公式重算/图表拉开差异",
-    "sec-audit-cn（本机已装，零安装）× 审计 demos/ 下 Node/Python 脚本与 LAB/.tmp/pylibs 安装路线，产物=分级审计报告 .md，换『安全审计』类",
-    "golang-testing（本机已装）× 表驱动测试最小 Go 包（go 1.27.1 在 PATH），产物=`go test -v` 日志，换『Go 后端/测试』类",
-    "webapp-testing（已在 LAB/.skills/anthropic-skills/skills/）× 给 lab.db 检索 CLI 或本轮 GIF 源页写端到端回归——第 6 轮已证系统 Chrome 可用，playwright 那条『需下载浏览器』的顾虑作废（用 executablePath 即可）",
-    "anthropics/skills 未试：canvas-design / slack-gif-creator（Pillow 路线已通）、docx、theme-factory、brand-guidelines、mcp-builder —— 零 clone 成本，落地在 LAB/.skills/，产物分别是 PNG/海报、GIF（与本轮同类，靠后）、.docx、主题化改造",
-    "graphic-gif 的其余 5 种动画类型 × 4 套风格预设（同一技能短期不重复占轮，优先级低于新技能）",
-    "市场 query 'gif' 其余候选：majiayu000-teams-gif-creator（与本轮同类，靠后）、ub2-markdown-report-generator（Markdown→PDF 报告类）"
+    "★sec-audit-cn（本机已装，零安装零联网）× 审计本 LAB 的 demos/**/*.mjs + .tmp/pylibs 依赖路线 + 本轮 inline-jsm.mjs 正则转换器，产物=分级安全审计报告 .md，换「安全审计」类（用户主业是后端安全，贴合）",
+    "★excel-spreadsheet-handler(tjade273) × 把 7 轮台账做成带真公式与图表的 .xlsx（openpyxl：python3 -m pip install --target LAB/.tmp/pylibs --index-url 清华源），换「电子表格」类",
+    "golang-testing（本机已装）× 表驱动测试最小 Go 包（go 在 PATH，GOPROXY=goproxy.cn），产物=`go test -v` 日志，换「Go 后端/测试」类",
+    "diegosouzapw-2000s-visualization-expert（official_koPDvcdI，WebGL+Web Audio FFT 音乐可视化）——本轮已证 three/WebGL 走 swiftshader + toDataURL 回读像素可验，音频可用 OffscreenCanvas/AnalyserNode 自造 WAV，风险大降，值得单占一轮",
+    "webapp-testing（已在 LAB/.skills/anthropic-skills/skills/）× 给本轮游戏写端到端回归——playwright-core + 系统 Chrome 路线已两轮验证，顾虑全消",
+    "anthropics/skills 未试：canvas-design / slack-gif-creator（Pillow 路线已通）、docx、theme-factory、brand-guidelines、mcp-builder —— 零 clone 成本，产物分别 PNG/海报、GIF（与第 6 轮同类，靠后）、.docx、主题化改造",
+    "市场 query 'spreadsheet'/'audio'/'game' 之外未探词汇：'shader'、'terrain'、'physics'、'pixel-art'、'chart'、'geo'、'regex'（本轮起 search_extensions 用单个英文词根仍有效）"
   ],
   "used_artifact_kinds": [
     "单文件自包含 HTML 图表（工程图纸）×1",
@@ -317,7 +347,8 @@
     "单文件自包含 HTML 生成艺术（p5 内联，可交互+种子可复现）×1",
     "SQLite 数据库文件 .db（FTS5 全文检索库）+ 可执行检索 CLI + 14 条断言日志 ×1",
     "原生可编辑办公文档 .pptx（SVG→DrawingML，211 shape / 0 图片，49KB）+ 5 页 1280×720 矢量幻灯片 ×1",
-    "动画 GIF .gif（800x800 / 48 帧 / 无限循环 / 47KB，GIF89a 结构+NETSCAPE 循环计数+差分子矩形帧全部经手写二进制解析器核对）+ 其 CSS 动画源 animation.html ×1"
+    "动画 GIF .gif（800x800 / 48 帧 / 无限循环 / 47KB，GIF89a 结构+NETSCAPE 循环计数+差分子矩形帧全部经手写二进制解析器核对）+ 其 CSS 动画源 animation.html ×1",
+    "可交互 3D 网页游戏单文件 HTML（.html 750KB：three r160 + 5 pass 后处理链全内联，零外链零网络请求，file:// 双击即玩；23 条断言含「实测滞空 0.633s vs 理论 2v/g 0.662s」「改 vignette→像素 −26%」两级物理/渲染反证）×1"
   ],
   "environment_notes": [
     "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
@@ -358,7 +389,14 @@
     "市场镜像包的系统性缺陷（3/6 轮命中）：只搬 SKILL.md、丢 scripts/ 与 references/。graphic-gif 包里唯一文件 SKILL.md 明文引用的 scripts/export-gif.sh、capture-and-encode.mjs、references/animation-library.md、references/style-presets.md 四个全不存在（find 结果 1 个文件）。→ 装完任何市场技能，第一步 find <dir> -type f 核对文件清单，缺实现层就在 demos/ 里自补并在报告注明。",
     "search_extensions 参数名是 query（传 keyword 报 'params must NOT have additional properties'）；用完整 canonicalName（含连字符，如 'graphic-gif'）精确检索只回 1 条，比宽词省。Full Access 下 install_extension 第 3 次不弹用户确认。",
     "zsh 里 $PIPESTATUS 恒空（zsh 用 $pipestatus[1]）；重定向写到根目录（如 > /tmp_cap.log）报 read-only file system 并中断整条命令——日志一律相对路径。",
-    "磁盘开工水位：可用 20222172 KB ≈ 19.3 GiB（>1.5 GiB 阈值）。收尾 demos 本轮 192KB（限 5MB），LAB 约 19MB（含 .skills 16MB gitignored）。"
+    "磁盘开工水位：可用 20222172 KB ≈ 19.3 GiB（>1.5 GiB 阈值）。收尾 demos 本轮 192KB（限 5MB），LAB 约 19MB（含 .skills 16MB gitignored）。",
+    "★three.js 离线可用（第 7 轮）：npm 镜像 tgz 里 build/three.min.js 是 UMD 风格 classic 脚本（r160 仍在发布，仅 console.warn deprecated），内联后 window.THREE 可用、产物 file:// 双击即跑，绕开「jsdelivr 被 TLS 重置 + file:// 下 ESM 不执行」双杀。examples/jsm 只有 ESM，需正则转 IIFE+共享命名空间（直接拼接会 Identifier already declared）。",
+    "THREE 枚举实测：FrontSide=0 / BackSide=1 / DoubleSide=2；写断言时把常量本身打印出来核对，别凭记忆。",
+    "Node 陷阱：Array.prototype.join(fn) 不会调用函数（把函数源码当字符串拼进去），只有 String.replace 接受 replacer。内联库源码后**先核对产物体积**（本轮 698KB→28KB 一眼暴露假内联）。",
+    "无人值守验证 3D/动画产物的两条硬招（沿用）：(1) 让产物自带文本调试钩子（build-game 的 render_game_to_text/advanceTime 是范本），断言状态机而不是像素；(2) 像素侧用「改一个 uniform 必须改变像素」证明渲染链路活着，比读 passes 数组的名字强。",
+    "playwright-core 复用配方（第 6/7 轮两次跑通）：npm i playwright-core --registry=https://registry.npmmirror.com 到 LAB/.tmp/pw/，chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'}) + args 里加 --use-gl=swiftshader --enable-unsafe-swiftshader（否则 headless WebGL 可能无 GPU）；toDataURL 回读 WebGL 帧要在同一个 JS task 里紧跟 render()（preserveDrawingBuffer=false）。",
+    "判据错 vs 产物错要分清：本轮 2 条 FAIL 全是我的断言窗口/阈值拍脑袋（跳跃采样时 keys[' '] 未清导致连续起跳；亮度阈值 100 过严且用全局均值看只作用在角落的 vignette）。改法是**把断言换成理论值对比**（滞空 2v/g、峰高 v²/2g、角落局部采样），而不是放宽。",
+    "磁盘开工水位：可用 19742420 KB ≈ 18.8 GiB（>1.5 GiB 阈值）。本轮 demos 1.0MB（限 5MB），收尾已删 .tmp/three(9.4MB) 与 .tmp/pw/node_modules。"
   ],
   "runs": [
     {
@@ -440,6 +478,16 @@
         "listen_from_this_run": 0,
         "note": "8123/8124 两条 node 监听属兄弟实验室既有服务，未触碰；chrome 相关 5 进程全是 18Sep 起的历史用户进程，本轮 headless 实例已随 browser.close() 退出"
       }
+    },
+    {
+      "time": "2026-09-25T23:32+08:00",
+      "skill": "build-game",
+      "result": "成功（留用·强推荐）。产物 demos/20260925-2332-build-game/frostlight-gather.html 750,620B 可玩 3D 游戏，23 条独立断言 23 PASS / 0 FAIL，运行期 console/page error = 0",
+      "seconds": 1440,
+      "artifact_size": "frostlight-gather.html 750,620B + game.src.html 40,938B + verify.mjs 22,030B + postfx.bundle.js 39,825B + inline-jsm.mjs 2,683B + build.mjs 1,183B + output.log 3,950B + render_game_to_text.txt 268B + shots/ 3 张 jpg 193,437B = 本轮 demos 1.0MB（限 5MB）",
+      "cleanup": "已删 demos 内中间件 part1.js/part2.js、LAB/.tmp/three（9.4MB tgz+解包）、.tmp/pw/node_modules（playwright-core）；无本轮起的服务/监听进程（未起 server，产物 file:// 直开）；全局缓存与 ~/.qoder-cn/skills 未动",
+      "push": "待推送",
+      "notes": "来源①官方市场第一个候选即中（search_extensions query \"build-game\" → install_extension，installRef 现搜现装）。安全闸门：读全文 SKILL.md+serve.sh+抽查 references 后放行；拒绝 Phase 5 的 here.now 上传（本地内容外发）；serve.sh PID 写死 /tmp 之外故未使用，改 file:// 直开。最大工程点=three r160 离线化：classic 构建内联 + examples/jsm ESM→IIFE 命名空间转换（11 模块 39.8KB），把 SKILL 强制的 bloom/调色/FXAA/OutputPass 链真的装上（SSAO 放弃并已记录）。两条 FAIL 均为我方判据错（跳跃采样窗口、亮度阈值与 vignette 采样位置），已换成理论值对比与局部像素探针。"
     }
   ]
 }
