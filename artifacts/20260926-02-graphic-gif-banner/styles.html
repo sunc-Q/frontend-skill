@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>graphic-gif × 动效营销横幅 — 三风格对照（发光跑 GLOW RUN 3）</title>
+<style>
+:root{
+  --bg:#101216; --panel:#181B21; --line:#2A2F38; --text:#E8EAED; --dim:#9AA2AE;
+  --a:#2563EB; --b:#7CFFA0; --c:#F5E14B;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font:16px/1.65 system-ui,'PingFang SC',sans-serif;padding:48px 24px;}
+.wrap{max-width:1240px;margin:0 auto;}
+h1{font-size:26px;letter-spacing:.02em;}
+.meta{color:var(--dim);font-size:14px;margin:8px 0 30px;}
+.meta code{background:var(--panel);border:1px solid var(--line);padding:1px 6px;border-radius:4px;font-size:13px;}
+.grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));}
+figure{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;}
+figure img{width:100%;aspect-ratio:1/1;border-radius:6px;display:block;}
+figcaption{margin-top:14px;}
+figcaption b{font-size:17px;}
+figcaption .tag{display:inline-block;font-size:12px;letter-spacing:.08em;border:1px solid var(--line);border-radius:99px;padding:1px 10px;color:var(--dim);margin-left:8px;vertical-align:2px;}
+figcaption p{color:var(--dim);font-size:14px;margin-top:6px;}
+figcaption .stat{font-size:13px;color:var(--text);margin-top:8px;font-variant-numeric:tabular-nums;}
+figcaption a{color:var(--a);}
+#ta .tag{border-color:var(--a);} #tb .tag{border-color:var(--b);color:var(--b);} #tc .tag{border-color:var(--c);color:var(--c);}
+.facts{margin-top:34px;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.facts summary{padding:14px 18px;background:var(--panel);cursor:pointer;font-weight:600;}
+.facts table{width:100%;border-collapse:collapse;font-size:14px;}
+.facts th,.facts td{padding:9px 14px;border-top:1px solid var(--line);text-align:left;}
+.facts th{color:var(--dim);font-weight:500;width:180px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>graphic-gif × 动效营销横幅 — 三风格对照</h1>
+  <p class="meta">同一活动事实源（见下）× 三种技能 style preset × 三种 animation type。规格：800×800 · 3.0s · 12fps · 36 帧 · 无限循环。GIF 动图直接播放；每格下方有源码 animation.html 链接（双击即开，浏览器里动画照常跑）。生成时间 2026-09-26。</p>
+  <div class="grid">
+    <figure id="ta">
+      <img src="clean-slate-gif/animation.gif" alt="clean-slate 风格：发光跑报名计数 GIF，数字从 0 线性滚动到 3264，标题与进度条依次入场">
+      <figcaption><b>云白板计数</b><span class="tag">clean-slate · counter</span>
+        <p>浅色专业调：Inter 800 大数字用 <code>@property --num</code> 整数插值计数，签名构件=4px 强调色横杠（标题杠与进度条同源）。</p>
+        <p class="stat">832,397 B · 36 帧 · 末帧 --num=3264 / meter scaleX=0.9326</p>
+        <p class="stat"><a href="clean-slate-gif/animation.html">animation.html</a> · <a href="clean-slate-gif/gif-metrics.json">metrics</a></p>
+      </figcaption>
+    </figure>
+    <figure id="tb">
+      <img src="terminal-gif/animation.gif" alt="terminal 风格：磷绿终端窗口，命令行逐字打出 glow-run 命令，随后四行结果逐行显现，光标闪烁">
+      <figcaption><b>磷绿终端打字</b><span class="tag">terminal · typewriter</span>
+        <p>深色磷绿：41 字符命令行以 <code>steps(41,end)</code> 逐字打出（等宽字体下 1ch=1 字符宽），签名构件=闪烁块光标，扫描线 overlay 按技能规则 opacity .03。</p>
+        <p class="stat">461,291 B · 36 帧 · 末帧宽度 590.4px = 41ch × 14.4px</p>
+        <p class="stat"><a href="terminal-gif/animation.html">animation.html</a> · <a href="terminal-gif/gif-metrics.json">metrics</a></p>
+      </figcaption>
+    </figure>
+    <figure id="tc">
+      <img src="brutalist-gif/animation.gif" alt="brutalist 风格：黄黑硬框海报，五个打卡点芯片循环滚过，中央 5.2KM 红色印章固定不动">
+      <figcaption><b>黄黑硬框跑马灯</b><span class="tag">brutalist · loop-scroll</span>
+        <p>高饱和撞色海报：5 个打卡点芯片恰好复制一份成 10 枚，<code>translateX(0→-50%)</code> 无缝滚动； unforgettable detail=城市在 5.2KM 印章背后流过。</p>
+        <p class="stat">1,242,577 B · 36 帧 · 周期 3s=GIF 时长 → 环缝与帧步长一致</p>
+        <p class="stat"><a href="brutalist-gif/animation.html">animation.html</a> · <a href="brutalist-gif/gif-metrics.json">metrics</a></p>
+      </figcaption>
+    </figure>
+  </div>
+  <details class="facts" open>
+    <summary>共享事实源（三张 GIF 必须一致，E 组断言逐条核对）</summary>
+    <table>
+      <tr><th>活动</th><td>发光跑 GLOW RUN · 第三季 · 城市夜跑</td></tr>
+      <tr><th>日期 / 开跑</th><td>2026-10-17 · 20:30</td></tr>
+      <tr><th>路线</th><td>5.2 KM · 望江码头 → 鼓楼口 → 灯巷 → 旧铁桥 → 光谷终点</td></tr>
+      <tr><th>报名</th><td>已报 3264 / 名额 3500 · 剩 236（3264/3500=0.9326 即进度条 scaleX）</td></tr>
+      <tr><th>口号</th><td>城市入睡时，我们发光。</td></tr>
+    </table>
+  </details>
+</div>
+</body>
+</html>

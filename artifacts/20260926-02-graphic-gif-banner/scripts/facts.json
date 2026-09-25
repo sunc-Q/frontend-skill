@@ -1,0 +1,20 @@
+{
+  "campaign": {
+    "name_cn": "发光跑",
+    "name_en": "GLOW RUN",
+    "season": 3,
+    "date": "2026-10-17",
+    "start_time": "20:30",
+    "distance_km": 5.2,
+    "registered": 3264,
+    "capacity": 3500,
+    "remaining": 236,
+    "slogan_cn": "城市入睡时，我们发光。",
+    "checkpoints": ["望江码头", "鼓楼口", "灯巷", "旧铁桥", "光谷终点"]
+  },
+  "derived": {
+    "fill_ratio": 0.9326,
+    "note": "fill_ratio = registered / capacity = 3264/3500 = 0.932571…，clean-slate 进度条 scaleX 取 0.9326"
+  },
+  "gif": { "duration_s": 3.0, "fps": 12, "frames": 36, "frame_ms_step": 83.3333, "gif_delay_cs": 8, "effective_fps": 12.5 }
+}

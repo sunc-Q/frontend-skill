@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>GLOW RUN 3 — clean-slate 报名计数横幅</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+/* graphic-gif 技能 style preset「clean-slate」——技能引用的 references/style-presets.md 在本机
+   安装中缺失，以下 token 块按 SKILL.md 线索（浅色专业风 / 简洁调色板）重建，属文档化偏离 */
+:root{
+  --bg:#F4F5F7;
+  --card:#FFFFFF;
+  --ink:#14161C;
+  --muted:#6B7280;
+  --accent:#2563EB;
+  --track:#E2E5EA;
+  --font-display:'Inter',system-ui,'PingFang SC',sans-serif;
+  --font-body:'Inter',system-ui,'PingFang SC',sans-serif;
+  --duration:3s;
+}
+@property --num{
+  syntax:'<integer>';
+  inherits:false;
+  initial-value:0;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{
+  width:800px;height:800px;overflow:hidden;
+  background:var(--bg);font-family:var(--font-body);
+}
+.canvas{
+  width:800px;height:800px;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.card{
+  width:640px;background:var(--card);border-radius:18px;
+  padding:56px 56px 48px;
+  box-shadow:0 24px 64px rgba(20,22,28,.08);
+}
+.kicker{
+  font-size:22px;font-weight:700;letter-spacing:.14em;color:var(--muted);
+  text-transform:uppercase;
+  opacity:0;animation:kicker-in var(--duration) cubic-bezier(0.22,1,0.36,1) both;
+  animation-iteration-count:1;
+}
+.kicker .dot{color:var(--accent);}
+h1{
+  margin-top:10px;font-size:64px;font-weight:800;line-height:1.08;color:var(--ink);
+  opacity:0;animation:title-in var(--duration) cubic-bezier(0.22,1,0.36,1) both;
+  animation-iteration-count:1;
+}
+.rule{
+  width:96px;height:4px;background:var(--accent);border-radius:2px;margin:22px 0 30px;
+  transform:scaleX(0);transform-origin:left center;
+  animation:rule-grow var(--duration) cubic-bezier(0.22,1,0.36,1) both;
+  animation-iteration-count:1;
+}
+.count-row{display:flex;align-items:baseline;gap:14px;}
+.counter{
+  font-family:var(--font-display);font-size:120px;font-weight:800;color:var(--ink);
+  line-height:1;font-variant-numeric:tabular-nums;
+  animation:count-up var(--duration) linear forwards;
+  animation-iteration-count:1;
+  counter-reset:num var(--num);
+}
+.counter::after{content:counter(num);}
+.unit{font-size:30px;font-weight:700;color:var(--muted);}
+.sub{margin-top:14px;font-size:24px;font-weight:400;color:var(--muted);}
+.meter{margin-top:26px;height:10px;background:var(--track);border-radius:5px;overflow:hidden;}
+.meter i{
+  display:block;height:100%;width:100%;border-radius:5px;background:var(--accent);
+  transform:scaleX(0);transform-origin:left center;
+  animation:meter-fill var(--duration) cubic-bezier(0.22,1,0.36,1) both;
+  animation-iteration-count:1;
+}
+.meta{margin-top:12px;display:flex;justify-content:space-between;font-size:19px;font-weight:400;color:var(--muted);}
+.meta b{font-weight:700;color:var(--ink);}
+
+/* stagger 一律烘焙进 keyframes 百分比，全站禁用 animation-delay（技能规则 9） */
+@keyframes kicker-in{
+  0%,4%{opacity:0;transform:translateY(10px);}
+  20%,100%{opacity:1;transform:translateY(0);}
+}
+@keyframes title-in{
+  0%,10%{opacity:0;transform:translateY(16px);}
+  30%,100%{opacity:1;transform:translateY(0);}
+}
+@keyframes rule-grow{
+  0%,16%{transform:scaleX(0);}
+  34%,100%{transform:scaleX(1);}
+}
+@keyframes meter-fill{
+  0%,20%{transform:scaleX(0);}
+  100%{transform:scaleX(0.9326);} /* 3264/3500，与 facts.json derived.fill_ratio 对齐 */
+}
+/* 技能规则 6（不采 t=duration）+ 线性一次性动画 = 最后一帧永远到不了终值，
+   故把「到顶后保持」烘焙进 keyframes：92% 处到达 3264，末 8% 保持（仍是一次性动画） */
+@keyframes count-up{
+  0%{--num:0;}
+  92%,100%{--num:3264;}
+}
+</style>
+</head>
+<body>
+<div class="canvas" role="img" aria-label="发光跑第三季：2026-10-17 20:30 开跑，5.2 公里城市夜跑，已报名 3264 人，名额 3500">
+  <div class="card" data-fact="registered:3264" data-fact2="capacity:3500" data-fact3="date:2026-10-17" data-fact4="time:20:30" data-fact5="distance:5.2">
+    <p class="kicker">GLOW RUN<span class="dot"> · </span>SEASON 3</p>
+    <h1>发光跑 第三季</h1>
+    <div class="rule"></div>
+    <div class="count-row"><span class="counter"></span><span class="unit">人已报名</span></div>
+    <p class="sub">城市入睡时，我们发光。</p>
+    <div class="meter"><i></i></div>
+    <div class="meta"><span>2026-10-17 · 20:30 开跑 · <b>5.2</b> KM</span><span>名额 <b>3500</b> · 剩 <b>236</b></span></div>
+  </div>
+</div>
+</body>
+</html>

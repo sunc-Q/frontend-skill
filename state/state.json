@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-26T01:00+08:00",
+ "updated": "2026-09-26T02:00+08:00",
  "tried": [
   {
    "skill": "sites:sites-building",
@@ -176,6 +176,20 @@
    "artifacts": [
     "artifacts/20260926-01-ppt-generator-proposal"
    ]
+  },
+  {
+   "skill": "graphic-gif",
+   "time": "2026-09-26T02:00+08:00",
+   "scenario": "动效营销横幅（GIF，800×800·3s@12fps·36帧·无限循环）：虚构活动「发光跑 GLOW RUN 3」，三张共享同一 facts.json",
+   "styles": [
+    "云白板计数 clean-slate-gif",
+    "磷绿终端打字 terminal-gif",
+    "黄黑硬框跑马灯 brutalist-gif"
+   ],
+   "reason": "本机最后一个未试的页面级动效技能；tried 无此组合；场景（动图横幅）此前 12 轮未做",
+   "conclusion": "留用（限定场景：社媒/营销动图资产）。契约无资产（references 两本+export-gif.sh 全缺，同 vercel 轮失效模式）；抓到规则6×一次性动画终值缺陷（末帧到不了目标值，烘焙 92%+hold 修复）；GIF 厘秒粒度 12fps→12.5fps；ch 打字术仅等宽成立；155 断言（A 组 74 条=技能规则整段机检）",
+   "artifacts": "artifacts/20260926-02-graphic-gif-banner/（≈3.1MB：3 html + 3 gif 2.5MB + styles.html + samples 9png + scripts 4件 + metrics 3件）",
+   "report": "reports/20260926-02-graphic-gif-banner.md"
   }
  ],
  "skills_seen": [
@@ -273,6 +287,18 @@
    "source": "用户 2026-09-25 17:36 装入 ~/.qoder-cn/skills/ascii-project-dashboard（仅一个 7,810B 的 SKILL.md，无脚本无资产）",
    "path": "/Users/apple/.qoder-cn/skills/ascii-project-dashboard/SKILL.md",
    "status": "排除，不占用轮次（23:00 轮开工前读毕全文）：applyTo 为 **/*plan*,**/*roadmap*,**/*tracker*,**/*dashboard*，全文只规定 ▓░ 十格进度条 / Markdown 表格 / ●──○ 时间线 / emoji 状态位，卖点恰是「no rendering, works in any editor, terminal, email, Slack」，不产出可双击打开的页面，与实验室「artifacts 只留可直接打开预览的页面产物」硬约束冲突。两个可移植点已被本轮吸收：「不得硬编码派生值，必须从计数算出」→ 转成 E 组 pixel-gauge-math 断言；emoji 状态位在暗底页面上不可控，实验室仍用 CSS/SVG 表达状态"
+  },
+  {
+   "name": "graphic-gif",
+   "source": "用户 2026-09-25 19:37 装入 ~/.qoder-cn/skills/（author OpenDirectory v1.0.0）",
+   "path": "~/.qoder-cn/skills/graphic-gif/SKILL.md",
+   "status": "已用于 02:00 动效横幅并留用（限定场景）。规则可机检度全实验室前三（A组74条）；但 references/animation-library.md、references/style-presets.md、scripts/export-gif.sh 三资产全缺，导出链路须自带（本轮沉淀 capture-encode.mjs：playwright-core@1.48.2 + 缓存 chromium-1148 + gifenc，npmmirror 1 分钟装完）；风格 token 需按 SKILL.md 线索重建；规则6×线性一次性动画有终值缺陷（末帧永不到目标），修式=keyframes 92% 到顶+hold；Kling 路径未验（无 KLING_API_KEY）"
+  },
+  {
+   "name": "build-game",
+   "source": "用户 2026-09-25 23:32 装入 ~/.qoder-cn/skills/（带 reference/ 6 篇 + scripts/serve.sh，资产完整）",
+   "path": "~/.qoder-cn/skills/build-game/SKILL.md",
+   "status": "未试——本机最后一个未用的前端产物型技能，产物=单文件可玩 HTML(Three.js)，是候选而非排除项；下轮 ★ 首选"
   }
  ],
  "runs": [
@@ -383,16 +409,33 @@
    "artifact_size": "516KB（SVG 111,008B/18 页 + PPTX 3×~50KB + 预览 3×36-44.5KB + 脚本数据），限额 50MB",
    "cleanup": "已删 .tmp/pylibs + .tmp/pipcache（43MB pip 隔离安装与缓存）；无 node_modules/dist/构建缓存；技能目录零写入；artifacts 仅保留可直接打开产物与全部复现脚本",
    "push": "已提交并推送：git@github.com:sunc-Q/frontend-skill.git main 分支 f85e53c..a296420（SSH 经 ssh.github.com:443，known_hosts 写 LAB/.tmp 即删；命令与文件零 token）。提交物=18 页 SVG + 3 份 PPTX + 3 份预览 + styles.html + data.json + 五件套脚本与三份 JSON 测量 + report + work-log 行 + state 台账（37 文件）；随后补记本条推送结果"
+  },
+  {
+   "time": "2026-09-26T02:00+08:00",
+   "skill": "graphic-gif",
+   "scenario": "动效营销横幅（GIF）",
+   "result": "success",
+   "assertions": "155 条（写回前 149/155，F 组 6 条台账幂等锁写回后闭合）",
+   "artifact_size": "3.1MB（GIF 合计 2.5MB，限额 50MB）",
+   "cleanup": "删 LAB/.tmp（node_modules 12MB + probe 装置）；无 dist/构建缓存；未起 http.server；技能目录零写入",
+   "push": "pending"
   }
  ],
  "next_candidates": [
-  "★ ppt-generator × 图表模板诚实度横筛（剩余 27 张 chart 模板：把 00:00 的『标注值 vs 端点反推』式子套到 area/box_plot/radar/gauge 等，产出『哪些图型可继承骨架、哪些必须整段重写』清单）",
-  "★ ppt-generator × dark_warm 暖色商务提案（SKILL.md 菜单默认风格、index 漏列、本轮未做；验混暗主题族字号表与模板一致性；风格名须与 19:00 千禧镀铬等区隔）",
-  "★ ppt-generator × 其余 27 张 chart 模板诚实度横筛：本轮只真用了 6 类（bar/line/donut/hbar/funnel/kpi），把 template_audit.py 的「标注值 vs 端点反推」式子自动套到全部模板，产出「哪些图型可继承骨架、哪些必须整段重写」清单——donut/funnel 已证不诚实，area/box_plot/radar/gauge 等待测",
+  "★ build-game × 3D 小游戏场景（本机最后一个未用前端产物型技能，资产完整：reference/6 篇+serve.sh；产物=单文件 Three.js HTML，与实验室「双击即开」纪律契合；注意 WebGL 在 headless/hidden 面板下的可渲染性是第一问）",
+  "★ graphic-gif × fade-in/slide-in 两型补全 + 把「末帧终值==目标值」式子移植回 15:00/20:00 轮的 CSS 动画场景横检",
+  "graphic-gif × 邮件横幅（<500KB 预算档，技能 Step6 的 email 预算从未压测；filesize 优化档 + gifsicle 缺位下的体积上限）",
+  "★ ppt-generator × 图表模板诚实度横筛（剩余 27 张 chart 模板，标注 vs 端点反推式子自动化）",
+  "★ ppt-generator × dark_warm 暖色商务提案（SKILL.md 菜单默认风格、index 漏列）",
+  "ppt-generator × charts_index bestFor/avoidFor 选图决策断言",
+  "ppt-generator × svg_quality_checker.py/batch_validate.py 黑盒对垒",
+  "★ 三条式子（色板封闭+七指纹+零交集）移植回 14/16/17/18 轮历史产物横检",
+  "★ sites:sites-building × 多页站点（references/static-site.md 静态导出与 SPA 路由条款至今未验）",
+  "三技能叠加 sites-building+vercel-react+drafter：反膨胀条款 vs 分包懒加载条款是否互斥",
+  "vercel-react × 真 Next.js 工程吃 RSC 专属 server-*（3 条）",
+  "跨技能：graphic-gif 产出的 GIF 作为 sites-building 落地页素材（动图入静态站，验证两技能产物互喂）",
   "ppt-generator × charts_index.json 的 bestFor/avoidFor 选图决策：33 条目带适用/回避场景描述，本轮未验——给同一份数据故意配错图型（如漏斗数据画 donut），断言技能文档能否让 Agent 事后指出错配（选图条款第一次可测）",
   "ppt-generator × svg_quality_checker.py / batch_validate.py 黑盒：22:00 轮记的「另一套未接线的质量脚本」，把它当第三方 linter 跑本轮 18 页 SVG，对照 check.py 的 350 条看谁抓到更多（验技能自带 QA 与自研 QA 的覆盖差）",
-  "★ 把本轮发明的「色板封闭 + 七项指纹差异≥3 + 色板两两零交集」三条式子移植回 14:00/16:00/17:00/18:00 的历史产物做横检：验证那几轮的「三风格」是否真的只换了配色（这是实验室第一次能反问自己这个问题）",
-  "★ sites:sites-building × 多页站点（references/static-site.md 的静态导出与 SPA 路由条款至今未验，Simple site 单页已验四轮）",
   "三技能叠加 sites-building（定形+反膨胀）+ vercel-react（定码）+ drafter（定图）：验 F 组「不许加分包以外的功能」与 vercel「鼓励分包/懒加载」是否互斥；19:00 轮的先例是先解控制流冲突再叠加",
   "sites:sites-building × 活动报名页（与 20:00 React 轮同场景零框架对照，本轮 15KB 已可作为成本基线）",
   "vercel-react-best-practices × 真 Next.js 工程（server-serialization / server-dedup-props / React.cache 本体与流式 SSR 形态的 suspense-boundaries 只有 Next.js 能验；npmmirror 可装 next，需先确认 Node 22 兼容与构建时长配额）",
@@ -401,7 +444,6 @@
   "★ vercel-react-best-practices × 「部分依赖扇出」数据形态（如列表返回 ids 后逐项取详情）：async-dependencies（better-all）是唯一还没落地的 async 条款，别为它凑题，等自然场景",
   "sites:sites-building × 活动报名页（与 20:00 轮同场景零框架对照：同一张活动页，内置技能单文件 vs React+mock 服务端的成本/能力差）",
   "frontend-development × 管理后台（同场景换 skill，与 17:00 那轮正面对照：同一后台谁给的条款更可落地）",
-  "sites:sites-building × 多页站点（导航/路由/静态导出，验 sites-building 的 static-site 与 SPA 路由条款——目前只做过单页）",
   "（需用户授权）市场技能 ui-ux-pro-max × 数据报表",
   "drafter × 单张长链流程图/时序图（技能主场未测点：连接线在 12+ 节点、直角折线与跨行虚线下的可读性与塌陷风险；产物仍应 15-20KB）",
   "drafter + 规范型技能叠加 × 数据看板（测「主张型定形 + 规范型定码」配方在纯静态图纸上是否仍互补，且能否把 C 组视觉断言与 bundle 断言并成一套）",
@@ -452,7 +494,10 @@
   "霓虹像素图表件 pixel-neon-charts",
   "咨询蓝提案件 consultant",
   "政务红立项件 gov-red",
-  "科技蓝商务提案件 tech-blue-proposal"
+  "科技蓝商务提案件 tech-blue-proposal",
+  "云白板计数 clean-slate-gif",
+  "磷绿终端打字 terminal-gif",
+  "黄黑硬框跑马灯 brutalist-gif"
  ],
  "environment_notes": [
   "本机无法直连 GitHub raw 与 skills.sh（curl exit 35 / WebFetch fetch failed），外部落地技能持续不可用",
@@ -521,6 +566,10 @@
   "台账/去重类断言一律写成幂等式「快照值 + 本轮增量 == 台账现值」（含 used_styles 末三条须与快照 this_round_styles 逐字相同），不要写成「本轮内容未出现在台账里」——后者在写回台账的那一刻必然翻转成失败，让复现文档自毁；改完后写回前后各跑一次 check.py 都应全绿才算通过",
   "ppt-generator layouts 实测：SKILL.md 菜单/index/磁盘三方各错一片（菜单 8 里 consultant/dark_warm/cloud_orange 不在 index；index 20 里 brand 族 10 个不在磁盘；磁盘 13 目录里科技蓝商务是中文名需映射表）——凡用该技能，spec_probe 式磁盘对账是第 0 步，不是可选优化",
   "design_spec.md 字体栈含双引号（如 \"Helvetica Neue\"），拼进 SVG font-family=\"...\" 属性会产出非法 XML 且只有全量 ET.parse 能抓到（浏览器对首个坏页静默）；族名一律 \"→' 规范化后再写入",
-  "browser-use 面板 hidden 时新增量化事实：getBoundingClientRect 等强制布局的 evaluate_script 100% 15s 超时（连累同批次短查询），只有纯 DOM 读（document.title / querySelectorAll().length）可用——真实视口溢出验证由「锚点估宽静态断言」兜底已成标准做法"
+  "browser-use 面板 hidden 时新增量化事实：getBoundingClientRect 等强制布局的 evaluate_script 100% 15s 超时（连累同批次短查询），只有纯 DOM 读（document.title / querySelectorAll().length）可用——真实视口溢出验证由「锚点估宽静态断言」兜底已成标准做法",
+  "fonts.googleapis.com/fonts.gstatic.com 本机可达（css2 实测 200/0.5s）：GitHub 被 TLS 重置不代表 CDN 全灭，字体 CDN 类技能条款可满足；headless 截图前必须 await document.fonts.ready 并用 FontFaceSet.size 断言真加载",
+  "gifenc 的 writeFrame delay 单位是毫秒（内部 Math.round(delay/10) 化厘秒），传厘秒值会得 1cs=100fps 错片；GIF 延时粒度=1/100s ⇒ 12fps 实际 12.5fps（B 组已把 effective_fps 固化成断言）；自研 GIF 块遍历解析器要跳过图像描述符的局部色板+LZW 子块链，否则帧数恒 0",
+  "CSS 规则符合性断言必须在 stripComments 后的代码上跑：注释里写「无 animation-delay」会被关键词匹配判违规（本轮 3 条假失败）；同理 @keyframes 块抽取要括号配平扫描（非贪婪正则遇嵌套必截错）、0% 起点判定要认 '0%,4%{' 选择器组形态、终值断言取 matchAll().at(-1)",
+  "一次性动画（counter/typewriter）的 GIF 末帧终值探针配方：capture 停在最后一帧时读 getComputedStyle(el).getPropertyValue('--num') 与 .tw 宿主 width，断言==目标值——技能规则6（禁采 t=duration）下这是唯一能证明「目标值真的出现过」的手段；目视兜底=每风格落 首/中/末 3 张 sample PNG 进 artifacts"
  ]
 }

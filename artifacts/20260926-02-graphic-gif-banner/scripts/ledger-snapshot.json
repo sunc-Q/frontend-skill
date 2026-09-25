@@ -1,0 +1,12 @@
+{
+  "taken_at": "2026-09-26T01:10+08:00",
+  "note": "开工前台账快照（写回前状态）。F 组幂等断言 = 快照值 + 本轮增量 == 台账现值。",
+  "tried_len": 12,
+  "runs_len": 12,
+  "used_styles_len": 36,
+  "skills_seen_len": 17,
+  "environment_notes_len": 67,
+  "next_candidates_len": 29,
+  "this_round_styles": ["云白板计数 clean-slate-gif", "磷绿终端打字 terminal-gif", "黄黑硬框跑马灯 brutalist-gif"],
+  "this_round_tried": { "skill": "graphic-gif", "scenario_key": "动效营销横幅（GIF）" }
+}

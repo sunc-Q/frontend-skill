@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>GLOW RUN 3 — brutalist 路线跑马灯横幅</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* graphic-gif 技能 style preset「brutalist」——references/style-presets.md 缺失，
+   token 按 SKILL.md 明文线索重建：主构件 4px 实色描边 + 高饱和撞色 */
+:root{
+  --paper:#F5E14B;
+  --ink:#101010;
+  --red:#E5352B;
+  --white:#FBF8EE;
+  --font-display:'Anton',impact,'PingFang SC',sans-serif;
+  --font-body:'Space Mono',ui-monospace,'PingFang SC',monospace;
+  --duration:3s;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{
+  width:800px;height:800px;overflow:hidden;
+  background:var(--paper);font-family:var(--font-body);
+}
+.canvas{
+  width:800px;height:800px;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:space-between;
+  border:0;padding:28px;
+}
+.frame{position:absolute;inset:16px;border:4px solid var(--ink);pointer-events:none;}
+.head{position:relative;padding:8px 6px 0;}
+.head h1{font-family:var(--font-display);font-weight:400;font-size:118px;line-height:.92;color:var(--ink);letter-spacing:.01em;}
+.head h2{font-size:30px;font-weight:700;color:var(--ink);margin-top:12px;}
+.band{position:relative;width:calc(100% + 56px);margin-left:-28px;border-top:4px solid var(--ink);border-bottom:4px solid var(--ink);background:var(--white);overflow:hidden;}
+.ticker-track{
+  --item-count:5;
+  display:flex;width:max-content;
+  animation:scroll var(--duration) linear infinite both;
+}
+.ticker-track .cp{
+  font-size:30px;font-weight:700;color:var(--ink);
+  padding:18px 26px;white-space:nowrap;display:flex;align-items:center;gap:26px;
+}
+.cp::after{content:"✦";color:var(--red);font-size:26px;}
+.stamp{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-1.5deg);
+  background:var(--red);color:var(--white);border:4px solid var(--ink);
+  padding:14px 30px;font-family:var(--font-display);font-weight:400;
+  font-size:96px;line-height:1;white-space:nowrap;
+}
+.foot{position:relative;display:flex;justify-content:space-between;align-items:flex-end;padding:0 6px 6px;}
+.left{background:var(--ink);color:var(--paper);font-weight:700;font-size:25px;padding:14px 20px;border:4px solid var(--ink);white-space:nowrap;}
+.left b{color:var(--white);}
+.when{font-weight:700;font-size:26px;color:var(--ink);text-align:right;line-height:1.5;white-space:nowrap;}
+.slogan{font-size:18px;font-weight:400;color:var(--ink);}
+
+/* loop-scroll：轨道内容恰好复制一份，位移 0 → -50%（技能规则），禁用 animation-delay */
+@keyframes scroll{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+</style>
+</head>
+<body>
+<div class="canvas" role="img" aria-label="粗野主义横幅：发光跑第三季 5.2 公里，路线跑马灯经过望江码头、鼓楼口、灯巷、旧铁桥、光谷终点，2026-10-17 20:30 开跑，剩余 236 席">
+  <div class="frame"></div>
+  <div class="head" data-fact="registered:3264" data-fact2="capacity:3500" data-fact3="date:2026-10-17" data-fact4="time:20:30" data-fact5="distance:5.2">
+    <h1>GLOW RUN<br>SEASON 3</h1>
+    <h2>发光跑 · 第三季 · 城市夜跑</h2>
+  </div>
+  <div class="band">
+    <div class="ticker-track" data-items="5">
+      <span class="cp">望江码头</span><span class="cp">鼓楼口</span><span class="cp">灯巷</span><span class="cp">旧铁桥</span><span class="cp">光谷终点</span>
+      <span class="cp">望江码头</span><span class="cp">鼓楼口</span><span class="cp">灯巷</span><span class="cp">旧铁桥</span><span class="cp">光谷终点</span>
+    </div>
+    <div class="stamp">5.2 KM</div>
+  </div>
+  <div class="foot">
+    <span class="left">已报 <b>3264</b> · 剩 <b>236</b> / 3500</span>
+    <span class="when">2026-10-17 · 20:30<br><span class="slogan">城市入睡时，我们发光。</span></span>
+  </div>
+</div>
+</body>
+</html>

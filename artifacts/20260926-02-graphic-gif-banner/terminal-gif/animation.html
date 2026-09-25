@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>GLOW RUN 3 — terminal 打字机横幅</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* graphic-gif 技能 style preset「terminal」——references/style-presets.md 缺失，
+   token 按 SKILL.md 明文线索重建：深色磷绿 + 扫描线 ::after repeating-linear-gradient opacity .03 */
+:root{
+  --bg:#0B120C;
+  --panel:#0F1912;
+  --phos:#7CFFA0;
+  --dim:#3E6E4C;
+  --amber:#FFC46B;
+  --line:#1C3D24;
+  --font-body:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --duration:3s;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{
+  width:800px;height:800px;overflow:hidden;
+  background:var(--bg);font-family:var(--font-body);
+}
+.canvas{
+  width:800px;height:800px;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+/* 签名构件：光标闪烁（cursor blink）；扫描线为技能 terminal 风格硬性要求 */
+.canvas::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:0.03;
+  background:repeating-linear-gradient(to bottom,var(--phos) 0 1px,transparent 1px 3px);
+}
+.term{
+  width:704px;background:var(--panel);border:1px solid var(--line);border-radius:8px;
+  padding:34px 34px 30px;
+}
+.bar{display:flex;gap:8px;align-items:center;margin-bottom:26px;}
+.bar i{width:12px;height:12px;border-radius:50%;background:var(--dim);display:block;}
+.bar i:first-child{background:var(--amber);}
+.bar span{margin-left:auto;font-size:15px;font-weight:400;color:var(--dim);letter-spacing:.08em;}
+.prompt{font-size:24px;font-weight:700;color:var(--phos);white-space:nowrap;line-height:1.6;}
+.tw{
+  display:inline-block;width:0;overflow:hidden;white-space:nowrap;vertical-align:bottom;
+  animation:type var(--duration) steps(41,end) forwards;
+  animation-iteration-count:1;
+}
+.cursor{
+  display:inline-block;width:13px;height:26px;background:var(--phos);vertical-align:bottom;
+  animation:blink var(--duration) ease-in-out infinite both;
+}
+.out{margin-top:22px;font-size:22px;font-weight:400;color:var(--phos);line-height:1.9;}
+.out p{opacity:0;}
+.out .k{color:var(--dim);font-weight:400;}
+.out .hi{color:var(--amber);font-weight:700;}
+.l1{animation:show-l1 var(--duration) ease-out both;}
+.l2{animation:show-l2 var(--duration) ease-out both;}
+.l3{animation:show-l3 var(--duration) ease-out both;}
+.l4{animation:show-l4 var(--duration) ease-out both;}
+.l1,.l2,.l3,.l4{animation-iteration-count:1;}
+
+/* 交错全部烘焙进 keyframes 百分比，禁用 animation-delay（技能规则 9） */
+/* 同 clean-slate 的「规则 6 终值缺陷」：steps 打字在末帧前打不完最后一个字符，
+   90% 处打完 41 字、末段保持；steps(41,end) 作用于 0→90% 段，90→100% 段两端等值不再产生步进 */
+@keyframes type{0%{width:0;}90%,100%{width:41ch;}}
+@keyframes blink{0%,45%{opacity:1;}50%,95%{opacity:0;}100%{opacity:1;}}
+@keyframes show-l1{0%,48%{opacity:0;}58%,100%{opacity:1;}}
+@keyframes show-l2{0%,58%{opacity:0;}68%,100%{opacity:1;}}
+@keyframes show-l3{0%,68%{opacity:0;}78%,100%{opacity:1;}}
+@keyframes show-l4{0%,78%{opacity:0;}88%,100%{opacity:1;}}
+</style>
+</head>
+<body>
+<div class="canvas" role="img" aria-label="终端风格横幅：输入 glow-run 第三季命令，输出 2026-10-17 20:30、5.2 公里、已报名 3264/3500、剩余 236">
+  <div class="term" data-tw="41" data-fact="registered:3264" data-fact2="capacity:3500" data-fact3="date:2026-10-17" data-fact4="time:20:30" data-fact5="distance:5.2">
+    <div class="bar"><i></i><i></i><i></i><span>glow-run@city — night</span></div>
+    <p class="prompt"><span class="tw" data-text="$ glow-run --season 3 --start 10.17 20:30">$ glow-run --season 3 --start 10.17 20:30</span><span class="cursor"></span></p>
+    <div class="out">
+      <p class="l1"><span class="k">NAME&nbsp;&nbsp;&nbsp;</span>发光跑 GLOW RUN · SEASON 3</p>
+      <p class="l2"><span class="k">DATE&nbsp;&nbsp;&nbsp;</span>2026-10-17 20:30 · 5.2 KM</p>
+      <p class="l3"><span class="k">REG&nbsp;&nbsp;&nbsp;&nbsp;</span>3264 / 3500 · LEFT <span class="hi">236</span></p>
+      <p class="l4"><span class="k">SLOGAN&nbsp;</span>城市入睡时，我们发光。</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
