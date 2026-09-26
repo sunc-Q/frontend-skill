@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-26T10:21+08:00",
+ "updated": "2026-09-26T10:26+08:00",
  "tried": [
   {
    "skill": "drafter",
@@ -633,7 +633,7 @@
    "seconds": 540,
    "artifact_size": "92KB（本轮 demos 目录，含 5 个源文件；限 5MB）",
    "cleanup": "已删 LAB/.tmp/{gocache(86MB),gopath(未生成),maze(2.6MB)} 与因路径 bug 误建在工作区上级的 试验/.tmp/{gocache,maze}（先 ls 核对 owner 与 mtime 再删）；demos 内保留源码+产物+日志，无 node_modules、无二进制、无临时文件；全局 ~/Library/Caches/go-build 未动；本轮未起任何监听端口（lsof 复核）",
-   "push": "待推送（见 work-log 末段）",
+   "push": "已推送：`git push origin skill-showcase` 成功（f5b2515..e6dab0f，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 f5b2515 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(c9e0541) / go-gin_react(b8fe3fd) / crypto-forecast(不存在，未创建) 均未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token（staged diff 先按凭据形状扫过：ghp_/AKIA/sk-/PRIVATE KEY/password=/token= 零命中）",
    "notes": "第 10 轮零安装、零下载、零网络（纯 stdlib Go）、零服务、零全局配置改动。最大方法学增量：把「双变异测试」（值变异 + 结构变异）当成规范型技能的验收闸门——实测证明值变异只有 golden 抓到、结构变异被 3 条不变量同时抓到，二者缺一即假通过。踩坑 5 条已写进 environment_notes（反引号被 sh 命令替换导致基准静默空跑、cover -html 是文字色非背景色、LAB 相对路径退多一层把 86MB 缓存写到工作区上级、表驱动期望值要先手推 5x5 小图、go vet 不检查 build-tag 文件）。"
   }
  ]
