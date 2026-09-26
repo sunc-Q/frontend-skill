@@ -3,7 +3,7 @@
  "rows": [
   {
    "id": "BB1",
-   "desc": "三份预览都被 Chrome 真渲染（正文字符 matrix=10469 dense=10226 teletype=10522）",
+   "desc": "三份预览都被 Chrome 真渲染（正文字符 matrix=10478 dense=10235 teletype=10532）",
    "pass": true,
    "detail": "字体=monospace 12.5px"
   },
@@ -170,5 +170,5 @@
    "detail": "实测比率 monospace=1.661 Menlo=1.661 Monaco=1.666 SFMono-Regular=1.134 Courier New=1.666 PingFang SC=1.134 Heiti SC=1.088 Songti SC=1.181 STSong=1.201 Kaiti SC=1.134 Noto Sans Mono CJK SC=1.134 Source Han Mono SC=1.134 Sarasa Mono SC=1.134 Microsoft YaHei Mono=1.134"
   }
  ],
- "printed_at": "2026-09-26T10:00:25.135Z"
+ "printed_at": "2026-09-26T10:16:38.035Z"
 }

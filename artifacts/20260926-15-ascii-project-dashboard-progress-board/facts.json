@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-26T10:00:12.292Z",
+ "generated_at": "2026-09-26T10:16:24.683Z",
  "round": {
   "id": "20260926-15-ascii-project-dashboard-progress-board",
   "time": "2026-09-26T15:00+08:00",
   "boundary": "2026-09-26T14:00+08:00"
  },
  "ledger": {
-  "state_sha1": "fba586c11379",
-  "worklog_sha1": "f8b80cc790e6",
+  "state_sha1": "03d2ea5e9a02",
+  "worklog_sha1": "59cd42a0946b",
   "updated": "2026-09-26T15:00+08:00",
   "tried_len": 22,
   "runs_len": 22,
   "styles_len": 66,
-  "notes_len": 149,
+  "notes_len": 150,
   "candidates_len": 55,
   "candidates_star": 28,
   "skills_seen_len": 19
@@ -22,17 +22,14 @@
   "orphans": [
    "20260926-14-drafter-flowchart"
   ],
-  "artifacts_bytes": 39789313,
+  "artifacts_bytes": 39789402,
   "reports": 23
  },
  "git": {
-  "head": "3531814",
+  "head": "a3e796e",
   "branch": "main",
   "untracked_dirs": [
-   "artifacts/20260926-14-drafter-flowchart/",
-   "artifacts/20260926-15-ascii-project-dashboard-progress-board/",
-   "reports/20260926-15-ascii-project-dashboard-progress-board.md",
-   "skills/ascii-project-dashboard/"
+   "artifacts/20260926-14-drafter-flowchart/"
   ]
  },
  "sprint": {
@@ -538,8 +535,8 @@
      "label": "-15-ascii-project-dashboard-progress-board · 636KB · 残留12 · 10 页",
      "label_ascii": "20260926-15-ascii-project-dashboard-progress-board",
      "status": "doing",
-     "note": "bytes=650767 residue=12 html=10",
-     "note_ascii": "bytes=650767 residue=12 html=10"
+     "note": "bytes=650856 residue=12 html=10",
+     "note_ascii": "bytes=650856 residue=12 html=10"
     }
    ]
   },
@@ -981,11 +978,11 @@
     },
     {
      "id": "P20260926-1",
-     "label": "-15-ascii-project-dashboard-progress-board · 提交 0 次",
+     "label": "-15-ascii-project-dashboard-progress-board · 提交 1 次",
      "label_ascii": "20260926-15-ascii-project-dashboard-progress-board",
      "status": "doing",
-     "note": "未跟踪（在制品或未推送）",
-     "note_ascii": "untracked: in-flight or unpushed"
+     "note": "runs 缺 push 字段（早期轮未记）",
+     "note_ascii": "runs entry has no push field (early round)"
     }
    ]
   },

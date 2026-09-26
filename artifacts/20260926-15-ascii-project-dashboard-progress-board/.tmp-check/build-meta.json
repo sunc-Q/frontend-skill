@@ -2,8 +2,8 @@
  "styles": {
   "matrix": {
    "file": "dashboard-lane-matrix.md",
-   "md_bytes": 13758,
-   "html_bytes": 31765,
+   "md_bytes": 13763,
+   "html_bytes": 31798,
    "lines": 204,
    "art_max_cells": 116,
    "table_max_cells": 165,
@@ -18,7 +18,7 @@
     "braille": 0,
     "box": 44
    },
-   "cjk": 1077,
+   "cjk": 1075,
    "maxCodePoint": 129658,
    "lanes": [
     {
@@ -79,8 +79,8 @@
   },
   "dense": {
    "file": "dashboard-braille-dense.md",
-   "md_bytes": 14044,
-   "html_bytes": 31223,
+   "md_bytes": 14049,
+   "html_bytes": 31256,
    "lines": 210,
    "art_max_cells": 77,
    "table_max_cells": 167,
@@ -95,7 +95,7 @@
     "braille": 24,
     "box": 196
    },
-   "cjk": 1289,
+   "cjk": 1287,
    "maxCodePoint": 65372,
    "lanes": [
     {
@@ -156,8 +156,8 @@
   },
   "teletype": {
    "file": "dashboard-teletype-ascii.md",
-   "md_bytes": 10522,
-   "html_bytes": 12516,
+   "md_bytes": 10532,
+   "html_bytes": 12526,
    "lines": 206,
    "art_max_cells": 78,
    "table_max_cells": 122,
@@ -232,5 +232,5 @@
    ]
   }
  },
- "facts_sha": "fba586c11379"
+ "facts_sha": "03d2ea5e9a02"
 }

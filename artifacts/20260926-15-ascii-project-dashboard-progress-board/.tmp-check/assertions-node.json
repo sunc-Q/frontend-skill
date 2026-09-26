@@ -407,7 +407,7 @@
    "id": "B11b-matrix",
    "desc": "本风格有宽字符 → 注入脚本 + span 成组，二者要么都有要么都没有",
    "pass": true,
-   "detail": "spans=514"
+   "detail": "spans=515"
   },
   {
    "id": "B8-matrix",
@@ -449,7 +449,7 @@
    "id": "B11b-dense",
    "desc": "本风格有宽字符 → 注入脚本 + span 成组，二者要么都有要么都没有",
    "pass": true,
-   "detail": "spans=493"
+   "detail": "spans=494"
   },
   {
    "id": "B8-dense",
@@ -533,19 +533,19 @@
    "id": "B7b",
    "desc": "HTML 里的每个宽字符 span 只装它声明那一类的字符（结构化配对，不是整段剥标签）",
    "pass": true,
-   "detail": "matrix=514 个 span dense=493 个 span teletype=0 个 span"
+   "detail": "matrix=515 个 span dense=494 个 span teletype=0 个 span"
   },
   {
    "id": "B7c",
    "desc": "span 组数 == md 里的连续宽字符段数（成组包裹，没跨字乱切）",
    "pass": true,
-   "detail": "= \"514,493,0\""
+   "detail": "= \"515,494,0\""
   },
   {
    "id": "B7d",
    "desc": "拿同一 span 规则从 .md 重新生成正文，与交付 HTML 逐字节相同（第二个序列化器交叉回读）",
    "pass": true,
-   "detail": "matrix:25182B dense:24072B teletype:10537B"
+   "detail": "matrix:25219B dense:24109B teletype:10547B"
   },
   {
    "id": "B12",
@@ -617,7 +617,7 @@
    "id": "C5",
    "desc": "三份 md 各 ≤ 60KB 且总产物 ≤ 50MB",
    "pass": true,
-   "detail": "matrix=13758B dense=14044B teletype=10522B"
+   "detail": "matrix=13763B dense=14049B teletype=10532B"
   },
   {
    "id": "D2a",
@@ -671,7 +671,7 @@
    "id": "D6",
    "desc": "facts.json 不是陈旧读数：其内 sha1 与现读 state.json 字节一致",
    "pass": true,
-   "detail": "fba586c11379"
+   "detail": "03d2ea5e9a02"
   },
   {
    "id": "E1",
@@ -692,5 +692,5 @@
    "detail": ""
   }
  ],
- "printed_at": "2026-09-26T10:00:12.672Z"
+ "printed_at": "2026-09-26T10:16:25.058Z"
 }

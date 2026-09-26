@@ -83,13 +83,13 @@
    "id": "M4a",
    "desc": "新鲜读数：facts 记录的 sha1 == 现读字节 sha1",
    "pass": true,
-   "detail": "fba586c11379"
+   "detail": "03d2ea5e9a02"
   },
   {
    "id": "M4b",
    "desc": "台账多一条时 sha1 立刻对不上（陈旧看板会被 D6 拦下）",
    "pass": true,
-   "detail": "285b1c1eaae8"
+   "detail": "5e317acedbf5"
   },
   {
    "id": "M5a",
@@ -167,7 +167,7 @@
    "id": "M10a",
    "desc": "真实产物四项判据全过（正对照：校验器没把合法产物判死）",
    "pass": true,
-   "detail": "spans=514 脚本=true"
+   "detail": "spans=515 脚本=true"
   },
   {
    "id": "M10b·拆掉校正脚本",
@@ -218,5 +218,5 @@
    "detail": "gap 无对应 charClass 探针"
   }
  ],
- "printed_at": "2026-09-26T10:00:12.803Z"
+ "printed_at": "2026-09-26T10:16:25.194Z"
 }

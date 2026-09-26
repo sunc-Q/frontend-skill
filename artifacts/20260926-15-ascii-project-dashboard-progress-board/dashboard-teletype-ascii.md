@@ -79,7 +79,7 @@
 | K20260926-1 | 20260926-11-sites-building-newsletter | [x] | -- |
 | K20260926-1 | 20260926-12-frontend-development-blog-portal | [x] | -- |
 | K20260926-1 | 20260926-14-drafter-flowchart | [x] | -- |
-| K20260926-1 | 20260926-15-ascii-project-dashboard-progress-board | [>] | bytes=650767 residue=12 html=10 |
+| K20260926-1 | 20260926-15-ascii-project-dashboard-progress-board | [>] | bytes=650856 residue=12 html=10 |
 
 #### SOURCE (8/8)
 
@@ -146,7 +146,7 @@
 | P20260926-1 | 20260926-11-sites-building-newsletter | [x] | -- |
 | P20260926-1 | 20260926-12-frontend-development-blog-portal | [x] | -- |
 | P20260926-1 | 20260926-14-drafter-flowchart | [!] | untracked: in-flight or unpushed |
-| P20260926-1 | 20260926-15-ascii-project-dashboard-progress-board | [>] | untracked: in-flight or unpushed |
+| P20260926-1 | 20260926-15-ascii-project-dashboard-progress-board | [>] | runs entry has no push field (early round) |
 
 #### HEALTH (7/13)
 
@@ -191,15 +191,15 @@
 ## PROVENANCE (ALL NUMBERS COMPUTED, NONE COPIED)
 
 +--------------------------------------------------+
-| FACTS SHA                           fba586c11379 |
-| WORKLOG SHA                         f8b80cc790e6 |
+| FACTS SHA                           03d2ea5e9a02 |
+| WORKLOG SHA                         59cd42a0946b |
 | LEDGER UPDATED            2026-09-26T15:00+08:00 |
 | TRIED / RUNS                             22 / 22 |
 | DIRS / REPORTS                           23 / 23 |
 | ARTIFACT BYTES                            37.9MB |
-| NOTES / CANDIDATES           149 / 55 (+28 star) |
-| GIT HEAD                            main@3531814 |
-| GENERATED AT              2026-09-26T10:00:12.292Z |
+| NOTES / CANDIDATES           150 / 55 (+28 star) |
+| GIT HEAD                            main@a3e796e |
+| GENERATED AT              2026-09-26T10:16:24.683Z |
 +--------------------------------------------------+
 
-<!-- f:fba586c11379 w:f8b80cc790e6 s:teletype -->
+<!-- f:03d2ea5e9a02 w:59cd42a0946b s:teletype -->

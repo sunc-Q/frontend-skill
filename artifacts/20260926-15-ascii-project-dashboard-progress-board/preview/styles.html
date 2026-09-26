@@ -25,33 +25,33 @@ pre{margin:0;font-size:12px;white-space:pre}
 .kv{display:flex;justify-content:space-between;font-size:12px;border-bottom:1px dotted var(--rule);padding:2px 0}
 footer{margin-top:26px;font-size:11px;color:#6f7f90}</style></head><body><div class="wrap">
 <h1>三风格对照 · ASCII 项目进度看板</h1>
-<p class="sub">同一份事实源（facts.json，state_sha=fba586c11379 worklog_sha=f8b80cc790e6）驱动三种呈现；
+<p class="sub">同一份事实源（facts.json，state_sha=03d2ea5e9a02 worklog_sha=59cd42a0946b）驱动三种呈现；
 本页所有数字由 scripts/index-page.mjs 现读现算。共 109 项任务、完成 97、阻塞 10，整体 89%。</p>
 <div class="grid"><div class="card"><h3>泳道矩阵 lane-matrix</h3>
 <p class="sub">技能原生形态：emoji 图标 + ▓░ 十格条 + 横向泳道（Pattern A）+ Markdown 汇总表 + 待办表 + 里程碑时间线（Pattern C）</p>
 <div class="kv"><span>Markdown 看板</span><a href="../dashboard-lane-matrix.md">dashboard-lane-matrix.md</a></div>
 <div class="kv"><span>单文件预览</span><a href="matrix.html">preview/matrix.html</a></div>
-<div class="kv"><span>md / html 字节</span><span class="n">13758 / 31765</span></div>
+<div class="kv"><span>md / html 字节</span><span class="n">13763 / 31798</span></div>
 <div class="kv"><span>行数</span><span class="n">204</span></div>
 <div class="kv"><span>版式区最宽 / 预算</span><span class="n">116 / 118 列</span></div>
-<div class="kv"><span>emoji / 块字符 / 盲文 / 盒线 / CJK</span><span class="n">141 / 134 / 0 / 44 / 1077</span></div>
+<div class="kv"><span>emoji / 块字符 / 盲文 / 盒线 / CJK</span><span class="n">141 / 134 / 0 / 44 / 1075</span></div>
 <div class="kv"><span>歧义宽度字符数</span><span class="n bad">63</span></div>
 <div class="kv"><span>最大码点</span><span class="n">U+1fa7a</span></div>
 </div><div class="card"><h3>盲文密排 braille-dense</h3>
 <p class="sub">零 emoji、不借矩阵风格的明暗块条：盒线框 + 八分度块条（█ 整格、▏▎▍▌▋▊▉ 分数、▒ 余量）+ 盲文点字体积曲线 + 纵向泳道（Pattern B，窄终端）</p>
 <div class="kv"><span>Markdown 看板</span><a href="../dashboard-braille-dense.md">dashboard-braille-dense.md</a></div>
 <div class="kv"><span>单文件预览</span><a href="dense.html">preview/dense.html</a></div>
-<div class="kv"><span>md / html 字节</span><span class="n">14044 / 31223</span></div>
+<div class="kv"><span>md / html 字节</span><span class="n">14049 / 31256</span></div>
 <div class="kv"><span>行数</span><span class="n">210</span></div>
 <div class="kv"><span>版式区最宽 / 预算</span><span class="n">77 / 78 列</span></div>
-<div class="kv"><span>emoji / 块字符 / 盲文 / 盒线 / CJK</span><span class="n">0 / 112 / 24 / 196 / 1289</span></div>
+<div class="kv"><span>emoji / 块字符 / 盲文 / 盒线 / CJK</span><span class="n">0 / 112 / 24 / 196 / 1287</span></div>
 <div class="kv"><span>歧义宽度字符数</span><span class="n bad">231</span></div>
 <div class="kv"><span>最大码点</span><span class="n">U+ff5c</span></div>
 </div><div class="card"><h3>电传稿 teletype-ascii</h3>
 <p class="sub">STRICT 7-BIT ASCII: #/. BARS, +--+ FRAMES, [x]/[!] TICKETS, UPPERCASE LATIN LABELS</p>
 <div class="kv"><span>Markdown 看板</span><a href="../dashboard-teletype-ascii.md">dashboard-teletype-ascii.md</a></div>
 <div class="kv"><span>单文件预览</span><a href="teletype.html">preview/teletype.html</a></div>
-<div class="kv"><span>md / html 字节</span><span class="n">10522 / 12516</span></div>
+<div class="kv"><span>md / html 字节</span><span class="n">10532 / 12526</span></div>
 <div class="kv"><span>行数</span><span class="n">206</span></div>
 <div class="kv"><span>版式区最宽 / 预算</span><span class="n">78 / 80 列</span></div>
 <div class="kv"><span>emoji / 块字符 / 盲文 / 盒线 / CJK</span><span class="n">0 / 0 / 0 / 0 / 0</span></div>
@@ -66,7 +66,7 @@ footer{margin-top:26px;font-size:11px;color:#6f7f90}</style></head><body><div cl
 </tbody></table>
 <h2>校验卡读数</h2>
 <table><thead><tr><th>校验卡</th><th class="n">通过/总数</th><th>失败项</th><th class="n">落盘时刻</th></tr></thead><tbody>
-<tr><td><a href="#">assertions-node.json</a></td><td class="n good">115/115（100%）</td><td class="">—</td><td class="n">2026-09-26T10:00:12.672Z</td></tr><tr><td><a href="#">assertions-mutate.json</a></td><td class="n good">36/36（100%）</td><td class="">—</td><td class="n">2026-09-26T10:00:12.803Z</td></tr><tr><td><a href="#">assertions-clean.json</a></td><td class="n good">13/13（100%）</td><td class="">—</td><td class="n">2026-09-26T10:00:12.883Z</td></tr><tr><td><a href="#">assertions-browser.json</a></td><td class="n good">28/28（100%）</td><td class="">—</td><td class="n">2026-09-26T10:00:25.135Z</td></tr></tbody></table>
+<tr><td><a href="#">assertions-node.json</a></td><td class="n good">115/115（100%）</td><td class="">—</td><td class="n">2026-09-26T10:16:25.058Z</td></tr><tr><td><a href="#">assertions-mutate.json</a></td><td class="n good">36/36（100%）</td><td class="">—</td><td class="n">2026-09-26T10:16:25.194Z</td></tr><tr><td><a href="#">assertions-clean.json</a></td><td class="n good">13/13（100%）</td><td class="">—</td><td class="n">2026-09-26T10:16:25.282Z</td></tr><tr><td><a href="#">assertions-browser.json</a></td><td class="n good">28/28（100%）</td><td class="">—</td><td class="n">2026-09-26T10:16:38.035Z</td></tr></tbody></table>
 <h2>字体实测（本机 Chrome 无头）</h2>
 <p class="sub">技能说 "Assume monospace font (10 characters = 10 characters)"，但没说什么字体成立。本机 Chrome 无头实测（<code>monospace</code> @ 12.5px，等宽步进 7.526px）：
   条形与框线字符实测就是 1 列（BB2），而 CJK 只有 <b>1.661</b> 列（恰好等于 1 个 font-size），emoji 是 <b>2.126</b> 列——「CJK=2 列」是 CJK locale 终端的性质，不是浏览器的性质（BB3/BB3b）。</p>
@@ -76,10 +76,10 @@ footer{margin-top:26px;font-size:11px;color:#6f7f90}</style></head><body><div cl
 <p class="sub">「不校正」那一列是把交付 HTML 里的内联脚本删掉后重测的同一条判据（BB5）：矩阵风格 3 列分隔符跨行散开 <b>68.88px</b>、稠密风格盒线右边界散开 <b>25.5px</b>，校正后都收回 1px 内；
   条形物理宽度 matrix=60.2px dense=60.2px teletype=60.21px，与 8×等宽步进（60.21px）一致，说明校正没碰到条（BB6）。</p>
 <h2>逐风格清单</h2>
-<table><thead><tr><th>风格</th><th class="n">md 字节</th><th class="n">行数</th><th class="n">版式最宽</th><th class="n">歧义宽度</th><th class="n">emoji</th><th class="n">CJK</th><th>各泳道 done/total</th></tr></thead><tbody><tr><td>matrix</td><td class="n">13758</td><td class="n">204</td><td class="n">116</td><td class="n">63</td><td class="n">141</td><td class="n">1077</td><td class="n">21/21 22/23 8/8 20/21 19/23 7/13</td></tr><tr><td>dense</td><td class="n">14044</td><td class="n">210</td><td class="n">77</td><td class="n">231</td><td class="n">0</td><td class="n">1289</td><td class="n">21/21 22/23 8/8 20/21 19/23 7/13</td></tr><tr><td>teletype</td><td class="n">10522</td><td class="n">206</td><td class="n">78</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">21/21 22/23 8/8 20/21 19/23 7/13</td></tr></tbody></table>
+<table><thead><tr><th>风格</th><th class="n">md 字节</th><th class="n">行数</th><th class="n">版式最宽</th><th class="n">歧义宽度</th><th class="n">emoji</th><th class="n">CJK</th><th>各泳道 done/total</th></tr></thead><tbody><tr><td>matrix</td><td class="n">13763</td><td class="n">204</td><td class="n">116</td><td class="n">63</td><td class="n">141</td><td class="n">1075</td><td class="n">21/21 22/23 8/8 20/21 19/23 7/13</td></tr><tr><td>dense</td><td class="n">14049</td><td class="n">210</td><td class="n">77</td><td class="n">231</td><td class="n">0</td><td class="n">1287</td><td class="n">21/21 22/23 8/8 20/21 19/23 7/13</td></tr><tr><td>teletype</td><td class="n">10532</td><td class="n">206</td><td class="n">78</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">21/21 22/23 8/8 20/21 19/23 7/13</td></tr></tbody></table>
 <h2>本轮规程进度（Sprint）</h2>
 <table><thead><tr><th>步骤</th><th>说明</th><th>状态</th></tr></thead><tbody>
 <tr><td>读取工作记录与台账</td><td>两本账读完才选题</td><td class="good">done</td></tr><tr><td>选题未试组合</td><td>tried 里没有这一组</td><td class="good">done</td></tr><tr><td>按技能流程产出三风格</td><td>渲染层见 src/render.mjs</td><td class="">todo</td></tr><tr><td>断言与变异复核</td><td>node/mutate/browser 三张卡</td><td class="">todo</td></tr><tr><td>清理中间产物</td><td>本轮零 node_modules</td><td class="">todo</td></tr><tr><td>写复现文档到 reports</td><td>与产物同名片段</td><td class="">todo</td></tr><tr><td>写回台账与工作日志</td><td>tried/runs/notes 全部追加</td><td class="">todo</td></tr><tr><td>提交并推送到 origin</td><td>HTTPS 被重置故走 SSH</td><td class="">todo</td></tr>
 </tbody></table>
-<footer>零依赖：无 <code>node_modules</code>；三份预览单文件自包含、双击即看，其中矩阵/稠密两份含一段内联字体度量校正脚本（无外链、无 src，禁用 JS 时退化为未校正原样）。<br>生成于 2026-09-26T10:01:07.706Z · 事实源现读自 20260926-15-ascii-project-dashboard-progress-board 的 facts.json · 断言读数 node:115 mutate:36 clean:13 browser:28</footer>
+<footer>零依赖：无 <code>node_modules</code>；三份预览单文件自包含、双击即看，其中矩阵/稠密两份含一段内联字体度量校正脚本（无外链、无 src，禁用 JS 时退化为未校正原样）。<br>生成于 2026-09-26T10:17:20.622Z · 事实源现读自 20260926-15-ascii-project-dashboard-progress-board 的 facts.json · 断言读数 node:115 mutate:36 clean:13 browser:28</footer>
 </div></body></html>

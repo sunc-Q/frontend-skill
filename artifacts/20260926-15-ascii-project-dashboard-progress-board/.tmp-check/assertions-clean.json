@@ -11,7 +11,7 @@
    "id": "CL2",
    "desc": "本轮目录总体积 0.62MB < 50MB（技能与规程的磁盘预算）",
    "pass": true,
-   "detail": "31 个文件，650767 字节"
+   "detail": "31 个文件，650856 字节"
   },
   {
    "id": "CL2b",
@@ -23,7 +23,7 @@
    "id": "CL3",
    "desc": "三风格 .md + 三预览 + 对照入口页共 7 个交付物齐备且各 >1KB",
    "pass": true,
-   "detail": "dashboard-lane-matrix.md:13758B dashboard-braille-dense.md:14044B dashboard-teletype-ascii.md:10522B preview/matrix.html:31765B preview/dense.html:31223B preview/teletype.html:12516B preview/styles.html:12961B"
+   "detail": "dashboard-lane-matrix.md:13763B dashboard-braille-dense.md:14049B dashboard-teletype-ascii.md:10532B preview/matrix.html:31798B preview/dense.html:31256B preview/teletype.html:12526B preview/styles.html:12961B"
   },
   {
    "id": "CL4",
@@ -57,9 +57,9 @@
   },
   {
    "id": "CL9",
-   "desc": ".tmp-check 只放可再生读数：JSON 快照 + 浏览器卡探针副本（12 个，208509B），无依赖目录无二进制帧",
+   "desc": ".tmp-check 只放可再生读数：JSON 快照 + 浏览器卡探针副本（12 个，208661B），无依赖目录无二进制帧",
    "pass": true,
-   "detail": ".tmp-check/assertions-browser.json:7004B .tmp-check/assertions-clean.json:3168B .tmp-check/assertions-mutate.json:6766B .tmp-check/assertions-node.json:20701B .tmp-check/browser-meta.json:2698B .tmp-check/build-meta.json:3738B .tmp-check/probe-dense-raw.html:32722B .tmp-check/probe-dense.html:33850B .tmp-check/probe-matrix-raw.html:33248B .tmp-check/probe-matrix.html:34376B .tmp-check/probe-telety"
+   "detail": ".tmp-check/assertions-browser.json:7004B .tmp-check/assertions-clean.json:3168B .tmp-check/assertions-mutate.json:6766B .tmp-check/assertions-node.json:20701B .tmp-check/browser-meta.json:2698B .tmp-check/build-meta.json:3738B .tmp-check/probe-dense-raw.html:32755B .tmp-check/probe-dense.html:33883B .tmp-check/probe-matrix-raw.html:33281B .tmp-check/probe-matrix.html:34409B .tmp-check/probe-telety"
   },
   {
    "id": "CL9b",
@@ -71,7 +71,7 @@
    "id": "CL10",
    "desc": "产物尾部水印自洽：三份 .md 的 <!-- f:sha --> 与 facts.json 记录一致（陈旧会被抓）",
    "pass": true,
-   "detail": "md 水印=fba586c11379,fba586c11379,fba586c11379 facts=fba586c11379 现读=fba586c11379"
+   "detail": "md 水印=03d2ea5e9a02,03d2ea5e9a02,03d2ea5e9a02 facts=03d2ea5e9a02 现读=03d2ea5e9a02"
   },
   {
    "id": "CL11",
@@ -80,5 +80,5 @@
    "detail": "10 个脚本随产物留档"
   }
  ],
- "printed_at": "2026-09-26T10:00:12.883Z"
+ "printed_at": "2026-09-26T10:16:25.282Z"
 }
