@@ -1,0 +1,15 @@
+probe: does --size affect the SVG branch?  (payload "size-test-<s>", ECC default M, border default 2)
+
+$ python3 ~/.qoder-cn/skills/qrcode-skills/scripts/generate.py --data "size-test-200" --output .tmp/svg-200.svg --format svg --size 200
+$ python3 ~/.qoder-cn/skills/qrcode-skills/scripts/generate.py --data "size-test-600" --output .tmp/svg-600.svg --format svg --size 600
+
+svg-200.svg -> <svg width="10mm" height="10mm" viewBox="0 0 10 10">   md5 baf937d8a0db419f14be8387d88d78c9
+svg-600.svg -> <svg width="35mm" height="35mm" viewBox="0 0 35 35">   md5 eb063b787323c18428dc827c05c2992c
+
+same payload length -> same 25-module grid in both files.
+width_mm = modules * (size // 41) / 10   =>  25 * 4 / 10 = 10mm ; 25 * 14 / 10 = 35mm
+
+Conclusion: --size on the SVG branch only rescales the printed millimetre size, and does so
+through the integer division size//41 (41 is hardcoded, assuming a 33-module code). It never
+resamples to pixels (the PNG branch does img.resize((size,size)); the SVG branch has no such
+call). For larger payloads the mm figure silently drifts away from the requested "pixel" size.

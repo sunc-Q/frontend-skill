@@ -1,0 +1,174 @@
+{
+  "step1_need_column": {
+    "exit": 0,
+    "json": {
+      "need_column": true,
+      "columns": [
+        "轮次",
+        "技能",
+        "结论",
+        "秒数",
+        "载荷"
+      ],
+      "preview": [
+        [
+          "轮次",
+          "技能",
+          "结论",
+          "秒数",
+          "载荷"
+        ],
+        [
+          "1",
+          "drafter",
+          "留用",
+          "420",
+          ""
+        ],
+        [
+          "2",
+          "ascii-project-dashboard",
+          "留用",
+          "600",
+          ""
+        ],
+        [
+          "3",
+          "algorithmic-art",
+          "留用",
+          "1140",
+          ""
+        ],
+        [
+          "4",
+          "SQLite-Database-Expert",
+          "留用",
+          "780",
+          ""
+        ],
+        [
+          "5",
+          "ppt-generator",
+          "留用",
+          "600",
+          ""
+        ]
+      ],
+      "message": "无法自动判断数据列，请指定 --column 参数"
+    },
+    "stderr": "",
+    "argv": [
+      "batch_generate.py",
+      "--input",
+      "/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1510-qrcode-skills/input-blind.csv",
+      "--output-dir",
+      "/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1510-qrcode-skills/_unused"
+    ]
+  },
+  "step2_batch_generate": {
+    "exit": 0,
+    "json": {
+      "total": 19,
+      "success": 19,
+      "failed": 0,
+      "output_dir": "/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1510-qrcode-skills/qr-wall",
+      "zip_file": "/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1510-qrcode-skills/qr-wall.zip",
+      "errors": []
+    },
+    "stderr": "",
+    "argv": [
+      "batch_generate.py",
+      "--input",
+      "/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1510-qrcode-skills/input-ledger.csv",
+      "--output-dir",
+      "/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1510-qrcode-skills/qr-wall",
+      "--size",
+      "400",
+      "--error-correction",
+      "H",
+      "--zip"
+    ]
+  },
+  "step3_named_column": {
+    "exit": 0,
+    "json": {
+      "total": 19,
+      "success": 19,
+      "failed": 0,
+      "output_dir": "/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1510-qrcode-skills/qr-names",
+      "zip_file": null,
+      "errors": []
+    },
+    "stderr": "",
+    "argv": [
+      "batch_generate.py",
+      "--input",
+      "/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1510-qrcode-skills/input-ledger.csv",
+      "--column",
+      "技能",
+      "--output-dir",
+      "/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1510-qrcode-skills/qr-names",
+      "--size",
+      "200",
+      "--error-correction",
+      "L"
+    ],
+    "note": "qr-names/ 已在验证后删除（19 张技能名二维码，H3/H4 取证用）；JSON 记录保留"
+  },
+  "step4_card_png": {
+    "exit": 0,
+    "json": {
+      "file": "/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1510-qrcode-skills/card-last-round.png"
+    },
+    "stderr": "",
+    "argv": [
+      "generate.py",
+      "--data",
+      "Qoder 技能演示场 第19轮 midi-generation｜分支 skill-showcase",
+      "--output",
+      "/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1510-qrcode-skills/card-last-round.png",
+      "--size",
+      "600",
+      "--error-correction",
+      "H",
+      "--border",
+      "3"
+    ]
+  },
+  "step5_card_svg": {
+    "exit": 0,
+    "json": {
+      "file": "/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1510-qrcode-skills/card-branch.svg"
+    },
+    "stderr": "",
+    "argv": [
+      "generate.py",
+      "--data",
+      "git@github.com:sunc-Q/frontend-skill.git -> branch skill-showcase (19 rounds)",
+      "--output",
+      "/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1510-qrcode-skills/card-branch.svg",
+      "--format",
+      "svg",
+      "--error-correction",
+      "Q"
+    ]
+  },
+  "step6_batch_decode": {
+    "exit": 0,
+    "json": {
+      "total": 19,
+      "success": 19,
+      "failed": 0,
+      "output_file": "/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1510-qrcode-skills/decoded-wall.txt",
+      "output_txt": "/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1510-qrcode-skills/decoded-wall.txt"
+    },
+    "stderr": "",
+    "argv": [
+      "batch_decode.py",
+      "--input",
+      "/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1510-qrcode-skills/input-paths.txt",
+      "--output-txt",
+      "/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1510-qrcode-skills/decoded-wall.txt"
+    ]
+  }
+}

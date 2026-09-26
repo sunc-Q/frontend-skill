@@ -1,0 +1,60 @@
+=== qrcode-skills verification: QR card wall of the run ledger ===
+ledger rows=19; payloads carry CJK + fullwidth bar U+FF5D
+
+-- A. batch_generate produced what it claimed --
+PASS  A1 reported total==success==19 / failed==0  [{"total": 19, "success": 19, "failed": 0}]
+PASS  A2 qr-wall holds exactly 1..19.png
+PASS  A3 all cards non-empty and 400x400  [1103..1473B, dims={(400, 400)}]
+PASS  A4 PNG signature
+PASS  A5 --zip bundle exists beside the output dir  [qr-wall.zip]
+PASS  A6 zip holds all 19 cards and nothing else  [19 entries]
+
+-- B. the documented column flow really gates --
+PASS  B1 unrecognised header -> need_column instead of a guess  [['轮次', '技能', '结论', '秒数', '载荷']]
+PASS  B2 preview capped at 6 rows  [6]
+PASS  B3 need_column exits 0: it asks, it does not fail
+PASS  B4 no images written for the rejected run
+PASS  B5 --column 技能 built a second wall
+PASS  B6 that wall carries the chosen column's own value, row 3  [['algorithmic-art']]
+
+-- C. round-trip: ledger vs the skill's decoder vs zxing vs jsQR --
+PASS  C1 batch_decode: 19 lines, 0 failures
+PASS  C2 batch_decode text == ledger payloads byte-for-byte  [Qoder技能演示场 第1轮 drafter｜耗时420秒｜留用]
+PASS  C3 independent zxing-cpp decode matches all 19  [19/19]
+PASS  C4 exactly one code per card
+PASS  C5 second engine jsQR (pure JS) agrees on all 19 payloads  [exit=0 mismatches=0]
+PASS  C6 CJK + U+FF5D survive (not mojibake, not stripped)
+
+-- D. negative controls: the decoder must be able to say no --
+PASS  D1 blank image -> exit 1 + error JSON  [无法解码: 本地 zxing 未识别到二维码]
+PASS  D2 noise image -> refused too  [无法解码: 本地 zxing 未识别到二维码]
+
+-- E. value mutation: only a decoder can see it --
+PASS  E0 mutant differs from golden by one digit only  [Qoder技能演示场 第19轮 midi-generation｜耗时601秒｜留用]
+PASS  E1 mutant card decodes to 601秒 (the change is inside the code)  [Qoder技能演示场 第19轮 midi-generation｜耗时601秒｜留用]
+PASS  E2 mutant no longer decodes to the golden payload
+PASS  E3 golden card unchanged at 600秒 (no leakage)
+PASS  E4 the two files differ byte-wise (1422B-class, not identical)  [1422B vs 1408B]
+
+-- F. error correction is real: same cover, two levels --
+PASS  F1 ECC H + 160px centre cover still decodes to the payload  [['Qoder技能演示场 第1轮 drafter｜耗时420秒｜留用']]
+PASS  F2 ECC L + the identical cover is destroyed  [[]]
+PASS  F3 same payload, same cover box, level is the only variable  [H carries more codewords than L]
+
+-- G. vector output: structural + still scannable --
+PASS  G1 SvgPathImage really emits one <path> and zero <rect>  [path=1 rect=0]
+PASS  G2 viewBox / step gives the same module grid as an independent recompute  [svg grid=49 recomputed=49 step=0.9]
+PASS  G3 first dark module sits one border in (border=2 honoured)  [first x=1.8 = 2.00 modules]
+PASS  G4 path subpaths <= dark modules (runs merged) and >= half of them  [subpaths=1041 dark=1041]
+PASS  G5 Chrome-rasterised SVG decodes back to the exact branch string  [['git@github.com:sunc-Q/frontend-skill.git -> branch skill-showcase (19 rounds)']
+
+-- H. the human-visible sheet, and the lesson from breaking it --
+PASS  H1 hand-scan card (600px / ECC H / border 3) decodes to round-19  [['Qoder 技能演示场 第19轮 midi-generation｜分支 skill-showcase']]
+PASS  H2 it names the last round's skill  [midi-generation]
+PASS  H3 sheet cell #1 cropped back out decodes at 5x downscale  [['Qoder技能演示场 第1轮 drafter｜耗时420秒｜留用']]
+PASS  H4 last-row cell decodes too (all 19 cards legible on one sheet)
+PASS  H5 the 18px badge was the earlier failure: covering the top-left finder kills an ECC H card  [[]]
+PASS  H6 ...while an equal-size cover on the data region still decodes (finder != data, not size)  [['Qoder技能演示场 第1轮 drafter｜耗时420秒｜留用']]
+PASS  H7 sheet size matches the 5-column grid  [(1068, 988)]
+
+=== 40/40 assertions passed ===

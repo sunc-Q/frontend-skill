@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T14:47+08:00",
+  "updated": "2026-09-26T15:18+08:00",
   "tried": [
     {
       "skill": "drafter",
@@ -226,6 +226,19 @@
       "report": "reports/20260926-1445-midi-generation.md",
       "installed_by_this_task": [
         "midi-generation (install_extension ext_b72cf6b9 → ~/.qoder-cn/skills/midi-generation)"
+      ]
+    },
+    {
+      "skill": "qrcode-skills",
+      "source": "Qoder 官方市场 official_5VOejSWY（名「二维码生成与解码技能」，publisher '-'，tags origin:skillatlas）→ _meta.json 指向上游 github.com/openclaw/skills commit 1ae3cd1e（owner hinisal）",
+      "skill_path": "~/.qoder-cn/skills/qrcode-skills（104KB/16 文件，8 个可跑脚本全在，市场镜像本次未丢实现层）；只读快照另存 LAB/.skills/market/qrcode-skills",
+      "task": "把本流水线 19 轮 runs[] 台账做成可扫描的二维码卡片墙：need_column 反问 → batch_generate --zip（19 码 + zip）→ --column 技能 造第二面墙 → 手扫卡片 PNG + 矢量 SVG → batch_decode 读回 → 合成 5 列 sheet",
+      "verdict": "留用（推荐）：历轮第一个机器可读产物（手机真能扫），自带「生成→独立解码」闭环所以验证强度天然高；本机零网络、依赖 7.8s 装完、单码 3s 出图。不适合品牌化样式码（只出标准方块码，且嵌 logo 会盖到 finder）",
+      "time": "2026-09-26T15:10+08:00",
+      "artifact": "demos/20260926-1510-qrcode-skills/qr-card-wall-sheet.png（1068×988，19 码）+ qr-wall/1..19.png + qr-wall.zip + card-branch.svg + decoded-wall.txt + 6 张取证 PNG + output.log(40 断言)",
+      "report": "reports/20260926-1510-qrcode-skills.md",
+      "installed_by_this_task": [
+        "qrcode-skills (install_extension ext_70675d0d…（一次性安装引用，安装后即失效） → ~/.qoder-cn/skills/qrcode-skills)"
       ]
     }
   ],
@@ -715,18 +728,46 @@
       "url": "",
       "status": "blocked",
       "note": "需 AudD/Whisper/YouTube 凭据或上传本地内容到云端 → 闸门排除"
+    },
+    {
+      "name": "qrcode-skills",
+      "source": "Qoder 官方扩展市场",
+      "status": "installed_used — 第20轮已用并留用，勿再选",
+      "note": "市场镜像本次**没丢实现层**（16 文件/8 脚本全在），与 midi-generation 那轮相反；origin:skillatlas 依旧不是判据。包内零网络（唯一 urlretrieve 在 --url 分支）",
+      "url": ""
+    },
+    {
+      "name": "qrcode-skill(marc-chen)/qrcode-remote-skills(草料)/qr-code-gen/dalehurley-qr-code/fireflylan-qr-code",
+      "source": "Qoder 官方扩展市场",
+      "status": "blocked(同类已覆盖)",
+      "note": "前两者把内容 POST 到远程 MCP/草料 API=内容外发触闸门；后三者与 qrcode-skills 同类，需求已满足，不占轮",
+      "url": ""
+    },
+    {
+      "name": "notion-infographic(official45042359, OfficialSelection)/freestylefly-canghe-infographic/majiayu000-infographic-generator-p5/majiayu000-changelog-infographic/k-dense-ai-infographics/infographic-gen(SGraph)/infographic-generator",
+      "source": "Qoder 官方扩展市场",
+      "status": "candidate",
+      "note": "信息图一族 27 条命中。p5 那条（vis-network JSON→交互式节点图）产物最新且纯本地可考虑；OfficialSelection 的 notion-infographic 需先读 SKILL 确认是否走 AI 出图（历轮 AI 出图类一律触付费 key+外发）；SGraph/Nano Banana 明显是云 API，先排除",
+      "url": ""
+    },
+    {
+      "name": "seedance/kling/video-generation-t2v/alibabacloud-* 视频系",
+      "source": "Qoder 官方扩展市场",
+      "status": "blocked",
+      "note": "全部要第三方云 API 凭据 + 把提示词/本地图 POST 出去，双触闸门与选题标准；本机 ffmpeg 出 .mp4 的路线不属于任何已装技能",
+      "url": ""
     }
   ],
   "in_progress": {
-    "skill": "midi-generation",
+    "skill": "qrcode-skills",
     "status": "done"
   },
   "next_candidates": [
-    "第20轮候选（产物类型轮换：19 轮里 HTML/SVG/PNG/办公文档/DB/服务都有了，音频=.mid 刚开 1 次）：antvis narrative-text-visualization（T8 叙述文本高亮，产物=带语义标注的文本报告，全新类型）",
-    "prd-visualization-skill（D3 力导向/径向层级图，把 18 轮台账画成层级图，注意需 d3 走 npmmirror）",
-    "本机已装未试：theme-factory（anthropics/skills，盘上已有则零下载）、brand-guidelines、slack-gif-creator（GIF 类仅 1 次可再做）、doc-coauthoring、frontend-design、web-artifacts-builder、internal-comms、academy-guide、discernment-nudge",
-    "本机已装未试（源③）：golangci-lint-strict（上游 config 走 raw.githubusercontent 被 TLS 重置，先想替代取法）、Golang-Backend-Development、nodejs-best-practices、express-nodejs-expert、frontend-development、qmind、canvas(.canvas.tsx)",
-    "midi-generation 复用路线（不占轮）：把行情/构建数据再谱曲；或试 normalize_composition 的脏输入归一化 + refine_composition 的 min_notes 扩展"
+    "第21轮候选（产物类型：zip/二维码已开新类；仍缺 .mp4 视频、.ics 日历、字体、真音频）：majiayu000-infographic-generator-p5（vis-network 兼容 JSON→交互式 p5 信息图，纯前端本地）",
+    "本机已装未试：theme-factory（anthropics/skills，盘上已有=零下载，给产物套 10 套主题，可产出对比图版）、brand-guidelines、slack-gif-creator（GIF 类仅 1 次）、doc-coauthoring、frontend-design、web-artifacts-builder、internal-comms、academy-guide、discernment-nudge",
+    "来源②外部仓库（SSH 通路已验证）：anthropics/skills 已 clone 在 LAB/.skills/anthropic-skills，19 个技能里未试的仍有一批；可再浅克隆其它 awesome-skills 仓库找新产物类",
+    "本机已装未试（后端向）：golangci-lint-strict（上游 config 走 raw.githubusercontent 被 TLS 重置，需先想替代取法）、Golang-Backend-Development、nodejs-best-practices、express-nodejs-expert、frontend-development、qmind、canvas(.canvas.tsx)",
+    "qrcode-skills 复用路线（不占轮）：WiFi 码/WiFi 配置批量、vCard 名片、csv/xlsx 批量 + --zip 交付；若下轮做「批量交付物」类产物可直接复用它的 batch 管线与 jsQR 交叉验证"
   ],
   "used_artifact_kinds": [
     "单文件自包含 HTML 图表（工程图纸）×1",
@@ -747,7 +788,8 @@
     "只读 stdio MCP 服务器（4 工具 / Zod 双向 schema / annotations / 分页 / 截断 / 可执行错误）+ 裸 JSON-RPC 帧转录 + 10 题 evaluation.xml + 32 条真协议会话断言日志（含 3 个变异体各红 1 条）×1",
     "运行中的 Gin HTTP 服务（127.0.0.1，端口收尾已释放）+ 19 条真实 curl 断言转录 output.log（201/400字段级/409/404/401/204/503/500 全覆盖 + slog 服务端 JSON 日志 + SIGTERM→Shutdown→exit 0 + 2 个变异体各只红 1 条）×1",
     "自动布局矢量图表 SVG ×4（flowchart 13 节点/timeline 17 事件/stateDiagram 10 中文态/pie 16 切片，数据与 .mmd 现场重算对账 23 断言）+ 位图 PNG 1 张（523×1600）+ 语法负对照与语义变异对照件 ×1",
-    "标准 MIDI 文件 .mid（460B，SMF format1 / 5 track / division960 / 96BPM / 18 拍 11.25s：18 轮时长→C 宫五声旋律 + I-vi-IV-V-I 和声床）+ 1180×1870 钢琴卷帘 SVG（33 音块，逐拍标 #轮次:秒数）+ composition.json/mapping.json 数据→音高完整对照 + 19 条手搓 SMF 解析器断言（含技能 3 条不协和规则的量化核验）+ 3 个变异对照（改音高/加半音/改 BPM 各红 1 条）+ R1 复现逐字节相同 ×1"
+    "标准 MIDI 文件 .mid（460B，SMF format1 / 5 track / division960 / 96BPM / 18 拍 11.25s：18 轮时长→C 宫五声旋律 + I-vi-IV-V-I 和声床）+ 1180×1870 钢琴卷帘 SVG（33 音块，逐拍标 #轮次:秒数）+ composition.json/mapping.json 数据→音高完整对照 + 19 条手搓 SMF 解析器断言（含技能 3 条不协和规则的量化核验）+ 3 个变异对照（改音高/加半音/改 BPM 各红 1 条）+ R1 复现逐字节相同 ×1",
+    "可扫描机器可读码：二维码卡片墙 PNG（1068×988 合成 sheet，5×4 网格 19 码）+ 19 张 400px ECC-H 位图 + 矢量 SVG 码 + batch 产物 zip；三方一致取证（台账↔技能解码↔zxing-cpp↔jsQR）+ finder/数据区遮挡差分 6 张 ×1"
   ],
   "environment_notes": [
     "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
@@ -861,7 +903,12 @@
     "市场包残缺时的正确解法：读 ~/.qoder-cn/skills/<name>/metadata.json，里面有 repo 字段（本轮 tubone24/midi-agent-skill），照它 `git clone --depth 1 git@github.com:<repo>.git` 到 LAB/.skills 即补齐 scripts/resources——别一看到只有 SKILL.md 就判 blocked。",
     "midiutil 1.2.1（pip --target .tmp/mlib + aliyun 镜像，3 秒，纯 Python）会在 tracks 前额外插一条「纯 tempo 轨」：MIDIFile(4) 出来的文件 ntracks=5。任何按轨道索引的断言要先 tracks.filter(t=>t.notes.length)，否则变异断言会因取到空轨而假红。",
     "midi-agent-skill 的 generate_midi.py 每条轨是单声部串行累加 time（同轨不能同时发两音），且无休止符概念（跳音会让后续音整体前移）、parse_pitch 对越界八度静默钳位到 0..127（C20→127）。做和声必须一轨一声；数据缺口要显式换成挂音并标注。",
-    "本机无 fluidsynth/sox → MIDI 无法本地转 WAV（技能自带 convert_to_wav.py 需 brew fluidsynth + 外网 A320U.sf2，HTTPS 被 TLS 重置）。MIDI 产物的「肉眼可见」替代方案：自己从 .mid 反解析画 piano-roll.svg，再用 browser-use 打开做 getComputedStyle/元素计数断言（evaluate_script 返回值必须短，长 JSON 会 15s 超时——拆成 2 次小返回）。"
+    "本机无 fluidsynth/sox → MIDI 无法本地转 WAV（技能自带 convert_to_wav.py 需 brew fluidsynth + 外网 A320U.sf2，HTTPS 被 TLS 重置）。MIDI 产物的「肉眼可见」替代方案：自己从 .mid 反解析画 piano-roll.svg，再用 browser-use 打开做 getComputedStyle/元素计数断言（evaluate_script 返回值必须短，长 JSON 会 15s 超时——拆成 2 次小返回）。",
+    "★search_extensions 的 query 极挑词：多词短语（'data visualization dashboard' / 'video animation generate' / 'asciinema terminal recording' / 'narrative text visualization'）一律 totalSize=0，换成单个短词（QR→29、infographic→27、video→248）立刻命中。**下轮先用一个短英文词，别写短语**。",
+    "★qrcode 全家桶本机配方（7.8 秒）：python3 -m pip install --target LAB/.tmp/pylibs --no-cache-dir --index-url https://mirrors.aliyun.com/pypi/simple qrcode Pillow zxing-cpp openpyxl → Python 3.14.7 有 zxing-cpp/Pillow 的 C 扩展 wheel，零编译。再次确认「pypi aliyun 能装 C 扩展」。",
+    "★第二套独立解码器最小配方（1.1 秒，纯 JS 无原生）：npm i --registry=https://registry.npmmirror.com jsqr pngjs；pngjs 解出 RGBA → jsQR(new Uint8ClampedArray(png.data.buffer), w, h)。做「生成↔解码」交叉验证时用它，别只复用生成方库。",
+    "★二维码可扫性的物理约束（可复用于任何排版任务）：400→200px 缩放后 zxing 仍可扫；但**同样 105×105 的遮挡，盖住任一 finder 立即失效，盖在数据区 ECC-H 照样读出**。给二维码贴 logo/角标只能放静默区外或数据区中心。",
+    "qrcode 库 ECC_MAP 是 {L:1,M:0,Q:3,H:2}（不是字母序）；复算模块网格时错一位就整组断言假红（本轮 G 组第一版算出 53 vs 实际 49）。"
   ],
   "runs": [
     {
@@ -1122,6 +1169,16 @@
       "cleanup": "删 .tmp/mlib（midiutil）与 .skills/midi-agent-skill/output/*.mid；LAB 75M（含 .skills 19M 未入库）；未起任何服务，监听表无本轮条目；全局缓存未动",
       "push": "成功：f8398ae..55ce64d skill-showcase -> skill-showcase（fetch+rebase 显示 up to date，普通推送，无 --force）",
       "notes": "市场镜像第 N 次丢 scripts，靠 metadata.json.repo + SSH 克隆救回（详见 environment_notes）；旋律音区第一版与弦乐五音只差 2 半音被 A12 抓红，整体抬八度后 14 半音——自动音区必须断言。"
+    },
+    {
+      "time": "2026-09-26T15:10+08:00",
+      "skill": "qrcode-skills",
+      "result": "成功（留用·推荐）。verify.py 40 PASS / 0 FAIL：A 组报告↔磁盘↔zip 条目三方对账；B 组 need_column exit0+preview≤6+被拒不落盘、--column 技能 造的第二面墙解码确为技能名；C 组台账原文==技能 batch_decode==zxing-cpp==jsQR(纯 JS 第二引擎) 19/19 逐字节相等且每码恰 1 结果；D 组纯白/噪声图 exit1+error；E 组值变异 600秒→601秒 只有解码能抓到、golden 未污染、PNG 字节不同；F 组同载荷同 160px 中心黑块 ECC H 读出/ECC L 失败；G 组 SVG 单 path 零 rect、自解析网格 49==独立重算 49、首暗模块=2.0 模块(border2)、Chrome 光栅化后读回原文；H 组 sheet 第1格与末格裁回放大 5× 仍可扫 + finder 差分",
+      "seconds": 1740,
+      "artifact_size": "demos 本轮 388KB（19 码 76KB + zip 27KB + sheet 45KB + 6 取证 PNG + 3 脚本 + 4 输入/证据件），限 5MB 内",
+      "cleanup": "删 qr-names/（19 张取证用技能名小码）+ 旧版 ecc-*.png 5 张 + _blank/_noise/_mutant/_c1/_cN/_svg-raster 临时图 + LAB/.tmp/svg-{200,600}.svg；删 LAB/.tmp/pylibs（qrcode/Pillow/zxing-cpp/openpyxl）与 LAB/.tmp/qrnode（jsqr/pngjs）；零本轮常驻进程与监听（无服务，Chrome 用 --headless 单次退出）；全局技能库新增 1 项 qrcode-skills（有意安装，已登记 installed_by_this_task）；全局 pip/npm 缓存未动",
+      "push": "待补",
+      "notes": "来源①命中：短词 QR 一次装成（长词组 0 命中，见 environment_notes）。安全闸门通过：全程只走 --file/本地路径，未触发唯一网络分支 decode --url；★发现真实危险默认=batch_decode 不带 --output-txt 时会把解码列回写进输入文件本身（open(input,'w')，非原子无备份）。本轮最大增量=「遮挡位置 ≠ 遮挡面积」：同尺寸黑块盖 ECC-H 码的 finder 立刻不可读、盖数据区照样读出——这是首版 sheet 把 18px 小码贴在卡片左下角导致 H3 失败后差分定位出来的，修法是贴纸移到标题条"
     }
   ],
   "evaluation_snapshot": {
