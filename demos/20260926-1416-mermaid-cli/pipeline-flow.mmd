@@ -1,0 +1,13 @@
+flowchart TD
+    A([cron 每30分钟]) --> B[读 work-log + state.json]
+    B --> C{有未试 skill?}
+    C -- 否 --> X[记录卡点并收尾]
+    C -- 是 --> D[按来源顺序发现: 市场→SSH clone→本机]
+    D --> E{安全闸门<br/>读全文 SKILL.md}
+    E -- 拒绝 --> F[记 skills_seen blocked] --> B
+    E -- 通过 --> G[15分钟跑 1 skill × 1 小任务]
+    G --> H[验证: 断言 + 双变异负对照]
+    H --> I[清理: 删依赖/杀进程/限 LAB 内]
+    I --> J[写 reports + state + work-log]
+    J --> K[git push 仅 skill-showcase 分支]
+    K --> L([收尾核查: status/du/df/lsof])

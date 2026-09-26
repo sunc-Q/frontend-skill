@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T13:55+08:00",
+  "updated": "2026-09-26T14:22+08:00",
   "tried": [
     {
       "skill": "drafter",
@@ -201,6 +201,19 @@
       "installed_by_this_task": [
         "dlazy-logo-design@1.3.4（官方市场 official id 53f9bd2e-95b1-4301-b449-3fd4b9d46ff8 → ~/.qoder-cn/skills/dlazy-logo-design，本轮已装但按闸门放弃使用，未执行其任何命令）"
       ]
+    },
+    {
+      "skill": "mermaid-cli",
+      "source": "Qoder 官方扩展市场 official_1QyH2lCy (canonicalName dashed-mermaid-cli, publisher dashed, tags origin:modelscope) —— 一次装成",
+      "skill_path": "/Users/apple/.qoder-cn/skills/mermaid-cli/SKILL.md",
+      "task": "把本流水线自身画成 4 张真·图：10 步执行流 flowchart(SVG+PNG) + 17 轮 timeline + 去重契约 stateDiagram(10 中文态) + 16 轮耗时 pie showData，数据全部 gen_mmd.py 从 state.json 现场重算",
+      "verdict": "留用（推荐）。历轮第一个文本→图自动布局引擎（drafter 只会手排 HTML 图形、无数据映射），references 完整未丢（市场镜像罕见）；『渲染即验证』有牙齿：parse error 行号精确、坏语法 exit=1 且不落盘，Pattern 8 回路照抄可用。缺陷：参数表与 v12.0.0 漂移（-w 不存在）、强制 STOP 条款不适配无人值守（已改道本地安装）、单图渲染要拉 Chrome ~2s",
+      "time": "2026-09-26T14:16+08:00",
+      "artifact": "demos/20260926-1416-mermaid-cli/pipeline-flow.svg（296KB 13 节点流程图）+ pipeline-flow.png 74KB + rounds-timeline.svg + dedup-contract.svg + time-pie.svg + 6 个 .mmd + mutant 对照对 + broken 负对照 + run.sh/verify.py/gen_mmd.py + output.log",
+      "report": "reports/20260926-1416-mermaid-cli.md",
+      "installed_by_this_task": [
+        "mermaid-cli (official_1QyH2lCy) -> ~/.qoder-cn/skills/mermaid-cli/ 经 install_extension；npm @mermaid-js/mermaid-cli 12.0.0 本地装 LAB/.tmp/mmdc-r18 收尾已删（PUPPETEER_SKIP_DOWNLOAD=true + 系统 Chrome executablePath，未下载任何浏览器）"
+      ]
     }
   ],
   "skills_seen": [
@@ -258,7 +271,7 @@
       "source": "Qoder 扩展市场 / keyword 'diagram','visualization'",
       "url": "official_yTWMj2aX, official_ybCth8dh, official_LBUkCAY7, official_LLABcAQs, official_DSohReJ1",
       "status": "candidate",
-      "note": "图表类备选：mermaid 12 种图 / Excalidraw JSON / drawio XML / D3 层级多视图 / T8 叙述文本可视化。注意同批 origin:skillatlas|modelscope 条目可能同样 frontmatter 不合法"
+      "note": "图表类备选：mermaid 12 种图 / Excalidraw JSON / drawio XML / D3 层级多视图 / T8 叙述文本可视化。注意同批 origin:skillatlas|modelscope 条目可能同样 frontmatter 不合法 | 第18轮 mermaid 需求已由 dashed-mermaid-cli 满足，本批图表类候选优先级下降"
     },
     {
       "name": "本机已装未试（后端向）",
@@ -640,15 +653,29 @@
       "url": "",
       "status": "working_source",
       "note": "以后任何 Go 类技能照抄：GOMODCACHE/GOCACHE 必须**绝对路径**（go 直接拒相对值）且放 LAB/.tmp 内；GOPROXY=https://goproxy.cn,direct；GOPROXY=off 可让变异重建离线秒过；**收尾删模块缓存要先 `chmod -R u+w`**（go 给模块文件上 0444，rm -rf 会整片 Permission denied）；产物 -o 用字面绝对路径"
+    },
+    {
+      "name": "mermaid-cli",
+      "source": "Qoder 官方扩展市场 official_1QyH2lCy / query 'mermaid'→'dashed-mermaid-cli'",
+      "url": "qoder://extension-market/official_1QyH2lCy",
+      "status": "installed_used — 第18轮已用并留用，勿再选",
+      "note": "tags origin:modelscope 一次装成（再次证明 origin 标签不是判据）；包 3 文件含 2 篇 references 完整。npm 侧 @mermaid-js/mermaid-cli 12.0.0 装一次 451MB（含 puppeteer/mermaid/katex 全家），PUPPETEER_SKIP_DOWNLOAD 免浏览器下载，系统 Chrome 顶替可行且 macOS 不需要 --no-sandbox"
+    },
+    {
+      "name": "diegosouzapw-mermaid-studio / skill-mermaid-diagrams / liatrio-labs-create-mermaid-diagrams 等 mermaid 家族",
+      "source": "官方市场 query 'mermaid' 共 21 条",
+      "url": "",
+      "status": "candidate(低优先)",
+      "note": "核心渲染能力已由 dashed-mermaid-cli 覆盖（mmdc 本体）；mermaid-studio 主打 C4/AWS 图标包——iconPacks 要联网 unpkg，本机不可达"
     }
   ],
   "in_progress": null,
   "next_candidates": [
-    "补验 golang-gin-api 的三条未覆盖子路线（同一技能包已在盘上，零下载）：references/websocket.md（gorilla/websocket + hub + ping/pong，产物=真 WS 帧转录）、rate-limiting.md（golang.org/x/time/rate token bucket + 429 响应头）、golang-gin-auth 的 JWT（该技能未装，需先确认市场能否装或走 github SSH clone）",
-    "来源③本机已装未试：golangci-lint-strict（要联网取版本化 config，注意上游 raw.githubusercontent 被 TLS 重置）、Golang-Backend-Development、nodejs-best-practices、express-nodejs-expert、frontend-development",
-    "anthropic-skills 盘上未试（零下载）：theme-factory（10 套主题换皮）、brand-guidelines、slack-gif-creator、doc-coauthoring、frontend-design、web-artifacts-builder、internal-comms、skill-creator、claude-api",
-    "来源①候选（本轮扫 font/mockup/logo 记下的）：mockup-export（6 张 1080x1920 Play 商店 PNG，可复用系统 Chrome 无头出图管线）、python-matplotlib-chinese-font + matplotlib 数据可视化路线（pip --target 已打通）；注意产物形态别再用单文件 HTML（已 5 次以上）",
-    "（方法学沿用）本轮新增：⑭ 规范型 Go 技能照抄前先编译——它的示例代码可能含不存在的 API 名；⑮ 断言字符串前先确认序列化层的转义/大小写规范化（Go json 转义 & < >、net/http 规范头名）；⑯ Go 产物与模块缓存路径一律字面绝对路径，删模块缓存先 chmod -R u+w；⑰ 检查「未填充零值是否被外显」（page=0 这类示例代码缺陷）"
+    "anthropics/skills 盘上未试（零下载）：theme-factory（10 套主题换皮）、brand-guidelines、slack-gif-creator、doc-coauthoring、frontend-design、web-artifacts-builder、internal-comms、skill-creator、claude-api、academy-guide、discernment-nudge",
+    "来源③本机已装未试：golangci-lint-strict（上游 config 走 raw.githubusercontent 被 TLS 重置，需先想替代取法）、Golang-Backend-Development、nodejs-best-practices、express-nodejs-expert、frontend-development、qmind、canvas(.canvas.tsx)",
+    "gin websocket/rate-limiting 子路线补验（技能包在盘上，需 goproxy.cn 拉 gorilla/websocket 或 x/time/rate）",
+    "mermaid 家族进阶：用第18轮装过的 mmdc 渲染前几轮任一产物台账（如 xlsx 98 公式结构 classDiagram）——但同技能勿再占轮，仅当他轮顺带",
+    "（产物类提醒）SVG 矢量图类本轮已开 1 次；下轮避开办公文档/单文件 HTML；候选：音频(macOS say 合成?未验)、gitGraph 已是 timeline 同类、数据库 erDiagram 可与 SQLite 类技能错开"
   ],
   "used_artifact_kinds": [
     "单文件自包含 HTML 图表（工程图纸）×1",
@@ -667,7 +694,8 @@
     "WebGL/GLSL 片元着色器单文件 HTML（13,962B，零外链，file:// 即跑；5 个 uniform 全接滑杆 + 冻结/定尺寸取帧）+ 系统 Chrome swiftshader 真渲染 PNG 2 张 + 15 条像素断言（含 speed=0 差值精确为 0 的反证、规约探针实测 1.4076 vs 解析 1.4075）+ 7/7 双变异日志 + golden-pixels.json ×1",
     "原创视觉艺术 PNG 图版（1650×2340 / 485,901B，Pillow 纯绘制：15万点纤维噪声+工程网格+高斯暗角+24h表盘13条时长弧+分钟格账本）+ 设计宣言 .md；16 条像素断言（分钟格逐格数回台账、朱红弧实测307.8°、出血位零墨、脚注恰8词隙）+ 变异负对照（改 1080s→600s 使 B2/B3 变红）×1",
     "只读 stdio MCP 服务器（4 工具 / Zod 双向 schema / annotations / 分页 / 截断 / 可执行错误）+ 裸 JSON-RPC 帧转录 + 10 题 evaluation.xml + 32 条真协议会话断言日志（含 3 个变异体各红 1 条）×1",
-    "运行中的 Gin HTTP 服务（127.0.0.1，端口收尾已释放）+ 19 条真实 curl 断言转录 output.log（201/400字段级/409/404/401/204/503/500 全覆盖 + slog 服务端 JSON 日志 + SIGTERM→Shutdown→exit 0 + 2 个变异体各只红 1 条）×1"
+    "运行中的 Gin HTTP 服务（127.0.0.1，端口收尾已释放）+ 19 条真实 curl 断言转录 output.log（201/400字段级/409/404/401/204/503/500 全覆盖 + slog 服务端 JSON 日志 + SIGTERM→Shutdown→exit 0 + 2 个变异体各只红 1 条）×1",
+    "自动布局矢量图表 SVG ×4（flowchart 13 节点/timeline 17 事件/stateDiagram 10 中文态/pie 16 切片，数据与 .mmd 现场重算对账 23 断言）+ 位图 PNG 1 张（523×1600）+ 语法负对照与语义变异对照件 ×1"
   ],
   "environment_notes": [
     "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
@@ -776,7 +804,8 @@
     "Go 断言脚本两个隐蔽取证坑：①`encoding/json` 把 & < > 转义成 \\u0026/\\u003c，消毒后的 `&lt;b&gt;` 在线上是 `\\u0026lt;b\\u0026gt;`，grep 原始串必假失败——要 JSON 解码后再比字符串；②`net/http` 规范化响应头大小写，技能设 `X-Request-ID` 实回 `X-Request-Id`，断言需 -i。",
     "`go build -o ../../.tmp/xxx` 的相对路径按 cwd 解析：在 `src/` 下 `../..` 已是 `demos/`，产物静默写到 demos/.tmp，导致后续两轮跑的是**旧二进制**，表现为「改了代码断言仍红」的假故障（本轮连踩两次，另一次是子 shell 里用 $PWD 拼接）。一律用字面绝对路径。",
     "技能示例代码自身有缺陷：List handler 直接回显绑定值 `q.Page/q.Limit`，而默认值只在 service 内补 → 不带参数的 GET /users 回显 `\"page\":0`。本轮在 handler 归一化并补断言 A19。启示：照抄规范型技能的示例时，把「未填充零值会不会外显」列进断言清单。",
-    "市场安装 dlazy 系技能=付费 SaaS 客户端（key+全局 npm i -g+本地文件外发），一律读 SKILL.md 后即弃；它的 tags 为空（历轮『tags 空即可靠』指的是安装格式可靠，不代表内容安全）。"
+    "市场安装 dlazy 系技能=付费 SaaS 客户端（key+全局 npm i -g+本地文件外发），一律读 SKILL.md 后即弃；它的 tags 为空（历轮『tags 空即可靠』指的是安装格式可靠，不代表内容安全）。",
+    "第18轮：mmdc 12.0.0 三条与文档的漂移/语法地雷：-w/-H 已不存在（--size 顶替）；timeline 周期含 ':' 必炸（它是分隔符）；stateDiagram ID 不能『中文+连字符』混排（用 ASCII ID + 'ID : 中文' 描述行）。mermaid-cli 本地装 451MB（npm 194 包 20s），PUPPETEER_SKIP_DOWNLOAD=true 后 -p {executablePath: 系统 Chrome} 直驱、macOS 无需 --no-sandbox；渲染即验证的负对照可当任意 .mmd 的 lint 闸门用。pie showData 的标题是生成期文本、图例 [值] 才随数据走——语义断言锚图例。"
   ],
   "runs": [
     {
@@ -1008,6 +1037,19 @@
         "demos_this_round_files": 21,
         "assertions": "golden 19/19 PASS；M1 只红 A14、M2 只红 A6、基线还原 19/19"
       }
+    },
+    {
+      "time": "2026-09-26T14:16+08:00",
+      "skill": "mermaid-cli",
+      "result": "成功（留用·推荐）。23 条结构断言 23 PASS / 0 FAIL（SVG 节点/边/切片/事件计数与 .mmd 源码独立重算对账 + PNG 523×1600 + 浏览器 getBBox 783×1155 零 script）；负对照坏语法 exit=1+Parse error 且不落盘；语义变异 shader 1080→600 双 True（图例锚值）",
+      "seconds": null,
+      "artifact_size": "demos 本轮 516KB（4 SVG + 1 PNG 74KB + 6 个 .mmd + 4 脚本 + 3 证据件，限 5MB）",
+      "cleanup": "删 LAB/.tmp/mmdc-r18（451MB：@mermaid-js/mermaid-cli 12.0.0 本地安装）与 LAB/.tmp-puppeteer.json（副本移入 demos）；零本轮进程与监听（pgrep 复核，macOS 下未用 --no-sandbox）；全局技能库新增 1 项 mermaid-cli（有意安装项，登记 installed_by_this_task）；全局缓存未动",
+      "push": "",
+      "installed_by_this_task": [
+        "mermaid-cli / dashed-mermaid-cli (market official_1QyH2lCy, publisher dashed, tags origin:modelscope) -> ~/.qoder-cn/skills/mermaid-cli/ 经 install_extension；npm 运行依赖本地装 LAB/.tmp 并已删"
+      ],
+      "notes": "来源①第一个候选即中。历轮第一个真自动布局引擎产物（矢量 SVG 图），打破 drafter『不含数据→图形映射』的局限。三条真实报错全走技能自己的 Pattern 8 回路修复：①SKILL.md 参数表的 -w 在 v12 不存在（真名 --size）；②timeline 周期文本含冒号必 parse error（冒号是分隔符）；③stateDiagram 状态 ID 混排中文+连字符 INVALID（改 ASCII ID + 描述行）。SKILL『禁止自动安装 mmdc』条款与无人值守冲突，按『不写全局』本意改道 LAB 本地安装（run.sh 已复现）。"
     }
   ],
   "evaluation_snapshot": {

@@ -1,0 +1,26 @@
+stateDiagram-v2
+    [*] --> DISCOVER : cron 唤醒
+    DISCOVER : 发现候选
+    DISCOVER --> SKIP : 名字已在 tried
+    SKIP : 已记账跳过
+    DISCOVER --> UNUSABLE : 来源标 blocked/unreachable
+    UNUSABLE --> DISCOVER : 换来源
+    UNUSABLE : 来源不可用
+    DISCOVER --> GATE : 读全文 SKILL.md
+    GATE : 安全闸门
+    GATE --> ABANDON : 凭据/外发/sudo
+    ABANDON : 放弃并记录 skills_seen
+    GATE --> BUILD : 通过
+    BUILD : 15分钟跑 1 skill × 1 任务
+    BUILD --> FAIL : 超预算/真实报错
+    FAIL : 记录卡点也要收尾
+    BUILD --> VERIFY
+    VERIFY : 断言 + 双变异负对照
+    VERIFY --> CLEAN
+    CLEAN : 清理并写回台账
+    CLEAN --> PUSH
+    PUSH : git push 仅 skill-showcase
+    PUSH --> [*]
+    ABANDON --> [*]
+    FAIL --> [*]
+    note right of SKIP : tried 已累积 17 个 skill 名<br/>最早 drafter，最新 golang-gin-api

@@ -1,0 +1,48 @@
+=== mermaid-cli (dashed-mermaid-cli, official_1QyH2lCy) 第18轮 2026-09-26 14:16 ===
+--- 版本与安装: npm i @mermaid-js/mermaid-cli --registry=npmmirror 194包/20s (PUPPETEER_SKIP_DOWNLOAD=true, 本地装于 LAB/.tmp/mmdc-r18, 未全局) ---
+12.0.0
+--- 技能自称: mmdc 从 Mermaid 标记生成/验证/修复图表 (SVG/PNG/PDF); 也是语法验证器(渲染即验证, 无效则非零退出+stderr parse error) ---
+
+=== 真实踩错与修复 (技能 Pattern 8 验证-修复回路, 非演练) ===
+[1] SKILL.md Quick Reference 写的 -w/-H/-s 里 -w 在 v12.0.0 不存在 -> error: unknown option '-w'; 真名 --size (help 实测)
+[2] timeline 周期文本含冒号(17:23) -> Parse error line 3; 修复: 冒号改中间点 '·'
+[3] stateDiagram 状态 ID 含连字符(推送skill-showcase) -> Parse error line 12; 修复: ASCII ID + 冒号描述行
+
+=== 负对照 N1: 故意坏语法 ===
+flowchart TD
+    A[Start] --> B{Decision
+    B -->|Yes| C[End]
+exit=1, stderr 头部:
+
+Error: Parse error on line 3:
+
+=== verify.py 23 断言 (SVG 结构计数与 .mmd 源码独立重算对账) ===
+PASS | F1 flow 节点集合与 mmd 一致(13) | mmd=13
+PASS | F2 SVG 含全部 12 个节点 id | ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'X']
+PASS | F3 SVG 边数 == mmd --> 数 | mmd edges=13, flowchart-link=14
+PASS | F4 期望文案在 SVG 里: 每30分钟
+PASS | F4 期望文案在 SVG 里: 安全闸门
+PASS | F4 期望文案在 SVG 里: 双变异
+PASS | F4 期望文案在 SVG 里: skill-showcase 分支
+PASS | F4 期望文案在 SVG 里: 收尾核查
+PASS | P1 pie 切片数 == 计时轮次 16 | 16
+PASS | P2 SVG slice path 数 == 16 | 16
+PASS | P3 每个 skill 名都出现在图中
+PASS | P4 标题总分钟数与现场重算一致 | total=14640s=244.0min
+PASS | P5 百分比标注存在(>=15 个 %) | 17
+PASS | T1 timeline 事件数 == 17 | 17
+PASS | T2 17 个 skill 名全在 SVG
+PASS | T3 标题含箭头日期区间
+PASS | S1 状态名与描述映射齐全(10 个中文态) | ['ABANDON', 'BUILD', 'CLEAN', 'DISCOVER', 'FAIL', 'GATE', 'PUSH', 'SKIP', 'UNUSABLE', 'VERIFY']
+PASS | S2 中文态名全部出现在图中
+PASS | S3 note 里的 tried 口径 17 在图中
+PASS | G1 PNG 签名
+PASS | G2 PNG 尺寸非零 | 523x1600
+PASS | N1 负对照: 坏语法报 Parse error | Error: Parse error on line 3:
+PASS | N2 产物目录无 _broken.svg(验证失败不落盘)
+
+23 PASS / 0 FAIL
+
+=== 语义变异 (shader 1080s->600s 重渲) ===
+pie showData 图例直接标数据: golden 'shader [1080]' 在而 '[600]' 无; mutant 'shader [600]' 在而 '[1080]' 无 -> 双 True
+附注: 标题 244.0分钟 是 gen 期写死文本, sed 只改数据行时标题不动 —— 语义断言必须锚图例值不是标题
