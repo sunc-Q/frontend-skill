@@ -1,0 +1,294 @@
+/* 结构层：零字面颜色，所有颜色只从 :root 令牌取（皮肤层负责定义令牌值） */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--f-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  overflow-x: hidden;
+}
+
+.fx {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: -1;
+}
+
+.fallback {
+  margin: 1rem auto;
+  max-width: min(92vw, var(--measure));
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--c-accent);
+  color: var(--c-text);
+  background: var(--c-panel);
+}
+
+.masthead {
+  padding: var(--pad-hero) var(--pad-x) var(--pad-block);
+  max-width: min(94vw, var(--measure-wide));
+  margin: 0 auto;
+}
+
+.kicker {
+  margin: 0 0 0.6rem;
+  font-family: var(--f-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--ls-kicker);
+  text-transform: var(--tt-kicker);
+  color: var(--c-muted);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--f-display);
+  font-size: var(--fs-display);
+  line-height: 1.02;
+  letter-spacing: var(--ls-display);
+  color: var(--c-text);
+  font-weight: var(--fw-display);
+}
+
+.title-sub {
+  display: block;
+  font-size: var(--fs-display-sub);
+  font-weight: var(--fw-display-sub);
+  color: var(--c-muted);
+  letter-spacing: var(--ls-display-sub);
+  margin-top: 0.4rem;
+}
+
+.byline {
+  margin: var(--gap-byline) 0 0;
+  font-size: var(--fs-body);
+  color: var(--c-muted);
+  max-width: 46ch;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 1.6rem;
+}
+
+.btn {
+  font: inherit;
+  font-family: var(--f-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.12em;
+  padding: 0.6rem 1.4rem;
+  border: var(--btn-border);
+  border-radius: var(--r-btn);
+  background: var(--c-btn-bg);
+  color: var(--c-btn-ink);
+  cursor: pointer;
+  box-shadow: var(--btn-shadow);
+  min-width: 0;
+}
+
+.btn:active { transform: var(--btn-active, none); box-shadow: var(--btn-shadow-active, var(--btn-shadow)); }
+.btn:focus-visible { outline: 3px solid var(--c-accent); outline-offset: 3px; }
+
+.status {
+  margin: 0;
+  font-family: var(--f-mono);
+  font-size: var(--fs-meta);
+  color: var(--c-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+main {
+  max-width: min(94vw, var(--measure-wide));
+  margin: 0 auto;
+  padding: 0 var(--pad-x) var(--pad-block);
+}
+
+.sec {
+  margin: 0 0 var(--gap-section);
+  padding: var(--pad-section);
+  background: var(--c-panel);
+  border: var(--section-border);
+  border-radius: var(--r-section);
+  box-shadow: var(--section-shadow);
+}
+
+.sec h2 {
+  margin: 0 0 0.9rem;
+  font-family: var(--f-display);
+  font-size: var(--fs-h2);
+  letter-spacing: var(--ls-h2);
+  color: var(--c-text);
+  font-weight: var(--fw-h2);
+}
+
+.sec h2::before {
+  content: var(--h2-mark, "");
+  display: block;
+  font-family: var(--f-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.2em;
+  color: var(--c-accent);
+  margin-bottom: 0.35rem;
+}
+
+.lead {
+  margin: 0 0 1.1rem;
+  max-width: var(--measure);
+  color: var(--c-text);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-table);
+  font-variant-numeric: tabular-nums;
+}
+
+.table caption {
+  text-align: left;
+  font-family: var(--f-mono);
+  font-size: var(--fs-meta);
+  color: var(--c-muted);
+  padding-bottom: 0.6rem;
+  letter-spacing: 0.04em;
+}
+
+.table th, .table td {
+  padding: 0.42rem 0.6rem;
+  border-bottom: var(--row-rule);
+  text-align: left;
+  vertical-align: baseline;
+}
+
+.table thead th {
+  font-family: var(--f-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.1em;
+  text-transform: var(--tt-th);
+  color: var(--c-muted);
+  border-bottom: var(--head-rule);
+}
+
+.table tbody th { font-weight: 600; font-family: var(--f-mono); }
+.table code { font-family: var(--f-mono); font-size: 0.94em; }
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+  gap: 0.7rem;
+  margin: 0 0 1.2rem;
+}
+
+.fact {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.6rem 0.75rem;
+  background: var(--c-fact-bg);
+  border-left: var(--fact-rule);
+  margin: 0;
+}
+
+.fact dt {
+  font-family: var(--f-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.1em;
+  text-transform: var(--tt-th);
+  color: var(--c-muted);
+}
+
+.fact dd { margin: 0; font-size: var(--fs-body); color: var(--c-text); }
+
+.strip-wrap { margin-top: 0.4rem; }
+
+.strip {
+  display: block;
+  width: 100%;
+  height: var(--strip-h);
+  border: var(--strip-border);
+  border-radius: var(--r-strip);
+  background: var(--c-strip-bg);
+}
+
+.strip-labels {
+  list-style: none;
+  margin: 0.7rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.sl {
+  display: grid;
+  gap: 0.1rem;
+  font-size: var(--fs-meta);
+  font-family: var(--f-mono);
+  color: var(--c-muted);
+  border-top: var(--label-rule);
+  padding-top: 0.45rem;
+}
+
+.sl-key { color: var(--c-accent); letter-spacing: 0.16em; }
+.sl-name { color: var(--c-text); font-size: var(--fs-body); font-family: var(--f-body); }
+.sl-note { color: var(--c-muted); }
+
+.ablations {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.ablations li {
+  padding: 0.55rem 0.7rem;
+  background: var(--c-fact-bg);
+  border-left: var(--fact-rule);
+  font-size: var(--fs-body);
+}
+
+.ablations code {
+  font-family: var(--f-mono);
+  font-size: 0.92em;
+  color: var(--c-accent);
+  margin-right: 0.5rem;
+  white-space: nowrap;
+}
+
+.note {
+  font-size: var(--fs-meta);
+  color: var(--c-muted);
+  margin: 0.9rem 0 0;
+  max-width: var(--measure);
+}
+
+.foot {
+  max-width: min(94vw, var(--measure-wide));
+  margin: 0 auto;
+  padding: 1.2rem var(--pad-x) 2.6rem;
+  font-family: var(--f-mono);
+  font-size: var(--fs-meta);
+  color: var(--c-muted);
+  border-top: var(--head-rule);
+}
+
+.reduced-hint { margin: 0.8rem 0 0; color: var(--c-accent); font-size: var(--fs-meta); }
+
+@media (max-width: 720px) {
+  :root { --fs-display: var(--fs-display-sm); }
+  .strip-labels { grid-template-columns: minmax(0, 1fr); }
+  .controls { gap: 0.6rem; }
+  /* 390px 下溢出的其实是表格里的长词与 nowrap 的臂名：轨道已经能缩，字不能拆就顶破文档宽度 */
+  .table th, .table td { overflow-wrap: anywhere; }
+  .ablations code { white-space: normal; }
+}

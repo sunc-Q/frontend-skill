@@ -1,0 +1,89 @@
+/* 皮肤 A · 方格账簿 graph-ledger
+ * 主张：把频谱当「账簿」来排——米白方格纸、等宽标签、直角、零圆角、2px 实线分隔、
+ * 无阴影、无渐变、字重只用 400/700，标题原大小写。
+ * 结构与另两页逐字节相同，本页只换下面这一组令牌与手法。 */
+:root {
+  --c-bg: #f2efe4;
+  --c-panel: #faf7ee;
+  --c-text: #23281f;
+  --c-muted: #6b6a55;
+  --c-accent: #b5352b;
+  --c-fact-bg: #ece7d6;
+  --c-scrim: rgba(242, 239, 228, 0.93);
+  --c-strip-bg: #e6e1cf;
+
+  /* 着色器令牌：由构建脚本读进 vec3 uniform，皮肤与画面同一份颜色 */
+  --gl-ink: #23281f;
+  --gl-paper: #f2efe4;
+  --gl-accent: #b5352b;
+  --gl-low: #3d6b4c;
+  --gl-mid3: #8a6a1f;
+  --gl-high: #2f5570;
+
+  --f-body: Georgia, "Songti SC", "Noto Serif CJK SC", serif;
+  --f-display: Georgia, "Songti SC", serif;
+  --f-mono: "SF Mono", Menlo, Consolas, "Courier New", monospace;
+
+  --fs-body: 16px;
+  --fs-meta: 12.5px;
+  --fs-table: 13.5px;
+  --fs-display: 44px;
+  --fs-display-sm: 30px;
+  --fs-display-sub: 20px;
+  --fs-h2: 21px;
+  --lh-body: 1.52;
+  --ls-display: -0.01em;
+  --ls-display-sub: 0.02em;
+  --ls-h2: 0.01em;
+  --ls-kicker: 0.22em;
+  --tt-kicker: uppercase;
+  --tt-th: uppercase;
+  --fw-display: 700;
+  --fw-display-sub: 400;
+  --fw-h2: 700;
+
+  --measure: 62ch;
+  --measure-wide: 1080px;
+  --pad-hero: 84px;
+  --pad-x: 28px;
+  --pad-block: 40px;
+  --pad-section: 26px;
+  --gap-section: 26px;
+  --gap-byline: 14px;
+
+  --r-btn: 0px;
+  --r-section: 0px;
+  --r-strip: 0px;
+  --btn-border: 2px solid var(--c-text);
+  --btn-shadow: none;
+  --btn-shadow-active: inset 0 0 0 2px var(--c-strip-bg);
+  --c-btn-bg: #23281f;
+  --c-btn-ink: #f2efe4;
+  --btn-active: none;
+  --section-border: 2px solid var(--c-text);
+  --section-shadow: none;
+  --row-rule: 1px dotted var(--c-muted);
+  --head-rule: 2px solid var(--c-text);
+  --fact-rule: 2px solid var(--c-accent);
+  --label-rule: 2px solid var(--c-text);
+  --strip-border: 2px solid var(--c-text);
+  --strip-h: 190px;
+  --h2-mark: "账簿 · ";  /* 生成的小节前缀：本皮肤的签名构件 */
+  --c-grid: rgba(35, 40, 31, 0.09);
+}
+
+/* 方格纸底纹：5mm 正交细网，账簿的签名构件 */
+body {
+  background-color: var(--c-bg);
+  background-image:
+    repeating-linear-gradient(to right, var(--c-grid) 0 1px, transparent 1px 20px),
+    repeating-linear-gradient(to bottom, var(--c-grid) 0 1px, transparent 1px 20px);
+}
+
+.masthead { background: var(--c-scrim); border: 2px solid var(--c-text); padding-bottom: 26px; }
+.sec { box-shadow: 6px 6px 0 var(--c-strip-bg); }
+.table thead th { border-bottom: 2px solid var(--c-text); }
+.strip { image-rendering: pixelated; }
+.foot { border-top: 2px solid var(--c-text); }
+.btn { border: 2px solid var(--c-text); letter-spacing: 0.2em; }
+.btn:active { transform: none; }

@@ -1,0 +1,87 @@
+/* 皮肤 B · 井月水墨 ink-moon
+ * 主张：深色水面 + 柔光，无描边、大圆角、模糊阴影、radial-gradient 月晕，
+ * 正文用系统无衬线、行高 1.75、不做任何 uppercase，靠留白与光分隔层级。 */
+:root {
+  --c-bg: #0e1420;
+  --c-panel: #16202f;
+  --c-text: #e7e2d5;
+  --c-muted: #93a0b3;
+  --c-accent: #7fd4c1;
+  --c-fact-bg: #1b2739;
+  --c-scrim: rgba(14, 20, 32, 0.82);
+  --c-strip-bg: #0a1019;
+
+  --gl-ink: #050a12;
+  --gl-paper: #0e1420;
+  --gl-accent: #7fd4c1;
+  --gl-low: #2f5d7a;
+  --gl-mid3: #9fb7c9;
+  --gl-high: #f0e3b8;
+
+  --f-body: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+  --f-display: "Songti SC", "Noto Serif CJK SC", Georgia, serif;
+  --f-mono: "SF Mono", Menlo, Consolas, monospace;
+
+  --fs-body: 16.5px;
+  --fs-meta: 13px;
+  --fs-table: 14px;
+  --fs-display: 52px;
+  --fs-display-sm: 32px;
+  --fs-display-sub: 17px;
+  --fs-h2: 24px;
+  --lh-body: 1.75;
+  --ls-display: 0.06em;
+  --ls-display-sub: 0.3em;
+  --ls-h2: 0.04em;
+  --ls-kicker: 0.08em;
+  --tt-kicker: none;
+  --tt-th: none;
+  --fw-display: 400;
+  --fw-display-sub: 300;
+  --fw-h2: 400;
+
+  --measure: 58ch;
+  --measure-wide: 980px;
+  --pad-hero: 96px;
+  --pad-x: 30px;
+  --pad-block: 56px;
+  --pad-section: 34px;
+  --gap-section: 34px;
+  --gap-byline: 20px;
+
+  --r-btn: 999px;
+  --r-section: 22px;
+  --r-strip: 22px;
+  --btn-border: 1px solid var(--c-muted);
+  --btn-shadow: 0 0 24px rgba(127, 212, 193, 0.22);
+  --btn-shadow-active: 0 0 34px rgba(127, 212, 193, 0.4);
+  --c-btn-bg: #1b2739;
+  --c-btn-ink: #e7e2d5;
+  --btn-active: none;
+  --section-border: none;
+  --section-shadow: 0 18px 46px rgba(5, 10, 18, 0.6);
+  --row-rule: 1px solid var(--c-strip-bg);
+  --head-rule: 1px solid var(--c-muted);
+  --fact-rule: 3px solid var(--c-accent);
+  --label-rule: 1px solid var(--c-muted);
+  --strip-border: none;
+  --strip-h: 210px;
+  --h2-mark: "井月";
+  --c-glow: rgba(127, 212, 193, 0.16);
+}
+
+/* 月晕：整页一层 radial-gradient 光，这是本皮肤唯一的装饰层 */
+body {
+  background-color: var(--c-bg);
+  background-image: radial-gradient(58% 42% at 76% 12%, var(--c-glow) 0%, transparent 62%);
+  background-attachment: fixed;
+}
+
+.masthead { background: var(--c-scrim); border-radius: 0 0 var(--r-section) var(--r-section); }
+.title-sub { font-style: normal; }
+.sec { border: none; }
+.table th, .table td { padding: 0.62rem 0.7rem; }
+.strip { box-shadow: inset 0 0 0 1px var(--c-strip-bg), 0 12px 30px rgba(5, 10, 18, 0.5); }
+.btn { letter-spacing: 0.06em; }
+.ablations code { color: var(--c-text); background: var(--c-strip-bg); padding: 0.1rem 0.4rem; border-radius: 999px; }
+.fact { border-radius: var(--r-btn); }

@@ -1,0 +1,230 @@
+{
+  "generated_by": "scripts/mutate.mjs",
+  "mode": "explore",
+  "baseline_fails": [
+    "E1",
+    "E2",
+    "E3",
+    "E4",
+    "E5"
+  ],
+  "restored_fails": [
+    "E1",
+    "E2",
+    "E3",
+    "E4",
+    "E5"
+  ],
+  "restored_identical": true,
+  "count": 15,
+  "caught": 12,
+  "mutations": [
+    {
+      "id": "V1",
+      "kind": "value",
+      "file": "src/features.js",
+      "note": "换窗口上限却不动反事实证据",
+      "expected": [
+        "D16"
+      ],
+      "caughtBy": [
+        "D16"
+      ],
+      "buildErr": "",
+      "ok": true
+    },
+    {
+      "id": "V2",
+      "kind": "value",
+      "file": "src/features.js",
+      "note": "改阈值常数，页面脚注还写着 1.35",
+      "expected": [
+        "D25",
+        "D26"
+      ],
+      "caughtBy": [
+        "D25",
+        "D26"
+      ],
+      "buildErr": "",
+      "ok": true
+    },
+    {
+      "id": "V3",
+      "kind": "value",
+      "file": "src/bands.js",
+      "note": "粗带边界挪一格，Node 真值里的划分没跟着挪",
+      "expected": [
+        "D12"
+      ],
+      "caughtBy": [
+        "D12"
+      ],
+      "buildErr": "",
+      "ok": true
+    },
+    {
+      "id": "V4",
+      "kind": "value",
+      "file": "src/audio-spec.json",
+      "note": "手抄的打击乐计数与时刻数组脱钩",
+      "expected": [
+        "D6"
+      ],
+      "caughtBy": [
+        "D6"
+      ],
+      "buildErr": "",
+      "ok": true
+    },
+    {
+      "id": "V5",
+      "kind": "value",
+      "file": "evidence/ground-truth.json",
+      "note": "解析帧数被改，而 hop/FFT/时长推出的是 1371",
+      "expected": [
+        "D9"
+      ],
+      "caughtBy": [
+        "D9"
+      ],
+      "buildErr": "",
+      "ok": true
+    },
+    {
+      "id": "V6",
+      "kind": "value",
+      "file": "scripts/build.mjs",
+      "note": "逐小节表少写一位小数（肉眼看不出，对账看得出）",
+      "expected": [
+        "D29"
+      ],
+      "caughtBy": [
+        "D29"
+      ],
+      "buildErr": "",
+      "ok": true
+    },
+    {
+      "id": "S1",
+      "kind": "structural",
+      "file": "src/shaders/colonnade.glsl",
+      "note": "着色器声明了宿主没登记的 uniform（会被编译器裁掉 → 定位符 null）",
+      "expected": [
+        "build:throw"
+      ],
+      "caughtBy": [
+        "build:throw"
+      ],
+      "buildErr": "colonnade：着色器声明了 uUnused 但皮肤清单里没有",
+      "ok": true
+    },
+    {
+      "id": "S2",
+      "kind": "structural",
+      "file": "src/host.js",
+      "note": "消融臂退回单值比较：叠加臂 frozen,noaudio 会静默失效",
+      "expected": [
+        "B13",
+        "B14"
+      ],
+      "caughtBy": [
+        "build:throw"
+      ],
+      "buildErr": "消融清单里有 staticspectrum，但宿主源码没有 has(\"staticspectrum\") 分支",
+      "ok": false
+    },
+    {
+      "id": "S3",
+      "kind": "structural",
+      "file": "src/host.js",
+      "note": "三块子视口共用原点 → 只是同一张图的三条裁片",
+      "expected": [
+        "B12"
+      ],
+      "caughtBy": [
+        "B12"
+      ],
+      "buildErr": "",
+      "ok": true
+    },
+    {
+      "id": "S4",
+      "kind": "structural",
+      "file": "src/css/skin-ripple.css",
+      "note": "两页共享一个色值 → 「换皮」而不是「换风格」",
+      "expected": [
+        "C4"
+      ],
+      "caughtBy": [
+        "C4"
+      ],
+      "buildErr": "",
+      "ok": true
+    },
+    {
+      "id": "S5",
+      "kind": "structural",
+      "file": "src/css/base.css",
+      "note": "结构层混进字面颜色 → 皮肤令牌不再是唯一色源",
+      "expected": [
+        "C2"
+      ],
+      "caughtBy": [
+        "C2"
+      ],
+      "buildErr": "",
+      "ok": true
+    },
+    {
+      "id": "S6",
+      "kind": "structural",
+      "file": "scripts/build.mjs",
+      "note": "页面 uniform 表少一行（表与代码漂移）",
+      "expected": [
+        "build:throw"
+      ],
+      "caughtBy": [
+        "build:throw"
+      ],
+      "buildErr": "着色器声明了未登记的 uniform：uLevel（说明表会与代码漂移）",
+      "ok": true
+    },
+    {
+      "id": "S7",
+      "kind": "structural",
+      "file": "src/host.js",
+      "note": "只拔音频不拔历史：静态判据全无反应，只有互斥消融臂（frozen,noaudio 像素必须零变化）能抓",
+      "expected": [
+        "(静态无反应) → L4"
+      ],
+      "caughtBy": [],
+      "buildErr": "",
+      "ok": true
+    },
+    {
+      "id": "X1",
+      "kind": "semantic",
+      "file": "scripts/build.mjs",
+      "note": "导语指错小节：结构校验全绿，事实核对才抓得住",
+      "expected": [
+        "任何新增失败"
+      ],
+      "caughtBy": [],
+      "buildErr": "",
+      "ok": false
+    },
+    {
+      "id": "X2",
+      "kind": "semantic",
+      "file": "scripts/build.mjs",
+      "note": "陈述与着色器实际声明相反（colonnade 根本没有 uTime）",
+      "expected": [
+        "任何新增失败"
+      ],
+      "caughtBy": [],
+      "buildErr": "",
+      "ok": false
+    }
+  ]
+}

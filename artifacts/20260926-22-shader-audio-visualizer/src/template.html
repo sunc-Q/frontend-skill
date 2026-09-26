@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<meta name="description" content="音频驱动的 WebGL 着色器可视化：WebAudio AnalyserNode 喂自定义 uniform。风格：{{STYLE_LABEL}}">
+<style>
+{{BASE_CSS}}
+</style>
+<style>
+/* 皮肤层：只换令牌与手法，结构与脚本与另两页逐字节相同 */
+{{SKIN_CSS}}
+</style>
+</head>
+<body class="skin-{{STYLE_NAME}}" data-style="{{STYLE_NAME}}">
+<canvas id="fx" class="fx" aria-hidden="true"></canvas>
+<p id="gl-fallback" class="fallback" hidden>本机 WebGL 不可用，下面的读数与文本仍可正常阅读。</p>
+
+<header class="masthead">
+  <p class="kicker">{{KICKER}}</p>
+  <h1 class="title">{{TRACK_TITLE}}<span class="title-sub">{{TRACK_SUB}}</span></h1>
+  <p class="byline">{{BYLINE}}</p>
+  <div class="controls">
+    <button id="play-toggle" class="btn" type="button" aria-pressed="false">播放</button>
+    <p id="readout-status" class="status" role="status" aria-live="polite">响度 0.000 · 低 0.000 · 中 0.000 · 高 0.000 · 起拍 0 次 · 播放头 0.00s</p>
+  </div>
+</header>
+
+<main>
+  <section class="sec sec-how" aria-labelledby="h-how">
+    <h2 id="h-how">音频是怎么进到着色器里的</h2>
+    <p class="lead">{{HOW_LEAD}}</p>
+    <table class="table table-uniform">
+      <caption>本页着色器实际声明的 uniform（名字沿用技能护栏；音频量与调色板是本技能没有覆盖、本轮自建口径的部分）</caption>
+      <thead><tr><th scope="col">名称</th><th scope="col">类型</th><th scope="col">来源</th><th scope="col">取值范围</th></tr></thead>
+      <tbody>
+{{UNIFORM_ROWS}}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="sec sec-split" aria-labelledby="h-split">
+    <h2 id="h-split">分频三视口</h2>
+    <p class="lead">{{SPLIT_LEAD}}</p>
+    <div class="strip-wrap">
+      <canvas id="strip" class="strip" aria-hidden="true"></canvas>
+      <ul class="strip-labels">
+        <li class="sl sl-low"><span class="sl-key">01</span><span class="sl-name">低频段</span><span class="sl-note">{{BASS_RANGE}} · 底鼓与贝斯</span></li>
+        <li class="sl sl-mid"><span class="sl-key">02</span><span class="sl-name">中频段</span><span class="sl-note">{{MID_RANGE}} · 军鼓与铺底</span></li>
+        <li class="sl sl-high"><span class="sl-key">03</span><span class="sl-name">高频段</span><span class="sl-note">{{TREBLE_RANGE}} · 踩镲与上升噪声</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec sec-score" aria-labelledby="h-score">
+    <h2 id="h-score">曲目事实</h2>
+    <p class="lead">{{SCORE_LEAD}}</p>
+    <dl class="facts">
+      <div class="fact"><dt>速度</dt><dd>{{BPM}} BPM · 4/4</dd></div>
+      <div class="fact"><dt>时长</dt><dd>{{DURATION}} 秒 · {{BARS}} 小节</dd></div>
+      <div class="fact"><dt>编码</dt><dd>{{SAMPLE_RATE}} Hz · 单声道 · 16-bit PCM</dd></div>
+      <div class="fact"><dt>峰值</dt><dd>{{PEAK_DBFS}} dBFS · 削顶样本 {{CLIPPED}} 个</dd></div>
+      <div class="fact"><dt>分析窗</dt><dd>FFT {{FFT_SIZE}} · 频率分辨率 {{BIN_WIDTH}} Hz · {{BAND_COUNT}} 个对数带</dd></div>
+    </dl>
+    <table class="table table-score">
+      <caption>逐小节编制与实测能量（Node 侧独立解析同一份 PCM 得到，与浏览器同口径）</caption>
+      <thead><tr><th scope="col">小节</th><th scope="col">时间</th><th scope="col">编制</th><th scope="col">响度</th><th scope="col">低频</th><th scope="col">中频</th><th scope="col">高频</th></tr></thead>
+      <tbody>
+{{BAR_ROWS}}
+      </tbody>
+    </table>
+    <p class="note">{{EVENT_NOTE}}</p>
+  </section>
+
+  <section class="sec sec-proof" aria-labelledby="h-proof">
+    <h2 id="h-proof">怎么证明画面是音频在动，不是时钟在动</h2>
+    <p class="lead">{{PROOF_LEAD}}</p>
+    <ul class="ablations">
+{{ABLATION_ROWS}}
+    </ul>
+    <p class="note">{{ABLATION_NOTE}}</p>
+  </section>
+
+  <section class="sec sec-demo" aria-labelledby="h-demo">
+    <h2 id="h-demo">这是示例</h2>
+    <p class="lead">{{DEMO_NOTE}}</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>{{FOOT_LINE}}</p>
+</footer>
+
+<audio id="track" src="{{AUDIO_DATA_URI}}" loop preload="auto"></audio>
+<script>
+{{HOST_SOURCE}}
+</script>
+</body>
+</html>

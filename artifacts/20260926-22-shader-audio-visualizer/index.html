@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>shader × 音频可视化 · 本轮总览</title>
+<style>
+:root { --ink:#171a14; --paper:#f7f5ef; --muted:#5d6157; --line:#d5d1c4; --accent:#8a3324; --mono:ui-monospace,Menlo,monospace; }
+* { box-sizing: border-box; }
+body { margin:0; padding:2rem 1.25rem 3rem; background:var(--paper); color:var(--ink);
+  font:15px/1.6 "Avenir Next","PingFang SC",sans-serif; }
+main { max-width: 68rem; margin:0 auto; }
+h1 { font-size:1.6rem; margin:0 0 .35rem; letter-spacing:.01em; }
+h2 { font-size:1.05rem; margin:2rem 0 .6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+h3 { display:flex; justify-content:space-between; gap:1rem; font-size:1.05rem; margin:0 0 .4rem; }
+h3 a { font:12px var(--mono); color:var(--accent); text-decoration:none; white-space:nowrap; }
+p, li { color:var(--ink); }
+.lede { color:var(--muted); max-width:60rem; }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(19rem,1fr)); gap:1rem; }
+.card { border:1px solid var(--line); background:#fff; padding:.9rem 1rem; }
+.card .meta { font:11.5px/1.5 var(--mono); color:var(--muted); margin:.1rem 0 .6rem; }
+.swatches { list-style:none; display:flex; flex-wrap:wrap; gap:.4rem .8rem; padding:0; margin:0 0 .7rem; font:11px var(--mono); }
+.sw { display:inline-block; width:.85rem; height:.85rem; border:1px solid var(--line); vertical-align:-1px; }
+table { border-collapse:collapse; width:100%; font-size:12.5px; }
+th { text-align:left; font-weight:500; color:var(--muted); padding:.25rem .5rem .25rem 0; width:58%; }
+td { font:12px var(--mono); padding:.25rem 0; }
+dl { display:grid; grid-template-columns:repeat(auto-fit,minmax(13rem,1fr)); gap:.5rem 1rem; margin:0; }
+.kv { border-left:3px solid var(--line); padding:.1rem .7rem; }
+.kv dt { font-size:11.5px; color:var(--muted); }
+.kv dd { margin:.1rem 0 0; font:13px var(--mono); }
+.arms { list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(21rem,1fr)); gap:.35rem .9rem; font:12px var(--mono); }
+footer { margin-top:2.5rem; padding-top:1rem; border-top:1px solid var(--line); font-size:12px; color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+<h1>shader × 音频可视化 · 三风格产物总览</h1>
+<p class="lede">技能：shader（GLSL/WebGL 片元着色器）。场景：一首 16 秒虚构电子曲的实时频谱驱动画面。
+本文件的每个数字都由 scripts/make-styles.mjs 从 <code>evidence/*.json</code> 转写而来，脚本不认的字段直接报错，不手写读数。</p>
+
+<h2>断言总量</h2>
+<dl>
+  <div class="kv"><dt>静态判据（check-node）</dt><dd>146/146</dd></div>
+  <div class="kv"><dt>真浏览器判据（check-browser）</dt><dd>120/120</dd></div>
+  <div class="kv"><dt>变异体（mutate，全部须被抓住）</dt><dd>16/16</dd></div>
+  <div class="kv"><dt>清理判据（check-clean）</dt><dd>在本页生成之后运行，总数见 evidence/assert-totals.json</dd></div>
+  <div class="kv"><dt>本页生成时已跑合计</dt><dd>266 条</dd></div>
+  <div class="kv"><dt>产物体积</dt><dd>5.17 MB / 上限 50 MB</dd></div>
+</dl>
+
+<h2>曲目与分析口径</h2>
+<dl>
+  <div class="kv"><dt>曲子</dt><dd>120 BPM · 8 小节 · 16s · 22050 Hz 单声道</dd></div>
+  <div class="kv"><dt>峰值</dt><dd>-1.41 dBFS · 削顶 0 样本</dd></div>
+  <div class="kv"><dt>FFT / hop</dt><dd>2048 / 256 → 1371 帧 · bin 10.7666 Hz · 64 个对数带 40–11000 Hz</dd></div>
+  <div class="kv"><dt>dB 窗口</dt><dd>-100 – -10 dB（默认上限是 -30）</dd></div>
+  <div class="kv"><dt>采用口径下 groove 低频饱和率</dt><dd>0.0%（0/10296 texel）</dd></div>
+  <div class="kv"><dt>默认 -30 口径</dt><dd>饱和 28.5% · 低频整段钉在 1.0 的帧 17.9% · 唯一值 182 vs 266</dd></div>
+  <div class="kv"><dt>groove↔breakdown 低频中位数间距</dt><dd>0.3876（比值 0.5076）</dd></div>
+  <div class="kv"><dt>起拍</dt><dd>检出 50 次 · 阈值 = 30 帧通量均值 × 1.35 + 0.012</dd></div>
+</dl>
+
+<h2>三页</h2>
+<div class="cards">
+<article class="card">
+  <h3>频谱柱廊 · 方格账簿<a href="preview/visualizer-colonnade.html">打开这一页 →</a></h3>
+  <p class="meta">preview/visualizer-colonnade.html · 0.95 MB · 着色器 2329B · 皮肤 CSS 2830B · 宿主段 34.4 kB</p>
+  <ul class="swatches"><li><span class="sw" style="background:#23281f"></span><code>uInk</code> <b>#23281f</b></li><li><span class="sw" style="background:#f2efe4"></span><code>uPaper</code> <b>#f2efe4</b></li><li><span class="sw" style="background:#b5352b"></span><code>uAccent</code> <b>#b5352b</b></li><li><span class="sw" style="background:#3d6b4c"></span><code>uLow</code> <b>#3d6b4c</b></li><li><span class="sw" style="background:#8a6a1f"></span><code>uMid3</code> <b>#8a6a1f</b></li><li><span class="sw" style="background:#2f5570"></span><code>uHigh</code> <b>#2f5570</b></li></ul>
+  <table>
+    <tr><th>浏览器低频读数 vs Node 真值</th><td>r = 0.946（对齐偏移 -0.1s）</td></tr>
+    <tr><th>中频 / 高频相关</th><td>0.740 / 0.720</td></tr>
+    <tr><th>fps（SwiftShader 软渲染）</th><td>8.9</td></tr>
+    <tr><th>breakdown 凹陷（浏览器窗口口径）</th><td>0.630 → 0.179（比值 0.284；Node 0.508）</td></tr>
+    <tr><th>frozen 臂下画面仍在变</th><td>25.3% 像素变化</td></tr>
+  </table>
+</article>
+<article class="card">
+  <h3>涟漪井月 · 水墨径向<a href="preview/visualizer-ripple.html">打开这一页 →</a></h3>
+  <p class="meta">preview/visualizer-ripple.html · 0.95 MB · 着色器 2475B · 皮肤 CSS 2694B · 宿主段 34.5 kB</p>
+  <ul class="swatches"><li><span class="sw" style="background:#050a12"></span><code>uInk</code> <b>#050a12</b></li><li><span class="sw" style="background:#0e1420"></span><code>uPaper</code> <b>#0e1420</b></li><li><span class="sw" style="background:#7fd4c1"></span><code>uAccent</code> <b>#7fd4c1</b></li><li><span class="sw" style="background:#2f5d7a"></span><code>uLow</code> <b>#2f5d7a</b></li><li><span class="sw" style="background:#9fb7c9"></span><code>uMid3</code> <b>#9fb7c9</b></li><li><span class="sw" style="background:#f0e3b8"></span><code>uHigh</code> <b>#f0e3b8</b></li></ul>
+  <table>
+    <tr><th>浏览器低频读数 vs Node 真值</th><td>r = 0.957（对齐偏移 -0.15s）</td></tr>
+    <tr><th>中频 / 高频相关</th><td>0.856 / 0.874</td></tr>
+    <tr><th>fps（SwiftShader 软渲染）</th><td>8.9</td></tr>
+    <tr><th>breakdown 凹陷（浏览器窗口口径）</th><td>0.629 → 0.210（比值 0.334；Node 0.508）</td></tr>
+    <tr><th>frozen 臂下画面仍在变</th><td>19.4% 像素变化</td></tr>
+  </table>
+</article>
+<article class="card">
+  <h3>声纹热像 · 滚动色谱<a href="preview/visualizer-thermal.html">打开这一页 →</a></h3>
+  <p class="meta">preview/visualizer-thermal.html · 0.95 MB · 着色器 1888B · 皮肤 CSS 2621B · 宿主段 33.9 kB</p>
+  <ul class="swatches"><li><span class="sw" style="background:#0a070c"></span><code>uInk</code> <b>#0a070c</b></li><li><span class="sw" style="background:#140f17"></span><code>uPaper</code> <b>#140f17</b></li><li><span class="sw" style="background:#ff8a3d"></span><code>uAccent</code> <b>#ff8a3d</b></li><li><span class="sw" style="background:#5f2c8c"></span><code>uLow</code> <b>#5f2c8c</b></li><li><span class="sw" style="background:#e2357a"></span><code>uMid3</code> <b>#e2357a</b></li><li><span class="sw" style="background:#ffd94a"></span><code>uHigh</code> <b>#ffd94a</b></li></ul>
+  <table>
+    <tr><th>浏览器低频读数 vs Node 真值</th><td>r = 0.950（对齐偏移 -0.1s）</td></tr>
+    <tr><th>中频 / 高频相关</th><td>0.836 / 0.780</td></tr>
+    <tr><th>fps（SwiftShader 软渲染）</th><td>9.7</td></tr>
+    <tr><th>breakdown 凹陷（浏览器窗口口径）</th><td>0.639 → 0.212（比值 0.333；Node 0.508）</td></tr>
+    <tr><th>frozen 臂下画面仍在变</th><td>16.7% 像素变化</td></tr>
+  </table>
+</article>
+</div>
+
+<h2>消融臂（同一份源码，只换 query）</h2>
+<ul class="arms">
+<li><code>?probe=frozen</code> —— 冻住 uTime，音频照跑 → 画面仍在变（变化只能来自音频）</li>
+<li><code>?probe=frozen,noaudio</code> —— 时钟与音频一起拔掉 → 画面完全静止（changedPct 必须为 0）</li>
+<li><code>?probe=noaudio</code> —— 音频读数清零、频谱与历史纹理不再更新 → 音频驱动的分量全部停住</li>
+<li><code>?probe=staticspectrum</code> —— 喂一条与音乐无关的固定斜坡频谱 → 画面不随音乐变</li>
+<li><code>?probe=mislabel</code> —— 64 带顺序反转后再上传 → 低频段跑到画幅另一侧，带映射真在生效</li>
+<li><code>?probe=samevariant</code> —— 三个子视口都用 uVariant=0 → 分频三带失去差异</li>
+<li><code>?probe=noonset</code> —— 起拍检测器不喂数据 → uBeat 恒 0，弹圈/闪烁带消失</li>
+<li><code>?probe=nomouse</code> —— uMouse 只在初始化写一次 → 移动指针不再影响画面</li>
+<li><code>?probe=solid</code> —— 着色器换成常量品红 → 证明绘制通路活着（黑屏检查表第 1 步）</li>
+<li><code>?probe=nogl</code> —— 强制走无 WebGL 分支 → 显示降级提示而不是空白</li>
+</ul>
+<p class="lede">互斥对：<code>?probe=frozen</code>（只拔时钟，画面必须仍变）与 <code>?probe=frozen,noaudio</code>（时钟与音频一起拔，画面必须一像素都不动）。
+三页实测：frozen 下像素变化 25.3% / 19.4% / 16.7%，
+frozen,noaudio 下变化 0 / 0 / 0 像素。</p>
+
+<h2>变异与还原</h2>
+<p class="lede">对产物做了 16 个故意破坏（value 6 /
+structural 8 /
+semantic 2），
+抓住 16 个；还原后 check-node 失败项与基线一致：是（明细见 evidence/mutation-strict.json）。
+其中 S7 由设计就是「静态判据无反应、只有互斥消融臂能抓」，X1/X2 两条语义变异最初无人抓住，因此补了 D37 与 B16。</p>
+
+<footer>本页是本轮产物的入口，不是第四种风格。所有读数只在本机 headless Chromium + SwiftShader 下取得，
+不构成任何性能或兼容性主张；曲目与企划均为虚构。</footer>
+</main>
+</body>
+</html>

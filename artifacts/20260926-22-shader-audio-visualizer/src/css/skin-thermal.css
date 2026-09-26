@@ -1,0 +1,86 @@
+/* 皮肤 C · 声纹热像 thermogram
+ * 主张：全站等宽（连正文都是 mono）、45° 斜纹底、4px 粗描边 + 三色错位描边、
+ * 一切标签 uppercase + 0.2em 字距、零圆角、零阴影（层级靠描边粗细，不靠光）。 */
+:root {
+  --c-bg: #140f17;
+  --c-panel: #1d1423;
+  --c-text: #f4eaf0;
+  --c-muted: #a48fa2;
+  --c-accent: #ff8a3d;
+  --c-fact-bg: #241828;
+  --c-scrim: rgba(20, 15, 23, 0.88);
+  --c-strip-bg: #0a070c;
+
+  --gl-ink: #0a070c;
+  --gl-paper: #140f17;
+  --gl-accent: #ff8a3d;
+  --gl-low: #5f2c8c;
+  --gl-mid3: #e2357a;
+  --gl-high: #ffd94a;
+
+  --f-body: "SF Mono", Menlo, Consolas, "Noto Sans Mono CJK SC", monospace;
+  --f-display: "Anton", "Impact", "Haettenschweiler", "PingFang SC", sans-serif;
+  --f-mono: "SF Mono", Menlo, Consolas, monospace;
+
+  --fs-body: 14.5px;
+  --fs-meta: 12px;
+  --fs-table: 12.5px;
+  --fs-display: 56px;
+  --fs-display-sm: 30px;
+  --fs-display-sub: 15px;
+  --fs-h2: 19px;
+  --lh-body: 1.62;
+  --ls-display: 0.02em;
+  --ls-display-sub: 0.34em;
+  --ls-h2: 0.2em;
+  --ls-kicker: 0.26em;
+  --tt-kicker: uppercase;
+  --tt-th: uppercase;
+  --fw-display: 700;
+  --fw-display-sub: 400;
+  --fw-h2: 700;
+
+  --measure: 74ch;
+  --measure-wide: 1140px;
+  --pad-hero: 72px;
+  --pad-x: 26px;
+  --pad-block: 34px;
+  --pad-section: 22px;
+  --gap-section: 22px;
+  --gap-byline: 12px;
+
+  --r-btn: 0px;
+  --r-section: 0px;
+  --r-strip: 0px;
+  --btn-border: 4px solid var(--c-accent);
+  --btn-shadow: none;
+  --btn-shadow-active: none;            /* 本页主张零阴影，按下只靠 2px 位移表态 */
+  --c-btn-bg: #ff8a3d;
+  --c-btn-ink: #0a070c;
+  --btn-active: translate(2px, 2px);
+  --section-border: 4px solid var(--c-muted);
+  --section-shadow: none;
+  --row-rule: 1px dashed var(--c-muted);
+  --head-rule: 4px double var(--c-muted);
+  --fact-rule: 4px solid var(--c-accent);
+  --label-rule: 4px solid var(--c-muted);
+  --strip-border: 4px solid var(--c-muted);
+  --strip-h: 240px;
+  --h2-mark: "▚ THERMOGRAM";
+  --c-stripe: rgba(255, 138, 61, 0.10);
+}
+
+/* 45° 斜纹：本皮肤的签名构件，只出现在页眉与读数区 */
+.masthead {
+  background-color: var(--c-scrim);
+  background-image: repeating-linear-gradient(45deg, var(--c-stripe) 0 8px, transparent 8px 20px);
+  border-bottom: 4px solid var(--c-accent);
+}
+
+.sec { outline: 1px solid var(--c-strip-bg); outline-offset: 6px; }
+.sec h2 { text-transform: uppercase; }
+.lead, .ablations li, .note { letter-spacing: 0.02em; }
+.strip { image-rendering: auto; }
+.fact { background: var(--c-strip-bg); }
+.title { text-transform: none; }
+.foot { border-top: 4px double var(--c-muted); }

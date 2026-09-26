@@ -1,0 +1,9 @@
+{
+  "generated_by": "scripts/check-clean.mjs",
+  "pass": 10,
+  "fail": 0,
+  "total": 10,
+  "failures": [],
+  "artifactBytes": 5417634,
+  "artifactMb": 5.17
+}

@@ -1,0 +1,47 @@
+{
+  "generated_by": "scripts/summarize.mjs",
+  "node": {
+    "name": "check-node",
+    "pass": 146,
+    "fail": 0,
+    "total": 146,
+    "failures": []
+  },
+  "browser": {
+    "name": "check-browser",
+    "pass": 120,
+    "fail": 0,
+    "total": 120,
+    "exe": "Chromium",
+    "version": "131.0.6778.33",
+    "failures": []
+  },
+  "clean": {
+    "name": "check-clean",
+    "pass": 10,
+    "fail": 0,
+    "total": 10,
+    "failures": []
+  },
+  "mutation": {
+    "kind": "对抗性变异",
+    "count": 16,
+    "caught": 16,
+    "escaped": 0,
+    "restored_identical": true
+  },
+  "mutationExplore": {
+    "count": 15,
+    "caught": 12,
+    "escaped_names": [
+      "S2",
+      "X1",
+      "X2"
+    ]
+  },
+  "grandTotal": 276,
+  "grandPass": 276,
+  "artifactBytes": 5417634,
+  "artifactMb": 5.17,
+  "budgetMb": 50
+}

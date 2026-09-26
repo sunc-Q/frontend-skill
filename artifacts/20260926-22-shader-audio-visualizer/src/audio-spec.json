@@ -1,0 +1,1117 @@
+{
+  "generated_by": "scripts/synth-track.mjs",
+  "synth": {
+    "sampleRate": 22050,
+    "channels": 1,
+    "bitDepth": 16,
+    "bpm": 120,
+    "beatsPerBar": 4,
+    "bars": 8,
+    "durationSec": 16,
+    "peakTarget": 0.85,
+    "noiseSeed": 20260926
+  },
+  "facts": {
+    "samples": 352800,
+    "globalPeak": 0.8500000238418579,
+    "peakDbfs": -1.4116212420815057,
+    "rmsOverall": 0.09251518718639733,
+    "clippedSamples": 0,
+    "counts": {
+      "hat": 46,
+      "kick": 20,
+      "bass": 40,
+      "lead": 40,
+      "snare": 10,
+      "hat-open": 2,
+      "riser": 1,
+      "tom": 1
+    },
+    "kickTimes": [
+      4,
+      4.5,
+      5,
+      5.5,
+      6,
+      6.5,
+      7,
+      7.5,
+      8,
+      8.5,
+      9,
+      9.5,
+      12,
+      12.5,
+      13,
+      13.5,
+      14,
+      14.5,
+      15,
+      15.5
+    ],
+    "snareTimes": [
+      4.5,
+      5.5,
+      6.5,
+      7.5,
+      8.5,
+      9.5,
+      12.5,
+      13.5,
+      14.5,
+      15.5
+    ],
+    "bars": [
+      {
+        "index": 0,
+        "from": 0,
+        "to": 2,
+        "role": "pad",
+        "rms": 0.027900682654907638,
+        "peak": 0.07541278749704361
+      },
+      {
+        "index": 1,
+        "from": 2,
+        "to": 4,
+        "role": "pad+hat",
+        "rms": 0.03723042615234541,
+        "peak": 0.1956651657819748
+      },
+      {
+        "index": 2,
+        "from": 4,
+        "to": 6,
+        "role": "groove",
+        "rms": 0.11351516685790834,
+        "peak": 0.8017151355743408
+      },
+      {
+        "index": 3,
+        "from": 6,
+        "to": 8,
+        "role": "groove",
+        "rms": 0.11324836127565323,
+        "peak": 0.7976446747779846
+      },
+      {
+        "index": 4,
+        "from": 8,
+        "to": 10,
+        "role": "groove",
+        "rms": 0.11386705433197418,
+        "peak": 0.8116902709007263
+      },
+      {
+        "index": 5,
+        "from": 10,
+        "to": 12,
+        "role": "breakdown",
+        "rms": 0.03864966835546836,
+        "peak": 0.16196201741695404
+      },
+      {
+        "index": 6,
+        "from": 12,
+        "to": 14,
+        "role": "groove",
+        "rms": 0.11345276037462207,
+        "peak": 0.8174136281013489
+      },
+      {
+        "index": 7,
+        "from": 14,
+        "to": 16,
+        "role": "groove",
+        "rms": 0.11517816614152941,
+        "peak": 0.8500000238418579
+      }
+    ],
+    "leadPatternHz": [
+      440,
+      523.25,
+      659.25,
+      587.33,
+      523.25,
+      440,
+      392,
+      440
+    ],
+    "padHz": [
+      220,
+      261.63,
+      329.63
+    ],
+    "grooveBars": [
+      2,
+      3,
+      4,
+      6,
+      7
+    ],
+    "breakdownBar": 5
+  },
+  "events": [
+    {
+      "kind": "hat",
+      "t": 2,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 2.25,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 2.5,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 2.75,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 3,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 3.25,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 3.5,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 3.75,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 4,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 4.25,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 4.5,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 4.75,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 5,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 5.25,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 5.5,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 5.75,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "kick",
+      "t": 4,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 4,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 4.25,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 4,
+      "hz": 440,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "lead",
+      "t": 4.25,
+      "hz": 523.25,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "kick",
+      "t": 4.5,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "snare",
+      "t": 4.5,
+      "hz": 196,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "bass",
+      "t": 4.5,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 4.75,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 4.5,
+      "hz": 659.25,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "lead",
+      "t": 4.75,
+      "hz": 587.33,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "kick",
+      "t": 5,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 5,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 5.25,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 5,
+      "hz": 523.25,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "lead",
+      "t": 5.25,
+      "hz": 440,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "kick",
+      "t": 5.5,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "snare",
+      "t": 5.5,
+      "hz": 196,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "bass",
+      "t": 5.5,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 5.75,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 5.5,
+      "hz": 392,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "lead",
+      "t": 5.75,
+      "hz": 440,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "hat",
+      "t": 6,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 6.25,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 6.5,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 6.75,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 7,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 7.25,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 7.5,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 7.75,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "kick",
+      "t": 6,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 6,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 6.25,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 6,
+      "hz": 440,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "lead",
+      "t": 6.25,
+      "hz": 523.25,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "kick",
+      "t": 6.5,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "snare",
+      "t": 6.5,
+      "hz": 196,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "bass",
+      "t": 6.5,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 6.75,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 6.5,
+      "hz": 659.25,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "lead",
+      "t": 6.75,
+      "hz": 587.33,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "kick",
+      "t": 7,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 7,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 7.25,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 7,
+      "hz": 523.25,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "lead",
+      "t": 7.25,
+      "hz": 440,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "kick",
+      "t": 7.5,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "snare",
+      "t": 7.5,
+      "hz": 196,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "bass",
+      "t": 7.5,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 7.75,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 7.5,
+      "hz": 392,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "lead",
+      "t": 7.75,
+      "hz": 440,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "hat",
+      "t": 8,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 8.25,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 8.5,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 8.75,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 9,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 9.25,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 9.5,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat-open",
+      "t": 9.75,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "kick",
+      "t": 8,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 8,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 8.25,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 8,
+      "hz": 440,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "lead",
+      "t": 8.25,
+      "hz": 523.25,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "kick",
+      "t": 8.5,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "snare",
+      "t": 8.5,
+      "hz": 196,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "bass",
+      "t": 8.5,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 8.75,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 8.5,
+      "hz": 659.25,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "lead",
+      "t": 8.75,
+      "hz": 587.33,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "kick",
+      "t": 9,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 9,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 9.25,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 9,
+      "hz": 523.25,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "lead",
+      "t": 9.25,
+      "hz": 440,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "kick",
+      "t": 9.5,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "snare",
+      "t": 9.5,
+      "hz": 196,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "bass",
+      "t": 9.5,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 9.75,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 9.5,
+      "hz": 392,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "lead",
+      "t": 9.75,
+      "hz": 440,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "riser",
+      "t": 10,
+      "hz": 600,
+      "bandHint": "mid",
+      "sec": 2
+    },
+    {
+      "kind": "hat",
+      "t": 12,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 12.25,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 12.5,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 12.75,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 13,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 13.25,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 13.5,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 13.75,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "kick",
+      "t": 12,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 12,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 12.25,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 12,
+      "hz": 880,
+      "bandHint": "treble-edge"
+    },
+    {
+      "kind": "lead",
+      "t": 12.25,
+      "hz": 1046.5,
+      "bandHint": "treble-edge"
+    },
+    {
+      "kind": "kick",
+      "t": 12.5,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "snare",
+      "t": 12.5,
+      "hz": 196,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "bass",
+      "t": 12.5,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 12.75,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 12.5,
+      "hz": 1318.5,
+      "bandHint": "treble-edge"
+    },
+    {
+      "kind": "lead",
+      "t": 12.75,
+      "hz": 1174.66,
+      "bandHint": "treble-edge"
+    },
+    {
+      "kind": "kick",
+      "t": 13,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 13,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 13.25,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 13,
+      "hz": 1046.5,
+      "bandHint": "treble-edge"
+    },
+    {
+      "kind": "lead",
+      "t": 13.25,
+      "hz": 880,
+      "bandHint": "treble-edge"
+    },
+    {
+      "kind": "kick",
+      "t": 13.5,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "snare",
+      "t": 13.5,
+      "hz": 196,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "bass",
+      "t": 13.5,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 13.75,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 13.5,
+      "hz": 784,
+      "bandHint": "treble-edge"
+    },
+    {
+      "kind": "lead",
+      "t": 13.75,
+      "hz": 880,
+      "bandHint": "treble-edge"
+    },
+    {
+      "kind": "hat",
+      "t": 14,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 14.25,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 14.5,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 14.75,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 15,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 15.25,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat",
+      "t": 15.5,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "hat-open",
+      "t": 15.75,
+      "hz": 7600,
+      "bandHint": "treble"
+    },
+    {
+      "kind": "kick",
+      "t": 14,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 14,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 14.25,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 14,
+      "hz": 880,
+      "bandHint": "treble-edge"
+    },
+    {
+      "kind": "lead",
+      "t": 14.25,
+      "hz": 1046.5,
+      "bandHint": "treble-edge"
+    },
+    {
+      "kind": "kick",
+      "t": 14.5,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "snare",
+      "t": 14.5,
+      "hz": 196,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "bass",
+      "t": 14.5,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 14.75,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 14.5,
+      "hz": 1318.5,
+      "bandHint": "treble-edge"
+    },
+    {
+      "kind": "lead",
+      "t": 14.75,
+      "hz": 1174.66,
+      "bandHint": "treble-edge"
+    },
+    {
+      "kind": "kick",
+      "t": 15,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 15,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 15.25,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 15,
+      "hz": 1046.5,
+      "bandHint": "treble-edge"
+    },
+    {
+      "kind": "lead",
+      "t": 15.25,
+      "hz": 880,
+      "bandHint": "treble-edge"
+    },
+    {
+      "kind": "kick",
+      "t": 15.5,
+      "hz": 48,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "snare",
+      "t": 15.5,
+      "hz": 196,
+      "bandHint": "mid"
+    },
+    {
+      "kind": "bass",
+      "t": 15.5,
+      "hz": 82.41,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "bass",
+      "t": 15.75,
+      "hz": 55,
+      "bandHint": "bass"
+    },
+    {
+      "kind": "lead",
+      "t": 15.5,
+      "hz": 784,
+      "bandHint": "treble-edge"
+    },
+    {
+      "kind": "lead",
+      "t": 15.75,
+      "hz": 880,
+      "bandHint": "treble-edge"
+    },
+    {
+      "kind": "tom",
+      "t": 15.875,
+      "hz": 120,
+      "bandHint": "bass"
+    }
+  ]
+}

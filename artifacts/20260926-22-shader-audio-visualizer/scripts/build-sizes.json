@@ -1,0 +1,219 @@
+{
+  "generated_by": "scripts/build.mjs",
+  "wavSha256": "66ff04adc891a8f5abc3573588543246d6dff7a3f8a5734853cda60afb0f2763",
+  "wavBytes": 705644,
+  "audioUriBytes": 940882,
+  "featuresBytes": 4772,
+  "bandEdges": {
+    "count": 64,
+    "lo": 40,
+    "hi": 11000
+  },
+  "coarseRanges": {
+    "bass": "40–105 Hz",
+    "mid": "115–724 Hz",
+    "treble": "791–10076 Hz"
+  },
+  "ablations": [
+    {
+      "arm": "frozen",
+      "what": "冻住 uTime，音频照跑",
+      "want": "画面仍在变（变化只能来自音频）"
+    },
+    {
+      "arm": "frozen,noaudio",
+      "what": "时钟与音频一起拔掉",
+      "want": "画面完全静止（changedPct 必须为 0）"
+    },
+    {
+      "arm": "noaudio",
+      "what": "音频读数清零、频谱与历史纹理不再更新",
+      "want": "音频驱动的分量全部停住"
+    },
+    {
+      "arm": "staticspectrum",
+      "what": "喂一条与音乐无关的固定斜坡频谱",
+      "want": "画面不随音乐变"
+    },
+    {
+      "arm": "mislabel",
+      "what": "64 带顺序反转后再上传",
+      "want": "低频段跑到画幅另一侧，带映射真在生效"
+    },
+    {
+      "arm": "samevariant",
+      "what": "三个子视口都用 uVariant=0",
+      "want": "分频三带失去差异"
+    },
+    {
+      "arm": "noonset",
+      "what": "起拍检测器不喂数据",
+      "want": "uBeat 恒 0，弹圈/闪烁带消失"
+    },
+    {
+      "arm": "nomouse",
+      "what": "uMouse 只在初始化写一次",
+      "want": "移动指针不再影响画面"
+    },
+    {
+      "arm": "solid",
+      "what": "着色器换成常量品红",
+      "want": "证明绘制通路活着（黑屏检查表第 1 步）"
+    },
+    {
+      "arm": "nogl",
+      "what": "强制走无 WebGL 分支",
+      "want": "显示降级提示而不是空白"
+    }
+  ],
+  "styles": [
+    {
+      "style": "colonnade",
+      "label": "频谱柱廊 · 方格账簿",
+      "file": "preview/visualizer-colonnade.html",
+      "bytes": 995939,
+      "scriptPayloadBytes": 35190,
+      "shaderBytes": 2329,
+      "skinCssBytes": 2830,
+      "hostBytes": 35188,
+      "declaredNonVec3": [
+        "uResolution",
+        "uOrigin",
+        "uMouse",
+        "uVariant",
+        "uLevel",
+        "uFlux",
+        "uBeat",
+        "uSpectrum"
+      ],
+      "declaredVec3": [
+        "uInk",
+        "uPaper",
+        "uAccent",
+        "uLow",
+        "uMid3",
+        "uHigh"
+      ],
+      "glHexes": {
+        "uInk": "#23281f",
+        "uPaper": "#f2efe4",
+        "uAccent": "#b5352b",
+        "uLow": "#3d6b4c",
+        "uMid3": "#8a6a1f",
+        "uHigh": "#2f5570"
+      },
+      "skinPalette": [
+        "#f2efe4",
+        "#faf7ee",
+        "#23281f",
+        "#6b6a55",
+        "#b5352b",
+        "#ece7d6",
+        "#e6e1cf",
+        "#3d6b4c",
+        "#8a6a1f",
+        "#2f5570"
+      ]
+    },
+    {
+      "style": "ripple",
+      "label": "涟漪井月 · 水墨径向",
+      "file": "preview/visualizer-ripple.html",
+      "bytes": 996341,
+      "scriptPayloadBytes": 35356,
+      "shaderBytes": 2475,
+      "skinCssBytes": 2694,
+      "hostBytes": 35354,
+      "declaredNonVec3": [
+        "uResolution",
+        "uOrigin",
+        "uMouse",
+        "uTime",
+        "uVariant",
+        "uLevel",
+        "uBass",
+        "uMid",
+        "uTreb",
+        "uBeat",
+        "uSpectrum"
+      ],
+      "declaredVec3": [
+        "uInk",
+        "uPaper",
+        "uAccent",
+        "uLow",
+        "uMid3",
+        "uHigh"
+      ],
+      "glHexes": {
+        "uInk": "#050a12",
+        "uPaper": "#0e1420",
+        "uAccent": "#7fd4c1",
+        "uLow": "#2f5d7a",
+        "uMid3": "#9fb7c9",
+        "uHigh": "#f0e3b8"
+      },
+      "skinPalette": [
+        "#0e1420",
+        "#16202f",
+        "#e7e2d5",
+        "#93a0b3",
+        "#7fd4c1",
+        "#1b2739",
+        "#0a1019",
+        "#050a12",
+        "#2f5d7a",
+        "#9fb7c9",
+        "#f0e3b8"
+      ]
+    },
+    {
+      "style": "thermal",
+      "label": "声纹热像 · 滚动色谱",
+      "file": "preview/visualizer-thermal.html",
+      "bytes": 995313,
+      "scriptPayloadBytes": 34724,
+      "shaderBytes": 1888,
+      "skinCssBytes": 2621,
+      "hostBytes": 34722,
+      "declaredNonVec3": [
+        "uResolution",
+        "uOrigin",
+        "uTime",
+        "uVariant",
+        "uLevel",
+        "uTreb",
+        "uSpectrum",
+        "uHistory"
+      ],
+      "declaredVec3": [
+        "uInk",
+        "uPaper",
+        "uAccent",
+        "uLow",
+        "uMid3",
+        "uHigh"
+      ],
+      "glHexes": {
+        "uInk": "#0a070c",
+        "uPaper": "#140f17",
+        "uAccent": "#ff8a3d",
+        "uLow": "#5f2c8c",
+        "uMid3": "#e2357a",
+        "uHigh": "#ffd94a"
+      },
+      "skinPalette": [
+        "#140f17",
+        "#1d1423",
+        "#f4eaf0",
+        "#a48fa2",
+        "#ff8a3d",
+        "#241828",
+        "#0a070c",
+        "#5f2c8c",
+        "#e2357a",
+        "#ffd94a"
+      ]
+    }
+  ]
+}

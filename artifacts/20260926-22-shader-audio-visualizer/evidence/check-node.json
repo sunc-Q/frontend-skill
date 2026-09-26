@@ -1,0 +1,15 @@
+{
+ "generated_by": "scripts/check-node.mjs",
+ "pass": 146,
+ "fail": 0,
+ "total": 146,
+ "failures": [],
+ "groups": {
+  "A": 23,
+  "B": 34,
+  "C": 26,
+  "D": 44,
+  "E": 14,
+  "F": 5
+ }
+}
