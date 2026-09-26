@@ -654,8 +654,8 @@
       "result": "success",
       "assertions": "静态 282 条（A 20 / B 43 / C 75 / D 43 / E 16 / F 27 / G 23 / H 6 / I 11 / N 17 / R 1）+ 真浏览器 91 条（J 45 / L 18 / K 14 / M 14，无头 Chrome + SwiftShader 真帧像素 + 10 条对照臂 + 6 段 snippet 真编译）+ 变异 12 例（值 4/结构 7/语义 1）全部被抓且点名，还原后复跑 check-node/check-browser 全绿 + check-clean 7 条。本轮像素读数（软件渲染，只比相对差异不作性能结论）：liquid-chrome 均值 67.5/σ 28.8/三带逐像素改变 201-200-201；crt-plasma 均值 46.7/σ 42.0/三带逐像素改变 182-186-191；silk-aurora 均值 193.7/σ 29.3/三带逐像素改变 142-156-156",
       "artifact_size": "444KB / 31 文件（node 现读目录，上限 50MB；构成见 reports/20260926-18-shader-immersive-exhibition.md §13）",
-      "cleanup": "待补记",
-      "push": "待补记"
+      "cleanup": "已执行：①删构建现场 LAB/.tmp/shaderbuild（9.0MB：playwright-core@1.49.1 + pngjs@7.0.0 + node_modules + package-lock + 本轮 smoke.mjs 探针）与 LAB/.tmp/shaderprobe（7 个 CLI 输出 txt，内容与 evidence/cli-probe.json 重复）；②删本轮三段 verify 日志（.tmp/verify-18{,b,c}.log）与两个一次性脚本 .tmp/shader-ledger.mjs、.tmp/shader-report.mjs（职责与关键 guard 已转录进报告 §13）；③产物目录内删 .patch1.mjs（补丁结果已进代码）与空目录 src/styles/，仓库零 node_modules/零 dist/零 *.log/零空目录（scripts/check-clean.mjs 7 条现判）；④本轮无自建 http 服务（产物走 file://，浏览器套件自起自关 chromium），故无遗留进程；⑤**顺序教训**：带 check-browser 的 verify.sh 必须跑在删 shaderbuild 之前，删完后只剩 check-node + check-clean 两条静态套件可复跑，复现要先按报告 §12 的 npm i 重装；⑥未动其他会话留下的 .tmp/geo-*.json、probe*.mjs、chrome-profile/、known_hosts。清理后复跑：check-node 282/282、check-clean 7/7。",
+      "push": "origin/main 走 SSH（本机 github.com HTTPS 被 TLS 重置，UserKnownHostsFile 指 LAB/.tmp/known_hosts + StrictHostKeyChecking=accept-new，命令与文件里零 token）：第一段 400f33a..2cfad05 = 本轮主体 60 文件（产物 31 件 + 复现报告 + work-log/state 两份台账 + skills/shader 只读快照 23 件 + MANIFEST/skills-README 登记 + scripts/gen-skills-manifest.mjs 源路径）；第二段 2cfad05..HEAD = 本次台账回填（cleanup/push 两格 + 报告 §15 段号）；第三段 = 区间定稿。"
     }
   ],
   "next_candidates": [

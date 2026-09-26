@@ -228,7 +228,7 @@ await browser.close();
 
 技能快照：`skills/shader/` 23 文件（只读，含 SKILL.md、scripts/shader.js、6 段 snippet、5 份 references、5 个模板目录），`node scripts/gen-skills-manifest.mjs` 重新生成 `skills/MANIFEST.json` 与 `skills/README.md`，本轮记 `shader sha1 前 12 位 554b0fd8c482`。
 
-推送：本机的 github.com HTTPS 会被 TLS 重置，只走 SSH（`GIT_SSH_COMMAND` 指向 `LAB/.tmp/known_hosts`，`StrictHostKeyChecking=accept-new`），命令与文件里不出现任何 token。段号与哈希在推完后回填：`待回填`。
+推送：本机的 github.com HTTPS 会被 TLS 重置，只走 SSH（`GIT_SSH_COMMAND` 指向 `LAB/.tmp/known_hosts`，`StrictHostKeyChecking=accept-new`），命令与文件里不出现任何 token。三段式提交：主体 `400f33a..2cfad05`（60 文件 = 产物 31 + 本报告 + work-log/state 两份台账 + skills/shader 快照 23 + MANIFEST/skills-README 登记 + `scripts/gen-skills-manifest.mjs` 的 shader 源路径）→ 补记 `2cfad05..`（run 的 `cleanup`/`push` 两格与本节段号）→ 区间定稿一段。补记之后再跑 `check-node`，总数仍是 282——这正是 §9 那条「条件性断言会让总数跳变」修好的东西：台账从「未写回」到「已写回」到「已回填」，被页面引用的总数一路不动。
 
 ### 附：本轮校验卡（读数由脚本现写，非手抄）
 
