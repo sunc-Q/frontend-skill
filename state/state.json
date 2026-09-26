@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-26T11:26+08:00",
+ "updated": "2026-09-26T11:28+08:00",
  "tried": [
   {
    "skill": "drafter",
@@ -716,7 +716,7 @@
    "seconds": 1260,
    "artifact_size": "本轮 demos 224KB（docx 52,131B + base 48,557B + chart.png 33,756B + output.log 9.6KB + 8 个复现脚本），限 5MB",
    "cleanup": "删 node_modules(10MB docx npm) + package-lock.json + LAB/.tmp/pylibs(14MB defusedxml/lxml/python-docx + 曾试装又卸载的 Pillow 16MB) + /tmp/r12-run.log + demos 内 .ab/ 与 unpacked/ 与未用的 chart.cjs；known_hosts 保留（gitignored）；未起任何服务，零新增监听；兄弟实验室文件未动",
-   "push": "待补（见下）",
+   "push": "已推送：git push origin skill-showcase 成功（1a1caf1..3156b6b，普通推送，无 --force、无 --no-verify）；fetch 确认远端 1a1caf1 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(76e5e4b) / go-gin_react(b8fe3fd) 未被本任务触碰（main 相对第11轮记录的 c9e0541 已前移，属兄弟实验室的每小时任务所写，本任务只对 skill-showcase 做 fetch+push）；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行无任何 token；提交前对 staged diff 按凭据形状扫过（ghp_/AKIA/sk-/PRIVATE KEY/password=/token=）零命中",
    "notes": "三条环境级增量：(1) Chrome 无头 CLI 免 playwright 直接出图；(2) docx-js 的 TextRun({text,children}) 静默丢 text，且 validate.py 全绿 → 生成类产物必须断言期望文字真在文档里；(3) docx-js 不定义 Normal/DefaultParagraphFont 而 basedOn 它们、comment.py 的 CommentReference 无人定义 → 样式引用悬空，XSD 查不出，只有第二解析器(python-docx 返回 style=None)暴露。办公文档三形态齐，下轮换产物类。",
    "installed_by_this_task": []
   }
