@@ -1254,7 +1254,7 @@
       "seconds": 1560,
       "artifact_size": "84K（demos/20260926-1535-terminal-session-replay，15 个文件）",
       "cleanup": "已删 LAB/.tmp/t21-home 会话沙箱与 mut-* 临时目录；无 node_modules（纯 stdlib Python）；未启动任何监听端口；未回收进程；全局缓存未动；技能包保留在 ~/.qoder-cn/skills（市场安装无法改路径），只读快照入 LAB/skills/",
-      "push": "待补（本轮最后一步执行）",
+      "push": "成功：git push origin skill-showcase → efbb3d9..5e78af9（普通推送，无 --force / 无 --no-verify）；先 fetch+rebase FETCH_HEAD，远端无新提交（up to date）。SSH 走 GIT_SSH_COMMAND=UserKnownHostsFile=LAB/.tmp/known_hosts + accept-new，命令行与文件内容零 token。",
       "notes": "record/replay 在 macOS 全废（BSD script 无 --timing、无 scriptreplay），自写 pty 录制器 + 浏览器回放器补位，再驱动技能自身的 list/info/export/delete。39 条断言 39 PASS / 0 FAIL，其中 E5/S10 断言的是「技能 bug 仍在」（导出时长 1.3s vs 真实 11.21s，8.9 倍），技能一旦修好这两条会变红。4 条变异对照全绿：M1 单条 delay+3.5s 会红 P7、M2/M3 切掉 40 字节会红 R1/R3、M4 delay 变动会带动总时长。浏览器取证：隐藏态下 shown 从 0 自行播到 9（rAF 兜底生效）、16 事件表、9 行命令行 rgb(63,185,80)/600、total 11.209759 与 timing 求和逐位一致。最大方法学增量：跑第三方技能前先把「它落的盘在哪」问清楚 —— 本轮真在 ~ 下造过一次目录并当场清掉。"
     }
   ],
@@ -1270,16 +1270,18 @@
     "last_run_time": "2026-09-26T13:05+08:00"
   },
   "final_check": {
-    "time": "2026-09-26T15:35+08:00",
-    "git_status": "clean（3 commit 全部推送后）",
-    "lab_size": "76M + skills 108KB",
-    "du_this_round": "292KB 产物 + 108KB 技能快照",
-    "disk_avail_kb": 16657256,
+    "time": "2026-09-26T16:08+08:00",
+    "git_status": "clean（第21轮 2 个 commit：5e78af9 产物 + 本台账提交；工作区无残留）",
+    "lab_size": "77M",
+    "du_this_round": "84K 产物（15 文件）+ 技能快照（skills/terminal-session-replay，4 文件）；manifest 2 snapshots / 21 files / rounds=21 / missing=19（快照约定自第20轮起，前 19 轮未回填）",
+    "disk_avail_kb": 16740496,
     "listeners_this_round": 0,
+    "stray_processes": "无（record_pty / run-transcript / scriptreplay pgrep 全空；pty 子进程已随脚本正常回收）",
+    "cleanup": "已删 LAB/.tmp/t21-home 会话沙箱、mut-* 变异临时目录、误建在真实 ~ 下的 .terminal-sessions（当场发现即删）；零 node_modules（纯 stdlib）；全局缓存未动",
     "commits": [
-      "ae8a60a 产物",
-      "abaad6b 回填",
-      "4b3564c 技能快照入仓"
-    ]
+      "5e78af9 第21轮产物 + 技能快照 + 台账"
+    ],
+    "pushed_range": "efbb3d9..5e78af9",
+    "verify": "verify.py 39 断言 39 PASS / 0 FAIL（其中 E5/S10 断言「技能 bug 仍在」，M1-M4 为变异对照）；sh run.sh 从零复现 20 秒全绿"
   }
 }
