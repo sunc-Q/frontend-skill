@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T13:48+08:00",
+  "updated": "2026-09-26T13:55+08:00",
   "tried": [
     {
       "skill": "drafter",
@@ -996,8 +996,18 @@
       "seconds": 1080,
       "artifact_size": "本轮 demos 100KB / 21 文件（output.log 11,804B + src 分层源码(go.mod/go.sum, gin v1.12.0) + run-transcript.sh + mutants.sh + README），限 5MB",
       "cleanup": "删 .tmp/api-r17(32MB) + .tmp/mut-r17(2 个变异二进制+2 份源码副本) + .tmp/gomod-gin + .tmp/gocache-gin（go 模块缓存 0444，先 chmod -R u+w 才删得掉）+ /tmp 本轮 5 个临时文件 + 误建的 demos/.tmp 与 demos/20260926-1340-golang-gin-api/.tmp；pkill/pgrep 复核本轮零进程、lsof 复核 87xx 零监听；全局缓存(~/go/pkg/mod、~/Library/Caches/go-build)未动；收尾为改代码风格(time_After→time.After，删 timehelper.go)后**重新构建并重跑**了 RUN A/B，日志以重跑结果为准",
-      "push": "待填（见下条 commit 实际哈希，凭 git 输出回填，不凭记忆）",
-      "notes": "全局副作用=官方市场装 dlazy-logo-design（本轮按闸门放弃使用，未执行其命令，包内零实现层）。产物类型换到「运行中的后端服务 + 命令转录」，历轮首个真 HTTP 服务演示。最大环境增量：Go 侧离线变异取证管线（GOPROXY=off 秒级重建两个变异体）+ 三条 Go 专属取证坑入库"
+      "push": "已推送：git push origin skill-showcase 成功（651c207..61b36e0，普通推送、无 --force / 无 --no-verify）。fetch 确认远端 651c207 正是本地 HEAD 父提交 → 无需 rebase；ls-remote 复核 skill-showcase=61b36e05f0486da351f9ded34bd2077db2202d33，main=b44dfc6 / go-gin_react=7b0c7f0 为兄弟任务所写、本任务未触碰。走 git@github.com SSH + LAB/.tmp/known_hosts；staged diff 按凭据形状（ghp_/github_pat_/AKIA/sk-/PRIVATE KEY/password=/token=）扫描零命中，命令行与文件内容无 token。",
+      "notes": "全局副作用=官方市场装 dlazy-logo-design（本轮按闸门放弃使用，未执行其命令，包内零实现层）。产物类型换到「运行中的后端服务 + 命令转录」，历轮首个真 HTTP 服务演示。最大环境增量：Go 侧离线变异取证管线（GOPROXY=off 秒级重建两个变异体）+ 三条 Go 专属取证坑入库",
+      "final_check": {
+        "git_status": "clean（回填提交后）",
+        "pushed": "651c207..61b36e0 → 远端 skill-showcase=61b36e05f0486da351f9ded34bd2077db2202d33",
+        "lab_kb": 72724,
+        "disk_avail_kb": 17227908,
+        "listeners_this_round": 0,
+        "processes_this_round": 0,
+        "demos_this_round_files": 21,
+        "assertions": "golden 19/19 PASS；M1 只红 A14、M2 只红 A6、基线还原 19/19"
+      }
     }
   ],
   "evaluation_snapshot": {
