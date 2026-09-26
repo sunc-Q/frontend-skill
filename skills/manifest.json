@@ -89,11 +89,45 @@
           "sha256": "9d4701e3deb8e928"
         }
       ]
+    },
+    {
+      "skill": "terminal-session-replay",
+      "files": 5,
+      "total_bytes": 49243,
+      "read_only": false,
+      "manifest": [
+        {
+          "path": "README.md",
+          "bytes": 1492,
+          "sha256": "d2da0a0b70485a87"
+        },
+        {
+          "path": "SKILL.md",
+          "bytes": 4098,
+          "sha256": "d05bf145d338bdc1"
+        },
+        {
+          "path": "_meta.json",
+          "bytes": 301,
+          "sha256": "161e37064b616a5d"
+        },
+        {
+          "path": "scripts/__pycache__/main.cpython-314.pyc",
+          "bytes": 25596,
+          "sha256": "cfa383cb2d79eb7a"
+        },
+        {
+          "path": "scripts/main.py",
+          "bytes": 17756,
+          "sha256": "8343a014e481270f"
+        }
+      ]
     }
   ],
-  "rounds_recorded": 20,
+  "rounds_recorded": 21,
   "skills_with_snapshot": [
-    "qrcode-skills"
+    "qrcode-skills",
+    "terminal-session-replay"
   ],
   "rounds_missing_snapshot": [
     "SQLite-Database-Expert",

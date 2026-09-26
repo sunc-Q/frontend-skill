@@ -1,0 +1,12 @@
+pwd
+ls -la ..
+echo "terminal-session-replay demo"
+date
+wc -c record_pty.py
+printf 'line-%02d\n' 1 2 3
+sort <<E
+banana
+apple
+cherry
+E
+echo done

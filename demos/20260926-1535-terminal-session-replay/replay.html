@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>deploy-run — recorded terminal session — terminal session replay</title>
+<style>
+  :root{--bg:#0d1117;--panel:#161b22;--ink:#c9d1d9;--dim:#6e7681;--cmd:#3fb950;--accent:#58a6ff;--amber:#d29922;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
+       display:flex;flex-direction:column;align-items:center;padding:24px 16px}
+  h1{font-size:15px;font-weight:600;margin:0 0 2px;color:var(--ink)}
+  .sub{color:var(--dim);font-size:12px;margin-bottom:14px}
+  .term{width:min(880px,100%);background:var(--panel);border:1px solid #30363d;border-radius:8px;overflow:hidden;
+        box-shadow:0 12px 40px rgba(0,0,0,.5)}
+  .bar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#010409;border-bottom:1px solid #30363d}
+  .dot{width:11px;height:11px;border-radius:50%}
+  .r{background:#ff5f56}.y{background:#ffbd2e}.g{background:#27c93f}
+  .ttl{margin-left:8px;color:var(--dim);font-size:12px}
+  pre#screen{margin:0;padding:14px 16px;min-height:420px;max-height:60vh;overflow:auto;white-space:pre-wrap;word-break:break-word;font-size:13px}
+  .ln{display:block}
+  .cmd{color:var(--cmd);font-weight:600}
+  .out{color:var(--ink)}
+  .cur{display:inline-block;width:8px;height:15px;background:var(--accent);vertical-align:-2px;animation:bl 1s steps(1,end) infinite}
+  @keyframes bl{50%{opacity:0}}
+  .ctl{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--panel);border-top:1px solid #30363d;font-size:12px}
+  button{background:#21262d;color:var(--ink);border:1px solid #30363d;border-radius:6px;padding:5px 12px;cursor:pointer;font:inherit;font-size:12px}
+  button:hover{border-color:var(--accent)}
+  button.on{border-color:var(--accent);color:var(--accent)}
+  #track{flex:1;height:6px;background:#0d1117;border:1px solid #30363d;border-radius:4px;position:relative;cursor:pointer}
+  #fill{position:absolute;left:0;top:0;bottom:0;background:var(--accent);width:0%}
+  #clock{color:var(--dim);min-width:96px;text-align:right;font-variant-numeric:tabular-nums}
+  .evts{width:min(880px,100%);margin-top:14px;border:1px solid #30363d;border-radius:8px;background:var(--panel);max-height:220px;overflow:auto}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th,td{padding:5px 10px;text-align:left;border-bottom:1px solid #21262d}
+  th{color:var(--dim);font-weight:500;position:sticky;top:0;background:var(--panel)}
+  tr{cursor:pointer}tr:hover td{color:var(--accent)}
+  td.n{color:var(--dim);font-variant-numeric:tabular-nums}
+  td.preview{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:520px}
+  .note{color:var(--dim);font-size:11px;margin-top:10px;width:min(880px,100%)}
+</style></head><body>
+<h1>deploy-run — recorded terminal session</h1>
+<div class="sub">16 read events · 11.25 s recorded · 2153 bytes of raw output</div>
+<div class="term">
+  <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+    <span class="ttl">deploy-run.typescript — recorded on macOS, replayed from raw timing data</span></div>
+  <pre id="screen"></pre>
+  <div class="ctl">
+    <button id="play">Play</button>
+    <button id="restart">Restart</button>
+    <span class="speed"><button data-s="1" class="on">1×</button><button data-s="2">2×</button><button data-s="4">4×</button></span>
+    <div id="track"><div id="fill"></div></div>
+    <span id="clock">0.00 / 11.25s</span>
+  </div>
+</div>
+<div class="evts"><table><thead><tr><th>#</th><th>at</th><th>wait</th><th>bytes</th><th>chunk</th></tr></thead><tbody id="evt"></tbody></table></div>
+<div class="note">Playback follows <code>scriptreplay</code> semantics: sleep for the recorded delay, then write the whole chunk.
+Click a row to seek. Data inlined — this file works over file:// with no network.</div>
+<script>
+const REC = {"name": "deploy-run", "total": 11.245223000000001, "bytes": 2153, "events": [{"delay": 2.5e-05, "text": "❯ ", "t": 0}, {"delay": 1.172355, "text": "pwd\n/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1535-terminal-session-replay\n❯ ", "t": 2.5e-05}, {"delay": 0.566461, "text": "ls -la ..\ntotal 0\ndrwxr-xr-x  24 apple  staff  768 Sep 26 15:38 .\ndrwxr-xr-x  12 apple  staff  384 Sep 26 15:37 ..\ndrwxr-xr-x   3 apple  staff   96 Sep 26 13:46 .tmp\ndrwxr-xr-x   4 apple  staff  128 Sep 25 17:26 20260925-1723-drafter\ndrwxr-xr-x   7 apple  staff  224 Sep 25 17:44 20260925-1737-ascii-project-dashboard\ndrwxr-xr-x   7 apple  staff  224 Sep 25 18:22 20260925-1810-algorithmic-art\ndrwxr-xr-x   8 apple  staff  256 Sep 26 09:52 20260925-1845-sqlite-database-expert\ndrwxr-xr-x   7 apple  staff  224 Sep 25 19:13 20260925-1906-ppt-generator\ndrwxr-xr-x  10 apple  staff  320 Sep 25 19:45 20260925-1950-graphic-gif\ndrwxr-xr-x  11 apple  staff  352 Sep 25 23:55 20260925-2332-build-game\ndrwxr-xr-x  12 apple  staff  384 Sep 26 09:49 20260926-0000-sec-audit-cn\ndrwxr-xr-x  10 apple  staff  320 Sep 26 10:07 20260926-0956-xlsx\ndrwxr-xr-x  14 apple  staff  448 Sep 26 10:18 20260926-1030-golang-testing\ndrwxr-xr-x  19 apple  staff  608 Sep 26 10:52 20260926-1037-webapp-testing\ndrwxr-xr-x  19 apple  staf", "t": 1.17238}, {"delay": 0.000235, "text": "f  608 Sep 26 11:25 20260926-1105-docx\ndrwxr-xr-x  11 apple  staff  352 Sep 26 11:48 20260926-1135-pdf\ndrwxr-xr-x  14 apple  staff  448 Sep 26 12:24 20260926-1207-shader\ndrwxr-xr-x  11 apple  staff  352 Sep 26 12:43 20260926-1305-canvas-design\ndrwxr-xr-x   4 apple  staff  128 Sep 26 13:15 20260926-1306-mcp-builder\ndrwxr-xr-x   7 apple  staff  224 Sep 26 13:47 20260926-1340-golang-gin-api\ndrwxr-xr-x  20 apple  staff  640 Sep 26 14:14 20260926-1416-mermaid-cli\n", "t": 1.7388409999999999}, {"delay": 5.7e-05, "text": "drwxr-xr-x  11 apple  staff  352 Sep 26 14:44 20260926-1445-midi-generation\ndrwxr-xr-x  23 apple  staff  736 Sep 26 15:18 20260926-1510-qrcode-skills\ndrwxr-xr-x  16 apple  staff  512 Sep 26 15:55 20260926-1535-terminal-session-replay\n", "t": 1.7390759999999998}, {"delay": 4.3e-05, "text": "❯ ", "t": 1.7391329999999998}, {"delay": 0.959869, "text": "echo \"terminal-session-replay demo\"\nterminal-session-replay demo\n❯ ", "t": 1.7391759999999998}, {"delay": 1.658228, "text": "date\nSat Sep 26 15:55:44 CST 2026\n❯ ", "t": 2.699045}, {"delay": 0.767721, "text": "wc -c record_pty.py\n    2652 record_pty.py\n❯ ", "t": 4.357273}, {"delay": 1.359401, "text": "printf 'line-%02d\\n' 1 2 3\nline-01\nline-02\nline-03\n❯ ", "t": 5.124994}, {"delay": 0.651772, "text": "sort <<E\n", "t": 6.484395}, {"delay": 0.665257, "text": "banana\n", "t": 7.136167}, {"delay": 0.66253, "text": "apple\n", "t": 7.801424000000001}, {"delay": 0.956724, "text": "cherry\n", "t": 8.463954000000001}, {"delay": 0.563579, "text": "E\napple\nbanana\ncherry\n❯ ", "t": 9.420678}, {"delay": 1.260966, "text": "echo done\ndone\n❯ ", "t": 9.984257000000001}], "prompt": "❯ "};
+const screen=document.getElementById('screen'), fill=document.getElementById('fill'),
+      clock=document.getElementById('clock'), playBtn=document.getElementById('play');
+let speed=1, elapsed=0, playing=false, last=0, shown=0;
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function renderChars(n){
+  const text=REC.events.slice(0,n).map(e=>e.text).join('');
+  const lines=text.split('\n');
+  screen.innerHTML=lines.map(l=>{
+    const c=l.startsWith(REC.prompt)?'ln cmd':'ln out';
+    return '<span class="'+c+'">'+(l.length?esc(l):'&nbsp;')+'</span>';
+  }).join('')+'<span class="cur"></span>';
+  screen.scrollTop=screen.scrollHeight;
+}
+function seek(n){shown=n;renderChars(n);const t=n>0?REC.events[n-1].t+REC.events[n-1].delay:0;setClock(t);}
+function setClock(t){
+  elapsed=t;fill.style.width=Math.min(100,t/REC.total*100)+'%';
+  clock.textContent=t.toFixed(2)+' / '+REC.total.toFixed(2)+'s';
+}
+function step(ts){
+  if(!playing)return;
+  if(last)elapsed+=(ts-last)/1000*speed;
+  last=ts;
+  if(elapsed>=REC.total){seek(REC.events.length);playing=false;playBtn.textContent='Play';last=0;return;}
+  let n=0;while(n<REC.events.length&&REC.events[n].t+0.000001<=elapsed)n++;
+  if(n!==shown)renderChars(n);shown=n;
+  fill.style.width=Math.min(100,elapsed/REC.total*100)+'%';
+  clock.textContent=elapsed.toFixed(2)+' / '+REC.total.toFixed(2)+'s';
+  requestAnimationFrame(step);
+}
+playBtn.onclick=()=>{playing=!playing;playBtn.textContent=playing?'Pause':'Play';last=0;
+  if(playing){if(shown>=REC.events.length)seek(0);requestAnimationFrame(step);}};
+// A hidden tab never fires requestAnimationFrame, so replay would silently
+// freeze. The interval keeps wall-clock progress coming when the page is in the
+// background; step() re-reads the clock so running both is harmless.
+setInterval(()=>{if(playing&&document.hidden)step(performance.now());},200);
+document.getElementById('restart').onclick=()=>{playing=false;playBtn.textContent='Play';last=0;seek(0);setClock(0);};
+document.querySelectorAll('.speed button').forEach(b=>b.onclick=()=>{
+  speed=+b.dataset.s;document.querySelectorAll('.speed button').forEach(x=>x.classList.toggle('on',x===b));});
+document.getElementById('track').onclick=e=>{
+  const r=e.currentTarget.getBoundingClientRect();
+  const t=(e.clientX-r.left)/r.width*REC.total;
+  let n=0;while(n<REC.events.length&&REC.events[n].t<=t)n++;
+  seek(n);setClock(n?REC.events[n-1].t+REC.events[n-1].delay:0);};
+const tb=document.getElementById('evt');
+REC.events.forEach((ev,i)=>{
+  const tr=document.createElement('tr');
+  const one=ev.text.split('\n').filter(Boolean)[0]||'';
+  tr.innerHTML='<td class="n">'+i+'</td><td class="n">'+ev.t.toFixed(2)+'s</td>'+
+    '<td class="n">'+ev.delay.toFixed(2)+'s</td><td class="n">'+ev.text.length+'</td>'+
+    '<td class="preview">'+esc(one.slice(0,80))+'</td>';
+  tr.onclick=()=>{seek(i+1);setClock(ev.t+ev.delay);};
+  tb.appendChild(tr);});
+seek(0);setClock(0);
+window.__REPLAY__={get shown(){return shown;},get total(){return REC.total;},get events(){return REC.events.length;},seek:seek};
+</script></body></html>

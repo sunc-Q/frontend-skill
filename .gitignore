@@ -9,3 +9,6 @@ __pycache__/
 *.db-shm
 *.db-wal
 !demos/**/protocol-transcript.log
+!demos/**/transcript-raw.log
+!demos/**/browser-check.log
+

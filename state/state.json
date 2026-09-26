@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T15:18+08:00",
+  "updated": "2026-09-26T16:02+08:00",
   "tried": [
     {
       "skill": "drafter",
@@ -239,6 +239,19 @@
       "report": "reports/20260926-1510-qrcode-skills.md",
       "installed_by_this_task": [
         "qrcode-skills (install_extension ext_70675d0d…（一次性安装引用，安装后即失效） → ~/.qoder-cn/skills/qrcode-skills)"
+      ]
+    },
+    {
+      "skill": "terminal-session-replay",
+      "source": "Qoder 官方扩展市场 official_SFz4lDum (publisher '-'，tags origin:skillatlas) → 经 install_extension 装到 ~/.qoder-cn/skills/terminal-session-replay/；_meta.json 指向上游 github.com/openclaw/skills commit b4541ea3 (owner derick001)",
+      "skill_path": "~/.qoder-cn/skills/terminal-session-replay/（只读快照已入 LAB/skills/terminal-session-replay/）",
+      "task": "按它设计意图走完整链路：录一段真实终端会话（12 行命令 + 逐行人为停顿）→ 用它自己的 CLI list/info/replay/export/delete → 导出 markdown 文档 → 按时序在浏览器里回放。record 在 macOS 必挂（它拼 util-linux 的 `script --quiet --timing`，BSD script 只有 `[-adkpqr] [-t time]`），改用自己写的 pty.fork() 采集器录，产出技能期望的 <name>.typescript + <name>.timing 三件套后再驱动技能代码。",
+      "verdict": "不推荐（本机）。它主打的 record 与带时序 replay 在 darwin 上全废（replay 依赖不存在的 scriptreplay），唯一活路是 --no-timing（内部就是 cat）；还能把会话库硬写进 ~/.terminal-sessions（CLI 无参数可改，必须 export HOME 沙箱）、所有错误路径 exit 0（CI 会把失败当成功）、export 的时长差 8.9 倍。产物好看是自己写播放器换来的，不是技能给的。可复用的是 util-linux 录制格式本身。",
+      "time": "2026-09-26T16:02+08:00",
+      "artifact": "demos/20260926-1535-terminal-session-replay/{replay.html(10,135B 单文件终端回放器：播放/暂停/重启+1×2×4×+进度条 seek+16 行事件表，数据内联 file:// 即跑), deploy-run.typescript(2,153B 真实 pty 字节流), deploy-run.timing(192B/16 事件), deploy-run.meta.json, SESSION.md(2,452B 技能 export 真实产出), transcript-raw.log(11 子命令逐条真实输出), output.log(39 断言), browser-check.log, record_pty.py/build_player.py/run-transcript.py/verify.py/run.sh/feed.txt/pace.txt}",
+      "report": "reports/20260926-1535-terminal-session-replay.md",
+      "installed_by_this_task": [
+        "terminal-session-replay (market official_SFz4lDum → ~/.qoder-cn/skills/terminal-session-replay/)"
       ]
     }
   ],
@@ -756,18 +769,61 @@
       "status": "blocked",
       "note": "全部要第三方云 API 凭据 + 把提示词/本地图 POST 出去，双触闸门与选题标准；本机 ffmpeg 出 .mp4 的路线不属于任何已装技能",
       "url": ""
+    },
+    {
+      "name": "terminal-session-replay",
+      "source": "Qoder 官方扩展市场 / keyword 'terminal'",
+      "url": "official_SFz4lDum",
+      "status": "installed_used — 第21轮已用，结论「不推荐（本机）」，勿再选",
+      "note": "市场镜像这次没丢 scripts/，实现层完整；但平台锁死 Linux（见 tried）"
+    },
+    {
+      "name": "seedance-2-0-video-generation / video-generation-t2v-i2v / kling-video-generator / alibabacloud-avatar-video / alibabacloud-video-translation / alibabacloud-bailian-videoanalysis",
+      "source": "Qoder 官方扩展市场 / keyword 'video'",
+      "url": "official_ePeeSstd, official_qvRU5yuv, official_HbGfVLNE, official_Stn3JblC, official_rH4r7TmZ, official_KQxW9juJ",
+      "status": "needs_user_confirm",
+      "note": "全部要外部付费 AI 视频/多模态 API key（Seedance/Kling/Veo/通义），无人值守跑不了，排除；.mp4 产物类目前无本地路径"
+    },
+    {
+      "name": "video-clip-editor / videos-content-analyzer / douyinvideo2text-ai",
+      "source": "Qoder 官方扩展市场 / keyword 'video'",
+      "url": "official_ohcF8szX, 687944fa-f972-45e6-b325-51d1e160839a, 238f0403-dad2-412b-9de4-8ea4f7cc201d",
+      "status": "blocked",
+      "note": "要下载外部平台视频 + 调 Whisper/Qwen-VL/edge-tts 云端或大模型，非本地快产物；抖音/头条内容抓取还涉及第三方平台"
+    },
+    {
+      "name": "notion-infographic / freestylefly-canghe-infographic / k-dense-ai-infographics / infographic-gen / infographic-generator",
+      "source": "Qoder 官方扩展市场 / keyword 'infographic'",
+      "url": "official45042359, official_XJcAZpMr, official_gwK2WPkZ, official_38LHLftB, official_I2fdXGnN",
+      "status": "candidate",
+      "note": "多数依赖外部图像模型或 SGraph API；notion-infographic 带 OfficialSelection 但产出仍是「一组图片」，与已做 3 次的图片类重叠。真做先确认能否纯本地"
+    },
+    {
+      "name": "calendarheatmap / mind-map-skill / mindmap-generator-pro",
+      "source": "Qoder 官方扩展市场 / keyword 'calendar' / 'map'",
+      "url": "official_9QvNVCMS, official_rFImRkea, official_OgehYwK6",
+      "status": "candidate",
+      "note": "mind-map-skill 号称 Markdown→PNG（3 布局）值得先读包确认有无实现层；calendarheatmap 是新一类（年历热图）但同属图表类，优先级低于缺的 .ics/字体/视频"
+    },
+    {
+      "name": "theme-factory / brand-guidelines / slack-gif-creator / doc-coauthoring / frontend-design / web-artifacts-builder（anthropics/skills，盘上已有）",
+      "source": "来源②本地已有 LAB/.skills/anthropic-skills",
+      "url": "git@github.com:anthropics/skills.git",
+      "status": "candidate",
+      "note": "零下载；slack-gif-creator 与第6轮 graphic-gif 同类，theme-factory 可产出对比图版（与已做 4 次的 HTML 类重叠，慎选）"
     }
   ],
   "in_progress": {
-    "skill": "qrcode-skills",
+    "skill": "terminal-session-replay",
     "status": "done"
   },
   "next_candidates": [
-    "第21轮候选（产物类型：zip/二维码已开新类；仍缺 .mp4 视频、.ics 日历、字体、真音频）：majiayu000-infographic-generator-p5（vis-network 兼容 JSON→交互式 p5 信息图，纯前端本地）",
-    "本机已装未试：theme-factory（anthropics/skills，盘上已有=零下载，给产物套 10 套主题，可产出对比图版）、brand-guidelines、slack-gif-creator（GIF 类仅 1 次）、doc-coauthoring、frontend-design、web-artifacts-builder、internal-comms、academy-guide、discernment-nudge",
-    "来源②外部仓库（SSH 通路已验证）：anthropics/skills 已 clone 在 LAB/.skills/anthropic-skills，19 个技能里未试的仍有一批；可再浅克隆其它 awesome-skills 仓库找新产物类",
-    "本机已装未试（后端向）：golangci-lint-strict（上游 config 走 raw.githubusercontent 被 TLS 重置，需先想替代取法）、Golang-Backend-Development、nodejs-best-practices、express-nodejs-expert、frontend-development、qmind、canvas(.canvas.tsx)",
-    "qrcode-skills 复用路线（不占轮）：WiFi 码/WiFi 配置批量、vCard 名片、csv/xlsx 批量 + --zip 交付；若下轮做「批量交付物」类产物可直接复用它的 batch 管线与 jsQR 交叉验证"
+    "第22轮首选（产物类型仍是缺口）：找**纯本地**产出 .ics 日历 / 字体 / .mp4 视频 的技能 —— 注意 'video' 关键词整族全要付费 API（已记 skills_seen needs_user_confirm），别再往那撞；试 keyword 'ics'/'schedule'/'typography'/'gif'/'audio'/'wav'/'sound'",
+    "mind-map-skill（official_rFImRkea，Markdown→PNG 思维导图 3 布局）与 calendarheatmap（official_9QvNVCMS）：先读包确认有无实现层，再决定；mind-map 属图片类（已做 3+ 次）优先级低",
+    "majiayu000-infographic-generator-p5（official_1gJEVKxK，vis-network 兼容 JSON→交互式 p5 信息图，纯前端本地）：候选已挂了 2 轮，若本轮仍选不到新产物类型就它",
+    "来源②零下载：anthropics/skills 已 clone 在 LAB/.skills/anthropic-skills，未试的有 theme-factory / brand-guidelines / slack-gif-creator / doc-coauthoring / frontend-design / web-artifacts-builder / internal-comms / academy-guide / discernment-nudge",
+    "本机已装未试：golangci-lint-strict（上游 config 走 raw.githubusercontent 被 TLS 重置，需先想替代取法）、Golang-Backend-Development、nodejs-best-practices、express-nodejs-expert、frontend-development、dlazy-logo-design（第18轮按闸门放弃未执行，可重新过一遍闸门再试）、qmind、canvas(.canvas.tsx)",
+    "可复用管线（不占新技能轮次）：demos/20260926-1535-terminal-session-replay/record_pty.py + build_player.py —— 「录任意脚本化终端会话 → 单文件可播放网页教程」。做 CLI 教程/安装留档类产物直接搬，记得 pace.txt 配人为停顿、收尾用 WNOHANG→TERM→KILL。"
   ],
   "used_artifact_kinds": [
     "单文件自包含 HTML 图表（工程图纸）×1",
@@ -789,7 +845,8 @@
     "运行中的 Gin HTTP 服务（127.0.0.1，端口收尾已释放）+ 19 条真实 curl 断言转录 output.log（201/400字段级/409/404/401/204/503/500 全覆盖 + slog 服务端 JSON 日志 + SIGTERM→Shutdown→exit 0 + 2 个变异体各只红 1 条）×1",
     "自动布局矢量图表 SVG ×4（flowchart 13 节点/timeline 17 事件/stateDiagram 10 中文态/pie 16 切片，数据与 .mmd 现场重算对账 23 断言）+ 位图 PNG 1 张（523×1600）+ 语法负对照与语义变异对照件 ×1",
     "标准 MIDI 文件 .mid（460B，SMF format1 / 5 track / division960 / 96BPM / 18 拍 11.25s：18 轮时长→C 宫五声旋律 + I-vi-IV-V-I 和声床）+ 1180×1870 钢琴卷帘 SVG（33 音块，逐拍标 #轮次:秒数）+ composition.json/mapping.json 数据→音高完整对照 + 19 条手搓 SMF 解析器断言（含技能 3 条不协和规则的量化核验）+ 3 个变异对照（改音高/加半音/改 BPM 各红 1 条）+ R1 复现逐字节相同 ×1",
-    "可扫描机器可读码：二维码卡片墙 PNG（1068×988 合成 sheet，5×4 网格 19 码）+ 19 张 400px ECC-H 位图 + 矢量 SVG 码 + batch 产物 zip；三方一致取证（台账↔技能解码↔zxing-cpp↔jsQR）+ finder/数据区遮挡差分 6 张 ×1"
+    "可扫描机器可读码：二维码卡片墙 PNG（1068×988 合成 sheet，5×4 网格 19 码）+ 19 张 400px ECC-H 位图 + 矢量 SVG 码 + batch 产物 zip；三方一致取证（台账↔技能解码↔zxing-cpp↔jsQR）+ finder/数据区遮挡差分 6 张 ×1",
+    "浏览器可播放的终端录像：单文件 replay.html（10,135B，内联 16 个 timing 事件、零外链，播放/暂停/1×2×4×/进度条点击 seek/事件表行跳转）+ 原始录制三件套 .typescript(2,153B 真 pty 字节流)/.timing(192B util-linux delay+size)/.meta.json + 技能 export 的 SESSION.md(2,452B) + 11 子命令真实转录 + 39 断言日志 ×1"
   ],
   "environment_notes": [
     "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
@@ -909,7 +966,16 @@
     "★第二套独立解码器最小配方（1.1 秒，纯 JS 无原生）：npm i --registry=https://registry.npmmirror.com jsqr pngjs；pngjs 解出 RGBA → jsQR(new Uint8ClampedArray(png.data.buffer), w, h)。做「生成↔解码」交叉验证时用它，别只复用生成方库。",
     "★二维码可扫性的物理约束（可复用于任何排版任务）：400→200px 缩放后 zxing 仍可扫；但**同样 105×105 的遮挡，盖住任一 finder 立即失效，盖在数据区 ECC-H 照样读出**。给二维码贴 logo/角标只能放静默区外或数据区中心。",
     "qrcode 库 ECC_MAP 是 {L:1,M:0,Q:3,H:2}（不是字母序）；复算模块网格时错一位就整组断言假红（本轮 G 组第一版算出 53 vs 实际 49）。",
-    "★LAB 约定变更（第20轮起）：所用技能包的只读快照放 `LAB/skills/<name>/`（**入仓**，区别于 gitignore 的 `.skills/`），清单 `LAB/skills/manifest.json` 一律由 `python3 LAB/scripts/gen-skills-manifest.py` 现读磁盘生成；后续每轮收工前跑一次并把它连同新快照一起提交。"
+    "★LAB 约定变更（第20轮起）：所用技能包的只读快照放 `LAB/skills/<name>/`（**入仓**，区别于 gitignore 的 `.skills/`），清单 `LAB/skills/manifest.json` 一律由 `python3 LAB/scripts/gen-skills-manifest.py` 现读磁盘生成；后续每轮收工前跑一次并把它连同新快照一起提交。",
+    "★macOS(BSD) 与 Linux(util-linux) 的 `script` 完全不兼容：darwin 只有 `usage: script [-adkpqr] [-t time] [file [command ...]]`，**没有 `--quiet`/`--timing`**；`scriptreplay`/`script` 的 timing 文件在 macOS 上根本不存在。任何拼 `script --timing` 的技能/脚本在本机必挂，报 `script: illegal option -- -`。",
+    "★交互模式 /bin/sh 按 POSIX **忽略 SIGHUP**：自己写 pty 录制器时，发完 `exit` 再 `os.waitpid(pid,0)` 会永久阻塞（本轮卡 2 分钟，用 `sample <pid>` 一眼看到栈停在 __wait4）。正确收尾：WNOHANG 轮询 → SIGTERM → SIGKILL，且别在 select 超时分支推进计时基准（否则 delays 全等 0.05、总时长全是假的）。",
+    "★隐藏标签页里 `requestAnimationFrame` 一次都不触发（document.hidden===true），产物「能播」在 IDE 面板里等于「不能播」。给循环加 `setInterval(()=>{if(playing&&document.hidden)step(performance.now())},200)` 兜底即可（step 读墙钟，双驱动并存无害）；断言方式：点 Play 后轮询 `__REPLAY__.shown` 是否自己涨。",
+    "★浏览器回放页（有活渲染循环）上 `evaluate_script` 间歇 15s 超时，getComputedStyle 连试三次红两次，而节点计数/自定义 getter 稳定 —— 一次只取一个值、允许重试、必要时用 `window.__X__` 导出 getter 代替读样式。",
+    "★技能把状态目录硬编码成 `Path.home()/'.terminal-sessions'` 且 CLI 无任何覆盖参数时：跑之前必须 `HOME=<LAB内沙箱>`。本轮第一次调用就在真实 ~ 下建了目录并写了文件（当场核对 mtime + 内容确认是自己刚造的，随即删除）。凡是 `~/.xxx` 落盘的第三方技能都按此处理，别指望它「大概不会写到家目录」。",
+    "取证要点（本轮实操验证）：`get_session_duration()` 取 timing **最后一行第一个字段**当总时长 —— 而 util-linux 格式是逐事件增量，真值应是 `sum(delays)`（实测 11.21s vs 1.254s，差 8.9 倍），且该字段没法同时满足 scriptreplay 语义与「时长」语义。凡是「读时序文件得出某个总量」的实现，都要用独立求和对账。",
+    "`Path.with_suffix('.x')` 会吃掉名字里最后一个点号之后的全部内容：技能允许会话名含 `.`，结果 `v1.2` 与 `v1` 解析到同一个 `v1.typescript`（静默共用录制）。凡「白名单校验 + with_suffix 拼路径」的组合都要断言碰撞。",
+    "技能错误路径全 `exit 0`（打印 `{\"status\":\"error\"}` 但不设退出码）→ 11 个子命令退出码全 0 含 4 个明确失败场景。凡「用退出码判断成败」的验证脚本要先自己制造一次失败确认它真会红。",
+    "市场搜索经验补充：`search_extensions` 短词命中极好（'terminal'/'video'/'infographic'/'calendar'/'speech'/'font'/'map'/'visualization' 全部有货，totalSize 4~248）；官方市场包**并非总是丢 scripts/**（本轮 4 文件包里 main.py 完整），别预设缺失。"
   ],
   "runs": [
     {
@@ -1180,6 +1246,16 @@
       "cleanup": "删 qr-names/（19 张取证用技能名小码）+ 旧版 ecc-*.png 5 张 + _blank/_noise/_mutant/_c1/_cN/_svg-raster 临时图 + LAB/.tmp/svg-{200,600}.svg；删 LAB/.tmp/pylibs（qrcode/Pillow/zxing-cpp/openpyxl）与 LAB/.tmp/qrnode（jsqr/pngjs）；零本轮常驻进程与监听（无服务，Chrome 用 --headless 单次退出）；全局技能库新增 1 项 qrcode-skills（有意安装，已登记 installed_by_this_task）；全局 pip/npm 缓存未动",
       "push": "已推送 3 commit（区间 56defe4..ae8a60a..abaad6b..4b3564c，全部普通推送、无 --force / 无 --no-verify）。fetch 确认远端 56defe4 是本地 HEAD 祖先 → 无需 rebase；ls-remote 复核 skill-showcase 远端头 = 本条记录所属提交（下轮开工以 `git ls-remote origin skill-showcase` 为准，不在自述里写自己的哈希），main=3531814 / go-gin_react=7b0c7f0 为兄弟任务所写、本任务未触碰。走 git@github.com SSH + LAB/.tmp/known_hosts；三次 staged diff 凭据形状扫描：抓到一次性 installRef 全文已脱敏，最终扫描 0 命中。",
       "notes": "来源①命中：短词 QR 一次装成（长词组 0 命中，见 environment_notes）。安全闸门通过：全程只走 --file/本地路径，未触发唯一网络分支 decode --url；★发现真实危险默认=batch_decode 不带 --output-txt 时会把解码列回写进输入文件本身（open(input,'w')，非原子无备份）。本轮最大增量=「遮挡位置 ≠ 遮挡面积」：同尺寸黑块盖 ECC-H 码的 finder 立刻不可读、盖数据区照样读出——这是首版 sheet 把 18px 小码贴在卡片左下角导致 H3 失败后差分定位出来的，修法是贴纸移到标题条。★本轮起新增做法：所用技能包**只读快照入仓** `skills/qrcode-skills/`（16 文件/69,080B，chmod -R a-w）+ `skills/manifest.json`（由 scripts/gen-skills-manifest.py 现读磁盘生成：逐文件 sha256/字节数/read_only 由 os.access 实测，不手抄），并列出 rounds_missing_snapshot=19（第 1–19 轮在 .skills/ 被 gitignore，未回填，需要时按各轮报告的确切命令重取）。快照还暴露一处不一致：市场版本 1.0.1 与 package.json 2.0.0 不符，_meta.json 指向上游 openclaw/skills@1ae3cd1e。"
+    },
+    {
+      "time": "2026-09-26T16:02+08:00",
+      "skill": "terminal-session-replay",
+      "result": "成功跑出产物，但技能判定「不推荐（本机）」",
+      "seconds": 1560,
+      "artifact_size": "84K（demos/20260926-1535-terminal-session-replay，15 个文件）",
+      "cleanup": "已删 LAB/.tmp/t21-home 会话沙箱与 mut-* 临时目录；无 node_modules（纯 stdlib Python）；未启动任何监听端口；未回收进程；全局缓存未动；技能包保留在 ~/.qoder-cn/skills（市场安装无法改路径），只读快照入 LAB/skills/",
+      "push": "待补（本轮最后一步执行）",
+      "notes": "record/replay 在 macOS 全废（BSD script 无 --timing、无 scriptreplay），自写 pty 录制器 + 浏览器回放器补位，再驱动技能自身的 list/info/export/delete。39 条断言 39 PASS / 0 FAIL，其中 E5/S10 断言的是「技能 bug 仍在」（导出时长 1.3s vs 真实 11.21s，8.9 倍），技能一旦修好这两条会变红。4 条变异对照全绿：M1 单条 delay+3.5s 会红 P7、M2/M3 切掉 40 字节会红 R1/R3、M4 delay 变动会带动总时长。浏览器取证：隐藏态下 shown 从 0 自行播到 9（rAF 兜底生效）、16 事件表、9 行命令行 rgb(63,185,80)/600、total 11.209759 与 timing 求和逐位一致。最大方法学增量：跑第三方技能前先把「它落的盘在哪」问清楚 —— 本轮真在 ~ 下造过一次目录并当场清掉。"
     }
   ],
   "evaluation_snapshot": {

@@ -1,0 +1,200 @@
+HOME = /Users/apple/Documents/workProject/试验/skill演示场/.tmp/t21-home
+
+$ /Users/apple/Library/Application Support/DoubaoWork/sandbox_runtime/bases/e74152cd379ba45d7ca7f16dfa51b727/bin/python3 /Users/apple/.qoder-cn/skills/terminal-session-replay/scripts/main.py record --output probe-only --title probe
+Starting recording to session: probe-only
+Type 'exit' or press Ctrl+D to stop recording.
+Files will be saved to: /Users/apple/Documents/workProject/试验/skill演示场/.tmp/t21-home/.terminal-sessions/probe-only.typescript
+{
+  "status": "error",
+  "message": "script command failed with code 1"
+}
+script: illegal option -- -
+usage: script [-adkpqr] [-t time] [file [command ...]]
+[exit=0]
+
+$ /Users/apple/Library/Application Support/DoubaoWork/sandbox_runtime/bases/e74152cd379ba45d7ca7f16dfa51b727/bin/python3 /Users/apple/.qoder-cn/skills/terminal-session-replay/scripts/main.py list
+Found 1 session(s):
+  deploy-run: Skill showcase: deploy-run smoke test (2026-09-26)
+{
+  "status": "success",
+  "sessions": [
+    {
+      "name": "deploy-run",
+      "created": "2026-09-26T07:55:59.817478+00:00",
+      "title": "Skill showcase: deploy-run smoke test",
+      "description": "Recorded through a real pty because the skill record path needs util-linux script.",
+      "tags": [
+        "showcase",
+        "terminal"
+      ],
+      "duration": 1.260966
+    }
+  ],
+  "count": 1
+}
+[exit=0]
+
+$ /Users/apple/Library/Application Support/DoubaoWork/sandbox_runtime/bases/e74152cd379ba45d7ca7f16dfa51b727/bin/python3 /Users/apple/.qoder-cn/skills/terminal-session-replay/scripts/main.py info --input deploy-run
+{
+  "status": "success",
+  "session": "deploy-run",
+  "metadata": {
+    "created": "2026-09-26T07:55:59.817478+00:00",
+    "title": "Skill showcase: deploy-run smoke test",
+    "description": "Recorded through a real pty because the skill record path needs util-linux script.",
+    "tags": [
+      "showcase",
+      "terminal"
+    ],
+    "command": "script --quiet --timing <timing> <typescript>"
+  },
+  "duration_seconds": 1.260966,
+  "file_sizes": {
+    "typescript": 2153,
+    "timing": 192,
+    "meta": 316
+  },
+  "files": {
+    "typescript": "/Users/apple/Documents/workProject/\u8bd5\u9a8c/skill\u6f14\u793a\u573a/.tmp/t21-home/.terminal-sessions/deploy-run.typescript",
+    "timing": "/Users/apple/Documents/workProject/\u8bd5\u9a8c/skill\u6f14\u793a\u573a/.tmp/t21-home/.terminal-sessions/deploy-run.timing",
+    "meta": "/Users/apple/Documents/workProject/\u8bd5\u9a8c/skill\u6f14\u793a\u573a/.tmp/t21-home/.terminal-sessions/deploy-run.meta.json"
+  }
+}
+[exit=0]
+
+$ /Users/apple/Library/Application Support/DoubaoWork/sandbox_runtime/bases/e74152cd379ba45d7ca7f16dfa51b727/bin/python3 /Users/apple/.qoder-cn/skills/terminal-session-replay/scripts/main.py list --filter-tags terminal
+Found 1 session(s):
+  deploy-run: Skill showcase: deploy-run smoke test (2026-09-26)
+{
+  "status": "success",
+  "sessions": [
+    {
+      "name": "deploy-run",
+      "created": "2026-09-26T07:55:59.817478+00:00",
+      "title": "Skill showcase: deploy-run smoke test",
+      "description": "Recorded through a real pty because the skill record path needs util-linux script.",
+      "tags": [
+        "showcase",
+        "terminal"
+      ],
+      "duration": 1.260966
+    }
+  ],
+  "count": 1
+}
+[exit=0]
+
+$ /Users/apple/Library/Application Support/DoubaoWork/sandbox_runtime/bases/e74152cd379ba45d7ca7f16dfa51b727/bin/python3 /Users/apple/.qoder-cn/skills/terminal-session-replay/scripts/main.py list --filter-tags nope
+No sessions found.
+{
+  "status": "success",
+  "sessions": [],
+  "count": 0
+}
+[exit=0]
+
+$ /Users/apple/Library/Application Support/DoubaoWork/sandbox_runtime/bases/e74152cd379ba45d7ca7f16dfa51b727/bin/python3 /Users/apple/.qoder-cn/skills/terminal-session-replay/scripts/main.py replay --input deploy-run --speed 2.0
+{
+  "status": "error",
+  "message": "'scriptreplay' command not found. Install it via your package manager."
+}
+[exit=0]
+
+$ /Users/apple/Library/Application Support/DoubaoWork/sandbox_runtime/bases/e74152cd379ba45d7ca7f16dfa51b727/bin/python3 /Users/apple/.qoder-cn/skills/terminal-session-replay/scripts/main.py replay --input deploy-run --no-timing
+❯ pwd
+/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1535-terminal-session-replay
+❯ ls -la ..
+total 0
+drwxr-xr-x  24 apple  staff  768 Sep 26 15:38 .
+drwxr-xr-x  12 apple  staff  384 Sep 26 15:37 ..
+drwxr-xr-x   3 apple  staff   96 Sep 26 13:46 .tmp
+drwxr-xr-x   4 apple  staff  128 Sep 25 17:26 20260925-1723-drafter
+drwxr-xr-x   7 apple  staff  224 Sep 25 17:44 20260925-1737-ascii-project-dashboard
+drwxr-xr-x   7 apple  staff  224 Sep 25 18:22 20260925-1810-algorithmic-art
+drwxr-xr-x   8 apple  staff  256 Sep 26 09:52 20260925-1845-sqlite-database-expert
+drwxr-xr-x   7 apple  staff  224 Sep 25 19:13 20260925-1906-ppt-generator
+drwxr-xr-x  10 apple  staff  320 Sep 25 19:45 20260925-1950-graphic-gif
+drwxr-xr-x  11 apple  staff  352 Sep 25 23:55 20260925-2332-build-game
+drwxr-xr-x  12 apple  staff  384 Sep 26 09:49 20260926-0000-sec-audit-cn
+drwxr-xr-x  10 apple  staff  320 Sep 26 10:07 20260926-0956-xlsx
+drwxr-xr-x  14 apple  staff  448 Sep 26 10:18 20260926-1030-golang-testing
+drwxr-xr-x  19 apple  staff  608 Sep 26 10:52 20260926-1037-webapp-testing
+drwxr-xr-x  19 apple  staff  608 Sep 26 11:25 20260926-1105-docx
+drwxr-xr-x  11 apple  staff  352 Sep 26 11:48 20260926-1135-pdf
+drwxr-xr-x  14 apple  staff  448 Sep 26 12:24 20260926-1207-shader
+drwxr-xr-x  11 apple  staff  352 Sep 26 12:43 20260926-1305-canvas-design
+drwxr-xr-x   4 apple  staff  128 Sep 26 13:15 20260926-1306-mcp-builder
+drwxr-xr-x   7 apple  staff  224 Sep 26 13:47 20260926-1340-golang-gin-api
+drwxr-xr-x  20 apple  staff  640 Sep 26 14:14 20260926-1416-mermaid-cli
+drwxr-xr-x  11 apple  staff  352 Sep 26 14:44 20260926-1445-midi-generation
+drwxr-xr-x  23 apple  staff  736 Sep 26 15:18 20260926-1510-qrcode-skills
+drwxr-xr-x  16 apple  staff  512 Sep 26 15:55 20260926-1535-terminal-session-replay
+❯ echo "terminal-session-replay demo"
+terminal-session-replay demo
+❯ date
+Sat Sep 26 15:55:44 CST 2026
+❯ wc -c record_pty.py
+    2652 record_pty.py
+❯ printf 'line-%02d\n' 1 2 3
+line-01
+line-02
+line-03
+❯ sort <<E
+banana
+apple
+cherry
+E
+apple
+banana
+cherry
+❯ echo done
+done
+❯ {
+  "status": "success",
+  "message": "Replayed session: deploy-run"
+}
+[exit=0]
+
+$ /Users/apple/Library/Application Support/DoubaoWork/sandbox_runtime/bases/e74152cd379ba45d7ca7f16dfa51b727/bin/python3 /Users/apple/.qoder-cn/skills/terminal-session-replay/scripts/main.py export --input deploy-run --output SESSION.md --include-timing
+{
+  "status": "success",
+  "message": "Exported to SESSION.md",
+  "output_file": "SESSION.md",
+  "lines": 14
+}
+[exit=0]
+
+$ /Users/apple/Library/Application Support/DoubaoWork/sandbox_runtime/bases/e74152cd379ba45d7ca7f16dfa51b727/bin/python3 /Users/apple/.qoder-cn/skills/terminal-session-replay/scripts/main.py info --input ../escape
+{
+  "status": "error",
+  "message": "Invalid session name: ../escape"
+}
+[exit=0]
+
+$ /Users/apple/Library/Application Support/DoubaoWork/sandbox_runtime/bases/e74152cd379ba45d7ca7f16dfa51b727/bin/python3 /Users/apple/.qoder-cn/skills/terminal-session-replay/scripts/main.py info --input ghost
+{
+  "status": "error",
+  "message": "Session 'ghost' not found"
+}
+[exit=0]
+
+$ python3 -c 'dotted session names -> resolved paths'
+  v1.2        -> v1.typescript
+  v1          -> v1.typescript
+  deploy-run  -> deploy-run.typescript
+  collision(v1.2, v1) = True
+
+=== exit codes ===
+{
+  "record": 0,
+  "list": 0,
+  "info": 0,
+  "list_hit": 0,
+  "list_miss": 0,
+  "replay": 0,
+  "replay_cat": 0,
+  "export": 0,
+  "traversal": 0,
+  "missing": 0,
+  "collision": 0
+}

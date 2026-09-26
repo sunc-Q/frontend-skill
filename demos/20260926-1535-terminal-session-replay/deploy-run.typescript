@@ -1,0 +1,49 @@
+❯ pwd
+/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1535-terminal-session-replay
+❯ ls -la ..
+total 0
+drwxr-xr-x  24 apple  staff  768 Sep 26 15:38 .
+drwxr-xr-x  12 apple  staff  384 Sep 26 15:37 ..
+drwxr-xr-x   3 apple  staff   96 Sep 26 13:46 .tmp
+drwxr-xr-x   4 apple  staff  128 Sep 25 17:26 20260925-1723-drafter
+drwxr-xr-x   7 apple  staff  224 Sep 25 17:44 20260925-1737-ascii-project-dashboard
+drwxr-xr-x   7 apple  staff  224 Sep 25 18:22 20260925-1810-algorithmic-art
+drwxr-xr-x   8 apple  staff  256 Sep 26 09:52 20260925-1845-sqlite-database-expert
+drwxr-xr-x   7 apple  staff  224 Sep 25 19:13 20260925-1906-ppt-generator
+drwxr-xr-x  10 apple  staff  320 Sep 25 19:45 20260925-1950-graphic-gif
+drwxr-xr-x  11 apple  staff  352 Sep 25 23:55 20260925-2332-build-game
+drwxr-xr-x  12 apple  staff  384 Sep 26 09:49 20260926-0000-sec-audit-cn
+drwxr-xr-x  10 apple  staff  320 Sep 26 10:07 20260926-0956-xlsx
+drwxr-xr-x  14 apple  staff  448 Sep 26 10:18 20260926-1030-golang-testing
+drwxr-xr-x  19 apple  staff  608 Sep 26 10:52 20260926-1037-webapp-testing
+drwxr-xr-x  19 apple  staff  608 Sep 26 11:25 20260926-1105-docx
+drwxr-xr-x  11 apple  staff  352 Sep 26 11:48 20260926-1135-pdf
+drwxr-xr-x  14 apple  staff  448 Sep 26 12:24 20260926-1207-shader
+drwxr-xr-x  11 apple  staff  352 Sep 26 12:43 20260926-1305-canvas-design
+drwxr-xr-x   4 apple  staff  128 Sep 26 13:15 20260926-1306-mcp-builder
+drwxr-xr-x   7 apple  staff  224 Sep 26 13:47 20260926-1340-golang-gin-api
+drwxr-xr-x  20 apple  staff  640 Sep 26 14:14 20260926-1416-mermaid-cli
+drwxr-xr-x  11 apple  staff  352 Sep 26 14:44 20260926-1445-midi-generation
+drwxr-xr-x  23 apple  staff  736 Sep 26 15:18 20260926-1510-qrcode-skills
+drwxr-xr-x  16 apple  staff  512 Sep 26 15:55 20260926-1535-terminal-session-replay
+❯ echo "terminal-session-replay demo"
+terminal-session-replay demo
+❯ date
+Sat Sep 26 15:55:44 CST 2026
+❯ wc -c record_pty.py
+    2652 record_pty.py
+❯ printf 'line-%02d\n' 1 2 3
+line-01
+line-02
+line-03
+❯ sort <<E
+banana
+apple
+cherry
+E
+apple
+banana
+cherry
+❯ echo done
+done
+❯ 

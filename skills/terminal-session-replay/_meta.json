@@ -1,0 +1,11 @@
+{
+  "owner": "derick001",
+  "slug": "terminal-session-replay",
+  "displayName": "Terminal Session Replay",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1773238161814,
+    "commit": "https://github.com/openclaw/skills/commit/b4541ea35f4d2e42524b64d506161acd1d5fd9b8"
+  },
+  "history": []
+}

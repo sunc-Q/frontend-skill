@@ -1,0 +1,52 @@
+# Browser verification of replay.html (browser-use / Chrome, page kept in a hidden tab)
+
+Hidden-tab is exactly the environment constraint here: `document.hidden === true`,
+so `requestAnimationFrame` never fires. Every observation below was read back with
+`evaluate_script`, not inferred.
+
+## build 1 (rAF only) — proved the freeze
+
+t = 15:48, immediately after navigate + click Play:
+
+    {"shown":0,"clock":"0.00 / 11.21s","fill":"0%","hidden":true,"btn":"Pause"}
+
+State machine is correct (button flipped to "Pause"), but zero events rendered,
+because rAF is suspended in a hidden document. A replay that silently never plays
+is worse than no replay, so the player grew a background fallback.
+
+## build 1 — seek / render / styling (seek driven directly, before the fix)
+
+    r.seek(16) ->
+    {"lines":49,"cmdCount":9,"first":"❯ pwd","last":"❯",
+     "cmdColor":"rgb(63, 185, 80)","cmdWeight":"600",
+     "fill":"100%","clock":"11.21 / 11.21s","screenHasSort":true}
+
+    page metadata on load ->
+    {"total":11.209759,"events":16,"rows":16,
+     "bodyBg":"rgb(13, 17, 23)","bodyColor":"rgb(201, 209, 217)",
+     "title":"deploy-run — recorded terminal session —"}
+
+`total` equals sum(delays) of the timing file to 6 decimals; 16 table rows equal 16
+timing events; the 9 `.ln.cmd` lines equal the 9 prompts in the capture; the sorted
+heredoc output ("cherry") really reached the DOM.
+
+## build 2 (rAF + `setInterval` fallback when `document.hidden`)
+
+Play clicked once, then polled (each poll is a separate evaluate — a single async
+evaluate with an internal sleep times out in this panel):
+
+    t0  : {"hidden":true,"shown":0}          (right after click)
+    t+~35s: "9"                              -> document.querySelectorAll('.ln.cmd').length == 9
+
+Playback now advances on its own while hidden: 9 of 16 events had been rendered
+without any user seek() call. CSS was untouched between build 1 and build 2, so the
+computed-style numbers recorded above still describe build 2
+(`rgb(63, 185, 80)` / weight 600 for prompt lines, body `rgb(13, 17, 23)`).
+
+## Tool flakiness worth recording
+
+`getComputedStyle(...)` and `element.textContent` reads intermittently hit the 15 s
+MCP timeout on this page (the render loop is live and re-writes `#screen` every
+tick), while the same expressions returned instantly a call earlier. Node counts and
+`window.__REPLAY__` getters were stable. Read back one value per call and retry
+rather than batching.
