@@ -1,0 +1,8 @@
+浏览器真加载取证（browser-use evaluate_script，file:// 打开 listen.html）
+  audio 元素数 / img 元素数        : 4 / 4
+  img naturalWidth x naturalHeight : 1400x240 | 1400x240 | 1400x240 | 1400x420   （4 张图全部真解码，非占位）
+  computed h1 font-size / body bg  : 26px / rgb(246, 245, 242)                    （CSS 已生效）
+  4 个 <audio> 设 preload=auto + load() 后 duration:错误码:
+      24.243:ok | 24.243:ok | 24.3:ok | 24.243:ok
+      -> podcast.mp3 24.243s、audiobook.mp3 24.243s、youtube.m4a 24.3s、mutation/m2 24.243s，无一条 error
+      -> 时长与 ffprobe 一致（24.242993 / 24.300000），即浏览器确实把 4 个本地音频文件解出来了，可点试听

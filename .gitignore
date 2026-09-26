@@ -12,3 +12,4 @@ __pycache__/
 !demos/**/transcript-raw.log
 !demos/**/browser-check.log
 
+!demos/**/verify.log

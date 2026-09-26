@@ -1,0 +1,44 @@
+[PASS] A::exists_nonempty::podcast  podcast.mp3 583723B
+[PASS] A::exists_nonempty::audiobook  audiobook.mp3 583723B
+[PASS] A::exists_nonempty::youtube  youtube.m4a 581069B
+[PASS] A::exists_nonempty::final_wav  final.wav 2138310B
+[PASS] A::ffprobe_decodable::podcast  duration=24.242993s
+[PASS] A::ffprobe_decodable::audiobook  duration=24.242993s
+[PASS] A::ffprobe_decodable::youtube  duration=24.300000s
+[PASS] A::ffprobe_decodable::final_wav  duration=24.242993s
+[PASS] B::codec::podcast  mp3 vs mp3
+[PASS] B::sample_rate::podcast  44100 vs 44100
+[PASS] B::bitrate_192k::podcast  192624 bps
+[PASS] B::true_peak::podcast  TP=-1.80dBFS <= -1.0
+[PASS] B::integrated_loudness::podcast  I=-16.20LUFS vs 目标 -16.0±0.5
+[PASS] B::codec::audiobook  mp3 vs mp3
+[PASS] B::sample_rate::audiobook  44100 vs 44100
+[PASS] B::bitrate_192k::audiobook  192624 bps
+[PASS] B::true_peak::audiobook  TP=-5.80dBFS <= -3.0
+[PASS] B::acx_rms_band::audiobook  RMS=-20.152342dB (技能规定 -23.0~-18.0)
+[PASS] B::acx_noise_floor::audiobook  noise floor=-84.685131dBFS <= -60.0
+[PASS] B::codec::youtube  aac vs aac
+[PASS] B::sample_rate::youtube  48000 vs 48000
+[PASS] B::bitrate_192k::youtube  191298 bps
+[PASS] B::true_peak::youtube  TP=-1.50dBFS <= -1.5
+[PASS] B::integrated_loudness::youtube  I=-14.20LUFS vs 目标 -14.0±0.5
+[PASS] C::loudnorm_raises_voice  raw I=-18.40 -> normalized I=-16.00 LUFS
+[PASS] C::loudnorm_hits_target  I=-16.00
+[PASS] C::raw_was_below_spec  raw I=-18.40 TP=-2.90（处理前不达标，处理后达标 = 增益确实来自本管线）
+[PASS] C::mix_duration_is_voice  mixed=24.243s voice=24.243s music=40.000s（duration=first 生效）
+[PASS] C::music_bed_audible_in_gaps  底噪 voice=数字零(-inf) -> mixed=-21.0dB（0.3 音量音乐床留在语音间隙里）
+[PASS] C::ducking_keeps_voice_dominant  I voice=-16.00 -> I mixed=-15.70（+0.3 音乐床抬升受限）
+[PASS] C::waveform_png_has_structure  背景 Y=16.0，raw Y=19.21(墨3.21)，norm Y=20.28(墨4.28)
+[PASS] C::pixel_gain_matches_audio_gain  像素反推增益=2.48dB vs ebur128 实测 2.40dB（差 0.08）
+[PASS] C::four_waveforms_distinct  4 files
+[PASS] D::M1_target_moves_output  I=-19.10 vs 原 -14.20（目标值确实驱动结果）
+[PASS] D::M1_caught_by_spec_gate  用 -14 规格去卡 M1：|-19.10-(-14)|>0.5 -> 断言会红
+[PASS] D::M2_caught_by_loudness_gate  无归一化版 I=-13.70 TP=0.60 -> B 组响度/峰值断言会红
+[PASS] D::M2_caught_by_bed_gate  未 ducking 底噪=-10.803216dB vs 已 ducking -20.989186dB -> C 组音乐床断言会红
+[PASS] D::M3_duration_gate_bites  longest=40.000s ≈ music 40.000s，C 组时长断言会红
+[PASS] D::negative_control_probe_rejects_fake  伪造 mp3：ffprobe 无音频流（None）
+[PASS] E::cross_parser_lufs::podcast  ffmpeg ebur128=-16.20 vs 纯 Python BS.1770=-16.23 LUFS
+[PASS] E::cross_parser_lufs::youtube  ffmpeg ebur128=-14.20 vs 纯 Python BS.1770=-14.24 LUFS
+[PASS] E::cross_parser_lufs::final_wav  ffmpeg ebur128=-16.00 vs 纯 Python BS.1770=-15.98 LUFS
+
+==== 42/42 PASS ====

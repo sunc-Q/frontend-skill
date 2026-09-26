@@ -1,0 +1,61 @@
+{
+  "by_platform": {
+    "podcast": {
+      "I": -16.2,
+      "TP": -1.8,
+      "LRA": 1.1,
+      "rms": -15.872214,
+      "peak": -1.752159,
+      "noise_floor": -21.53369,
+      "dc": -6.9e-05,
+      "bitrate": 192624,
+      "codec": "mp3",
+      "rate": 44100
+    },
+    "audiobook": {
+      "I": -20.3,
+      "TP": -5.8,
+      "LRA": 1.5,
+      "rms": -20.152342,
+      "peak": -5.792633,
+      "noise_floor": -84.685131,
+      "dc": -4.9e-05,
+      "bitrate": 192624,
+      "codec": "mp3",
+      "rate": 44100
+    },
+    "youtube": {
+      "I": -14.2,
+      "TP": -1.5,
+      "LRA": 1.1,
+      "rms": -13.863315,
+      "peak": -1.488729,
+      "noise_floor": -19.351973,
+      "dc": -8.9e-05,
+      "bitrate": 191298,
+      "codec": "aac",
+      "rate": 48000
+    }
+  },
+  "voice": {
+    "raw_I": -18.4,
+    "normalized_I": -16.0
+  },
+  "durations": {
+    "voice": 24.242993,
+    "music": 40.0,
+    "mixed": 24.242993
+  },
+  "noise_floor": {
+    "voice": -999.0,
+    "mixed": -20.989186,
+    "no_duck": -10.803216
+  },
+  "wave_ink_bg": 16.0,
+  "wave_ink": {
+    "raw": 19.2145,
+    "normalized": 20.2779
+  },
+  "pixel_gain_dB": 2.482343964163493,
+  "audio_gain_dB": 2.3999999999999986
+}

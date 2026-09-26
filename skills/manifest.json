@@ -3,6 +3,24 @@
   "generated_from": "skills/ as found on disk",
   "snapshots": [
     {
+      "skill": "audio-editing-automation",
+      "files": 2,
+      "total_bytes": 2904,
+      "read_only": true,
+      "manifest": [
+        {
+          "path": "SKILL.md",
+          "bytes": 2447,
+          "sha256": "50cf7b002331d371"
+        },
+        {
+          "path": "metadata.json",
+          "bytes": 457,
+          "sha256": "5ca9d69668820568"
+        }
+      ]
+    },
+    {
       "skill": "qrcode-skills",
       "files": 16,
       "total_bytes": 69080,
@@ -119,8 +137,9 @@
       ]
     }
   ],
-  "rounds_recorded": 21,
+  "rounds_recorded": 22,
   "skills_with_snapshot": [
+    "audio-editing-automation",
     "qrcode-skills",
     "terminal-session-replay"
   ],

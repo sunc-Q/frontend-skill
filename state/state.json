@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T16:02+08:00",
+  "updated": "2026-09-26T16:30+08:00",
   "tried": [
     {
       "skill": "drafter",
@@ -252,6 +252,23 @@
       "report": "reports/20260926-1535-terminal-session-replay.md",
       "installed_by_this_task": [
         "terminal-session-replay (market official_SFz4lDum → ~/.qoder-cn/skills/terminal-session-replay/)"
+      ]
+    },
+    {
+      "skill": "audio-editing-automation",
+      "source": "Qoder 官方市场 official_RFge26r7 (canonicalName majiayu000-audio-editing-automation, publisher majiayu000, tags origin:modelscope) → install_extension 装到 ~/.qoder-cn/skills/audio-editing-automation（市场安装不能改路径）",
+      "skill_path": "~/.qoder-cn/skills/audio-editing-automation/SKILL.md（119 行）；只读快照 LAB/skills/audio-editing-automation/",
+      "task": "按技能自己的 Automation Workflow 搭本地播客后期线：say 中文口播(24.24s) + ffmpeg aevalsrc 40s 和声垫 → 两遍法 loudnorm 归一化 → volume=0.3 ducking amix → 二次 loudnorm → 按 Podcast/ACX/YouTube 三档规格导出",
+      "verdict": "留用（推荐）：零依赖(ffmpeg 已在盘)零网络，给的三档规格是可实测证伪的硬数字，天然适合验收；缺点是包内无实现层，loudnorm 两遍法要自己补",
+      "time": "2026-09-26T16:10+08:00",
+      "artifact": "demos/20260926-1610-audio-editing-automation/（listen.html + 3 档成品 mp3/m4a + 5 张波形/频谱 PNG + 3 个变异件 + verify.log 42/42）",
+      "report": "reports/20260926-1610-audio-editing-automation.md",
+      "installed_by_this_task": [
+        {
+          "kind": "skill",
+          "name": "audio-editing-automation",
+          "path": "~/.qoder-cn/skills/audio-editing-automation/"
+        }
       ]
     }
   ],
@@ -811,19 +828,38 @@
       "url": "git@github.com:anthropics/skills.git",
       "status": "candidate",
       "note": "零下载；slack-gif-creator 与第6轮 graphic-gif 同类，theme-factory 可产出对比图版（与已做 4 次的 HTML 类重叠，慎选）"
+    },
+    {
+      "name": "audio-editing-automation",
+      "source": "Qoder 官方扩展市场",
+      "status": "installed_used — 第22轮已用并留用，勿再选",
+      "note": "纯知识型（119 行 SKILL.md，零 scripts/references），但 ffmpeg 9.0.1 本机已在盘 → 无实现层反而不碍事；★产物类型「真实可听音频」是历轮缺口，首次补上"
+    },
+    {
+      "name": "aiskillstore-game-audio / majiayu000-audio-system / majiayu000-game-audio-* / godot-setup-audio-buses / ue5-audio-mcp / alicloud-ai-audio-tts / audio-design",
+      "source": "Qoder 官方扩展市场",
+      "status": "blocked_or_skipped",
+      "note": "同类音频向：前五个是游戏引擎知识文档(Godot/UE5 本机无运行时，产物无法验证)或需阿里云 DashScope key(付费凭据+内容外发)；音频处理需求已由本轮 audio-editing-automation 本地满足"
+    },
+    {
+      "name": "ffmpeg-video-watermark-remover / multilingual-video-dubbing-ffmpeg-video-filters / fabriqaai-ffmpeg-analyse-video-skill",
+      "source": "Qoder 官方扩展市场",
+      "status": "candidate",
+      "note": "keyword \"ffmpeg\" 只这 3 条，全是视频向：水印去除要先有带水印的视频素材(本机无，且不得下载外部视频)，dubbing 系要外部 TTS/翻译 API。视频类产物仍无本地快路径"
+    },
+    {
+      "name": "calendarheatmap / calendar-organizer / economic-calendar-fetcher / m365-calendar / social-media-content-calendar",
+      "source": "Qoder 官方扩展市场",
+      "status": "candidate",
+      "note": "keyword \"calendar\" 16 条里无 .ics 生成路线：calendar-organizer 是「解析」ICS 不是产出；fetcher/m365 要 FMP key / MS Graph 设备码登录(需用户确认)。★.ics 缺口仍未补上，别再往 calendar 词根撞"
     }
   ],
-  "in_progress": {
-    "skill": "terminal-session-replay",
-    "status": "done"
-  },
   "next_candidates": [
-    "第22轮首选（产物类型仍是缺口）：找**纯本地**产出 .ics 日历 / 字体 / .mp4 视频 的技能 —— 注意 'video' 关键词整族全要付费 API（已记 skills_seen needs_user_confirm），别再往那撞；试 keyword 'ics'/'schedule'/'typography'/'gif'/'audio'/'wav'/'sound'",
-    "mind-map-skill（official_rFImRkea，Markdown→PNG 思维导图 3 布局）与 calendarheatmap（official_9QvNVCMS）：先读包确认有无实现层，再决定；mind-map 属图片类（已做 3+ 次）优先级低",
-    "majiayu000-infographic-generator-p5（official_1gJEVKxK，vis-network 兼容 JSON→交互式 p5 信息图，纯前端本地）：候选已挂了 2 轮，若本轮仍选不到新产物类型就它",
-    "来源②零下载：anthropics/skills 已 clone 在 LAB/.skills/anthropic-skills，未试的有 theme-factory / brand-guidelines / slack-gif-creator / doc-coauthoring / frontend-design / web-artifacts-builder / internal-comms / academy-guide / discernment-nudge",
-    "本机已装未试：golangci-lint-strict（上游 config 走 raw.githubusercontent 被 TLS 重置，需先想替代取法）、Golang-Backend-Development、nodejs-best-practices、express-nodejs-expert、frontend-development、dlazy-logo-design（第18轮按闸门放弃未执行，可重新过一遍闸门再试）、qmind、canvas(.canvas.tsx)",
-    "可复用管线（不占新技能轮次）：demos/20260926-1535-terminal-session-replay/record_pty.py + build_player.py —— 「录任意脚本化终端会话 → 单文件可播放网页教程」。做 CLI 教程/安装留档类产物直接搬，记得 pace.txt 配人为停顿、收尾用 WNOHANG→TERM→KILL。"
+    "第23轮首选：产物类型缺口还剩 .ics 日历、字体文件、.mp4/.mov 视频（视频系全要付费云 API，已记 needs_user_confirm）、以及「数据库之外的结构化数据」类。词根建议：ics / reminder / schedule / gpx / geo / subtitle / srt / vtt / ocr / zipped / archive / hash / regex / fuzz",
+    "majiayu000-infographic-generator-p5（official_1gJEVKxK，vis-network 兼容 JSON→交互式 p5 信息图，纯前端本地）：候选已挂 3 轮，若仍找不到新产物类型就它",
+    "来源②零下载：anthropics/skills 已在 LAB/.skills/anthropic-skills，未试 theme-factory / brand-guidelines / slack-gif-creator / doc-coauthoring / frontend-design / web-artifacts-builder / internal-comms / academy-guide / discernment-nudge",
+    "本机已装未试：golangci-lint-strict（上游 config 走 raw.githubusercontent 被 TLS 重置，需先想替代取法）、Golang-Backend-Development、nodejs-best-practices、express-nodejs-expert、frontend-development、qmind、canvas(.canvas.tsx)；dlazy-logo-design 已两轮判 blocked（要 DLAZY_API_KEY + 全局 npm -g + 上传本地图），别再重试",
+    "可复用管线（不占新技能轮次）：①demos/20260926-1610-audio-editing-automation/verify.py 的 lufs_bs1770() —— 音频 LUFS 第二解析器；②demos/20260926-1535-terminal-session-replay/record_pty.py + build_player.py —— 录任意脚本化终端会话→单文件可播放网页教程。"
   ],
   "used_artifact_kinds": [
     "单文件自包含 HTML 图表（工程图纸）×1",
@@ -846,7 +882,8 @@
     "自动布局矢量图表 SVG ×4（flowchart 13 节点/timeline 17 事件/stateDiagram 10 中文态/pie 16 切片，数据与 .mmd 现场重算对账 23 断言）+ 位图 PNG 1 张（523×1600）+ 语法负对照与语义变异对照件 ×1",
     "标准 MIDI 文件 .mid（460B，SMF format1 / 5 track / division960 / 96BPM / 18 拍 11.25s：18 轮时长→C 宫五声旋律 + I-vi-IV-V-I 和声床）+ 1180×1870 钢琴卷帘 SVG（33 音块，逐拍标 #轮次:秒数）+ composition.json/mapping.json 数据→音高完整对照 + 19 条手搓 SMF 解析器断言（含技能 3 条不协和规则的量化核验）+ 3 个变异对照（改音高/加半音/改 BPM 各红 1 条）+ R1 复现逐字节相同 ×1",
     "可扫描机器可读码：二维码卡片墙 PNG（1068×988 合成 sheet，5×4 网格 19 码）+ 19 张 400px ECC-H 位图 + 矢量 SVG 码 + batch 产物 zip；三方一致取证（台账↔技能解码↔zxing-cpp↔jsQR）+ finder/数据区遮挡差分 6 张 ×1",
-    "浏览器可播放的终端录像：单文件 replay.html（10,135B，内联 16 个 timing 事件、零外链，播放/暂停/1×2×4×/进度条点击 seek/事件表行跳转）+ 原始录制三件套 .typescript(2,153B 真 pty 字节流)/.timing(192B util-linux delay+size)/.meta.json + 技能 export 的 SESSION.md(2,452B) + 11 子命令真实转录 + 39 断言日志 ×1"
+    "浏览器可播放的终端录像：单文件 replay.html（10,135B，内联 16 个 timing 事件、零外链，播放/暂停/1×2×4×/进度条点击 seek/事件表行跳转）+ 原始录制三件套 .typescript(2,153B 真 pty 字节流)/.timing(192B util-linux delay+size)/.meta.json + 技能 export 的 SESSION.md(2,452B) + 11 子命令真实转录 + 39 断言日志 ×1",
+    "真实可听音频成品 ×3 档（.mp3 583,723B / .mp3 583,723B / .m4a 581,069B，24.24s 中文口播 + ducking 音乐床）+ 4 张 1400×240 波形 PNG + 1 张频谱 PNG + 单文件试听页 listen.html + 3 个变异对照件；42 条断言含「像素墨量反推增益 2.48dB vs ebur128 实测 2.40dB」跨介质对账 与 手写 BS.1770 第二解析器（差 ≤0.05 LU）×1"
   ],
   "environment_notes": [
     "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
@@ -975,7 +1012,12 @@
     "取证要点（本轮实操验证）：`get_session_duration()` 取 timing **最后一行第一个字段**当总时长 —— 而 util-linux 格式是逐事件增量，真值应是 `sum(delays)`（实测 11.21s vs 1.254s，差 8.9 倍），且该字段没法同时满足 scriptreplay 语义与「时长」语义。凡是「读时序文件得出某个总量」的实现，都要用独立求和对账。",
     "`Path.with_suffix('.x')` 会吃掉名字里最后一个点号之后的全部内容：技能允许会话名含 `.`，结果 `v1.2` 与 `v1` 解析到同一个 `v1.typescript`（静默共用录制）。凡「白名单校验 + with_suffix 拼路径」的组合都要断言碰撞。",
     "技能错误路径全 `exit 0`（打印 `{\"status\":\"error\"}` 但不设退出码）→ 11 个子命令退出码全 0 含 4 个明确失败场景。凡「用退出码判断成败」的验证脚本要先自己制造一次失败确认它真会红。",
-    "市场搜索经验补充：`search_extensions` 短词命中极好（'terminal'/'video'/'infographic'/'calendar'/'speech'/'font'/'map'/'visualization' 全部有货，totalSize 4~248）；官方市场包**并非总是丢 scripts/**（本轮 4 文件包里 main.py 完整），别预设缺失。"
+    "市场搜索经验补充：`search_extensions` 短词命中极好（'terminal'/'video'/'infographic'/'calendar'/'speech'/'font'/'map'/'visualization' 全部有货，totalSize 4~248）；官方市场包**并非总是丢 scripts/**（本轮 4 文件包里 main.py 完整），别预设缺失。",
+    "★ffmpeg 9.0.1 在 ~/.local/bin/ffmpeg（ffprobe 同目录）→ 任何音视频处理类技能本机可直接跑，无需安装；但 showspectrum 的 mode= 只认整数，写 mode=line/combined 会 \"Undefined constant\"，去掉 mode= 用默认即可。",
+    "★amix 混 mono 语音 + stereo 音乐 → 成品是 mono(channels=1)。自写 LUFS/响度复算时必须按源真实声道数解码（-ac 2 对偶单声道求和会多算 +3dB）。",
+    "★astats 输出是 \"Key: value\"（不是 key=value），且先按通道打印、最后才是 Overall → 取每个键最后一次出现；纯静音的 Noise floor dB 打印 -inf，float() 会炸，要当哨兵处理。ebur128 用 rfind(\"Summary:\") 后正则取 I:/Peak:/LRA:。",
+    "★BS.1770 纯 Python 实现（K-weighting 双二阶 + 400ms/75% 重叠 + 绝对-70/相对-10 双门控）已验证与 ffmpeg ebur128 差 ≤0.05 LU，代码在 demos/20260926-1610-audio-editing-automation/verify.py，可直接搬去任何音频类轮次做第二解析器交叉核对；本次正是它抓到自写实现的滤波器状态更新顺序 bug（差 16.8dB）。",
+    "macOS `say -v Ting-Ting -o x.aiff` 是真零网络的本地 TTS（含 zh_CN），要\"人声素材\"别再找云端 TTS 技能；aevalsrc 多个正弦相加 = 本地和声垫。"
   ],
   "runs": [
     {
@@ -1256,6 +1298,16 @@
       "cleanup": "已删 LAB/.tmp/t21-home 会话沙箱与 mut-* 临时目录；无 node_modules（纯 stdlib Python）；未启动任何监听端口；未回收进程；全局缓存未动；技能包保留在 ~/.qoder-cn/skills（市场安装无法改路径），只读快照入 LAB/skills/",
       "push": "成功：4 个 commit 全推上远端 skill-showcase，区间 efbb3d9..f2192ba（5e78af9 产物+快照+台账 → 5125007 回填 → f922890 快照/字节码修正 → f2192ba 收工台账）。普通推送，无 --force / 无 --no-verify；先 fetch+rebase FETCH_HEAD（远端无新提交）。SSH 走 GIT_SSH_COMMAND=UserKnownHostsFile=LAB/.tmp/known_hosts + accept-new，命令行与文件内容零 token。main / go-gin_react 未触碰。",
       "notes": "record/replay 在 macOS 全废（BSD script 无 --timing、无 scriptreplay），自写 pty 录制器 + 浏览器回放器补位，再驱动技能自身的 list/info/export/delete。39 条断言 39 PASS / 0 FAIL，其中 E5/S10 断言的是「技能 bug 仍在」（导出时长 1.3s vs 真实 11.21s，8.9 倍），技能一旦修好这两条会变红。4 条变异对照全绿：M1 单条 delay+3.5s 会红 P7、M2/M3 切掉 40 字节会红 R1/R3、M4 delay 变动会带动总时长。浏览器取证：隐藏态下 shown 从 0 自行播到 9（rAF 兜底生效）、16 事件表、9 行命令行 rgb(63,185,80)/600、total 11.209759 与 timing 求和逐位一致。最大方法学增量：跑第三方技能前先把「它落的盘在哪」问清楚 —— 本轮真在 ~ 下造过一次目录并当场清掉。 收工前二次修正：发现 import 技能 main.py 会往只读的全局技能目录写 __pycache__/*.pyc（快照被带成 5 文件），已删除 + run.sh 顶部 PYTHONDONTWRITEBYTECODE=1 + 快照 chmod -R a-w，manifest 现读 2 snapshots/20 files/read_only=true；从零重跑 run.sh 仍 39 PASS/0 FAIL，家目录零污染。"
+    },
+    {
+      "time": "2026-09-26T16:10+08:00",
+      "skill": "audio-editing-automation",
+      "result": "成功（留用·推荐）。verify.py 42 PASS / 0 FAIL：A 组 4 产物存在+ffprobe 可解码；B 组三档平台规格逐项实测（mp3/aac、44100/48000、192k、I=−16.20/−14.20、TP=−1.80/−5.80/−1.50、ACX RMS=−20.15 带内、底噪=−84.69≤−60）；C 组前后对照（原始 I=−18.40 不达标→−16.00、duration=first 使混音停在语音长度 24.243s、语音间隙底噪 数字零→−21.0dB、4 张波形互不相同）+ 跨介质对账（像素墨量反推 2.48dB vs ebur128 2.40dB，差 0.08）；D 组 3 个变异各只红对应闸门（目标 −14→−19 实测跟着到 −19.10；去 loudnorm 版 I=−13.70 且 TP=+0.6 削顶；duration=longest→40.000s）+ 假 mp3 负对照；E 组手写 BS.1770 与 ffmpeg 三文件交叉 ≤0.05 LU（并借此抓到自写滤波器 y1/y2 赋值顺序 bug，修前偏 16.8dB）",
+      "seconds": 1620,
+      "artifact_size": "demos 本轮 4.9MB（3 档成品 1.7MB + 原始语音 1.0MB + 变异件 1.1MB + 5 PNG 40KB + 2 脚本 + 2 日志 + 试听页），限 5MB 软 / 20MB 硬",
+      "cleanup": "删 build/*.wav（3×2.1MB 中间产物）、inputs/music_raw.wav（7.0MB lavfi 中间产物）、mutation/m3_longest.wav（3.5MB）、__pycache__、ROOT 陈旧 loudnorm_measured.json；evidence/ 留实测 JSON 与静音参考波形；零本轮进程与监听端口（纯命令行 ffmpeg，未起服务）；全局缓存未动；全局技能库新增 1 项 audio-editing-automation（市场安装无法改路径，已登记 installed_by_this_task），只读快照入 LAB/skills/ 并跑 scripts/gen-skills-manifest.py 重生成清单",
+      "push": "待补（见 work-log）",
+      "notes": "★技能自称的规格第一次成为「可证伪闸门」：三档平台数字全部由 ebur128/astats 实测回读，不是我们自设的断言；ACX「底噪≤−60dB」与「带音乐床」物理互斥，逼出有声书支路必须纯语音。技能包零 scripts 反而无碍（干活的是本机 ffmpeg）。"
     }
   ],
   "evaluation_snapshot": {

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>本地音频生产线 · audio-editing-automation 实跑产物</title>
+<style>
+  :root { --bg:#0f3460; --ink:#12131a; --accent:#e94560; --paper:#f6f5f2; }
+  body { margin:0; padding:32px 20px 64px; background:var(--paper); color:var(--ink);
+         font:15px/1.65 -apple-system,"PingFang SC",Helvetica,Arial,sans-serif; }
+  .wrap { max-width:900px; margin:0 auto; }
+  h1 { font-size:26px; margin:0 0 6px; }
+  .sub { color:#6b6f76; margin-bottom:26px; }
+  .card { background:#fff; border:1px solid #e2ded6; border-radius:10px; padding:18px 20px; margin:0 0 18px; }
+  .card h2 { font-size:17px; margin:0 0 4px; }
+  .tag { display:inline-block; font-size:12px; padding:2px 8px; border-radius:20px;
+         background:var(--bg); color:#fff; margin-left:8px; vertical-align:2px; }
+  .tag.red { background:var(--accent); }
+  audio { width:100%; margin-top:10px; }
+  img { width:100%; display:block; border-radius:6px; margin-top:10px; background:#000; }
+  table { width:100%; border-collapse:collapse; font-size:13.5px; margin-top:8px; }
+  th,td { text-align:right; padding:7px 8px; border-bottom:1px solid #eee; font-variant-numeric:tabular-nums; }
+  th:first-child, td:first-child { text-align:left; }
+  th { background:#faf8f4; color:#5b5f66; font-weight:600; }
+  td.ok { color:#1a7f37; font-weight:600; }
+  .note { font-size:13px; color:#6b6f76; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>本地音频生产线 <span class="tag">audio-editing-automation</span></h1>
+  <div class="sub">技能只给了 FFmpeg 配方与三档平台规格；原料全部本地合成（macOS <code>say</code> 语音 + ffmpeg <code>aevalsrc</code> 和声垫），零网络。下方数字是 ffmpeg <code>ebur128</code>/<code>astats</code> 对成品的<b>实测</b>，不是设定值。</div>
+
+  <div class="card">
+    <h2>① 播客成品 <span class="tag">MP3 192k / 44.1kHz / −16 LUFS</span></h2>
+    <div class="note">语音归一化 → 0.3 音量音乐床 ducking 混音 → 二次 loudnorm → 导出</div>
+    <audio controls preload="none" src="out/podcast.mp3"></audio>
+    <img src="out/wave_podcast.png" alt="podcast waveform">
+  </div>
+
+  <div class="card">
+    <h2>② 有声书 ACX 成品 <span class="tag">MP3 192k / peak ≤ −3dB / RMS −18~−23 / 底噪 ≤ −60dB</span></h2>
+    <div class="note">ACX 的「底噪 ≤ −60dB」与带音乐床物理冲突 → 这一档必须走纯语音支路（技能规格自己逼出来的分叉）</div>
+    <audio controls preload="none" src="out/audiobook.mp3"></audio>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>③ YouTube 成品 <span class="tag">AAC 192k / 48kHz / −14 LUFS</span></h2>
+      <audio controls preload="none" src="out/youtube.m4a"></audio>
+    </div>
+    <div class="card">
+      <h2>④ 变异对照 <span class="tag red">整链去掉 loudnorm</span></h2>
+      <div class="note">实测 I=−13.7 / TP=+0.6 dBFS（削顶）——规格闸门会直接判红，证明断言不是自我证明</div>
+      <audio controls preload="none" src="mutation/m2_no_loudnorm.mp3"></audio>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⑤ 处理前后对照</h2>
+    <div class="note">上：原始 <code>say</code> 语音（实测 −18.4 LUFS，峰值 −2.9 dBFS，处理前不达标）；下：loudnorm 之后（−16.0 LUFS）。波形像素墨量反推的增益 2.48 dB 与音频实测 2.40 dB 相差 0.08 dB —— 跨介质对账。</div>
+    <img src="out/wave_voice_raw.png" alt="raw waveform">
+    <img src="out/wave_voice_normalized.png" alt="normalized waveform">
+    <img src="out/spec_final.png" alt="final spectrum">
+  </div>
+
+  <div class="card">
+    <h2>⑥ 规格对账表（实测）</h2>
+    <table>
+      <tr><th>成品</th><th>编解码</th><th>采样率</th><th>码率</th><th>I (LUFS)</th><th>目标</th><th>True Peak</th><th>峰值上限</th><th>判定</th></tr>
+      <tr><td>podcast.mp3</td><td>mp3</td><td>44100</td><td>192.6k</td><td>−16.20</td><td>−16±0.5</td><td>−1.80</td><td>≤ −1.0</td><td class="ok">PASS</td></tr>
+      <tr><td>audiobook.mp3</td><td>mp3</td><td>44100</td><td>192.6k</td><td>−20.30</td><td>—</td><td>−5.80</td><td>≤ −3.0</td><td class="ok">PASS</td></tr>
+      <tr><td>youtube.m4a</td><td>aac</td><td>48000</td><td>191.3k</td><td>−14.20</td><td>−14±0.5</td><td>−1.50</td><td>≤ −1.5</td><td class="ok">PASS</td></tr>
+    </table>
+    <table>
+      <tr><th>ACX 附加项</th><th>实测</th><th>技能规定</th><th>判定</th></tr>
+      <tr><td>RMS level</td><td>−20.15 dB</td><td>−18 ~ −23 dB</td><td class="ok">PASS</td></tr>
+      <tr><td>Noise floor</td><td>−84.69 dBFS</td><td>≤ −60 dB</td><td class="ok">PASS</td></tr>
+      <tr><td>混音时长语义</td><td>24.243s = 语音长度（音乐 40s）</td><td>duration=first</td><td class="ok">PASS</td></tr>
+      <tr><td>LUFS 第二解析器</td><td>纯 Python BS.1770 = −16.23 / −14.24 / −15.98</td><td>与 ffmpeg ebur128 差 ≤0.05 LU</td><td class="ok">PASS</td></tr>
+    </table>
+    <div class="note">取证：42 条断言全绿，见 <code>verify.log</code>；复现 <code>python3 pipeline.py &amp;&amp; python3 verify.py</code>。</div>
+  </div>
+</div>
+</body>
+</html>

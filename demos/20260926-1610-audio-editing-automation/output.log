@@ -1,0 +1,258 @@
+Input #0, lavfi, from 'aevalsrc=0.16*sin(2*PI*220*t)+0.12*sin(2*PI*277.18*t)+0.10*sin(2*PI*329.63*t)+0.07*sin(2*PI*440*t)|0.16*sin(2*PI*220*t)+0.12*sin(2*PI*277.18*t)+0.10*sin(2*PI*329.63*t)+0.07*sin(2*PI*440*t):s=44100:d=40':
+  Duration: N/A, start: 0.000000, bitrate: 5644 kb/s
+  Stream #0:0: Audio: pcm_f64le, 44100 Hz, stereo, dbl, 5644 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (pcm_f64le (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, wav, to '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/inputs/music_raw.wav':
+  Metadata:
+    ISFT            : Lavf63.1.101
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, stereo, s16, 1411 kb/s
+    Metadata:
+      encoder         : Lavc63.1.101 pcm_s16le
+size=    3072KiB time=00:00:19.24 bitrate=1307.4kbits/s speed=37.9x elapsed=0:00:00.50    size=    6400KiB time=00:00:38.45 bitrate=1363.5kbits/s speed=37.9x elapsed=0:00:01.01    [out#0/wav @ 0x7f802a0074c0] video:0KiB audio:6891KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.001105%
+size=    6891KiB time=00:00:40.00 bitrate=1411.2kbits/s speed=37.6x elapsed=0:00:01.06    
+[aist#0:0/pcm_s16be @ 0x7f7c90714b80] Guessed Channel Layout: mono
+Input #0, aiff, from '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/inputs/voice_raw.aiff':
+  Duration: 00:00:24.24, start: 0.000000, bitrate: 354 kb/s
+  Stream #0:0: Audio: pcm_s16be (twos / 0x736F7774), 22050 Hz, mono, s16, 352 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (pcm_s16be (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, wav, to '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/voice_normalized.wav':
+  Metadata:
+    ISFT            : Lavf63.1.101
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s
+    Metadata:
+      encoder         : Lavc63.1.101 pcm_s16le
+size=    1792KiB time=00:00:21.09 bitrate= 695.7kbits/s speed=  42x elapsed=0:00:00.50    [out#0/wav @ 0x7f7c90714100] video:0KiB audio:2088KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.003648%
+size=    2088KiB time=00:00:24.30 bitrate= 704.0kbits/s speed=  43x elapsed=0:00:00.56    
+[aist#0:0/pcm_s16le @ 0x7fcf72e04880] Guessed Channel Layout: mono
+Input #0, wav, from '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/voice_normalized.wav':
+  Metadata:
+    encoder         : Lavf63.1.101
+  Duration: 00:00:24.24, bitrate: 705 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s
+[aist#1:0/pcm_s16le @ 0x7fcf7290a6c0] Guessed Channel Layout: stereo
+Input #1, wav, from '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/inputs/music_raw.wav':
+  Metadata:
+    encoder         : Lavf63.1.101
+  Duration: 00:00:40.00, bitrate: 1411 kb/s
+  Stream #1:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, stereo, s16, 1411 kb/s
+Stream mapping:
+  Stream #0:0 (pcm_s16le) -> amix
+  Stream #1:0 (pcm_s16le) -> volume:default
+  amix:default -> Stream #0:0 (pcm_s16le)
+Press [q] to stop, [?] for help
+Output #0, wav, to '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/mixed.wav':
+  Metadata:
+    ISFT            : Lavf63.1.101
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s
+    Metadata:
+      encoder         : Lavc63.1.101 pcm_s16le
+[out#0/wav @ 0x7fcf72e07f00] video:0KiB audio:2088KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.003648%
+size=    2088KiB time=00:00:24.24 bitrate= 705.6kbits/s speed=1.33e+03x elapsed=0:00:00.01    
+[aist#0:0/pcm_s16le @ 0x7fe5db70a380] Guessed Channel Layout: mono
+Input #0, wav, from '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/mixed.wav':
+  Metadata:
+    encoder         : Lavf63.1.101
+  Duration: 00:00:24.24, bitrate: 705 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (pcm_s16le (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, wav, to '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/final.wav':
+  Metadata:
+    ISFT            : Lavf63.1.101
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s
+    Metadata:
+      encoder         : Lavc63.1.101 pcm_s16le
+size=    1792KiB time=00:00:21.29 bitrate= 689.2kbits/s speed=  42x elapsed=0:00:00.50    [out#0/wav @ 0x7fe5db705680] video:0KiB audio:2088KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.003648%
+size=    2088KiB time=00:00:24.30 bitrate= 704.0kbits/s speed=44.6x elapsed=0:00:00.54    
+[aist#0:0/pcm_s16le @ 0x7fef49f08a40] Guessed Channel Layout: mono
+Input #0, wav, from '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/final.wav':
+  Metadata:
+    encoder         : Lavf63.1.101
+  Duration: 00:00:24.24, bitrate: 705 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (pcm_s16le (native) -> mp3 (libmp3lame))
+Press [q] to stop, [?] for help
+Output #0, mp3, to '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/podcast.mp3':
+  Metadata:
+    TSSE            : Lavf63.1.101
+  Stream #0:0: Audio: mp3, 44100 Hz, mono, fltp, 192 kb/s
+    Metadata:
+      encoder         : Lavc63.1.101 libmp3lame
+size=     256KiB time=00:00:18.93 bitrate= 110.7kbits/s speed=37.4x elapsed=0:00:00.50    [out#0/mp3 @ 0x7fef49f0a5c0] video:0KiB audio:569KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.114912%
+size=     570KiB time=00:00:24.24 bitrate= 192.6kbits/s speed=37.4x elapsed=0:00:00.64    
+[aist#0:0/pcm_s16le @ 0x7fb5d5b0af80] Guessed Channel Layout: mono
+Input #0, wav, from '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/voice_normalized.wav':
+  Metadata:
+    encoder         : Lavf63.1.101
+  Duration: 00:00:24.24, bitrate: 705 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (pcm_s16le (native) -> mp3 (libmp3lame))
+Press [q] to stop, [?] for help
+Output #0, mp3, to '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/audiobook.mp3':
+  Metadata:
+    TSSE            : Lavf63.1.101
+  Stream #0:0: Audio: mp3, 44100 Hz, mono, fltp, 192 kb/s
+    Metadata:
+      encoder         : Lavc63.1.101 libmp3lame
+size=     256KiB time=00:00:18.46 bitrate= 113.5kbits/s speed=36.9x elapsed=0:00:00.50    [out#0/mp3 @ 0x7fb5d4f10500] video:0KiB audio:569KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.114912%
+size=     570KiB time=00:00:24.24 bitrate= 192.6kbits/s speed=37.1x elapsed=0:00:00.65    
+[aist#0:0/pcm_s16le @ 0x7f9347904880] Guessed Channel Layout: mono
+Input #0, wav, from '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/final.wav':
+  Metadata:
+    encoder         : Lavf63.1.101
+  Duration: 00:00:24.24, bitrate: 705 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (pcm_s16le (native) -> aac (native))
+Press [q] to stop, [?] for help
+Output #0, ipod, to '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/youtube.m4a':
+  Metadata:
+    encoder         : Lavf63.1.101
+  Stream #0:0: Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, mono, fltp, 192 kb/s
+    Metadata:
+      encoder         : Lavc63.1.101 aac
+size=     256KiB time=00:00:12.71 bitrate= 165.0kbits/s speed=25.4x elapsed=0:00:00.50    [out#0/ipod @ 0x7f9347904a00] video:0KiB audio:562KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.933480%
+size=     567KiB time=00:00:24.30 bitrate= 191.3kbits/s speed=25.8x elapsed=0:00:00.94    
+[aac @ 0x7f93479081c0] Qavg: 43189.020
+[aist#0:0/pcm_s16be @ 0x7fc896004640] Guessed Channel Layout: mono
+Input #0, aiff, from '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/inputs/voice_raw.aiff':
+  Duration: 00:00:24.24, start: 0.000000, bitrate: 354 kb/s
+  Stream #0:0: Audio: pcm_s16be (twos / 0x736F7774), 22050 Hz, mono, s16, 352 kb/s
+Stream mapping:
+  Stream #0:0 (pcm_s16be) -> showwavespic:default
+  showwavespic:default -> Stream #0:0 (png)
+Press [q] to stop, [?] for help
+Output #0, image2, to '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/wave_voice_raw.png':
+  Metadata:
+    encoder         : Lavf63.1.101
+  Stream #0:0: Video: png, rgba(pc, gbr/unknown/unknown, progressive), 1400x240 [SAR 1:1 DAR 35:6], q=2-31, 200 kb/s, 1 fps, 1 tbn
+    Metadata:
+      encoder         : Lavc63.1.101 png
+[image2 @ 0x7fc896004ac0] The specified filename '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/wave_voice_raw.png' does not contain an image sequence pattern or a pattern is invalid.
+[image2 @ 0x7fc896004ac0] Use a pattern such as %03d for an image sequence or use the -update option (with -frames:v 1 if needed) to write a single image.
+[out#0/image2 @ 0x7fc896004fc0] video:6KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed=  28x elapsed=0:00:00.03    
+[aist#0:0/pcm_s16le @ 0x7f91753054c0] Guessed Channel Layout: mono
+Input #0, wav, from '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/voice_normalized.wav':
+  Metadata:
+    encoder         : Lavf63.1.101
+  Duration: 00:00:24.24, bitrate: 705 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s
+Stream mapping:
+  Stream #0:0 (pcm_s16le) -> showwavespic:default
+  showwavespic:default -> Stream #0:0 (png)
+Press [q] to stop, [?] for help
+Output #0, image2, to '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/wave_voice_normalized.png':
+  Metadata:
+    encoder         : Lavf63.1.101
+  Stream #0:0: Video: png, rgba(pc, gbr/unknown/unknown, progressive), 1400x240 [SAR 1:1 DAR 35:6], q=2-31, 200 kb/s, 1 fps, 1 tbn
+    Metadata:
+      encoder         : Lavc63.1.101 png
+[image2 @ 0x7f9175304fc0] The specified filename '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/wave_voice_normalized.png' does not contain an image sequence pattern or a pattern is invalid.
+[image2 @ 0x7f9175304fc0] Use a pattern such as %03d for an image sequence or use the -update option (with -frames:v 1 if needed) to write a single image.
+[out#0/image2 @ 0x7f9175305300] video:7KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed=26.6x elapsed=0:00:00.03    
+[aist#0:0/pcm_s16le @ 0x7fc2d2907b00] Guessed Channel Layout: mono
+Input #0, wav, from '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/mixed.wav':
+  Metadata:
+    encoder         : Lavf63.1.101
+  Duration: 00:00:24.24, bitrate: 705 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s
+Stream mapping:
+  Stream #0:0 (pcm_s16le) -> showwavespic:default
+  showwavespic:default -> Stream #0:0 (png)
+Press [q] to stop, [?] for help
+Output #0, image2, to '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/wave_mixed.png':
+  Metadata:
+    encoder         : Lavf63.1.101
+  Stream #0:0: Video: png, rgba(pc, gbr/unknown/unknown, progressive), 1400x240 [SAR 1:1 DAR 35:6], q=2-31, 200 kb/s, 1 fps, 1 tbn
+    Metadata:
+      encoder         : Lavc63.1.101 png
+[image2 @ 0x7fc2d2905880] The specified filename '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/wave_mixed.png' does not contain an image sequence pattern or a pattern is invalid.
+[image2 @ 0x7fc2d2905880] Use a pattern such as %03d for an image sequence or use the -update option (with -frames:v 1 if needed) to write a single image.
+[out#0/image2 @ 0x7fc2d2907980] video:7KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed=26.1x elapsed=0:00:00.03    
+Input #0, mp3, from '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/podcast.mp3':
+  Metadata:
+    encoder         : Lavf63.1.101
+  Duration: 00:00:24.24, start: 0.025057, bitrate: 192 kb/s
+  Stream #0:0: Audio: mp3 (mp3float), 44100 Hz, mono, fltp, 192 kb/s, start 0.025057
+Stream mapping:
+  Stream #0:0 (mp3float) -> showwavespic:default
+  showwavespic:default -> Stream #0:0 (png)
+Press [q] to stop, [?] for help
+Output #0, image2, to '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/wave_podcast.png':
+  Metadata:
+    encoder         : Lavf63.1.101
+  Stream #0:0: Video: png, rgba(pc, gbr/unknown/unknown, progressive), 1400x240 [SAR 1:1 DAR 35:6], q=2-31, 200 kb/s, 1 fps, 1 tbn
+    Metadata:
+      encoder         : Lavc63.1.101 png
+[image2 @ 0x7f9603122780] The specified filename '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/wave_podcast.png' does not contain an image sequence pattern or a pattern is invalid.
+[image2 @ 0x7f9603122780] Use a pattern such as %03d for an image sequence or use the -update option (with -frames:v 1 if needed) to write a single image.
+[out#0/image2 @ 0x7f9603116600] video:7KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed=16.7x elapsed=0:00:00.05    
+[aist#0:0/pcm_s16le @ 0x7f7851f15ec0] Guessed Channel Layout: mono
+Input #0, wav, from '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/final.wav':
+  Metadata:
+    encoder         : Lavf63.1.101
+  Duration: 00:00:24.24, bitrate: 705 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s
+Stream mapping:
+  Stream #0:0 (pcm_s16le) -> showspectrum:default
+  showspectrum:default -> Stream #0:0 (png)
+Press [q] to stop, [?] for help
+Output #0, image2, to '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/spec_final.png':
+  Metadata:
+    encoder         : Lavf63.1.101
+  Stream #0:0: Video: png, rgb24(pc, gbr/unknown/unknown, progressive), 1400x420 [SAR 1:1 DAR 10:3], q=2-31, 200 kb/s, 52.50 fps, 52.50 tbn
+    Metadata:
+      encoder         : Lavc63.1.101 png
+[image2 @ 0x7f7851f159c0] The specified filename '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/spec_final.png' does not contain an image sequence pattern or a pattern is invalid.
+[image2 @ 0x7f7851f159c0] Use a pattern such as %03d for an image sequence or use the -update option (with -frames:v 1 if needed) to write a single image.
+[out#0/image2 @ 0x7f7851f181c0] video:4KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:00.01 bitrate=N/A speed=0.406x elapsed=0:00:00.04    
+Input #0, lavfi, from 'anullsrc=r=44100:cl=mono:d=24':
+  Duration: N/A, start: 0.000000, bitrate: 352 kb/s
+  Stream #0:0: Audio: pcm_u8, 44100 Hz, mono, u8, 352 kb/s
+Stream mapping:
+  Stream #0:0 (pcm_u8) -> showwavespic:default
+  showwavespic:default -> Stream #0:0 (png)
+Press [q] to stop, [?] for help
+Output #0, image2, to '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/wave_silence_ref.png':
+  Metadata:
+    encoder         : Lavf63.1.101
+  Stream #0:0: Video: png, rgba(pc, gbr/unknown/unknown, progressive), 1400x240 [SAR 1:1 DAR 35:6], q=2-31, 200 kb/s, 1 fps, 1 tbn
+    Metadata:
+      encoder         : Lavc63.1.101 png
+[image2 @ 0x7f8355a05740] The specified filename '/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/wave_silence_ref.png' does not contain an image sequence pattern or a pattern is invalid.
+[image2 @ 0x7f8355a05740] Use a pattern such as %03d for an image sequence or use the -update option (with -frames:v 1 if needed) to write a single image.
+[out#0/image2 @ 0x7f8355a054c0] video:2KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed=23.2x elapsed=0:00:00.04    
+$ say -v ?
+$ say -v Ting-Ting -r 185 -o /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/inputs/voice_raw.aiff 欢迎收听《每半小时》第二十二期。今天我们聊一件很小但很有用的事：怎样把一段随手录的语音，加上背景音乐，自动处理成符合播客、有声书和视频平台各自规范的成品。整个过程不需要任何联网服务，全部在本地一条命令完成。
+$ ffmpeg -hide_banner -y -f lavfi -i aevalsrc=0.16*sin(2*PI*220*t)+0.12*sin(2*PI*277.18*t)+0.10*sin(2*PI*329.63*t)+0.07*sin(2*PI*440*t)|0.16*sin(2*PI*220*t)+0.12*sin(2*PI*277.18*t)+0.10*sin(2*PI*329.63*t)+0.07*sin(2*PI*440*t):s=44100:d=40 -af tremolo=f=0.25:d=0.35 /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/inputs/music_raw.wav
+$ ffmpeg -hide_banner -y -i /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/inputs/voice_raw.aiff -af loudnorm=I=-16:TP=-1.5:LRA=11:print_format=json -f null -
+$ ffmpeg -hide_banner -y -i /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/inputs/voice_raw.aiff -af loudnorm=I=-16:TP=-1.5:LRA=11:measured_I=-18.47:measured_TP=-2.95:measured_LRA=1.70:measured_thresh=-28.60:offset=-0.03:linear=true -ar 44100 /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/voice_normalized.wav
+$ ffmpeg -hide_banner -y -i /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/voice_normalized.wav -i /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/inputs/music_raw.wav -filter_complex [1:a]volume=0.3[bg];[0:a][bg]amix=inputs=2:duration=first:normalize=0 -ar 44100 /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/mixed.wav
+$ ffmpeg -hide_banner -y -i /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/mixed.wav -af loudnorm=I=-16:TP=-1.5:LRA=11:print_format=json -f null -
+$ ffmpeg -hide_banner -y -i /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/mixed.wav -af loudnorm=I=-16:TP=-1.5:LRA=11:measured_I=-15.71:measured_TP=-0.42:measured_LRA=1.20:measured_thresh=-25.76:offset=0.09:linear=true -ar 44100 /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/final.wav
+$ ffmpeg -hide_banner -y -i /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/final.wav -af loudnorm=I=-16:TP=-1.5:LRA=11:print_format=json -f null -
+$ ffmpeg -hide_banner -y -i /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/final.wav -af loudnorm=I=-16:TP=-1.0:LRA=11:measured_I=-16.01:measured_TP=-1.50:measured_LRA=1.00:measured_thresh=-26.06:offset=0.08:linear=true -ar 44100 -c:a libmp3lame -b:a 192k /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/podcast.mp3
+$ ffmpeg -hide_banner -y -i /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/voice_normalized.wav -af loudnorm=I=-16:TP=-1.5:LRA=11:print_format=json -f null -
+$ ffmpeg -hide_banner -y -i /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/voice_normalized.wav -af loudnorm=I=-20:TP=-3.0:LRA=11:measured_I=-15.97:measured_TP=-1.50:measured_LRA=1.40:measured_thresh=-26.10:offset=0.08:linear=true -ar 44100 -c:a libmp3lame -b:a 192k /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/audiobook.mp3
+$ ffmpeg -hide_banner -y -i /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/final.wav -af loudnorm=I=-16:TP=-1.5:LRA=11:print_format=json -f null -
+$ ffmpeg -hide_banner -y -i /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/final.wav -af loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=-16.01:measured_TP=-1.50:measured_LRA=1.00:measured_thresh=-26.06:offset=0.08:linear=true -ar 48000 -c:a aac -b:a 192k /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/youtube.m4a
+$ ffmpeg -hide_banner -y -i /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/inputs/voice_raw.aiff -filter_complex [0:a]showwavespic=s=1400x240:colors=#0f3460|#e94560:split_channels=1 -frames:v 1 /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/wave_voice_raw.png
+$ ffmpeg -hide_banner -y -i /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/voice_normalized.wav -filter_complex [0:a]showwavespic=s=1400x240:colors=#0f3460|#e94560:split_channels=1 -frames:v 1 /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/wave_voice_normalized.png
+$ ffmpeg -hide_banner -y -i /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/mixed.wav -filter_complex [0:a]showwavespic=s=1400x240:colors=#0f3460|#e94560:split_channels=1 -frames:v 1 /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/wave_mixed.png
+$ ffmpeg -hide_banner -y -i /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/podcast.mp3 -filter_complex [0:a]showwavespic=s=1400x240:colors=#0f3460|#e94560:split_channels=1 -frames:v 1 /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/wave_podcast.png
+$ ffmpeg -hide_banner -y -i /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/final.wav -lavfi showspectrum=s=1400x420:scale=log -frames:v 1 /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/out/spec_final.png
+$ ffmpeg -hide_banner -y -f lavfi -i anullsrc=r=44100:cl=mono:d=24 -filter_complex [0:a]showwavespic=s=1400x240:colors=#0f3460|#e94560:split_channels=1 -frames:v 1 /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1610-audio-editing-automation/build/wave_silence_ref.png
+PIPELINE OK

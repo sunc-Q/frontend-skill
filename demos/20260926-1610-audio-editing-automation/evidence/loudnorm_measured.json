@@ -1,0 +1,26 @@
+{
+  "voice_raw_pass1": {
+    "input_i": "-18.47",
+    "input_tp": "-2.95",
+    "input_lra": "1.70",
+    "input_thresh": "-28.60",
+    "output_i": "-15.97",
+    "output_tp": "-1.50",
+    "output_lra": "1.40",
+    "output_thresh": "-26.10",
+    "normalization_type": "dynamic",
+    "target_offset": "-0.03"
+  },
+  "mixed_pass1": {
+    "input_i": "-15.71",
+    "input_tp": "-0.42",
+    "input_lra": "1.20",
+    "input_thresh": "-25.76",
+    "output_i": "-16.09",
+    "output_tp": "-1.50",
+    "output_lra": "1.00",
+    "output_thresh": "-26.14",
+    "normalization_type": "dynamic",
+    "target_offset": "0.09"
+  }
+}
