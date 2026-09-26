@@ -1,852 +1,940 @@
 {
- "updated": "2026-09-26T13:05+08:00",
- "tried": [
-  {
-   "skill": "drafter",
-   "source": "Qoder 官方扩展市场 official79532076 (publisher yofine, tags OfficialSelection/qoder-pro)",
-   "skill_path": "/Users/apple/.qoder-cn/skills/drafter/SKILL.md",
-   "task": "把本任务自身的「三实验室定时流水线」画成一张 Flat Engineering Blueprint 风格一页图（3 条 cron 时间槽 + 10 步执行流 + 安全闸门 + 文件化记忆台账 + 去重契约 + 分支隔离）",
-   "verdict": "留用。纯提示词/样式规范型，无脚本无网络，安全闸门直接通过；风格约束具体到 CSS 变量级 + 禁止清单级，产出确实像工程图纸而非营销页；硬性要求单文件自包含禁 CDN，很适合无人值守跑。局限：不含数据→图形的映射逻辑，数据可视化仍需另配图表库技能。",
-   "time": "2026-09-25T17:23+08:00",
-   "artifact": "demos/20260925-1723-drafter/skill-lab-pipeline-blueprint.html",
-   "report": "reports/20260925-1723-drafter.md",
-   "installed_by_this_task": [
-    "drafter (market id official79532076, canonicalName drafter-diagram) -> /Users/apple/.qoder-cn/skills/drafter/ —— 经 install_extension 安装；该条目不暴露可 clone 的公开仓库，只能走 MCP 安装，故未落在 LAB/.skills/"
-   ]
-  },
-  {
-   "skill": "ascii-project-dashboard",
-   "source": "Qoder 官方扩展市场 official_qzXG5ekf (publisher fabioc-aloha, tags 空=非镜像条目)",
-   "skill_path": "/Users/apple/.qoder-cn/skills/ascii-project-dashboard/SKILL.md",
-   "task": "读三实验室 state/state.json（只读）现场算 4 条泳道（DISCOVER/BUILD/CLEANUP/DELIVER），一次产出 Pattern A 横向泳道 + Pattern B 窄终端 + Pattern C 里程碑时间线 + Summary 框 + 跨实验室 Backlog 的纯文本看板",
-   "verdict": "留用。纯文本看板零依赖零渲染、可进 git diff；▓░ 规格与 Anti-Patterns（禁硬编码百分比）具体可执行，脚本一跑即自证。缺陷：宣称的 muscle script 未随包提供→无实现层，且「10 chars=10 chars」在中文/emoji 下崩（须自带 wcwidth 补位）。",
-   "time": "2026-09-25T17:37+08:00",
-   "artifact": "demos/20260925-1737-ascii-project-dashboard/dashboard.txt",
-   "report": "reports/20260925-1737-ascii-project-dashboard.md",
-   "installed_by_this_task": [
-    "ascii-project-dashboard (market id official_qzXG5ekf) -> /Users/apple/.qoder-cn/skills/ascii-project-dashboard/ —— 经 install_extension 安装，市场条目不暴露可 clone 仓库，无法落在 LAB/.skills/"
-   ]
-  },
-  {
-   "skill": "algorithmic-art",
-   "source": "GitHub 外部仓库 git@github.com:anthropics/skills.git (main) -> skills/algorithmic-art —— 本任务首次走通「来源②」SSH shallow clone",
-   "skill_path": "LAB/.skills/anthropic-skills/skills/algorithmic-art/SKILL.md",
-   "task": "按技能两步流程（先写算法哲学宣言，再用 p5.js 实现）为本流水线本身生成一幅「Cron Organicism 定时有机主义」：三条水脉=三个实验室的 cron 时间槽，沿 Perlin 湍流+沿 y 的周期余弦节律合成场漂流 120 轮沉积成密度图；Cadence Strength 滑杆=节律绑定强度（0 解散/1 钉死时区带）；默认 seed 20260925",
-   "verdict": "留用。约束最硬、承诺最可验的生成艺术技能：「同种子必得同图」由 randomSeed/noiseSeed+静态绘制保证，本轮用像素哈希逐条证伪通过（regenerate 同哈希 / nextSeed 变 / previousSeed 精确复原 / reset 双双复原）；模板+品牌+Seed 导航写死，省去每次重做 UI。局限：(1) 模板默认走 cdnjs+Google Fonts，本机 TLS 重置→不改内联就白屏；(2) 重绘 ~4s(4800粒×120轮)，批量参数搜索要先降 passes；(3) SKILL.md 要求的 Download PNG 键在自带模板里缺失（文档与模板不一致），且沙箱浏览器不落盘只能验到调用链。",
-   "time": "2026-09-25T18:10+08:00",
-   "artifact": "demos/20260925-1810-algorithmic-art/art-index.html",
-   "report": "reports/20260925-1810-algorithmic-art.md",
-   "installed_by_this_task": []
-  },
-  {
-   "skill": "SQLite-Database-Expert",
-   "source": "来源③本机已装：~/.qoder-cn/skills/SQLite-Database-Expert/SKILL.md (v2.0.0, 963 行, 无脚本无网络) —— 本轮零安装零联网",
-   "skill_path": "/Users/apple/.qoder-cn/skills/SQLite-Database-Expert/SKILL.md",
-   "task": "按它的设计意图（本地数据持久化 + FTS5 全文检索 + TDD 验证）把本流水线自己的台账建成可检索库：runs 表←state.json(tried×runs 3 行)、notes 表←work-log+reports 逐行 181 行、_migrations 迁移表 + 2 个 up/down、两张并列 FTS5 外部内容表(notes_u61 默认 unicode61 / notes_tri trigram) 各带 ai/ad/au 触发器，再产出 query.mjs 检索 CLI（bm25 + highlight + 源文件:行号）",
-   "verdict": "留用。价值不在代码样板（Rust/Python/@libsql-client 三套在本机一套都跑不了：无 pip、无 better-sqlite3、sqlite3 CLI 无 FTS5），而在**可证伪的工程纪律**：14/14 断言全 PASS 并给出查询计划/触发器实验/注入对照/FK 开关/事务计时的真实数字，其中两条被证伪夸大或补全：(a) §7.1「逐行提交慢 100x」实测 108.6ms vs 8.2ms = 13.2x（node:sqlite 根本没有逐行 COMMIT 开关，100x 无从复现）；(b) 它建 FTS5 表**只字不提 tokenizer**，实测默认 unicode61 对中文是「整段一个 token」→ 静默漏检（'安全闸门' LIKE=4 MATCH=3，漏的是 '## 安全闸门结论'；'ab' LIKE=21 MATCH=0），trigram 能补但 <3 字符失效（'安全' 两字词 0 命中）。缺陷：§0 强制必读的 references/advanced-patterns.md 与 references/security-examples.md **包内根本不存在**（死链，第 2 轮 muscle script 同类问题）；frontmatter risk_level HIGH 与正文 Risk Level MEDIUM 自相矛盾。",
-   "time": "2026-09-25T18:42+08:00",
-   "artifact": "demos/20260925-1845-sqlite-database-expert/lab.db",
-   "report": "reports/20260925-1845-sqlite-database-expert.md",
-   "installed_by_this_task": []
-  },
-  {
-   "skill": "ppt-generator",
-   "source": "Qoder 官方扩展市场 official_79e7IlJQ（canonicalName svg-ppt-generator，publisher '-'，tags 含 origin:skillatlas）→ 经 install_extension 装到 ~/.qoder-cn/skills/ppt-generator/",
-   "skill_path": "/Users/apple/.qoder-cn/skills/ppt-generator/SKILL.md",
-   "task": "按它自己的 pixel_retro 版式给本流水线做一页 5 张幻灯片的发布稿：封面(cron 控制台/PRESS START) + 目录(4 卡带重要性标签) + 真实数据图(前四轮耗时 420/600/1140/780s × 900s 预算线) + 手排表格(四种产物×来源×被证伪的结论) + GAME SAVED 结尾；再用它的 svg_to_pptx 转成原生可编辑 .pptx",
-   "verdict": "留用。本实验室第一个真·二进制办公文档产物，且『可编辑』可验穿：sp=211 / pic=0 / ppt-media 为空 / 中文标题与 420·1140·'5 / 5' 都在 <a:t> 里 / 柱体高度 [115.3,137.9,300,205.3]px 与秒数成正比 → 13/13 独立断言 + 技能自带 checker 5/5。色板规范具体到 hex、SVG 约束可机检。代价：Interaction Flow 强制 3 轮人工确认（无人值守必须自答）；依赖 python-pptx；**它自己的 checker 不查它 design_spec §II 定的 60px 边距**——实测有行右端 1248px 越安全区仍判 [OK]，属假通过，务必再叠 getBBox 一层。",
-   "time": "2026-09-25T19:06+08:00",
-   "artifact": "demos/20260925-1906-ppt-generator/skill-showcase-pixel-retro.pptx（48873B，双击可开可改字）+ svg_slides/01..05.svg",
-   "report": "reports/20260925-1906-ppt-generator.md",
-   "installed_by_this_task": [
-    "ppt-generator (market id official_79e7IlJQ / canonicalName svg-ppt-generator) -> /Users/apple/.qoder-cn/skills/ppt-generator/ —— 经 install_extension 安装；市场条目不暴露可 clone 仓库，无法落在 LAB/.skills/。python-pptx 1.0.2 用 python3 -m pip install --target 落在 LAB/.tmp/pylibs（gitignored，收尾已删），未污染全局 site-packages。"
-   ]
-  },
-  {
-   "skill": "graphic-gif",
-   "source": "Qoder 官方扩展市场 official_nhsK8Qra (publisher Varnan-Tech, tags 空=非镜像条目)",
-   "skill_path": "/Users/apple/.qoder-cn/skills/graphic-gif/SKILL.md",
-   "task": "css-animated 路径：counter 动画类型 + terminal 风格预设，把本流水线第 6 轮做成 800x800 / 4.0s@12fps / 48 帧循环 GIF（大数字 0→6、45% 关键帧淡入 stats、扫描线签名、块光标）",
-   "verdict": "留用（当规格书用，别当工具用）。Rule 5/6/9（WAAPI 逐帧寻址、不捕获 t=duration、stagger 烘焙进关键帧）三条写对了且可证伪，照做后 26 条断言一次全过；自带 12fps/4s 量级与 email<500KB/social<3MB 体积门槛。前提：包内只有 SKILL.md，导出脚本/动画类型库/风格预设 token 表三项全缺，必须自带实现层。",
-   "time": "2026-09-25T19:50+08:00",
-   "artifact": "demos/20260925-1950-graphic-gif/animation.gif",
-   "report": "reports/20260925-1950-graphic-gif.md",
-   "installed_by_this_task": [
-    "graphic-gif (market id official_nhsK8Qra) -> /Users/apple/.qoder-cn/skills/graphic-gif/ 经 install_extension 安装（包内仅 12225B 的 SKILL.md，无可 clone 仓库）；playwright-core 装在 demos 内并已收尾删除（未下载任何浏览器）"
-   ]
-  },
-  {
-   "skill": "build-game",
-   "source": "Qoder 官方扩展市场 official_LaiVUmnK（canonicalName build-game，publisher '-'，tags 含 origin:skillatlas）→ 经 install_extension 装到 ~/.qoder-cn/skills/build-game/",
-   "skill_path": "~/.qoder-cn/skills/build-game/SKILL.md（430 行）+ reference/ 6 篇 4447 行 + scripts/serve.sh",
-   "task": "第三人称 3D 网页游戏《冰原拾光》：低多边形北极狐 60 秒拾取 8 枚冰晶，3 只霜灵三态 FSM 巡逻/追击/击退，触碰吞 5 秒，标题→玩法→胜/败三段式 + localStorage 最高分",
-   "verdict": "留用（强推荐）：7 轮里唯一把「可验证规格」写进 SKILL.md 的技能——强制调试钩子 render_game_to_text()/advanceTime(ms) 让无人值守代理能不看像素就断言状态机，Phase 4 每条强制项（相机相对 WASD / exposure≥1.0 / vignette≤0.3 / 灯≥4 / 禁近黑大表面）均可量化复核。23 条断言 23 PASS / 0 FAIL。",
-   "time": "2026-09-25T23:32+08:00",
-   "artifact": "demos/20260925-2332-build-game/frostlight-gather.html（750,620B 单文件可玩 3D 游戏，three r160 + EffectComposer/UnrealBloom/自定义调色/FXAA/OutputPass 全内联，零外链，file:// 双击即玩）+ verify.mjs/output.log（23 断言）+ shots/ 3 张 1280x720 真截图 + render_game_to_text.txt",
-   "report": "reports/20260925-2332-build-game.md",
-   "installed_by_this_task": [
-    "build-game → ~/.qoder-cn/skills/build-game/（mcp__extension-market__install_extension，Full Access 未弹确认）"
-   ]
-  },
-  {
-   "skill": "sec-audit-cn",
-   "source": "来源③本机已装：~/.qoder-cn/skills/sec-audit-cn/SKILL.md（v1.0.0，420 行，find 实测包内仅 SKILL.md+skill.json+_meta.json，零脚本零网络）",
-   "skill_path": "/Users/apple/.qoder-cn/skills/sec-audit-cn/SKILL.md",
-   "task": "把第 1–7 轮本流水线自己的全部交付物当被审计代码：38 个源文件/2.10MB（含 2 个 750KB+ 单文件 HTML）+ 36 个第三方 SKILL.md 供应链面 → 13 条静态规则 + 3 组黑盒 PoC → 按它的分级格式出审计报告并交付已验证的修复件",
-   "verdict": "留用。8 轮里唯一「产物=结论而非文件形态」的技能，纯清单/方法论零依赖零联网，安全闸门秒过，格式（严重/高/中/低+[A0x]+文件+修复+风险）可直接落成文档；审出两条靠看效果永远发现不了的缺陷（FTS5 查询语法注入、内联第三方库无可机检来源）。局限：它不带扫描器，命中全靠自写规则——本轮 31 命中里 18 条误报（58%），必须自补「分级前先证伪」这一步，否则报告就是误报堆。",
-   "time": "2026-09-26T00:00+08:00",
-   "artifact": "demos/20260926-0000-sec-audit-cn/SECURITY-AUDIT.md",
-   "report": "reports/20260926-0000-sec-audit-cn.md",
-   "installed_by_this_task": []
-  },
-  {
-   "skill": "xlsx",
-   "source": "来源②本地已有：git@github.com:anthropics/skills.git（第 3 轮 shallow clone）→ LAB/.skills/anthropic-skills/skills/xlsx —— 本轮技能包零下载零安装",
-   "skill_path": "LAB/.skills/anthropic-skills/skills/xlsx/SKILL.md",
-   "task": "按它的设计意图（交付物必须是 .xlsx 且用公式而非写死结果）把本流水线 8 轮台账做成可重算工作簿：README(图例/口径/编辑指引) + Ledger(8 轮×17 列) + Metrics(5 组全公式指标块 + 原生柱状图)，并落实它的 Arial/蓝黑绿配色/百分比存分数/年份存文本/零显示为 -/每条假设加批注/只用 Excel-2007 函数/禁 XLOOKUP-FILTER-SORT-UNIQUE/不用 _xlfn 前缀",
-   "verdict": "留用。「交付物是表格或模型」这一类里当前最强的一份规范：99 行把可交付工作簿的纪律写全且几乎每条可证伪。**最值的一条救回了真缺陷**：=H/60 遇空单元格不报错而静默返回 0.0，IFERROR 根本不触发，会让模型带着「平均 0.0 分钟」的合法假数交付 → 必须 =IF(H=\"\",\"\",H/60) 守卫。代价与局限：(1) 它的强制闸门 scripts/recalc.py 308 行 100% 绑定 LibreOffice，本机无 soffice → 拿不到它自己的 status/total_errors JSON，本轮改用纯 Python 引擎 formulas 1.3.4 顶替（49 断言全绿），但第三方引擎不等于 Excel/LibreOffice；(2) 它的 _xlfn. 前缀清单是**运行时特定**（E2/E3 实测：本引擎里 XLOOKUP 正常返回 'y'、裸 TEXTJOIN 正常、加 _xlfn 前缀反而解析不了，与它对 Excel 生态的告诫完全相反）；(3) scripts/office/validate.py 只有 docx/pptx/redlining 三个 validator，**对 xlsx 无覆盖**，「跑它的 checker」这一步对本技能是空的。",
-   "time": "2026-09-26T10:12+08:00",
-   "artifact": "demos/20260926-0956-xlsx/skill-showcase-ledger.xlsx（15,360B，3 sheet / 98 个活公式 / 1 张原生 chart1.xml 柱状图 / 25 条批注，双击 Numbers-Excel-WPS 可开并可改输入看整表重算）+ sheet-preview.txt（公式→引擎值逐行可读版，无表格软件也能看）+ output.log + measure.py/build_xlsx.py/verify_recalc.py/facts.json",
-   "report": "reports/20260926-0956-xlsx.md",
-   "installed_by_this_task": []
-  },
-  {
-   "skill": "golang-testing",
-   "source": "来源③本机已装：~/.qoder-cn/skills/golang-testing/SKILL.md（v1.0.1，author Joseph OBrien，427 行 / 9,963B，包内仅此一个文件，无 scripts/ 无 references/）",
-   "skill_path": "/Users/apple/.qoder-cn/skills/golang-testing/SKILL.md",
-   "task": "按它的设计意图（表驱动 / 接口 mock / TestMain+t.Helper / build-tag 集成测试 / 子基准 / coverage）给一个纯逻辑包做完整测试套件：迷宫生成器 maze.go（随机 DFS 回溯 + BFS 求解 + ASCII 渲染，Rand 接口注入、自带 LCG 不依赖 math/rand）+ 7 测试 2 基准 + cmd/maze CLI + 3 个 golden 文件，产出 24x12 可解迷宫与 go test/cover/bench 真实日志",
-   "verdict": "留用（推荐）。少见的「规范直接可证伪」型技能：它给的每个模式照抄就能跑，产物本身即证据（真 go test 日志 + 官方 go tool cover -html 可打开页面），纯 stdlib 零网络零依赖。**局限**：(1) 纯知识技能、无实现层，没有自带 checker/脚本，「跑它自带的闸门」这一环不存在，验证得自己设计（本轮自建两组变异测试补这一层）；(2) 推荐的 testify/testcontainers 在本环境要额外依赖（Docker 未探测），无人值守默认走 stdlib；(3) Best Practice 第 2 条 'One assertion per test' 与它自己的示例（一个 t.Run 里断多条）自相矛盾。",
-   "time": "2026-09-26T10:21+08:00",
-   "artifact": "demos/20260926-1030-golang-testing/maze-solved.txt（1,312B ASCII 迷宫，24x12 格 / 49x25 网格 / 解 225 步）+ coverage.html（12,595B 逐行着色覆盖率页）+ output.log（9,943B）",
-   "report": "reports/20260926-1030-golang-testing.md",
-   "installed_by_this_task": []
-  },
-  {
-   "skill": "webapp-testing",
-   "source": "来源②本地已有：git@github.com:anthropics/skills.git（第3轮 shallow+sparse clone）→ LAB/.skills/anthropic-skills/skills/webapp-testing —— 本轮技能包零下载零安装，未碰全局技能目录",
-   "skill_path": "LAB/.skills/anthropic-skills/skills/webapp-testing/SKILL.md（95 行 + scripts/with_server.py 105 行 + examples/ 3 个 .py）",
-   "task": "按它自己的决策树与 reconnaissance-then-action，用自带 scripts/with_server.py（先单服务、后双服务）把第3轮 algorithmic-art 产物 art-index.html 经 HTTP 打开做端到端回归：现场发现控件（5 range/3 color/1 number/6 button，断言不写死默认值）→ 16 条断言读画布像素五元组(ink/通道和/uniq/强红/强蓝) → 真按钮点击与 input/change 事件派发 → expect_download 捕获 p5 saveCanvas 的 PNG 落盘 → 双变异自证（nextSeed 算术清零 / updateParam 删 initializeSystem）",
-   "verdict": "留用（推荐）。前 10 轮反复踩「市场镜像只搬 SKILL.md、丢 scripts/references」，它是**第一个真带可用实现层脚本**的技能：with_server.py --help 黑盒照抄即跑通，单服务与双服务（--server/--port 重复）都可靠，就绪轮询真的挡在命令前，客户端脚本中途崩（SyntaxError）时 finally 仍把 2 个服务停干净（lsof 复核零残留）→ 值得直接吸收进后续任何「起本地服务再验」的轮次（golang-gin-api / pm-dashboard 候选）。16 断言里 golden 15 PASS / 1 FAIL，**唯一 FAIL 是一条只有 HTTP 服务路径才暴露、且前 10 轮 file:// 与纯代码审查看不见的真缺陷**：产物无 <link rel=\"icon\"> → Chrome 自取 /favicon.ico 吃 404（靠 http.server 自己的访问日志定位），一行 data: 修复已 A/B 验证；触发条件是**下载导航而非页面加载**（负对照只加载时 0 error）。两个变异体把故障**局限在正确断言**：mutant_seed 红 G8/G9（+G10 级联），mutant_wiring 红 G11a/G11b/G14 而 **G7/G8/G9 仍绿**；截图层铁证＝mutant_wiring 的 02→03 两张 PNG **sha256 完全相同**(82592a41…) 而 golden 两者不同 ⇒ 拖了滑杆画面根本没重绘。代价：(1) 100% 绑定 Python Playwright，无 Node 降级路径；(2) examples 三个样例（34/39/32 行）全是 file:// 或最小单页，**没有一个示范 console/网络卫生断言或截图比对**，断言层仍要自己补；(3) with_server.py 把服务器 stdout/stderr 接 PIPE 却**从不读取** → http.server 访问日志（本轮恰恰靠它定位 404）被吞，要拿日志只能另起服务自留。",
-   "time": "2026-09-26T10:50+08:00",
-   "artifact": "demos/20260926-1037-webapp-testing/download-golden.png（2,023,119B / 1200x1200 真 PNG，由页面自己的 downloadPNG() 经 Playwright 捕获落盘，sha256 9740465f…66e7513，四次运行同摘要）+ shots/ 4 张 golden 画布截图 + shots-mutant-wiring/ 2 张（同哈希铁证）+ output.log（三套 16 断言原文 + 服务端 404 日志 + A/B + 哈希对照）+ result-*.json ×3",
-   "report": "reports/20260926-1037-webapp-testing.md",
-   "installed_by_this_task": []
-  },
-  {
-   "skill": "docx",
-   "source": "来源②本地已有：git@github.com:anthropics/skills.git（第3轮 shallow+sparse clone）→ LAB/.skills/anthropic-skills/skills/docx —— 本轮技能包零下载零安装，未碰全局技能目录；依赖 docx(npm 9.7.2, npmmirror) + defusedxml/lxml/python-docx(pip --target LAB/.tmp/pylibs, 清华失效改阿里源)",
-   "skill_path": "LAB/.skills/anthropic-skills/skills/docx/SKILL.md（91 行 + scripts/ 21 文件 + 1.2MB XSD）",
-   "task": "按它设计意图做一份真 Word 交付物：docx-js 建纪要（TOC 域/页码域/双宽度表格/内嵌 PNG/点前导）→ 它的 comment.py 打 3 条批注（含 1 条回复线程）→ 按「Editing existing documents」手工写 <w:ins>/<w:del> 做 2 处修订 → 再用自补的 fix_styles.py 修 docx-js 留下的悬空样式表",
-   "verdict": "留用（推荐）。第 12 轮里实现层最完整（21 个脚本真在包里）且每条 gotcha 可证伪；真正值得留的是 comment.py（6 个互链部件一次写对）与 validate.py --author（能抓 <w:t> 混进 <w:del>）。但它强制的 soffice+pdftoppm+pandoc 目视闭环在本机三缺一律不可用，必须换成「OOXML 断言 + 第二解析器回读 + 文本预览」三件套",
-   "time": "2026-09-26T11:05+08:00",
-   "artifact": "demos/20260926-1105-docx/skill-showcase-review.docx（52,131B，含 3 条批注线程 + 2 组修订 + TOC/PAGE 域 + 1 张内嵌图表；对照件 base.docx 48,557B）",
-   "report": "reports/20260926-1105-docx.md",
-   "installed_by_this_task": []
-  },
-  {
-   "skill": "pdf",
-   "source": "来源②本地已有：git@github.com:anthropics/skills.git（第3轮 clone）→ LAB/.skills/anthropic-skills/skills/pdf —— 本轮技能包零下载零安装",
-   "skill_path": "LAB/.skills/anthropic-skills/skills/pdf/SKILL.md（315 行 + forms.md 294 + reference.md 611 + scripts/ 8 个表单脚本）",
-   "task": "按它的设计意图（reportlab 创建 + pypdf 水印/加密 + pdfplumber 抽取回读）把前 12 轮台账做成中文 3 页 PDF 报告：概览+12 行表格 / canvas 手绘条形图（11 个计时轮次）/ 结论页；再 merge 半透明红色 38° 斜排水印、再 user/owner 双口令加密",
-   "verdict": "留用（推荐）。24 断言 24 PASS / 0 FAIL + 3 条负对照证明断言可红；历轮第一个「可打印文档」形态产物，reportlab+pdfplumber+pypdf 三件套在 py3.14 无 LibreOffice/poppler 机器上全通路，中文渲染被 qlmanage 真出图肉眼证实。环境钥匙：pdfplumber/pdfminer.six 用 --no-deps 绕开 pypdfium2/cryptography 无 wheel 的死点；渲染验证用 macOS 自带 qlmanage -t 零安装顶替。技能缺陷：命令行工具链（pdftotext/qpdf/pdftk）本机全缺；forms.md 表单路线依赖装不上的 pypdfium2 → 未验。",
-   "time": "2026-09-26T11:35+08:00",
-   "artifact": "demos/20260926-1135-pdf/report-watermarked.pdf（120,885B 主产物）+ report-base.pdf 99,100B + report-encrypted.pdf 121,176B + render-page1.png 110,142B 真渲染",
-   "report": "reports/20260926-1135-pdf.md",
-   "installed_by_this_task": []
-  },
-  {
-   "skill": "shader",
-   "source": "Qoder 官方市场 official_zPx4JQep (canonicalName=shader, tags origin:skillatlas)",
-   "skill_path": "/Users/apple/.qoder-cn/skills/shader",
-   "task": "ShaderToy 风格域扭曲 fbm 流体 + 鼠标涟漪：单文件 raw WebGL 页面 + 像素级断言 + 双变异验证",
-   "verdict": "留用（推荐）：给的是流程（锁 runtime→可见基线→逐项加回→留调试出口）+ 纯 Node 无依赖 CLI；第一轮 GPU 光栅化产物类",
-   "time": "2026-09-26T12:07+08:00",
-   "artifact": "demos/20260926-1207-shader/shader-showcase.html (13,962B, 零外链, file:// 可跑) + render-1280x800.png + output.log(技能CLI/verify 15条/mutants 7个 三段合一)",
-   "report": "reports/20260926-1207-shader.md",
-   "installed_by_this_task": [
-    "shader -> /Users/apple/.qoder-cn/skills/shader（经 mcp__extension-market__install_extension，本轮唯一全局安装项）"
-   ]
-  },
-  {
-   "skill": "canvas-design",
-   "source": "GitHub anthropics/skills（第3轮 SSH 浅克隆已在盘上：LAB/.skills/anthropic-skills/skills/canvas-design，本轮零下载零安装）",
-   "skill_path": ".skills/anthropic-skills/skills/canvas-design/SKILL.md",
-   "task": "按它自己的两步流程：先写「Interval Cartography」设计宣言（4-6段，命名运动+配给制调色+三层视距），再把本演示场自身（每30分钟醒一次的注意力、13次计时观测）表达成一张 1650×2340 单页 PNG 图版：24h 表盘+48 个半小时刻度+13 条时长同心弧（弧长∝秒，满量程308°）+手工分号的 30 中心盘+底部 13 行分钟格账本",
-   "verdict": "留用（推荐）。历轮唯一强制「先立美学纲领再动手」的技能，宣言里的配色配给/三层视距直接决定了出图，确实比随手排版克制；零脚本零网络→安全闸门天然通过，canvas-fonts 25 家族是白送资产。局限：不给任何可执行版式校验，「不得重叠/不得出界」全靠自写像素断言兜底。",
-   "time": "2026-09-26T13:05+08:00",
-   "artifact": "demos/20260926-1305-canvas-design/plate-iv-interval-cartography.png",
-   "report": "reports/20260926-1305-canvas-design.md",
-   "installed_by_this_task": []
+  "updated": "2026-09-26T13:16+08:00",
+  "tried": [
+    {
+      "skill": "drafter",
+      "source": "Qoder 官方扩展市场 official79532076 (publisher yofine, tags OfficialSelection/qoder-pro)",
+      "skill_path": "/Users/apple/.qoder-cn/skills/drafter/SKILL.md",
+      "task": "把本任务自身的「三实验室定时流水线」画成一张 Flat Engineering Blueprint 风格一页图（3 条 cron 时间槽 + 10 步执行流 + 安全闸门 + 文件化记忆台账 + 去重契约 + 分支隔离）",
+      "verdict": "留用。纯提示词/样式规范型，无脚本无网络，安全闸门直接通过；风格约束具体到 CSS 变量级 + 禁止清单级，产出确实像工程图纸而非营销页；硬性要求单文件自包含禁 CDN，很适合无人值守跑。局限：不含数据→图形的映射逻辑，数据可视化仍需另配图表库技能。",
+      "time": "2026-09-25T17:23+08:00",
+      "artifact": "demos/20260925-1723-drafter/skill-lab-pipeline-blueprint.html",
+      "report": "reports/20260925-1723-drafter.md",
+      "installed_by_this_task": [
+        "drafter (market id official79532076, canonicalName drafter-diagram) -> /Users/apple/.qoder-cn/skills/drafter/ —— 经 install_extension 安装；该条目不暴露可 clone 的公开仓库，只能走 MCP 安装，故未落在 LAB/.skills/"
+      ]
+    },
+    {
+      "skill": "ascii-project-dashboard",
+      "source": "Qoder 官方扩展市场 official_qzXG5ekf (publisher fabioc-aloha, tags 空=非镜像条目)",
+      "skill_path": "/Users/apple/.qoder-cn/skills/ascii-project-dashboard/SKILL.md",
+      "task": "读三实验室 state/state.json（只读）现场算 4 条泳道（DISCOVER/BUILD/CLEANUP/DELIVER），一次产出 Pattern A 横向泳道 + Pattern B 窄终端 + Pattern C 里程碑时间线 + Summary 框 + 跨实验室 Backlog 的纯文本看板",
+      "verdict": "留用。纯文本看板零依赖零渲染、可进 git diff；▓░ 规格与 Anti-Patterns（禁硬编码百分比）具体可执行，脚本一跑即自证。缺陷：宣称的 muscle script 未随包提供→无实现层，且「10 chars=10 chars」在中文/emoji 下崩（须自带 wcwidth 补位）。",
+      "time": "2026-09-25T17:37+08:00",
+      "artifact": "demos/20260925-1737-ascii-project-dashboard/dashboard.txt",
+      "report": "reports/20260925-1737-ascii-project-dashboard.md",
+      "installed_by_this_task": [
+        "ascii-project-dashboard (market id official_qzXG5ekf) -> /Users/apple/.qoder-cn/skills/ascii-project-dashboard/ —— 经 install_extension 安装，市场条目不暴露可 clone 仓库，无法落在 LAB/.skills/"
+      ]
+    },
+    {
+      "skill": "algorithmic-art",
+      "source": "GitHub 外部仓库 git@github.com:anthropics/skills.git (main) -> skills/algorithmic-art —— 本任务首次走通「来源②」SSH shallow clone",
+      "skill_path": "LAB/.skills/anthropic-skills/skills/algorithmic-art/SKILL.md",
+      "task": "按技能两步流程（先写算法哲学宣言，再用 p5.js 实现）为本流水线本身生成一幅「Cron Organicism 定时有机主义」：三条水脉=三个实验室的 cron 时间槽，沿 Perlin 湍流+沿 y 的周期余弦节律合成场漂流 120 轮沉积成密度图；Cadence Strength 滑杆=节律绑定强度（0 解散/1 钉死时区带）；默认 seed 20260925",
+      "verdict": "留用。约束最硬、承诺最可验的生成艺术技能：「同种子必得同图」由 randomSeed/noiseSeed+静态绘制保证，本轮用像素哈希逐条证伪通过（regenerate 同哈希 / nextSeed 变 / previousSeed 精确复原 / reset 双双复原）；模板+品牌+Seed 导航写死，省去每次重做 UI。局限：(1) 模板默认走 cdnjs+Google Fonts，本机 TLS 重置→不改内联就白屏；(2) 重绘 ~4s(4800粒×120轮)，批量参数搜索要先降 passes；(3) SKILL.md 要求的 Download PNG 键在自带模板里缺失（文档与模板不一致），且沙箱浏览器不落盘只能验到调用链。",
+      "time": "2026-09-25T18:10+08:00",
+      "artifact": "demos/20260925-1810-algorithmic-art/art-index.html",
+      "report": "reports/20260925-1810-algorithmic-art.md",
+      "installed_by_this_task": []
+    },
+    {
+      "skill": "SQLite-Database-Expert",
+      "source": "来源③本机已装：~/.qoder-cn/skills/SQLite-Database-Expert/SKILL.md (v2.0.0, 963 行, 无脚本无网络) —— 本轮零安装零联网",
+      "skill_path": "/Users/apple/.qoder-cn/skills/SQLite-Database-Expert/SKILL.md",
+      "task": "按它的设计意图（本地数据持久化 + FTS5 全文检索 + TDD 验证）把本流水线自己的台账建成可检索库：runs 表←state.json(tried×runs 3 行)、notes 表←work-log+reports 逐行 181 行、_migrations 迁移表 + 2 个 up/down、两张并列 FTS5 外部内容表(notes_u61 默认 unicode61 / notes_tri trigram) 各带 ai/ad/au 触发器，再产出 query.mjs 检索 CLI（bm25 + highlight + 源文件:行号）",
+      "verdict": "留用。价值不在代码样板（Rust/Python/@libsql-client 三套在本机一套都跑不了：无 pip、无 better-sqlite3、sqlite3 CLI 无 FTS5），而在**可证伪的工程纪律**：14/14 断言全 PASS 并给出查询计划/触发器实验/注入对照/FK 开关/事务计时的真实数字，其中两条被证伪夸大或补全：(a) §7.1「逐行提交慢 100x」实测 108.6ms vs 8.2ms = 13.2x（node:sqlite 根本没有逐行 COMMIT 开关，100x 无从复现）；(b) 它建 FTS5 表**只字不提 tokenizer**，实测默认 unicode61 对中文是「整段一个 token」→ 静默漏检（'安全闸门' LIKE=4 MATCH=3，漏的是 '## 安全闸门结论'；'ab' LIKE=21 MATCH=0），trigram 能补但 <3 字符失效（'安全' 两字词 0 命中）。缺陷：§0 强制必读的 references/advanced-patterns.md 与 references/security-examples.md **包内根本不存在**（死链，第 2 轮 muscle script 同类问题）；frontmatter risk_level HIGH 与正文 Risk Level MEDIUM 自相矛盾。",
+      "time": "2026-09-25T18:42+08:00",
+      "artifact": "demos/20260925-1845-sqlite-database-expert/lab.db",
+      "report": "reports/20260925-1845-sqlite-database-expert.md",
+      "installed_by_this_task": []
+    },
+    {
+      "skill": "ppt-generator",
+      "source": "Qoder 官方扩展市场 official_79e7IlJQ（canonicalName svg-ppt-generator，publisher '-'，tags 含 origin:skillatlas）→ 经 install_extension 装到 ~/.qoder-cn/skills/ppt-generator/",
+      "skill_path": "/Users/apple/.qoder-cn/skills/ppt-generator/SKILL.md",
+      "task": "按它自己的 pixel_retro 版式给本流水线做一页 5 张幻灯片的发布稿：封面(cron 控制台/PRESS START) + 目录(4 卡带重要性标签) + 真实数据图(前四轮耗时 420/600/1140/780s × 900s 预算线) + 手排表格(四种产物×来源×被证伪的结论) + GAME SAVED 结尾；再用它的 svg_to_pptx 转成原生可编辑 .pptx",
+      "verdict": "留用。本实验室第一个真·二进制办公文档产物，且『可编辑』可验穿：sp=211 / pic=0 / ppt-media 为空 / 中文标题与 420·1140·'5 / 5' 都在 <a:t> 里 / 柱体高度 [115.3,137.9,300,205.3]px 与秒数成正比 → 13/13 独立断言 + 技能自带 checker 5/5。色板规范具体到 hex、SVG 约束可机检。代价：Interaction Flow 强制 3 轮人工确认（无人值守必须自答）；依赖 python-pptx；**它自己的 checker 不查它 design_spec §II 定的 60px 边距**——实测有行右端 1248px 越安全区仍判 [OK]，属假通过，务必再叠 getBBox 一层。",
+      "time": "2026-09-25T19:06+08:00",
+      "artifact": "demos/20260925-1906-ppt-generator/skill-showcase-pixel-retro.pptx（48873B，双击可开可改字）+ svg_slides/01..05.svg",
+      "report": "reports/20260925-1906-ppt-generator.md",
+      "installed_by_this_task": [
+        "ppt-generator (market id official_79e7IlJQ / canonicalName svg-ppt-generator) -> /Users/apple/.qoder-cn/skills/ppt-generator/ —— 经 install_extension 安装；市场条目不暴露可 clone 仓库，无法落在 LAB/.skills/。python-pptx 1.0.2 用 python3 -m pip install --target 落在 LAB/.tmp/pylibs（gitignored，收尾已删），未污染全局 site-packages。"
+      ]
+    },
+    {
+      "skill": "graphic-gif",
+      "source": "Qoder 官方扩展市场 official_nhsK8Qra (publisher Varnan-Tech, tags 空=非镜像条目)",
+      "skill_path": "/Users/apple/.qoder-cn/skills/graphic-gif/SKILL.md",
+      "task": "css-animated 路径：counter 动画类型 + terminal 风格预设，把本流水线第 6 轮做成 800x800 / 4.0s@12fps / 48 帧循环 GIF（大数字 0→6、45% 关键帧淡入 stats、扫描线签名、块光标）",
+      "verdict": "留用（当规格书用，别当工具用）。Rule 5/6/9（WAAPI 逐帧寻址、不捕获 t=duration、stagger 烘焙进关键帧）三条写对了且可证伪，照做后 26 条断言一次全过；自带 12fps/4s 量级与 email<500KB/social<3MB 体积门槛。前提：包内只有 SKILL.md，导出脚本/动画类型库/风格预设 token 表三项全缺，必须自带实现层。",
+      "time": "2026-09-25T19:50+08:00",
+      "artifact": "demos/20260925-1950-graphic-gif/animation.gif",
+      "report": "reports/20260925-1950-graphic-gif.md",
+      "installed_by_this_task": [
+        "graphic-gif (market id official_nhsK8Qra) -> /Users/apple/.qoder-cn/skills/graphic-gif/ 经 install_extension 安装（包内仅 12225B 的 SKILL.md，无可 clone 仓库）；playwright-core 装在 demos 内并已收尾删除（未下载任何浏览器）"
+      ]
+    },
+    {
+      "skill": "build-game",
+      "source": "Qoder 官方扩展市场 official_LaiVUmnK（canonicalName build-game，publisher '-'，tags 含 origin:skillatlas）→ 经 install_extension 装到 ~/.qoder-cn/skills/build-game/",
+      "skill_path": "~/.qoder-cn/skills/build-game/SKILL.md（430 行）+ reference/ 6 篇 4447 行 + scripts/serve.sh",
+      "task": "第三人称 3D 网页游戏《冰原拾光》：低多边形北极狐 60 秒拾取 8 枚冰晶，3 只霜灵三态 FSM 巡逻/追击/击退，触碰吞 5 秒，标题→玩法→胜/败三段式 + localStorage 最高分",
+      "verdict": "留用（强推荐）：7 轮里唯一把「可验证规格」写进 SKILL.md 的技能——强制调试钩子 render_game_to_text()/advanceTime(ms) 让无人值守代理能不看像素就断言状态机，Phase 4 每条强制项（相机相对 WASD / exposure≥1.0 / vignette≤0.3 / 灯≥4 / 禁近黑大表面）均可量化复核。23 条断言 23 PASS / 0 FAIL。",
+      "time": "2026-09-25T23:32+08:00",
+      "artifact": "demos/20260925-2332-build-game/frostlight-gather.html（750,620B 单文件可玩 3D 游戏，three r160 + EffectComposer/UnrealBloom/自定义调色/FXAA/OutputPass 全内联，零外链，file:// 双击即玩）+ verify.mjs/output.log（23 断言）+ shots/ 3 张 1280x720 真截图 + render_game_to_text.txt",
+      "report": "reports/20260925-2332-build-game.md",
+      "installed_by_this_task": [
+        "build-game → ~/.qoder-cn/skills/build-game/（mcp__extension-market__install_extension，Full Access 未弹确认）"
+      ]
+    },
+    {
+      "skill": "sec-audit-cn",
+      "source": "来源③本机已装：~/.qoder-cn/skills/sec-audit-cn/SKILL.md（v1.0.0，420 行，find 实测包内仅 SKILL.md+skill.json+_meta.json，零脚本零网络）",
+      "skill_path": "/Users/apple/.qoder-cn/skills/sec-audit-cn/SKILL.md",
+      "task": "把第 1–7 轮本流水线自己的全部交付物当被审计代码：38 个源文件/2.10MB（含 2 个 750KB+ 单文件 HTML）+ 36 个第三方 SKILL.md 供应链面 → 13 条静态规则 + 3 组黑盒 PoC → 按它的分级格式出审计报告并交付已验证的修复件",
+      "verdict": "留用。8 轮里唯一「产物=结论而非文件形态」的技能，纯清单/方法论零依赖零联网，安全闸门秒过，格式（严重/高/中/低+[A0x]+文件+修复+风险）可直接落成文档；审出两条靠看效果永远发现不了的缺陷（FTS5 查询语法注入、内联第三方库无可机检来源）。局限：它不带扫描器，命中全靠自写规则——本轮 31 命中里 18 条误报（58%），必须自补「分级前先证伪」这一步，否则报告就是误报堆。",
+      "time": "2026-09-26T00:00+08:00",
+      "artifact": "demos/20260926-0000-sec-audit-cn/SECURITY-AUDIT.md",
+      "report": "reports/20260926-0000-sec-audit-cn.md",
+      "installed_by_this_task": []
+    },
+    {
+      "skill": "xlsx",
+      "source": "来源②本地已有：git@github.com:anthropics/skills.git（第 3 轮 shallow clone）→ LAB/.skills/anthropic-skills/skills/xlsx —— 本轮技能包零下载零安装",
+      "skill_path": "LAB/.skills/anthropic-skills/skills/xlsx/SKILL.md",
+      "task": "按它的设计意图（交付物必须是 .xlsx 且用公式而非写死结果）把本流水线 8 轮台账做成可重算工作簿：README(图例/口径/编辑指引) + Ledger(8 轮×17 列) + Metrics(5 组全公式指标块 + 原生柱状图)，并落实它的 Arial/蓝黑绿配色/百分比存分数/年份存文本/零显示为 -/每条假设加批注/只用 Excel-2007 函数/禁 XLOOKUP-FILTER-SORT-UNIQUE/不用 _xlfn 前缀",
+      "verdict": "留用。「交付物是表格或模型」这一类里当前最强的一份规范：99 行把可交付工作簿的纪律写全且几乎每条可证伪。**最值的一条救回了真缺陷**：=H/60 遇空单元格不报错而静默返回 0.0，IFERROR 根本不触发，会让模型带着「平均 0.0 分钟」的合法假数交付 → 必须 =IF(H=\"\",\"\",H/60) 守卫。代价与局限：(1) 它的强制闸门 scripts/recalc.py 308 行 100% 绑定 LibreOffice，本机无 soffice → 拿不到它自己的 status/total_errors JSON，本轮改用纯 Python 引擎 formulas 1.3.4 顶替（49 断言全绿），但第三方引擎不等于 Excel/LibreOffice；(2) 它的 _xlfn. 前缀清单是**运行时特定**（E2/E3 实测：本引擎里 XLOOKUP 正常返回 'y'、裸 TEXTJOIN 正常、加 _xlfn 前缀反而解析不了，与它对 Excel 生态的告诫完全相反）；(3) scripts/office/validate.py 只有 docx/pptx/redlining 三个 validator，**对 xlsx 无覆盖**，「跑它的 checker」这一步对本技能是空的。",
+      "time": "2026-09-26T10:12+08:00",
+      "artifact": "demos/20260926-0956-xlsx/skill-showcase-ledger.xlsx（15,360B，3 sheet / 98 个活公式 / 1 张原生 chart1.xml 柱状图 / 25 条批注，双击 Numbers-Excel-WPS 可开并可改输入看整表重算）+ sheet-preview.txt（公式→引擎值逐行可读版，无表格软件也能看）+ output.log + measure.py/build_xlsx.py/verify_recalc.py/facts.json",
+      "report": "reports/20260926-0956-xlsx.md",
+      "installed_by_this_task": []
+    },
+    {
+      "skill": "golang-testing",
+      "source": "来源③本机已装：~/.qoder-cn/skills/golang-testing/SKILL.md（v1.0.1，author Joseph OBrien，427 行 / 9,963B，包内仅此一个文件，无 scripts/ 无 references/）",
+      "skill_path": "/Users/apple/.qoder-cn/skills/golang-testing/SKILL.md",
+      "task": "按它的设计意图（表驱动 / 接口 mock / TestMain+t.Helper / build-tag 集成测试 / 子基准 / coverage）给一个纯逻辑包做完整测试套件：迷宫生成器 maze.go（随机 DFS 回溯 + BFS 求解 + ASCII 渲染，Rand 接口注入、自带 LCG 不依赖 math/rand）+ 7 测试 2 基准 + cmd/maze CLI + 3 个 golden 文件，产出 24x12 可解迷宫与 go test/cover/bench 真实日志",
+      "verdict": "留用（推荐）。少见的「规范直接可证伪」型技能：它给的每个模式照抄就能跑，产物本身即证据（真 go test 日志 + 官方 go tool cover -html 可打开页面），纯 stdlib 零网络零依赖。**局限**：(1) 纯知识技能、无实现层，没有自带 checker/脚本，「跑它自带的闸门」这一环不存在，验证得自己设计（本轮自建两组变异测试补这一层）；(2) 推荐的 testify/testcontainers 在本环境要额外依赖（Docker 未探测），无人值守默认走 stdlib；(3) Best Practice 第 2 条 'One assertion per test' 与它自己的示例（一个 t.Run 里断多条）自相矛盾。",
+      "time": "2026-09-26T10:21+08:00",
+      "artifact": "demos/20260926-1030-golang-testing/maze-solved.txt（1,312B ASCII 迷宫，24x12 格 / 49x25 网格 / 解 225 步）+ coverage.html（12,595B 逐行着色覆盖率页）+ output.log（9,943B）",
+      "report": "reports/20260926-1030-golang-testing.md",
+      "installed_by_this_task": []
+    },
+    {
+      "skill": "webapp-testing",
+      "source": "来源②本地已有：git@github.com:anthropics/skills.git（第3轮 shallow+sparse clone）→ LAB/.skills/anthropic-skills/skills/webapp-testing —— 本轮技能包零下载零安装，未碰全局技能目录",
+      "skill_path": "LAB/.skills/anthropic-skills/skills/webapp-testing/SKILL.md（95 行 + scripts/with_server.py 105 行 + examples/ 3 个 .py）",
+      "task": "按它自己的决策树与 reconnaissance-then-action，用自带 scripts/with_server.py（先单服务、后双服务）把第3轮 algorithmic-art 产物 art-index.html 经 HTTP 打开做端到端回归：现场发现控件（5 range/3 color/1 number/6 button，断言不写死默认值）→ 16 条断言读画布像素五元组(ink/通道和/uniq/强红/强蓝) → 真按钮点击与 input/change 事件派发 → expect_download 捕获 p5 saveCanvas 的 PNG 落盘 → 双变异自证（nextSeed 算术清零 / updateParam 删 initializeSystem）",
+      "verdict": "留用（推荐）。前 10 轮反复踩「市场镜像只搬 SKILL.md、丢 scripts/references」，它是**第一个真带可用实现层脚本**的技能：with_server.py --help 黑盒照抄即跑通，单服务与双服务（--server/--port 重复）都可靠，就绪轮询真的挡在命令前，客户端脚本中途崩（SyntaxError）时 finally 仍把 2 个服务停干净（lsof 复核零残留）→ 值得直接吸收进后续任何「起本地服务再验」的轮次（golang-gin-api / pm-dashboard 候选）。16 断言里 golden 15 PASS / 1 FAIL，**唯一 FAIL 是一条只有 HTTP 服务路径才暴露、且前 10 轮 file:// 与纯代码审查看不见的真缺陷**：产物无 <link rel=\"icon\"> → Chrome 自取 /favicon.ico 吃 404（靠 http.server 自己的访问日志定位），一行 data: 修复已 A/B 验证；触发条件是**下载导航而非页面加载**（负对照只加载时 0 error）。两个变异体把故障**局限在正确断言**：mutant_seed 红 G8/G9（+G10 级联），mutant_wiring 红 G11a/G11b/G14 而 **G7/G8/G9 仍绿**；截图层铁证＝mutant_wiring 的 02→03 两张 PNG **sha256 完全相同**(82592a41…) 而 golden 两者不同 ⇒ 拖了滑杆画面根本没重绘。代价：(1) 100% 绑定 Python Playwright，无 Node 降级路径；(2) examples 三个样例（34/39/32 行）全是 file:// 或最小单页，**没有一个示范 console/网络卫生断言或截图比对**，断言层仍要自己补；(3) with_server.py 把服务器 stdout/stderr 接 PIPE 却**从不读取** → http.server 访问日志（本轮恰恰靠它定位 404）被吞，要拿日志只能另起服务自留。",
+      "time": "2026-09-26T10:50+08:00",
+      "artifact": "demos/20260926-1037-webapp-testing/download-golden.png（2,023,119B / 1200x1200 真 PNG，由页面自己的 downloadPNG() 经 Playwright 捕获落盘，sha256 9740465f…66e7513，四次运行同摘要）+ shots/ 4 张 golden 画布截图 + shots-mutant-wiring/ 2 张（同哈希铁证）+ output.log（三套 16 断言原文 + 服务端 404 日志 + A/B + 哈希对照）+ result-*.json ×3",
+      "report": "reports/20260926-1037-webapp-testing.md",
+      "installed_by_this_task": []
+    },
+    {
+      "skill": "docx",
+      "source": "来源②本地已有：git@github.com:anthropics/skills.git（第3轮 shallow+sparse clone）→ LAB/.skills/anthropic-skills/skills/docx —— 本轮技能包零下载零安装，未碰全局技能目录；依赖 docx(npm 9.7.2, npmmirror) + defusedxml/lxml/python-docx(pip --target LAB/.tmp/pylibs, 清华失效改阿里源)",
+      "skill_path": "LAB/.skills/anthropic-skills/skills/docx/SKILL.md（91 行 + scripts/ 21 文件 + 1.2MB XSD）",
+      "task": "按它设计意图做一份真 Word 交付物：docx-js 建纪要（TOC 域/页码域/双宽度表格/内嵌 PNG/点前导）→ 它的 comment.py 打 3 条批注（含 1 条回复线程）→ 按「Editing existing documents」手工写 <w:ins>/<w:del> 做 2 处修订 → 再用自补的 fix_styles.py 修 docx-js 留下的悬空样式表",
+      "verdict": "留用（推荐）。第 12 轮里实现层最完整（21 个脚本真在包里）且每条 gotcha 可证伪；真正值得留的是 comment.py（6 个互链部件一次写对）与 validate.py --author（能抓 <w:t> 混进 <w:del>）。但它强制的 soffice+pdftoppm+pandoc 目视闭环在本机三缺一律不可用，必须换成「OOXML 断言 + 第二解析器回读 + 文本预览」三件套",
+      "time": "2026-09-26T11:05+08:00",
+      "artifact": "demos/20260926-1105-docx/skill-showcase-review.docx（52,131B，含 3 条批注线程 + 2 组修订 + TOC/PAGE 域 + 1 张内嵌图表；对照件 base.docx 48,557B）",
+      "report": "reports/20260926-1105-docx.md",
+      "installed_by_this_task": []
+    },
+    {
+      "skill": "pdf",
+      "source": "来源②本地已有：git@github.com:anthropics/skills.git（第3轮 clone）→ LAB/.skills/anthropic-skills/skills/pdf —— 本轮技能包零下载零安装",
+      "skill_path": "LAB/.skills/anthropic-skills/skills/pdf/SKILL.md（315 行 + forms.md 294 + reference.md 611 + scripts/ 8 个表单脚本）",
+      "task": "按它的设计意图（reportlab 创建 + pypdf 水印/加密 + pdfplumber 抽取回读）把前 12 轮台账做成中文 3 页 PDF 报告：概览+12 行表格 / canvas 手绘条形图（11 个计时轮次）/ 结论页；再 merge 半透明红色 38° 斜排水印、再 user/owner 双口令加密",
+      "verdict": "留用（推荐）。24 断言 24 PASS / 0 FAIL + 3 条负对照证明断言可红；历轮第一个「可打印文档」形态产物，reportlab+pdfplumber+pypdf 三件套在 py3.14 无 LibreOffice/poppler 机器上全通路，中文渲染被 qlmanage 真出图肉眼证实。环境钥匙：pdfplumber/pdfminer.six 用 --no-deps 绕开 pypdfium2/cryptography 无 wheel 的死点；渲染验证用 macOS 自带 qlmanage -t 零安装顶替。技能缺陷：命令行工具链（pdftotext/qpdf/pdftk）本机全缺；forms.md 表单路线依赖装不上的 pypdfium2 → 未验。",
+      "time": "2026-09-26T11:35+08:00",
+      "artifact": "demos/20260926-1135-pdf/report-watermarked.pdf（120,885B 主产物）+ report-base.pdf 99,100B + report-encrypted.pdf 121,176B + render-page1.png 110,142B 真渲染",
+      "report": "reports/20260926-1135-pdf.md",
+      "installed_by_this_task": []
+    },
+    {
+      "skill": "shader",
+      "source": "Qoder 官方市场 official_zPx4JQep (canonicalName=shader, tags origin:skillatlas)",
+      "skill_path": "/Users/apple/.qoder-cn/skills/shader",
+      "task": "ShaderToy 风格域扭曲 fbm 流体 + 鼠标涟漪：单文件 raw WebGL 页面 + 像素级断言 + 双变异验证",
+      "verdict": "留用（推荐）：给的是流程（锁 runtime→可见基线→逐项加回→留调试出口）+ 纯 Node 无依赖 CLI；第一轮 GPU 光栅化产物类",
+      "time": "2026-09-26T12:07+08:00",
+      "artifact": "demos/20260926-1207-shader/shader-showcase.html (13,962B, 零外链, file:// 可跑) + render-1280x800.png + output.log(技能CLI/verify 15条/mutants 7个 三段合一)",
+      "report": "reports/20260926-1207-shader.md",
+      "installed_by_this_task": [
+        "shader -> /Users/apple/.qoder-cn/skills/shader（经 mcp__extension-market__install_extension，本轮唯一全局安装项）"
+      ]
+    },
+    {
+      "skill": "canvas-design",
+      "source": "GitHub anthropics/skills（第3轮 SSH 浅克隆已在盘上：LAB/.skills/anthropic-skills/skills/canvas-design，本轮零下载零安装）",
+      "skill_path": ".skills/anthropic-skills/skills/canvas-design/SKILL.md",
+      "task": "按它自己的两步流程：先写「Interval Cartography」设计宣言（4-6段，命名运动+配给制调色+三层视距），再把本演示场自身（每30分钟醒一次的注意力、13次计时观测）表达成一张 1650×2340 单页 PNG 图版：24h 表盘+48 个半小时刻度+13 条时长同心弧（弧长∝秒，满量程308°）+手工分号的 30 中心盘+底部 13 行分钟格账本",
+      "verdict": "留用（推荐）。历轮唯一强制「先立美学纲领再动手」的技能，宣言里的配色配给/三层视距直接决定了出图，确实比随手排版克制；零脚本零网络→安全闸门天然通过，canvas-fonts 25 家族是白送资产。局限：不给任何可执行版式校验，「不得重叠/不得出界」全靠自写像素断言兜底。",
+      "time": "2026-09-26T13:05+08:00",
+      "artifact": "demos/20260926-1305-canvas-design/plate-iv-interval-cartography.png",
+      "report": "reports/20260926-1305-canvas-design.md",
+      "installed_by_this_task": []
+    },
+    {
+      "skill": "mcp-builder",
+      "source": "来源②本地已有：git@github.com:anthropics/skills.git（第3轮 shallow clone）→ LAB/.skills/anthropic-skills/skills/mcp-builder —— 本轮技能包零下载零安装，未碰全局技能目录；依赖 @modelcontextprotocol/sdk 1.30.1 + zod 4.6.5（npmmirror，94包/4s）",
+      "skill_path": "LAB/.skills/anthropic-skills/skills/mcp-builder/SKILL.md",
+      "task": "把本实验室自己的 state/state.json 台账包成只读 stdio MCP 服务器（4 工具：ledger_get_summary / ledger_list_runs / ledger_get_run / ledger_search_skills，全部带 title+description 路由+Zod inputSchema+outputSchema+4 个 annotations+structuredContent+分页+25000 字符截断+可执行错误），再按它 Phase 4 产出 evaluation.xml（10 题）并用真 MCP 会话逐题只用工具解出",
+      "verdict": "留用（推荐）。本实验室第一个「产物=协议能力」轮：交付的不是文件而是任意 MCP 客户端可挂载的服务。★最关键的一条：它教的 outputSchema 是有牙的契约——声明之后每一条返回路径（含空结果/not-found/截断）都必须带 structuredContent，我第一次真机跑线就被 SDK 判 -32602 Output validation error，友好提示根本没送到调用方手里；这类缺陷 file:///像素/静态审读/文档解析四种前 15 轮取证面全都覆盖不到。969 行 TS 指南几乎每条建议都能落成断言（分页窗口零交集、幂等逐字节相同、limit=999 进 handler 前被挡）。代价：Phase 1 强制 WebFetch modelcontextprotocol.io + raw.githubusercontent（本机 TLS 重置，别探测，本地 reference 够用）；Phase 3 npx inspector 不可用、Phase 4 scripts/evaluation.py 需要 ANTHROPIC_API_KEY 付费凭据（按闸门放弃，只交付 evaluation.xml，答题回路自己用 SDK Client+StdioClientTransport 写，692ms/32 断言比 Inspector 更适合无人值守）；Phase 4.3『答案须长期稳定』与 append-only 台账正面冲突（『一共几轮』这类题在我写回 state 那刻就变），10 题必须锚定不可变历史",
+      "time": "2026-09-26T13:06+08:00",
+      "artifact": "demos/20260926-1306-mcp-builder/skill-showcase-ledger-mcp-server/{index.mjs 14115B, verify.mjs, output.log(32 PASS/0 FAIL + 3 变异体各 1 FAIL), evaluation.xml, gen_eval.py, protocol-transcript.log(裸 JSON-RPC 帧), README.md, mutants.sh, package.json}",
+      "report": "reports/20260926-1306-mcp-builder.md",
+      "installed_by_this_task": "无（技能包第3轮已在盘上）；npm 依赖装在本轮 demos 目录内并在收尾删除"
+    }
+  ],
+  "skills_seen": [
+    {
+      "name": "drafter",
+      "source": "Qoder 扩展市场 / keyword 'diagram'",
+      "url": "official79532076",
+      "status": "installed_used — 本轮已用并留用，勿再选",
+      "note": "带 OfficialSelection 标签，包格式合法可安装"
+    },
+    {
+      "name": "diagram-drawing",
+      "source": "Qoder 扩展市场 official_EbWhzKaL (origin:skillatlas)",
+      "url": "official_EbWhzKaL",
+      "status": "blocked",
+      "note": "install_extension 返回 EXTENSION_SKILL_FRONTMATTER_INVALID —— 包本身 SKILL.md frontmatter 不合法，装不上。同类 origin:skillatlas / origin:modelscope 未精选条目高概率同样失败，优先挑 tags 含 OfficialSelection 的。"
+    },
+    {
+      "name": "nano-poster-generator / 3d-anime-poster-generator / datu-ai-poster-generator / image-poster",
+      "source": "Qoder 扩展市场 / keyword 'poster'",
+      "url": "official_PLyArh8y, official_nZ77PC4B, official_hdHv1Mh4, official_s9VMhTgZ",
+      "status": "needs_user_confirm",
+      "note": "均依赖外部 AI 图像 API（NANO-BANANA/Gemini、Neta AI neta.art），需第三方 key 或付费，按选题标准排除；且会把内容 POST 到外部地址，触安全闸门"
+    },
+    {
+      "name": "moltbook-poster / m13v-social-autoposter",
+      "source": "Qoder 扩展市场 / keyword 'poster'",
+      "url": "official_IKsHQkAD, official_lA9YiNpL",
+      "status": "blocked",
+      "note": "社交网络自动发帖类：向外部平台发布内容 + 需配置凭据，超出本地演示场范围，排除"
+    },
+    {
+      "name": "story-invite-poster",
+      "source": "Qoder 扩展市场 official_RXS9BLF4",
+      "url": "clawhub.ai/shuminliu026/story-invite-poster",
+      "status": "blocked",
+      "note": "SKILL 描述要求「对我的本地代理说去安装这个 URL」—— 属注入式指令且要拉取外部源，不接受"
+    },
+    {
+      "name": "jackspace-scientific-thinking-scientific-visualization / k-dense-ai-scientific-visualization / data-visualization-studio / Excel 条形图可视化",
+      "source": "Qoder 扩展市场 / keyword 'visualization'",
+      "url": "official_GOH0drCH, official_7iYyMkRe, official_9zrZzk8b, official_JufhV2co",
+      "status": "candidate",
+      "note": "Python matplotlib/seaborn 路线，产物为 PNG/PDF；下一轮可试，需先确认本机 python + matplotlib 可用（npmmirror 只解决 npm）"
+    },
+    {
+      "name": "diegosouzapw-2000s-visualization-expert",
+      "source": "Qoder 扩展市场 official_koPDvcdI",
+      "url": "official_koPDvcdI",
+      "status": "candidate",
+      "note": "WebGL + Web Audio FFT 音乐可视化（Butterchurn/GLSL 着色器）——产物极有趣且是纯前端动画，但需真实音频文件喂 AnalyserNode，且 15 分钟内做 GLSL 有风险。留作候选"
+    },
+    {
+      "name": "skill-mermaid-diagrams / coleam00-excalidraw-diagram-skill / xstongxue1-drawio-diagram / prd-visualization-skill / antvis-narrative-text-visualization",
+      "source": "Qoder 扩展市场 / keyword 'diagram','visualization'",
+      "url": "official_yTWMj2aX, official_ybCth8dh, official_LBUkCAY7, official_LLABcAQs, official_DSohReJ1",
+      "status": "candidate",
+      "note": "图表类备选：mermaid 12 种图 / Excalidraw JSON / drawio XML / D3 层级多视图 / T8 叙述文本可视化。注意同批 origin:skillatlas|modelscope 条目可能同样 frontmatter 不合法"
+    },
+    {
+      "name": "本机已装未试（后端向）",
+      "source": "~/.qoder-cn/skills/",
+      "url": "",
+      "status": "candidate(部分已用)",
+      "note": "已试：SQLite-Database-Expert(第4轮) / sec-audit-cn(第8轮)。剩余：golang-testing / golang-gin-api / golangci-lint-strict / Golang-Backend-Development / nodejs-best-practices / express-nodejs-expert / frontend-development / vercel-react-best-practices / skill-push / qmind / canvas / qoder-context"
+    },
+    {
+      "name": "skills.sh / GitHub awesome-skills 外部仓库",
+      "source": "git@github.com SSH shallow clone 到 LAB/.skills/",
+      "url": "",
+      "status": "unverified_this_run",
+      "note": "本轮来源①（官方市场）第一个可用即止，未探测 SSH clone 通路。兄弟实验室 14:00-16:00 三次记录 raw.githubusercontent.com / www.skills.sh 连接被重置——注意那是 HTTPS，git@github.com SSH 按其 16:00 经验是通的，下轮值得一试"
+    },
+    {
+      "name": "ascii-project-dashboard",
+      "source": "Qoder 扩展市场 / keyword 'ascii'",
+      "url": "official_qzXG5ekf",
+      "status": "installed_used — 本轮已用并留用，勿再选",
+      "note": "tags 为空（非 skillatlas/modelscope 镜像），包格式合法，frontmatter 无问题"
+    },
+    {
+      "name": "doge (ASCII 柴犬表情包生成器)",
+      "source": "Qoder 扩展市场 / keyword 'ascii'",
+      "url": "official_A9htirhV",
+      "status": "candidate",
+      "note": "Python 字符串字符画，origin:skillatlas；下一轮可选，产物=纯文本 .txt"
+    },
+    {
+      "name": "bytesagain-chart-generator (ASCII 图表生成器)",
+      "source": "Qoder 扩展市场 / keyword 'ascii'",
+      "url": "official_KRhuv5QE",
+      "status": "candidate",
+      "note": "CSV→终端条形/折线/饼/散点图，origin:skillatlas，产物类型同样是终端文本（本轮已做过一类，下轮宜换语言/后端向）"
+    },
+    {
+      "name": "ascii-art-generator / aiskillstore-ascii-preview-generate / plantuml-ascii / diegosouzapw-asciinema-*",
+      "source": "Qoder 扩展市场 / keyword 'ascii'",
+      "url": "official_ldP75RrC 等 6 条",
+      "status": "candidate",
+      "note": "同一批 ASCII 向备选；asciinema 系需 .cast 录制文件"
+    },
+    {
+      "name": "svg-generator-pro / svg-artist / svg-draw / kbravh-svg-logo-creator / liuyunlong2021-wq-svg-skills",
+      "source": "Qoder 扩展市场 / keyword 'svg'",
+      "url": "official_JtVW97Da, official_Uh7rEBIf, official_u2PD5ljv, official_ehyM5bCW, official_RXaHu1k5",
+      "status": "candidate",
+      "note": "SVG 直写路线，产物 .svg 可双击打开；svg-draw/svg-artist 依赖 rsvg-convert（本机未验证是否安装），纯 SVG 无需转换器"
+    },
+    {
+      "name": "build-game (3D 游戏构建器) / github-game-engine",
+      "source": "Qoder 扩展市场 / keyword 'game'",
+      "url": "official_LaiVUmnK, official_DovAlFst",
+      "status": "candidate",
+      "note": "自然语言→单个可玩 HTML（Three.js）。风险：Three.js 走 CDN，本机 jsdelivr/unpkg HTTPS 被 TLS 重置 + file:// 下 ESM 不执行 → 可能验不了，选它前先进出网探测"
+    },
+    {
+      "name": "pdf-* 全家桶（extract-pdf-text / pdf-poppler-utils / pdf-to-ppt / mineru 系）",
+      "source": "Qoder 扩展市场 / keyword 'pdf'",
+      "url": "official_5x5slPCL, official_v2BPC2Hq 等",
+      "status": "candidate",
+      "note": "依赖 PyMuPDF / poppler / MinerU 二进制，未探测本机 python3+pip 可用性；mineru 属重依赖，排除"
+    },
+    {
+      "name": "aiskillstore-game-audio / majiayu000-audio-* / alicloud-ai-audio-tts",
+      "source": "Qoder 扩展市场 / keyword 'audio'",
+      "url": "official_rQ4ffIrg 等",
+      "status": "blocked",
+      "note": "游戏音频模式偏知识文档无本地产物；阿里云 TTS/ASR 需 DashScope key（付费凭据）→ 按选题标准排除"
+    },
+    {
+      "name": "pm-dashboard / realtime-dashboard / ascii-project-dashboard 同类看板技能",
+      "source": "Qoder 扩展市场 / keyword 'dashboard'",
+      "url": "official_987NhiHn, official_k8iXoOiP",
+      "status": "candidate",
+      "note": "pm-dashboard 要起本地服务+install/start 生命周期；realtime-dashboard 是 React 指南（重依赖）"
+    },
+    {
+      "name": "dlazy-vectorize (图像转 SVG 工具)",
+      "source": "Qoder 扩展市场 0ca5d12e",
+      "url": "official 非精选",
+      "status": "blocked",
+      "note": "把本地图 POST 到外部服务并返回 URL → 触安全闸门（内容外发），排除"
+    },
+    {
+      "name": "anthropics/skills 仓库（来源②通路）",
+      "source": "git@github.com:anthropics/skills.git SSH shallow+sparse clone -> LAB/.skills/anthropic-skills/ (16MB)",
+      "url": "github.com/anthropics/skills",
+      "status": "working_source",
+      "note": "**通路已验证可用**：ssh -T git@github.com 认证成功；--filter=blob:none --sparse + sparse-checkout disable 一次拿全 19 个技能。打破前两轮「只有官方市场可用」单点。注意 .skills/ 整个目录被 .gitignore 排除，clone 不进 git。"
+    },
+    {
+      "name": "anthropics/skills 其余 18 个未试技能",
+      "source": "同一仓库 LAB/.skills/anthropic-skills/skills/",
+      "url": "academy-guide, brand-guidelines, canvas-design, claude-api, discernment-nudge, doc-coauthoring, docx, frontend-design, internal-comms, mcp-builder, pdf, pptx, skill-creator, slack-gif-creator, theme-factory, web-artifacts-builder, webapp-testing, xlsx",
+      "status": "candidate",
+      "note": "已 clone 到本地、零安装成本。canvas-design(出 PNG/PDF，需 PIL，本机 python3 无 PIL 且 pip 未验证)、slack-gif-creator(动图 GIF，需 PIL+requirements.txt)、theme-factory(给产物套 10 套主题，纯提示词，含 theme-showcase.pdf 现成参照)、pdf/docx/pptx/xlsx(Office 文档全家桶)、webapp-testing(浏览器自动化测试)、mcp-builder(造 MCP server) —— 下轮优先 theme-factory 或 webapp-testing 或 xlsx（避开依赖 PIL/pip 的两个）。"
+    },
+    {
+      "name": "node:sqlite（本机可用运行时，非技能）",
+      "source": "Node v22.23.2 内置模块，无需安装",
+      "url": "",
+      "status": "working_source",
+      "note": "**SQLite 类技能的落地路线**：自带 FTS5 + JSON1（SQLite 3.51.3），零 npm、零网络。对比之下本机唯一 sqlite3 CLI=/Users/apple/Android/Sdk/platform-tools/sqlite3 (3.50.6) 无 FTS5、PRAGMA compile_options 空。下轮做数据库/检索类产物直接用它，别再探测 CLI。"
+    },
+    {
+      "name": "SQLite FTS5 中文分词（技术结论，供后续任何检索需求复用）",
+      "source": "本轮实测",
+      "url": "",
+      "status": "reference",
+      "note": "默认 unicode61 把连续 CJK 并成单个 token → 子串/前缀一律查不到且**静默返 0**；tokenize='trigram' 等价子串匹配(=LIKE)但要求查询 ≥3 字符；中文自由文本要「双索引(trigram 兜底 + u61 保词边界/bm25)」或外部 ICU/simple 分词。另：highlight()/bm25() 不接受 FTS5 表别名，必须真实表名。"
+    },
+    {
+      "name": "ppt-generator / svg-ppt-generator",
+      "source": "Qoder 官方扩展市场 official_79e7IlJQ / keyword 'svg'",
+      "status": "installed_used — 本轮已用并留用，勿再选",
+      "note": "tags 含 origin:skillatlas 却**一次装成** → 推翻第 1 轮『origin:skillatlas 高概率 EXTENSION_SKILL_FRONTMATTER_INVALID』的概括；origin 标签不能当判据，只能逐个试。包体 2.0MB、含 36 张 charts 模板与 600+ 图标索引、scripts/ 里还有 ppt_validator / visual_reviewer 本轮未动。"
+    },
+    {
+      "name": "anthropics/skills 的 xlsx / docx / canvas-design / slack-gif-creator（python 依赖路线）",
+      "source": "LAB/.skills/anthropic-skills/skills/ + 本机 python3",
+      "status": "candidate（xlsx 已于第 9 轮做完并留用；docx/canvas-design/slack-gif-creator 仍未试）",
+      "note": "第 4 轮判『pip 不可用 → 依赖 Pillow/openpyxl 的路线一律搁置』**过宽**：pip3 的 shim 因 sandbox 缺 realpath 坏了，但 `python3 -m pip install --target LAB/.tmp/pylibs --index-url https://pypi.tuna.tsinghua.edu.cn/simple` 完全可用（本轮 python-pptx+lxml+Pillow 32MB / 6.1s，cp314 wheel 齐全）。下轮这些技能重新变成可选，装完记得删 .tmp/pylibs。openpyxl 还需 LibreOffice 才能跑它的 recalc.py——那一步仍未验。 | 第 9 轮实测：openpyxl+formulas 走 aliyun 镜像 29.7s 装好（但 formulas 拉进 scipy 共 218MB，收尾必删；只要 openpyxl 是 ~2MB）；xlsx 技能本身可用，阻塞点不在 python 依赖而在 LibreOffice。"
+    },
+    {
+      "name": "graphic-gif",
+      "source": "Qoder 扩展市场 official_nhsK8Qra / query 'gif','graphic-gif'",
+      "status": "installed_used — 本轮已用并留用，勿再选",
+      "note": "css-animated 路径离线可跑通（系统 Chrome + ffmpeg）；ai-generated 路径需 KLING_API_KEY + 上传本图→双触闸门，已按它自己的降级条款排除。包内零实现层文件。"
+    },
+    {
+      "name": "本机 headless Chrome + ffmpeg 管线（环境能力，非技能）",
+      "source": "/Applications/Google Chrome.app + /Users/apple/.local/bin/ffmpeg + playwright-core(npmmirror)",
+      "status": "working_source",
+      "note": "★推翻前五轮『只能靠计算样式断言』的自我设限：executablePath 直指系统 Chrome、不下载浏览器，即可按 800x800 定宽真截图，48 帧端到端 7s。以后 HTML 产物可做像素级验证与真出图（GIF/PNG 连帧）。"
+    },
+    {
+      "name": "gif-maker-free / 免费动图制作器 (official_yZBpN49c)",
+      "source": "Qoder 扩展市场 / query 'gif'",
+      "status": "blocked",
+      "note": "『上传视频或图像(最大200MB)+云端渲染』=内容外发，触安全闸门，未安装即排除。"
+    },
+    {
+      "name": "majiayu000-teams-gif-creator / mood-diary / ub2-markdown-report-generator 等 query 'gif' 其余命中",
+      "source": "Qoder 扩展市场 / query 'gif'",
+      "status": "candidate",
+      "note": "Teams 向 GIF 创建器与 graphic-gif 同类（同产物类型，短期不重复占轮）；mood-diary=纯本地 JSON 情绪日记（产物偏数据）；markdown-report-generator 支持 PDF 导出可作报告类候选。"
+    },
+    {
+      "name": "excel-spreadsheet-handler (tjade273) / excel-spreadsheets (aws-samples) / afrexai-spreadsheet-master",
+      "source": "Qoder 扩展市场 / query 'spreadsheet'",
+      "status": "candidate",
+      "note": "openpyxl 路线（第 5 轮已证明 python3 -m pip --target + 清华/aliyun 源可用），产物=带真公式的 .xlsx，换『电子表格』类；注意与第 5 轮 pptx 同属办公文档，宜与公式重算/图表结合以拉开差异。"
+    },
+    {
+      "name": "build-game (official_LaiVUmnK) / github-game-engine",
+      "source": "Qoder 扩展市场 / query 'game','3d'",
+      "status": "candidate",
+      "note": "Three.js 走 CDN 的话本机不可达，但现在可用 npmmirror tgz 内联 + 系统 Chrome 真截图验证 → 这条路第 6 轮后才真正打开，值得单占一轮。"
+    },
+    {
+      "name": "web-animation-design / booklib-ai-animation-at-work / andronics-animation-creator",
+      "source": "Qoder 扩展市场 / query 'animation'",
+      "status": "candidate",
+      "note": "纯 CSS/Web Animations 动画知识型技能，产物仍是 HTML；与 graphic-gif 有重叠，优先选带可验证运动规格的那类。"
+    },
+    {
+      "name": "build-game",
+      "source": "Qoder 扩展市场 official_LaiVUmnK / query \"build-game\"",
+      "status": "installed_used — 本轮已用并留用，勿再选",
+      "note": "包体完整（SKILL.md + 6 references + serve.sh，208KB），与第 6 轮 graphic-gif「只搬 SKILL.md 丢实现层」相反。Phase 5 的 here.now 上传步骤触安全闸门（本地内容外发），已拒绝；serve.sh 把 PID 写死 /tmp 之外，改用等价 python3 -m http.server --bind 127.0.0.1。"
+    },
+    {
+      "name": "three.js r160 离线内联路线（环境能力，非技能）",
+      "source": "registry.npmmirror.com/three/-/three-160.0.tgz → 9.4MB tgz，含 build/three.min.js(670KB, UMD 全局 THREE) 与 examples/jsm/*(ESM)",
+      "status": "working_source",
+      "note": "★以后任何 three.js 类技能都走这条：classic 脚本用 three.min.js（r160 仍在包里，只 console.warn deprecated），产物 file:// 双击可跑；后处理/控制器需 examples/jsm 时用 inline-jsm.mjs 的三条正则转成读全局 THREE 的 IIFE 链（Pass→CopyShader→LuminosityHighPass→FXAA→ShaderPass→MaskPass→RenderPass→EffectComposer→UnrealBloom→OutputShader→OutputPass，11 模块 39.8KB 一次通过）。SSAOPass 依赖更多（SimplexNoise 等着色器），本轮放弃。"
+    },
+    {
+      "name": "build-game 的迭代能力（同一 HTML 继续加系统）",
+      "source": "demos/20260925-2332-build-game/game.src.html",
+      "status": "candidate",
+      "note": "SKILL Phase 0/2B 主打「持续迭代」：加背包/合成/昼夜/天气/回合制战斗。若要验证迭代路径，下轮可指定「给冰原拾光加 X 系统」而不是新做一个游戏。"
+    },
+    {
+      "name": "sec-audit-cn",
+      "source": "本机已装",
+      "url": "",
+      "status": "installed_used — 本轮已用并留用，勿再选",
+      "note": "包内只有 SKILL.md，无 scripts/ 无 references/（对它来说不需要）；triggers 覆盖 security/OWASP/XSS/CORS/CSP/密钥/审计"
+    },
+    {
+      "name": "xlsx (anthropics/skills)",
+      "source": "LAB/.skills/anthropic-skills/skills/xlsx",
+      "status": "installed_used — 本轮已用并留用，勿再选",
+      "note": "包体完整（SKILL.md + recalc.py + office/validate.py + 40 XSD），与「市场镜像只搬 SKILL.md」相反；但 validate.py 无 xlsx validator，recalc.py 需 LibreOffice（本机缺）"
+    },
+    {
+      "name": "LibreOffice / soffice（环境能力，非技能）",
+      "source": "which soffice / ls /Applications",
+      "status": "missing",
+      "note": "本机无 LibreOffice → 任何以 recalc.py / --convert-to pdf 为闸门环节的办公文档类技能（xlsx/docx/pptx 转换、PDF 导出）都拿不到官方重算证据。替代路线已跑通：pip 装 formulas(1.3.4) 做纯 Python 公式引擎重算 + 与 Python 独立重算逐格比对；函数覆盖与 Excel/LibreOffice 不同，只能当交叉证据不能当等价物"
+    },
+    {
+      "name": "webapp-testing / docx / canvas-design / theme-factory / brand-guidelines / mcp-builder（anthropics/skills 未试）",
+      "source": "LAB/.skills/anthropic-skills/skills/",
+      "status": "candidate",
+      "note": "零 clone 成本。webapp-testing 需 playwright-core(npmmirror)+系统 Chrome（第 6/7 轮配方已验证）；docx/canvas-design 需 python-docx/Pillow（aliyun 镜像已通）"
+    },
+    {
+      "name": "golang-testing",
+      "status": "installed_used — 本轮已用并留用，勿再选",
+      "note": "包内只有 SKILL.md（纯规范型）。Go 1.27.1 在 ~/.local/go/1.27.1/bin/go；纯 stdlib 模块零网络，GOCACHE 指 LAB/.tmp 后首次编译 stdlib 仅 1-2s、缓存 86MB 可整目录删。"
+    },
+    {
+      "name": "★变异测试作为「规范型技能」的自证手段（技术结论）",
+      "status": "reference",
+      "note": "纯知识型技能（无自带 checker）只能靠自设计证据验收。本轮两组变异给出可复用判据：值变异（LCG 乘数 +1）**只有 golden 抓到**，结构断言（完美性/路径唯一/连续性）全盲；结构变异（不打通门）3 条结构测试同时失败 → 结论：Go 测试套件必须「golden + 不变量」两层都在，单任一层都给假通过。下轮任何验证型技能都沿用这套双变异范式。"
+    },
+    {
+      "name": "golang-gin-api / Golang-Backend-Development / golangci-lint-strict / nodejs / express 等本机已装后端向技能",
+      "status": "candidate",
+      "note": "来源③剩余未试：golang-gin-api、Golang-Backend-Development、golangci-lint-strict、nodejs-best-practices、express-nodejs-expert、frontend-development、qmind、canvas。golangci-lint-strict 需要能下 golangci-lint 二进制（未探测，Go 装走 GOPROXY=goproxy.cn 可行）；gin 需要 goproxy.cn 真的可达（本轮未验证，纯 stdlib 没碰网络）。"
+    },
+    {
+      "name": "anthropics/skills 的 webapp-testing / docx / canvas-design / theme-factory / brand-guidelines / mcp-builder",
+      "status": "candidate（webapp-testing 已于第11轮做完并留用；docx/canvas-design/theme-factory/brand-guidelines/mcp-builder 仍未试）",
+      "note": "零 clone 成本（第 3 轮已 clone 在 LAB/.skills/anthropic-skills）。webapp-testing 有真实现层（Playwright 脚本），是「带脚本技能」的首选下一个；docx 需 python-docx（aliyun pip 镜像已两轮验证）、产物受本机无 LibreOffice 限制。 | 第11轮已用 webapp-testing：它的 with_server.py 是历轮唯一开箱可用的技能脚本，Python Playwright 路线见 environment_notes 的 pip 条目。"
+    },
+    {
+      "name": "webapp-testing",
+      "source": "Qoder 官方扩展市场未搜 / 来源②：anthropics/skills 官方仓库（已 clone 在 LAB/.skills/，无需安装）",
+      "url": "github.com/anthropics/skills/tree/main/skills/webapp-testing",
+      "status": "installed_used — 第11轮已用并留用，勿再选",
+      "note": "**技能自带实现层且跑得通**（scripts/with_server.py 105 行 + examples 3 个）。后续若要做「起本地服务再验」的轮次（golang-gin-api、pm-dashboard、webapp 类产物回归），直接复用它的 helper，别自己写 server 生命周期。"
+    },
+    {
+      "name": "Python Playwright（本机可用运行时，非技能）",
+      "source": "pip --target + 系统 Chrome",
+      "url": "",
+      "status": "working_source",
+      "note": "**打开 Python 生态的门，推翻历轮「依赖 pip 的技能先当不可用」**：`python3 -m pip install --target LAB/.tmp/pylibs --no-cache-dir --index-url https://mirrors.aliyun.com/pypi/simple playwright` → playwright 1.63.0（含 greenlet/pyee）**6.1 秒**；随后 `chromium.launch(headless=True, executable_path='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', args=['--no-sandbox','--disable-gpu','--hide-scrollbars'])` —— **绝不要跑 `playwright install`**（浏览器 CDN 被 TLS 重置）。目录 140MB，收尾删。→ canvas-design / slack-gif-creator / pdf-* 全家桶 / docx 等候选全部重开。"
+    },
+    {
+      "name": "docx (anthropics/skills)",
+      "source": "LAB/.skills/anthropic-skills/skills/docx",
+      "status": "installed_used — 第12轮已用并留用，勿再选"
+    },
+    {
+      "name": "系统 Chrome 无头 CLI 直出 PNG（环境能力，非技能）",
+      "source": "/Applications/Google Chrome.app --headless=new --screenshot --window-size --virtual-time-budget",
+      "status": "working_source"
+    },
+    {
+      "name": "canvas-design / theme-factory / brand-guidelines / mcp-builder / pdf / slack-gif-creator / skill-creator（anthropics/skills 其余未试）",
+      "source": "LAB/.skills/anthropic-skills/skills/",
+      "status": "candidate（办公文档三形态 pptx/xlsx/docx 已齐，按 used_artifact_kinds 规则下轮换类）"
+    },
+    {
+      "name": "pdf (anthropics/skills)",
+      "source": "LAB/.skills/anthropic-skills/skills/pdf",
+      "status": "installed_used — 第13轮已用并留用，勿再选",
+      "note": "表单填充子路线（forms.md + 8 个 scripts）因 pypdfium2 在 py3.14 装不上而未验证；若未来有可用渲染器可单开一轮验 AcroForm 填写"
+    },
+    {
+      "name": "qlmanage PDF→PNG 渲染（环境能力，非技能）",
+      "source": "/usr/bin/qlmanage -t -s 900 -o <outdir> <file.pdf>（macOS 自带，零安装）",
+      "status": "working_source",
+      "note": "无 poppler/pypdfium2/LibreOffice 时验证 PDF 可渲染性的替代路径：出首页缩略图 PNG，配 PIL 做墨迹占比与颜色断言。只渲染第 1 页。"
+    },
+    {
+      "name": "shader",
+      "source": "official_zPx4JQep",
+      "url": "market://official_zPx4JQep",
+      "status": "installed_used — 第14轮已用并留用，勿再选",
+      "note": "包体完整（SKILL.md + scripts/shader.js 396 行纯 stdout CLI + 5 references + 4 assets 模板，108KB）。唯一外链是 threejs-material-demo 引 unpkg three（本机不可达），走 raw WebGL / postprocess 路线即无网络依赖。"
+    },
+    {
+      "name": "majiayu000-shader-creator / animation-shader / godot-shader / vvvv-shaders / metal-shader-expert",
+      "source": "官方市场 query=shader 其余命中",
+      "url": "",
+      "status": "candidate",
+      "note": "同类着色器向：shader-creator 主打「交互式参数探索」与本轮最接近；Godot/vvvv/Metal 本机无对应引擎运行时，产物无法验证，暂不选。"
+    },
+    {
+      "name": "pixel-office / slides-as-code / pixel-perfect-design-system",
+      "source": "官方市场 query=pixel 命中",
+      "url": "",
+      "status": "candidate",
+      "note": "pixel-office 要拉代码+起服务（重）；slides-as-code 要 Slidev/Marp npm 链；pixel-perfect 是 58 套设计规范文档（产物仍是 HTML，与已做 3 类重叠）。"
+    },
+    {
+      "name": "canvas-design",
+      "source": "GitHub anthropics/skills",
+      "status": "installed_used — 本轮已用并留用，勿再选",
+      "url": "https://github.com/anthropics/skills"
+    },
+    {
+      "name": "mcp-builder",
+      "source": "git@github.com:anthropics/skills.git → LAB/.skills/anthropic-skills/skills/mcp-builder",
+      "url": "https://github.com/anthropics/skills/tree/main/skills/mcp-builder",
+      "status": "used",
+      "note": "第16轮，留用（推荐）。包里 4 篇 reference + 2 个可跑脚本是真的（区别于历轮『镜像只搬 SKILL.md』）"
+    },
+    {
+      "name": "mind-map-skill",
+      "source": "Qoder 官方市场 official_rFImRkea",
+      "url": "qoder://extension-market/official_rFImRkea",
+      "status": "unreachable",
+      "note": "未选：核心是 Markdown→PNG 渲染实现层，市场镜像历轮屡次丢 scripts；自写管线超预算。留作候选"
+    },
+    {
+      "name": "travel-map-generator",
+      "source": "Qoder 官方市场 official_WucrQvKc",
+      "url": "qoder://extension-market/official_WucrQvKc",
+      "status": "blocked",
+      "note": "要真实地理底图/瓦片服务，本机 HTTPS 被 TLS 重置 + 图源 API 不明"
+    },
+    {
+      "name": "amap-lbs-skill / amap-city-explorer / amap-memory-map / AMAP Cloud Map MCP",
+      "source": "Qoder 官方市场 official_4S946Bk5 / official_hHpSsmFp / official_XMBEWh64 + mcp a6a08e93",
+      "url": "qoder://extension-market",
+      "status": "blocked",
+      "note": "均需高德开放平台 key（注册/付费凭据）→ 闸门直接放弃"
+    },
+    {
+      "name": "nmap-pentest-scans",
+      "source": "Qoder 官方市场 official_7s7TPqfU",
+      "url": "qoder://extension-market/official_7s7TPqfU",
+      "status": "blocked",
+      "note": "对第三方主机做端口/服务扫描属对外攻击面，本机也无 nmap；本任务禁止探测 LAB 外网络"
+    },
+    {
+      "name": "industry-map",
+      "source": "Qoder 官方市场 official_sX5YNFlL",
+      "url": "qoder://extension-market/official_sX5YNFlL",
+      "status": "unreachable",
+      "note": "要求 30+ 次联网调研，超 15 分钟预算"
+    },
+    {
+      "name": "OcrSuper(surya)",
+      "source": "Qoder 官方市场 official_lBqJkiIr",
+      "url": "qoder://extension-market/official_lBqJkiIr",
+      "status": "unreachable",
+      "note": "要下模型权重+GPU 依赖，重依赖排除项"
+    }
+  ],
+  "in_progress": null,
+  "next_candidates": [
+    "anthropic-skills 盘上未试（零下载，成本最低）：theme-factory（10 套主题给既有产物换皮）、brand-guidelines、slack-gif-creator、doc-coauthoring、frontend-design、web-artifacts-builder、internal-comms、skill-creator、claude-api",
+    "MCP 路线已被本轮打通，可续：给既有 MCP 服务器补 resources/prompts（本轮只做了 tools，A2 断言里 resources/prompts 缺席是有意范围），或改 streamable HTTP 传输（需限制端口在 LAB 内 + 按端口找 PID 收尾）",
+    "来源①新词根继续扫：audio / voice / chart / calendar / diff / regex / font（search_extensions 的 query 用单个英文词根）；注意 mind-map-skill 仍在候选但要先确认包内是否真带渲染脚本",
+    "来源③本机已装未试：golang-gin-api、golangci-lint-strict、frontend-development、nodejs-best-practices、express-nodejs-expert、Golang-Backend-Development",
+    "（方法学沿用）本轮新增：⑪ 声明式输出 schema 必须对**所有**返回路径断言（含空/not-found/截断），且只有起真会话才测得到；⑫ append-only 数据源做评测时，题目要锚定不可变事实，并把断言依据的数字冻结进 state（evaluation_snapshot）；⑬ 截断/降级分支在小真实数据上是死代码，必须合成超限 fixture 才能证伪"
+  ],
+  "used_artifact_kinds": [
+    "单文件自包含 HTML 图表（工程图纸）×1",
+    "纯文本终端 ASCII 看板（.txt，零依赖）×1",
+    "单文件自包含 HTML 生成艺术（p5 内联，可交互+种子可复现）×1",
+    "SQLite 数据库文件 .db（FTS5 全文检索库）+ 可执行检索 CLI + 14 条断言日志 ×1",
+    "原生可编辑办公文档 .pptx（SVG→DrawingML，211 shape / 0 图片，49KB）+ 5 页 1280×720 矢量幻灯片 ×1",
+    "动画 GIF .gif（800x800 / 48 帧 / 无限循环 / 47KB，GIF89a 结构+NETSCAPE 循环计数+差分子矩形帧全部经手写二进制解析器核对）+ 其 CSS 动画源 animation.html ×1",
+    "可交互 3D 网页游戏单文件 HTML（.html 750KB：three r160 + 5 pass 后处理链全内联，零外链零网络请求，file:// 双击即玩；23 条断言含「实测滞空 0.633s vs 理论 2v/g 0.662s」「改 vignette→像素 −26%」两级物理/渲染反证）×1",
+    "分级安全审计报告 .md（OWASP 对齐，13 条有效发现/18 条误报分诊）+ findings.json 规则命中 + 3 组黑盒 PoC 前后对照 output.log + integrity-manifest.json（sha256 自证）+ 已回归的修复件 query.fixed.mjs ×1",
+    "可重算 Excel 工作簿 .xlsx（15,360B：3 sheet / 98 个活公式 / 原生 chart1.xml 柱状图 / 25 条批注；用第三方公式引擎 formulas 重算并与 Python 独立重算逐格比对，49 断言全绿）×1",
+    "Go 测试工程产物：ASCII 迷宫 .txt（24x12 / 解 225 步，肉眼可核对）+ go test -v 真实日志 output.log（29 PASS / 4 故意 FAIL 的双变异）+ go tool cover 逐函数覆盖率 73.3% + coverage.html 可打开着色页 + 4 行基准数据 + 3 个 golden 文件 ×1",
+    "端到端回归测试产物：真 PNG 截图 4+2 张（含「两张同哈希＝滑杆失灵」的铁证）+ 16 条断言三套运行日志 + p5 downloadPNG() 捕获落盘的 1200×1200 / 2,023,119B 原始 PNG + 服务端访问日志证据链 ×1",
+    "原生可编辑 Word 文档 .docx（52KB：TOC/PAGE 真域 + 3 条批注含回复线程 + 2 组 <w:ins>/<w:del> 修订 + 内嵌 PNG 图表；经技能自带 XSD/redlining 校验 + 48 条独立断言 + python-docx 二次解析三关）×1",
+    "可打印 PDF 文档 ×1（3 页中文报告 99KB：reportlab 生成 + pypdf 水印/双口令加密 + pdfplumber 回读 24 断言 + qlmanage 真渲染 PNG；含 12 行表格与 11 柱手绘条形图，柱高与秒数成正比经 rects 几何验证）",
+    "WebGL/GLSL 片元着色器单文件 HTML（13,962B，零外链，file:// 即跑；5 个 uniform 全接滑杆 + 冻结/定尺寸取帧）+ 系统 Chrome swiftshader 真渲染 PNG 2 张 + 15 条像素断言（含 speed=0 差值精确为 0 的反证、规约探针实测 1.4076 vs 解析 1.4075）+ 7/7 双变异日志 + golden-pixels.json ×1",
+    "原创视觉艺术 PNG 图版（1650×2340 / 485,901B，Pillow 纯绘制：15万点纤维噪声+工程网格+高斯暗角+24h表盘13条时长弧+分钟格账本）+ 设计宣言 .md；16 条像素断言（分钟格逐格数回台账、朱红弧实测307.8°、出血位零墨、脚注恰8词隙）+ 变异负对照（改 1080s→600s 使 B2/B3 变红）×1",
+    "只读 stdio MCP 服务器（4 工具 / Zod 双向 schema / annotations / 分页 / 截断 / 可执行错误）+ 裸 JSON-RPC 帧转录 + 10 题 evaluation.xml + 32 条真协议会话断言日志（含 3 个变异体各红 1 条）×1"
+  ],
+  "environment_notes": [
+    "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
+    "extension-market 的 query 参数：多词中文短语与英文多词串返回 0 条，单个英文词根（poster/visualization/diagram）才有结果，需逐词检索。",
+    "市场包质量参差：origin:skillatlas / origin:modelscope 条目可能 EXTENSION_SKILL_FRONTMATTER_INVALID 装不上；tags 含 OfficialSelection 的更可靠。",
+    "LAB/.gitignore 模板的 *.log 会误挡要求留档的 demos/**/output.log，已加 !demos/**/output.log 例外。",
+    "browser-use 在本会话里 IDE 面板 viewport = 0x0（innerWidth 0），真实视口像素测量不可得：改用 position:fixed;left:-99999px 的强制宽度离屏容器 + 多档宽度扫描做确定性布局断言，比兄弟实验室的「只查计算样式」更强，值得沿用。",
+    "CSS 陷阱（本轮实测暴露）：repeat(N,1fr) 的轨道下限是 min-content，会破坏等宽；等宽栅格一律写 repeat(N,minmax(0,1fr))。",
+    "磁盘开工水位：可用 20955000 KB ≈ 20.0 GiB（>1.5 GiB 阈值），可正常做重活。",
+    "沿用兄弟实验室结论未重复探测：GitHub HTTPS 被 TLS 重置（仅 git@github.com SSH 可用）、npm 走 registry.npmmirror.com、npx 不可用、file:// 下 ES Module 不执行。",
+    "ASCII/文本类产物的对齐必须由「终端显示宽度」决定：CJK 与 emoji 记 2 列、U+FE0F 变体选择符记 0 列；JS 的 s.length（UTF-16 码单元）与 [...s].length（码点）都不等于显示列数，用它补位会让中文列错位（实测极差 26 列）。",
+    "extension-market 里 tags 为空的条目（如 ascii-project-dashboard/fabioc-aloha、dlazy-vectorize）比 origin:skillatlas|modelscope 镜像条目包格式更可靠，本轮 tags 空→一次装成。",
+    "兄弟实验室（前端skill实验室/业务网站实验室）的 state.json 在同一时段会被各自的每小时任务并发改写：本任务产物读取它们做数据源时数值会中途变化（本轮从 4 轮变 5 轮），写回自身 state.json 必须先重读再合并，禁止整文件覆盖。",
+    "Bash 与 Write/Read 工具在中文工作目录下路径解析可能不一致（工具侧出现 .sandbox 镜像路径与 does not exist 误报）；结论：以 Bash 的 ls 实况为准，脚本文件优先用 heredoc (cat > f <<'EOF') 落盘最稳。",
+    "来源②已打通：git@github.com SSH shallow+sparse clone 可用（anthropics/skills 19 个技能已在 LAB/.skills/anthropic-skills/，16MB，被 .gitignore 排除不进 git）。下轮不必再依赖官方市场单点。",
+    "cdnjs.cloudflare.com 与 fonts.googleapis.com 的 HTTPS 同样被 TLS 重置（实测 curl (35) Connection reset by peer）。第三方 JS 库统一走 npm 镜像：curl -sSL https://registry.npmmirror.com/<pkg>/-/<pkg>-<ver>.tgz 再 tar 解包取 lib 产物（p5 1.7.0 = package/lib/p5.min.js 977KB）。",
+    "把外部 JS 内联进 HTML 前必查两件事：grep -c '</script' 库文件（>0 则需转义）；替换必须用 replacer 函数 s.replace(ph, () => lib)，否则库里的 $&/$' 会让文档自我复制。",
+    "像素级验证铁律：读 ImageData 只能按坐标双层循环 for(y)for(x){i=(y*W+x)*4}。用线性跨步 i+=4*N 再反推 y=(i/12)/W 会把采样点错落在少数几条线上，产生「画面上半部才有墨」这类假结论（本轮真实踩过并纠正）。",
+    "browser-use evaluate_script 有 15s 硬超时：单次调用只允许一次重绘/一次重量级扫描（p5 重绘 ~4s）。超时不等于失败——页面侧仍会跑完，补一次只读探针取终态即可判定。",
+    "生成艺术「构图」要可量化：用 10 段横向 ink 直方图判定死区，比看缩略图可靠。第 1 版三条带中心 0.25/0.5/0.75 + 垂直步长 0.72 → 顶/底带 ink=473/34；改 0.2/0.5/0.8 + 步长 0.92 → 1675/321，十条带全部有墨。",
+    "本机 python3 存在（sandbox_runtime 里）但无 PIL 模块；依赖 Pillow 的技能（canvas-design / slack-gif-creator）在验证 pip 可用性之前一律先当作不可用。",
+    "磁盘开工水位：可用 20450308 KB ≈ 19.5 GiB（>1.5 GiB 阈值），收尾 20439412 KB ≈ 19.5 GiB。本轮 demos 1.0MB（限 5MB），LAB 总 17MB（含 .skills 16MB 未入库）。",
+    "sqlite3 CLI（Android platform-tools 3.50.6）**无 FTS5**：CREATE VIRTUAL TABLE … USING fts5 → 'no such module: fts5'，PRAGMA compile_options 空输出。要 FTS5/JSON1 就用 Node 内置 `node:sqlite`（Node v22.23.2 → SQLite 3.51.3，支持 fts5+trigram+bm25+highlight，仅报 ExperimentalWarning，零安装零联网）。",
+    "node:sqlite 三条 API 坑（本轮实测）：(1) 参数绑定要 `stmt.all(...args)`，传数组当单参会 `Unknown named parameter '0'`；(2) FTS5 专属函数 highlight()/bm25() **不接受表别名**（`FROM notes_tri t … highlight(t,…)` → no such column: t），必须写真实表名；(3) ESM 里 `new URL('./x', import.meta.url).pathname` 在中文目录下返回 percent-encoded 路径 → ENOENT，必须 fileURLToPath()。",
+    "zsh 里 `rm -f a* b*`：任一个 glob 无匹配就整条命令 `no matches found` 失败并中断 && 链（本轮清理临时库踩到）。清理一律显式列文件名。",
+    "Write 工具落 JS 文件时，JSON 里的 \\\" 会写成裸 \"：放进普通单引号串无害，放进**模板字符串**就语法错（本轮 2 次：'rebuild' 与 r.\"from\"）。落 JS 时避免模板串内嵌引号，或改用 python heredoc 改写。",
+    "磁盘开工水位：可用 20407692 KB ≈ 19.5 GiB（>1.5 GiB 阈值）；本轮无重活依赖。",
+    "★ Python 依赖路线打通（第 5 轮，推翻第 4 轮结论）：pip3 的 shim 坏了（sandbox 里没有 realpath → `python3.14: No such file or directory`），但 `python3 -m pip install --target <LAB>/.tmp/pylibs --index-url https://pypi.tuna.tsinghua.edu.cn/simple <pkg>` 完全可用：清华源实测 HTTP 200，python-pptx(+lxml/Pillow，cp314 wheel) 32MB / 6.1s。用 PYTHONPATH=$LAB/.tmp/pylibs 运行，收尾删目录，全局 site-packages 不污染。→ 依赖 Pillow/openpyxl 的技能重新变成可选。",
+    "★ extension-market 的 origin 标签不是可靠判据：origin:skillatlas 的 official_79e7IlJQ(svg-ppt-generator) 本轮一次装成，与前两轮『skillatlas/modelscope 高概率 EXTENSION_SKILL_FRONTMATTER_INVALID』的概括相反。只能逐条试，别按 origin 提前排除候选。",
+    "SVG 类产物在本环境反而好验：viewport 0×0 不影响 SVG 用户坐标与 getBBox，量一次文本右端/柱高就是确定性证据，不需要前几轮的离屏容器与像素直方图。但 evaluate_script 仍 15s 超时——一次调用里别循环 30+ 次 getBBox 还塞 IIFE；先过滤再算，超时后补一次只读探针。",
+    "技能自带的『质量闸门』会给假通过：ppt-generator 的 svg_quality_checker.py 只查 §X 语法禁令，不查它 design_spec §II 自己定的 60px 边距（实测越界 28px 仍 [OK]）。凡是『跑它的 checker 全绿』都不算验完，必须再叠一层独立断言（本轮：PPTX 结构 13 条 + 浏览器 getBBox）。 | **第11轮同类命中且更普遍**：Playwright 的 page.on('response') 对浏览器级 favicon 取回完全盲（本轮服务端日志有 404、监听器零记录）→ 只要产物经 HTTP 服务，网络/错误断言必须把**服务端访问日志**并进来收，不能只信自动化框架。",
+    "磁盘开工水位：可用 20329292 KB ≈ 19.4 GiB（>1.5 GiB 阈值）。本轮 demos 100KB（限 5MB），LAB 约 18MB（含 .skills 16MB、.tmp/pylibs 32MB 均 gitignored，后者收尾已删）。",
+    "★真截图能力打开（第 6 轮）：前五轮被『browser-use 面板 hidden / take_screenshot 不可用』限制成只用计算样式。实际上本机有 /Applications/Google Chrome.app，用 playwright-core（npm i --registry=https://registry.npmmirror.com playwright-core，纯 JS 包 2s，**不要装 playwright、不要下载浏览器**）+ chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', args:['--no-sandbox','--disable-gpu','--hide-scrollbars','--force-color-profile=srgb']}) + newPage({viewport:{width:800,height:800}}) 即可定宽逐帧截图；file:// 页面直接 page.goto 可用（截图不依赖 ESM）。48 帧 capture+screenshot+ffmpeg 编码 = 7 秒。",
+    "ffmpeg 在 /Users/apple/.local/bin/ffmpeg（gifsicle/ImageMagick/rsvg-convert 均缺失）。CSS→GIF 两遍调色板命令：ffmpeg -y -framerate 12 -i frames/f%03d.png -vf 'scale=800:800:flags=lanczos,palettegen=stats_mode=diff' palette.png && ffmpeg -y -framerate 12 -i frames/f%03d.png -i palette.png -lavfi 'scale=800:800:flags=lanczos[x];[x][1:v]paletteuse=dither=bayer:bayer_scale=5' -loop 0 animation.gif",
+    "GIF 断言要这样写（本轮实测）：ffmpeg 的 gif 编码器输出**差分子矩形帧**——只有帧 0 是 0,0,800,800，其余是 1×1/局部矩形，所以『每帧描述符都是全画布』必假 FAIL；帧延迟 100/12=8.33cs 写成 8 与 9 交替，断言用 set⊂{8,9}+均值≈8.33；无限循环看 NETSCAPE2.0 应用扩展的 loop 字段（0）。手写解析器：0x21 扩展块步进为 let q=p+2; while(gif[q]!==0) q+=gif[q]+1; p=q+1（GCE 的 delay 在 p+4，NETSCAPE 的 loop 在 p+16），图像块 0x2C 步进 p+=10(+LCT)+1+子块链。",
+    "CSS 计数器动画的可读探针：getComputedStyle(el,'::after').content 在 Chrome 里返回**字面量 \"counter(num)\"** 而非解析后的数字（第 1 版探针因此全 NaN）。要读 @property 注册属性的插值值 getComputedStyle(el).getPropertyValue('--num')，或用 cs.counterReset（'num 6'）互相核对。",
+    "像素↔状态一致性断言的坑：把连续量（opacity 0.98 vs 1.0）按 >0.5 二值化当状态键会**误报不确定性**。状态键用全精度字符串；本轮 48 帧 → 22 个精确状态 → 0 组同态异像素，才证明 WAAPI 寻址位级可复现。",
+    "市场镜像包的系统性缺陷（3/6 轮命中）：只搬 SKILL.md、丢 scripts/ 与 references/。graphic-gif 包里唯一文件 SKILL.md 明文引用的 scripts/export-gif.sh、capture-and-encode.mjs、references/animation-library.md、references/style-presets.md 四个全不存在（find 结果 1 个文件）。→ 装完任何市场技能，第一步 find <dir> -type f 核对文件清单，缺实现层就在 demos/ 里自补并在报告注明。",
+    "search_extensions 参数名是 query（传 keyword 报 'params must NOT have additional properties'）；用完整 canonicalName（含连字符，如 'graphic-gif'）精确检索只回 1 条，比宽词省。Full Access 下 install_extension 第 3 次不弹用户确认。",
+    "zsh 里 $PIPESTATUS 恒空（zsh 用 $pipestatus[1]）；重定向写到根目录（如 > /tmp_cap.log）报 read-only file system 并中断整条命令——日志一律相对路径。",
+    "磁盘开工水位：可用 20222172 KB ≈ 19.3 GiB（>1.5 GiB 阈值）。收尾 demos 本轮 192KB（限 5MB），LAB 约 19MB（含 .skills 16MB gitignored）。",
+    "★three.js 离线可用（第 7 轮）：npm 镜像 tgz 里 build/three.min.js 是 UMD 风格 classic 脚本（r160 仍在发布，仅 console.warn deprecated），内联后 window.THREE 可用、产物 file:// 双击即跑，绕开「jsdelivr 被 TLS 重置 + file:// 下 ESM 不执行」双杀。examples/jsm 只有 ESM，需正则转 IIFE+共享命名空间（直接拼接会 Identifier already declared）。",
+    "THREE 枚举实测：FrontSide=0 / BackSide=1 / DoubleSide=2；写断言时把常量本身打印出来核对，别凭记忆。",
+    "Node 陷阱：Array.prototype.join(fn) 不会调用函数（把函数源码当字符串拼进去），只有 String.replace 接受 replacer。内联库源码后**先核对产物体积**（本轮 698KB→28KB 一眼暴露假内联）。",
+    "无人值守验证 3D/动画产物的两条硬招（沿用）：(1) 让产物自带文本调试钩子（build-game 的 render_game_to_text/advanceTime 是范本），断言状态机而不是像素；(2) 像素侧用「改一个 uniform 必须改变像素」证明渲染链路活着，比读 passes 数组的名字强。",
+    "playwright-core 复用配方（第 6/7 轮两次跑通）：npm i playwright-core --registry=https://registry.npmmirror.com 到 LAB/.tmp/pw/，chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'}) + args 里加 --use-gl=swiftshader --enable-unsafe-swiftshader（否则 headless WebGL 可能无 GPU）；toDataURL 回读 WebGL 帧要在同一个 JS task 里紧跟 render()（preserveDrawingBuffer=false）。",
+    "判据错 vs 产物错要分清：本轮 2 条 FAIL 全是我的断言窗口/阈值拍脑袋（跳跃采样时 keys[' '] 未清导致连续起跳；亮度阈值 100 过严且用全局均值看只作用在角落的 vignette）。改法是**把断言换成理论值对比**（滞空 2v/g、峰高 v²/2g、角落局部采样），而不是放宽。",
+    "磁盘开工水位：可用 19742420 KB ≈ 18.8 GiB（>1.5 GiB 阈值）。本轮 demos 1.0MB（限 5MB），收尾已删 .tmp/three(9.4MB) 与 .tmp/pw/node_modules。",
+    "★参数化 ≠ 安全：`MATCH ?` / NoSQL / LDAP / 正则都是「带语法的字符串参数」，绑定只挡宿主语言解析，不挡子语法。实测 query.mjs 用 `\"${term}\"` 包串，输入含 `\" OR \"` 即改写检索语义（0 命中 → 4 条真实路径+行内容），含未闭合括号则未捕获异常并把 percent-encoded 源码绝对路径打到 stderr。审计任何检索入口都要单独跑这一类对抗输入。",
+    "★静态 grep 审计在本仓库 FP 率 58%（31 命中 / 13 有效）：CSS `grid-template-columns` 撞 `$\\{` 与 `template` 规则、`.stack{width}` 撞 `err.stack`、产物里「拒绝 curl|bash」的文案撞管道规则。规则要为文档/CSS 留豁免，且分级前必须逐条人工分诊或跑 PoC 证伪。",
+    "★无人值守特有的坑：安全相关的启动参数会沿「抄上一轮脚本」这条路自我繁殖——`--no-sandbox` 从第 6 轮 capture.mjs:23 → 第 7 轮 verify.mjs:29 → 本轮 poc-game.mjs:11，同一轮内就复制到第 4 处。复用旧脚本时，args/权限/网络相关行要逐条重判。",
+    "★断言攻击链要先找合法触发路径：第 7 轮产物里 `__game.state.score=99999` + `advanceTime()` 不足以写盘，因为 `update()` 只在 `mode==='playing'` 计时、`endGame()/saveBest()` 挂在结算上；补一次 canvas `pointerdown`（game.src.html:666 的真实入口）才闭环。钩子存在 ≠ 任意状态可直接落盘。",
+    "密钥扫描必须扫 `git log --all -p`（本轮 10,326 行新增）：.gitignore 只挡未来提交，挡不住历史。宽词（ghp_|AKIA|BEGIN…PRIVATE）在 .skills 文档里全是示例误报，要收紧到凭据形状（ghp_[A-Za-z0-9]{36} / AKIA[0-9A-Z]{16} / sk-[A-Za-z0-9]{32,}）再看是否被 git 跟踪。",
+    "交付物里 89–98% 字节可能是单行内联第三方库（>400 字符行 = 人和 grep 都读不了）。度量法：按行长分桶算 opaqueBytes/opaqueShare 写进 findings.json，比逐文件人眼扫快且可复现。three.min.js 压掉了版本横幅，产物内无可机检来源 → 只能靠 sha256 清单自证。",
+    "对照组的异常率是判据健康度探针：本轮 TARGET 默认路径写错后出现「9 例中 9 例崩溃」，SyntaxError / Cannot find module 都会伪装成漏洞。任何「全部失败」先 `node <target>` 空跑一次确认被测件本身能起。",
+    "宿主时钟会在两次 30 分钟调度之间跳 9.5 小时（本轮 00:00 开工 → 09:50 收尾，文件 mtime 与目录名时刻不一致）：轮次标识沿用开工时刻，耗时预算不可用墙钟核对，改按「产物是否完成」判断。",
+    "本轮磁盘开工可用 19849992 KB ≈ 18.9 GiB（>1.5 GiB 阈值）；收尾磁盘 18042944KB ≈ 17.2 GiB（比开工少 1.7 GiB，兄弟实验室同期在写）；demos 本轮 440KB（限 5MB），LAB 21MB。清理：.tmp/pw2（playwright-core 13MB）已删、lab.db-shm/-wal 已删、demos 里指向 .tmp 的 node_modules 软链已删（该链不入 git 且指向必删目录）。全局缓存未动。",
+    "★第 9 轮：本机无 LibreOffice（which soffice 失败、/Applications 无），所以任何把 recalc.py / soffice --convert-to 当强制闸门的技能都拿不到官方证据。可用替代：python3 -m pip install --target LAB/.tmp/pylibs --index-url https://mirrors.aliyun.com/pypi/simple/ openpyxl formulas（29.7s，但 formulas 连 scipy/numpy 共 218MB，收尾必删；单 openpyxl 约 2MB），用 formulas.ExcelModel().loads(f).finish().calculate() 重算、再把结果与「用 Python 从原始事实独立重算的期望值」逐格比对 —— 这是交叉证据，不等于 Excel/LibreOffice 语义。",
+    "★openpyxl 两个静默坑：(1) 单元格值是以 '=' 开头的字符串时会被写成**活公式**，所以「展示公式文本」的文档列必须在赋值后 cell.data_type='s'（产物落成 t=\"inlineStr\"），否则等于把被记录的公式又执行一遍；(2) 读回的字体色带 alpha 前缀（蓝是 '000000FF' 不是 'FF0000FF'），颜色断言要 endswith。",
+    "★Excel 语义坑（也是 xlsx 技能没写全的一条）：=H/60 在 H 为空时**不报错、返回 0**，IFERROR 永不触发 → 空值必须用 =IF(H=\"\",\"\",H/60) 显式守卫；分组平均同理，SUMIF/COUNTIF 会把无记录的成员当 0 计入分母，要用 COUNTIFS(range,\">0\") 作分母。",
+    "断言覆盖度教训（第 9 轮两次）：一个断言只比对了 3 列里的 2 列，就放过了 6.5 vs 13.0 的真错。多列聚合结果要逐列断言；技能自带 checker 全绿仍须叠独立断言（第 5 轮 svg_quality_checker 同源教训）。macOS 无 timeout 命令（gtimeout 属 coreutils）。",
+    "台账纪律：state.json runs[] 自第 5 轮起漏写 installed_by_this_task（第 1–4 轮有），已回填。任何从台账取数的脚本要先做字段完整性检查，别默认历史字段齐。",
+    "★第 10 轮：`sh script.sh` 里 **反引号会被当命令替换**（`go test -run `^$`` 因此静默变成 `-run ''`，基准一节只输出 [no tests to run]）。POSIX sh 脚本中的正则一律用单引号。",
+    "★`go tool cover -html` 的着色是**文字 color**（.cov0{color:#c00} .cov8{color:#2cd495}），不是 background-color。断言计算样式前先抓 <style> 原文决定读哪个属性，否则会把两个 rgba(0,0,0,0) 误判成 CSS 没生效。",
+    "★Go 环境无人值守配方：go 1.27.1（~/.local/go/1.27.1/bin/go），GOCACHE/GOPATH 指 LAB/.tmp/{gocache,gopath}（首轮编译 stdlib 仅 1-2s，缓存 86MB，收尾整目录删除，**不碰全局 ~/Library/Caches/go-build**），二进制也输出到 LAB/.tmp 不进 demos；纯 stdlib 模块零网络（GOPROXY 未被触发）。`go vet ./...` 会连带编译 _test.go（等于测试可编译性检查），但 build-tag 文件要另跑 `go vet -tags=integration ./...` 否则永远不被检查。",
+    "★LAB 相对路径坑（本轮真实代价）：demo 目录是 LAB/demos/<run>，`cd ../../..` 会多退一层落到工作区上级，把 86MB GOCACHE 与 2.6MB 二进制写进 试验/.tmp。任何脚本求 LAB 一律 `LAB=$(cd ../.. && pwd)`（从 demos/<run> 起），收尾必须 `ls 上级目录` 确认没留下也没误删兄弟实验室的文件。",
+    "表驱动断言先算例再写期望：迷宫类产物里「地板格数 = 2·cells−1、渲染再被 S/E 覆写 2 格 → '.' 数 = 2·cells−3」，凭直觉写 countOpen(cells) 会让 4 条断言全错。第一版就是这么错的（教训同第 9 轮「一个断言只比 3 列里的 2 列」）。",
+    "磁盘开工水位：可用 17,919,900 KB ≈ 17.1 GiB（>1.5 GiB 阈值）。收尾本轮 demos 92KB（限 5MB）、LAB 约 22MB、磁盘可用 17,916,332 KB ≈ 17.1 GiB。清理：LAB/.tmp/{gocache,gopath,maze} 与误建的 试验/.tmp 全部删除，known_hosts 保留（gitignored）。**全局副作用 = 无**（零技能安装、零服务、零全局配置改动）。",
+    "宿主时钟：本轮 10:12 开工 → 10:21 记录，与第 9 轮（09:56）之间不足 30 分钟即被调度，轮次标识一律取开工时刻。",
+    "★第11轮：Python Playwright 在本机可用且**不需要下载浏览器** —— pip 镜像装 playwright 1.63.0 到 LAB/.tmp/pylibs（6.1s，目录 140MB，收尾删），launch 时 executable_path 直指 /Applications/Google Chrome.app 即可。此前「无 pip / 无 PIL → 依赖 Python 的技能先当不可用」的限制作废（第5轮的 --target 路线本就通了，本轮补上浏览器这条腿）。",
+    "第11轮：Playwright 的 page.on('request'/'response') **看不到浏览器自己发起的 /favicon.ico 取回**（本轮 16 次事件里只有 1 条文档请求、零 >=400 响应，而服务端访问日志明明白白记着 GET /favicon.ico 404）。⇒ 任何「零外链/网络卫生」断言，只要产物经 HTTP 服务，就必须同时收 http.server 的访问日志；技能自带的 with_server.py 把该日志接成 PIPE 且从不读取，要自己起服务并重定向到文件。",
+    "第11轮：无 <link rel=\"icon\"> 的 HTML 产物，**404 只在被 HTTP 服务且发生下载导航时出现**（file:// 与纯加载都 0 error）→ 历轮 file:// 验收天然看不见这类缺陷。一行修复 `<link rel=\"icon\" href=\"data:,\">` 已 A/B 证验（ab_favicon_fix.py）。",
+    "第11轮：Playwright 三个 API 细节 —— (1) page.fill() 对 input[type=number] 抛 `Cannot type text into input[type=number]`，要改 el.value + dispatch_event('change')；(2) page.evaluate 里 JS 箭头函数**解构实参必须加括号** `([a,b]) => {}`，漏括号是 `Malformed arrow function parameter list` 且整轮中断；(3) locator().screenshot() 量的是 CSS 显示盒（≤1000px）而非 canvas 原始分辨率，原始分辨率要另走 download/save 捕获。",
+    "第11轮：**「同哈希截图」是判定「控件失灵/未重绘」的最硬证据**，比像素统计五元组更省话——本轮 mutant_wiring 的 02→03 两张 PNG sha256 完全相同，而 golden 两者不同。元素级截图（无侧栏噪声、单张 300-460KB）适合直接入 git 当证据。",
+    "第11轮：变异测试的「级联」要预告而非当 bug —— nextSeed 算术清零这一条变异同时让 G10（非法种子回滚）红，因为种子已漂移到别的值、断言的期望值不再成立。判故障范围看**哪些断言仍绿**（mutant_wiring 的 G7/G8/G9 全绿才是它定位成功的证据），不能只数红条。",
+    "磁盘开工水位：可用 17,907,872 KB ≈ 17.1 GiB（>1.5 GiB 阈值）；收尾 17,795,988 KB ≈ 17.0 GiB。本轮 demos 4.0MiB（限 5MB），LAB 收尾 26MB（含 .skills 16MB 与 .tmp 未入库）。",
+    "★第12轮：出图不必依赖 playwright —— `\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --hide-scrollbars --virtual-time-budget=2500 --window-size=WxH --default-background-color=FFFFFFFF --screenshot=out.png file://abs.html` 直接产出精确 W×H 的 PNG（本轮 33,756B / 720×320，中文与 SVG 文字正常）。只需要一张图时优先用这条，比装 13MB(playwright-core)/140MB(playwright) 划算。",
+    "第12轮：docx-js（npm docx 9.7.2）两个静默坑 —— (1) `new TextRun({text, children})` 只序列化 children，**text 整段丢失且技能自带 validate.py 全绿**；PositionalTab(点前导) 要单独占一个不带 text 的 run。(2) 它生成的 styles.xml **不定义 Normal / DefaultParagraphFont** 却让样式 basedOn 它们 → 无 pStyle 的段落被 python-docx 解析为 style=None（17/38 段）。XSD 校验查不出悬空样式引用，必须另加「引用集合 ⊆ 定义集合」的断言。",
+    "第12轮：`<w:ins>/<w:del>` 手工修订三条纪律 —— (a) 单行 XML 上 `<w:rPr>.*?</w:rPr>` 会跨 run 吞掉前一个 run，把上一句的 <w:t> 搬进 <w:del>（validate.py --author 正好抓得到），要用 tempered 模式 `(?:(?!</w:rPr>).)*?`；(b) 修订 id 必须全局唯一，而 **validate.py 不查唯一性**，靠自写断言；(c) 验收要用「拒绝全部修订后的正文 == 原件逐字符相等」+「接受视图只多出/只少掉预期的那几段」双向不变量，这才是 Word 真显示的东西。",
+    "第12轮：python-docx 的 `paragraph.text` **不含 <w:ins>/<w:del> 内的文字**，也不含表格段落（`.tables` 才有）；用它写探针前先分清「文件坏」与「API 口径」。技能要求的 soffice / pdftoppm / pandoc 本机三缺，「渲染出来亲眼看」不可用 → 替代三件套：document.xml 顺序导出的文本预览 + OOXML 断言 + 第二解析器回读。",
+    "无人值守流水线里若要跑「故意做坏的 A/B 对照」，run.sh 不能用 `set -e`（会在负样本处直接终止），改 `set -uo pipefail` + 显式记 `exit=$?`。另外 pip 阿里源装 defusedxml+lxml+python-docx 共 14MB/数秒，Pillow 16MB（python-docx 的 image 探针需要它，本轮未用故卸载）。",
+    "★第13轮 py3.14 PDF 依赖配方：pypdfium2 与 cryptography 无 wheel 且源码构建失败 → `pdfplumber==0.11.9 --no-deps` + `pdfminer.six==20231228 --no-deps` 可装可用（文本/表格/rects/chars 全正常，仅 to_image 坏）；渲染验证走 `qlmanage -t`。reportlab 5.0.1 / pypdf 6.19.0 正常。",
+    "★第13轮 reportlab 中文字体：PingFang.ttc 是 CFF 轮廓，TTFont 报 postscript outlines are not supported（index 0-3 全试）；用 /System/Library/Fonts/STHeiti Light.ttc subfontIndex=0，可内嵌、渲染正常。",
+    "★第13轮两条断言纪律：(1) 旋转文字（水印 38°）在文本抽取里是散字符，字符串匹配必假 → 用 glyph 计数差（每页 +1 个『印』）；(2) pypdf 6.x decrypt() 返回 0/1/2 状态码而**不抛异常**，『没抛异常=口令对』是假通过，须断返回码+页面访问双条件（负对照 NC3 抓到）。半透明水印合成后是淡红，像素阈值 R-G>25 而非 G<130。",
+    "磁盘开工水位：可用 17,571,028 KB ≈ 16.8 GiB（>1.5 GiB 阈值）；收尾同值附近。本轮 demos 492KB（限 5MB），LAB 约 22MB（.skills 16MB 未入库）。.tmp/pylibs（30MB reportlab/pypdf/pdfplumber/pdfminer/Pillow）收尾已删。",
+    "browser-use 面板对持续 rAF 的 WebGL 页不可用：单次 probe 也 15s 超时（面板 viewport 0x0 + 软件光栅）。像素级取证一律走 playwright-core(npmmirror, 8.3MB/1s 装完) + 系统 Chrome，args 用 --use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader，WebGL 可正常编译/链接/readPixels。",
+    "★Node 脚本中文路径坑：`new URL(import.meta.url).pathname` 是百分号编码，fs 写文件/Playwright screenshot 会照着在 /Users/apple/Documents/workProject/%E8%AF%95%E9%AA%8C/... 建假目录，产物静默落到 LAB 之外且当前目录 ls 看不见。必须 `fileURLToPath(import.meta.url)`。找回方法：find /Users/apple/Documents/workProject -maxdepth 3 -name '*%*'。",
+    "验证「乘性/径向」shader 项（暗角、衰减）不能在带纹理的背景上测环平均：本轮实测外环(0.345)比内环(0.252)还亮，因为中环正落在 fbm 亮流区——既有假绿又抓不到删项变异。做法：用页面暴露的换编译口把片元退到「常量底色 + 只留该乘项」，再按解析公式核对，实测 relErr 1e-4。",
+    "页面里做「重新编译并替换 program」的钩子时，必须同步更新对外暴露的源码引用（__shaderFragSource），否则变异体下的派生探针读到的仍是基线源码 → 假存活。",
+    "双变异在 GPU 产物上的分工（本轮实测）：t=0 操作点上 `uTime*uSpeed`→`uTime` 的变异 golden 哈希抓不到（数值等价），只有行为断言抓到；反之单条域扭曲通路归零，聚合的 uWarp 响应断言仍绿，只有 golden 像素哈希抓到。→ 行为断言 + golden 哈希两套都要有。",
+    "extension-market 的 origin:skillatlas 条目本轮（第 14 轮）再次一次装成（shader）；tags 为空的条目也可靠。安装仍走 Full Access 免确认。",
+    "收尾核查数值：LAB 37,516KB（含 .skills 16MB 未入库）、本轮 demos 2.4MB（限 5MB）、磁盘可用 17,664,700KB≈16.9GiB、零新增监听端口、误建的 %E8%AF%95%E9%AA%8C 假目录已删（find 复核为 0）。日志文件名坑：LAB/.gitignore 的 *.log 只放行 !demos/**/output.log，所以每轮的 CLI/断言/变异输出要合并成 demos/<轮>/output.log 才会入库（本轮首提交漏了 3 个日志，合并后补交）。",
+    "Pillow 缺字形静默丢字：font.getbbox(ch) 高度为 0 = 该字体无此字形（Jura 全系无 U+2032 ′），Pillow 既不报错也不画豆腐块 → 落笔前先量 bbox，缺的字形改手工画（本轮把分号画成 5px 斜线，反而更贴技能「把字体带上画布」的取向）。",
+    "per-char 排字会杀死 italic 字距：为做 tracking 而逐字 d.text() 时，InstrumentSerif-Italic 词内出现 6–10px 空洞（缩略图上像「sam e distance」）。连读句子一律整串 anchor=\"mm\"；只有几何式大标题才用 tracking。抓它的断言＝按阈值数词隙（本轮期望 9 词 8 隙）。",
+    "Pillow 画弧后再用同半径 ellipse(outline=底色) 画参考圆，会把宽弧从正中间擦掉：沿精确半径采样只测到 92.9°/308°（假阴性）。取证采样半径要偏移（本轮 R-3.2），或参考圆别与数据弧同半径。",
+    "暗角/渐晕合成后「出血位有无 artwork」不能用「比纯纸暗」判据（暗角本身让边缘变暗，实测 485 假命中）；要用墨色绝对阈值 sum<300。",
+    "py3.14 装 Pillow 一次成功：python3 -m pip install --target .tmp/xxx Pillow -i https://mirrors.aliyun.com/pypi/simple/（约30秒，12.3.0），产物目录零 node_modules。",
+    "MCP 开发路线本机可用：@modelcontextprotocol/sdk 1.30.1 + zod 4.6.5 走 npmmirror（94 包/4s，纯 JS 无原生依赖无浏览器）；起服务→客户端→断言全在 node 两条命令内，692ms 跑完 32 断言，比 npx inspector 更适合无人值守。",
+    "MCP 的 stdio 传输是子进程管道、**不占端口**，故 lsof 天然零残留；收尾只需确认无遗留 node 子进程。",
+    "声明 outputSchema ⇒ 每条返回路径（空结果/not-found/截断）都必须带 structuredContent，否则 SDK 回 -32602 Output validation error 且把友好提示整条吞掉；isError:true 分支豁免。只有真起会话才暴露。",
+    "SDK 1.30.1 的 tools/list 里 inputSchema 只带 properties、无 required 数组（.default() 字段视作可选）——别断言 required。",
+    "落 package.json 的依赖版本要用 node -e require(.../package.json).version 核对，别照 guide 猜（zod 我写 ^4.4.3 实装 4.6.5）。",
+    "把 MCP server 复制到子目录（如 .mut/）会让 import.meta.url 相对路径少算一层，表现为客户端 'Connection closed' 这种极难定位的错——一律用环境变量显式注入数据路径（中文目录仍需 fileURLToPath 解码）。"
+  ],
+  "runs": [
+    {
+      "time": "2026-09-25T17:23+08:00",
+      "skill": "drafter",
+      "result": "success",
+      "seconds": 420,
+      "artifact_size": "15KB HTML + 3.4KB output.log；本轮 demos 目录合计 20KB（限 5MB）",
+      "cleanup": "无需删依赖（零安装零 node_modules、产物无 JS 无外链）；未起任何本地服务，lsof 无监听；本轮唯一持久副作用=安装了 ~/.qoder-cn/skills/drafter（已登记 installed_by_this_task，按规约不自动卸载）；离屏测量容器随重新导航自动消失，未落盘",
+      "push": "已推送：git push -u origin skill-showcase 新建远端孤立分支成功（首推，无 force），远端 refs/heads/skill-showcase = 2004a2f；main 保持 c662335 未被触碰；走 git.com SSH + LAB/.tmp/known_hosts，命令行无任何 token",
+      "installed_by_this_task": [
+        "drafter -> /Users/apple/.qoder-cn/skills/drafter/"
+      ],
+      "notes": "首建 LAB 骨架（records/state/demos/reports/.skills/.tmp/.gitignore）。27 项风格与结构断言全 PASS；暴露并修复 skill 自身示例 CSS 的 1fr min-content 缺陷（六步条 45-97px 不等宽 → minmax(0,1fr) 后 spread 0.02px）；720-1600px 五档宽度零裁切零溢出。另：首次尝试 diagram-drawing 因 EXTENSION_SKILL_FRONTMATTER_INVALID 失败并已记 blocked。"
+    },
+    {
+      "time": "2026-09-25T17:37+08:00",
+      "skill": "ascii-project-dashboard",
+      "result": "success",
+      "seconds": 600,
+      "artifact_size": "dashboard.txt 2.8KB(52行) + 对照 naive 2.8KB + 两脚本 11KB + output.log 6.6KB = demos 本轮 32KB（限 5MB）；LAB 见收尾核查",
+      "cleanup": "零 node_modules/零构建缓存/零二进制；未起本地服务（lsof 监听数与开工一致，均属其它任务）；demos 只留可打开的 .txt + 复现脚本 + 日志；全局缓存未动",
+      "push": "已推送 f23b5ae → origin/skill-showcase（fetch 比对后普通推送 2311b94..f23b5ae，无 force/无 --no-verify）；main 与其它分支未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行无 token",
+      "installed_by_this_task": [
+        "ascii-project-dashboard -> /Users/apple/.qoder-cn/skills/ascii-project-dashboard/"
+      ],
+      "notes": "10 PASS / 0 FAIL 断言（列边界/条长/版式一致/框线闭合/百分比==独立反算）；对照组按技能原文口径跑→7 PASS 3 FAIL，实测其「10 chars=10 chars」在中文下极差 26 列。"
+    },
+    {
+      "time": "2026-09-25T18:10+08:00",
+      "skill": "algorithmic-art",
+      "result": "success",
+      "seconds": 1140,
+      "artifact_size": "art-index.html 998KB(单文件自包含) + viewer.src.html 21KB + philosophy.md 2.5KB + build.mjs 527B + output.log 7.2KB = demos 本轮 1.0MB（限 5MB）；LAB 总 17MB（.skills 16MB 已 gitignore）",
+      "cleanup": "已删 $LAB/.tmp/p5.tgz(2.1MB) 与 .tmp/p5x(4.3MB 解包)——p5 已内联进产物故不再需要；删空 demos/.../.work；零 node_modules、零构建缓存、零编译二进制；未起任何本地服务（收尾 lsof 9 条 LISTEN 全属 QQ/WPS/Qoder/adb/clash 等既有进程，无本轮残留）；本轮**未安装任何全局技能**（installed_by_this_task 为空，是三轮里第一次纯外部 clone）；保留 LAB/.skills/anthropic-skills 16MB 作第三方技能镜像（已加进 .gitignore 不入库）；全局缓存未动",
+      "push": "已推送：fetch 后确认远端 36cf63d 是本地 HEAD 祖先 → 普通 push origin skill-showcase 成功 36cf63d..e3e940e；无 --force、无 --no-verify；main / go-gin_react 未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
+      "installed_by_this_task": [],
+      "notes": "来源②首次打通（SSH clone anthropics/skills）。31 项断言全 PASS：结构 12 / 构图渲染 7 / 可复现与交互 8 / 附加 4。技能招牌「same seed ALWAYS identical」被逐像素哈希证实（regenerate 同哈希 3746692814-22500、nextSeed 变、previousSeed 与 reset 均精确复原）。暴露并绕过 4 个坑：CDN 被 TLS 重置→npm 镜像取 p5 内联；线性跨步像素探针假阴性；viewport 0×0 触发响应式假阴性需 320px 离屏容器；SKILL.md 要求 Download PNG 键但自带模板缺失（按 SKILL.md 补齐）。沙箱浏览器不落盘 → PNG 导出只验到调用链，已如实记录。 | 收尾核查：git status 干净、远端 skill-showcase=032a911（=本地 HEAD）、main 与 go-gin_react 未触碰（远端仍 1da8a14 / 53153f4）、LAB 18MB(其中 .skills 16MB 未入库)、demos 本轮 1.0MB、磁盘可用 20434424 KB≈19.5GiB。"
+    },
+    {
+      "time": "2026-09-25T18:42+08:00",
+      "skill": "SQLite-Database-Expert",
+      "result": "success",
+      "seconds": 780,
+      "artifact_size": "lab.db 299008B + build-db.mjs 4.7KB + verify.mjs 9.2KB + query.mjs 1.2KB + maintain.mjs ~0.7KB + output.log ~6KB = demos 本轮 328KB（限 5MB）",
+      "cleanup": "已删 LAB/.tmp/{fk.db,fts-desync.db,bench.db}*（安全实验临时副本）、lab.db-wal / lab.db-shm（干净关闭后残留）、verify-report.txt（内容已并入 output.log）、probe.mjs（逻辑并入 verify.mjs）；零 node_modules、零 npm 安装、零编译二进制、未起任何本地服务（收尾 lsof LISTEN=11 与开工一致，全属既有进程）；本轮**未安装任何全局技能**（installed_by_this_task 为空）、全局缓存未动、除 LAB 外未改任何文件",
+      "push": "已推送：fetch 确认远端 e15b2b4 是本地 HEAD 祖先 → 普通 push origin skill-showcase 成功 e15b2b4..0912dc3；无 --force、无 --no-verify；main(1da8a14)/go-gin_react(53153f4) 未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
+      "installed_by_this_task": [],
+      "notes": "14 断言 / 0 FAIL（E1 查询计划与 tokenizer 4 项 / E1b 触发器失同步+rebuild 2 项 / E2 注入 2 项 / E3 外键 3 项 / E4 事务提速 1 项 / E5 持久 PRAGMA 2 项）。关键量化：unicode61 对 '安全闸门' 漏 1/4（'## 安全闸门结论'）、'p5' 漏 1/13（p5x）、'ab' LIKE=21→MATCH=0；trigram 4/4 与 LIKE 相等但 '安全'(2 字符)=0；单事务 8.2ms vs 逐语句 108.6ms = 13.2x（推翻技能「100x」量级）；FK OFF 收孤儿行 / ON 报 FOREIGN KEY constraint failed；VACUUM freelist=0 尺寸不变 299008B。两轮 FAIL 的真相是我自己的预设错了（以为 unicode61 中文全盲，实为整词精确匹配）——已按真实行为重写断言并把差集行取证写进 output.log。包缺陷：§0 必读的 references/advanced-patterns.md、references/security-examples.md 在包内不存在；frontmatter risk_level=HIGH vs 正文 MEDIUM 自相矛盾。 | 收尾核查：git status 干净、远端 skill-showcase=0912dc3(=本地 HEAD)、LAB 19MB(其中 .skills 16MB 未入库)、demos 本轮 328KB、磁盘可用 20273916 KB≈19.3GiB、收尾 git status 干净、lsof LISTEN=11 全属既有进程（QQ/clash/Qoder/adb/verge/python3.1 等）。"
+    },
+    {
+      "time": "2026-09-25T19:06+08:00",
+      "skill": "ppt-generator",
+      "result": "success",
+      "seconds": 600,
+      "artifact_size": "skill-showcase-pixel-retro.pptx 48873B + svg_slides/ 5 个 .svg(29KB) + build_pptx.py 883B + verify_pptx.py 3.9KB + output.log 3.8KB = demos 本轮 100KB（限 5MB）；LAB 见收尾核查",
+      "cleanup": "已删 LAB/.tmp/pylibs（32MB，python-pptx+lxml+Pillow，产物 .pptx 已生成故不再需要）与 __pycache__；零 node_modules、零 npm 安装、零编译二进制；未起任何本地服务（浏览器仅导航 file://）；除 ppt-generator 一个全局技能（已登记 installed_by_this_task，按规约不自动卸载）外未装其它东西；全局 python site-packages 与全局缓存未动；产物与台账全部落在 LAB 内（技能原本要写 /tmp/ppt_svgs，已改道 demos）。",
+      "push": "已推送：fetch 确认远端 5175275 是本地 HEAD 祖先 → 普通 push origin skill-showcase 成功 5175275..ec14770；无 --force、无 --no-verify；main / go-gin_react 未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
+      "notes": "5 页 pixel_retro 幻灯片 + 原生 .pptx；技能自带 checker 5/5，独立断言 13/13；最有价值发现：它自己的 checker 不查它自己定的边距（假通过），以及 python3 -m pip --target 这条依赖路线其实可用。",
+      "final_check": "git status 干净；demos 本轮 100KB；LAB 18MB（.skills 16MB + .gitignore 排除项不入库）；磁盘 20290752 KB ≈ 19.4 GiB；lsof LISTEN=10 全属既有进程；.tmp/pylibs 32MB 已删",
+      "installed_by_this_task": [
+        "ppt-generator (market id official_79e7IlJQ) -> ~/.qoder-cn/skills/ppt-generator/ 经 install_extension 安装"
+      ],
+      "installed_by_this_task_note": "第 9 轮回填：runs[] 自第 5 轮起漏写该字段，导致按 runs 聚合的统计偏小（本轮 xlsx 台账的「新装技能数」指标把它暴露出来）"
+    },
+    {
+      "time": "2026-09-25T19:50+08:00",
+      "skill": "graphic-gif",
+      "result": "成功（留用）。产物 demos/20260925-1950-graphic-gif/animation.gif 48293B / 48 帧 / 800x800 / 无限循环，26 条独立断言 26 PASS 0 FAIL",
+      "seconds": 900,
+      "artifact_size": "192KB（本轮 demos；含 4 抽样帧 96KB，gif 47KB）",
+      "cleanup": "已删 frames/(1.2MB,48 帧 PNG 中间物)、node_modules/(13MB playwright-core)、palette.png、package-lock.json；零新增进程与监听；全局 site-packages 未碰；未装除 graphic-gif 外任何技能",
+      "push": "已推送：git push origin skill-showcase 成功（19dbcaf..857a690，普通推送，无 --force / 无 --no-verify）；远端是本地祖先故无需 rebase；main / go-gin_react 未触碰",
+      "notes": "实现层（export-gif.sh/capture-and-encode.mjs/两个 references）包内全缺→按 SKILL.md 规范自补 capture.mjs；KLING(ai-generated) 路线需付费凭据+上传本图，按闸门排除并走它自带的降级条款。",
+      "seconds_note": "19:50 开工→20:05 出纪要，约 15 分钟；其中 48 帧捕获+编码 7 秒",
+      "final_checks": {
+        "git_status": "干净（回填 commit 后二次推送）",
+        "demos_this_round": "192KB",
+        "lab_total": "19MB（含 .skills 16MB gitignored）",
+        "disk_free_kb": 19750288,
+        "disk_free_gib": "18.8 GiB",
+        "listen_total": 18,
+        "listen_from_this_run": 0,
+        "note": "8123/8124 两条 node 监听属兄弟实验室既有服务，未触碰；chrome 相关 5 进程全是 18Sep 起的历史用户进程，本轮 headless 实例已随 browser.close() 退出"
+      },
+      "installed_by_this_task": [
+        "graphic-gif (market id official_nhsK8Qra) -> ~/.qoder-cn/skills/graphic-gif/ 经 install_extension 安装"
+      ],
+      "installed_by_this_task_note": "第 9 轮回填：runs[] 自第 5 轮起漏写该字段，导致按 runs 聚合的统计偏小（本轮 xlsx 台账的「新装技能数」指标把它暴露出来）"
+    },
+    {
+      "time": "2026-09-25T23:32+08:00",
+      "skill": "build-game",
+      "result": "成功（留用·强推荐）。产物 demos/20260925-2332-build-game/frostlight-gather.html 750,620B 可玩 3D 游戏，23 条独立断言 23 PASS / 0 FAIL，运行期 console/page error = 0",
+      "seconds": 1440,
+      "artifact_size": "frostlight-gather.html 750,620B + game.src.html 40,938B + verify.mjs 22,030B + postfx.bundle.js 39,825B + inline-jsm.mjs 2,683B + build.mjs 1,183B + output.log 3,950B + render_game_to_text.txt 268B + shots/ 3 张 jpg 193,437B = 本轮 demos 1.0MB（限 5MB）",
+      "cleanup": "已删 demos 内中间件 part1.js/part2.js、LAB/.tmp/three（9.4MB tgz+解包）、.tmp/pw/node_modules（playwright-core）；无本轮起的服务/监听进程（未起 server，产物 file:// 直开）；全局缓存与 ~/.qoder-cn/skills 未动",
+      "push": "已推送：git push origin skill-showcase 成功（600f5c9..8873a67，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 600f5c9 是本地 HEAD 祖先故无需 rebase；main / go-gin_react 未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
+      "notes": "来源①官方市场第一个候选即中（search_extensions query \"build-game\" → install_extension，installRef 现搜现装）。安全闸门：读全文 SKILL.md+serve.sh+抽查 references 后放行；拒绝 Phase 5 的 here.now 上传（本地内容外发）；serve.sh PID 写死 /tmp 之外故未使用，改 file:// 直开。最大工程点=three r160 离线化：classic 构建内联 + examples/jsm ESM→IIFE 命名空间转换（11 模块 39.8KB），把 SKILL 强制的 bloom/调色/FXAA/OutputPass 链真的装上（SSAO 放弃并已记录）。两条 FAIL 均为我方判据错（跳跃采样窗口、亮度阈值与 vignette 采样位置），已换成理论值对比与局部像素探针。 | 收尾核查：git status 干净（仅本轮 4 项变更已提交）、远端 skill-showcase=8873a67、LAB 21MB（含 .skills 16MB gitignored）、磁盘可用 19853944 KB ≈ 18.9 GiB、lsof 无本轮残留监听（未起任何 server）、全局技能库新增 1 项 build-game（见 installed_by_this_task）。",
+      "installed_by_this_task": [
+        "build-game (market id official_LaiVUmnK) -> ~/.qoder-cn/skills/build-game/ 经 install_extension 安装"
+      ],
+      "installed_by_this_task_note": "第 9 轮回填：runs[] 自第 5 轮起漏写该字段，导致按 runs 聚合的统计偏小（本轮 xlsx 台账的「新装技能数」指标把它暴露出来）"
+    },
+    {
+      "time": "2026-09-26T00:00+08:00",
+      "skill": "sec-audit-cn",
+      "result": "成功（留用）。产物 demos/20260926-0000-sec-audit-cn/SECURITY-AUDIT.md 11,225B 分级审计报告；严重 0 / 高 2 / 中 5 / 低 2 + 正面清单 5 条；静态扫描 31 命中分诊为 13 有效 / 18 误报；3 组黑盒 PoC 全部真跑（PoC-A 修复前后 3 崩溃→0、PoC-B 篡改链闭环含 reload 持久化与对照组、PoC-C 凭据形状 0 命中 + opaque 度量 + 36 个 SKILL.md 指令面 44%）",
+      "seconds": null,
+      "artifact_size": "440KB（本轮 demos 目录，含 79KB output.log 与 299KB 只读 lab.db 副本）",
+      "cleanup": "已删 .tmp/pw2(13MB playwright-core)、lab.db-shm/-wal、demos 内 node_modules 软链；零本轮残留进程与监听（lsof LISTEN 10 条全属既有进程）",
+      "push": "已推送：git push origin skill-showcase 成功（64b4386..0b9b385，两个 commit：第8轮验证 + 清理 SQLite sidecar 临时件；普通推送，无 --force / 无 --no-verify）；fetch 确认远端 64b4386 是本地 HEAD 祖先 → 无需 rebase；main / go-gin_react / crypto-forecast 分支未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
+      "notes": "唯一不产「可见新文件形态」的一轮：产物是对前 7 轮的审计结论 + 修复件。安全闸门：技能零脚本零网络；PoC 全部本机 file:// 或本地 CLI，无外发、无凭据读取、无 sudo。。收尾核查：git status 干净（0 项未提交）、demos 本轮 440KB、LAB 21MB、磁盘可用 18042944KB ≈ 17.2 GiB（开工 18.9 GiB，兄弟实验室同时在写）、lsof LISTEN 10 条（全属既有进程，零本轮残留）、ffmpeg/headless Chrome 进程 0。全局副作用 = 无（本轮未安装任何技能，只用本机已装的 sec-audit-cn）。",
+      "installed_by_this_task": [],
+      "installed_by_this_task_note": "第 9 轮回填：runs[] 自第 5 轮起漏写该字段，导致按 runs 聚合的统计偏小（本轮 xlsx 台账的「新装技能数」指标把它暴露出来）"
+    },
+    {
+      "time": "2026-09-26T09:56+08:00",
+      "skill": "xlsx",
+      "result": "成功（留用）。产物 demos/20260926-0956-xlsx/skill-showcase-ledger.xlsx 15,360B（3 sheet / 98 活公式 / 原生柱状图 chart1.xml / 25 批注）；49 断言 49 PASS / 0 FAIL",
+      "seconds": 720,
+      "artifact_size": "本轮 demos 目录 84KB（xlsx 15,360B + sheet-preview.txt 9,917B + output.log 8,011B + 四个脚本/facts.json）",
+      "cleanup": "已删 LAB/.tmp/pylibs（218MB openpyxl+formulas+scipy，gitignored）与 demos 内 .tmp/（mutated.xlsx/probe.xlsx 中间件 32KB）；未装任何技能、未起任何服务、无本轮进程与监听；全局缓存未动",
+      "push": "已推送：git push origin skill-showcase 成功（4f8fa8e..00066d2，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 4f8fa8e 是本地 HEAD 父提交 → 无需 rebase；main / go-gin_react / crypto-forecast 分支未触碰（本轮只对 skill-showcase 做 fetch+push）；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
+      "installed_by_this_task": [],
+      "notes": "来源②本地已有（第 3 轮 clone 的 anthropics/skills）→ 本轮零下载零安装。安全闸门：SKILL.md 99 行 + recalc.py 308 行 + office/soffice.py 192 行全读过 → 零网络、只写传入文件与 tempfile 目录，通过。最大增量：技能的强制 recalc 闸门绑定 LibreOffice（本机缺），用纯 Python 引擎 formulas 顶住并逐格与 Python 独立重算比对；顺带证伪它的 _xlfn 清单是运行时特定（本引擎 XLOOKUP 可用、_xlfn.TEXTJOIN 反而不可用）。抓到自己一条真缺陷：空单元格除法静默变 0 使 IFERROR 失效 + 分组均值分母含空值（6.5 vs 真值 13.0）。",
+      "final_check": "git status 干净（0 项）；demos 本轮 84KB（限 5MB）；LAB 22,200KB≈22MB；磁盘可用 17,924,860KB≈17.1GiB（开工 17.2GiB）；lsof LISTEN 10 条全属既有进程（QQ/adb/clash/Qoder，零本轮残留监听，本轮未起任何服务）；无本轮残留 python 进程；.tmp/pylibs(218MB) 与 demos 内 .tmp/(32KB 中间件) 已删；全局缓存未动"
+    },
+    {
+      "time": "2026-09-26T10:12+08:00",
+      "skill": "golang-testing",
+      "result": "成功（留用·推荐）。产物 demos/20260926-1030-golang-testing/maze-solved.txt 1,312B（24x12 格 / 49x25 网格 / 解路径 225 步）+ coverage.html 12,595B + output.log 9,943B + testdata 3 golden + 5 源文件；29 PASS / 4 FAIL（4 条全部来自故意变异 8a/8b，恢复后全绿）；覆盖率 73.3%（Generate 100 / Draw 100 / Solve 96 / main 0）；基准 4 行（size-128 = 2.92ms/783KB/34359 allocs）；gofmt -l 空；go vet 与 go vet -tags=integration 双清",
+      "seconds": 540,
+      "artifact_size": "92KB（本轮 demos 目录，含 5 个源文件；限 5MB）",
+      "cleanup": "已删 LAB/.tmp/{gocache(86MB),gopath(未生成),maze(2.6MB)} 与因路径 bug 误建在工作区上级的 试验/.tmp/{gocache,maze}（先 ls 核对 owner 与 mtime 再删）；demos 内保留源码+产物+日志，无 node_modules、无二进制、无临时文件；全局 ~/Library/Caches/go-build 未动；本轮未起任何监听端口（lsof 复核）",
+      "push": "已推送：`git push origin skill-showcase` 成功（f5b2515..e6dab0f，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 f5b2515 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(c9e0541) / go-gin_react(b8fe3fd) / crypto-forecast(不存在，未创建) 均未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token（staged diff 先按凭据形状扫过：ghp_/AKIA/sk-/PRIVATE KEY/password=/token= 零命中）",
+      "notes": "第 10 轮零安装、零下载、零网络（纯 stdlib Go）、零服务、零全局配置改动。最大方法学增量：把「双变异测试」（值变异 + 结构变异）当成规范型技能的验收闸门——实测证明值变异只有 golden 抓到、结构变异被 3 条不变量同时抓到，二者缺一即假通过。踩坑 5 条已写进 environment_notes（反引号被 sh 命令替换导致基准静默空跑、cover -html 是文字色非背景色、LAB 相对路径退多一层把 86MB 缓存写到工作区上级、表驱动期望值要先手推 5x5 小图、go vet 不检查 build-tag 文件）。"
+    },
+    {
+      "time": "2026-09-26T10:50+08:00",
+      "skill": "webapp-testing",
+      "result": "PASS（golden 15/16；1 FAIL 是真缺陷已定位+一行修复A/B验证；mutant_seed 红3条、mutant_wiring 红3条且定位正确）",
+      "seconds": 780,
+      "artifact_size": "4,204 KiB（du -sk 4204，含 download-golden.png 2,023,119B + 6 张 300-464KB 截图）",
+      "cleanup": "删 .tmp/pylibs(140MB playwright) + .tmp/serve(5.7MB 变异副本) + 4 个重复下载的 PNG + shots-mutants 冗余；技能包零安装（clone 早在第3轮）；未起任何常驻服务，8137/8138/8139/8141/8142/8151/8152 全部回收（lsof 复核零监听）；全局缓存未动",
+      "push": "已推送：git push origin skill-showcase 成功（ce59cc4..0e7a685，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 ce59cc4 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(c9e0541) / go-gin_react(b8fe3fd) 未触碰（与第10轮记录的同值），crypto-forecast 远端不存在（未创建）；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token（staged diff 按凭据形状 ghp_/github_pat_/AKIA/sk-/PRIVATE KEY/password=/token= 扫过，2 处命中全是历史 work-log 里描述该扫描手法的散文，非凭据）",
+      "notes": "第11轮=第一个自带可用实现层脚本的技能（with_server.py 单/双服务都可靠，客户端崩了也清理干净）。最大环境增量：Python Playwright + 系统 Chrome 路线打通（不需下载浏览器）→ 依赖 pip/Pillow 的候选重新变为可选。最大方法学增量：Playwright 看不见 favicon 类浏览器级请求，网络卫生断言必须收服务端访问日志。"
+    },
+    {
+      "time": "2026-09-26T11:05+08:00",
+      "skill": "docx",
+      "result": "成功（留用·推荐）。产物 demos/20260926-1105-docx/skill-showcase-review.docx 52,131B；技能自带 validate.py 对 base 与终稿各 1 次 PASS、对故意做坏的 A/B 件 FAIL（2 条 deletion violations）；独立断言 verify.py 48 PASS / 0 FAIL；python-docx 第三只眼回读 38 段/12×6 表/1 内嵌图/8.5×11in 全对；关键不变量「拒绝全部修订后的正文与 base 逐字符相等 2138 vs 2138」",
+      "seconds": 1260,
+      "artifact_size": "本轮 demos 224KB（docx 52,131B + base 48,557B + chart.png 33,756B + output.log 9.6KB + 8 个复现脚本），限 5MB",
+      "cleanup": "删 node_modules(10MB docx npm) + package-lock.json + LAB/.tmp/pylibs(14MB defusedxml/lxml/python-docx + 曾试装又卸载的 Pillow 16MB) + /tmp/r12-run.log + demos 内 .ab/ 与 unpacked/ 与未用的 chart.cjs；known_hosts 保留（gitignored）；未起任何服务，零新增监听；兄弟实验室文件未动",
+      "push": "已推送：git push origin skill-showcase 成功（1a1caf1..3156b6b，普通推送，无 --force、无 --no-verify）；fetch 确认远端 1a1caf1 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(76e5e4b) / go-gin_react(b8fe3fd) 未被本任务触碰（main 相对第11轮记录的 c9e0541 已前移，属兄弟实验室的每小时任务所写，本任务只对 skill-showcase 做 fetch+push）；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行无任何 token；提交前对 staged diff 按凭据形状扫过（ghp_/AKIA/sk-/PRIVATE KEY/password=/token=）零命中",
+      "notes": "三条环境级增量：(1) Chrome 无头 CLI 免 playwright 直接出图；(2) docx-js 的 TextRun({text,children}) 静默丢 text，且 validate.py 全绿 → 生成类产物必须断言期望文字真在文档里；(3) docx-js 不定义 Normal/DefaultParagraphFont 而 basedOn 它们、comment.py 的 CommentReference 无人定义 → 样式引用悬空，XSD 查不出，只有第二解析器(python-docx 返回 style=None)暴露。办公文档三形态齐，下轮换产物类。",
+      "installed_by_this_task": []
+    },
+    {
+      "time": "2026-09-26T11:35+08:00",
+      "skill": "pdf",
+      "result": "成功（留用·推荐）。24 断言 24 PASS / 0 FAIL + 3 条负对照（NC1 水印 glyph 差可红 / NC2 明文文件可抽 / NC3 错口令返回 0）；主产物 report-watermarked.pdf 120,885B，qlmanage 真渲染肉眼确认中文无豆腐块、12 行表格、红色斜排水印",
+      "seconds": 900,
+      "artifact_size": "本轮 demos 492KB（限 5MB）：3 个 PDF 共 341KB + render PNG 110KB + 2 脚本 15KB + 2 日志 2KB + watermark.pdf 14KB",
+      "cleanup": "删 LAB/.tmp/pylibs（30MB：reportlab/pypdf/pdfplumber/pdfminer.six/Pillow/charset-normalizer，gitignored）与 demos 内 facts.json/.ql/；未装任何全局技能、未起任何服务、零本轮监听端口；全局 pip site-packages 未污染（--target 安装）",
+      "push": "已推送：git push origin skill-showcase 成功（a854d20..4b451b4，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 a854d20 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(b44dfc6，兄弟实验室所写，未触碰) / go-gin_react(b8fe3fd) 未被本任务改动；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行无任何 token；staged diff 凭据形状扫描 1 处命中=历史台账描述扫描手法的散文自述（第8/11轮同类），非凭据",
+      "installed_by_this_task": [],
+      "notes": "来源②第 3 轮 clone 的仓库第 5 次复用（零下载）。三条环境级钥匙：py3.14 下 pdfplumber/pdfminer 走 --no-deps 绕开 pypdfium2/cryptography 死点；STHeiti Light.ttc 顶替 CFF 轮廓的 PingFang；qlmanage -t 零依赖渲染探针。三条技能缺陷：命令行工具链全缺、forms.md 表单路线被 pypdfium2 卡死未验、SKILL.md 未提任何中文字体注册（CJK 用户必踩 PingFang 拒绝）。"
+    },
+    {
+      "time": "2026-09-26T12:07+08:00",
+      "skill": "shader",
+      "result": "成功（留用·推荐）。verify.mjs 15 PASS / 0 FAIL（两次独立运行一致）；mutants.mjs 7/7 捕获 + 基线全绿 + 还原全绿 + 零 console/page 错误；产物 shader-showcase.html 13,962B 零外链 file:// 即跑，render-1280x800.png 731,653B 真渲染（域扭曲 fbm 流体 + 扫描线 + 暗角 + 中文滑杆面板 + HUD compile/link ok）",
+      "seconds": 1080,
+      "artifact_size": "本轮 demos 2.4MB（4 张 PNG 共 2.4MB + HTML 14KB + 4 个 .mjs + 3 份日志 + golden-pixels.json），限 5MB",
+      "cleanup": "删 node_modules(8.3MB playwright-core) + package-lock.json + verify-run.log；★并找回/删除因 import.meta.url 未解码而误建的 /Users/apple/Documents/workProject/%E8%AF%95%E9%AA%8C/ 整棵假目录（先 find 确认里面只有本轮 6 个文件，把 PNG/JSON/log 移回 demos 再 rm -rf）；本轮未起任何监听端口（零服务，全程 file://）；全局缓存与 ~/.qoder-cn/skills 之外的东西未动（shader 技能包是本轮有意安装项，保留）",
+      "push": "已推送：git push origin skill-showcase 成功（ddf8870..0016df2，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 ddf8870 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(b44dfc6) / go-gin_react(7b0c7f0) 均为兄弟任务所写、本任务未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容无 token（staged diff 按凭据形状 ghp_/github_pat_/AKIA/sk-/PRIVATE KEY/password=/token= 扫描零命中）",
+      "notes": "第 14 轮：唯一一次全局安装 = 官方市场 shader 技能（installed_by_this_task 已记）。最大环境增量：WebGL 像素取证管线打通（playwright-core + swiftshader），并抓到中文路径的 import.meta.url 编码坑（产物会静默写到 LAB 外）。最大方法学增量：规约探针隔离乘性项 + 行为断言与 golden 哈希互补（本轮 7 个变异体里 M1 只有行为断言能抓、M3/M3b 只有 golden 能抓）。",
+      "installed_by_this_task": [
+        "shader (/Users/apple/.qoder-cn/skills/shader)"
+      ]
+    },
+    {
+      "time": "2026-09-26T13:05+08:00",
+      "skill": "canvas-design",
+      "result": "成功（留用·推荐）。verify_plate.py 16 PASS / 0 FAIL；分钟格逐行数回 [24,21,19,18,15,15,13,13,12,10,10,9,7] 与 state.json 现场换算完全相等；朱红最长弧实测 307.8°（期望308）；负对照（把 shader 1080s 改成 600s 重画）→ B2/B3 双红，证明断言可失败；主产物 plate-iv-interval-cartography.png 485,901B",
+      "seconds": 1500,
+      "artifact_size": "本轮 demos 1.3MB（限5MB）：主图486KB+预览340KB+证据裁剪16KB+5个OFL字体452KB+脚本12KB+宣言3.5KB+日志",
+      "cleanup": "删 .tmp/pylibs15(Pillow)+.tmp/mut15(变异件)+.tmp/pip15.log+2张中间裁剪图；零进程零监听；全局缓存未动",
+      "push": "已推送：git push origin skill-showcase 成功（54ba776..d03aa2c，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 54ba776 正是本地 HEAD 父提交 → 无需 rebase。ls-remote 复核 main=b44dfc6 / go-gin_react=7b0c7f0 为兄弟任务所写，本任务未触碰。走 git@github.com SSH + LAB/.tmp/known_hosts，命令行无 token；提交前对 staged diff 按凭据形状扫描零命中。",
+      "notes": "全局副作用=无（复用第3轮克隆的 anthropics/skills，零下载零安装）。产物类型换到「纯美术 PNG 图版」，历轮第一个无代码视觉成品。"
+    },
+    {
+      "time": "2026-09-26T13:06+08:00",
+      "skill": "mcp-builder",
+      "result": "成功（留用·推荐）。verify.mjs 32 PASS / 0 FAIL（golden）+ 3 个变异体各只红 1 条（M1→B5 annotations、M2→D1 分页 offset、M3→D8 空结果缺 structuredContent）；10/10 evaluation 题目仅靠 MCP 工具解出且与 Python 独立算出的答案逐字相符；裸 JSON-RPC 握手 protocolVersion=2025-06-18 / capabilities={tools}",
+      "seconds": 840,
+      "artifact_size": "本轮 demos 68KB（上限 5MB）：index.mjs 14,115B + verify.mjs 12,392B + output.log 5,457B + gen_eval.py 2,989B + evaluation.xml 1,620B + protocol-transcript.log 930B + README/mutants.sh/package.json×2；node_modules(26MB) 与 package-lock 收尾已删",
+      "cleanup": "删 node_modules + package-lock.json + .mut/ 三个变异体 + .fat-state.json（verify 内已 unlinkSync）+ raw-frames.out；MCP stdio 为子进程管道不占端口，lsof 复核本轮零监听、无遗留 node 进程；全局 ~/.qoder-cn/skills 未新增任何东西；全局缓存未动",
+      "push": "待本轮末尾填写",
+      "notes": "产物类型换到『协议/后端能力』类（历轮首个 MCP 服务器）。最大收获是 wire 层契约：outputSchema 一旦声明，空结果分支漏 structuredContent 会被 SDK 判 -32602 并吞掉友好提示——前 15 轮的 file:///像素/静态审读/文档解析四种取证面全都覆盖不到这类缺陷，已用变异体 M3 复现并锁死为断言 D8。第二条方法学：Phase 4.3『答案须长期稳定』与 append-only 台账冲突，凡问『一共多少』的题在写回 state 那刻失效，10 题全部改锚不可变历史；同时把本轮断言所依据的台账数字冻结成 evaluation_snapshot，免得后续运行拿新数字对旧断言。代价照实记：guide 推荐 TypeScript+build，本轮为守 15 分钟预算用 ESM JS（丢静态类型，用运行期 schema 断言补）；它自带的 inspector 与 evaluation.py 两条官方回路本机都跑不了（npx 不可达 / 需 ANTHROPIC_API_KEY），已按闸门放弃而非硬闯。"
+    }
+  ],
+  "evaluation_snapshot": {
+    "note": "state as seen by demos/20260926-1306-mcp-builder/verify.mjs (before this round was appended)",
+    "runs_total": 15,
+    "skills_kept": 15,
+    "total_seconds": 12660,
+    "average_seconds": 904.3,
+    "slowest_skill": "canvas-design",
+    "artifact_kinds": 15,
+    "first_run_time": "2026-09-25T17:23+08:00",
+    "last_run_time": "2026-09-26T13:05+08:00"
   }
- ],
- "skills_seen": [
-  {
-   "name": "drafter",
-   "source": "Qoder 扩展市场 / keyword 'diagram'",
-   "url": "official79532076",
-   "status": "installed_used — 本轮已用并留用，勿再选",
-   "note": "带 OfficialSelection 标签，包格式合法可安装"
-  },
-  {
-   "name": "diagram-drawing",
-   "source": "Qoder 扩展市场 official_EbWhzKaL (origin:skillatlas)",
-   "url": "official_EbWhzKaL",
-   "status": "blocked",
-   "note": "install_extension 返回 EXTENSION_SKILL_FRONTMATTER_INVALID —— 包本身 SKILL.md frontmatter 不合法，装不上。同类 origin:skillatlas / origin:modelscope 未精选条目高概率同样失败，优先挑 tags 含 OfficialSelection 的。"
-  },
-  {
-   "name": "nano-poster-generator / 3d-anime-poster-generator / datu-ai-poster-generator / image-poster",
-   "source": "Qoder 扩展市场 / keyword 'poster'",
-   "url": "official_PLyArh8y, official_nZ77PC4B, official_hdHv1Mh4, official_s9VMhTgZ",
-   "status": "needs_user_confirm",
-   "note": "均依赖外部 AI 图像 API（NANO-BANANA/Gemini、Neta AI neta.art），需第三方 key 或付费，按选题标准排除；且会把内容 POST 到外部地址，触安全闸门"
-  },
-  {
-   "name": "moltbook-poster / m13v-social-autoposter",
-   "source": "Qoder 扩展市场 / keyword 'poster'",
-   "url": "official_IKsHQkAD, official_lA9YiNpL",
-   "status": "blocked",
-   "note": "社交网络自动发帖类：向外部平台发布内容 + 需配置凭据，超出本地演示场范围，排除"
-  },
-  {
-   "name": "story-invite-poster",
-   "source": "Qoder 扩展市场 official_RXS9BLF4",
-   "url": "clawhub.ai/shuminliu026/story-invite-poster",
-   "status": "blocked",
-   "note": "SKILL 描述要求「对我的本地代理说去安装这个 URL」—— 属注入式指令且要拉取外部源，不接受"
-  },
-  {
-   "name": "jackspace-scientific-thinking-scientific-visualization / k-dense-ai-scientific-visualization / data-visualization-studio / Excel 条形图可视化",
-   "source": "Qoder 扩展市场 / keyword 'visualization'",
-   "url": "official_GOH0drCH, official_7iYyMkRe, official_9zrZzk8b, official_JufhV2co",
-   "status": "candidate",
-   "note": "Python matplotlib/seaborn 路线，产物为 PNG/PDF；下一轮可试，需先确认本机 python + matplotlib 可用（npmmirror 只解决 npm）"
-  },
-  {
-   "name": "diegosouzapw-2000s-visualization-expert",
-   "source": "Qoder 扩展市场 official_koPDvcdI",
-   "url": "official_koPDvcdI",
-   "status": "candidate",
-   "note": "WebGL + Web Audio FFT 音乐可视化（Butterchurn/GLSL 着色器）——产物极有趣且是纯前端动画，但需真实音频文件喂 AnalyserNode，且 15 分钟内做 GLSL 有风险。留作候选"
-  },
-  {
-   "name": "skill-mermaid-diagrams / coleam00-excalidraw-diagram-skill / xstongxue1-drawio-diagram / prd-visualization-skill / antvis-narrative-text-visualization",
-   "source": "Qoder 扩展市场 / keyword 'diagram','visualization'",
-   "url": "official_yTWMj2aX, official_ybCth8dh, official_LBUkCAY7, official_LLABcAQs, official_DSohReJ1",
-   "status": "candidate",
-   "note": "图表类备选：mermaid 12 种图 / Excalidraw JSON / drawio XML / D3 层级多视图 / T8 叙述文本可视化。注意同批 origin:skillatlas|modelscope 条目可能同样 frontmatter 不合法"
-  },
-  {
-   "name": "本机已装未试（后端向）",
-   "source": "~/.qoder-cn/skills/",
-   "url": "",
-   "status": "candidate(部分已用)",
-   "note": "已试：SQLite-Database-Expert(第4轮) / sec-audit-cn(第8轮)。剩余：golang-testing / golang-gin-api / golangci-lint-strict / Golang-Backend-Development / nodejs-best-practices / express-nodejs-expert / frontend-development / vercel-react-best-practices / skill-push / qmind / canvas / qoder-context"
-  },
-  {
-   "name": "skills.sh / GitHub awesome-skills 外部仓库",
-   "source": "git@github.com SSH shallow clone 到 LAB/.skills/",
-   "url": "",
-   "status": "unverified_this_run",
-   "note": "本轮来源①（官方市场）第一个可用即止，未探测 SSH clone 通路。兄弟实验室 14:00-16:00 三次记录 raw.githubusercontent.com / www.skills.sh 连接被重置——注意那是 HTTPS，git@github.com SSH 按其 16:00 经验是通的，下轮值得一试"
-  },
-  {
-   "name": "ascii-project-dashboard",
-   "source": "Qoder 扩展市场 / keyword 'ascii'",
-   "url": "official_qzXG5ekf",
-   "status": "installed_used — 本轮已用并留用，勿再选",
-   "note": "tags 为空（非 skillatlas/modelscope 镜像），包格式合法，frontmatter 无问题"
-  },
-  {
-   "name": "doge (ASCII 柴犬表情包生成器)",
-   "source": "Qoder 扩展市场 / keyword 'ascii'",
-   "url": "official_A9htirhV",
-   "status": "candidate",
-   "note": "Python 字符串字符画，origin:skillatlas；下一轮可选，产物=纯文本 .txt"
-  },
-  {
-   "name": "bytesagain-chart-generator (ASCII 图表生成器)",
-   "source": "Qoder 扩展市场 / keyword 'ascii'",
-   "url": "official_KRhuv5QE",
-   "status": "candidate",
-   "note": "CSV→终端条形/折线/饼/散点图，origin:skillatlas，产物类型同样是终端文本（本轮已做过一类，下轮宜换语言/后端向）"
-  },
-  {
-   "name": "ascii-art-generator / aiskillstore-ascii-preview-generate / plantuml-ascii / diegosouzapw-asciinema-*",
-   "source": "Qoder 扩展市场 / keyword 'ascii'",
-   "url": "official_ldP75RrC 等 6 条",
-   "status": "candidate",
-   "note": "同一批 ASCII 向备选；asciinema 系需 .cast 录制文件"
-  },
-  {
-   "name": "svg-generator-pro / svg-artist / svg-draw / kbravh-svg-logo-creator / liuyunlong2021-wq-svg-skills",
-   "source": "Qoder 扩展市场 / keyword 'svg'",
-   "url": "official_JtVW97Da, official_Uh7rEBIf, official_u2PD5ljv, official_ehyM5bCW, official_RXaHu1k5",
-   "status": "candidate",
-   "note": "SVG 直写路线，产物 .svg 可双击打开；svg-draw/svg-artist 依赖 rsvg-convert（本机未验证是否安装），纯 SVG 无需转换器"
-  },
-  {
-   "name": "build-game (3D 游戏构建器) / github-game-engine",
-   "source": "Qoder 扩展市场 / keyword 'game'",
-   "url": "official_LaiVUmnK, official_DovAlFst",
-   "status": "candidate",
-   "note": "自然语言→单个可玩 HTML（Three.js）。风险：Three.js 走 CDN，本机 jsdelivr/unpkg HTTPS 被 TLS 重置 + file:// 下 ESM 不执行 → 可能验不了，选它前先进出网探测"
-  },
-  {
-   "name": "pdf-* 全家桶（extract-pdf-text / pdf-poppler-utils / pdf-to-ppt / mineru 系）",
-   "source": "Qoder 扩展市场 / keyword 'pdf'",
-   "url": "official_5x5slPCL, official_v2BPC2Hq 等",
-   "status": "candidate",
-   "note": "依赖 PyMuPDF / poppler / MinerU 二进制，未探测本机 python3+pip 可用性；mineru 属重依赖，排除"
-  },
-  {
-   "name": "aiskillstore-game-audio / majiayu000-audio-* / alicloud-ai-audio-tts",
-   "source": "Qoder 扩展市场 / keyword 'audio'",
-   "url": "official_rQ4ffIrg 等",
-   "status": "blocked",
-   "note": "游戏音频模式偏知识文档无本地产物；阿里云 TTS/ASR 需 DashScope key（付费凭据）→ 按选题标准排除"
-  },
-  {
-   "name": "pm-dashboard / realtime-dashboard / ascii-project-dashboard 同类看板技能",
-   "source": "Qoder 扩展市场 / keyword 'dashboard'",
-   "url": "official_987NhiHn, official_k8iXoOiP",
-   "status": "candidate",
-   "note": "pm-dashboard 要起本地服务+install/start 生命周期；realtime-dashboard 是 React 指南（重依赖）"
-  },
-  {
-   "name": "dlazy-vectorize (图像转 SVG 工具)",
-   "source": "Qoder 扩展市场 0ca5d12e",
-   "url": "official 非精选",
-   "status": "blocked",
-   "note": "把本地图 POST 到外部服务并返回 URL → 触安全闸门（内容外发），排除"
-  },
-  {
-   "name": "anthropics/skills 仓库（来源②通路）",
-   "source": "git@github.com:anthropics/skills.git SSH shallow+sparse clone -> LAB/.skills/anthropic-skills/ (16MB)",
-   "url": "github.com/anthropics/skills",
-   "status": "working_source",
-   "note": "**通路已验证可用**：ssh -T git@github.com 认证成功；--filter=blob:none --sparse + sparse-checkout disable 一次拿全 19 个技能。打破前两轮「只有官方市场可用」单点。注意 .skills/ 整个目录被 .gitignore 排除，clone 不进 git。"
-  },
-  {
-   "name": "anthropics/skills 其余 18 个未试技能",
-   "source": "同一仓库 LAB/.skills/anthropic-skills/skills/",
-   "url": "academy-guide, brand-guidelines, canvas-design, claude-api, discernment-nudge, doc-coauthoring, docx, frontend-design, internal-comms, mcp-builder, pdf, pptx, skill-creator, slack-gif-creator, theme-factory, web-artifacts-builder, webapp-testing, xlsx",
-   "status": "candidate",
-   "note": "已 clone 到本地、零安装成本。canvas-design(出 PNG/PDF，需 PIL，本机 python3 无 PIL 且 pip 未验证)、slack-gif-creator(动图 GIF，需 PIL+requirements.txt)、theme-factory(给产物套 10 套主题，纯提示词，含 theme-showcase.pdf 现成参照)、pdf/docx/pptx/xlsx(Office 文档全家桶)、webapp-testing(浏览器自动化测试)、mcp-builder(造 MCP server) —— 下轮优先 theme-factory 或 webapp-testing 或 xlsx（避开依赖 PIL/pip 的两个）。"
-  },
-  {
-   "name": "node:sqlite（本机可用运行时，非技能）",
-   "source": "Node v22.23.2 内置模块，无需安装",
-   "url": "",
-   "status": "working_source",
-   "note": "**SQLite 类技能的落地路线**：自带 FTS5 + JSON1（SQLite 3.51.3），零 npm、零网络。对比之下本机唯一 sqlite3 CLI=/Users/apple/Android/Sdk/platform-tools/sqlite3 (3.50.6) 无 FTS5、PRAGMA compile_options 空。下轮做数据库/检索类产物直接用它，别再探测 CLI。"
-  },
-  {
-   "name": "SQLite FTS5 中文分词（技术结论，供后续任何检索需求复用）",
-   "source": "本轮实测",
-   "url": "",
-   "status": "reference",
-   "note": "默认 unicode61 把连续 CJK 并成单个 token → 子串/前缀一律查不到且**静默返 0**；tokenize='trigram' 等价子串匹配(=LIKE)但要求查询 ≥3 字符；中文自由文本要「双索引(trigram 兜底 + u61 保词边界/bm25)」或外部 ICU/simple 分词。另：highlight()/bm25() 不接受 FTS5 表别名，必须真实表名。"
-  },
-  {
-   "name": "ppt-generator / svg-ppt-generator",
-   "source": "Qoder 官方扩展市场 official_79e7IlJQ / keyword 'svg'",
-   "status": "installed_used — 本轮已用并留用，勿再选",
-   "note": "tags 含 origin:skillatlas 却**一次装成** → 推翻第 1 轮『origin:skillatlas 高概率 EXTENSION_SKILL_FRONTMATTER_INVALID』的概括；origin 标签不能当判据，只能逐个试。包体 2.0MB、含 36 张 charts 模板与 600+ 图标索引、scripts/ 里还有 ppt_validator / visual_reviewer 本轮未动。"
-  },
-  {
-   "name": "anthropics/skills 的 xlsx / docx / canvas-design / slack-gif-creator（python 依赖路线）",
-   "source": "LAB/.skills/anthropic-skills/skills/ + 本机 python3",
-   "status": "candidate（xlsx 已于第 9 轮做完并留用；docx/canvas-design/slack-gif-creator 仍未试）",
-   "note": "第 4 轮判『pip 不可用 → 依赖 Pillow/openpyxl 的路线一律搁置』**过宽**：pip3 的 shim 因 sandbox 缺 realpath 坏了，但 `python3 -m pip install --target LAB/.tmp/pylibs --index-url https://pypi.tuna.tsinghua.edu.cn/simple` 完全可用（本轮 python-pptx+lxml+Pillow 32MB / 6.1s，cp314 wheel 齐全）。下轮这些技能重新变成可选，装完记得删 .tmp/pylibs。openpyxl 还需 LibreOffice 才能跑它的 recalc.py——那一步仍未验。 | 第 9 轮实测：openpyxl+formulas 走 aliyun 镜像 29.7s 装好（但 formulas 拉进 scipy 共 218MB，收尾必删；只要 openpyxl 是 ~2MB）；xlsx 技能本身可用，阻塞点不在 python 依赖而在 LibreOffice。"
-  },
-  {
-   "name": "graphic-gif",
-   "source": "Qoder 扩展市场 official_nhsK8Qra / query 'gif','graphic-gif'",
-   "status": "installed_used — 本轮已用并留用，勿再选",
-   "note": "css-animated 路径离线可跑通（系统 Chrome + ffmpeg）；ai-generated 路径需 KLING_API_KEY + 上传本图→双触闸门，已按它自己的降级条款排除。包内零实现层文件。"
-  },
-  {
-   "name": "本机 headless Chrome + ffmpeg 管线（环境能力，非技能）",
-   "source": "/Applications/Google Chrome.app + /Users/apple/.local/bin/ffmpeg + playwright-core(npmmirror)",
-   "status": "working_source",
-   "note": "★推翻前五轮『只能靠计算样式断言』的自我设限：executablePath 直指系统 Chrome、不下载浏览器，即可按 800x800 定宽真截图，48 帧端到端 7s。以后 HTML 产物可做像素级验证与真出图（GIF/PNG 连帧）。"
-  },
-  {
-   "name": "gif-maker-free / 免费动图制作器 (official_yZBpN49c)",
-   "source": "Qoder 扩展市场 / query 'gif'",
-   "status": "blocked",
-   "note": "『上传视频或图像(最大200MB)+云端渲染』=内容外发，触安全闸门，未安装即排除。"
-  },
-  {
-   "name": "majiayu000-teams-gif-creator / mood-diary / ub2-markdown-report-generator 等 query 'gif' 其余命中",
-   "source": "Qoder 扩展市场 / query 'gif'",
-   "status": "candidate",
-   "note": "Teams 向 GIF 创建器与 graphic-gif 同类（同产物类型，短期不重复占轮）；mood-diary=纯本地 JSON 情绪日记（产物偏数据）；markdown-report-generator 支持 PDF 导出可作报告类候选。"
-  },
-  {
-   "name": "excel-spreadsheet-handler (tjade273) / excel-spreadsheets (aws-samples) / afrexai-spreadsheet-master",
-   "source": "Qoder 扩展市场 / query 'spreadsheet'",
-   "status": "candidate",
-   "note": "openpyxl 路线（第 5 轮已证明 python3 -m pip --target + 清华/aliyun 源可用），产物=带真公式的 .xlsx，换『电子表格』类；注意与第 5 轮 pptx 同属办公文档，宜与公式重算/图表结合以拉开差异。"
-  },
-  {
-   "name": "build-game (official_LaiVUmnK) / github-game-engine",
-   "source": "Qoder 扩展市场 / query 'game','3d'",
-   "status": "candidate",
-   "note": "Three.js 走 CDN 的话本机不可达，但现在可用 npmmirror tgz 内联 + 系统 Chrome 真截图验证 → 这条路第 6 轮后才真正打开，值得单占一轮。"
-  },
-  {
-   "name": "web-animation-design / booklib-ai-animation-at-work / andronics-animation-creator",
-   "source": "Qoder 扩展市场 / query 'animation'",
-   "status": "candidate",
-   "note": "纯 CSS/Web Animations 动画知识型技能，产物仍是 HTML；与 graphic-gif 有重叠，优先选带可验证运动规格的那类。"
-  },
-  {
-   "name": "build-game",
-   "source": "Qoder 扩展市场 official_LaiVUmnK / query \"build-game\"",
-   "status": "installed_used — 本轮已用并留用，勿再选",
-   "note": "包体完整（SKILL.md + 6 references + serve.sh，208KB），与第 6 轮 graphic-gif「只搬 SKILL.md 丢实现层」相反。Phase 5 的 here.now 上传步骤触安全闸门（本地内容外发），已拒绝；serve.sh 把 PID 写死 /tmp 之外，改用等价 python3 -m http.server --bind 127.0.0.1。"
-  },
-  {
-   "name": "three.js r160 离线内联路线（环境能力，非技能）",
-   "source": "registry.npmmirror.com/three/-/three-160.0.tgz → 9.4MB tgz，含 build/three.min.js(670KB, UMD 全局 THREE) 与 examples/jsm/*(ESM)",
-   "status": "working_source",
-   "note": "★以后任何 three.js 类技能都走这条：classic 脚本用 three.min.js（r160 仍在包里，只 console.warn deprecated），产物 file:// 双击可跑；后处理/控制器需 examples/jsm 时用 inline-jsm.mjs 的三条正则转成读全局 THREE 的 IIFE 链（Pass→CopyShader→LuminosityHighPass→FXAA→ShaderPass→MaskPass→RenderPass→EffectComposer→UnrealBloom→OutputShader→OutputPass，11 模块 39.8KB 一次通过）。SSAOPass 依赖更多（SimplexNoise 等着色器），本轮放弃。"
-  },
-  {
-   "name": "build-game 的迭代能力（同一 HTML 继续加系统）",
-   "source": "demos/20260925-2332-build-game/game.src.html",
-   "status": "candidate",
-   "note": "SKILL Phase 0/2B 主打「持续迭代」：加背包/合成/昼夜/天气/回合制战斗。若要验证迭代路径，下轮可指定「给冰原拾光加 X 系统」而不是新做一个游戏。"
-  },
-  {
-   "name": "sec-audit-cn",
-   "source": "本机已装",
-   "url": "",
-   "status": "installed_used — 本轮已用并留用，勿再选",
-   "note": "包内只有 SKILL.md，无 scripts/ 无 references/（对它来说不需要）；triggers 覆盖 security/OWASP/XSS/CORS/CSP/密钥/审计"
-  },
-  {
-   "name": "xlsx (anthropics/skills)",
-   "source": "LAB/.skills/anthropic-skills/skills/xlsx",
-   "status": "installed_used — 本轮已用并留用，勿再选",
-   "note": "包体完整（SKILL.md + recalc.py + office/validate.py + 40 XSD），与「市场镜像只搬 SKILL.md」相反；但 validate.py 无 xlsx validator，recalc.py 需 LibreOffice（本机缺）"
-  },
-  {
-   "name": "LibreOffice / soffice（环境能力，非技能）",
-   "source": "which soffice / ls /Applications",
-   "status": "missing",
-   "note": "本机无 LibreOffice → 任何以 recalc.py / --convert-to pdf 为闸门环节的办公文档类技能（xlsx/docx/pptx 转换、PDF 导出）都拿不到官方重算证据。替代路线已跑通：pip 装 formulas(1.3.4) 做纯 Python 公式引擎重算 + 与 Python 独立重算逐格比对；函数覆盖与 Excel/LibreOffice 不同，只能当交叉证据不能当等价物"
-  },
-  {
-   "name": "webapp-testing / docx / canvas-design / theme-factory / brand-guidelines / mcp-builder（anthropics/skills 未试）",
-   "source": "LAB/.skills/anthropic-skills/skills/",
-   "status": "candidate",
-   "note": "零 clone 成本。webapp-testing 需 playwright-core(npmmirror)+系统 Chrome（第 6/7 轮配方已验证）；docx/canvas-design 需 python-docx/Pillow（aliyun 镜像已通）"
-  },
-  {
-   "name": "golang-testing",
-   "status": "installed_used — 本轮已用并留用，勿再选",
-   "note": "包内只有 SKILL.md（纯规范型）。Go 1.27.1 在 ~/.local/go/1.27.1/bin/go；纯 stdlib 模块零网络，GOCACHE 指 LAB/.tmp 后首次编译 stdlib 仅 1-2s、缓存 86MB 可整目录删。"
-  },
-  {
-   "name": "★变异测试作为「规范型技能」的自证手段（技术结论）",
-   "status": "reference",
-   "note": "纯知识型技能（无自带 checker）只能靠自设计证据验收。本轮两组变异给出可复用判据：值变异（LCG 乘数 +1）**只有 golden 抓到**，结构断言（完美性/路径唯一/连续性）全盲；结构变异（不打通门）3 条结构测试同时失败 → 结论：Go 测试套件必须「golden + 不变量」两层都在，单任一层都给假通过。下轮任何验证型技能都沿用这套双变异范式。"
-  },
-  {
-   "name": "golang-gin-api / Golang-Backend-Development / golangci-lint-strict / nodejs / express 等本机已装后端向技能",
-   "status": "candidate",
-   "note": "来源③剩余未试：golang-gin-api、Golang-Backend-Development、golangci-lint-strict、nodejs-best-practices、express-nodejs-expert、frontend-development、qmind、canvas。golangci-lint-strict 需要能下 golangci-lint 二进制（未探测，Go 装走 GOPROXY=goproxy.cn 可行）；gin 需要 goproxy.cn 真的可达（本轮未验证，纯 stdlib 没碰网络）。"
-  },
-  {
-   "name": "anthropics/skills 的 webapp-testing / docx / canvas-design / theme-factory / brand-guidelines / mcp-builder",
-   "status": "candidate（webapp-testing 已于第11轮做完并留用；docx/canvas-design/theme-factory/brand-guidelines/mcp-builder 仍未试）",
-   "note": "零 clone 成本（第 3 轮已 clone 在 LAB/.skills/anthropic-skills）。webapp-testing 有真实现层（Playwright 脚本），是「带脚本技能」的首选下一个；docx 需 python-docx（aliyun pip 镜像已两轮验证）、产物受本机无 LibreOffice 限制。 | 第11轮已用 webapp-testing：它的 with_server.py 是历轮唯一开箱可用的技能脚本，Python Playwright 路线见 environment_notes 的 pip 条目。"
-  },
-  {
-   "name": "webapp-testing",
-   "source": "Qoder 官方扩展市场未搜 / 来源②：anthropics/skills 官方仓库（已 clone 在 LAB/.skills/，无需安装）",
-   "url": "github.com/anthropics/skills/tree/main/skills/webapp-testing",
-   "status": "installed_used — 第11轮已用并留用，勿再选",
-   "note": "**技能自带实现层且跑得通**（scripts/with_server.py 105 行 + examples 3 个）。后续若要做「起本地服务再验」的轮次（golang-gin-api、pm-dashboard、webapp 类产物回归），直接复用它的 helper，别自己写 server 生命周期。"
-  },
-  {
-   "name": "Python Playwright（本机可用运行时，非技能）",
-   "source": "pip --target + 系统 Chrome",
-   "url": "",
-   "status": "working_source",
-   "note": "**打开 Python 生态的门，推翻历轮「依赖 pip 的技能先当不可用」**：`python3 -m pip install --target LAB/.tmp/pylibs --no-cache-dir --index-url https://mirrors.aliyun.com/pypi/simple playwright` → playwright 1.63.0（含 greenlet/pyee）**6.1 秒**；随后 `chromium.launch(headless=True, executable_path='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', args=['--no-sandbox','--disable-gpu','--hide-scrollbars'])` —— **绝不要跑 `playwright install`**（浏览器 CDN 被 TLS 重置）。目录 140MB，收尾删。→ canvas-design / slack-gif-creator / pdf-* 全家桶 / docx 等候选全部重开。"
-  },
-  {
-   "name": "docx (anthropics/skills)",
-   "source": "LAB/.skills/anthropic-skills/skills/docx",
-   "status": "installed_used — 第12轮已用并留用，勿再选"
-  },
-  {
-   "name": "系统 Chrome 无头 CLI 直出 PNG（环境能力，非技能）",
-   "source": "/Applications/Google Chrome.app --headless=new --screenshot --window-size --virtual-time-budget",
-   "status": "working_source"
-  },
-  {
-   "name": "canvas-design / theme-factory / brand-guidelines / mcp-builder / pdf / slack-gif-creator / skill-creator（anthropics/skills 其余未试）",
-   "source": "LAB/.skills/anthropic-skills/skills/",
-   "status": "candidate（办公文档三形态 pptx/xlsx/docx 已齐，按 used_artifact_kinds 规则下轮换类）"
-  },
-  {
-   "name": "pdf (anthropics/skills)",
-   "source": "LAB/.skills/anthropic-skills/skills/pdf",
-   "status": "installed_used — 第13轮已用并留用，勿再选",
-   "note": "表单填充子路线（forms.md + 8 个 scripts）因 pypdfium2 在 py3.14 装不上而未验证；若未来有可用渲染器可单开一轮验 AcroForm 填写"
-  },
-  {
-   "name": "qlmanage PDF→PNG 渲染（环境能力，非技能）",
-   "source": "/usr/bin/qlmanage -t -s 900 -o <outdir> <file.pdf>（macOS 自带，零安装）",
-   "status": "working_source",
-   "note": "无 poppler/pypdfium2/LibreOffice 时验证 PDF 可渲染性的替代路径：出首页缩略图 PNG，配 PIL 做墨迹占比与颜色断言。只渲染第 1 页。"
-  },
-  {
-   "name": "shader",
-   "source": "official_zPx4JQep",
-   "url": "market://official_zPx4JQep",
-   "status": "installed_used — 第14轮已用并留用，勿再选",
-   "note": "包体完整（SKILL.md + scripts/shader.js 396 行纯 stdout CLI + 5 references + 4 assets 模板，108KB）。唯一外链是 threejs-material-demo 引 unpkg three（本机不可达），走 raw WebGL / postprocess 路线即无网络依赖。"
-  },
-  {
-   "name": "majiayu000-shader-creator / animation-shader / godot-shader / vvvv-shaders / metal-shader-expert",
-   "source": "官方市场 query=shader 其余命中",
-   "url": "",
-   "status": "candidate",
-   "note": "同类着色器向：shader-creator 主打「交互式参数探索」与本轮最接近；Godot/vvvv/Metal 本机无对应引擎运行时，产物无法验证，暂不选。"
-  },
-  {
-   "name": "pixel-office / slides-as-code / pixel-perfect-design-system",
-   "source": "官方市场 query=pixel 命中",
-   "url": "",
-   "status": "candidate",
-   "note": "pixel-office 要拉代码+起服务（重）；slides-as-code 要 Slidev/Marp npm 链；pixel-perfect 是 58 套设计规范文档（产物仍是 HTML，与已做 3 类重叠）。"
-  },
-  {
-   "name": "canvas-design",
-   "source": "GitHub anthropics/skills",
-   "status": "installed_used — 本轮已用并留用，勿再选",
-   "url": "https://github.com/anthropics/skills"
-  }
- ],
- "in_progress": null,
- "next_candidates": [
-  "来源②零成本备选（anthropic-skills 已在盘上）：theme-factory（10 套主题→给既有产物换皮）、brand-guidelines、mcp-builder（产物=代码工程，换类）、slack-gif-creator、doc-coauthoring、frontend-design、web-artifacts-builder",
-  "来源①新词根：calendar / diff / regex / map / maze / font（search_extensions 参数 query 用单个英文词根）",
-  "来源①同类可续：majiayu000-shader-creator（交互式参数着色器，本轮已验证 WebGL 取证管线，成本最低）",
-  "来源③本机已装未试：golang-gin-api（goproxy.cn 通路仍未实测）、golangci-lint-strict、frontend-development、nodejs-best-practices、express-nodejs-expert、Golang-Backend-Development",
-  "（方法学沿用）本轮新增：⑧ 乘性/径向项要用「规约探针」隔离测量，别在纹理背景上做环平均；⑨ 行为断言与 golden 像素哈希互补，缺一即有等价变异漏网；⑩ Node 脚本里 import.meta.url 必须过 fileURLToPath"
- ],
- "used_artifact_kinds": [
-  "单文件自包含 HTML 图表（工程图纸）×1",
-  "纯文本终端 ASCII 看板（.txt，零依赖）×1",
-  "单文件自包含 HTML 生成艺术（p5 内联，可交互+种子可复现）×1",
-  "SQLite 数据库文件 .db（FTS5 全文检索库）+ 可执行检索 CLI + 14 条断言日志 ×1",
-  "原生可编辑办公文档 .pptx（SVG→DrawingML，211 shape / 0 图片，49KB）+ 5 页 1280×720 矢量幻灯片 ×1",
-  "动画 GIF .gif（800x800 / 48 帧 / 无限循环 / 47KB，GIF89a 结构+NETSCAPE 循环计数+差分子矩形帧全部经手写二进制解析器核对）+ 其 CSS 动画源 animation.html ×1",
-  "可交互 3D 网页游戏单文件 HTML（.html 750KB：three r160 + 5 pass 后处理链全内联，零外链零网络请求，file:// 双击即玩；23 条断言含「实测滞空 0.633s vs 理论 2v/g 0.662s」「改 vignette→像素 −26%」两级物理/渲染反证）×1",
-  "分级安全审计报告 .md（OWASP 对齐，13 条有效发现/18 条误报分诊）+ findings.json 规则命中 + 3 组黑盒 PoC 前后对照 output.log + integrity-manifest.json（sha256 自证）+ 已回归的修复件 query.fixed.mjs ×1",
-  "可重算 Excel 工作簿 .xlsx（15,360B：3 sheet / 98 个活公式 / 原生 chart1.xml 柱状图 / 25 条批注；用第三方公式引擎 formulas 重算并与 Python 独立重算逐格比对，49 断言全绿）×1",
-  "Go 测试工程产物：ASCII 迷宫 .txt（24x12 / 解 225 步，肉眼可核对）+ go test -v 真实日志 output.log（29 PASS / 4 故意 FAIL 的双变异）+ go tool cover 逐函数覆盖率 73.3% + coverage.html 可打开着色页 + 4 行基准数据 + 3 个 golden 文件 ×1",
-  "端到端回归测试产物：真 PNG 截图 4+2 张（含「两张同哈希＝滑杆失灵」的铁证）+ 16 条断言三套运行日志 + p5 downloadPNG() 捕获落盘的 1200×1200 / 2,023,119B 原始 PNG + 服务端访问日志证据链 ×1",
-  "原生可编辑 Word 文档 .docx（52KB：TOC/PAGE 真域 + 3 条批注含回复线程 + 2 组 <w:ins>/<w:del> 修订 + 内嵌 PNG 图表；经技能自带 XSD/redlining 校验 + 48 条独立断言 + python-docx 二次解析三关）×1",
-  "可打印 PDF 文档 ×1（3 页中文报告 99KB：reportlab 生成 + pypdf 水印/双口令加密 + pdfplumber 回读 24 断言 + qlmanage 真渲染 PNG；含 12 行表格与 11 柱手绘条形图，柱高与秒数成正比经 rects 几何验证）",
-  "WebGL/GLSL 片元着色器单文件 HTML（13,962B，零外链，file:// 即跑；5 个 uniform 全接滑杆 + 冻结/定尺寸取帧）+ 系统 Chrome swiftshader 真渲染 PNG 2 张 + 15 条像素断言（含 speed=0 差值精确为 0 的反证、规约探针实测 1.4076 vs 解析 1.4075）+ 7/7 双变异日志 + golden-pixels.json ×1",
-  "原创视觉艺术 PNG 图版（1650×2340 / 485,901B，Pillow 纯绘制：15万点纤维噪声+工程网格+高斯暗角+24h表盘13条时长弧+分钟格账本）+ 设计宣言 .md；16 条像素断言（分钟格逐格数回台账、朱红弧实测307.8°、出血位零墨、脚注恰8词隙）+ 变异负对照（改 1080s→600s 使 B2/B3 变红）×1"
- ],
- "environment_notes": [
-  "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
-  "extension-market 的 query 参数：多词中文短语与英文多词串返回 0 条，单个英文词根（poster/visualization/diagram）才有结果，需逐词检索。",
-  "市场包质量参差：origin:skillatlas / origin:modelscope 条目可能 EXTENSION_SKILL_FRONTMATTER_INVALID 装不上；tags 含 OfficialSelection 的更可靠。",
-  "LAB/.gitignore 模板的 *.log 会误挡要求留档的 demos/**/output.log，已加 !demos/**/output.log 例外。",
-  "browser-use 在本会话里 IDE 面板 viewport = 0x0（innerWidth 0），真实视口像素测量不可得：改用 position:fixed;left:-99999px 的强制宽度离屏容器 + 多档宽度扫描做确定性布局断言，比兄弟实验室的「只查计算样式」更强，值得沿用。",
-  "CSS 陷阱（本轮实测暴露）：repeat(N,1fr) 的轨道下限是 min-content，会破坏等宽；等宽栅格一律写 repeat(N,minmax(0,1fr))。",
-  "磁盘开工水位：可用 20955000 KB ≈ 20.0 GiB（>1.5 GiB 阈值），可正常做重活。",
-  "沿用兄弟实验室结论未重复探测：GitHub HTTPS 被 TLS 重置（仅 git@github.com SSH 可用）、npm 走 registry.npmmirror.com、npx 不可用、file:// 下 ES Module 不执行。",
-  "ASCII/文本类产物的对齐必须由「终端显示宽度」决定：CJK 与 emoji 记 2 列、U+FE0F 变体选择符记 0 列；JS 的 s.length（UTF-16 码单元）与 [...s].length（码点）都不等于显示列数，用它补位会让中文列错位（实测极差 26 列）。",
-  "extension-market 里 tags 为空的条目（如 ascii-project-dashboard/fabioc-aloha、dlazy-vectorize）比 origin:skillatlas|modelscope 镜像条目包格式更可靠，本轮 tags 空→一次装成。",
-  "兄弟实验室（前端skill实验室/业务网站实验室）的 state.json 在同一时段会被各自的每小时任务并发改写：本任务产物读取它们做数据源时数值会中途变化（本轮从 4 轮变 5 轮），写回自身 state.json 必须先重读再合并，禁止整文件覆盖。",
-  "Bash 与 Write/Read 工具在中文工作目录下路径解析可能不一致（工具侧出现 .sandbox 镜像路径与 does not exist 误报）；结论：以 Bash 的 ls 实况为准，脚本文件优先用 heredoc (cat > f <<'EOF') 落盘最稳。",
-  "来源②已打通：git@github.com SSH shallow+sparse clone 可用（anthropics/skills 19 个技能已在 LAB/.skills/anthropic-skills/，16MB，被 .gitignore 排除不进 git）。下轮不必再依赖官方市场单点。",
-  "cdnjs.cloudflare.com 与 fonts.googleapis.com 的 HTTPS 同样被 TLS 重置（实测 curl (35) Connection reset by peer）。第三方 JS 库统一走 npm 镜像：curl -sSL https://registry.npmmirror.com/<pkg>/-/<pkg>-<ver>.tgz 再 tar 解包取 lib 产物（p5 1.7.0 = package/lib/p5.min.js 977KB）。",
-  "把外部 JS 内联进 HTML 前必查两件事：grep -c '</script' 库文件（>0 则需转义）；替换必须用 replacer 函数 s.replace(ph, () => lib)，否则库里的 $&/$' 会让文档自我复制。",
-  "像素级验证铁律：读 ImageData 只能按坐标双层循环 for(y)for(x){i=(y*W+x)*4}。用线性跨步 i+=4*N 再反推 y=(i/12)/W 会把采样点错落在少数几条线上，产生「画面上半部才有墨」这类假结论（本轮真实踩过并纠正）。",
-  "browser-use evaluate_script 有 15s 硬超时：单次调用只允许一次重绘/一次重量级扫描（p5 重绘 ~4s）。超时不等于失败——页面侧仍会跑完，补一次只读探针取终态即可判定。",
-  "生成艺术「构图」要可量化：用 10 段横向 ink 直方图判定死区，比看缩略图可靠。第 1 版三条带中心 0.25/0.5/0.75 + 垂直步长 0.72 → 顶/底带 ink=473/34；改 0.2/0.5/0.8 + 步长 0.92 → 1675/321，十条带全部有墨。",
-  "本机 python3 存在（sandbox_runtime 里）但无 PIL 模块；依赖 Pillow 的技能（canvas-design / slack-gif-creator）在验证 pip 可用性之前一律先当作不可用。",
-  "磁盘开工水位：可用 20450308 KB ≈ 19.5 GiB（>1.5 GiB 阈值），收尾 20439412 KB ≈ 19.5 GiB。本轮 demos 1.0MB（限 5MB），LAB 总 17MB（含 .skills 16MB 未入库）。",
-  "sqlite3 CLI（Android platform-tools 3.50.6）**无 FTS5**：CREATE VIRTUAL TABLE … USING fts5 → 'no such module: fts5'，PRAGMA compile_options 空输出。要 FTS5/JSON1 就用 Node 内置 `node:sqlite`（Node v22.23.2 → SQLite 3.51.3，支持 fts5+trigram+bm25+highlight，仅报 ExperimentalWarning，零安装零联网）。",
-  "node:sqlite 三条 API 坑（本轮实测）：(1) 参数绑定要 `stmt.all(...args)`，传数组当单参会 `Unknown named parameter '0'`；(2) FTS5 专属函数 highlight()/bm25() **不接受表别名**（`FROM notes_tri t … highlight(t,…)` → no such column: t），必须写真实表名；(3) ESM 里 `new URL('./x', import.meta.url).pathname` 在中文目录下返回 percent-encoded 路径 → ENOENT，必须 fileURLToPath()。",
-  "zsh 里 `rm -f a* b*`：任一个 glob 无匹配就整条命令 `no matches found` 失败并中断 && 链（本轮清理临时库踩到）。清理一律显式列文件名。",
-  "Write 工具落 JS 文件时，JSON 里的 \\\" 会写成裸 \"：放进普通单引号串无害，放进**模板字符串**就语法错（本轮 2 次：'rebuild' 与 r.\"from\"）。落 JS 时避免模板串内嵌引号，或改用 python heredoc 改写。",
-  "磁盘开工水位：可用 20407692 KB ≈ 19.5 GiB（>1.5 GiB 阈值）；本轮无重活依赖。",
-  "★ Python 依赖路线打通（第 5 轮，推翻第 4 轮结论）：pip3 的 shim 坏了（sandbox 里没有 realpath → `python3.14: No such file or directory`），但 `python3 -m pip install --target <LAB>/.tmp/pylibs --index-url https://pypi.tuna.tsinghua.edu.cn/simple <pkg>` 完全可用：清华源实测 HTTP 200，python-pptx(+lxml/Pillow，cp314 wheel) 32MB / 6.1s。用 PYTHONPATH=$LAB/.tmp/pylibs 运行，收尾删目录，全局 site-packages 不污染。→ 依赖 Pillow/openpyxl 的技能重新变成可选。",
-  "★ extension-market 的 origin 标签不是可靠判据：origin:skillatlas 的 official_79e7IlJQ(svg-ppt-generator) 本轮一次装成，与前两轮『skillatlas/modelscope 高概率 EXTENSION_SKILL_FRONTMATTER_INVALID』的概括相反。只能逐条试，别按 origin 提前排除候选。",
-  "SVG 类产物在本环境反而好验：viewport 0×0 不影响 SVG 用户坐标与 getBBox，量一次文本右端/柱高就是确定性证据，不需要前几轮的离屏容器与像素直方图。但 evaluate_script 仍 15s 超时——一次调用里别循环 30+ 次 getBBox 还塞 IIFE；先过滤再算，超时后补一次只读探针。",
-  "技能自带的『质量闸门』会给假通过：ppt-generator 的 svg_quality_checker.py 只查 §X 语法禁令，不查它 design_spec §II 自己定的 60px 边距（实测越界 28px 仍 [OK]）。凡是『跑它的 checker 全绿』都不算验完，必须再叠一层独立断言（本轮：PPTX 结构 13 条 + 浏览器 getBBox）。 | **第11轮同类命中且更普遍**：Playwright 的 page.on('response') 对浏览器级 favicon 取回完全盲（本轮服务端日志有 404、监听器零记录）→ 只要产物经 HTTP 服务，网络/错误断言必须把**服务端访问日志**并进来收，不能只信自动化框架。",
-  "磁盘开工水位：可用 20329292 KB ≈ 19.4 GiB（>1.5 GiB 阈值）。本轮 demos 100KB（限 5MB），LAB 约 18MB（含 .skills 16MB、.tmp/pylibs 32MB 均 gitignored，后者收尾已删）。",
-  "★真截图能力打开（第 6 轮）：前五轮被『browser-use 面板 hidden / take_screenshot 不可用』限制成只用计算样式。实际上本机有 /Applications/Google Chrome.app，用 playwright-core（npm i --registry=https://registry.npmmirror.com playwright-core，纯 JS 包 2s，**不要装 playwright、不要下载浏览器**）+ chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', args:['--no-sandbox','--disable-gpu','--hide-scrollbars','--force-color-profile=srgb']}) + newPage({viewport:{width:800,height:800}}) 即可定宽逐帧截图；file:// 页面直接 page.goto 可用（截图不依赖 ESM）。48 帧 capture+screenshot+ffmpeg 编码 = 7 秒。",
-  "ffmpeg 在 /Users/apple/.local/bin/ffmpeg（gifsicle/ImageMagick/rsvg-convert 均缺失）。CSS→GIF 两遍调色板命令：ffmpeg -y -framerate 12 -i frames/f%03d.png -vf 'scale=800:800:flags=lanczos,palettegen=stats_mode=diff' palette.png && ffmpeg -y -framerate 12 -i frames/f%03d.png -i palette.png -lavfi 'scale=800:800:flags=lanczos[x];[x][1:v]paletteuse=dither=bayer:bayer_scale=5' -loop 0 animation.gif",
-  "GIF 断言要这样写（本轮实测）：ffmpeg 的 gif 编码器输出**差分子矩形帧**——只有帧 0 是 0,0,800,800，其余是 1×1/局部矩形，所以『每帧描述符都是全画布』必假 FAIL；帧延迟 100/12=8.33cs 写成 8 与 9 交替，断言用 set⊂{8,9}+均值≈8.33；无限循环看 NETSCAPE2.0 应用扩展的 loop 字段（0）。手写解析器：0x21 扩展块步进为 let q=p+2; while(gif[q]!==0) q+=gif[q]+1; p=q+1（GCE 的 delay 在 p+4，NETSCAPE 的 loop 在 p+16），图像块 0x2C 步进 p+=10(+LCT)+1+子块链。",
-  "CSS 计数器动画的可读探针：getComputedStyle(el,'::after').content 在 Chrome 里返回**字面量 \"counter(num)\"** 而非解析后的数字（第 1 版探针因此全 NaN）。要读 @property 注册属性的插值值 getComputedStyle(el).getPropertyValue('--num')，或用 cs.counterReset（'num 6'）互相核对。",
-  "像素↔状态一致性断言的坑：把连续量（opacity 0.98 vs 1.0）按 >0.5 二值化当状态键会**误报不确定性**。状态键用全精度字符串；本轮 48 帧 → 22 个精确状态 → 0 组同态异像素，才证明 WAAPI 寻址位级可复现。",
-  "市场镜像包的系统性缺陷（3/6 轮命中）：只搬 SKILL.md、丢 scripts/ 与 references/。graphic-gif 包里唯一文件 SKILL.md 明文引用的 scripts/export-gif.sh、capture-and-encode.mjs、references/animation-library.md、references/style-presets.md 四个全不存在（find 结果 1 个文件）。→ 装完任何市场技能，第一步 find <dir> -type f 核对文件清单，缺实现层就在 demos/ 里自补并在报告注明。",
-  "search_extensions 参数名是 query（传 keyword 报 'params must NOT have additional properties'）；用完整 canonicalName（含连字符，如 'graphic-gif'）精确检索只回 1 条，比宽词省。Full Access 下 install_extension 第 3 次不弹用户确认。",
-  "zsh 里 $PIPESTATUS 恒空（zsh 用 $pipestatus[1]）；重定向写到根目录（如 > /tmp_cap.log）报 read-only file system 并中断整条命令——日志一律相对路径。",
-  "磁盘开工水位：可用 20222172 KB ≈ 19.3 GiB（>1.5 GiB 阈值）。收尾 demos 本轮 192KB（限 5MB），LAB 约 19MB（含 .skills 16MB gitignored）。",
-  "★three.js 离线可用（第 7 轮）：npm 镜像 tgz 里 build/three.min.js 是 UMD 风格 classic 脚本（r160 仍在发布，仅 console.warn deprecated），内联后 window.THREE 可用、产物 file:// 双击即跑，绕开「jsdelivr 被 TLS 重置 + file:// 下 ESM 不执行」双杀。examples/jsm 只有 ESM，需正则转 IIFE+共享命名空间（直接拼接会 Identifier already declared）。",
-  "THREE 枚举实测：FrontSide=0 / BackSide=1 / DoubleSide=2；写断言时把常量本身打印出来核对，别凭记忆。",
-  "Node 陷阱：Array.prototype.join(fn) 不会调用函数（把函数源码当字符串拼进去），只有 String.replace 接受 replacer。内联库源码后**先核对产物体积**（本轮 698KB→28KB 一眼暴露假内联）。",
-  "无人值守验证 3D/动画产物的两条硬招（沿用）：(1) 让产物自带文本调试钩子（build-game 的 render_game_to_text/advanceTime 是范本），断言状态机而不是像素；(2) 像素侧用「改一个 uniform 必须改变像素」证明渲染链路活着，比读 passes 数组的名字强。",
-  "playwright-core 复用配方（第 6/7 轮两次跑通）：npm i playwright-core --registry=https://registry.npmmirror.com 到 LAB/.tmp/pw/，chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'}) + args 里加 --use-gl=swiftshader --enable-unsafe-swiftshader（否则 headless WebGL 可能无 GPU）；toDataURL 回读 WebGL 帧要在同一个 JS task 里紧跟 render()（preserveDrawingBuffer=false）。",
-  "判据错 vs 产物错要分清：本轮 2 条 FAIL 全是我的断言窗口/阈值拍脑袋（跳跃采样时 keys[' '] 未清导致连续起跳；亮度阈值 100 过严且用全局均值看只作用在角落的 vignette）。改法是**把断言换成理论值对比**（滞空 2v/g、峰高 v²/2g、角落局部采样），而不是放宽。",
-  "磁盘开工水位：可用 19742420 KB ≈ 18.8 GiB（>1.5 GiB 阈值）。本轮 demos 1.0MB（限 5MB），收尾已删 .tmp/three(9.4MB) 与 .tmp/pw/node_modules。",
-  "★参数化 ≠ 安全：`MATCH ?` / NoSQL / LDAP / 正则都是「带语法的字符串参数」，绑定只挡宿主语言解析，不挡子语法。实测 query.mjs 用 `\"${term}\"` 包串，输入含 `\" OR \"` 即改写检索语义（0 命中 → 4 条真实路径+行内容），含未闭合括号则未捕获异常并把 percent-encoded 源码绝对路径打到 stderr。审计任何检索入口都要单独跑这一类对抗输入。",
-  "★静态 grep 审计在本仓库 FP 率 58%（31 命中 / 13 有效）：CSS `grid-template-columns` 撞 `$\\{` 与 `template` 规则、`.stack{width}` 撞 `err.stack`、产物里「拒绝 curl|bash」的文案撞管道规则。规则要为文档/CSS 留豁免，且分级前必须逐条人工分诊或跑 PoC 证伪。",
-  "★无人值守特有的坑：安全相关的启动参数会沿「抄上一轮脚本」这条路自我繁殖——`--no-sandbox` 从第 6 轮 capture.mjs:23 → 第 7 轮 verify.mjs:29 → 本轮 poc-game.mjs:11，同一轮内就复制到第 4 处。复用旧脚本时，args/权限/网络相关行要逐条重判。",
-  "★断言攻击链要先找合法触发路径：第 7 轮产物里 `__game.state.score=99999` + `advanceTime()` 不足以写盘，因为 `update()` 只在 `mode==='playing'` 计时、`endGame()/saveBest()` 挂在结算上；补一次 canvas `pointerdown`（game.src.html:666 的真实入口）才闭环。钩子存在 ≠ 任意状态可直接落盘。",
-  "密钥扫描必须扫 `git log --all -p`（本轮 10,326 行新增）：.gitignore 只挡未来提交，挡不住历史。宽词（ghp_|AKIA|BEGIN…PRIVATE）在 .skills 文档里全是示例误报，要收紧到凭据形状（ghp_[A-Za-z0-9]{36} / AKIA[0-9A-Z]{16} / sk-[A-Za-z0-9]{32,}）再看是否被 git 跟踪。",
-  "交付物里 89–98% 字节可能是单行内联第三方库（>400 字符行 = 人和 grep 都读不了）。度量法：按行长分桶算 opaqueBytes/opaqueShare 写进 findings.json，比逐文件人眼扫快且可复现。three.min.js 压掉了版本横幅，产物内无可机检来源 → 只能靠 sha256 清单自证。",
-  "对照组的异常率是判据健康度探针：本轮 TARGET 默认路径写错后出现「9 例中 9 例崩溃」，SyntaxError / Cannot find module 都会伪装成漏洞。任何「全部失败」先 `node <target>` 空跑一次确认被测件本身能起。",
-  "宿主时钟会在两次 30 分钟调度之间跳 9.5 小时（本轮 00:00 开工 → 09:50 收尾，文件 mtime 与目录名时刻不一致）：轮次标识沿用开工时刻，耗时预算不可用墙钟核对，改按「产物是否完成」判断。",
-  "本轮磁盘开工可用 19849992 KB ≈ 18.9 GiB（>1.5 GiB 阈值）；收尾磁盘 18042944KB ≈ 17.2 GiB（比开工少 1.7 GiB，兄弟实验室同期在写）；demos 本轮 440KB（限 5MB），LAB 21MB。清理：.tmp/pw2（playwright-core 13MB）已删、lab.db-shm/-wal 已删、demos 里指向 .tmp 的 node_modules 软链已删（该链不入 git 且指向必删目录）。全局缓存未动。",
-  "★第 9 轮：本机无 LibreOffice（which soffice 失败、/Applications 无），所以任何把 recalc.py / soffice --convert-to 当强制闸门的技能都拿不到官方证据。可用替代：python3 -m pip install --target LAB/.tmp/pylibs --index-url https://mirrors.aliyun.com/pypi/simple/ openpyxl formulas（29.7s，但 formulas 连 scipy/numpy 共 218MB，收尾必删；单 openpyxl 约 2MB），用 formulas.ExcelModel().loads(f).finish().calculate() 重算、再把结果与「用 Python 从原始事实独立重算的期望值」逐格比对 —— 这是交叉证据，不等于 Excel/LibreOffice 语义。",
-  "★openpyxl 两个静默坑：(1) 单元格值是以 '=' 开头的字符串时会被写成**活公式**，所以「展示公式文本」的文档列必须在赋值后 cell.data_type='s'（产物落成 t=\"inlineStr\"），否则等于把被记录的公式又执行一遍；(2) 读回的字体色带 alpha 前缀（蓝是 '000000FF' 不是 'FF0000FF'），颜色断言要 endswith。",
-  "★Excel 语义坑（也是 xlsx 技能没写全的一条）：=H/60 在 H 为空时**不报错、返回 0**，IFERROR 永不触发 → 空值必须用 =IF(H=\"\",\"\",H/60) 显式守卫；分组平均同理，SUMIF/COUNTIF 会把无记录的成员当 0 计入分母，要用 COUNTIFS(range,\">0\") 作分母。",
-  "断言覆盖度教训（第 9 轮两次）：一个断言只比对了 3 列里的 2 列，就放过了 6.5 vs 13.0 的真错。多列聚合结果要逐列断言；技能自带 checker 全绿仍须叠独立断言（第 5 轮 svg_quality_checker 同源教训）。macOS 无 timeout 命令（gtimeout 属 coreutils）。",
-  "台账纪律：state.json runs[] 自第 5 轮起漏写 installed_by_this_task（第 1–4 轮有），已回填。任何从台账取数的脚本要先做字段完整性检查，别默认历史字段齐。",
-  "★第 10 轮：`sh script.sh` 里 **反引号会被当命令替换**（`go test -run `^$`` 因此静默变成 `-run ''`，基准一节只输出 [no tests to run]）。POSIX sh 脚本中的正则一律用单引号。",
-  "★`go tool cover -html` 的着色是**文字 color**（.cov0{color:#c00} .cov8{color:#2cd495}），不是 background-color。断言计算样式前先抓 <style> 原文决定读哪个属性，否则会把两个 rgba(0,0,0,0) 误判成 CSS 没生效。",
-  "★Go 环境无人值守配方：go 1.27.1（~/.local/go/1.27.1/bin/go），GOCACHE/GOPATH 指 LAB/.tmp/{gocache,gopath}（首轮编译 stdlib 仅 1-2s，缓存 86MB，收尾整目录删除，**不碰全局 ~/Library/Caches/go-build**），二进制也输出到 LAB/.tmp 不进 demos；纯 stdlib 模块零网络（GOPROXY 未被触发）。`go vet ./...` 会连带编译 _test.go（等于测试可编译性检查），但 build-tag 文件要另跑 `go vet -tags=integration ./...` 否则永远不被检查。",
-  "★LAB 相对路径坑（本轮真实代价）：demo 目录是 LAB/demos/<run>，`cd ../../..` 会多退一层落到工作区上级，把 86MB GOCACHE 与 2.6MB 二进制写进 试验/.tmp。任何脚本求 LAB 一律 `LAB=$(cd ../.. && pwd)`（从 demos/<run> 起），收尾必须 `ls 上级目录` 确认没留下也没误删兄弟实验室的文件。",
-  "表驱动断言先算例再写期望：迷宫类产物里「地板格数 = 2·cells−1、渲染再被 S/E 覆写 2 格 → '.' 数 = 2·cells−3」，凭直觉写 countOpen(cells) 会让 4 条断言全错。第一版就是这么错的（教训同第 9 轮「一个断言只比 3 列里的 2 列」）。",
-  "磁盘开工水位：可用 17,919,900 KB ≈ 17.1 GiB（>1.5 GiB 阈值）。收尾本轮 demos 92KB（限 5MB）、LAB 约 22MB、磁盘可用 17,916,332 KB ≈ 17.1 GiB。清理：LAB/.tmp/{gocache,gopath,maze} 与误建的 试验/.tmp 全部删除，known_hosts 保留（gitignored）。**全局副作用 = 无**（零技能安装、零服务、零全局配置改动）。",
-  "宿主时钟：本轮 10:12 开工 → 10:21 记录，与第 9 轮（09:56）之间不足 30 分钟即被调度，轮次标识一律取开工时刻。",
-  "★第11轮：Python Playwright 在本机可用且**不需要下载浏览器** —— pip 镜像装 playwright 1.63.0 到 LAB/.tmp/pylibs（6.1s，目录 140MB，收尾删），launch 时 executable_path 直指 /Applications/Google Chrome.app 即可。此前「无 pip / 无 PIL → 依赖 Python 的技能先当不可用」的限制作废（第5轮的 --target 路线本就通了，本轮补上浏览器这条腿）。",
-  "第11轮：Playwright 的 page.on('request'/'response') **看不到浏览器自己发起的 /favicon.ico 取回**（本轮 16 次事件里只有 1 条文档请求、零 >=400 响应，而服务端访问日志明明白白记着 GET /favicon.ico 404）。⇒ 任何「零外链/网络卫生」断言，只要产物经 HTTP 服务，就必须同时收 http.server 的访问日志；技能自带的 with_server.py 把该日志接成 PIPE 且从不读取，要自己起服务并重定向到文件。",
-  "第11轮：无 <link rel=\"icon\"> 的 HTML 产物，**404 只在被 HTTP 服务且发生下载导航时出现**（file:// 与纯加载都 0 error）→ 历轮 file:// 验收天然看不见这类缺陷。一行修复 `<link rel=\"icon\" href=\"data:,\">` 已 A/B 证验（ab_favicon_fix.py）。",
-  "第11轮：Playwright 三个 API 细节 —— (1) page.fill() 对 input[type=number] 抛 `Cannot type text into input[type=number]`，要改 el.value + dispatch_event('change')；(2) page.evaluate 里 JS 箭头函数**解构实参必须加括号** `([a,b]) => {}`，漏括号是 `Malformed arrow function parameter list` 且整轮中断；(3) locator().screenshot() 量的是 CSS 显示盒（≤1000px）而非 canvas 原始分辨率，原始分辨率要另走 download/save 捕获。",
-  "第11轮：**「同哈希截图」是判定「控件失灵/未重绘」的最硬证据**，比像素统计五元组更省话——本轮 mutant_wiring 的 02→03 两张 PNG sha256 完全相同，而 golden 两者不同。元素级截图（无侧栏噪声、单张 300-460KB）适合直接入 git 当证据。",
-  "第11轮：变异测试的「级联」要预告而非当 bug —— nextSeed 算术清零这一条变异同时让 G10（非法种子回滚）红，因为种子已漂移到别的值、断言的期望值不再成立。判故障范围看**哪些断言仍绿**（mutant_wiring 的 G7/G8/G9 全绿才是它定位成功的证据），不能只数红条。",
-  "磁盘开工水位：可用 17,907,872 KB ≈ 17.1 GiB（>1.5 GiB 阈值）；收尾 17,795,988 KB ≈ 17.0 GiB。本轮 demos 4.0MiB（限 5MB），LAB 收尾 26MB（含 .skills 16MB 与 .tmp 未入库）。",
-  "★第12轮：出图不必依赖 playwright —— `\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --hide-scrollbars --virtual-time-budget=2500 --window-size=WxH --default-background-color=FFFFFFFF --screenshot=out.png file://abs.html` 直接产出精确 W×H 的 PNG（本轮 33,756B / 720×320，中文与 SVG 文字正常）。只需要一张图时优先用这条，比装 13MB(playwright-core)/140MB(playwright) 划算。",
-  "第12轮：docx-js（npm docx 9.7.2）两个静默坑 —— (1) `new TextRun({text, children})` 只序列化 children，**text 整段丢失且技能自带 validate.py 全绿**；PositionalTab(点前导) 要单独占一个不带 text 的 run。(2) 它生成的 styles.xml **不定义 Normal / DefaultParagraphFont** 却让样式 basedOn 它们 → 无 pStyle 的段落被 python-docx 解析为 style=None（17/38 段）。XSD 校验查不出悬空样式引用，必须另加「引用集合 ⊆ 定义集合」的断言。",
-  "第12轮：`<w:ins>/<w:del>` 手工修订三条纪律 —— (a) 单行 XML 上 `<w:rPr>.*?</w:rPr>` 会跨 run 吞掉前一个 run，把上一句的 <w:t> 搬进 <w:del>（validate.py --author 正好抓得到），要用 tempered 模式 `(?:(?!</w:rPr>).)*?`；(b) 修订 id 必须全局唯一，而 **validate.py 不查唯一性**，靠自写断言；(c) 验收要用「拒绝全部修订后的正文 == 原件逐字符相等」+「接受视图只多出/只少掉预期的那几段」双向不变量，这才是 Word 真显示的东西。",
-  "第12轮：python-docx 的 `paragraph.text` **不含 <w:ins>/<w:del> 内的文字**，也不含表格段落（`.tables` 才有）；用它写探针前先分清「文件坏」与「API 口径」。技能要求的 soffice / pdftoppm / pandoc 本机三缺，「渲染出来亲眼看」不可用 → 替代三件套：document.xml 顺序导出的文本预览 + OOXML 断言 + 第二解析器回读。",
-  "无人值守流水线里若要跑「故意做坏的 A/B 对照」，run.sh 不能用 `set -e`（会在负样本处直接终止），改 `set -uo pipefail` + 显式记 `exit=$?`。另外 pip 阿里源装 defusedxml+lxml+python-docx 共 14MB/数秒，Pillow 16MB（python-docx 的 image 探针需要它，本轮未用故卸载）。",
-  "★第13轮 py3.14 PDF 依赖配方：pypdfium2 与 cryptography 无 wheel 且源码构建失败 → `pdfplumber==0.11.9 --no-deps` + `pdfminer.six==20231228 --no-deps` 可装可用（文本/表格/rects/chars 全正常，仅 to_image 坏）；渲染验证走 `qlmanage -t`。reportlab 5.0.1 / pypdf 6.19.0 正常。",
-  "★第13轮 reportlab 中文字体：PingFang.ttc 是 CFF 轮廓，TTFont 报 postscript outlines are not supported（index 0-3 全试）；用 /System/Library/Fonts/STHeiti Light.ttc subfontIndex=0，可内嵌、渲染正常。",
-  "★第13轮两条断言纪律：(1) 旋转文字（水印 38°）在文本抽取里是散字符，字符串匹配必假 → 用 glyph 计数差（每页 +1 个『印』）；(2) pypdf 6.x decrypt() 返回 0/1/2 状态码而**不抛异常**，『没抛异常=口令对』是假通过，须断返回码+页面访问双条件（负对照 NC3 抓到）。半透明水印合成后是淡红，像素阈值 R-G>25 而非 G<130。",
-  "磁盘开工水位：可用 17,571,028 KB ≈ 16.8 GiB（>1.5 GiB 阈值）；收尾同值附近。本轮 demos 492KB（限 5MB），LAB 约 22MB（.skills 16MB 未入库）。.tmp/pylibs（30MB reportlab/pypdf/pdfplumber/pdfminer/Pillow）收尾已删。",
-  "browser-use 面板对持续 rAF 的 WebGL 页不可用：单次 probe 也 15s 超时（面板 viewport 0x0 + 软件光栅）。像素级取证一律走 playwright-core(npmmirror, 8.3MB/1s 装完) + 系统 Chrome，args 用 --use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader，WebGL 可正常编译/链接/readPixels。",
-  "★Node 脚本中文路径坑：`new URL(import.meta.url).pathname` 是百分号编码，fs 写文件/Playwright screenshot 会照着在 /Users/apple/Documents/workProject/%E8%AF%95%E9%AA%8C/... 建假目录，产物静默落到 LAB 之外且当前目录 ls 看不见。必须 `fileURLToPath(import.meta.url)`。找回方法：find /Users/apple/Documents/workProject -maxdepth 3 -name '*%*'。",
-  "验证「乘性/径向」shader 项（暗角、衰减）不能在带纹理的背景上测环平均：本轮实测外环(0.345)比内环(0.252)还亮，因为中环正落在 fbm 亮流区——既有假绿又抓不到删项变异。做法：用页面暴露的换编译口把片元退到「常量底色 + 只留该乘项」，再按解析公式核对，实测 relErr 1e-4。",
-  "页面里做「重新编译并替换 program」的钩子时，必须同步更新对外暴露的源码引用（__shaderFragSource），否则变异体下的派生探针读到的仍是基线源码 → 假存活。",
-  "双变异在 GPU 产物上的分工（本轮实测）：t=0 操作点上 `uTime*uSpeed`→`uTime` 的变异 golden 哈希抓不到（数值等价），只有行为断言抓到；反之单条域扭曲通路归零，聚合的 uWarp 响应断言仍绿，只有 golden 像素哈希抓到。→ 行为断言 + golden 哈希两套都要有。",
-  "extension-market 的 origin:skillatlas 条目本轮（第 14 轮）再次一次装成（shader）；tags 为空的条目也可靠。安装仍走 Full Access 免确认。",
-  "收尾核查数值：LAB 37,516KB（含 .skills 16MB 未入库）、本轮 demos 2.4MB（限 5MB）、磁盘可用 17,664,700KB≈16.9GiB、零新增监听端口、误建的 %E8%AF%95%E9%AA%8C 假目录已删（find 复核为 0）。日志文件名坑：LAB/.gitignore 的 *.log 只放行 !demos/**/output.log，所以每轮的 CLI/断言/变异输出要合并成 demos/<轮>/output.log 才会入库（本轮首提交漏了 3 个日志，合并后补交）。",
-  "Pillow 缺字形静默丢字：font.getbbox(ch) 高度为 0 = 该字体无此字形（Jura 全系无 U+2032 ′），Pillow 既不报错也不画豆腐块 → 落笔前先量 bbox，缺的字形改手工画（本轮把分号画成 5px 斜线，反而更贴技能「把字体带上画布」的取向）。",
-  "per-char 排字会杀死 italic 字距：为做 tracking 而逐字 d.text() 时，InstrumentSerif-Italic 词内出现 6–10px 空洞（缩略图上像「sam e distance」）。连读句子一律整串 anchor=\"mm\"；只有几何式大标题才用 tracking。抓它的断言＝按阈值数词隙（本轮期望 9 词 8 隙）。",
-  "Pillow 画弧后再用同半径 ellipse(outline=底色) 画参考圆，会把宽弧从正中间擦掉：沿精确半径采样只测到 92.9°/308°（假阴性）。取证采样半径要偏移（本轮 R-3.2），或参考圆别与数据弧同半径。",
-  "暗角/渐晕合成后「出血位有无 artwork」不能用「比纯纸暗」判据（暗角本身让边缘变暗，实测 485 假命中）；要用墨色绝对阈值 sum<300。",
-  "py3.14 装 Pillow 一次成功：python3 -m pip install --target .tmp/xxx Pillow -i https://mirrors.aliyun.com/pypi/simple/（约30秒，12.3.0），产物目录零 node_modules。"
- ],
- "runs": [
-  {
-   "time": "2026-09-25T17:23+08:00",
-   "skill": "drafter",
-   "result": "success",
-   "seconds": 420,
-   "artifact_size": "15KB HTML + 3.4KB output.log；本轮 demos 目录合计 20KB（限 5MB）",
-   "cleanup": "无需删依赖（零安装零 node_modules、产物无 JS 无外链）；未起任何本地服务，lsof 无监听；本轮唯一持久副作用=安装了 ~/.qoder-cn/skills/drafter（已登记 installed_by_this_task，按规约不自动卸载）；离屏测量容器随重新导航自动消失，未落盘",
-   "push": "已推送：git push -u origin skill-showcase 新建远端孤立分支成功（首推，无 force），远端 refs/heads/skill-showcase = 2004a2f；main 保持 c662335 未被触碰；走 git.com SSH + LAB/.tmp/known_hosts，命令行无任何 token",
-   "installed_by_this_task": [
-    "drafter -> /Users/apple/.qoder-cn/skills/drafter/"
-   ],
-   "notes": "首建 LAB 骨架（records/state/demos/reports/.skills/.tmp/.gitignore）。27 项风格与结构断言全 PASS；暴露并修复 skill 自身示例 CSS 的 1fr min-content 缺陷（六步条 45-97px 不等宽 → minmax(0,1fr) 后 spread 0.02px）；720-1600px 五档宽度零裁切零溢出。另：首次尝试 diagram-drawing 因 EXTENSION_SKILL_FRONTMATTER_INVALID 失败并已记 blocked。"
-  },
-  {
-   "time": "2026-09-25T17:37+08:00",
-   "skill": "ascii-project-dashboard",
-   "result": "success",
-   "seconds": 600,
-   "artifact_size": "dashboard.txt 2.8KB(52行) + 对照 naive 2.8KB + 两脚本 11KB + output.log 6.6KB = demos 本轮 32KB（限 5MB）；LAB 见收尾核查",
-   "cleanup": "零 node_modules/零构建缓存/零二进制；未起本地服务（lsof 监听数与开工一致，均属其它任务）；demos 只留可打开的 .txt + 复现脚本 + 日志；全局缓存未动",
-   "push": "已推送 f23b5ae → origin/skill-showcase（fetch 比对后普通推送 2311b94..f23b5ae，无 force/无 --no-verify）；main 与其它分支未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行无 token",
-   "installed_by_this_task": [
-    "ascii-project-dashboard -> /Users/apple/.qoder-cn/skills/ascii-project-dashboard/"
-   ],
-   "notes": "10 PASS / 0 FAIL 断言（列边界/条长/版式一致/框线闭合/百分比==独立反算）；对照组按技能原文口径跑→7 PASS 3 FAIL，实测其「10 chars=10 chars」在中文下极差 26 列。"
-  },
-  {
-   "time": "2026-09-25T18:10+08:00",
-   "skill": "algorithmic-art",
-   "result": "success",
-   "seconds": 1140,
-   "artifact_size": "art-index.html 998KB(单文件自包含) + viewer.src.html 21KB + philosophy.md 2.5KB + build.mjs 527B + output.log 7.2KB = demos 本轮 1.0MB（限 5MB）；LAB 总 17MB（.skills 16MB 已 gitignore）",
-   "cleanup": "已删 $LAB/.tmp/p5.tgz(2.1MB) 与 .tmp/p5x(4.3MB 解包)——p5 已内联进产物故不再需要；删空 demos/.../.work；零 node_modules、零构建缓存、零编译二进制；未起任何本地服务（收尾 lsof 9 条 LISTEN 全属 QQ/WPS/Qoder/adb/clash 等既有进程，无本轮残留）；本轮**未安装任何全局技能**（installed_by_this_task 为空，是三轮里第一次纯外部 clone）；保留 LAB/.skills/anthropic-skills 16MB 作第三方技能镜像（已加进 .gitignore 不入库）；全局缓存未动",
-   "push": "已推送：fetch 后确认远端 36cf63d 是本地 HEAD 祖先 → 普通 push origin skill-showcase 成功 36cf63d..e3e940e；无 --force、无 --no-verify；main / go-gin_react 未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
-   "installed_by_this_task": [],
-   "notes": "来源②首次打通（SSH clone anthropics/skills）。31 项断言全 PASS：结构 12 / 构图渲染 7 / 可复现与交互 8 / 附加 4。技能招牌「same seed ALWAYS identical」被逐像素哈希证实（regenerate 同哈希 3746692814-22500、nextSeed 变、previousSeed 与 reset 均精确复原）。暴露并绕过 4 个坑：CDN 被 TLS 重置→npm 镜像取 p5 内联；线性跨步像素探针假阴性；viewport 0×0 触发响应式假阴性需 320px 离屏容器；SKILL.md 要求 Download PNG 键但自带模板缺失（按 SKILL.md 补齐）。沙箱浏览器不落盘 → PNG 导出只验到调用链，已如实记录。 | 收尾核查：git status 干净、远端 skill-showcase=032a911（=本地 HEAD）、main 与 go-gin_react 未触碰（远端仍 1da8a14 / 53153f4）、LAB 18MB(其中 .skills 16MB 未入库)、demos 本轮 1.0MB、磁盘可用 20434424 KB≈19.5GiB。"
-  },
-  {
-   "time": "2026-09-25T18:42+08:00",
-   "skill": "SQLite-Database-Expert",
-   "result": "success",
-   "seconds": 780,
-   "artifact_size": "lab.db 299008B + build-db.mjs 4.7KB + verify.mjs 9.2KB + query.mjs 1.2KB + maintain.mjs ~0.7KB + output.log ~6KB = demos 本轮 328KB（限 5MB）",
-   "cleanup": "已删 LAB/.tmp/{fk.db,fts-desync.db,bench.db}*（安全实验临时副本）、lab.db-wal / lab.db-shm（干净关闭后残留）、verify-report.txt（内容已并入 output.log）、probe.mjs（逻辑并入 verify.mjs）；零 node_modules、零 npm 安装、零编译二进制、未起任何本地服务（收尾 lsof LISTEN=11 与开工一致，全属既有进程）；本轮**未安装任何全局技能**（installed_by_this_task 为空）、全局缓存未动、除 LAB 外未改任何文件",
-   "push": "已推送：fetch 确认远端 e15b2b4 是本地 HEAD 祖先 → 普通 push origin skill-showcase 成功 e15b2b4..0912dc3；无 --force、无 --no-verify；main(1da8a14)/go-gin_react(53153f4) 未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
-   "installed_by_this_task": [],
-   "notes": "14 断言 / 0 FAIL（E1 查询计划与 tokenizer 4 项 / E1b 触发器失同步+rebuild 2 项 / E2 注入 2 项 / E3 外键 3 项 / E4 事务提速 1 项 / E5 持久 PRAGMA 2 项）。关键量化：unicode61 对 '安全闸门' 漏 1/4（'## 安全闸门结论'）、'p5' 漏 1/13（p5x）、'ab' LIKE=21→MATCH=0；trigram 4/4 与 LIKE 相等但 '安全'(2 字符)=0；单事务 8.2ms vs 逐语句 108.6ms = 13.2x（推翻技能「100x」量级）；FK OFF 收孤儿行 / ON 报 FOREIGN KEY constraint failed；VACUUM freelist=0 尺寸不变 299008B。两轮 FAIL 的真相是我自己的预设错了（以为 unicode61 中文全盲，实为整词精确匹配）——已按真实行为重写断言并把差集行取证写进 output.log。包缺陷：§0 必读的 references/advanced-patterns.md、references/security-examples.md 在包内不存在；frontmatter risk_level=HIGH vs 正文 MEDIUM 自相矛盾。 | 收尾核查：git status 干净、远端 skill-showcase=0912dc3(=本地 HEAD)、LAB 19MB(其中 .skills 16MB 未入库)、demos 本轮 328KB、磁盘可用 20273916 KB≈19.3GiB、收尾 git status 干净、lsof LISTEN=11 全属既有进程（QQ/clash/Qoder/adb/verge/python3.1 等）。"
-  },
-  {
-   "time": "2026-09-25T19:06+08:00",
-   "skill": "ppt-generator",
-   "result": "success",
-   "seconds": 600,
-   "artifact_size": "skill-showcase-pixel-retro.pptx 48873B + svg_slides/ 5 个 .svg(29KB) + build_pptx.py 883B + verify_pptx.py 3.9KB + output.log 3.8KB = demos 本轮 100KB（限 5MB）；LAB 见收尾核查",
-   "cleanup": "已删 LAB/.tmp/pylibs（32MB，python-pptx+lxml+Pillow，产物 .pptx 已生成故不再需要）与 __pycache__；零 node_modules、零 npm 安装、零编译二进制；未起任何本地服务（浏览器仅导航 file://）；除 ppt-generator 一个全局技能（已登记 installed_by_this_task，按规约不自动卸载）外未装其它东西；全局 python site-packages 与全局缓存未动；产物与台账全部落在 LAB 内（技能原本要写 /tmp/ppt_svgs，已改道 demos）。",
-   "push": "已推送：fetch 确认远端 5175275 是本地 HEAD 祖先 → 普通 push origin skill-showcase 成功 5175275..ec14770；无 --force、无 --no-verify；main / go-gin_react 未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
-   "notes": "5 页 pixel_retro 幻灯片 + 原生 .pptx；技能自带 checker 5/5，独立断言 13/13；最有价值发现：它自己的 checker 不查它自己定的边距（假通过），以及 python3 -m pip --target 这条依赖路线其实可用。",
-   "final_check": "git status 干净；demos 本轮 100KB；LAB 18MB（.skills 16MB + .gitignore 排除项不入库）；磁盘 20290752 KB ≈ 19.4 GiB；lsof LISTEN=10 全属既有进程；.tmp/pylibs 32MB 已删",
-   "installed_by_this_task": [
-    "ppt-generator (market id official_79e7IlJQ) -> ~/.qoder-cn/skills/ppt-generator/ 经 install_extension 安装"
-   ],
-   "installed_by_this_task_note": "第 9 轮回填：runs[] 自第 5 轮起漏写该字段，导致按 runs 聚合的统计偏小（本轮 xlsx 台账的「新装技能数」指标把它暴露出来）"
-  },
-  {
-   "time": "2026-09-25T19:50+08:00",
-   "skill": "graphic-gif",
-   "result": "成功（留用）。产物 demos/20260925-1950-graphic-gif/animation.gif 48293B / 48 帧 / 800x800 / 无限循环，26 条独立断言 26 PASS 0 FAIL",
-   "seconds": 900,
-   "artifact_size": "192KB（本轮 demos；含 4 抽样帧 96KB，gif 47KB）",
-   "cleanup": "已删 frames/(1.2MB,48 帧 PNG 中间物)、node_modules/(13MB playwright-core)、palette.png、package-lock.json；零新增进程与监听；全局 site-packages 未碰；未装除 graphic-gif 外任何技能",
-   "push": "已推送：git push origin skill-showcase 成功（19dbcaf..857a690，普通推送，无 --force / 无 --no-verify）；远端是本地祖先故无需 rebase；main / go-gin_react 未触碰",
-   "notes": "实现层（export-gif.sh/capture-and-encode.mjs/两个 references）包内全缺→按 SKILL.md 规范自补 capture.mjs；KLING(ai-generated) 路线需付费凭据+上传本图，按闸门排除并走它自带的降级条款。",
-   "seconds_note": "19:50 开工→20:05 出纪要，约 15 分钟；其中 48 帧捕获+编码 7 秒",
-   "final_checks": {
-    "git_status": "干净（回填 commit 后二次推送）",
-    "demos_this_round": "192KB",
-    "lab_total": "19MB（含 .skills 16MB gitignored）",
-    "disk_free_kb": 19750288,
-    "disk_free_gib": "18.8 GiB",
-    "listen_total": 18,
-    "listen_from_this_run": 0,
-    "note": "8123/8124 两条 node 监听属兄弟实验室既有服务，未触碰；chrome 相关 5 进程全是 18Sep 起的历史用户进程，本轮 headless 实例已随 browser.close() 退出"
-   },
-   "installed_by_this_task": [
-    "graphic-gif (market id official_nhsK8Qra) -> ~/.qoder-cn/skills/graphic-gif/ 经 install_extension 安装"
-   ],
-   "installed_by_this_task_note": "第 9 轮回填：runs[] 自第 5 轮起漏写该字段，导致按 runs 聚合的统计偏小（本轮 xlsx 台账的「新装技能数」指标把它暴露出来）"
-  },
-  {
-   "time": "2026-09-25T23:32+08:00",
-   "skill": "build-game",
-   "result": "成功（留用·强推荐）。产物 demos/20260925-2332-build-game/frostlight-gather.html 750,620B 可玩 3D 游戏，23 条独立断言 23 PASS / 0 FAIL，运行期 console/page error = 0",
-   "seconds": 1440,
-   "artifact_size": "frostlight-gather.html 750,620B + game.src.html 40,938B + verify.mjs 22,030B + postfx.bundle.js 39,825B + inline-jsm.mjs 2,683B + build.mjs 1,183B + output.log 3,950B + render_game_to_text.txt 268B + shots/ 3 张 jpg 193,437B = 本轮 demos 1.0MB（限 5MB）",
-   "cleanup": "已删 demos 内中间件 part1.js/part2.js、LAB/.tmp/three（9.4MB tgz+解包）、.tmp/pw/node_modules（playwright-core）；无本轮起的服务/监听进程（未起 server，产物 file:// 直开）；全局缓存与 ~/.qoder-cn/skills 未动",
-   "push": "已推送：git push origin skill-showcase 成功（600f5c9..8873a67，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 600f5c9 是本地 HEAD 祖先故无需 rebase；main / go-gin_react 未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
-   "notes": "来源①官方市场第一个候选即中（search_extensions query \"build-game\" → install_extension，installRef 现搜现装）。安全闸门：读全文 SKILL.md+serve.sh+抽查 references 后放行；拒绝 Phase 5 的 here.now 上传（本地内容外发）；serve.sh PID 写死 /tmp 之外故未使用，改 file:// 直开。最大工程点=three r160 离线化：classic 构建内联 + examples/jsm ESM→IIFE 命名空间转换（11 模块 39.8KB），把 SKILL 强制的 bloom/调色/FXAA/OutputPass 链真的装上（SSAO 放弃并已记录）。两条 FAIL 均为我方判据错（跳跃采样窗口、亮度阈值与 vignette 采样位置），已换成理论值对比与局部像素探针。 | 收尾核查：git status 干净（仅本轮 4 项变更已提交）、远端 skill-showcase=8873a67、LAB 21MB（含 .skills 16MB gitignored）、磁盘可用 19853944 KB ≈ 18.9 GiB、lsof 无本轮残留监听（未起任何 server）、全局技能库新增 1 项 build-game（见 installed_by_this_task）。",
-   "installed_by_this_task": [
-    "build-game (market id official_LaiVUmnK) -> ~/.qoder-cn/skills/build-game/ 经 install_extension 安装"
-   ],
-   "installed_by_this_task_note": "第 9 轮回填：runs[] 自第 5 轮起漏写该字段，导致按 runs 聚合的统计偏小（本轮 xlsx 台账的「新装技能数」指标把它暴露出来）"
-  },
-  {
-   "time": "2026-09-26T00:00+08:00",
-   "skill": "sec-audit-cn",
-   "result": "成功（留用）。产物 demos/20260926-0000-sec-audit-cn/SECURITY-AUDIT.md 11,225B 分级审计报告；严重 0 / 高 2 / 中 5 / 低 2 + 正面清单 5 条；静态扫描 31 命中分诊为 13 有效 / 18 误报；3 组黑盒 PoC 全部真跑（PoC-A 修复前后 3 崩溃→0、PoC-B 篡改链闭环含 reload 持久化与对照组、PoC-C 凭据形状 0 命中 + opaque 度量 + 36 个 SKILL.md 指令面 44%）",
-   "seconds": null,
-   "artifact_size": "440KB（本轮 demos 目录，含 79KB output.log 与 299KB 只读 lab.db 副本）",
-   "cleanup": "已删 .tmp/pw2(13MB playwright-core)、lab.db-shm/-wal、demos 内 node_modules 软链；零本轮残留进程与监听（lsof LISTEN 10 条全属既有进程）",
-   "push": "已推送：git push origin skill-showcase 成功（64b4386..0b9b385，两个 commit：第8轮验证 + 清理 SQLite sidecar 临时件；普通推送，无 --force / 无 --no-verify）；fetch 确认远端 64b4386 是本地 HEAD 祖先 → 无需 rebase；main / go-gin_react / crypto-forecast 分支未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
-   "notes": "唯一不产「可见新文件形态」的一轮：产物是对前 7 轮的审计结论 + 修复件。安全闸门：技能零脚本零网络；PoC 全部本机 file:// 或本地 CLI，无外发、无凭据读取、无 sudo。。收尾核查：git status 干净（0 项未提交）、demos 本轮 440KB、LAB 21MB、磁盘可用 18042944KB ≈ 17.2 GiB（开工 18.9 GiB，兄弟实验室同时在写）、lsof LISTEN 10 条（全属既有进程，零本轮残留）、ffmpeg/headless Chrome 进程 0。全局副作用 = 无（本轮未安装任何技能，只用本机已装的 sec-audit-cn）。",
-   "installed_by_this_task": [],
-   "installed_by_this_task_note": "第 9 轮回填：runs[] 自第 5 轮起漏写该字段，导致按 runs 聚合的统计偏小（本轮 xlsx 台账的「新装技能数」指标把它暴露出来）"
-  },
-  {
-   "time": "2026-09-26T09:56+08:00",
-   "skill": "xlsx",
-   "result": "成功（留用）。产物 demos/20260926-0956-xlsx/skill-showcase-ledger.xlsx 15,360B（3 sheet / 98 活公式 / 原生柱状图 chart1.xml / 25 批注）；49 断言 49 PASS / 0 FAIL",
-   "seconds": 720,
-   "artifact_size": "本轮 demos 目录 84KB（xlsx 15,360B + sheet-preview.txt 9,917B + output.log 8,011B + 四个脚本/facts.json）",
-   "cleanup": "已删 LAB/.tmp/pylibs（218MB openpyxl+formulas+scipy，gitignored）与 demos 内 .tmp/（mutated.xlsx/probe.xlsx 中间件 32KB）；未装任何技能、未起任何服务、无本轮进程与监听；全局缓存未动",
-   "push": "已推送：git push origin skill-showcase 成功（4f8fa8e..00066d2，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 4f8fa8e 是本地 HEAD 父提交 → 无需 rebase；main / go-gin_react / crypto-forecast 分支未触碰（本轮只对 skill-showcase 做 fetch+push）；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
-   "installed_by_this_task": [],
-   "notes": "来源②本地已有（第 3 轮 clone 的 anthropics/skills）→ 本轮零下载零安装。安全闸门：SKILL.md 99 行 + recalc.py 308 行 + office/soffice.py 192 行全读过 → 零网络、只写传入文件与 tempfile 目录，通过。最大增量：技能的强制 recalc 闸门绑定 LibreOffice（本机缺），用纯 Python 引擎 formulas 顶住并逐格与 Python 独立重算比对；顺带证伪它的 _xlfn 清单是运行时特定（本引擎 XLOOKUP 可用、_xlfn.TEXTJOIN 反而不可用）。抓到自己一条真缺陷：空单元格除法静默变 0 使 IFERROR 失效 + 分组均值分母含空值（6.5 vs 真值 13.0）。",
-   "final_check": "git status 干净（0 项）；demos 本轮 84KB（限 5MB）；LAB 22,200KB≈22MB；磁盘可用 17,924,860KB≈17.1GiB（开工 17.2GiB）；lsof LISTEN 10 条全属既有进程（QQ/adb/clash/Qoder，零本轮残留监听，本轮未起任何服务）；无本轮残留 python 进程；.tmp/pylibs(218MB) 与 demos 内 .tmp/(32KB 中间件) 已删；全局缓存未动"
-  },
-  {
-   "time": "2026-09-26T10:12+08:00",
-   "skill": "golang-testing",
-   "result": "成功（留用·推荐）。产物 demos/20260926-1030-golang-testing/maze-solved.txt 1,312B（24x12 格 / 49x25 网格 / 解路径 225 步）+ coverage.html 12,595B + output.log 9,943B + testdata 3 golden + 5 源文件；29 PASS / 4 FAIL（4 条全部来自故意变异 8a/8b，恢复后全绿）；覆盖率 73.3%（Generate 100 / Draw 100 / Solve 96 / main 0）；基准 4 行（size-128 = 2.92ms/783KB/34359 allocs）；gofmt -l 空；go vet 与 go vet -tags=integration 双清",
-   "seconds": 540,
-   "artifact_size": "92KB（本轮 demos 目录，含 5 个源文件；限 5MB）",
-   "cleanup": "已删 LAB/.tmp/{gocache(86MB),gopath(未生成),maze(2.6MB)} 与因路径 bug 误建在工作区上级的 试验/.tmp/{gocache,maze}（先 ls 核对 owner 与 mtime 再删）；demos 内保留源码+产物+日志，无 node_modules、无二进制、无临时文件；全局 ~/Library/Caches/go-build 未动；本轮未起任何监听端口（lsof 复核）",
-   "push": "已推送：`git push origin skill-showcase` 成功（f5b2515..e6dab0f，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 f5b2515 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(c9e0541) / go-gin_react(b8fe3fd) / crypto-forecast(不存在，未创建) 均未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token（staged diff 先按凭据形状扫过：ghp_/AKIA/sk-/PRIVATE KEY/password=/token= 零命中）",
-   "notes": "第 10 轮零安装、零下载、零网络（纯 stdlib Go）、零服务、零全局配置改动。最大方法学增量：把「双变异测试」（值变异 + 结构变异）当成规范型技能的验收闸门——实测证明值变异只有 golden 抓到、结构变异被 3 条不变量同时抓到，二者缺一即假通过。踩坑 5 条已写进 environment_notes（反引号被 sh 命令替换导致基准静默空跑、cover -html 是文字色非背景色、LAB 相对路径退多一层把 86MB 缓存写到工作区上级、表驱动期望值要先手推 5x5 小图、go vet 不检查 build-tag 文件）。"
-  },
-  {
-   "time": "2026-09-26T10:50+08:00",
-   "skill": "webapp-testing",
-   "result": "PASS（golden 15/16；1 FAIL 是真缺陷已定位+一行修复A/B验证；mutant_seed 红3条、mutant_wiring 红3条且定位正确）",
-   "seconds": 780,
-   "artifact_size": "4,204 KiB（du -sk 4204，含 download-golden.png 2,023,119B + 6 张 300-464KB 截图）",
-   "cleanup": "删 .tmp/pylibs(140MB playwright) + .tmp/serve(5.7MB 变异副本) + 4 个重复下载的 PNG + shots-mutants 冗余；技能包零安装（clone 早在第3轮）；未起任何常驻服务，8137/8138/8139/8141/8142/8151/8152 全部回收（lsof 复核零监听）；全局缓存未动",
-   "push": "已推送：git push origin skill-showcase 成功（ce59cc4..0e7a685，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 ce59cc4 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(c9e0541) / go-gin_react(b8fe3fd) 未触碰（与第10轮记录的同值），crypto-forecast 远端不存在（未创建）；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token（staged diff 按凭据形状 ghp_/github_pat_/AKIA/sk-/PRIVATE KEY/password=/token= 扫过，2 处命中全是历史 work-log 里描述该扫描手法的散文，非凭据）",
-   "notes": "第11轮=第一个自带可用实现层脚本的技能（with_server.py 单/双服务都可靠，客户端崩了也清理干净）。最大环境增量：Python Playwright + 系统 Chrome 路线打通（不需下载浏览器）→ 依赖 pip/Pillow 的候选重新变为可选。最大方法学增量：Playwright 看不见 favicon 类浏览器级请求，网络卫生断言必须收服务端访问日志。"
-  },
-  {
-   "time": "2026-09-26T11:05+08:00",
-   "skill": "docx",
-   "result": "成功（留用·推荐）。产物 demos/20260926-1105-docx/skill-showcase-review.docx 52,131B；技能自带 validate.py 对 base 与终稿各 1 次 PASS、对故意做坏的 A/B 件 FAIL（2 条 deletion violations）；独立断言 verify.py 48 PASS / 0 FAIL；python-docx 第三只眼回读 38 段/12×6 表/1 内嵌图/8.5×11in 全对；关键不变量「拒绝全部修订后的正文与 base 逐字符相等 2138 vs 2138」",
-   "seconds": 1260,
-   "artifact_size": "本轮 demos 224KB（docx 52,131B + base 48,557B + chart.png 33,756B + output.log 9.6KB + 8 个复现脚本），限 5MB",
-   "cleanup": "删 node_modules(10MB docx npm) + package-lock.json + LAB/.tmp/pylibs(14MB defusedxml/lxml/python-docx + 曾试装又卸载的 Pillow 16MB) + /tmp/r12-run.log + demos 内 .ab/ 与 unpacked/ 与未用的 chart.cjs；known_hosts 保留（gitignored）；未起任何服务，零新增监听；兄弟实验室文件未动",
-   "push": "已推送：git push origin skill-showcase 成功（1a1caf1..3156b6b，普通推送，无 --force、无 --no-verify）；fetch 确认远端 1a1caf1 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(76e5e4b) / go-gin_react(b8fe3fd) 未被本任务触碰（main 相对第11轮记录的 c9e0541 已前移，属兄弟实验室的每小时任务所写，本任务只对 skill-showcase 做 fetch+push）；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行无任何 token；提交前对 staged diff 按凭据形状扫过（ghp_/AKIA/sk-/PRIVATE KEY/password=/token=）零命中",
-   "notes": "三条环境级增量：(1) Chrome 无头 CLI 免 playwright 直接出图；(2) docx-js 的 TextRun({text,children}) 静默丢 text，且 validate.py 全绿 → 生成类产物必须断言期望文字真在文档里；(3) docx-js 不定义 Normal/DefaultParagraphFont 而 basedOn 它们、comment.py 的 CommentReference 无人定义 → 样式引用悬空，XSD 查不出，只有第二解析器(python-docx 返回 style=None)暴露。办公文档三形态齐，下轮换产物类。",
-   "installed_by_this_task": []
-  },
-  {
-   "time": "2026-09-26T11:35+08:00",
-   "skill": "pdf",
-   "result": "成功（留用·推荐）。24 断言 24 PASS / 0 FAIL + 3 条负对照（NC1 水印 glyph 差可红 / NC2 明文文件可抽 / NC3 错口令返回 0）；主产物 report-watermarked.pdf 120,885B，qlmanage 真渲染肉眼确认中文无豆腐块、12 行表格、红色斜排水印",
-   "seconds": 900,
-   "artifact_size": "本轮 demos 492KB（限 5MB）：3 个 PDF 共 341KB + render PNG 110KB + 2 脚本 15KB + 2 日志 2KB + watermark.pdf 14KB",
-   "cleanup": "删 LAB/.tmp/pylibs（30MB：reportlab/pypdf/pdfplumber/pdfminer.six/Pillow/charset-normalizer，gitignored）与 demos 内 facts.json/.ql/；未装任何全局技能、未起任何服务、零本轮监听端口；全局 pip site-packages 未污染（--target 安装）",
-   "push": "已推送：git push origin skill-showcase 成功（a854d20..4b451b4，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 a854d20 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(b44dfc6，兄弟实验室所写，未触碰) / go-gin_react(b8fe3fd) 未被本任务改动；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行无任何 token；staged diff 凭据形状扫描 1 处命中=历史台账描述扫描手法的散文自述（第8/11轮同类），非凭据",
-   "installed_by_this_task": [],
-   "notes": "来源②第 3 轮 clone 的仓库第 5 次复用（零下载）。三条环境级钥匙：py3.14 下 pdfplumber/pdfminer 走 --no-deps 绕开 pypdfium2/cryptography 死点；STHeiti Light.ttc 顶替 CFF 轮廓的 PingFang；qlmanage -t 零依赖渲染探针。三条技能缺陷：命令行工具链全缺、forms.md 表单路线被 pypdfium2 卡死未验、SKILL.md 未提任何中文字体注册（CJK 用户必踩 PingFang 拒绝）。"
-  },
-  {
-   "time": "2026-09-26T12:07+08:00",
-   "skill": "shader",
-   "result": "成功（留用·推荐）。verify.mjs 15 PASS / 0 FAIL（两次独立运行一致）；mutants.mjs 7/7 捕获 + 基线全绿 + 还原全绿 + 零 console/page 错误；产物 shader-showcase.html 13,962B 零外链 file:// 即跑，render-1280x800.png 731,653B 真渲染（域扭曲 fbm 流体 + 扫描线 + 暗角 + 中文滑杆面板 + HUD compile/link ok）",
-   "seconds": 1080,
-   "artifact_size": "本轮 demos 2.4MB（4 张 PNG 共 2.4MB + HTML 14KB + 4 个 .mjs + 3 份日志 + golden-pixels.json），限 5MB",
-   "cleanup": "删 node_modules(8.3MB playwright-core) + package-lock.json + verify-run.log；★并找回/删除因 import.meta.url 未解码而误建的 /Users/apple/Documents/workProject/%E8%AF%95%E9%AA%8C/ 整棵假目录（先 find 确认里面只有本轮 6 个文件，把 PNG/JSON/log 移回 demos 再 rm -rf）；本轮未起任何监听端口（零服务，全程 file://）；全局缓存与 ~/.qoder-cn/skills 之外的东西未动（shader 技能包是本轮有意安装项，保留）",
-   "push": "已推送：git push origin skill-showcase 成功（ddf8870..0016df2，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 ddf8870 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(b44dfc6) / go-gin_react(7b0c7f0) 均为兄弟任务所写、本任务未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容无 token（staged diff 按凭据形状 ghp_/github_pat_/AKIA/sk-/PRIVATE KEY/password=/token= 扫描零命中）",
-   "notes": "第 14 轮：唯一一次全局安装 = 官方市场 shader 技能（installed_by_this_task 已记）。最大环境增量：WebGL 像素取证管线打通（playwright-core + swiftshader），并抓到中文路径的 import.meta.url 编码坑（产物会静默写到 LAB 外）。最大方法学增量：规约探针隔离乘性项 + 行为断言与 golden 哈希互补（本轮 7 个变异体里 M1 只有行为断言能抓、M3/M3b 只有 golden 能抓）。",
-   "installed_by_this_task": [
-    "shader (/Users/apple/.qoder-cn/skills/shader)"
-   ]
-  },
-  {
-   "time": "2026-09-26T13:05+08:00",
-   "skill": "canvas-design",
-   "result": "成功（留用·推荐）。verify_plate.py 16 PASS / 0 FAIL；分钟格逐行数回 [24,21,19,18,15,15,13,13,12,10,10,9,7] 与 state.json 现场换算完全相等；朱红最长弧实测 307.8°（期望308）；负对照（把 shader 1080s 改成 600s 重画）→ B2/B3 双红，证明断言可失败；主产物 plate-iv-interval-cartography.png 485,901B",
-   "seconds": 1500,
-   "artifact_size": "本轮 demos 1.3MB（限5MB）：主图486KB+预览340KB+证据裁剪16KB+5个OFL字体452KB+脚本12KB+宣言3.5KB+日志",
-   "cleanup": "删 .tmp/pylibs15(Pillow)+.tmp/mut15(变异件)+.tmp/pip15.log+2张中间裁剪图；零进程零监听；全局缓存未动",
-   "push": "已推送：git push origin skill-showcase 成功（54ba776..d03aa2c，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 54ba776 正是本地 HEAD 父提交 → 无需 rebase。ls-remote 复核 main=b44dfc6 / go-gin_react=7b0c7f0 为兄弟任务所写，本任务未触碰。走 git@github.com SSH + LAB/.tmp/known_hosts，命令行无 token；提交前对 staged diff 按凭据形状扫描零命中。",
-   "notes": "全局副作用=无（复用第3轮克隆的 anthropics/skills，零下载零安装）。产物类型换到「纯美术 PNG 图版」，历轮第一个无代码视觉成品。"
-  }
- ]
 }

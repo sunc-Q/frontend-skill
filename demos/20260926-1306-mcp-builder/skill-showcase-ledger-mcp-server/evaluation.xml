@@ -1,0 +1,42 @@
+<evaluation>
+  <qa_pair>
+    <question>Which skill was the very first run of this pipeline?</question>
+    <answer>drafter</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>According to the run ledger, how many seconds did the ppt-generator run take?</question>
+    <answer>600</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>How many seconds did the slowest recorded run (the visual-art plate one) report?</question>
+    <answer>1500</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>When listing runs with limit=3 offset=0, which skill appears as the third entry?</question>
+    <answer>algorithmic-art</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Which skill's run is recorded as taking exactly 1080 seconds?</question>
+    <answer>shader</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>In the docx run's result note, how many independent assertions were reported as passing?</question>
+    <answer>48</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>According to the summary tool, at what local timestamp did the pipeline's first run start?</question>
+    <answer>2026-09-25T17:23+08:00</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>For the skill sec-audit-cn, which source category (来源?) does the index say it came from?</question>
+    <answer>来源③</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>What is the average wall time in seconds across the first five runs (one decimal)?</question>
+    <answer>708.0</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Which run record has no numeric timing at all, and which skill does it name?</question>
+    <answer>sec-audit-cn</answer>
+  </qa_pair>
+</evaluation>

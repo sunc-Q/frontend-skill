@@ -1,0 +1,16 @@
+{
+  "name": "skill-showcase-ledger-mcp-server",
+  "version": "1.0.0",
+  "description": "stdio MCP server exposing the skill-showcase run ledger as read-only tools",
+  "type": "module",
+  "main": "index.mjs",
+  "bin": { "skill-showcase-ledger-mcp-server": "index.mjs" },
+  "scripts": {
+    "start": "node index.mjs",
+    "verify": "node verify.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.1",
+    "zod": "^4.6.5"
+  }
+}

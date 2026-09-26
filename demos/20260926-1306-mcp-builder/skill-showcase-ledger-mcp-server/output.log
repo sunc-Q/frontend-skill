@@ -1,0 +1,50 @@
+# golden run 2026-09-26T13:13:40+08:00
+# connected in 301ms (node v22.23.2)
+
+PASS A1 server identity — serverInfo.name=skill-showcase-ledger-mcp-server version=1.0.0
+PASS A2 stdio + tools capability — capabilities={"tools":{"listChanged":true}}
+PASS B1 four tools, service-prefixed snake_case — ledger_get_summary, ledger_list_runs, ledger_get_run, ledger_search_skills
+PASS B2 explicit title + description on every tool — ledger_get_summary:545B ledger_list_runs:315B ledger_get_run:224B ledger_search_skills:340B
+PASS B3 JSON-RPC schema carries inputSchema.properties — ledger_get_summary(0) ledger_list_runs(3) ledger_get_run(1) ledger_search_skills(5)
+PASS B4 every tool declares outputSchema — ledger_get_summary:10f ledger_list_runs:8f ledger_get_run:8f ledger_search_skills:7f
+PASS B5 all four annotations set, all read-only — ledger_get_summary:{"readOnlyHint":true,"destructiveHint":false,"idempotentHint":true,"openWorldHint":false} ledger_list_runs:{"readOnlyHint":true,"destructiveHint":false,"idempotentHint":true,"openWorldHint":false} ledger_get_run:{"readOnlyHint":true,"destructiveHint":false,"idempotentHint":true,"openWorldHint":false} ledger_search_skills:{"readOnlyHint":true,"destructiveHint":false,"idempotentHint":true,"openWorldHint":false}
+PASS B6 descriptions carry Use/Don't-use routing — 3/4 tool descriptions contain routing text
+PASS B7 limits documented in parameter descriptions — limit param description states the 1-100 range
+PASS C1 structuredContent matches independent recompute — expected={"runs_total":15,"skills_kept":15,"total_seconds":12660,"average_seconds":904.3,"slowest_skill":"canvas-design","artifact_kinds":15,"first_run_time":"2026-09-25T17:23+08:00","last_run_time":"2026-09-26T13:05+08:00"} actual={"runs_total":15,"runs_success":15,"success_rate":1,"skills_kept":15,"total_seconds":12660,"average_seconds":904.3,"slowest_skill":"canvas-design","artifact_kinds":15,"first_run_time":"2026-09-25T17:23+08:00","last_run_time":"2026-09-26T13:05+08:00"}
+PASS C2 text and structuredContent agree — text runs=15 success=15
+PASS D1 pagination window is disjoint and contiguous — page1=drafter,ascii-project-dashboard,algorithmic-art page2=SQLite-Database-Expert,ppt-generator,graphic-gif
+PASS D2 the real ledger is small enough that truncation must NOT fire — text=4268B truncated=false items=15/15
+PASS D3 truncation fires and stays under CHARACTER_LIMIT on an oversized result — text=19969B items kept=50/300
+PASS D4 truncation message is actionable (names offset/limit) — Response truncated from 100 to 50 items to stay under 25000 characters. Narrow it with offset/limit.
+PASS D5 small pages never truncate and keep has_more/next_offset — count=3 total=300
+PASS D6 unknown key returns isError with closest matches + next step — Error: No run found for skill 'definitely-not-a-skill'. Known skills: drafter, ascii-project-dashboard, algorithmic-art, SQLite-Database-Expert, ppt-generator. 
+PASS D7 out-of-range input is rejected before the handler runs — MCP error -32602: Input validation error: Invalid arguments for tool ledger_list_runs: Too big: expected number to be <=100 at limit
+PASS D8 empty result is not an error, still satisfies outputSchema — structuredContent={"query":"zzzz-no-such-thing","total":0,"count":0,"offset":0,"has_more":false,"matches":[]} text="No skills found matching 'zzzz-no-such-thing'. Try a shorter query; 15"
+PASS E1 idempotentHint:true holds byte-for-byte — xlsx seconds=720
+PASS F0 evaluation.xml parses with 10 read-only qa_pairs — 10 pairs
+PASS F1 Which skill was the very first run of this pipeline?… — expected 'drafter' in tool result 
+PASS F2 According to the run ledger, how many seconds did th… — expected '600' in tool result 
+PASS F3 How many seconds did the slowest recorded run (the v… — expected '1500' in tool result 
+PASS F4 When listing runs with limit=3 offset=0, which skill… — expected 'algorithmic-art' in tool result 
+PASS F5 Which skill's run is recorded as taking exactly 1080… — expected 'shader' in tool result 
+PASS F6 In the docx run's result note, how many independent … — expected '48' in tool result 
+PASS F7 According to the summary tool, at what local timesta… — expected '2026-09-25T17:23+08:00' in tool result 
+PASS F8 For the skill sec-audit-cn, which source category (来… — expected '来源③' in tool result 
+PASS F9 What is the average wall time in seconds across the … — expected '708.0' in tool result 
+PASS F10 Which run record has no numeric timing at all, and w… — expected 'sec-audit-cn' in tool result 
+PASS F11 all 10 evaluation answers reachable through the server alone — 10/10 solved via MCP tools only
+
+# 32/32 PASS, 0 FAIL, 697ms total
+
+# mutant m1-no-annotations
+FAIL B5 all four annotations set, all read-only — ledger_get_summary:undefined ledger_list_runs:undefined ledger_get_run:undefined ledger_search_skills:undefined
+# 31/32 PASS, 1 FAIL, 693ms total
+
+# mutant m2-offset-ignored
+FAIL D1 pagination window is disjoint and contiguous — page1=drafter,ascii-project-dashboard,algorithmic-art page2=drafter,ascii-project-dashboard,algorithmic-art
+# 31/32 PASS, 1 FAIL, 705ms total
+
+# mutant m3-empty-no-structured
+FAIL D8 empty result is not an error, still satisfies outputSchema — structuredContent=undefined text="MCP error -32602: Output validation error: Tool ledger_search_skills h"
+# 31/32 PASS, 1 FAIL, 714ms total
+
