@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T12:15+08:00",
+  "updated": "2026-09-26T14:00+08:00",
   "tried": [
     {
       "skill": "sites:sites-building",
@@ -287,6 +287,20 @@
       "conclusion": "留用（第 7 次通过，表单核心场景首过）。裁决定式：表单是否被授权看它是不是「被请求的体验本体」——订阅落地页的表单=requested experience→合法且按 working surface 放首屏第一分区；「记住已订阅」的持久化未进任何请求→不做，重复订阅防护用闭包数组（F 组断言页面零 localStorage/fetch/XHR/WebSocket）。170 条断言写回前全绿：A18 自包含+三页 body/script 逐字节同构 / B37 含 **Node 端 :root 静态 WCAG 对比度 21 条**（ink/paper≥7、mark/deep/ok≥4.5、btnInk/btnBg≥4.5，解析器必须 resolve var(--x) 引用链——funk 的 --btn-bg:var(--accent2) 实测捕获）/ C57 无障碍（label/aria-live/aria-labelledby×6/details==8/零重复id/4钩子id恰好一次）/ D27 表单行为（vm 桩零 jsdom：空/格式/一次性域名黑名单/大写+空格归一/成功清输入/重复=info/第二地址可续）/ E28 事实算术 / F20 反膨胀张力 / G4 台账幂等 / H12 溢出静态 / I7 入口字节自核。三风格 11 维指纹两两≥7、色板两两零交集（含各自的白 #f7f0df/#faf9f2/#fbf0cd）；真浏览器 file:// getComputedStyle 三页签名全部兑现（airmail 45° 斜纹::before+邮戳 50% 旋转 / botanical Palatino 图版卡 / funk 胶囊 65535px+accent2 解析生效），控制台零消息；面板 hidden 无截图、真实视口溢出记未验（rotate 元素仅内联块+max-width）。缺陷3：①日期事实链设计稿自相矛盾（2026-09-20 非周四+首期硬推错）——写码前 Node 现算修正并固化为断言；②检查器两例假失败复现：{6} 当 ≥6 用、场景去重关键词「订阅」撞 15:00「订阅收入看板」→ 去重断言关键词必须用历史全文不含的组合词；③vm 桩 form.reset() 清错对象（清了 form.value 而非 email.value）差点误判产物——桩自身语义要先冒烟。产物 airmail/botanical/funk = 11,354/11,572/11,792B 单文件双击即开零外链，styles.html 字节由构建同轮现读。对比：同场景 React 路线预计 245KB+，本轮单页 11.4KB 级；收尾成本≈0（零 node_modules/零 dist/未起服务）。",
       "artifacts": "artifacts/20260926-11-sites-building-newsletter/",
       "report": "reports/20260926-11-sites-building-newsletter.md"
+    },
+    {
+      "skill": "frontend-development（用户 2026-09-25 装入 ~/.qoder-cn/skills/，第 4 次使用）",
+      "scenario": "博客内容门户（虚构「灰度通讯 GRAYSCALE」发布/观测/故障复盘私站，排队项点名的「路由与代码分割密集场景」：4 条 hash 路由 + 1 个懒图表面板 = 5 个独立代码分割点，路由层用 RouteSpec 描述符 + loader 预取 + useSuspenseQuery 同键复用；240 篇虚构文章由 src/lib/facts.ts 一份语料推导，虚拟滚动列表 + 350ms 防抖检索 + 三向排序 + 密度切换 + 标签筛选 + 收藏持久化 + 归档按年/月索引 + 正文页相关文与上一篇/下一篇 + 读数面板按需取数）",
+      "styles": [
+        "等高线战术图 topo-tactical",
+        "黏土定格动画 clay-stop",
+        "黑胶唱片架 vinyl-crate"
+      ],
+      "time": "2026-09-26T12:00+08:00",
+      "reason": "排队项 45 的原文问题：08:00 向导轮量到「可延迟重量占比」只有 23.3%，那是表单场景的特征还是懒加载条款的上限？换到路由与分割最密集的形态才知道这条条款是否名副其实，判据沿用同一对构建（单文件内联预览 vs dist-split 证据构建）。同时该技能三条绝对化条款（虚拟滚动处理大列表 / memo 化行组件 / queryKey 稳定引用）在 07:00、08:00 两轮都只被「用到」而从未被单独定价——本轮用四臂构建（同一份源码只换 __FD_ARM__）把它们各自值多少量出来。",
+      "conclusion": "留用，且本轮把它从「写法清单」升级为「必须自带消融的清单」。①排队问题有答案了：路由与分割最密集的场景可延迟重量占比只有 9.4%（L3b：入口 282,817B / 全部 chunk 312,157B，可延迟 29,340B），比 08:00 表单场景的 23.3% 还低——「懒加载」条款的收益上限从来不由场景的分割点数决定，因为 React 与 React Query 运行时占掉九成且无法延迟；这条判据现在有两个落盘点，可以当跨轮基线。②三臂消融（N 组，四臂字节完全相同 307,155/307,155/307,155/307,155）：虚拟滚动值 229 个 DOM 行（240→11，真实像素下 11 行/视口 558px/内容 15,840px）；memo 行组件值 5.4 倍渲染（3 次击键 10 次 vs 54 次，每击键 3.33 vs 18），且列表容器渲染两臂相同（5 vs 5）证明省的确实在行这一层；queryKey 不稳定是唯一「坏掉」而不是「变慢」的一臂——1.5s 窗口 89 次读（主臂 1 次）、真 HTTP 2s 窗口 16:1、至今从未画出任何一行，另外三臂只是变慢。技能原文三句话给的是同等语气，实测价值量级完全不同。③本轮最贵的结构缺陷不在技能条款里而在条款没说的地方：把 <Layout> 放在路由组件内部时，路由级 fallback 连站名、导航、全站统计、页脚一起吞掉，1.8s 慢接口下整页只剩占位、页脚位移 1,066px（G8d3）；把 chrome 提到边界之外后 masthead/stats 全程 0px 位移（G8d），残余 386px 被如实报成「固定预留 520px 对 907px 内容的欠挡」而不是被断言掉——技能只说「用 Suspense 包住懒组件」，没说边界挂在哪一层，而这一层决定的是整页可用性。④成本对照（分母现读盘）：单页 311,053B / bundle 310,329B = 08:00 向导轮的 0.49×、07:00 后台轮的 0.43×，src 44 文件 2,692 行——路由数翻倍并没有让产物变贵，因为贵的东西是运行时。⑤技能契约第 4 次复跑仍无资产：SKILL.md 引用的 11 个资源文件（resources/*.md 与 ../../vite.config.ts）100% 缺失（A1c/A1e），连它声明别名所在的 vite.config.ts 都不存在（A1f），可机检的 15 条一行摘要条款全部由本轮自建判据兑现（A2c）。⑥三皮肤主张首次在真浏览器里逐条兑现：结构层零字面颜色（C2）、三页 <script> 载荷逐字节相同 307,155B（B2）、分隔手法 ruled-grid/offset-shadow/cut-groove 与热帖手法 left-bar/badge-lift/label-invert 实测互斥（D9/D9b）、行高令牌 66/78/72 真的画出对应像素（D1）、12 维计算样式指纹两两差异 7~12/12（D8）；一处只有真浏览器能抓的缺陷：topo muted 在 Node 侧按 bg 算得 5.68:1 而文字实际落在 paper 上、量出 4.2:1 不达 AA，令牌改深到 #565a46 后 4.83:1。⑦持久化跨载体（M 组，同一浏览器实例）：file:// 与 http:// 是两个 origin、同一个键互不相通且各自选中自己的皮肤；敌意输入有界——非 JSON 草稿回落默认并照常画行，5,000 项星单截到 60 条上限（落盘 1,097B）。⑧297 条断言全绿（check-node 121 / check-dom 88 / check-browser 88）；踩坑 13 条另记 environment_notes；收尾删 node_modules 与五套 dist*/构建日志/探针，产物目录形态由 check-clean C1–C9 断言（C3a/b/c 点名 7 个 HTML 各自的角色：3 交付页 + 3 消融臂宿主 + 1 证据构建宿主）",
+      "artifacts": "artifacts/20260926-12-frontend-development-blog-portal/",
+      "report": "reports/20260926-12-frontend-development-blog-portal.md"
     }
   ],
   "skills_seen": [
@@ -300,7 +314,7 @@
       "name": "frontend-development",
       "source": "用户于 2026-09-25 15 时段前后装入 ~/.qoder-cn/skills/",
       "path": "/Users/apple/.qoder-cn/skills/frontend-development/SKILL.md",
-      "status": "第 3 次使用（25 日 16:00 数据报表 / 26 日 07:00 管理后台 / 26 日 08:00 表单密集多步向导）。留用但定位为「写法清单」，不是正确性来源。①契约无资产连续三轮未修复：SKILL.md 引用的 10 个 resources/*.md 与 ../../vite.config.ts 全部不存在，只剩一行行摘要，14 条条款必须自造判据（A2b）才能区分「按技能做了」与「看起来按技能做了」。②它最有价值的条款同时埋了最贵的缺陷：route loader 预取 + useSuspenseQuery 共用一次请求成立（bootstrap 恰好 1 次），但 mount 若 await loader，慢接口下首帧前约 2 秒纯白屏、页面从未挂载所以任何 SuspenseLoader 都救不了——预取必须 fire-and-forget，这是 G 组逐帧采样才抓到的。③Suspense 语义缺口第二轮复现：字段级 176px 边界在 mock 下从未被采到（等待期被路由级 520 边界吃掉），只有拖慢接口才出现（api 两级骨架 2159/1755ms vs mock 300/0ms，位移 909→909 / 877→877px）。④memo 条款做成双臂消融（同源码只换 __FD_MEMO__，字节差 22B）：一次击键两臂同样渲染 7 个叶子（只看一次击键会误判收益为 0），30 击才分道 7 vs 210 次、墙钟 156 vs 314ms，被输入字段也命中浅比较（uncontrolled register、值不经过 props），收益约等于 n 个字段省 n-1 个，且必须配 blur 反向控制证明没冻住界面。⑤技能只字未提「字段级异步校验必须参与步骤闸门」——表单密集场景最容易出事处，本轮自建六种拦法（未校验/校验中/占用/保留/失败/令牌与当前值不符即乱序回写）并闭环到「换回可用名后闸门重新打开」。⑥样式层两处只有 Chromium 能见：muted 4.17:1 不达 WCAG AA（连带提亮底色到 5.29:1），签名层与结构层同权重时源序定胜负、5px 模板边被 border 简写静默重置为 1px。⑦同 skill 跨场景成本（分母磁盘现读）：源码 1.63× 行数而文件更少（3,516/35 vs 2,154/50），产物 0.88×（633,905B / gzip 196,704B）；懒加载条款在本场景收益上限 23.3%，仍需并存 split 证据构建才判得动。⑧不适合让它单独承担：任何需要判据的验收、任何多风格主题化任务（其样式条款与多风格互斥）"
+      "status": "frontend-development（第 4 次使用：25 日 16:00 数据报表 / 26 日 07:00 管理后台 / 08:00 表单密集多步向导 / 12:00 博客内容门户即路由与代码分割密集场景）。留用，但定位从「写法清单」降为「必须配消融才能引用的清单」。①契约无资产第 4 次复跑仍未修：SKILL.md 引用的 11 个 resources/*.md 与 ../../vite.config.ts 100% 缺失（A1c/A1e/A1f，连它声明别名所在的配置文件都不存在），可机检的 15 条一行摘要条款全部靠自建判据兑现（A2c）。②三条绝对化性能主张被写成同等语气，实测价值差两个数量级（四臂同一份源码只换 __FD_ARM__，四臂产物字符数完全相同 307,155）：虚拟滚动值 229 个 DOM 节点行（240→11，真实像素 11 行/视口 558px/内容 15,840px，滚动窗口=真实 clientHeight/scrollTop 复算 32:49）；React.memo 行组件值 5.4× 行渲染（3 击键 10 vs 54 次、每击键 3.33 vs 18，且两臂列表容器同为 5 次证明省在行这层）；queryKey 稳定引用不是「更快」而是**没有它首屏永不完成**（1.5s 窗口 44 次读 vs 1、真 HTTP 16:1、rows=0）——照原文行事的 Agent 在只能做一件事时必选错。③技能最大的结构性缺口：它说「用 Suspense 包住懒组件」却不说边界挂哪一层。挂在路由层时 <Layout>（站名/导航/全站统计/页脚）成为 fallback 的一部分被一起抹掉，1.8s 慢接口下页脚位移 1,066px；把 chrome 提到边界之外后 masthead/stats 全程 0px，残余 386px 如实报成「固定预留 520px 对 907px 内容只挡一半」——技能也没说固定占位挡不住全部 CLS。④懒加载条款的收益上限不由场景的分割点数决定：本场景 5 个分割点、可延迟重量占比只有 9.4%（L3b：入口 282,817B ÷ 全 chunk 312,157B，可延迟 29,340B），比 08:00 表单场景的 23.3% 更低，因为 React+React Query 运行时占九成且无法延迟；该指标现有两个落盘点可当跨轮基线（08:00 只在报告文本里）。⑤同 skill 跨场景成本（分母磁盘现读）：单页 311,053B / bundle 310,329B = 08:00 向导轮 0.49×、07:00 后台轮 0.43×，src 44 文件 2,692 行——路由数翻倍没让产物变贵，贵的是运行时。⑥样式层与它互斥这一点第 4 次成立：三皮肤全部走 CSS 自定义属性令牌（C2 结构层零 hex、C3 色板封闭、C5 十四维令牌指纹差异 8~14、D8 十二维计算样式差异 7~12/12），只有真浏览器抓到的缺陷是 muted 在 Node 按 --c-bg 算 5.68:1 而文字实落在 --c-paper 上、量得 4.2:1 不达 AA（改深令牌至 4.83:1）。⑦它只字未提而本场景必须的三件事，本轮自建才能判：预取必须与点击共用同一次读（H39e/G4）、路由间缓存存活与后退语义（G6c/H34）、敌意持久化输入要「有界」消毒（M4b：5,000 项星单截到 60 条 = 落盘 1,097B）。⑧不适合让它单独承担任何需要判据的验收或多风格主题化任务。"
     },
     {
       "name": "vercel-react-best-practices",
@@ -584,6 +598,16 @@
       "artifact_size": "112KB（三页 11,354/11,572/11,792B + styles.html + src 6 件 + scripts 4 件含 check-result.json；上限 50MB）",
       "cleanup": "零中间产物可删：无 node_modules/dist/pip/构建缓存（全程 node 零依赖）；未起 http.server（file://）；/tmp 零写入；技能目录零写入（只读 SKILL.md）；LAB/.tmp 仅 git/known_hosts 与本次 refill 脚本，推送后整体删除",
       "push": "已提交并推送到 git@github.com:sunc-Q/frontend-skill.git @ main：febdcb5 主体（17 文件 2982 插入）→ ccfcb95 补记 → fb5056e 校验复跑读数 → 4a0449b 区间定稿；总区间 76e5e4b..4a0449b。走 ssh.github.com:443，known_hosts 写 LAB/.tmp/known_hosts 并随 .tmp 整体删除；命令与文件内无任何 token，提交身份用内联 -c user.name/user.email，全局 git 配置未改动。"
+    },
+    {
+      "time": "2026-09-26T12:00+08:00",
+      "skill": "frontend-development（第 4 次，博客内容门户 / 路由与代码分割密集场景）",
+      "scenario": "博客内容门户（4 路由 + 1 懒面板 / 240 篇 / 虚拟滚动 / 防抖检索 / 收藏持久化）",
+      "result": "success",
+      "assertions": "297 条全绿（check-node 121：A 条款 / B 自包含不变式 / C 三皮肤令牌 / E 事实源同源 / L 分包证据 / J 成本对照 / I 台账锁；check-dom 88：F 首屏与 single-flight / H 交互全链路 / N 四臂消融；check-browser 88：D 计算样式与对比度 / G 真 HTTP+真 chunk 台账与逐帧位移 / K 真实滚动键盘点击 / M 双载体持久化）+ 清理后 check-clean 与 verify-ledger 两张复查卡",
+      "artifact_size": "写回时未现算（构建中间物仍在盘上），清理后由 scripts/ledger-refill.mjs 从 round-facts 补写",
+      "cleanup": "写回时未执行；随后删除 node_modules、五套 dist*、.tmp-check、.npm-install.log、.smoke.mjs 与 esbuild 事实源桥临时件，预览页保持双击即开",
+      "push": "已推送 origin/main（两次提交：首轮写回 + 补记；github.com HTTPS 被 TLS 重置，走 SSH，host key 写入 gitignored LAB/.tmp 后随清理删除）"
     }
   ],
   "next_candidates": [
@@ -632,7 +656,6 @@
     "★ 低成本历史回归：把「零重复 id + getElementById/slot 目标唯一」两条式子回查 04:00 多页站点、23:00 个人主页、14:00 落地页产物（本轮 #schedule 重号缺陷说明这类静默杀手在前几轮同样可能存在，且当时没有任何断言能抓到）",
     "★ 真浏览器溢出+越界元素清单移植回历轮含 transform 的产物（21:00 drafter 图纸、22:00/00:00/01:00 ppt-generator SVG、02:00 graphic-gif 帧）：jsdom 判不了溢出，凡 skew/perspective/rotateX 风格都要按 06:00 轮 visual.mjs 的 `scrollWidth-innerWidth<=0 + 越界元素打印` 重跑一遍",
     "跨技能产物互喂：06:00 轮活动页的票根 SVG 作为 02:00 graphic-gif 的动图素材 / 作为 ppt-generator 插图（验三技能产物口径是否兼容）",
-    "★ frontend-development × 路由与代码分割密集场景（多页站点/门户）：08:00 向导轮量到「可延迟重量占比」只有 23.3%（L3b），这是表单场景的特征而不是「懒加载」条款的；换到路由密集场景才知道它是否名副其实，判据沿用同一对构建（单文件预览 vs split 证据构建，断言两构建总量差与首包差）",
     "vercel-react-best-practices × 表单密集多步向导：复测「字段级异步校验必须参与步骤闸门」的可发现性 —— 07:00 与 08:00 两轮里没有任何一个技能提到这条，而它正是表单密集场景最容易出事的地方（08:00 轮自建六种拦法 + H15a–H15e 闭环）。换一个技能、同一场景，看它是自带给出的判据还是同样需要自建"
   ],
   "used_styles": [
@@ -695,7 +718,10 @@
     "清水混凝土玫瑰金 concrete-rose",
     "航空信封 airmail",
     "植物图鉴图版 botanical-plate",
-    "七十年代放克 seventies-funk"
+    "七十年代放克 seventies-funk",
+    "等高线战术图 topo-tactical",
+    "黏土定格动画 clay-stop",
+    "黑胶唱片架 vinyl-crate"
   ],
   "environment_notes": [
     "本机无法直连 GitHub raw 与 skills.sh（curl exit 35 / WebFetch fetch failed），外部落地技能持续不可用",
@@ -825,6 +851,20 @@
     "vm 桩 DOM 的桩自身语义要先冒烟再当证据：form.reset() 默认清的是 form.value（不存在），断言「成功后清空输入」建在这种假动作上会把装置缺陷读成产物缺陷（本轮 D 组捕获后修桩）。",
     "频率类事实（每周四发信）写进页面就要写成断言：全部日期 getUTCDay()===4 && 逐级 −7d && 首期=最新−(N−1)×7d 与页脚互查；设计稿阶段就该 Node 现算（本轮 2026-09-20 非周四在写码前被抓）。",
     "evaluate_script 滞后现象再复现（历轮笔记 #7 同款）：导航后首读返回前一页的值，连读两次取第二次；导航后立刻放纯 DOM 读也会超时、重试即成。",
-    "仓库目录约定（2026-09-26 用户指令「技能和产物放在适当目录」后确立）：技能包原文快照入 skills/<name>/（只读，与 artifacts/ 产物分开），清单由 scripts/gen-skills-manifest.mjs 现读磁盘生成 skills/MANIFEST.json + skills/README.md + 根 README.md，数字禁止手抄；每轮若用到 skills/ 里还没有的技能，须把它加进该脚本 SOURCES 并重跑，产物仍按 artifacts/<轮次>/ 存放。"
+    "仓库目录约定（2026-09-26 用户指令「技能和产物放在适当目录」后确立）：技能包原文快照入 skills/<name>/（只读，与 artifacts/ 产物分开），清单由 scripts/gen-skills-manifest.mjs 现读磁盘生成 skills/MANIFEST.json + skills/README.md + 根 README.md，数字禁止手抄；每轮若用到 skills/ 里还没有的技能，须把它加进该脚本 SOURCES 并重跑，产物仍按 artifacts/<轮次>/ 存放。",
+    "JSDoc 注释里出现 `*/`（本轮是路径 glob `dist*/`）会直接终止块注释并把后续内容当代码解析，报一个离真因很远位置的 SyntaxError；自查时 `node --check x.mjs | head` 的退出码是 head 的，永远为 0，会掩盖这条——要么不接管道，要么 `; echo exit=$?`",
+    "「行高令牌到底有没有画出这一行」这类断言，必须先让被断言的元素真的承受该高度：本轮 .row 只有 100% 高度继承才生效，此前它按内容渲染成 46/50/65px，而 D1/K4 读的是 .vrow 槽位的 66/78/72px——断言全绿但量的不是画出来的那一行（改 .row{height:100%} 后 44 处计算样式探针才与令牌对得上）",
+    "Node 侧按令牌算的 WCAG 对比度与浏览器量的不是同一对颜色：文字实际落在 --c-paper 上，而脚本按 --c-bg 算，topo muted 于是「预测 5.68:1、实测 4.2:1」——凡是页面有底色与卡片色两层，对比度断言必须显式写出分母是哪个令牌，否则 AA 会静默假通过",
+    "证据构建（dist-split，ES 输出）在 /preview/split-host.html 下 404：Vite 的相对 base 让预载映射表把 chunk URL 解析到 /preview/，必须写绝对 base=「/dist-split/」；同一台 mock origin 里 /api/* 也全 404，因为路径键用 slice(4) 剪掉了「/api」四个字符而留下前导斜杠，应为 slice(\"/api/\".length)",
+    "选择器少写一个右括号（「[data-testid=\"result-count\"」）在 `await page.waitForFunction(...).catch(()=>undefined)` 里永远不会抛错——它只会稳定返回 false，于是「条件等待」退化成一记固定 sleep，测试照常通过；写 wait 的条件时要另加一条「这个条件不成立时断言必须失败」的自检",
+    "跨路由/跨标签的计数器必须先归零再量：G6 把上一页的 /api/post 读记进了归档页的台账（arrivals 未在导航前 reset），G9 的「稳定臂 1 次」被同一浏览器里仍在循环的不稳定页污染成 25 次——跑对照臂之前要 page.close() 上一页，光换 URL 不换 tab",
+    "逐帧位移统计里，元素尚未挂载的帧必须是 null 并被过滤掉，不能当 0：本轮 driftOf 把挂载前的 null 帧读成 0，凭空造出 20px/101px 的「chrome 在动」，而真实位移是 0；同理「预留高度 == 内容高度」的等式因取整天然差 1px，要留 ±3 容差而不是把等式写死",
+    "把多组测量收进同一个函数时，函数内部的 ctx.close() 会连带关掉调用方共享的 context：本轮 carrier() 从「每载体一个新 context」改成「同一浏览器实例跑两个载体」后，第二个载体直接被关掉；改共享时要顺手把资源释放移到调用方",
+    "刷新（reload）会清掉挂在 window 上的临时值，凡是「刷新后回读某个下标」的判断必须把下标随参数重新传入，不能指望 page.evaluate 之间的全局状态存活",
+    "「file:// 冷启动没有写过任何偏好」这个初始假设是错的：应用启动就会把默认信封落盘，于是 M1/M5 的 stored===null 断言必然失败。诚实的口径是「冷启动落盘的是默认信封（starred 为空）」而不是「什么都没写」，M1 的期望值随之改成「version=3 且 starred.length=0」",
+    "同一份 DOM 里断言「第 N 行的按钮回到已收藏态」不能用全局选择器 + 固定下标：两个载体点的是不同行（第 1 行 vs 第 3 行），要按行下标取并回读 pressedRow 与自己传进去的下标比对，否则量的永远是别人的按钮",
+    "直开 file:// 页面时 location.hash 是空串而不是「#/」，凡把「回到首页」写成 hash===「#/」 的断言在 http:// 下能过、在双击载体下必红；导航类断言要接受两个值（hash 为 #/ 或空串）并另断言行数>0，否则「空 hash 且空列表」也算通过",
+    "生成型对照页（styles.html）里任何手打的汇总文案都会在数据变化后与新事实矛盾——结构校验（表格有 8 行、无 NaN）抓不到「语义过时」。本轮把每一格都改成从 .tmp-check/assertions-*.json 的 detail/printed 现取（连 version=3 信封的三个字段都用正则从落盘原文切片里读），只留断言 id 是手写的",
+    "校验脚本自己也会撒谎：A1b/B2/N10 三条把 String.length 当字节数打上「B」，而同一份产物里有中文文案——载荷 307,155 字符实为 310,329 字节（B4 用 Buffer.byteLength 算的才是字节）。凡是断言里出现单位，单位必须由计算方式给出（byteLength/length 二选一写死在 id 文案里），否则报告与页面会把字符数当体积引用"
   ]
 }

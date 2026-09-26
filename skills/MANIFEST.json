@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-26T06:10:48.042Z",
+  "generated_at": "2026-09-26T06:27:25.153Z",
   "generated_by": "scripts/gen-skills-manifest.mjs（数字由脚本现读，禁止手抄）",
   "purpose": "skills/ 是每小时前端 Skill 验证实验室所用技能的本机只读快照，让零上下文的后续运行与仓库读者能核对产物当时依据的技能条款。",
   "sync_recipe": "rsync -a --exclude '__pycache__' --exclude '*.pyc' --exclude '.DS_Store' <source_path>/ skills/<name>/ && node scripts/gen-skills-manifest.mjs",
@@ -85,7 +85,8 @@
       "used_in_rounds": [
         "2026-09-25 16:00",
         "2026-09-26 07:00",
-        "2026-09-26 08:00"
+        "2026-09-26 08:00",
+        "2026-09-26 12:00"
       ]
     },
     {
@@ -103,7 +104,7 @@
       ]
     }
   ],
-  "台账_tried_total": 20,
+  "台账_tried_total": 21,
   "unattributed_tried": [],
   "secret_scan": {
     "pattern": "sk-[A-Za-z0-9]{16,}|ghp_[A-Za-z0-9]{20,}|gho_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|BEGIN (?:RSA|EC|DSA|OPENSSH) PRIVATE KEY|xox[baprs]-[A-Za-z0-9-]{10,}",

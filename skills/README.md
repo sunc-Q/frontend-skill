@@ -15,7 +15,7 @@
 | `drafter/` | 1.0.0 | 2 / 6KB | 1 | ~/.qoder-cn/skills/drafter |
 | `graphic-gif/` | 1.0.0 | 1 / 12KB | 1 | ~/.qoder-cn/skills/graphic-gif |
 | `vercel-react-best-practices/` | — | 1 / 6KB | 4 | ~/.qoder-cn/skills/vercel-react-best-practices |
-| `frontend-development/` | — | 2 / 32KB | 3 | ~/.qoder-cn/skills/frontend-development |
+| `frontend-development/` | — | 2 / 32KB | 4 | ~/.qoder-cn/skills/frontend-development |
 | `ppt-generator/` | 1.0.0 | 195 / 1671KB | 3 | ~/.qoder-cn/skills/ppt-generator |
 
 ## 重新同步某个技能

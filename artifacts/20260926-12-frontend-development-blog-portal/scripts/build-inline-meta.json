@@ -1,0 +1,45 @@
+{
+  "bundleBytes": 310329,
+  "scriptEscapes": 0,
+  "armBytes": {
+    "dist": 310329,
+    "dist-nomemo": 310329,
+    "dist-novirtual": 310329,
+    "dist-unstablekey": 310329,
+    "dist-split": 282817
+  },
+  "pages": [
+    {
+      "id": "topo-tactical",
+      "file": "preview/portal-topo-tactical.html",
+      "bytes": 311053
+    },
+    {
+      "id": "clay-stop",
+      "file": "preview/portal-clay-stop.html",
+      "bytes": 311051
+    },
+    {
+      "id": "vinyl-crate",
+      "file": "preview/portal-vinyl-crate.html",
+      "bytes": 311045
+    }
+  ],
+  "armPages": [
+    {
+      "file": "preview/arm-nomemo.html",
+      "bytes": 310756,
+      "note": "消融臂：关掉 React.memo 行组件"
+    },
+    {
+      "file": "preview/arm-novirtual.html",
+      "bytes": 310738,
+      "note": "消融臂：关掉虚拟滚动"
+    },
+    {
+      "file": "preview/arm-unstablekey.html",
+      "bytes": 310756,
+      "note": "消融臂：queryKey 每次渲染都变"
+    }
+  ]
+}

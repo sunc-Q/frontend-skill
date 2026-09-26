@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>灰度通讯 · frontend-development × 博客内容门户（路由与代码分割密集场景）· 三风格对照</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; padding: 40px 24px 72px; font: 15px/1.7 -apple-system, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; background: #f4f4f6; color: #1b1b1f; }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  h1 { font-size: 24px; margin: 0 0 6px; letter-spacing: .01em; }
+  h2 { font-size: 17px; margin: 34px 0 12px; }
+  .lead { color: #66666e; margin: 0 0 26px; }
+  .card { display: block; text-decoration: none; color: inherit; background: #fff; border: 1px solid #e2e2e7; border-radius: 12px; padding: 18px 20px; margin-bottom: 14px; }
+  .card:hover { border-color: #2f4e83; box-shadow: 0 6px 20px rgba(20,20,30,.07); }
+  .row { display: flex; align-items: baseline; gap: 12px; }
+  .idx { font-size: 12px; color: #8a8a92; font-variant-numeric: tabular-nums; }
+  .name { font-size: 17px; font-weight: 650; }
+  .mid { font-weight: 400; color: #8a8a92; font-family: ui-monospace, Menlo, monospace; font-size: 12px; margin-left: 6px; }
+  .sw { display: inline-flex; gap: 4px; margin-left: auto; }
+  .sw i { width: 20px; height: 20px; border-radius: 5px; border: 1px solid rgba(0,0,0,.12); display: block; }
+  .card p { margin: 8px 0 0; color: #55555c; font-size: 14px; }
+  .facts { display: grid; grid-template-columns: 300px 1fr; gap: 2px 14px; margin: 12px 0 0; font-size: 12.5px; }
+  .facts dt { color: #7c7c85; }
+  .facts dd { margin: 0; color: #2c2c33; }
+  .mono, td.mono { font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #e2e2e7; border-radius: 12px; overflow: hidden; margin: 0 0 8px; table-layout: fixed; }
+  caption { caption-side: top; text-align: left; font-size: 13px; color: #7c7c85; padding: 10px 12px 6px; }
+  th, td { text-align: left; padding: 9px 12px; border-top: 1px solid #ececf0; vertical-align: top; word-break: break-word; }
+  th { font-weight: 550; color: #3a3a42; width: 42%; }
+  ol.steps { padding-left: 20px; }
+  .ok { color: #1f7a44; } .bad { color: #a8322f; }
+  .note { margin-top: 30px; font-size: 13px; color: #66666e; border-top: 1px dashed #dcdce0; padding-top: 16px; }
+  code { font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; background: #ececef; padding: 1px 5px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>灰度通讯 GRAYSCALE · 博客内容门户</h1>
+  <p class="lead">第 21 轮：skill <code>frontend-development</code> × 场景「博客内容门户 / 路由与代码分割密集场景」（4 条 hash 路由 + 1 个懒图表面板 / 240 篇文章 / 虚拟滚动列表 / 防抖检索 / 收藏持久化）。三份预览共用同一份内联构建产物（307155 字符 · 310329B，逐字节相同），风格差异只来自 <code>&lt;html data-fd-style&gt;</code> 与令牌块；本页所有数字由 <code>.tmp-check/assertions-*.json</code> 经 <code>scripts/make-styles.mjs</code> 生成，不手写。</p>
+
+  
+  <a class="card" href="preview/portal-topo-tactical.html">
+    <span class="row"><span class="idx">1</span><span class="name">等高线战术图
+      <span class="mid">topo-tactical</span></span>
+      <span class="sw"><i style="background:#d9d5c0"></i><i style="background:#e9e6d3"></i><i style="background:#e2ddc6"></i><i style="background:#232619"></i><i style="background:#565a46"></i><i style="background:#3f4a2c"></i><i style="background:#f0eee0"></i><i style="background:#b4452a"></i></span></span>
+    <p>卡其底 + 正交细网 + 军械绿主色 + 标记红，全直角、全大写等宽标签、行首十字准星</p>
+    <dl class="facts">
+      <dt>对比度（令牌层预测 / Chromium 实测，WCAG AA ≥4.5）</dt><dd class="mono">10.44:1 / 5.68:1 · 10.44:1 / 4.83:1</dd>
+      <dt>分隔与热帖机制（实测）</dt><dd class="mono">ruled-grid / left-bar · 热帖机制按预期渲染：是</dd>
+      <dt>行高令牌是否真的画出这一行</dt><dd class="mono">66px vs 令牌 66px ｜ 视口 560px / 内容 15840px</dd>
+      <dt>外链与溢出</dt><dd class="mono">零跨源请求 · 1440px 与 430px 均无横向溢出</dd>
+      <dt>预览文件</dt><dd class="mono">preview/portal-topo-tactical.html · 311,053 B</dd>
+    </dl>
+  </a>
+
+  <a class="card" href="preview/portal-clay-stop.html">
+    <span class="row"><span class="idx">2</span><span class="name">黏土定格动画
+      <span class="mid">clay-stop</span></span>
+      <span class="sw"><i style="background:#f3e7d8"></i><i style="background:#fff8ef"></i><i style="background:#f8ecdb"></i><i style="background:#3d2a22"></i><i style="background:#7b5c4b"></i><i style="background:#c4693f"></i><i style="background:#fff4e8"></i><i style="background:#d94f6b"></i></span></span>
+    <p>奶油陶土底 + 粗可可描边 + 26px 大圆角 + 硬偏移投影，零渐变零网格、圆润字形</p>
+    <dl class="facts">
+      <dt>对比度（令牌层预测 / Chromium 实测，WCAG AA ≥4.5）</dt><dd class="mono">11.1:1 / 5.73:1 · 11.1:1 / 4.96:1</dd>
+      <dt>分隔与热帖机制（实测）</dt><dd class="mono">offset-shadow / badge-lift · 热帖机制按预期渲染：是</dd>
+      <dt>行高令牌是否真的画出这一行</dt><dd class="mono">78px vs 令牌 78px ｜ 视口 560px / 内容 18720px</dd>
+      <dt>外链与溢出</dt><dd class="mono">零跨源请求 · 1440px 与 430px 均无横向溢出</dd>
+      <dt>预览文件</dt><dd class="mono">preview/portal-clay-stop.html · 311,051 B</dd>
+    </dl>
+  </a>
+
+  <a class="card" href="preview/portal-vinyl-crate.html">
+    <span class="row"><span class="idx">3</span><span class="name">黑胶唱片架
+      <span class="mid">vinyl-crate</span></span>
+      <span class="sw"><i style="background:#191310"></i><i style="background:#241b16"></i><i style="background:#2e231c"></i><i style="background:#f2e7d6"></i><i style="background:#a3907c"></i><i style="background:#e0913a"></i><i style="background:#1f1712"></i><i style="background:#c8502f"></i></span></span>
+    <p>深咖唱片箱底 + 奶油标签 + 琥珀高光，同心沟槽纹理、窄体大写字重、标签反白</p>
+    <dl class="facts">
+      <dt>对比度（令牌层预测 / Chromium 实测，WCAG AA ≥4.5）</dt><dd class="mono">15.04:1 / 5.5:1 · 15.04:1 / 5.99:1</dd>
+      <dt>分隔与热帖机制（实测）</dt><dd class="mono">cut-groove / label-invert · 热帖机制按预期渲染：是</dd>
+      <dt>行高令牌是否真的画出这一行</dt><dd class="mono">72px vs 令牌 72px ｜ 视口 560px / 内容 17280px</dd>
+      <dt>外链与溢出</dt><dd class="mono">零跨源请求 · 1440px 与 430px 均无横向溢出</dd>
+      <dt>预览文件</dt><dd class="mono">preview/portal-vinyl-crate.html · 311,045 B</dd>
+    </dl>
+  </a>
+
+  <h2>断言汇总</h2>
+  <table>
+    <caption>三组校验脚本：node 侧静态契约与事实源复算 / jsdom 交互与四臂消融 / 真实 Chromium 计算样式、逐帧采样与真 HTTP 台账</caption>
+    <tbody>
+      <tr><th>scripts/check-node.mjs</th><td class="mono ok">123/123 通过</td></tr><tr><th>scripts/check-dom.mjs</th><td class="mono ok">88/88 通过</td></tr><tr><th>scripts/check-browser.mjs</th><td class="mono ok">88/88 通过</td></tr>
+      <tr><th>合计</th><td class="mono ok">299/299 通过 · 全绿</td></tr>
+    </tbody>
+  </table>
+  
+
+  <h2>三套手法各自的构造（互斥性由 C5/C6 声明、D8–D12 在真实渲染里复测）</h2>
+  
+  <table>
+    <caption>分隔手法 / 热帖标记 / 圆角 / 描边 / 阴影 / 标题变形 / 字族 / 行高，全部读自同一份令牌对象</caption>
+    <tbody><tr><th>等高线战术图（topo-tactical）</th><td class="mono">分隔=ruled-grid · 热帖=left-bar · 圆角=0px · 描边=1px · 行阴影=none · 面板阴影=none · 标题=uppercase/26px · 字族 UI=-apple-system 数字=ui-monospace · 行高=66/40</td></tr><tr><th>黏土定格动画（clay-stop）</th><td class="mono">分隔=offset-shadow · 热帖=badge-lift · 圆角=26px · 描边=2.5px · 行阴影=5px 5px 0 var(--c-line) · 面板阴影=8px 8px 0 var(--c-line) · 标题=none/30px · 字族 UI='Arial Rounded MT Bold' 数字='Iowan Old Style' · 行高=78/52</td></tr><tr><th>黑胶唱片架（vinyl-crate）</th><td class="mono">分隔=cut-groove · 热帖=label-invert · 圆角=2px · 描边=1px · 行阴影=none · 面板阴影=0 0 0 1px var(--c-line) · 标题=uppercase/28px · 字族 UI='Avenir Next Condensed' 数字=ui-monospace · 行高=72/44</td></tr></tbody>
+  </table>
+  
+  <table>
+    <caption>「换皮肤不换 DOM、也不换字节」这组主张的实测结果</caption>
+    <tbody><tr><th>十四维令牌指纹的两两差异（阈值 ≥7）</th><td class="mono">topo-tactical × clay-stop → 14 ｜ topo-tactical × vinyl-crate → 8 ｜ clay-stop × vinyl-crate → 14</td></tr><tr><th>十二项计算样式指纹的两两差异（阈值 ≥7）</th><td class="mono">topo-tactical↔clay-stop → 12/12 ｜ topo-tactical↔vinyl-crate → 7/12 ｜ clay-stop↔vinyl-crate → 12/12</td></tr><tr><th>三种分隔手法实测互斥</th><td class="mono">ruled-grid,offset-shadow,cut-groove</td></tr><tr><th>三种热帖标记实测互斥</th><td class="mono">left-bar,badge-lift,label-invert</td></tr><tr><th>阴影手法实测互斥</th><td class="mono">topo=none clay=rgb(61, 42, 34) 8px 8p vinylR=2px</td></tr><tr><th>三风格行高是否各不相同</th><td class="mono">是（66px,78px,72px）——同一份数据在三种密度基准下画出不同窗口</td></tr><tr><th>令牌层是否真的画出了这一行</th><td class="mono">topo-tactical→66px vs 令牌 66px ｜ clay-stop→78px vs 令牌 78px ｜ vinyl-crate→72px vs 令牌 72px</td></tr><tr><th>结构层字面颜色</th><td class="mono">零处（删掉令牌块后无颜色可换）</td></tr><tr><th>三页 &lt;script&gt; 载荷</th><td class="mono">307155 字符 · 310329B——同一份字符串，风格不复制运行时</td></tr><tr><th>字节不变式（页面 = 脚本字节 + 壳字节）</th><td class="mono">脚本 310329B ＋ 311053=310329+724 311051=310329+722 311045=310329+716</td></tr></tbody>
+  </table>
+
+  <h2>三臂消融：同一份源码只换 <code>__FD_ARM__</code></h2>
+  <p class="lead">技能原文给了三条各自独立的主张——「虚拟滚动处理大列表」「React.memo 行组件」「queryKey 要稳定」。四臂是同一份源码的四次构建（字符数 307155/307155/307155/307155，差异 &lt;1%），渲染计数由文件内计数器量出，DOM 行数由 jsdom 与真实 Chromium 各量一遍。</p>
+  
+  <table>
+    <caption>虚拟滚动 / memo 行 / 稳定 queryKey 各自值多少（N 组）</caption>
+    <tbody><tr><th>四臂 bundle 字符数（同源码，只差 define；差异 &lt;1% 即构建成本可忽略）</th><td class="mono">307155/307155/307155/307155</td></tr><tr><th>主臂 DOM 行数 / 关掉虚拟滚动后</th><td class="mono">11（全量 240） ↔ 240</td></tr><tr><th>滚动一次后：窗口与 DOM 行数是否有界</th><td class="mono">0:11 → 41:56，期望 41:56（rowHeight 66px） ｜ 0:11 → 41:56 · DOM 15 行 ≤ 15 ｜ 15 行 · 首行编号 042</td></tr><tr><th>真实像素下的同一件事（Chromium，非注入）</th><td class="mono">11 行 / 视口 558px / 内容 15840px ｜ 32:49 vs 复算 32:49（top=2400 vh=558 row=66.0） ｜ 17 行 ≤ 17</td></tr><tr><th>3 次击键的 row 渲染次数：主臂 / 关 memo</th><td class="mono">10 ↔ 54（每击键 3.33次 ↔ 18次）</td></tr><tr><th>差异是否只在行这一层</th><td class="mono">5 vs 5（列表容器没有被重建）</td></tr><tr><th>这三次击键是否真的改过列表</th><td class="mono">main:11→10 nomemo:11→10 novirtual:240→10 unstablekey:0→0（否则「行渲染 0 次」只是什么都没发生）</td></tr><tr><th>1.5s 窗口内的取数次数：主臂 / queryKey 不稳定</th><td class="mono">主臂 1 · unstablekey 51</td></tr><tr><th>queryKey 不稳定的真实后果</th><td class="mono">unstablekey 请求 51 次 / 行 0 / page 渲染 50；主臂三次击键 1 → 1 · /posts</td></tr><tr><th>三臂里哪一条是「坏掉」而不是「变慢」</th><td class="mono">main:true nomemo:true novirtual:true unstablekey:false</td></tr><tr><th>关掉虚拟滚动的 DOM 节点代价</th><td class="mono">240（主臂 15 · 主臂行高 66px）</td></tr><tr><th>四臂在 jsdom 里是否都零报错</th><td class="mono">main:0 nomemo:0 novirtual:0 unstablekey:0</td></tr></tbody>
+  </table>
+
+  <h2>代码分割的可见代价：<code>?api=1</code> 真 HTTP + 真 chunk 图</h2>
+  <p class="lead">G 组跑在 <code>dist-split</code>（真正的多 chunk 图，入口 282817B）之上，由本机 mock origin 同时记两份账：服务端到达日志与浏览器请求列表。L 组则从构建产物侧独立复算了「首包里到底有没有这些实现」。</p>
+  
+  <table>
+    <caption>谁在什么时候取了数、下载了哪个 chunk（G 组）</caption>
+    <tbody><tr><th>首屏接口请求（客户端 / 服务端各记一次）</th><td class="mono">client=1 server=1 全部=/api/posts</td></tr><tr><th>首屏是否取了读数的数据</th><td class="mono">否（/api/insights server=0）</td></tr><tr><th>首屏下载了哪些 JS chunk</th><td class="mono">main.js,index3.js,usePostsQuery.js</td></tr><tr><th>悬停「展开读数」按钮之后</th><td class="mono">1 次 · 新增 1 个 chunk：InsightsPanel.js</td></tr><tr><th>悬停是否同时预热了接口</th><td class="mono">/api/insights@3406</td></tr><tr><th>点开面板时新增请求数</th><td class="mono">after click: server=1 chunk=1（预取与点击共用同一次读、同一个 chunk）</td></tr><tr><th>进入正文路由的接口代价</th><td class="mono">/api/post/p-003-rust</td></tr><tr><th>进入归档路由的接口代价</th><td class="mono">js=5 arrivals=0（列表缓存命中，只下载它自己的 chunk）</td></tr><tr><th>浏览器后退</th><td class="mono">回到归档=true 且没有重取数据（首页列表 DOM 已卸载=true）</td></tr><tr><th>三路由走完后累计</th><td class="mono">0 + 3 接口 · 6 个 JS chunk（首页读数 240 篇）</td></tr><tr><th>同一 JS 资源是否被请求两次</th><td class="mono">6 请求 / 6 唯一</td></tr><tr><th>未预热点开 vs 预热点开（jsdom 帧数，噪声 ±3）</th><td class="mono">24冷 24 帧 vs 预热 24 帧 ｜ 可断言的部分：冷：点击前 false / 点击后共 1 次；预热：点击前已读 1 次</td></tr></tbody>
+  </table>
+
+  <h2>本轮的结构性发现：Suspense 边界挂在哪一层</h2>
+  <p class="lead">技能只说了「用 Suspense 包住懒组件」，没说边界应该挂在哪。把它挂在路由层时，<code>Layout</code>（站名、导航、全站统计、页脚）成了 fallback 的一部分被一起抹掉；把 chrome 提到边界之外之后，等待期只剩 <code>&lt;main&gt;</code> 在动。</p>
+  
+  <table>
+    <caption>1.8s 慢接口下逐帧采样的位移账（G8/G9 组）</caption>
+    <tbody><tr><th>1.8s 慢接口期间的占位</th><td class="mono">等待帧 107 · 共 136 帧</td></tr><tr><th>占位真实高度</th><td class="mono">520px × 107 帧（≥500px：520px）</td></tr><tr><th>改造后：边界之上的 chrome 位移</th><td class="mono">masthead 0px · stats 0px（同一批帧里页脚移动了 386px）</td></tr><tr><th>改造后：固定预留挡不住的部分</th><td class="mono">预留 520px → 内容 907px，页脚下移 386px（= 差值，说明占位之外没有额外跳动）</td></tr><tr><th>改造前的同一次测量（对照，非断言）</th><td class="mono">1066px：改造前实测整页外壳被 fallback 吞掉时的页脚位移</td></tr><tr><th>内容落地后页脚是否继续跳</th><td class="mono">0px over 28 帧</td></tr><tr><th>慢接口期间顶部统计块是否在场</th><td class="mono">stats 高度 65px——没有 early-return 把整页抹掉</td></tr><tr><th>服务端在 1.8s 窗口里实际收到</th><td class="mono">1（/api/posts）</td></tr><tr><th>稳定 / 不稳定 queryKey 的 2s 窗口请求比</th><td class="mono">16:1次 /api/posts（不稳定 : 稳定）</td></tr></tbody>
+  </table>
+
+  <h2>收藏持久化：同一浏览器实例里的两种载体</h2>
+  
+  <table>
+    <caption>file:// 与 http:// 各跑一遍同一组敌意输入（M 组）</caption>
+    <tbody><tr><th>冷启动落盘（新 context 不串存储，切片自 M1 原文）</th><td class="mono">file://：stored={&quot;version&quot;:3,&quot;sort&quot;:&quot;recent&quot;,&quot;density&quot;:&quot;comfor count=0 篇已标记 · 只存在 errs= ｜ http://：stored={&quot;version&quot;:3,&quot;sort&quot;:&quot;recent&quot;,&quot;density&quot;:&quot;comfor count=0 篇已标记 · 只存在 errs=</td></tr><tr><th>点击后写入 localStorage 的 version=3 信封</th><td class="mono">file://：version=3、sort=recent density=comfortable tag=all、starred 前缀「p-2…」 ｜ http://：version=3、sort=recent density=comfortable tag=all、starred 前缀「p-2…」</td></tr><tr><th>刷新后收藏与行内按钮态</th><td class="mono">file://：1 篇已标记 · 第 1 行 pressed=true · 密度仍为舒适行高 ｜ http://：1 篇已标记 · 第 3 行 pressed=true · 密度仍为舒适行高</td></tr><tr><th>敌意输入：非 JSON 草稿</th><td class="mono">file://：回落默认且照画 11 行 ｜ http://：回落默认且照画 10 行</td></tr><tr><th>敌意输入：5000 项星单</th><td class="mono">file://：60 篇已标记  · 落盘 1097B ｜ http://：60 篇已标记  · 落盘 1097B</td></tr><tr><th>两个载体互不相通</th><td class="mono">file 存了 p-240-security（第 1 行「错误预算的边界条件」）· http 存了 p-238-storage（第 3 行「影子流量的一次回退」）</td></tr><tr><th>写入的正是各自点过的那一行</th><td class="mono">p-240-security / p-238-storage vs p-240-security / p-238-storage</td></tr><tr><th>同一份构建在两种载体上各自选中自己的皮肤</th><td class="mono">topo-tactical on file://, clay-stop on http://, 均无报错</td></tr></tbody>
+  </table>
+
+  <h2>成本与规模（对照同日 07:00 管理后台轮、08:00 向导轮）</h2>
+  
+  <table>
+    <caption>本轮与两轮的现算值</caption>
+    <tbody><tr><th>本场景 src 文件数 / 行数</th><td class="mono">44 / 2692</td></tr><tr><th>单文件产物字节（三页）</th><td class="mono">311053 / 311051 / 311045B</td></tr><tr><th>内联 bundle 字节</th><td class="mono">310329B</td></tr><tr><th>证据构建：入口 chunk / 可延迟 chunk</th><td class="mono">282817B ＋ 29340B</td></tr><tr><th>可延迟重量占比（本轮要回答的问题）</th><td class="mono">9.4%</td></tr><tr><th>两构建总量差</th><td class="mono">310329 vs 312157</td></tr><tr><th>08:00 向导轮 bundle / 07:00 管理后台轮 bundle</th><td class="mono">633905B / 720722B</td></tr><tr><th>本轮 bundle ÷ 向导轮 bundle</th><td class="mono">0.49×</td></tr><tr><th>对照分母现读（目录字节/文件数）</th><td class="mono">向导轮 2422757B/63f ｜ 管理后台轮 2509012B/73f</td></tr><tr><th>首屏从 eval 到第一行（jsdom，含 90ms fixture）</th><td class="mono">449ms，其中同步 eval 段 105ms</td></tr><tr><th>技能 SKILL.md 声明的资源 vs 本机实有</th><td class="mono">11 个引用，11/11 缺失</td></tr><tr><th>一行摘要条款里可机检并被逐条断言的</th><td class="mono">15/15</td></tr></tbody>
+  </table>
+
+  <h2>预览与复现</h2>
+  <ol class="steps">
+    <li>直接双击任一 <code>preview/portal-*.html</code>（<code>file://</code> 下可完整交互，页面零外链；M 组已对两种载体各跑一遍）。</li>
+    <li>真网络与真 chunk 图：<code>node server/mock-api.mjs 8157</code> 后访问 <code>http://127.0.0.1:8157/preview/split-host.html</code>，慢接口在 <code>?api=1</code> 下由 <code>/api/*</code> 逐路径可调延迟驱动。</li>
+    <li>消融臂：<code>preview/arm-nomemo.html</code>、<code>arm-novirtual.html</code>、<code>arm-unstablekey.html</code>（页脚标记当前臂）；四臂比对在 <code>scripts/check-dom.mjs</code> 的 N 组。unstablekey 臂双击后<b>永远不会画出列表</b>，这正是它的主张。</li>
+    <li>全量复现：<code>bash scripts/verify.sh</code>（npm install → tsc → 五套 vite 构建 → 内联 → 三个 checker → 本页 → 台账校验 → 收尾清单校验）。</li>
+  </ol>
+  <div class="note">
+    三页共用同一组件树与同一事实源：240 篇虚构文章、1,712,795 次阅读，标签 / 归档 / 相关文 / 读数面板全部由 <code>src/lib/facts.ts</code> 一份语料推导（F10 断言了「页面上打印的读数 = Node 侧独立复算值」），Node 与浏览器经同一个 esbuild 桥读取；检索、排序、密度、收藏走 version=3 信封并逐字段消毒（非法枚举、非法 tag、畸形与重复 slug、5000 项星单截到 60 条）。<br />
+    技能 <code>frontend-development</code> 的 SKILL.md 引用的 resources/*.md 与 ../../vite.config.ts 共 11/11 在本机不存在（第 4 次复跑仍未修复），因此页面上的每个数字都来自本轮自建判据，而不是技能文档。
+  </div>
+</div>
+</body>
+</html>
