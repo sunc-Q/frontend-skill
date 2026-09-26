@@ -1178,7 +1178,7 @@
       "seconds": 1740,
       "artifact_size": "demos 本轮 388KB（19 码 76KB + zip 27KB + sheet 45KB + 6 取证 PNG + 3 脚本 + 4 输入/证据件），限 5MB 内",
       "cleanup": "删 qr-names/（19 张取证用技能名小码）+ 旧版 ecc-*.png 5 张 + _blank/_noise/_mutant/_c1/_cN/_svg-raster 临时图 + LAB/.tmp/svg-{200,600}.svg；删 LAB/.tmp/pylibs（qrcode/Pillow/zxing-cpp/openpyxl）与 LAB/.tmp/qrnode（jsqr/pngjs）；零本轮常驻进程与监听（无服务，Chrome 用 --headless 单次退出）；全局技能库新增 1 项 qrcode-skills（有意安装，已登记 installed_by_this_task）；全局 pip/npm 缓存未动",
-      "push": "已推送：git push origin skill-showcase 成功（56defe4..ae8a60a，普通推送、无 --force / 无 --no-verify）。fetch 确认远端 56defe4 是本地 HEAD 祖先 → 无需 rebase；ls-remote 复核 skill-showcase=ae8a60a0f77e05cc0f6f5ca935eceb1623820afc，main=3531814 / go-gin_react=7b0c7f0 为兄弟任务所写、本任务未触碰。走 git@github.com SSH + LAB/.tmp/known_hosts；staged diff 凭据形状扫描抓到一次性 installRef 全文，已在提交前脱敏为 ext_70675d0d…（重扫 0 命中）",
+      "push": "已推送 3 commit（区间 56defe4..ae8a60a..abaad6b..4b3564c，全部普通推送、无 --force / 无 --no-verify）。fetch 确认远端 56defe4 是本地 HEAD 祖先 → 无需 rebase；ls-remote 复核 skill-showcase 远端头 = 本条记录所属提交（下轮开工以 `git ls-remote origin skill-showcase` 为准，不在自述里写自己的哈希），main=3531814 / go-gin_react=7b0c7f0 为兄弟任务所写、本任务未触碰。走 git@github.com SSH + LAB/.tmp/known_hosts；三次 staged diff 凭据形状扫描：抓到一次性 installRef 全文已脱敏，最终扫描 0 命中。",
       "notes": "来源①命中：短词 QR 一次装成（长词组 0 命中，见 environment_notes）。安全闸门通过：全程只走 --file/本地路径，未触发唯一网络分支 decode --url；★发现真实危险默认=batch_decode 不带 --output-txt 时会把解码列回写进输入文件本身（open(input,'w')，非原子无备份）。本轮最大增量=「遮挡位置 ≠ 遮挡面积」：同尺寸黑块盖 ECC-H 码的 finder 立刻不可读、盖数据区照样读出——这是首版 sheet 把 18px 小码贴在卡片左下角导致 H3 失败后差分定位出来的，修法是贴纸移到标题条。★本轮起新增做法：所用技能包**只读快照入仓** `skills/qrcode-skills/`（16 文件/69,080B，chmod -R a-w）+ `skills/manifest.json`（由 scripts/gen-skills-manifest.py 现读磁盘生成：逐文件 sha256/字节数/read_only 由 os.access 实测，不手抄），并列出 rounds_missing_snapshot=19（第 1–19 轮在 .skills/ 被 gitignore，未回填，需要时按各轮报告的确切命令重取）。快照还暴露一处不一致：市场版本 1.0.1 与 package.json 2.0.0 不符，_meta.json 指向上游 openclaw/skills@1ae3cd1e。"
     }
   ],
@@ -1194,12 +1194,16 @@
     "last_run_time": "2026-09-26T13:05+08:00"
   },
   "final_check": {
-    "time": "2026-09-26T15:25+08:00",
-    "git_status": "clean（回填提交后）",
-    "lab_size": "76M",
-    "du_this_round": "292KB",
-    "disk_avail_kb": 16666740,
+    "time": "2026-09-26T15:35+08:00",
+    "git_status": "clean（3 commit 全部推送后）",
+    "lab_size": "76M + skills 108KB",
+    "du_this_round": "292KB 产物 + 108KB 技能快照",
+    "disk_avail_kb": 16657256,
     "listeners_this_round": 0,
-    "remote_head": "ae8a60a"
+    "commits": [
+      "ae8a60a 产物",
+      "abaad6b 回填",
+      "4b3564c 技能快照入仓"
+    ]
   }
 }
