@@ -1,0 +1,125 @@
+PASS health 200  time=2026-09-26T07:15:42Z
+PASS categories 200 且字段齐全  5 类，首类 photo/摄影器材 参考价 420000
+PASS metrics 200 且口径自洽（状态分布之和=总数）  总数=48 在架=32 约定=5 成交=7 下架=4 GMV=2059800
+PASS metrics 恒等式：GMV ≥ 0 且成交均价与笔数同现  deals=12 avg=171650 identity_ok=true
+PASS metrics days 收敛到上限  window=30 天 daily=30
+PASS metrics 负数天数回落默认窗口  window=7 天
+PASS metrics 含品类汇总  5 个品类
+PASS listings 默认分页 20 且带 served_at  items=20 total=48 sort=l.posted_at dir=desc
+PASS 翻页不重叠  p1=FS-1001 p2=FS-1002
+PASS page_size 有上限（防一次拉全表）  page_size=100
+PASS page_size=0 回落默认  page_size=20
+PASS page_size 非法值不炸  page_size=20
+PASS 越界页返回空集不报错  total=48
+PASS 负页码收敛为第 1 页  page=1
+PASS sort/dir 注入被白名单吃掉  sort=l.posted_at dir=desc
+PASS sort=asking&dir=asc 单调递增  首=7500 末=424200
+PASS sort=best 单调递减  首=391100
+PASS sort=offers 按出价数排  首行出价数=4
+PASS status 过滤只留该状态  available=32/48
+PASS 非法 status 退回不过滤（而非注入放行）  total=48
+PASS category 过滤生效  photo=10 单
+PASS condition 过滤生效  like_new=10
+PASS 多条件取交集  组合=7
+PASS category 注入形被拒为不过滤  total=48
+PASS 注入串按普通文本查：命中 0 行  total=0
+PASS LIKE 通配符被转义（% 查不到全表）  total=0
+PASS 单下划线按字面匹配（只命中真含 _ 的行）  命中 12/48 行
+PASS 超长 q 截断不报 500  status=200
+PASS 中文关键词能查到  「摄影」命中 1
+PASS deals 出价台 200 且字段齐全  pending=28 笔
+PASS deals sort=amount 单调  首=375000
+PASS deals 非法 sort 落回默认列  sort=o.placed_at
+PASS deals page_size 同样封顶  page_size=100
+PASS 详情能取到「正在拍」的单  FS-1040 共 4 笔出价
+PASS 详情 is_best 唯一且与列表最优价同口径  best=6800 列表=6800
+PASS 详情出价按金额降序  1:6800 0:6300 0:6200 0:5900
+PASS 详情挂单有溢价指数与浏览量  ref_pct=88 views=195
+PASS 详情出价带挂单上下文  asking=7600
+PASS 未知编号 404 且返回 JSON 错误体  code=not_found
+PASS 路径穿越型编号被拒  status=400 code=undefined
+PASS 非法字符编号 4xx 不回显输入  status=404
+PASS 未知路由 404 JSON 而非栈页  status=404
+PASS 缺令牌 401：/admin/listings  status=401 code=unauthorized
+PASS 错令牌 403：/admin/listings  status=403 code=forbidden
+PASS 空 Bearer 401：/admin/listings  status=401
+PASS 只认 Bearer（Basic 不算数）：/admin/listings  status=401
+PASS 弱口令猜测也被 403：/admin/listings  status=403
+PASS 缺令牌 401：/admin/listings/FS-1040/offers  status=401 code=unauthorized
+PASS 错令牌 403：/admin/listings/FS-1040/offers  status=403 code=forbidden
+PASS 空 Bearer 401：/admin/listings/FS-1040/offers  status=401
+PASS 只认 Bearer（Basic 不算数）：/admin/listings/FS-1040/offers  status=401
+PASS 弱口令猜测也被 403：/admin/listings/FS-1040/offers  status=403
+PASS 缺令牌 401：/admin/deals/FD-00000000-0000/decide  status=401 code=unauthorized
+PASS 错令牌 403：/admin/deals/FD-00000000-0000/decide  status=403 code=forbidden
+PASS 空 Bearer 401：/admin/deals/FD-00000000-0000/decide  status=401
+PASS 只认 Bearer（Basic 不算数）：/admin/deals/FD-00000000-0000/decide  status=401
+PASS 弱口令猜测也被 403：/admin/deals/FD-00000000-0000/decide  status=403
+PASS 未配置 ADMIN_TOKEN 时写接口 fail-closed 503  3/3 端点 503
+PASS 建挂单 201  code=FS-SMMUI22EKA msg=挂单已上架
+PASS 新建挂单带行情参考价  ref_cent=420000（写接口回本体，溢价指数在读取视图里算）
+PASS 重号 409 而不是覆盖  code=conflict
+PASS 新建单立刻可查且零出价  出价 undefined 笔
+PASS 小写编号统一大写入库  code=FS-SMMUI22EKAZ
+PASS 大写后可按原样编号取回  status=200
+PASS 建挂单校验拒绝：缺标题  code=invalid_request fields=title
+PASS 建挂单校验拒绝：编号过短  code=invalid_request fields=code,title
+PASS 建挂单校验拒绝：编号含符号  code=invalid_request fields=code,title
+PASS 建挂单校验拒绝：保底高于挂牌  code=invalid_request fields=floor_cent,title
+PASS 建挂单校验拒绝：金额为负  code=invalid_request fields=asking_cent,floor_cent,title
+PASS 建挂单校验拒绝：成色非法  code=invalid_request fields=condition,title
+PASS 建挂单校验拒绝：分类不存在  code=invalid_request fields=category
+PASS 建挂单校验拒绝：标题超长  code=invalid_request fields=title
+PASS 建挂单校验拒绝：卖家名超长  code=invalid_request fields=seller,title
+PASS 建挂单校验拒绝：地区超长  code=invalid_request fields=area,title
+PASS 建挂单校验拒绝：金额越界  code=invalid_request fields=asking_cent,title
+PASS 注入形卖家名按文本收单（201，不是拼进 SQL）  status=201 seller=a' OR '1'='1
+PASS 收到注入形数据后读侧依旧正常  total=51
+PASS 注入串当搜索词：只按字面文本命中（就是那条同名卖家靶子），不是全表放行  total=1 命中卖家=a' OR '1'='1
+PASS 坏 JSON 400 不 500  status=400
+PASS 孤立代理对（CESU-8）被拒  status=400 code=invalid_request
+PASS 校验失败没留下脏行（只有三个靶子入库）  total=51（种子 48 + 靶子 3）
+PASS 超大请求体被 Content-Length 闸拦下 413  status=413 bytes=40135
+PASS 超长留言请求被拒且不 500  status=413
+PASS 出价低于保底 409 below_floor  code=below_floor msg=出价低于卖家保底价
+PASS 出价高于挂牌 409 above_asking  code=above_asking
+PASS 首笔出价 201 pending  deal=FL-260926-029 有效期到 2026-09-27T07:15:43Z
+PASS 同一买家等价改价 409 increment_too_small  code=increment_too_small msg=你的这笔出价仍是当前最高，改价需至少加到 2020.00
+PASS 同一买家出更低也 409  code=increment_too_small
+PASS 别人出更高 201  deal=FL-260926-030
+PASS 高价单顶掉低价单：outbid + 最优价跟随  笔数=2 best=240000
+PASS 出价留言按原文入库（不当脚本）  留言长度=31
+PASS 匿名出价被拒  status=401
+PASS 缺买家名 400  fields=buyer
+PASS 留言超长 400  fields=message
+PASS 负金额出价 400  fields=amount_cent
+PASS 非法编号出价 400 且不泄露  status=400 code=invalid_code
+PASS 已售出不可出价 409  code=listing_sold msg=该挂单已售出
+PASS 已下架不可出价 409  code=listing_withdrawn msg=该挂单已下架，不接受出价
+PASS 已约定不可出价 409  code=listing_reserved msg=该挂单已被约定锁定，等待当面交付
+PASS 给不存在的挂单出价 404  status=404 code=not_found
+PASS 非法 action 400  code=invalid_request
+PASS 确认成交 200 → reserved  status=reserved msg=已确认成交，挂单转入待交付
+PASS 重复确认 409 already_accepted  code=already_accepted
+PASS 确认已被顶掉的出价 409  code=offer_not_pending
+PASS 拒绝非 pending 出价 409  code=offer_not_pending
+PASS 一笔挂单最多一条 accepted  accepted=1
+PASS 成交后最优价锁定在成交额  best=240000
+PASS 确认不存在的出价单 404  status=404 code=not_found
+PASS 拍板后不再收出价（reserved 闸）  code=listing_reserved
+PASS 已确认的单退出 pending 队列  pending=28（原先 28）
+PASS 出价台按 status 能查到刚确认的 accepted  accepted=13 笔
+PASS deals 不带 status 时只给在拍队列（默认口径）  pending=28
+PASS 成交计入 GMV 与成交笔数  deals=13 gmv=2299800
+PASS 僵尸 pending 有统计口径  过期未清理 pending=2 笔
+PASS 本机来源放行 CORS  acao=http://127.0.0.1:5173
+PASS 外部来源不给 CORS 头  acao=null
+PASS Origin: null 不放行  acao=null
+PASS 前缀伪装 loopback 不放行  acao=null
+PASS 本机预检可通  status=204
+PASS 安全头齐备（nosniff/DENY/no-referrer/CSP）  CSP=default-src 'self'; script-src 'self'; style-src…
+PASS 所有响应无 SQL/Go 内部错误串  109 条响应参与扫描
+PASS 路由层先挡下畸形请求且无泄露  1 条：/listings/..%2F..%2Fbacken
+PASS 处理器吐出的 4xx/5xx 全是 {code,message} 形状  56 条错误响应，0 条形状不合
+
+冒烟结果：123 通过 / 0 失败

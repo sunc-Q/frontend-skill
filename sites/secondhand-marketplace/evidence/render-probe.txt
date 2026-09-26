@@ -1,0 +1,32 @@
+PASS transit: 页面加载并渲染出 KPI  kpi=6
+PASS transit: 搜索命中来自接口的靶子行  2 行命中
+PASS transit: 行内容是接口返回的中文标题  FS-SMMUI22EKA冒烟靶子：一台用过两年的定焦镜头smoke_bot · 成
+PASS transit: 详情面板显示该单出价留言  留言文本已出现
+PASS transit: 恶意留言没有生成任何标签（img/script/iframe/object 全 0）  img=0 script=0 iframe=0 object=0 embed=0
+PASS transit: 留言以原文出现在纯文本节点里  "抢拍 <img src=x onerror=alert(1)>"
+PASS transit: 该单元格 innerHTML 里没有可执行标签  抢拍 &lt;img src=x onerror=alert(1)&gt;
+PASS transit: 注入形卖家名按字面查到且只是一行文本  FS-MMUI22EKAK注入形卖家名靶子a' OR '1'='1 
+PASS transit: 无跨源资源请求  全部同源
+PASS transit: 无 JS 异常与 CSP 拒绝
+PASS tag: 页面加载并渲染出 KPI  kpi=6
+PASS tag: 搜索命中来自接口的靶子行  2 行命中
+PASS tag: 行内容是接口返回的中文标题  FS-SMMUI22EKA冒烟靶子：一台用过两年的定焦镜头smoke_bot · 成
+PASS tag: 详情面板显示该单出价留言  留言文本已出现
+PASS tag: 恶意留言没有生成任何标签（img/script/iframe/object 全 0）  img=0 script=0 iframe=0 object=0 embed=0
+PASS tag: 留言以原文出现在纯文本节点里  "抢拍 <img src=x onerror=alert(1)>"
+PASS tag: 该单元格 innerHTML 里没有可执行标签  抢拍 &lt;img src=x onerror=alert(1)&gt;
+PASS tag: 注入形卖家名按字面查到且只是一行文本  FS-MMUI22EKAK注入形卖家名靶子a' OR '1'='1 
+PASS tag: 无跨源资源请求  全部同源
+PASS tag: 无 JS 异常与 CSP 拒绝
+PASS vinyl: 页面加载并渲染出 KPI  kpi=6
+PASS vinyl: 搜索命中来自接口的靶子行  2 行命中
+PASS vinyl: 行内容是接口返回的中文标题  FS-SMMUI22EKA冒烟靶子：一台用过两年的定焦镜头smoke_bot · 成
+PASS vinyl: 详情面板显示该单出价留言  留言文本已出现
+PASS vinyl: 恶意留言没有生成任何标签（img/script/iframe/object 全 0）  img=0 script=0 iframe=0 object=0 embed=0
+PASS vinyl: 留言以原文出现在纯文本节点里  "抢拍 <img src=x onerror=alert(1)>"
+PASS vinyl: 该单元格 innerHTML 里没有可执行标签  抢拍 &lt;img src=x onerror=alert(1)&gt;
+PASS vinyl: 注入形卖家名按字面查到且只是一行文本  FS-MMUI22EKAK注入形卖家名靶子a' OR '1'='1 
+PASS vinyl: 无跨源资源请求  全部同源
+PASS vinyl: 无 JS 异常与 CSP 拒绝
+
+渲染断言：30 通过 / 0 失败

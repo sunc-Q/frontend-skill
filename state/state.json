@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T12:10:00+08:00",
+  "updated": "2026-09-26T15:40:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -154,6 +154,19 @@
       "result": "成功：4 表 15 接口（7 Bearer 写）+ 分钟步进切价/跨零点窗口/最大余数分摊，三条恒等式接口层自检并公开 identity_ok；go build/vet/test 全绿（24 Test，domain 75.3%/repository 82.1%/server 80.4%）；api-smoke pass=266（含独立 Python 重算引擎对账 + 无令牌 503 实例）；三风格 71 项计算样式两两互斥 55/53/48、同构全等、零外链、console 0 错（dist + preview 两份探针）；ui-check pass=186 ×2 轮（新鲜库 + 脏实例）。抓到并修掉真 bug：同一分钟内结算出账 ¥0。场景 2.8M / 62 文件",
       "code_dir": "sites/fleet-charging-ops/{backend,web,scripts}",
       "artifact_dir": "sites/fleet-charging-ops/{web/dist,preview,evidence}"
+    },
+    {
+      "time": "2026-09-26T15:40:00+08:00",
+      "scenario": "旧货市集挂单与出价撮合台（挂单/出价/拍板三段状态机）",
+      "slug": "secondhand-marketplace",
+      "styles": [
+        "地铁线路图导视风",
+        "旧货手写价签风",
+        "黑胶唱片封套风"
+      ],
+      "result": "成功：3 表（categories/listings/offers）+ 6 读 3 写（单 ADMIN_TOKEN，503·401·403 三层 fail-closed）+ 挂单四态机 available→reserved→sold／withdrawn、出价六态机 pending→accepted/rejected/expired/outbid + 加价阶梯 MinIncrementCent=2000 与出价带 floor≤amount≤asking-1 + OfferTTL=24h + best_offer_cent 一律按「live pending 的 MAX」重算（不跟新单走）+ 三条 GMV 恒等式（Sold+Reserved==Deals、GmvCent==Σby_category.gmv_cent、Σby_category.listings==ListingsTotal）由 /api/metrics 自检并回显 identity_ok；留言与卖家名全程只当文本，页面零 innerHTML。go build/vet/test 全绿（23 Test，表驱动 ≥3）；tsc 0 错、vite build 287,621B；api-smoke **pass=123 fail=0**（鉴权矩阵/状态机 409 全分支/11 个字段边界/40KB→413/CORS 精确 loopback/CSP/56 条 4xx 契约 + 泄露总扫）；style-verify 双托管全绿（39 项计算样式两两互斥 36/31/31、自比反证 0、71 个 class 三套 CSS 全覆盖、DOM 同构 853713233/6085、零外链）；render-probe **pass=30 fail=0**（真浏览器里 <img src=x onerror=alert(1)> 与 a' OR '1'='1 都只成文本节点，#root 内 img/script/iframe/object/embed 全 0）",
+      "code_dir": "sites/secondhand-marketplace/{backend,web,scripts}",
+      "artifact_dir": "sites/secondhand-marketplace/{web/dist,preview,evidence}"
     }
   ],
   "used_scenarios": [
@@ -168,7 +181,8 @@
     "library-circulation-desk",
     "auto-repair-workorder",
     "freight-waybill-tracking",
-    "fleet-charging-ops"
+    "fleet-charging-ops",
+    "secondhand-marketplace"
   ],
   "used_styles": [
     "瑞士网格",
@@ -206,7 +220,10 @@
     "青瓷开片冰裂风",
     "机场航班信息板风",
     "机械腕表表盘剖视风",
-    "植物标本图鉴版画风"
+    "植物标本图鉴版画风",
+    "地铁线路图导视风",
+    "旧货手写价签风",
+    "黑胶唱片封套风"
   ],
   "runs": [
     {
@@ -674,6 +691,57 @@
         "commit": "06aecf9（场景 + 记录，65 文件 / 35,424 行）+ 本条审计提交",
         "note": "git ls-remote 见远端已在 b8fe3fd（第 11 轮收工审计，正是本地 merge-base）→ git fetch origin go-gin_react → rebase 无需进行（up-to-date，无改写）→ git push origin go-gin_react，远端 b8fe3fd..06aecf9；提交身份用命令行内联 -c user.name/-c user.email（不改任何全局 git 配置）；未 --force、未跳 hook、未碰 main；命令行与文件里均无令牌（令牌由 openssl rand -hex 8 现场生成、只经环境变量注入，grep evidence/ 命中 0）"
       }
+    },
+    {
+      "id": "20260926-15",
+      "slug": "secondhand-marketplace",
+      "started": "2026-09-26T13:59:00+08:00",
+      "finished": "2026-09-26T15:40:00+08:00",
+      "scenario": "旧货市集挂单与出价撮合台（挂单/出价/拍板三段状态机）",
+      "styles": [
+        "地铁线路图导视风",
+        "旧货手写价签风",
+        "黑胶唱片封套风"
+      ],
+      "template_created": false,
+      "disk": {
+        "df_k_avail_before": 16967784,
+        "df_k_avail_after": 16544172,
+        "lab_total_bytes_human": "待审计",
+        "scenario_dir_human": "3.6M / 58 文件（上限 5MB）",
+        "note": "开工 df≈16.2GiB（84% 已用），高于 1.5GiB 熔断线。node_modules 64M、/tmp/fleaprobe 全树（39MB 编译产物、三个库三件套、两个 chrome profile）与 /tmp/dbg.mjs 收工删除；:18080/:18081/:8080/:18193 四个监听按端口→PID→ps -o command= 核对命令行后 kill，收工监听数 0；另有一个别的会话的 --headless=new --no-sandbox --virtual-time-budget Chrome，识别后未动。共享缓存（~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache）未删，全程无 go clean -cache/-testcache"
+      },
+      "volume": {
+        "go_files": 16,
+        "go_test_files": 3,
+        "test_packages_ok": 3,
+        "test_functions": 23,
+        "coverage": "未单独测量（-race 未开）",
+        "endpoints": 9,
+        "tables": 3,
+        "seed_rows": "5 品类 / 48 挂单（四态齐备，含零出价、只有过期 pending、成交低于保底等分支样本）/ 82 笔出价",
+        "frontend_src_files": 10,
+        "theme_css_files": 3,
+        "dist_bundle_bytes": 287621,
+        "preview_files": 3,
+        "preview_each_bytes": 288220,
+        "api_smoke": "pass=123 fail=0（A~H 八节：读端点/详情/鉴权矩阵/建单/出价状态机/拍板/CORS 与安全头/泄露总扫）",
+        "ui_check": "render-probe pass=30 fail=0（×3 主题：真接口数据进 DOM、恶意留言与注入形卖家名只作文本、无跨源请求、无 JS 异常）",
+        "style_diff": "两两互斥 36/31/31 项（39 项计算样式）·自比反证 0·DOM 同构 853713233/6085·71 class 三套 CSS 全覆盖·零外链·失败项 0（dist + preview 两份探针）"
+      },
+      "defects_found": [
+        "CSS 覆盖缺口：theme-tag/theme-vinyl 漏写 .theme-text 与 .theme-icon .swatch 规则，元素掉回浏览器默认——只有「页面 71 个 class 必须在三份 CSS 里都命中」这条断言抓得到，光看截图会漏",
+        "GORM 事务内 return AppError 会把同事务里刚写的 expired 状态一起回滚，僵尸 pending 永远留在库里：改为事务内只写状态 return nil，出事务后再构造 409",
+        "best_offer_cent 直接写成「新出价金额」会变小（挂单上可能已有更高 pending）：改为按 live pending 的 MAX 重算",
+        "表格行数断言没排除 .table.mini（详情报价表、成交板），搜出一行结果却量到 12 行，误判成搜索失效",
+        "收工复跑才抓到 3 个文件不合 gofmt（手写注释对齐）——本轮中途只跑 build/vet/test，没跑 gofmt -l"
+      ],
+      "push": {
+        "branch": "go-gin_react",
+        "result": "待推送后回填",
+        "commit": "",
+        "note": ""
+      }
     }
   ],
   "environment_notes": [
@@ -749,13 +817,21 @@
     "**Go 的 `encoding/json` 会「修好」孤立代理对**：`\\ud800` 被替换成 U+FFFD 后正常入库，拿它当非法 UTF-8 断 400 会实拿 201。真正的对抗输入是**裸 CESU-8 字节**（`\\xed\\xa0\\x80`），解码器才拒绝 → 400；转义写法降级为「不报 5xx」保留（第 12 轮）。",
     "**恒等式自检挡不住退化区间**：同一分钟内开充即结算时 `Σseg(0) + actual == actual` 完全成立，金额却是 0 元——三条对账式、接口 identity_ok、页脚徽标全绿。教训：**边界用例要从业务直觉出发（「这单收了钱吗」），不能只写「式子配平吗」**；计价区间这类量要有下限（1 分钟），并给它一条专门的 Go 用例（第 12 轮）。",
     "**同一时刻 `sites/` 下可能有别的会话留下的未提交场景目录**（第 12 轮见 clinic-appointment-desk / charity-donation-progress，风格仍是上一轮的三套）。既不提交也不删除别人的产物，只在本文件留痕；恢复那两个会话时必须重读本文件做去重，它们的风格名已在 `used_styles` 里。",
-    "**serve-static.mjs 没有 SPA 回退**：`GET /` 会去 readFile(目录) 失败并回 `not found`，取证 URL 必须写全 `/index.html?theme=…`；若场景后端不托管前端（无 STATIC_DIR），页面只能靠它起——症状同样是 playwright 等选择器超时（第 12 轮）。"
+    "**serve-static.mjs 没有 SPA 回退**：`GET /` 会去 readFile(目录) 失败并回 `not found`，取证 URL 必须写全 `/index.html?theme=…`；若场景后端不托管前端（无 STATIC_DIR），页面只能靠它起——症状同样是 playwright 等选择器超时（第 12 轮）。",
+    "**browser-use 面板不可靠时自研零依赖 CDP 取证**：/Applications/Google Chrome 用 `--headless=new --remote-debugging-port --user-data-dir` 起，Node 22+ 内置全局 WebSocket 直连 `/json/list` 里的 webSocketDebuggerUrl，60 行客户端（Runtime.evaluate returnByValue+awaitPromise、Runtime/Log 事件收 noise）就够用；三主题计算样式抓取约 3 秒，比面板 15s 超时可靠得多。截图走 `Emulation.setDeviceMetricsOverride` + `Page.captureScreenshot{captureBeyondViewport:true}`。",
+    "**Chrome CLI 的 `--screenshot` 循环会挂**：同一 user-data-dir 连开三个 headless 实例，第二个起就卡死（>300s 无输出，只有一个主题出图）；改走常驻进程 + CDP 一次跑完三主题。",
+    "**zsh 通配无匹配会中止整条链式命令**：`rm -f /tmp/x.db*` 在文件不存在时 zsh 直接 `no matches found` 并退出，后面的启动服务全没执行——症状是「脚本没报错但接口连不上」。清理要么列精确文件名，要么先 `setopt null_glob`。",
+    "**表格行数断言必须排除页面里的 .mini 子表**：同一列表页嵌了详情报价表与成交板，`.table tbody tr` 量到 12 行误判搜索失效；写成 `.table:not(.mini) tbody tr`。命中编号又是另一编号前缀时用 `find(r=>r.textContent.includes(code))` + `>=1`，别写 `===1`。",
+    "**4xx 契约要分两层断言**：Gin 路由层先于中间件拒绝畸形路径时吐纯文本（`invalid URL path`、`400 Bad Request`、`URI Too Long`），不是业务 JSON 体；把「泄露总扫（两层都不许出现 SQL/Go 内部串）」和「处理器契约（{code,message} 形状）」拆成两条断言，并把希望进处理器的用例 URL 编码，否则一条断言被框架层假失败带崩一片。",
+    "**CSS 覆盖断言：页面 class 集合必须三份主题都命中**（`[...new Set([...document.querySelectorAll('#root *')].flatMap(e=>[...e.classList]))].sort()`）。漏写规则的元素掉回浏览器默认值，计算样式互斥统计照样充足、截图也不难看，只有这条抓得到；配套「同主题自比必须 0 差异」的反证，防止 diff 计数器自己出错。",
+    "**gofmt -l 要放进每轮收工复跑**：手写注释对齐极易不合 gofmt，而 build/vet/test 全绿不会提示；`gofmt -w` 后用 `go test -count=1 ./...` 重跑确认。",
+    "**Go 的 CSP 与三风格注入方式互相约束**：`?raw` 把主题 CSS 在运行时注进 `<style>`，`style-src` 必须留 `'unsafe-inline'`；`script-src 'self'` 收紧后 SPA 仍能跑，别顺手把 style 也收紧，否则三主题同时变裸样式而接口全绿。",
+    "**React 受控输入的无头驱动写法**：`Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set.call(el,v)` 再 `dispatchEvent(new Event('input',{bubbles:true}))`，直接赋 `el.value` 不会进 state。"
   ],
   "next_candidates": [
     "医院门诊排班与挂号",
     "房产租赁管理",
     "招聘 ATS 候选人流水线",
-    "二手交易平台撮合",
     "宠物医院门诊排班",
     "二手车评估上架",
     "冷链运输调度台",
@@ -774,13 +850,15 @@
     "像素机街机 CRT",
     "包豪斯纺织样卡",
     "航海图罗盘",
-    "黑胶唱片封套",
     "医用腕带标签",
     "旧报纸分类广告栏",
     "实验室玻璃器皿白板",
     "丝绒影院售票亭",
     "铸铁锅菜谱卡片",
-    "邮政邮戳与航空信封"
+    "邮政邮戳与航空信封",
+    "渔港拍卖锣声板",
+    "老式打字机稿件",
+    "铁路客票硬板票"
   ],
   "backlog": [
     "fitness-studio-booking：bookings 目前无 (session_id,member_id) 复合唯一索引，查重依赖事务内 SELECT + 单写者；若放开多连接必须先补索引（confirmed/waitlist 用部分索引）。",

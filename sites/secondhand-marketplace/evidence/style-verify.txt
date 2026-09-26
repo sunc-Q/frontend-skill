@@ -1,0 +1,42 @@
+# 三风格计算样式断言（本机 Chrome 无头 + CDP，零依赖）
+## 产物一：同源 SPA（Go 直接托管 web/dist）→ http://127.0.0.1:18080
+
+  PASS DOM同构  transit=853713233/len6085 tag=853713233/len6085 vinyl=853713233/len6085
+  PASS 渲染数据同构  transit:12/6/22/FS-SMMUI22EKA/51 tag:12/6/22/FS-SMMUI22EKA/51 vinyl:12/6/22/FS-SMMUI22EKA/51
+  PASS 零外链
+  PASS 无.err
+  PASS 自比反证：transit  39 项样式属性
+  PASS 两两差异≥3：transit×tag  差异36项 例：htmlBg=rgb(238, 241, 245) / shell.backgroundImage=linear-gradient(to right, rgb(215, 221, 230) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(rgb(215, 221, 230) 1px, rgba(0, 0, 0, 0) 1px) / shell.fontFamily="PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif / shell.fontSize=14px
+  PASS 两两差异≥3：transit×vinyl  差异31项 例：htmlBg=rgb(238, 241, 245) / shell.backgroundImage=linear-gradient(to right, rgb(215, 221, 230) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(rgb(215, 221, 230) 1px, rgba(0, 0, 0, 0) 1px) / shell.fontFamily="PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif / shell.fontSize=14px
+  PASS 自比反证：tag  39 项样式属性
+  PASS 两两差异≥3：tag×vinyl  差异31项 例：htmlBg=rgb(217, 185, 138) / shell.backgroundImage=radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.28), rgba(0, 0, 0, 0) 42%), repeating-linear-gradient(94deg, rgba(150, 108, 60, 0.1) 0px, rgba(150, 108, 60, 0.1) 2px, rgba(0, 0, 0, 0) 2px, rgba(0, 0, 0, 0) 26px), none / shell.fontFamily="Iowan Old Style", Georgia, "Songti SC", "PingFang SC", serif / shell.fontSize=15px
+  PASS 自比反证：vinyl  39 项样式属性
+  PASS class 集合同构  71 个 class
+  PASS 页面有 class 可测  71 个
+  PASS CSS全覆盖：transit  71 类全部命中
+  PASS CSS全覆盖：tag  71 类全部命中
+  PASS CSS全覆盖：vinyl  71 类全部命中
+
+  三风格验证通过
+  PASS 无 JS 异常与控制台报错
+
+## 产物二：单文件预览 preview/<theme>.html → http://127.0.0.1:18193/{theme}.html
+
+  PASS DOM同构  transit=853713233/len6085 tag=853713233/len6085 vinyl=853713233/len6085
+  PASS 渲染数据同构  transit:12/6/22/FS-SMMUI22EKA/51 tag:12/6/22/FS-SMMUI22EKA/51 vinyl:12/6/22/FS-SMMUI22EKA/51
+  PASS 零外链
+  PASS 无.err
+  PASS 自比反证：transit  39 项样式属性
+  PASS 两两差异≥3：transit×tag  差异36项 例：htmlBg=rgb(238, 241, 245) / shell.backgroundImage=linear-gradient(to right, rgb(215, 221, 230) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(rgb(215, 221, 230) 1px, rgba(0, 0, 0, 0) 1px) / shell.fontFamily="PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif / shell.fontSize=14px
+  PASS 两两差异≥3：transit×vinyl  差异31项 例：htmlBg=rgb(238, 241, 245) / shell.backgroundImage=linear-gradient(to right, rgb(215, 221, 230) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(rgb(215, 221, 230) 1px, rgba(0, 0, 0, 0) 1px) / shell.fontFamily="PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif / shell.fontSize=14px
+  PASS 自比反证：tag  39 项样式属性
+  PASS 两两差异≥3：tag×vinyl  差异31项 例：htmlBg=rgb(217, 185, 138) / shell.backgroundImage=radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.28), rgba(0, 0, 0, 0) 42%), repeating-linear-gradient(94deg, rgba(150, 108, 60, 0.1) 0px, rgba(150, 108, 60, 0.1) 2px, rgba(0, 0, 0, 0) 2px, rgba(0, 0, 0, 0) 26px), none / shell.fontFamily="Iowan Old Style", Georgia, "Songti SC", "PingFang SC", serif / shell.fontSize=15px
+  PASS 自比反证：vinyl  39 项样式属性
+  PASS class 集合同构  71 个 class
+  PASS 页面有 class 可测  71 个
+  PASS CSS全覆盖：transit  71 类全部命中
+  PASS CSS全覆盖：tag  71 类全部命中
+  PASS CSS全覆盖：vinyl  71 类全部命中
+
+  三风格验证通过
+  PASS 无 JS 异常与控制台报错
