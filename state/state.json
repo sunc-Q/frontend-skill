@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T08:34:00+08:00",
+  "updated": "2026-09-26T08:40:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -569,7 +569,7 @@
       "id": "20260926-08",
       "slug": "freight-waybill-tracking",
       "started": "2026-09-26T06:36:00+08:00",
-      "finished": "2026-09-26T08:34:00+08:00",
+      "finished": "2026-09-26T08:40:00+08:00",
       "scenario": "零担货运运单运营台（体积计费与路由轨迹）",
       "styles": [
         "老式票证打孔风",
@@ -579,10 +579,10 @@
       "template_created": false,
       "disk": {
         "df_k_avail_before": null,
-        "df_k_avail_after": 18221404,
-        "lab_total_bytes_human": "32M",
-        "scenario_dir_human": "2.6M / 63 文件",
-        "note": "开工未单独采样（沿用第 10 轮收工 18,551,596KB），收工实测见本字段；node_modules 64M 与全部 /tmp 临时库已删"
+        "df_k_avail_after": 18215504,
+        "lab_total_bytes_human": "32M（其中 .git 11.2M）",
+        "scenario_dir_human": "2.6M / 63 文件（上限 5MB）",
+        "note": "开工未单独采样（沿用第 10 轮收工 18,551,596KB）；收工 df 实测，node_modules 64M 与 /tmp 三处临时实例目录已删，:18501/:18502/:18512/:18531 监听数 0"
       },
       "volume": {
         "go_files": 18,
@@ -603,8 +603,9 @@
       },
       "push": {
         "branch": "go-gin_react",
-        "result": "待推送",
-        "note": "场景提交 2508543（62 文件）；推送结果在收工审计提交里回填"
+        "result": "成功",
+        "commit": "2508543（场景，62 文件 / 34,297 行）+ c0b970c（记录回写，4 文件）+ 本条审计提交",
+        "note": "git fetch origin go-gin_react → rebase FETCH_HEAD（up-to-date，无改写）→ git push origin go-gin_react，远端 7cb2210..c0b970c；提交身份用命令行内联 -c user.name/-c user.email（不改任何全局 git 配置）；未 --force、未跳 hook、未碰 main；命令行与文件里均无令牌（令牌在 macOS 钥匙串，命令替换注入，grep 验证 evidence/api-smoke.txt 命中 0）"
       }
     }
   ],

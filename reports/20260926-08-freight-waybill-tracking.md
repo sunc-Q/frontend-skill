@@ -63,5 +63,5 @@ UI 里真实走完的闭环：切主题 → 表头排序并回写 `aria-sort` �
 - 删除：`web/node_modules`（64M）、`/tmp/fwt-ui`、`/tmp/fwt-smoke`、`/tmp/fwt-count` 及全部临时 db/png/json/log；`go build ./...` 未留二进制。保留：源码 + `web/dist/` + `preview/` + `scripts/` + `evidence/` + `README.md`。共享缓存（`~/Library/Caches/go-build`、`~/go/pkg/mod`、`~/.npm/_cacache`）未动，无 `go clean -cache/-testcache`。
 - 进程：:18501（`/tmp/fwt-ui/api`）与 :18512（`node scripts/serve-static.mjs`）按端口→PID→`ps -o command=` 核对命令行后 kill（确认都是本轮自己起的），kill 后监听数 0；临时取证实例 :18531 同法清掉。
 - 令牌：本地演示令牌存在 macOS 钥匙串（`security find-generic-password -s qoder-fwt-admin-token -w`），只用命令替换注入环境变量，命令行历史与文件、日志里均无明文（已 grep 验证 0 命中）。
-- 推送：仅 `go-gin_react` 分支，SSH，提交身份用命令行内联 `-c user.name/-c user.email`（不改全局配置），无 `--force`、无 `--no-verify`、不碰 `main`。
+- 推送：仅 `go-gin_react` 分支，SSH，提交身份用命令行内联 `-c user.name/-c user.email`（不改全局配置），无 `--force`、无 `--no-verify`、不碰 `main`。远端 `7cb2210..c0b970c`（场景 2508543 / 记录 c0b970c / 本审计提交），`git status` 收工 0 项；LAB 32M（`.git` 11.2M）、场景 2.6M / 63 文件、df 可用 18,215,504KB≈17.4GiB。
 - 一句话教训：**同一份数据在 SQLite 里既当时间又当字符串**——本轮最贵的一课是「所有入库时间必须归一 UTC」，而它只被真 HTTP 冒烟抓到，Go 测试因为用固定 UTC 时刻而全绿。
