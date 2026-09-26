@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Lantern Wanderer - pixel art idle</title>
+<style>
+  body { background:#0b0b0f; color:#cfd3da; font:12px/1.5 ui-monospace,Menlo,monospace; margin:18px; }
+  canvas { border:1px solid #2a2a33; background:#1a2b33; }
+  .row { display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap; }
+  button { background:#1d1d26; color:#cfd3da; border:1px solid #3a3a48; font:inherit; padding:3px 9px; }
+  #meta { color:#8b9099; max-width:640px; }
+</style></head><body>
+<p style="image-rendering: auto">aa</p><h2>Lantern Wanderer &mdash; 32x32 / 4-frame subpixel idle / 14 colors</h2>
+<div class="row">
+  <div><canvas id="sprite" width="128" height="32"></canvas>
+    <p>scale <button id="s1">1x</button><button id="s2">2x</button><button id="s3">4x</button>
+       <button id="s5">8x</button> &nbsp; frame time
+       <button id="tSlow">400ms</button><button id="tIdle">260ms</button><button id="tFast">150ms</button></p>
+  </div>
+  <div><canvas id="tiles" width="48" height="48" style="width:384px;height:384px;image-rendering:pixelated"></canvas>
+    <p>16x16 tile painted 3x3 (48x48 source, CSS-upscaled 8x) &mdash; seam check</p></div>
+</div>
+<p id="meta">Integer scaling only, nearest-neighbour (no smoothing). Outline uses selective
+outlining for light from the top-left; the in-between frame changes outline tones, not the
+silhouette (subpixel animation). One dither style (ordered 2x2) and only on the tile, never on
+the 32x32 sprite.</p>
+<script id="app">
+const SHEET = "data:image/png;base64:DATA";
+const TILE  = "data:image/png;base64:DATA";
+const FRAME_W = 32, FRAME_H = 32, FRAME_COUNT = 4;
+let ctx = document.getElementById("sprite").getContext("2d");
+ctx.imageSmoothingEnabled = false;
+const tctx = document.getElementById("tiles").getContext("2d");
+tctx.imageSmoothingEnabled = false;
+const state = { frame: 0, scale: 4, frameTime: 40 };
+let img = new Image(), tile = new Image();
+function drawSprite() {
+  const canvas = document.getElementById("sprite");
+  const destW = FRAME_W * state.scale, destH = FRAME_H * state.scale;
+  // upscale into the backing store with nearest neighbour, then 1:1 in CSS,
+  // so the pixels on screen are exactly `scale` device pixels wide
+  canvas.width = destW; canvas.height = destH;
+  canvas.style.width = destW + "px"; canvas.style.height = destH + "px";
+  ctx = canvas.getContext("2d"); ctx.imageSmoothingEnabled = false;
+  canvas.style.transform = "scale(1.5)"; ctx.clearRect(0, 0, destW, destH);
+  ctx.drawImage(img, state.frame * FRAME_W, 0, FRAME_W, FRAME_H, 0, 0, destW, destH);
+  document.getElementById("meta").dataset.frame = state.frame;
+  document.getElementById("meta").dataset.buffer = destW + "x" + destH;
+}
+function step() {
+  state.frame = (state.frame + 1) % FRAME_COUNT;
+  drawSprite();
+  timer = setTimeout(step, state.frameTime);
+}
+let timer = null;
+img.onload = () => { drawSprite(); timer = setTimeout(step, state.frameTime); };
+tile.onload = () => {
+  tctx.drawImage(tile, 0, 0);            // 1:1 into the 48x48 backing store; CSS does the 8x
+};
+function setScale(n) { state.scale = Math.floor(n); drawSprite(); }
+document.getElementById("s1").onclick = () => setScale(1);
+document.getElementById("s2").onclick = () => setScale(2);
+document.getElementById("s3").onclick = () => setScale(4);
+document.getElementById("s5").onclick = () => setScale(8);
+document.getElementById("tSlow").onclick = () => { state.frameTime = 400; };
+document.getElementById("tIdle").onclick = () => { state.frameTime = 260; };
+document.getElementById("tFast").onclick = () => { state.frameTime = 150; };
+img.src = SHEET; tile.src = TILE;
+</script><img src="assets/sprite-sheet.jpg" alt="j"></body></html>

@@ -1,0 +1,48 @@
+PASS A1 sheet is 4x32 wide, 32 tall | 128x32
+PASS A2 frame0.png == sheet block 0 (two independent encoders agree)
+PASS A3 no semi-transparent pixels anywhere (hard edges only) | [0, 255]
+PASS A4 sprite uses <= 16 colours (SNES sprite budget) | 15 used
+PASS A5 every sprite colour is in the declared palette
+PASS A6 outline is 100% neutral tones (no body colour bleeds to the edge -> no halo) | 88 edge px, tones=['#141414', '#606876', '#c2bbae']
+PASS A7 selout: >=70% of top/left-facing outline px are NOT the darkest tone | 47/55
+PASS A8 selout: >=70% of bottom/right-facing outline px are the DARKEST tone | 37/47
+PASS A9 anti-pillow: outline is not uniformly one tone (>=2 tones in use) | [(20, 20, 20, 255), (96, 104, 118, 255), (194, 187, 174, 255)]
+PASS A10 hat   lightness steps >= 0.20 | [0.222, 0.22, 0.22]
+PASS A11 hat   ramp is monotone light->dark ordered with warm highlights
+PASS A10 skin  lightness steps >= 0.20 | [0.222, 0.22, 0.22]
+PASS A11 skin  ramp is monotone light->dark ordered with warm highlights
+PASS A10 coat  lightness steps >= 0.20 | [0.222, 0.22, 0.22]
+PASS A11 coat  ramp is monotone light->dark ordered with warm highlights
+PASS A10 pants lightness steps >= 0.20 | [0.222, 0.22, 0.22]
+PASS A11 pants ramp is monotone light->dark ordered with warm highlights
+PASS A12 saturation peaks in the midtones and desaturates in the highlight | #122a3f #25799d #61c2d1 #bfe3e2
+PASS A13 legs are >= 2 px wide every row | [3, 3, 3, 3, 3, 3]
+PASS A14 silhouette rows have no 1-px protrusions | [18, 18, 18]
+PASS A15 silhouette is a single connected piece | 498 of 498
+PASS B1 frame0/frame1 have an IDENTICAL silhouette (in-between is colour-only)
+PASS B2 the colour-only in-between actually changes pixels (not a dead frame) | 62 px
+PASS B3 in-between stays subtle (<= 25% of the sprite) | 62/498
+PASS B4 frame2 is the pose bobbed down exactly 1 px (clipped at row 31) | 487 vs 487
+PASS B5 idle loop is 4 frames, ping-pong (f3 == f1)
+PASS B6 frame time 260 ms is inside the skill's idle range 200-400 ms | 260
+PASS C1 the 32x32 sprite is NOT dithered (skill: no dithering on small sprites) | 0 windows
+PASS C2 the tile IS ordered-dithered (2x2 Bayer band, >=3 windows) | 3 windows
+PASS C3 one dither style dominates the band (>=80% parity-determined, pair is 2 distinct colours) | 57/64 follow, pair #25799d / #61c2d1, decorations 7
+PASS D1 wrap-edge contrast <= 1.6x interior contrast (no visible seam) | seam 11.3490 vs inner 21.1482
+PASS D2 3x3 preview is 48x48 upscaled 8x -> 384x384
+PASS D3 variant B differs from A but shares its palette
+PASS E1 @8x is exactly 8x the source size | 256x256
+PASS E2 every 8x8 block is a single flat colour (nearest neighbour, no interpolation) | 0 bad blocks
+PASS F0 parsed the skill's regex rules out of validations.md | 14 rules
+PASS F0b every rule pattern is compilable after de-doubling backslashes | []
+PASS F0c NOTE (skill defect): patterns had to be de-doubled to mean anything | 12 of 14 rules shipped doubled backslashes
+PASS F1 viewer.html trips none of the skill's rules except the documented false positive | [('pixelart-css-rendering', 'canvas\\s*\\{[^}]+\\}(?![^}]*image-rendering)')]
+PASS F2 viewer.html is self-contained (both inline payloads == the PNGs on disk, zero network) | 2 payloads
+PASS F2b the tile canvas is drawn 1:1 into a 48x48 backing store (no downsample-then-upscale)
+PASS F2c viewer upscales into the backing store and shows it 1:1 (no CSS stretch)
+PASS F3 no network references in the viewer
+PASS F4 mutant viewer trips all 5 injected faults (rules are live, not decorative) | tripped=['pixelart-animation-too-fast', 'pixelart-css-rendering', 'pixelart-integer-scaling', 'pixelart-jpeg-export', 'pixelart-no-antialiasing']
+PASS F5 mutant trips nothing beyond the injected faults + the known FP (no false positives) | extra=[]
+PASS F6 each injected fault is caught by its own rule and by nothing else the golden passes | ['pixelart-animation-too-fast', 'pixelart-integer-scaling', 'pixelart-jpeg-export', 'pixelart-no-antialiasing']
+
+== 46 PASS / 0 FAIL ==

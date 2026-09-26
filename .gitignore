@@ -13,3 +13,5 @@ __pycache__/
 !demos/**/browser-check.log
 
 !demos/**/verify.log
+
+!demos/**/verify-run.log

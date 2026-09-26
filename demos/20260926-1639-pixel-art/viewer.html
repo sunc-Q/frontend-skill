@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Lantern Wanderer - pixel art idle</title>
+<style>
+  body { background:#0b0b0f; color:#cfd3da; font:12px/1.5 ui-monospace,Menlo,monospace; margin:18px; }
+  canvas { image-rendering: pixelated; image-rendering: crisp-edges; border:1px solid #2a2a33; background:#1a2b33; }
+  .row { display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap; }
+  button { background:#1d1d26; color:#cfd3da; border:1px solid #3a3a48; font:inherit; padding:3px 9px; }
+  #meta { color:#8b9099; max-width:640px; }
+</style></head><body>
+<h2>Lantern Wanderer &mdash; 32x32 / 4-frame subpixel idle / 14 colors</h2>
+<div class="row">
+  <div><canvas id="sprite" width="128" height="32"></canvas>
+    <p>scale <button id="s1">1x</button><button id="s2">2x</button><button id="s3">4x</button>
+       <button id="s5">8x</button> &nbsp; frame time
+       <button id="tSlow">400ms</button><button id="tIdle">260ms</button><button id="tFast">150ms</button></p>
+  </div>
+  <div><canvas id="tiles" width="48" height="48" style="width:384px;height:384px;image-rendering:pixelated"></canvas>
+    <p>16x16 tile painted 3x3 (48x48 source, CSS-upscaled 8x) &mdash; seam check</p></div>
+</div>
+<p id="meta">Integer scaling only, nearest-neighbour (no smoothing). Outline uses selective
+outlining for light from the top-left; the in-between frame changes outline tones, not the
+silhouette (subpixel animation). One dither style (ordered 2x2) and only on the tile, never on
+the 32x32 sprite.</p>
+<script id="app">
+const SHEET = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAYAAADaInAlAAACI0lEQVR42u1aMW6EMBDkDYgiH6BIHpCWr4QubZpEeUhKvpAPpEC6MkrDF3IPcbQoPhkwh89ee3zHWhqdQMLjMTPgw1sU0qRttcPXp7oUt8S/6/nXHR77HzW0b854en5VSH7OSUDeALh+H3KNqqoUkp/DhDkEAKl/HIAPeVffsxnAl5/LAOgAIPWLAfasXz/+UAMI5ed4DyINANXv++7jeg9x8YdMAjIAcP1aOAkJhU8SOPl9bkQOAUDqHxvdOA3qpLkrnWBep+HDT5waNCGu/OZ1GtcWALR++2r4u1fDR7sJjsVPCD/XXzB0AND6l4n4J+he6hG2Y/qNZQBX/hgTkEMAkPpPA9A3mHDuGMkfywA5BAClXwywc/2TBJxDilfAFv8tGyCZftsGh/m4W0PzWJ5WrSEbIyH8MTZmUgcArp8u7I+/qj0MwfD9DsDFH/IdABkApP5xABzk9XvnbQAufl8DoAOA1C8G2Ll+MYAYQAwgBhADiAHEADs3AHVA8CEmlA9N0ARw8F+zAVD6F9++zU63QKShH0Y4+UMMgAwAUv9kO9S2v7wFznoAmgyfMQTXAwADgNZvNQN1ZFbIrJ3j2gOfT8a8QmftHJdodADQ+lerZMyiR9u5IlKbc+kJYC+FzjAAaP2LAsnUA7Dxr51LZcCUAYDrv6RAMlpJmCN/rO1gdACQ+p2LJHVNHJI/WkkYOABI/ZNFkQti8Cdd9WYWgFj6/wDBL96lwF/A1QAAAABJRU5ErkJggg==";
+const TILE  = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAq0lEQVR42u2XywmAMBAFt5n0pSetQLAYm7EDK1IMJOTmJiE/nMOyeHjKPEEzMp/XPfIIAABUBJjWzU7qw0rkowFy2iqRtwCLOeyk3rhl3gO82+y67V6lu26ZF20o3OHDW+dF01DsrpmX3hv+2v/4D/T8lVID5LRUMi+jNK0G6LVpDnMAAIAP4AP4AD6AD+AD+AA+gA9wGgUAAHwAH8AH8AF8AB/AB/ABfMDNAzR+VgqvQlBnAAAAAElFTkSuQmCC";
+const FRAME_W = 32, FRAME_H = 32, FRAME_COUNT = 4;
+let ctx = document.getElementById("sprite").getContext("2d");
+ctx.imageSmoothingEnabled = false;
+const tctx = document.getElementById("tiles").getContext("2d");
+tctx.imageSmoothingEnabled = false;
+const state = { frame: 0, scale: 4, frameTime: 260 };
+let img = new Image(), tile = new Image();
+function drawSprite() {
+  const canvas = document.getElementById("sprite");
+  const destW = FRAME_W * state.scale, destH = FRAME_H * state.scale;
+  // upscale into the backing store with nearest neighbour, then 1:1 in CSS,
+  // so the pixels on screen are exactly `scale` device pixels wide
+  canvas.width = destW; canvas.height = destH;
+  canvas.style.width = destW + "px"; canvas.style.height = destH + "px";
+  ctx = canvas.getContext("2d"); ctx.imageSmoothingEnabled = false;
+  ctx.clearRect(0, 0, destW, destH);
+  ctx.drawImage(img, state.frame * FRAME_W, 0, FRAME_W, FRAME_H, 0, 0, destW, destH);
+  document.getElementById("meta").dataset.frame = state.frame;
+  document.getElementById("meta").dataset.buffer = destW + "x" + destH;
+}
+function step() {
+  state.frame = (state.frame + 1) % FRAME_COUNT;
+  drawSprite();
+  timer = setTimeout(step, state.frameTime);
+}
+let timer = null;
+img.onload = () => { drawSprite(); timer = setTimeout(step, state.frameTime); };
+tile.onload = () => {
+  tctx.drawImage(tile, 0, 0);            // 1:1 into the 48x48 backing store; CSS does the 8x
+};
+function setScale(n) { state.scale = Math.floor(n); drawSprite(); }
+document.getElementById("s1").onclick = () => setScale(1);
+document.getElementById("s2").onclick = () => setScale(2);
+document.getElementById("s3").onclick = () => setScale(4);
+document.getElementById("s5").onclick = () => setScale(8);
+document.getElementById("tSlow").onclick = () => { state.frameTime = 400; };
+document.getElementById("tIdle").onclick = () => { state.frameTime = 260; };
+document.getElementById("tFast").onclick = () => { state.frameTime = 150; };
+img.src = SHEET; tile.src = TILE;
+</script></body></html>

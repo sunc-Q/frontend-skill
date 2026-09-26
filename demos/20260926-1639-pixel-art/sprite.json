@@ -1,0 +1,68 @@
+{
+ "frames": 4,
+ "tile_dither_rows": [
+  7,
+  8,
+  9,
+  10
+ ],
+ "frame_px": [
+  32,
+  32
+ ],
+ "frame_time_ms": 260,
+ "palette": {
+  "hat": [
+   "#3f1812",
+   "#9d2529",
+   "#d16177",
+   "#e3bfcc"
+  ],
+  "skin": [
+   "#3f3612",
+   "#9d7125",
+   "#d19561",
+   "#e3cabf"
+  ],
+  "coat": [
+   "#122a3f",
+   "#25799d",
+   "#61c2d1",
+   "#bfe3e2"
+  ],
+  "pants": [
+   "#33123f",
+   "#67259d",
+   "#8c61d1",
+   "#c7bfe3"
+  ],
+  "gray": [
+   "#141414",
+   "#606876",
+   "#c2bbae"
+  ]
+ },
+ "outline": {
+  "dark": "#141414",
+  "mid": "#606876",
+  "lit": "#c2bbae"
+ },
+ "files": {
+  "sprite-sheet.png": 604,
+  "sprite-idle-4x.png": 1856,
+  "frame0.png": 323,
+  "frame0@8x.png": 1381,
+  "frame1.png": 318,
+  "frame1@8x.png": 1378,
+  "frame2.png": 317,
+  "frame2@8x.png": 1360,
+  "frame3.png": 318,
+  "frame3@8x.png": 1378,
+  "tile-16.png": 141,
+  "tile-variant-b-16.png": 151,
+  "tile-3x3@8x.png": 2583,
+  "tile-3x3.png": 228,
+  "palette-card.png": 699
+ },
+ "unique_colors_rgba_nonspecific": 15
+}
