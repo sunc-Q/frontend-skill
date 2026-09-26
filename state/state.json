@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-26T12:32+08:00",
+ "updated": "2026-09-26T13:05+08:00",
  "tried": [
   {
    "skill": "drafter",
@@ -166,6 +166,17 @@
    "installed_by_this_task": [
     "shader -> /Users/apple/.qoder-cn/skills/shader（经 mcp__extension-market__install_extension，本轮唯一全局安装项）"
    ]
+  },
+  {
+   "skill": "canvas-design",
+   "source": "GitHub anthropics/skills（第3轮 SSH 浅克隆已在盘上：LAB/.skills/anthropic-skills/skills/canvas-design，本轮零下载零安装）",
+   "skill_path": ".skills/anthropic-skills/skills/canvas-design/SKILL.md",
+   "task": "按它自己的两步流程：先写「Interval Cartography」设计宣言（4-6段，命名运动+配给制调色+三层视距），再把本演示场自身（每30分钟醒一次的注意力、13次计时观测）表达成一张 1650×2340 单页 PNG 图版：24h 表盘+48 个半小时刻度+13 条时长同心弧（弧长∝秒，满量程308°）+手工分号的 30 中心盘+底部 13 行分钟格账本",
+   "verdict": "留用（推荐）。历轮唯一强制「先立美学纲领再动手」的技能，宣言里的配色配给/三层视距直接决定了出图，确实比随手排版克制；零脚本零网络→安全闸门天然通过，canvas-fonts 25 家族是白送资产。局限：不给任何可执行版式校验，「不得重叠/不得出界」全靠自写像素断言兜底。",
+   "time": "2026-09-26T13:05+08:00",
+   "artifact": "demos/20260926-1305-canvas-design/plate-iv-interval-cartography.png",
+   "report": "reports/20260926-1305-canvas-design.md",
+   "installed_by_this_task": []
   }
  ],
  "skills_seen": [
@@ -515,14 +526,20 @@
    "url": "",
    "status": "candidate",
    "note": "pixel-office 要拉代码+起服务（重）；slides-as-code 要 Slidev/Marp npm 链；pixel-perfect 是 58 套设计规范文档（产物仍是 HTML，与已做 3 类重叠）。"
+  },
+  {
+   "name": "canvas-design",
+   "source": "GitHub anthropics/skills",
+   "status": "installed_used — 本轮已用并留用，勿再选",
+   "url": "https://github.com/anthropics/skills"
   }
  ],
  "in_progress": null,
  "next_candidates": [
+  "来源②零成本备选（anthropic-skills 已在盘上）：theme-factory（10 套主题→给既有产物换皮）、brand-guidelines、mcp-builder（产物=代码工程，换类）、slack-gif-creator、doc-coauthoring、frontend-design、web-artifacts-builder",
   "来源①新词根：calendar / diff / regex / map / maze / font（search_extensions 参数 query 用单个英文词根）",
   "来源①同类可续：majiayu000-shader-creator（交互式参数着色器，本轮已验证 WebGL 取证管线，成本最低）",
   "来源③本机已装未试：golang-gin-api（goproxy.cn 通路仍未实测）、golangci-lint-strict、frontend-development、nodejs-best-practices、express-nodejs-expert、Golang-Backend-Development",
-  "来源②零成本备选（LAB/.skills/anthropic-skills 已在盘上）：canvas-design（Pillow 已证可 pip --target 装）、theme-factory、brand-guidelines、mcp-builder（产物=代码工程，换类）、slack-gif-creator",
   "（方法学沿用）本轮新增：⑧ 乘性/径向项要用「规约探针」隔离测量，别在纹理背景上做环平均；⑨ 行为断言与 golden 像素哈希互补，缺一即有等价变异漏网；⑩ Node 脚本里 import.meta.url 必须过 fileURLToPath"
  ],
  "used_artifact_kinds": [
@@ -539,7 +556,8 @@
   "端到端回归测试产物：真 PNG 截图 4+2 张（含「两张同哈希＝滑杆失灵」的铁证）+ 16 条断言三套运行日志 + p5 downloadPNG() 捕获落盘的 1200×1200 / 2,023,119B 原始 PNG + 服务端访问日志证据链 ×1",
   "原生可编辑 Word 文档 .docx（52KB：TOC/PAGE 真域 + 3 条批注含回复线程 + 2 组 <w:ins>/<w:del> 修订 + 内嵌 PNG 图表；经技能自带 XSD/redlining 校验 + 48 条独立断言 + python-docx 二次解析三关）×1",
   "可打印 PDF 文档 ×1（3 页中文报告 99KB：reportlab 生成 + pypdf 水印/双口令加密 + pdfplumber 回读 24 断言 + qlmanage 真渲染 PNG；含 12 行表格与 11 柱手绘条形图，柱高与秒数成正比经 rects 几何验证）",
-  "WebGL/GLSL 片元着色器单文件 HTML（13,962B，零外链，file:// 即跑；5 个 uniform 全接滑杆 + 冻结/定尺寸取帧）+ 系统 Chrome swiftshader 真渲染 PNG 2 张 + 15 条像素断言（含 speed=0 差值精确为 0 的反证、规约探针实测 1.4076 vs 解析 1.4075）+ 7/7 双变异日志 + golden-pixels.json ×1"
+  "WebGL/GLSL 片元着色器单文件 HTML（13,962B，零外链，file:// 即跑；5 个 uniform 全接滑杆 + 冻结/定尺寸取帧）+ 系统 Chrome swiftshader 真渲染 PNG 2 张 + 15 条像素断言（含 speed=0 差值精确为 0 的反证、规约探针实测 1.4076 vs 解析 1.4075）+ 7/7 双变异日志 + golden-pixels.json ×1",
+  "原创视觉艺术 PNG 图版（1650×2340 / 485,901B，Pillow 纯绘制：15万点纤维噪声+工程网格+高斯暗角+24h表盘13条时长弧+分钟格账本）+ 设计宣言 .md；16 条像素断言（分钟格逐格数回台账、朱红弧实测307.8°、出血位零墨、脚注恰8词隙）+ 变异负对照（改 1080s→600s 使 B2/B3 变红）×1"
  ],
  "environment_notes": [
   "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
@@ -631,7 +649,12 @@
   "页面里做「重新编译并替换 program」的钩子时，必须同步更新对外暴露的源码引用（__shaderFragSource），否则变异体下的派生探针读到的仍是基线源码 → 假存活。",
   "双变异在 GPU 产物上的分工（本轮实测）：t=0 操作点上 `uTime*uSpeed`→`uTime` 的变异 golden 哈希抓不到（数值等价），只有行为断言抓到；反之单条域扭曲通路归零，聚合的 uWarp 响应断言仍绿，只有 golden 像素哈希抓到。→ 行为断言 + golden 哈希两套都要有。",
   "extension-market 的 origin:skillatlas 条目本轮（第 14 轮）再次一次装成（shader）；tags 为空的条目也可靠。安装仍走 Full Access 免确认。",
-  "收尾核查数值：LAB 37,516KB（含 .skills 16MB 未入库）、本轮 demos 2.4MB（限 5MB）、磁盘可用 17,664,700KB≈16.9GiB、零新增监听端口、误建的 %E8%AF%95%E9%AA%8C 假目录已删（find 复核为 0）。日志文件名坑：LAB/.gitignore 的 *.log 只放行 !demos/**/output.log，所以每轮的 CLI/断言/变异输出要合并成 demos/<轮>/output.log 才会入库（本轮首提交漏了 3 个日志，合并后补交）。"
+  "收尾核查数值：LAB 37,516KB（含 .skills 16MB 未入库）、本轮 demos 2.4MB（限 5MB）、磁盘可用 17,664,700KB≈16.9GiB、零新增监听端口、误建的 %E8%AF%95%E9%AA%8C 假目录已删（find 复核为 0）。日志文件名坑：LAB/.gitignore 的 *.log 只放行 !demos/**/output.log，所以每轮的 CLI/断言/变异输出要合并成 demos/<轮>/output.log 才会入库（本轮首提交漏了 3 个日志，合并后补交）。",
+  "Pillow 缺字形静默丢字：font.getbbox(ch) 高度为 0 = 该字体无此字形（Jura 全系无 U+2032 ′），Pillow 既不报错也不画豆腐块 → 落笔前先量 bbox，缺的字形改手工画（本轮把分号画成 5px 斜线，反而更贴技能「把字体带上画布」的取向）。",
+  "per-char 排字会杀死 italic 字距：为做 tracking 而逐字 d.text() 时，InstrumentSerif-Italic 词内出现 6–10px 空洞（缩略图上像「sam e distance」）。连读句子一律整串 anchor=\"mm\"；只有几何式大标题才用 tracking。抓它的断言＝按阈值数词隙（本轮期望 9 词 8 隙）。",
+  "Pillow 画弧后再用同半径 ellipse(outline=底色) 画参考圆，会把宽弧从正中间擦掉：沿精确半径采样只测到 92.9°/308°（假阴性）。取证采样半径要偏移（本轮 R-3.2），或参考圆别与数据弧同半径。",
+  "暗角/渐晕合成后「出血位有无 artwork」不能用「比纯纸暗」判据（暗角本身让边缘变暗，实测 485 假命中）；要用墨色绝对阈值 sum<300。",
+  "py3.14 装 Pillow 一次成功：python3 -m pip install --target .tmp/xxx Pillow -i https://mirrors.aliyun.com/pypi/simple/（约30秒，12.3.0），产物目录零 node_modules。"
  ],
  "runs": [
   {
@@ -814,6 +837,16 @@
    "installed_by_this_task": [
     "shader (/Users/apple/.qoder-cn/skills/shader)"
    ]
+  },
+  {
+   "time": "2026-09-26T13:05+08:00",
+   "skill": "canvas-design",
+   "result": "成功（留用·推荐）。verify_plate.py 16 PASS / 0 FAIL；分钟格逐行数回 [24,21,19,18,15,15,13,13,12,10,10,9,7] 与 state.json 现场换算完全相等；朱红最长弧实测 307.8°（期望308）；负对照（把 shader 1080s 改成 600s 重画）→ B2/B3 双红，证明断言可失败；主产物 plate-iv-interval-cartography.png 485,901B",
+   "seconds": 1500,
+   "artifact_size": "本轮 demos 1.3MB（限5MB）：主图486KB+预览340KB+证据裁剪16KB+5个OFL字体452KB+脚本12KB+宣言3.5KB+日志",
+   "cleanup": "删 .tmp/pylibs15(Pillow)+.tmp/mut15(变异件)+.tmp/pip15.log+2张中间裁剪图；零进程零监听；全局缓存未动",
+   "push": "待回填",
+   "notes": "全局副作用=无（复用第3轮克隆的 anthropics/skills，零下载零安装）。产物类型换到「纯美术 PNG 图版」，历轮第一个无代码视觉成品。"
   }
  ]
 }

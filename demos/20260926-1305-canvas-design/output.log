@@ -1,0 +1,25 @@
+PASS  A1 dimensions 1650x2340 RGB  | 1650x2340 RGB
+PASS  A2 file is a real PNG >= 200KB  | 485901 bytes
+PASS  A3 ink coverage 1.5%-35% (a clinical plate, not blank / not a black hole)  | frac=0.049
+PASS  A4 vermilion (the finding) present and rationed <6% of field  | n=5366
+PASS  A5 teal (the method) present and rationed <12% of field  | n=8013
+PASS  A6 top/bottom bleed rows carry no artwork  | bad=0
+PASS  A7 left bleed column carries no artwork  | bad=0
+PASS  A8 prime separated from the digits by a real gap  | cols=737..846 gaps=[13, 14]
+PASS  A9 prime is right of the digits and inside the disc (x<905)  | rightmost teal x=846
+PASS  A10 caption: exactly 8 word gaps for 9 words, no intra-word holes  | gaps=8 [6, 7, 8, 9, 7, 10, 8, 9]
+PASS  A11 caption centred on the dial axis and inside the margins  | x=405..1246 w=841
+PASS  B1 one ledger row per timed observation  | rows=13
+PASS  B2 minute-bars match state.json exactly  | got=[24, 21, 19, 18, 15, 15, 13, 13, 12, 10, 10, 9, 7] want=[24, 21, 19, 18, 15, 15, 13, 13, 12, 10, 10, 9, 7]
+PASS  B3 rows non-increasing with ties allowed (900s occurs twice)  | [24, 21, 19, 18, 15, 15, 13, 13, 12, 10, 10, 9, 7]
+PASS  B4 runtime labels match (24:00 for the 1440s round)  | [24, 21, 19]
+PASS  B5 longest arc spans ~300-308 deg (scale end-to-end)  | span=307.8 deg
+
+16 PASS / 0 FAIL  |  observations=13
+
+=== NEGATIVE CONTROL (mutation): re-render claiming shader=600s while state.json says 1080s ===
+--- command: PYTHONPATH=.tmp/pylibs15 python3 .tmp/mut15/mut.py && python3 .tmp/mut15/ver.py (ver.py pointed at the mutant PNG) ---
+FAIL  B2 minute-bars match state.json exactly  | got=[24, 21, 19, 10, 15, 15, 13, 13, 12, 10, 10, 9, 7] want=[24, 21, 19, 18, 15, 15, 13, 13, 12, 10, 10, 9, 7]
+FAIL  B3 rows non-increasing with ties allowed (900s occurs twice)  | [24, 21, 19, 10, 15, 15, 13, 13, 12, 10, 10, 9, 7]
+14 PASS / 2 FAIL  |  observations=13
+(B2/B3 go red on the mutant, green on the shipped plate -> the data-fidelity checks can actually fail)
