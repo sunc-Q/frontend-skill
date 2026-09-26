@@ -1,0 +1,164 @@
+
+########## 1. facts (read-only: state.json + demos/*/output.log) ##########
+facts.json written: rounds=11 demoBytes=7512695 minutes=[7,10,19,13,10,15,24,null,12,9,13]
+ r01 drafter                 18575B  PASS-in-log=34 FAIL-in-log=4
+ r02 ascii-project-dashboard 23427B  PASS-in-log=20 FAIL-in-log=6
+ r03 algorithmic-art         1030274B  PASS-in-log=20 FAIL-in-log=0
+ r04 SQLite-Database-Expert  320977B  PASS-in-log=14 FAIL-in-log=1
+ r05 ppt-generator           86628B  PASS-in-log=14 FAIL-in-log=0
+ r06 graphic-gif             168889B  PASS-in-log=27 FAIL-in-log=1
+ r07 build-game              1054934B  PASS-in-log=24 FAIL-in-log=1
+ r08 sec-audit-cn            431559B  PASS-in-log=0 FAIL-in-log=0
+ r09 xlsx                    69971B  PASS-in-log=54 FAIL-in-log=2
+ r10 golang-testing          52887B  PASS-in-log=34 FAIL-in-log=11
+ r11 webapp-testing          4254574B  PASS-in-log=44 FAIL-in-log=10
+
+########## 2. chart.png via system Chrome headless CLI ##########
+33756 bytes written to file /Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1105-docx/chart.png
+
+########## 3. base.docx with docx-js ##########
+base.docx 48557 bytes
+
+########## 4. skill's own validator on base.docx ##########
+
+Paragraphs: 112
+All validations PASSED!
+
+########## 5. A/B control — comments + tracked changes patched with the NAIVE regex ##########
+markers [0, 1] anchored on paragraph containing '11 轮全部产出'
+markers [2] anchored on paragraph containing '交付物中约九成字节'
+tracked del/ins on '该缺陷由第 8 轮安全审计判为「高」，处置方式为在产物旁保留 integrity-manifest 并在下一轮补入 sha256 清单。'
+tracked del/ins on '本轮同类风险已在第 6 轮真实发生。'
+document.xml now 57476 bytes
+FAILED - Found 2 deletion validation violations:
+  word/document.xml: Line 1: <w:t> found within <w:del>: '交付物中约九成字节为单行内联的第三方库，且产物内无可机检来源，推送后无法自证上游版本；'
+  word/document.xml: Line 1: <w:t> found within <w:del>: '市场镜像技能包存在只搬 SKILL.md、丢 scripts 与 references 的情况，'
+
+Paragraphs: 112 → 112 (0)
+validate.py exit=1 (1 = it reported the nested-run defect, which is the point of this control)
+
+########## 6. final artifact — same pipeline with the fixed regex ##########
+Added comment id=0 (paraId=57D39F38)
+
+Add to word/document.xml (markers must be direct children of w:p, never inside w:r):
+  <w:commentRangeStart w:id="0"/>
+  <w:r>...</w:r>
+  <w:commentRangeEnd w:id="0"/>
+  <w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="0"/></w:r>
+Added reply id=1 (paraId=6C718A1D)
+
+Nest markers inside parent 0's markers (direct children of w:p, never inside w:r):
+  <w:commentRangeStart w:id="0"/><w:commentRangeStart w:id="1"/>
+  <w:r>...</w:r>
+  <w:commentRangeEnd w:id="1"/><w:commentRangeEnd w:id="0"/>
+  <w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="0"/></w:r>
+  <w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="1"/></w:r>
+Added comment id=2 (paraId=1BECBC78)
+
+Add to word/document.xml (markers must be direct children of w:p, never inside w:r):
+  <w:commentRangeStart w:id="2"/>
+  <w:r>...</w:r>
+  <w:commentRangeEnd w:id="2"/>
+  <w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="2"/></w:r>
+markers [0, 1] anchored on paragraph containing '11 轮全部产出'
+markers [2] anchored on paragraph containing '交付物中约九成字节'
+tracked del/ins on '该缺陷由第 8 轮安全审计判为「高」，处置方式为在产物旁保留 integrity-manifest 并在下一轮补入 sha256 清单。'
+tracked del/ins on '本轮同类风险已在第 6 轮真实发生。'
+document.xml now 57041 bytes
+
+########## 6b. repair docx-js's dangling style table (validator is syntax-only and misses it) ##########
+styles.xml 6590 bytes | defined 21 | dangling references: none | dangling basedOn/link: none
+
+Paragraphs: 112 → 112 (0)
+All validations PASSED!
+validate.py exit=0
+
+########## 7. independent assertions (not the skill's checker) ##########
+PASS A1 12 required parts present 
+PASS A2 no duplicate zip entries / no symlink entries 
+PASS A3 embedded PNG is a real 720x320 image | word/media/6fbe01c9714b3bb1e69055c77c9cad1ac365790d.png 33756B
+PASS A4 chart bytes equal source chart.png 
+PASS A5 four comment parts declared in [Content_Types] 
+PASS A6 relationship Ids unique | 13 rels
+PASS A7 exactly one comments.xml relationship 
+PASS A8 all four comment targets linked 
+PASS B1 2 <w:ins> and 2 <w:del> 
+PASS B2 every w:del holds delText only, never w:t 
+PASS B3 every w:ins holds w:t only, never delText 
+PASS B4 no nested run inside a run (the defect docx-js produced in the first attempt) 
+PASS B5 4 tracked elements, unique ids, each with author and date on its own tag 
+PASS B6 comment markers 3 start / 3 end / 3 reference, all direct children of w:p 
+PASS C1 rejected view == base text exactly (round-trip lossless) | 2149 vs 2149 chars
+PASS C2 accepted view contains all 3 inserted fragments 
+PASS C3 accepted view lost no unrelated base paragraph | only the two redlined paragraphs may differ
+PASS C4 accepted view drops exactly the deleted text 
+PASS D1 all 11 round skill names survived into the document | missing=[]
+PASS D2 US Letter page size 12240x15840 DXA 
+PASS D3 columnWidths sum == table width (9360) | [700, 2300, 2260, 1000, 1300, 1800]
+PASS D4 every cell carries an explicit DXA width matching the grid | [700, 1000, 1300, 1800, 2260, 2300]
+PASS D5 no literal bullet character anywhere 
+PASS D6 bullets come from numbering with numFmt=bullet 
+PASS D7 shading uses CLEAR, never SOLID 
+PASS D8 footer has PAGE and NUMPAGES fields 
+PASS D9 dot leaders are w:ptab with dot leader (5 KPI lines) 
+PASS D10 no \n inside any w:t 
+PASS D11 TOC is a real field over built-in heading styles | TOC \h \o &quot;1-2&quot;
+PASS D12 7 Heading1 paragraphs so every section lands in the TOC | got 7
+PASS D13 horizontal rule is a paragraph border, not a 1-cell table 
+PASS D14 ImageRun emitted with altText (name/descr/title) and EMU extents | <wp:docPr id="1" name="rounds-duration" descr="第 1-11 轮分钟数与 15 分钟预算线" title="单轮耗时柱状图"/>
+PASS D15 page break before section 2 is inside paragraph props 
+PASS E1 3 comments with author/initials/date 
+PASS E2 authors: 2 reviewers + 1 automation reply | ['评审组', '自动化值守', '评审组']
+PASS E3 commentsExtended mirrors 3 entries 
+PASS E4 exactly one reply, its paraIdParent points at a real comment paragraph | [None, '57D39F38', None]
+PASS E5 marker ids and comment ids match exactly (no dangling anchor) | doc=[0, 1, 2] part=[0, 1, 2]
+PASS E6 commentsIds gives every paragraph a durableId 
+PASS E7 extensible durableIds cross-link to commentsIds 
+PASS E8 comment text survived escaping (quotes & brackets) 
+PASS G1 no dangling style references (document + comments) | missing=[]
+PASS G2 no dangling basedOn/link targets in styles.xml | missing=[]
+PASS G3 default paragraph + character styles declared with w:default 
+PASS G4 CommentReference exists as a character style 
+PASS G5 styles.xml grew from the repair step only (base.docx still lacks Normal) 
+PASS F1 final is larger than base (satellite parts added) | 48557B -> 52131B
+PASS F2 paragraph count unchanged by redlining (112 in base and final) 
+
+TOTAL 48  PASS 48  FAIL 0
+verify.py exit=0
+
+########## 7b. readable preview (no Word/pandoc/LibreOffice on this box) ##########
+doc-preview.md 6580 bytes, 60 lines
+
+########## 7c. cross-check with a second independent parser (python-docx) ##########
+paragraphs: 38 | tables: 1 | table shape: 12 x 6
+inline images: 1 -> display 5.0 in x 2.22 in | EMU 4572000 2028825
+page: 8.5 x 11.0 in | margins 1.0 1.0
+styled headings: 9
+   Title     Skill 演示场 · 前 11 轮有趣技能验证纪要
+   Heading 1 目录
+   Heading 1 1. 结论摘要
+   Heading 1 2. 逐轮台账
+   Heading 2 2.1 耗时分布
+   Heading 1 3. 交付物类型分布
+   Heading 1 4. 选题与验证纪律
+   Heading 1 5. 风险与处置
+   Heading 1 6. 决议
+last ledger row: ['11', 'webapp-testing', '端到端回归 + 真截图', '13', '44', '4,254,574']
+revision elements seen by python-docx: ins=2 del=2 commentReference=3
+footer field: True | header text: Skill 演示场 · 内部评审纪要
+  probe '97.8% 与 89.2%'              -> False
+  probe '已验证技能数'                     -> True
+  probe '11 轮全部产出'                   -> True
+  probe 'webapp-testing'             -> True
+  probe '图 1'                        -> True
+  probe '第 6 轮与第 12 轮各命中一次'          -> False
+--- what python-docx's .text hides (documented here, not a defect in the file) ---
+  webapp-testing in doc.paragraphs text: False | in table cells: True
+  '97.8% 与 89.2%'                in .text: False | in document XML: True
+  '第 6 轮与第 12 轮各命'               in .text: False | in document XML: True
+  '处置方式为在产物旁保留 in'               in .text: False | in document XML: True
+  deleted-from-accepted-view '该缺陷由第 8 轮安全审计判为「高」，处'                   -> True
+  deleted-from-accepted-view '本轮同类风险已在第 6 轮真实发生。'                     -> True
+
+########## 8. cleanup ##########
+kept: ab_docxjs_textdrop.txt base.docx build.cjs chart.cjs chart.html chart.png doc-preview.md facts.cjs facts.json fix_styles.py node_modules output.log package-lock.json package.json patch_xml.py preview.py readback.py run.sh skill-showcase-review.docx verify.py 

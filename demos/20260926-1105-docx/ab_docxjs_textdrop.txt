@@ -1,0 +1,5 @@
+A/B 证据：docx-js 的 TextRun 同时传 text 与 children 时，只序列化 children，text 静默丢失。
+B 版（缺陷版）document.xml 片段（validate.py 判 "All validations PASSED!"，但正文标签已消失）：
+  <w:r><w:rPr>...</w:rPr><w:ptab w:alignment="right" w:relativeTo="margin" w:leader="dot"/></w:r>
+  —— 该 run 本应携带 "已验证技能数"，`grep -c 已验证技能数 word/document.xml` = 0（全文 5 个 dot-leader 标签同批蒸发）
+A 版（修复）：把 PositionalTab 单独放进一个不带 text 的 run，标签文字与数值各占一个 run。

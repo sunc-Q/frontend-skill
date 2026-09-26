@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-26T10:54+08:00",
+ "updated": "2026-09-26T11:26+08:00",
  "tried": [
   {
    "skill": "drafter",
@@ -130,6 +130,17 @@
    "time": "2026-09-26T10:50+08:00",
    "artifact": "demos/20260926-1037-webapp-testing/download-golden.png（2,023,119B / 1200x1200 真 PNG，由页面自己的 downloadPNG() 经 Playwright 捕获落盘，sha256 9740465f…66e7513，四次运行同摘要）+ shots/ 4 张 golden 画布截图 + shots-mutant-wiring/ 2 张（同哈希铁证）+ output.log（三套 16 断言原文 + 服务端 404 日志 + A/B + 哈希对照）+ result-*.json ×3",
    "report": "reports/20260926-1037-webapp-testing.md",
+   "installed_by_this_task": []
+  },
+  {
+   "skill": "docx",
+   "source": "来源②本地已有：git@github.com:anthropics/skills.git（第3轮 shallow+sparse clone）→ LAB/.skills/anthropic-skills/skills/docx —— 本轮技能包零下载零安装，未碰全局技能目录；依赖 docx(npm 9.7.2, npmmirror) + defusedxml/lxml/python-docx(pip --target LAB/.tmp/pylibs, 清华失效改阿里源)",
+   "skill_path": "LAB/.skills/anthropic-skills/skills/docx/SKILL.md（91 行 + scripts/ 21 文件 + 1.2MB XSD）",
+   "task": "按它设计意图做一份真 Word 交付物：docx-js 建纪要（TOC 域/页码域/双宽度表格/内嵌 PNG/点前导）→ 它的 comment.py 打 3 条批注（含 1 条回复线程）→ 按「Editing existing documents」手工写 <w:ins>/<w:del> 做 2 处修订 → 再用自补的 fix_styles.py 修 docx-js 留下的悬空样式表",
+   "verdict": "留用（推荐）。第 12 轮里实现层最完整（21 个脚本真在包里）且每条 gotcha 可证伪；真正值得留的是 comment.py（6 个互链部件一次写对）与 validate.py --author（能抓 <w:t> 混进 <w:del>）。但它强制的 soffice+pdftoppm+pandoc 目视闭环在本机三缺一律不可用，必须换成「OOXML 断言 + 第二解析器回读 + 文本预览」三件套",
+   "time": "2026-09-26T11:05+08:00",
+   "artifact": "demos/20260926-1105-docx/skill-showcase-review.docx（52,131B，含 3 条批注线程 + 2 组修订 + TOC/PAGE 域 + 1 张内嵌图表；对照件 base.docx 48,557B）",
+   "report": "reports/20260926-1105-docx.md",
    "installed_by_this_task": []
   }
  ],
@@ -432,17 +443,29 @@
    "url": "",
    "status": "working_source",
    "note": "**打开 Python 生态的门，推翻历轮「依赖 pip 的技能先当不可用」**：`python3 -m pip install --target LAB/.tmp/pylibs --no-cache-dir --index-url https://mirrors.aliyun.com/pypi/simple playwright` → playwright 1.63.0（含 greenlet/pyee）**6.1 秒**；随后 `chromium.launch(headless=True, executable_path='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', args=['--no-sandbox','--disable-gpu','--hide-scrollbars'])` —— **绝不要跑 `playwright install`**（浏览器 CDN 被 TLS 重置）。目录 140MB，收尾删。→ canvas-design / slack-gif-creator / pdf-* 全家桶 / docx 等候选全部重开。"
+  },
+  {
+   "name": "docx (anthropics/skills)",
+   "source": "LAB/.skills/anthropic-skills/skills/docx",
+   "status": "installed_used — 第12轮已用并留用，勿再选"
+  },
+  {
+   "name": "系统 Chrome 无头 CLI 直出 PNG（环境能力，非技能）",
+   "source": "/Applications/Google Chrome.app --headless=new --screenshot --window-size --virtual-time-budget",
+   "status": "working_source"
+  },
+  {
+   "name": "canvas-design / theme-factory / brand-guidelines / mcp-builder / pdf / slack-gif-creator / skill-creator（anthropics/skills 其余未试）",
+   "source": "LAB/.skills/anthropic-skills/skills/",
+   "status": "candidate（办公文档三形态 pptx/xlsx/docx 已齐，按 used_artifact_kinds 规则下轮换类）"
   }
  ],
  "in_progress": [],
  "next_candidates": [
-  "★来源②未试：anthropics/skills 的 **docx**（Word 文档生成，第5/9轮已验证 openpyxl/python-pptx 路线，本轮又打通 pip → 门槛大降）——产物 .docx 是一类新东西（办公文档第二形态），依赖 python-docx（纯 python 包，pip 镜像秒装）",
-  "★anthropics/skills 的 **canvas-design**（设计画布→PNG/PDF，需 Pillow）——第11轮 pip 路线打通后 Pillow 已不再是拦路虎；产物是视觉类，但注意与第6轮 GIF / 第3轮生成艺术同类",
-  "theme-factory（给既有产物套 10 套主题，纯提示词零依赖）——但产物类型会退化成 HTML，与第1/3轮同类，优先级低于 docx",
-  "diegosouzapw-2000s-visualization-expert（official_koPDvcdI，WebGL+Web Audio FFT 音乐可视化）——现在可用 Python Playwright + 系统 Chrome 真出帧，自造 WAV 喂 AnalyserNode；仍是「音频驱动视觉」这一类新产物",
-  "golang-gin-api（本机已装）× 最小 Gin REST 服务 + httptest 表驱动测试 —— goproxy.cn 通路至今未实测；**服务生命周期可直接借 webapp-testing 的 with_server.py 托管**（第11轮已验证）",
-  "市场未探词根：'maze' / 'regex' / 'cron' / 'diff' / 'calendar' / 'font' / 'shader' / 'pixel-art' / 'docx' / 'word'（search_extensions 参数名 query，单个英文词根最有效）",
-  "（方法学沿用）双变异自证 + 「侦察快照取期望值，别写死默认值」+ 「网络卫生断言必须同时看服务端访问日志」"
+  "换产物类：来源①新词根 'regex' / 'calendar' / 'shader' / 'pixel-art' / 'diff'（search_extensions 参数名 query，单个英文词根最有效；tags 空的非镜像条目包格式更可靠，但 origin:skillatlas 也已两次一次装成，别按 origin 预判）",
+  "LAB/.skills/anthropic-skills/skills/ 里未试且零安装的：canvas-design（Pillow 现在秒装）、theme-factory、brand-guidelines、pdf（PDF 是又一类新产物，但本机无 poppler/pandoc，需自证可渲染性）、skill-creator、mcp-builder",
+  "本机已装未试：golang-gin-api × 最小 Gin 服务 + httptest（goproxy.cn 通路仍未实测；服务生命周期可借第11轮 with_server.py）",
+  "（方法学沿用）第12轮新增两条：④ 生成类产物必须断言「期望文字真的在文档里」（防库静默丢内容）；⑤ 有第二解析器就用它交叉回读，悬空引用/静默降级只有它抓得到"
  ],
  "used_artifact_kinds": [
   "单文件自包含 HTML 图表（工程图纸）×1",
@@ -455,7 +478,8 @@
   "分级安全审计报告 .md（OWASP 对齐，13 条有效发现/18 条误报分诊）+ findings.json 规则命中 + 3 组黑盒 PoC 前后对照 output.log + integrity-manifest.json（sha256 自证）+ 已回归的修复件 query.fixed.mjs ×1",
   "可重算 Excel 工作簿 .xlsx（15,360B：3 sheet / 98 个活公式 / 原生 chart1.xml 柱状图 / 25 条批注；用第三方公式引擎 formulas 重算并与 Python 独立重算逐格比对，49 断言全绿）×1",
   "Go 测试工程产物：ASCII 迷宫 .txt（24x12 / 解 225 步，肉眼可核对）+ go test -v 真实日志 output.log（29 PASS / 4 故意 FAIL 的双变异）+ go tool cover 逐函数覆盖率 73.3% + coverage.html 可打开着色页 + 4 行基准数据 + 3 个 golden 文件 ×1",
-  "端到端回归测试产物：真 PNG 截图 4+2 张（含「两张同哈希＝滑杆失灵」的铁证）+ 16 条断言三套运行日志 + p5 downloadPNG() 捕获落盘的 1200×1200 / 2,023,119B 原始 PNG + 服务端访问日志证据链 ×1"
+  "端到端回归测试产物：真 PNG 截图 4+2 张（含「两张同哈希＝滑杆失灵」的铁证）+ 16 条断言三套运行日志 + p5 downloadPNG() 捕获落盘的 1200×1200 / 2,023,119B 原始 PNG + 服务端访问日志证据链 ×1",
+  "原生可编辑 Word 文档 .docx（52KB：TOC/PAGE 真域 + 3 条批注含回复线程 + 2 组 <w:ins>/<w:del> 修订 + 内嵌 PNG 图表；经技能自带 XSD/redlining 校验 + 48 条独立断言 + python-docx 二次解析三关）×1"
  ],
  "environment_notes": [
   "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
@@ -531,7 +555,12 @@
   "第11轮：Playwright 三个 API 细节 —— (1) page.fill() 对 input[type=number] 抛 `Cannot type text into input[type=number]`，要改 el.value + dispatch_event('change')；(2) page.evaluate 里 JS 箭头函数**解构实参必须加括号** `([a,b]) => {}`，漏括号是 `Malformed arrow function parameter list` 且整轮中断；(3) locator().screenshot() 量的是 CSS 显示盒（≤1000px）而非 canvas 原始分辨率，原始分辨率要另走 download/save 捕获。",
   "第11轮：**「同哈希截图」是判定「控件失灵/未重绘」的最硬证据**，比像素统计五元组更省话——本轮 mutant_wiring 的 02→03 两张 PNG sha256 完全相同，而 golden 两者不同。元素级截图（无侧栏噪声、单张 300-460KB）适合直接入 git 当证据。",
   "第11轮：变异测试的「级联」要预告而非当 bug —— nextSeed 算术清零这一条变异同时让 G10（非法种子回滚）红，因为种子已漂移到别的值、断言的期望值不再成立。判故障范围看**哪些断言仍绿**（mutant_wiring 的 G7/G8/G9 全绿才是它定位成功的证据），不能只数红条。",
-  "磁盘开工水位：可用 17,907,872 KB ≈ 17.1 GiB（>1.5 GiB 阈值）；收尾 17,795,988 KB ≈ 17.0 GiB。本轮 demos 4.0MiB（限 5MB），LAB 收尾 26MB（含 .skills 16MB 与 .tmp 未入库）。"
+  "磁盘开工水位：可用 17,907,872 KB ≈ 17.1 GiB（>1.5 GiB 阈值）；收尾 17,795,988 KB ≈ 17.0 GiB。本轮 demos 4.0MiB（限 5MB），LAB 收尾 26MB（含 .skills 16MB 与 .tmp 未入库）。",
+  "★第12轮：出图不必依赖 playwright —— `\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --hide-scrollbars --virtual-time-budget=2500 --window-size=WxH --default-background-color=FFFFFFFF --screenshot=out.png file://abs.html` 直接产出精确 W×H 的 PNG（本轮 33,756B / 720×320，中文与 SVG 文字正常）。只需要一张图时优先用这条，比装 13MB(playwright-core)/140MB(playwright) 划算。",
+  "第12轮：docx-js（npm docx 9.7.2）两个静默坑 —— (1) `new TextRun({text, children})` 只序列化 children，**text 整段丢失且技能自带 validate.py 全绿**；PositionalTab(点前导) 要单独占一个不带 text 的 run。(2) 它生成的 styles.xml **不定义 Normal / DefaultParagraphFont** 却让样式 basedOn 它们 → 无 pStyle 的段落被 python-docx 解析为 style=None（17/38 段）。XSD 校验查不出悬空样式引用，必须另加「引用集合 ⊆ 定义集合」的断言。",
+  "第12轮：`<w:ins>/<w:del>` 手工修订三条纪律 —— (a) 单行 XML 上 `<w:rPr>.*?</w:rPr>` 会跨 run 吞掉前一个 run，把上一句的 <w:t> 搬进 <w:del>（validate.py --author 正好抓得到），要用 tempered 模式 `(?:(?!</w:rPr>).)*?`；(b) 修订 id 必须全局唯一，而 **validate.py 不查唯一性**，靠自写断言；(c) 验收要用「拒绝全部修订后的正文 == 原件逐字符相等」+「接受视图只多出/只少掉预期的那几段」双向不变量，这才是 Word 真显示的东西。",
+  "第12轮：python-docx 的 `paragraph.text` **不含 <w:ins>/<w:del> 内的文字**，也不含表格段落（`.tables` 才有）；用它写探针前先分清「文件坏」与「API 口径」。技能要求的 soffice / pdftoppm / pandoc 本机三缺，「渲染出来亲眼看」不可用 → 替代三件套：document.xml 顺序导出的文本预览 + OOXML 断言 + 第二解析器回读。",
+  "无人值守流水线里若要跑「故意做坏的 A/B 对照」，run.sh 不能用 `set -e`（会在负样本处直接终止），改 `set -uo pipefail` + 显式记 `exit=$?`。另外 pip 阿里源装 defusedxml+lxml+python-docx 共 14MB/数秒，Pillow 16MB（python-docx 的 image 探针需要它，本轮未用故卸载）。"
  ],
  "runs": [
   {
@@ -679,6 +708,17 @@
    "cleanup": "删 .tmp/pylibs(140MB playwright) + .tmp/serve(5.7MB 变异副本) + 4 个重复下载的 PNG + shots-mutants 冗余；技能包零安装（clone 早在第3轮）；未起任何常驻服务，8137/8138/8139/8141/8142/8151/8152 全部回收（lsof 复核零监听）；全局缓存未动",
    "push": "已推送：git push origin skill-showcase 成功（ce59cc4..0e7a685，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 ce59cc4 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(c9e0541) / go-gin_react(b8fe3fd) 未触碰（与第10轮记录的同值），crypto-forecast 远端不存在（未创建）；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token（staged diff 按凭据形状 ghp_/github_pat_/AKIA/sk-/PRIVATE KEY/password=/token= 扫过，2 处命中全是历史 work-log 里描述该扫描手法的散文，非凭据）",
    "notes": "第11轮=第一个自带可用实现层脚本的技能（with_server.py 单/双服务都可靠，客户端崩了也清理干净）。最大环境增量：Python Playwright + 系统 Chrome 路线打通（不需下载浏览器）→ 依赖 pip/Pillow 的候选重新变为可选。最大方法学增量：Playwright 看不见 favicon 类浏览器级请求，网络卫生断言必须收服务端访问日志。"
+  },
+  {
+   "time": "2026-09-26T11:05+08:00",
+   "skill": "docx",
+   "result": "成功（留用·推荐）。产物 demos/20260926-1105-docx/skill-showcase-review.docx 52,131B；技能自带 validate.py 对 base 与终稿各 1 次 PASS、对故意做坏的 A/B 件 FAIL（2 条 deletion violations）；独立断言 verify.py 48 PASS / 0 FAIL；python-docx 第三只眼回读 38 段/12×6 表/1 内嵌图/8.5×11in 全对；关键不变量「拒绝全部修订后的正文与 base 逐字符相等 2138 vs 2138」",
+   "seconds": 1260,
+   "artifact_size": "本轮 demos 224KB（docx 52,131B + base 48,557B + chart.png 33,756B + output.log 9.6KB + 8 个复现脚本），限 5MB",
+   "cleanup": "删 node_modules(10MB docx npm) + package-lock.json + LAB/.tmp/pylibs(14MB defusedxml/lxml/python-docx + 曾试装又卸载的 Pillow 16MB) + /tmp/r12-run.log + demos 内 .ab/ 与 unpacked/ 与未用的 chart.cjs；known_hosts 保留（gitignored）；未起任何服务，零新增监听；兄弟实验室文件未动",
+   "push": "待补（见下）",
+   "notes": "三条环境级增量：(1) Chrome 无头 CLI 免 playwright 直接出图；(2) docx-js 的 TextRun({text,children}) 静默丢 text，且 validate.py 全绿 → 生成类产物必须断言期望文字真在文档里；(3) docx-js 不定义 Normal/DefaultParagraphFont 而 basedOn 它们、comment.py 的 CommentReference 无人定义 → 样式引用悬空，XSD 查不出，只有第二解析器(python-docx 返回 style=None)暴露。办公文档三形态齐，下轮换产物类。",
+   "installed_by_this_task": []
   }
  ]
 }

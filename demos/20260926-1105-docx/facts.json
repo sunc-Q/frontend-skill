@@ -1,0 +1,147 @@
+{
+ "generated": "2026-09-26 11:25（本地 UTC+08）",
+ "rounds": 11,
+ "rows": [
+  {
+   "n": 1,
+   "skill": "drafter",
+   "artifact": "HTML 工程图纸",
+   "kind": "html",
+   "minutes": 7,
+   "verdict": "留用",
+   "bytes": 18575,
+   "pass": 34,
+   "fail": 4,
+   "installed": 1
+  },
+  {
+   "n": 2,
+   "skill": "ascii-project-dashboard",
+   "artifact": "ASCII 终端看板",
+   "kind": "txt",
+   "minutes": 10,
+   "verdict": "留用",
+   "bytes": 23427,
+   "pass": 20,
+   "fail": 6,
+   "installed": 1
+  },
+  {
+   "n": 3,
+   "skill": "algorithmic-art",
+   "artifact": "p5 生成艺术",
+   "kind": "html",
+   "minutes": 19,
+   "verdict": "留用",
+   "bytes": 1030274,
+   "pass": 20,
+   "fail": 0,
+   "installed": 0
+  },
+  {
+   "n": 4,
+   "skill": "SQLite-Database-Expert",
+   "artifact": "SQLite FTS5 检索库",
+   "kind": "db",
+   "minutes": 13,
+   "verdict": "留用",
+   "bytes": 320977,
+   "pass": 14,
+   "fail": 1,
+   "installed": 0
+  },
+  {
+   "n": 5,
+   "skill": "ppt-generator",
+   "artifact": "PPTX 幻灯片",
+   "kind": "pptx",
+   "minutes": 10,
+   "verdict": "留用",
+   "bytes": 86628,
+   "pass": 14,
+   "fail": 0,
+   "installed": 1
+  },
+  {
+   "n": 6,
+   "skill": "graphic-gif",
+   "artifact": "循环 GIF",
+   "kind": "gif",
+   "minutes": 15,
+   "verdict": "留用（当规格书用，别当工具用）",
+   "bytes": 168889,
+   "pass": 27,
+   "fail": 1,
+   "installed": 1
+  },
+  {
+   "n": 7,
+   "skill": "build-game",
+   "artifact": "3D 网页游戏",
+   "kind": "html",
+   "minutes": 24,
+   "verdict": "留用（强推荐）：7 轮里唯一把「可验证规格」写进 SKILL.md 的技能——强制调试钩子 render_game_to_text()/advanceTime(ms) 让无人值守代理能不看像素就断言状态机，Phase 4 每条强制项（相机相对 WASD / exposure≥1.0 / vignette≤0.3 / 灯≥4 / 禁近黑大表面）均可量化复核",
+   "bytes": 1054934,
+   "pass": 24,
+   "fail": 1,
+   "installed": 1
+  },
+  {
+   "n": 8,
+   "skill": "sec-audit-cn",
+   "artifact": "分级安全审计报告",
+   "kind": "md",
+   "minutes": null,
+   "verdict": "留用",
+   "bytes": 431559,
+   "pass": 0,
+   "fail": 0,
+   "installed": 0
+  },
+  {
+   "n": 9,
+   "skill": "xlsx",
+   "artifact": "Excel 台账",
+   "kind": "xlsx",
+   "minutes": 12,
+   "verdict": "留用",
+   "bytes": 69971,
+   "pass": 54,
+   "fail": 2,
+   "installed": 0
+  },
+  {
+   "n": 10,
+   "skill": "golang-testing",
+   "artifact": "Go 测试 + 覆盖率",
+   "kind": "go",
+   "minutes": 9,
+   "verdict": "留用（推荐）",
+   "bytes": 52887,
+   "pass": 34,
+   "fail": 11,
+   "installed": 0
+  },
+  {
+   "n": 11,
+   "skill": "webapp-testing",
+   "artifact": "端到端回归 + 真截图",
+   "kind": "png",
+   "minutes": 13,
+   "verdict": "留用（推荐）",
+   "bytes": 4254574,
+   "pass": 44,
+   "fail": 10,
+   "installed": 0
+  }
+ ],
+ "totals": {
+  "tried": 11,
+  "seen": 46,
+  "runs": 11,
+  "demoBytes": 7512695,
+  "installedGlobal": 5,
+  "minutesKnown": 10
+ },
+ "sourceOfTruth": "LAB/state/state.json (tried[] x runs[]) + du of each demos/<run> + grep of each output.log"
+}

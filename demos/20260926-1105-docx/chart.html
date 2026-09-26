@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>skill-showcase rounds</title>
+<style>
+html,body{margin:0;background:#fff;font-family:-apple-system,"PingFang SC","Helvetica Neue",sans-serif}
+svg{display:block}
+.bar{fill:#2cd495}.barcap{fill:#18a06e}
+.grid{stroke:#e2e8f0;stroke-width:1}.axis{stroke:#212529;stroke-width:1.5}
+.budget{stroke:#d64541;stroke-width:2;stroke-dasharray:6 4}
+.t{font-size:13px;fill:#495057}.num{font-size:12px;fill:#212529;font-weight:600}
+.lab{font-size:12px;fill:#6b7280}.ttl{font-size:15px;fill:#212529;font-weight:700}
+.hi{fill:#d64541;font-weight:700}
+</style></head>
+<body>
+<svg id="c" width="720" height="320" xmlns="http://www.w3.org/2000/svg"></svg>
+<script>
+const D = [
+ {n:1,s:'drafter',v:7},{n:2,s:'ascii-dashboard',v:10},{n:3,s:'algorithmic-art',v:19},
+ {n:4,s:'sqlite-expert',v:13},{n:5,s:'ppt-generator',v:10},{n:6,s:'graphic-gif',v:15},
+ {n:7,s:'build-game',v:24},{n:8,s:'sec-audit-cn',v:null},{n:9,s:'xlsx',v:12},
+ {n:10,s:'golang-testing',v:9},{n:11,s:'webapp-testing',v:13}];
+const W=720,H=320,P={l:52,r:20,t:46,b:56},MAX=24,BUD=15;
+const x=i=>P.l+i*((W-P.l-P.r)/D.length), bw=((W-P.l-P.r)/D.length)*0.58;
+const y=v=>H-P.b-(v/MAX)*(H-P.t-P.b);
+let s='';
+for(let v=0;v<=MAX;v+=6){s+=`<line class="grid" x1="${P.l}" y1="${y(v)}" x2="${W-P.r}" y2="${y(v)}"/>`+
+  `<text class="num" x="${P.l-8}" y="${y(v)+4}" text-anchor="end">${v}</text>`;}
+s+=`<line class="budget" x1="${P.l}" y1="${y(BUD)}" x2="${W-P.r}" y2="${y(BUD)}"/>`;
+s+=`<text class="hi" x="${W-P.r}" y="${y(BUD)-6}" text-anchor="end">预算 15 min</text>`;
+s+=`<line class="axis" x1="${P.l}" y1="${H-P.b}" x2="${W-P.r}" y2="${H-P.b}"/>`;
+s+=`<text class="t" x="${P.l}" y="${H-P.b+18}">分钟</text>`;
+D.forEach(d=>{const cx=x(d.n-1)+((W-P.l-P.r)/D.length)/2;
+  if(d.v==null){s+=`<text class="lab" x="${cx}" y="${H-P.b-6}" text-anchor="middle">n/a</text>`;return;}
+  const over=d.v>BUD;
+  s+=`<rect class="bar" x="${x(d.n-1)+((W-P.l-P.r)/D.length-bw)/2}" y="${y(d.v)}" width="${bw}" height="${H-P.b-y(d.v)}" ${over?'fill="#f4a25f"':''}/>`;
+  s+=`<rect class="barcap" x="${x(d.n-1)+((W-P.l-P.r)/D.length-bw)/2}" y="${y(d.v)}" width="${bw}" height="3" ${over?'fill="#d64541"':''}/>`;
+  s+=`<text class="num" x="${cx}" y="${y(d.v)-7}" text-anchor="middle">${d.v}</text>`;
+  s+=`<text class="lab" x="${cx}" y="${H-P.b+30}" text-anchor="middle" transform="rotate(-18 ${cx} ${H-P.b+30})">${d.n} ${d.s}</text>`;});
+s+=`<text class="ttl" x="${P.l}" y="26">第 1–11 轮单轮耗时（分钟）· 空档=该轮未记秒数</text>`;
+document.getElementById('c').innerHTML=s;
+document.title='done';
+</script></body></html>
