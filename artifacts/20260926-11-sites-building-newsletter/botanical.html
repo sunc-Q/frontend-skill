@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>离线信号 OFFLINE SIGNAL · 一封关于不需要网络的技术的周报</title>
+<meta name="description" content="离线信号：每周四早 07:00 发信，讲本地优先工具、离线写作与不依赖云的工作流。已有 3,842 人订阅。">
+<style>/* ---- structure layer: tokens only, zero literal colors ---- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.masthead {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 40px 20px 32px;
+  text-align: var(--head-align, center);
+}
+.mark {
+  margin: 0 0 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--mark);
+}
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(34px, 7vw, 56px);
+  line-height: 1.15;
+  color: var(--ink);
+}
+.tagline {
+  margin: 14px auto 0;
+  max-width: 34em;
+  color: var(--mark);
+  font-size: 16px;
+}
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 8px 20px 56px;
+}
+section { margin: 0 0 40px; }
+h2 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+h3 { font-size: 18px; margin: 6px 0 8px; }
+.meta { color: var(--mark); font-size: 14px; margin: 0 0 16px; }
+.count { color: var(--deep, var(--accent2)); }
+.field-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: end;
+}
+.field-label {
+  display: block;
+  width: 100%;
+  font-size: 13px;
+  color: var(--mark);
+  margin-bottom: 2px;
+}
+.field-input {
+  flex: 1 1 220px;
+  min-width: 0;
+  font: inherit;
+  padding: 10px 12px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 2px solid var(--rule);
+  border-radius: var(--radius);
+}
+.field-input[aria-invalid="true"] { border-color: var(--accent); }
+.field-btn {
+  font: inherit;
+  padding: 10px 22px;
+  color: var(--btn-ink, var(--paper));
+  background: var(--btn-bg, var(--accent));
+  border: 2px solid var(--btn-bg, var(--accent));
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.status { min-height: 1.5em; font-size: 14px; margin: 12px 0 0; }
+.status.error { color: var(--accent); }
+.status.ok { color: var(--ok, var(--accent2)); }
+.status.info { color: var(--mark); }
+.demo-note { font-size: 12px; color: var(--mark); margin: 8px 0 0; }
+.issue-date { font-family: var(--font-mono); font-size: 13px; color: var(--mark); margin: 0 0 6px; }
+.issue-no { font-family: var(--font-mono); }
+.issue-title { color: var(--ink); }
+.excerpt {
+  margin: 14px 0 0;
+  padding: 10px 16px;
+  border-left: 3px solid var(--accent2);
+  color: var(--mark);
+  font-style: italic;
+}
+.archive, .faq { border-top: 1px solid var(--rule); padding-top: 16px; }
+details { margin: 0 0 8px; }
+summary { cursor: pointer; font-weight: 600; }
+details p { margin: 8px 0 0; color: var(--mark); }
+.voice { margin: 0 0 16px; padding-left: 14px; border-left: 2px solid var(--rule); }
+.cite { display: block; font-style: normal; font-size: 13px; color: var(--mark); margin-top: 4px; }
+.foot {
+  border-top: 1px solid var(--rule);
+  padding: 22px 20px 34px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--mark);
+  background: var(--paper);
+}
+@media (max-width: 480px) {
+  .field-btn { flex: 1 1 100%; }
+}
+
+/* ============ skin: botanical-plate 植物图鉴图版 ============ */
+:root {
+  --bg: #efeee3;
+  --paper: #faf9f2;
+  --ink: #23251b;
+  --mark: #5c5f4f;
+  --accent: #4e6b46;
+  --deep: #40593a;
+  --accent2: #8a6a3a;
+  --ok: #40593a;
+  --rule: #a8ab9a;
+  --radius: 2px;
+  --head-align: center;
+  --font-display: 'Palatino Linotype', 'Palatino', serif;
+  --font-body: 'Iowan Old Style', 'Charter', 'Georgia', serif;
+  --font-mono: 'Menlo', monospace;
+}
+body { background: var(--bg); }
+.masthead { border-bottom: 3px double var(--rule); }
+.mark { font-style: italic; letter-spacing: 0.3em; }
+.title {
+  font-weight: 400;
+  font-variant: small-caps;
+  letter-spacing: 0.4em;
+  text-indent: 0.4em;
+}
+.tagline { font-style: italic; max-width: 28em; }
+.wrap { max-width: 620px; }
+section { background: var(--paper); border: 1px solid var(--rule); padding: 22px; }
+h2 {
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.08em;
+}
+h2::before { content: "图版 · "; font-style: normal; color: var(--accent2); }
+.archive h2::before { content: "标本 · "; font-style: normal; color: var(--accent2); }
+.faq h2::before { content: "注解 · "; font-style: normal; color: var(--accent2); }
+.issue-date { letter-spacing: 0.12em; }
+.archive, .faq { border-top: 1px solid var(--rule); }
+details { border-bottom: 1px solid var(--rule); padding-bottom: 6px; }
+details:last-of-type { border-bottom: 0; }
+summary { font-style: italic; font-weight: 400; }
+summary::before { content: "✦ "; color: var(--accent); }
+.excerpt {
+  border-left: 1px solid var(--rule);
+  background: var(--bg);
+  font-family: var(--font-display);
+}
+.voice { border-left: 0; padding-left: 0; border-top: 1px dotted var(--rule); }
+.foot { border-top: 3px double var(--rule); }
+</style>
+</head>
+<body data-skin="botanical">
+<header class="masthead">
+  <p class="mark" aria-hidden="false">OFFLINE SIGNAL · 邮戳 NO.47</p>
+  <h1 class="title">离线信号</h1>
+  <p class="tagline">一封关于不需要网络的技术的周报：本地优先工具、离线写作、个人服务器与不依赖云的工作流。</p>
+</header>
+
+<main class="wrap">
+  <section class="subscribe" id="subscribe" aria-labelledby="sub-title">
+    <h2 id="sub-title">订阅这个信号</h2>
+    <p class="meta">已有 <strong class="count">3,842</strong> 人订阅 · 每周四 07:00 发出 · 随时一键退订</p>
+    <form id="sub-form" novalidate>
+      <div class="field-row">
+        <label class="field-label" for="email">邮箱地址</label>
+        <input class="field-input" id="email" name="email" type="email" inputmode="email"
+               autocomplete="email" placeholder="you@example.com" />
+        <button class="field-btn" type="submit" id="sub-btn">订阅</button>
+      </div>
+      <p class="status" id="sub-status" role="status" aria-live="polite">&nbsp;</p>
+    </form>
+    <p class="demo-note">示例站点：表单只在本地演示校验与成功状态，不会向任何服务器发送数据。</p>
+  </section>
+
+  <section class="latest" aria-labelledby="lat-title">
+    <h2 id="lat-title">最新一期 · <span class="issue-no">#47</span></h2>
+    <p class="issue-date">2026-09-17</p>
+    <h3 class="issue-title">不需要 WiFi 的笔记</h3>
+    <p>这一期讲把笔记从云服务搬回本地文件夹的六个月：格式选择、同步的替代方案、以及为什么搜索反而变快了。附三份纯文本笔记工具的对比清单。</p>
+    <blockquote class="excerpt">“断网的那趟高铁上，我第一次觉得笔记是自己的，而不是某个公司的。”</blockquote>
+  </section>
+
+  <section class="archive" aria-labelledby="arc-title">
+    <h2 id="arc-title">往期信笺</h2>
+    <details class="issue">
+      <summary><span class="issue-no">#46</span> 2026-09-10 · 自建邮件服务器满一年</summary>
+      <p>发信量、退信率、被误判进垃圾箱的三次事故，以及账单上真实多出和省下的大部分。</p>
+    </details>
+    <details class="issue">
+      <summary><span class="issue-no">#45</span> 2026-09-03 · 平板扫描仪的复活</summary>
+      <p>旧纸质藏书数字化的一点经验：为什么 300dpi 够用、书脊夹怎么自制、扫描件命名约定。</p>
+    </details>
+    <details class="issue">
+      <summary><span class="issue-no">#44</span> 2026-08-27 · 离线地图与徒步十年</summary>
+      <p>从 OSM 瓦片打包到等高线打印：不依赖任何地图 App 的一条完整徒步准备工作流。</p>
+    </details>
+    <details class="issue">
+      <summary><span class="issue-no">#43</span> 2026-08-20 · 电子纸上的报纸排版</summary>
+      <p>把每日简报排成一份真正的报纸：六栏栅格、字号阶梯与在 10.3 英寸屏上的实测取舍。</p>
+    </details>
+    <details class="issue">
+      <summary><span class="issue-no">#42</span> 2026-08-13 · 为什么我又开始写本地文件</summary>
+      <p>知识库工具的更换周期是 18 个月，纯文本的不是。附一份「工具退役预案」清单。</p>
+    </details>
+  </section>
+
+  <section class="voices" aria-labelledby="voi-title">
+    <h2 id="voi-title">读者来信</h2>
+    <blockquote class="voice">“第一次有newsletter让我把阅读时间从三分钟调到三十分钟，还觉得亏欠了它。”<cite class="cite">—— 阿墨，插画师</cite></blockquote>
+    <blockquote class="voice">“照着第 44 期做了离线地图，今年夏天在四明山走了六条没人认识的线。”<cite class="cite">—— 老柴，周末徒步者</cite></blockquote>
+    <blockquote class="voice">“退订按钮大到我在地铁上一次性帮我妈退了三个群发邮箱，好评。”<cite class="cite">—— 匿名读者</cite></blockquote>
+  </section>
+
+  <section class="faq" aria-labelledby="faq-title">
+    <h2 id="faq-title">常见问题</h2>
+    <details class="faq-item">
+      <summary>我会收到些什么？</summary>
+      <p>每周一封信：一篇主文（1500 字上下）、三件读过的东西、一个可复制的小技巧。没有课程、没有带货。</p>
+    </details>
+    <details class="faq-item">
+      <summary>发送频率会变吗？</summary>
+      <p>固定在每周四早上 07:00（UTC+8）。如果停更，你会收到一封明确的告别信。</p>
+    </details>
+    <details class="faq-item">
+      <summary>怎么退订？</summary>
+      <p>每封信底部有一个很大的退订按钮，点一下就结束，不需要登录、不需要理由。</p>
+    </details>
+  </section>
+</main>
+
+<footer class="foot">
+  <p><strong>离线信号 OFFLINE SIGNAL</strong> · 第 1 期始于 2025-10-30 · 至今共 47 期 · 本站为技能验证示例，人物与内容均为虚构</p>
+</footer>
+
+<script>(function () {
+  'use strict';
+  var form = document.getElementById('sub-form');
+  var input = document.getElementById('email');
+  var status = document.getElementById('sub-status');
+  var BLOCKED = ['mailinator.com', 'tempmail.cn'];
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var done = [];
+  function say(msg, kind) {
+    status.textContent = msg;
+    status.className = 'status ' + kind;
+  }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = (input.value || '').trim().toLowerCase();
+    if (!v) {
+      say('请填写邮箱地址。', 'error');
+      input.setAttribute('aria-invalid', 'true');
+      input.focus();
+      return;
+    }
+    if (!EMAIL_RE.test(v)) {
+      say('格式不像有效邮箱，请检查拼写。', 'error');
+      input.setAttribute('aria-invalid', 'true');
+      return;
+    }
+    input.removeAttribute('aria-invalid');
+    var domain = v.slice(v.indexOf('@') + 1);
+    if (BLOCKED.indexOf(domain) >= 0) {
+      say('一次性邮箱域名（' + domain + '）不在接收范围。', 'error');
+      return;
+    }
+    if (done.indexOf(v) >= 0) {
+      say('这个地址在本次访问里已经订阅过了。', 'info');
+      return;
+    }
+    done.push(v);
+    say('已把 ' + v + ' 加入订阅名单（演示状态：未真实发送）。', 'ok');
+    form.reset();
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "captured_at": "2026-09-26T11:00+08:00",
+  "tried_len": 19,
+  "runs_len": 19,
+  "used_styles_len": 57,
+  "env_notes_len": 121,
+  "this_round_styles": [
+    "航空信封 airmail",
+    "植物图鉴图版 botanical-plate",
+    "七十年代放克 seventies-funk"
+  ],
+  "this_round_combo": {
+    "skill": "sites:sites-building",
+    "scenario": "邮件型订阅落地页"
+  },
+  "styles_count_this_round": 3
+}

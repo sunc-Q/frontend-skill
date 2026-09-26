@@ -1,0 +1,1046 @@
+{
+ "time": "2026-09-26T03:40:49.607Z",
+ "mode": "post",
+ "total": 173,
+ "failed": 0,
+ "results": [
+  {
+   "group": "A",
+   "id": "airmail/singleStyle",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "A",
+   "id": "airmail/hasInlineScript",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "A",
+   "id": "airmail/noLinkTag",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "A",
+   "id": "airmail/noSrcAttr",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "A",
+   "id": "airmail/scriptEqualsSrcByteForByte",
+   "pass": true,
+   "detail": "inline=1354B src=1354B"
+  },
+  {
+   "group": "A",
+   "id": "botanical/singleStyle",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "A",
+   "id": "botanical/hasInlineScript",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "A",
+   "id": "botanical/noLinkTag",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "A",
+   "id": "botanical/noSrcAttr",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "A",
+   "id": "botanical/scriptEqualsSrcByteForByte",
+   "pass": true,
+   "detail": "inline=1354B src=1354B"
+  },
+  {
+   "group": "A",
+   "id": "funk/singleStyle",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "A",
+   "id": "funk/hasInlineScript",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "A",
+   "id": "funk/noLinkTag",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "A",
+   "id": "funk/noSrcAttr",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "A",
+   "id": "funk/scriptEqualsSrcByteForByte",
+   "pass": true,
+   "detail": "inline=1354B src=1354B"
+  },
+  {
+   "group": "A",
+   "id": "bodyIdentical_across3",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "A",
+   "id": "scriptIdentical_across3",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "A",
+   "id": "structureLayerZeroHex",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "B",
+   "id": "airmail/hexOnlyInRoot",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "B",
+   "id": "botanical/hexOnlyInRoot",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "B",
+   "id": "funk/hexOnlyInRoot",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "B",
+   "id": "paletteZeroIntersect/airmail-botanical",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "B",
+   "id": "paletteZeroIntersect/airmail-funk",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "B",
+   "id": "paletteZeroIntersect/botanical-funk",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "B",
+   "id": "airmail/contrast/ink/paper>=7",
+   "pass": true,
+   "detail": "14.40 vs 需 7"
+  },
+  {
+   "group": "B",
+   "id": "airmail/contrast/mark/paper>=4.5",
+   "pass": true,
+   "detail": "6.03 vs 需 4.5"
+  },
+  {
+   "group": "B",
+   "id": "airmail/contrast/mark/bg>=4.5",
+   "pass": true,
+   "detail": "5.02 vs 需 4.5"
+  },
+  {
+   "group": "B",
+   "id": "airmail/contrast/deep/paper>=4.5",
+   "pass": true,
+   "detail": "7.37 vs 需 4.5"
+  },
+  {
+   "group": "B",
+   "id": "airmail/contrast/deep/bg>=4.5",
+   "pass": true,
+   "detail": "6.14 vs 需 4.5"
+  },
+  {
+   "group": "B",
+   "id": "airmail/contrast/okc/bg>=4.5",
+   "pass": true,
+   "detail": "6.59 vs 需 4.5"
+  },
+  {
+   "group": "B",
+   "id": "airmail/contrast/btnInk/btnBg>=4.5",
+   "pass": true,
+   "detail": "4.74 vs 需 4.5"
+  },
+  {
+   "group": "B",
+   "id": "botanical/contrast/ink/paper>=7",
+   "pass": true,
+   "detail": "14.72 vs 需 7"
+  },
+  {
+   "group": "B",
+   "id": "botanical/contrast/mark/paper>=4.5",
+   "pass": true,
+   "detail": "6.21 vs 需 4.5"
+  },
+  {
+   "group": "B",
+   "id": "botanical/contrast/mark/bg>=4.5",
+   "pass": true,
+   "detail": "5.62 vs 需 4.5"
+  },
+  {
+   "group": "B",
+   "id": "botanical/contrast/deep/paper>=4.5",
+   "pass": true,
+   "detail": "7.35 vs 需 4.5"
+  },
+  {
+   "group": "B",
+   "id": "botanical/contrast/deep/bg>=4.5",
+   "pass": true,
+   "detail": "6.65 vs 需 4.5"
+  },
+  {
+   "group": "B",
+   "id": "botanical/contrast/okc/bg>=4.5",
+   "pass": true,
+   "detail": "6.65 vs 需 4.5"
+  },
+  {
+   "group": "B",
+   "id": "botanical/contrast/btnInk/btnBg>=4.5",
+   "pass": true,
+   "detail": "5.66 vs 需 4.5"
+  },
+  {
+   "group": "B",
+   "id": "funk/contrast/ink/paper>=7",
+   "pass": true,
+   "detail": "13.21 vs 需 7"
+  },
+  {
+   "group": "B",
+   "id": "funk/contrast/mark/paper>=4.5",
+   "pass": true,
+   "detail": "6.64 vs 需 4.5"
+  },
+  {
+   "group": "B",
+   "id": "funk/contrast/mark/bg>=4.5",
+   "pass": true,
+   "detail": "5.62 vs 需 4.5"
+  },
+  {
+   "group": "B",
+   "id": "funk/contrast/deep/paper>=4.5",
+   "pass": true,
+   "detail": "6.56 vs 需 4.5"
+  },
+  {
+   "group": "B",
+   "id": "funk/contrast/deep/bg>=4.5",
+   "pass": true,
+   "detail": "5.55 vs 需 4.5"
+  },
+  {
+   "group": "B",
+   "id": "funk/contrast/okc/bg>=4.5",
+   "pass": true,
+   "detail": "4.53 vs 需 4.5"
+  },
+  {
+   "group": "B",
+   "id": "funk/contrast/btnInk/btnBg>=4.5",
+   "pass": true,
+   "detail": "6.56 vs 需 4.5"
+  },
+  {
+   "group": "B",
+   "id": "fingerprintDiff/airmail-botanical>=5",
+   "pass": true,
+   "detail": "差异 7/11"
+  },
+  {
+   "group": "B",
+   "id": "fingerprintDiff/airmail-funk>=5",
+   "pass": true,
+   "detail": "差异 8/11"
+  },
+  {
+   "group": "B",
+   "id": "fingerprintDiff/botanical-funk>=5",
+   "pass": true,
+   "detail": "差异 10/11"
+  },
+  {
+   "group": "C",
+   "id": "airmail/zeroDuplicateIds",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "airmail/labelForEmail",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "airmail/inputTypedAttrs",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "airmail/buttonTypeSubmit",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "airmail/statusLiveRegion",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "airmail/langCharsetViewport",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "airmail/titleAndDescription",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "airmail/sectionsLabelled",
+   "pass": true,
+   "detail": "5/5"
+  },
+  {
+   "group": "C",
+   "id": "airmail/detailsCount8",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "airmail/slotOnce/sub-form",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "airmail/slotOnce/email",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "airmail/slotOnce/sub-status",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "airmail/slotOnce/sub-btn",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "botanical/zeroDuplicateIds",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "botanical/labelForEmail",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "botanical/inputTypedAttrs",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "botanical/buttonTypeSubmit",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "botanical/statusLiveRegion",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "botanical/langCharsetViewport",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "botanical/titleAndDescription",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "botanical/sectionsLabelled",
+   "pass": true,
+   "detail": "5/5"
+  },
+  {
+   "group": "C",
+   "id": "botanical/detailsCount8",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "botanical/slotOnce/sub-form",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "botanical/slotOnce/email",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "botanical/slotOnce/sub-status",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "botanical/slotOnce/sub-btn",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "funk/zeroDuplicateIds",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "funk/labelForEmail",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "funk/inputTypedAttrs",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "funk/buttonTypeSubmit",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "funk/statusLiveRegion",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "funk/langCharsetViewport",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "funk/titleAndDescription",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "funk/sectionsLabelled",
+   "pass": true,
+   "detail": "5/5"
+  },
+  {
+   "group": "C",
+   "id": "funk/detailsCount8",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "funk/slotOnce/sub-form",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "funk/slotOnce/email",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "funk/slotOnce/sub-status",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "C",
+   "id": "funk/slotOnce/sub-btn",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "D",
+   "id": "airmail/emptyBlocked",
+   "pass": true,
+   "detail": "请填写邮箱地址。"
+  },
+  {
+   "group": "D",
+   "id": "airmail/invalidFormat",
+   "pass": true,
+   "detail": "格式不像有效邮箱，请检查拼写。"
+  },
+  {
+   "group": "D",
+   "id": "airmail/blockedDomain",
+   "pass": true,
+   "detail": "一次性邮箱域名（mailinator.com）不在接收范围。"
+  },
+  {
+   "group": "D",
+   "id": "airmail/successNormalizes",
+   "pass": true,
+   "detail": "已把 x@example.com 加入订阅名单（演示状态：未真实发送）。"
+  },
+  {
+   "group": "D",
+   "id": "airmail/successResetsInput",
+   "pass": true,
+   "detail": "value after=\"\""
+  },
+  {
+   "group": "D",
+   "id": "airmail/successStatesDemo",
+   "pass": true,
+   "detail": "已把 x@example.com 加入订阅名单（演示状态：未真实发送）。"
+  },
+  {
+   "group": "D",
+   "id": "airmail/duplicateIsInfo",
+   "pass": true,
+   "detail": "这个地址在本次访问里已经订阅过了。"
+  },
+  {
+   "group": "D",
+   "id": "airmail/secondAddressWorks",
+   "pass": true,
+   "detail": "已把 y@example.com 加入订阅名单（演示状态：未真实发送）。"
+  },
+  {
+   "group": "D",
+   "id": "airmail/blockedSecondDomain",
+   "pass": true,
+   "detail": "一次性邮箱域名（tempmail.cn）不在接收范围。"
+  },
+  {
+   "group": "D",
+   "id": "botanical/emptyBlocked",
+   "pass": true,
+   "detail": "请填写邮箱地址。"
+  },
+  {
+   "group": "D",
+   "id": "botanical/invalidFormat",
+   "pass": true,
+   "detail": "格式不像有效邮箱，请检查拼写。"
+  },
+  {
+   "group": "D",
+   "id": "botanical/blockedDomain",
+   "pass": true,
+   "detail": "一次性邮箱域名（mailinator.com）不在接收范围。"
+  },
+  {
+   "group": "D",
+   "id": "botanical/successNormalizes",
+   "pass": true,
+   "detail": "已把 x@example.com 加入订阅名单（演示状态：未真实发送）。"
+  },
+  {
+   "group": "D",
+   "id": "botanical/successResetsInput",
+   "pass": true,
+   "detail": "value after=\"\""
+  },
+  {
+   "group": "D",
+   "id": "botanical/successStatesDemo",
+   "pass": true,
+   "detail": "已把 x@example.com 加入订阅名单（演示状态：未真实发送）。"
+  },
+  {
+   "group": "D",
+   "id": "botanical/duplicateIsInfo",
+   "pass": true,
+   "detail": "这个地址在本次访问里已经订阅过了。"
+  },
+  {
+   "group": "D",
+   "id": "botanical/secondAddressWorks",
+   "pass": true,
+   "detail": "已把 y@example.com 加入订阅名单（演示状态：未真实发送）。"
+  },
+  {
+   "group": "D",
+   "id": "botanical/blockedSecondDomain",
+   "pass": true,
+   "detail": "一次性邮箱域名（tempmail.cn）不在接收范围。"
+  },
+  {
+   "group": "D",
+   "id": "funk/emptyBlocked",
+   "pass": true,
+   "detail": "请填写邮箱地址。"
+  },
+  {
+   "group": "D",
+   "id": "funk/invalidFormat",
+   "pass": true,
+   "detail": "格式不像有效邮箱，请检查拼写。"
+  },
+  {
+   "group": "D",
+   "id": "funk/blockedDomain",
+   "pass": true,
+   "detail": "一次性邮箱域名（mailinator.com）不在接收范围。"
+  },
+  {
+   "group": "D",
+   "id": "funk/successNormalizes",
+   "pass": true,
+   "detail": "已把 x@example.com 加入订阅名单（演示状态：未真实发送）。"
+  },
+  {
+   "group": "D",
+   "id": "funk/successResetsInput",
+   "pass": true,
+   "detail": "value after=\"\""
+  },
+  {
+   "group": "D",
+   "id": "funk/successStatesDemo",
+   "pass": true,
+   "detail": "已把 x@example.com 加入订阅名单（演示状态：未真实发送）。"
+  },
+  {
+   "group": "D",
+   "id": "funk/duplicateIsInfo",
+   "pass": true,
+   "detail": "这个地址在本次访问里已经订阅过了。"
+  },
+  {
+   "group": "D",
+   "id": "funk/secondAddressWorks",
+   "pass": true,
+   "detail": "已把 y@example.com 加入订阅名单（演示状态：未真实发送）。"
+  },
+  {
+   "group": "D",
+   "id": "funk/blockedSecondDomain",
+   "pass": true,
+   "detail": "一次性邮箱域名（tempmail.cn）不在接收范围。"
+  },
+  {
+   "group": "E",
+   "id": "airmail/weeklyThursdayCadence",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "airmail/issueNumbersContiguous",
+   "pass": true,
+   "detail": "47,46,45,44,43,42"
+  },
+  {
+   "group": "E",
+   "id": "airmail/everyIssueIsThursday",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "airmail/sevenDaySpacing",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "airmail/firstIssueMatchesFooter",
+   "pass": true,
+   "detail": "footer=2025-10-30 推算=2025-10-30"
+  },
+  {
+   "group": "E",
+   "id": "airmail/footerCount47",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "airmail/subscriberCountFormatted",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "botanical/weeklyThursdayCadence",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "botanical/issueNumbersContiguous",
+   "pass": true,
+   "detail": "47,46,45,44,43,42"
+  },
+  {
+   "group": "E",
+   "id": "botanical/everyIssueIsThursday",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "botanical/sevenDaySpacing",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "botanical/firstIssueMatchesFooter",
+   "pass": true,
+   "detail": "footer=2025-10-30 推算=2025-10-30"
+  },
+  {
+   "group": "E",
+   "id": "botanical/footerCount47",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "botanical/subscriberCountFormatted",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "funk/weeklyThursdayCadence",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "funk/issueNumbersContiguous",
+   "pass": true,
+   "detail": "47,46,45,44,43,42"
+  },
+  {
+   "group": "E",
+   "id": "funk/everyIssueIsThursday",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "funk/sevenDaySpacing",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "funk/firstIssueMatchesFooter",
+   "pass": true,
+   "detail": "footer=2025-10-30 推算=2025-10-30"
+  },
+  {
+   "group": "E",
+   "id": "funk/footerCount47",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "funk/subscriberCountFormatted",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "E",
+   "id": "factsIdenticalAcrossSkins",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "F",
+   "id": "airmail/noNetApis",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "F",
+   "id": "airmail/singleFormNoAction",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "F",
+   "id": "airmail/demoLabelled",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "F",
+   "id": "airmail/subscribeIsFirstSection",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "F",
+   "id": "botanical/noNetApis",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "F",
+   "id": "botanical/singleFormNoAction",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "F",
+   "id": "botanical/demoLabelled",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "F",
+   "id": "botanical/subscribeIsFirstSection",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "F",
+   "id": "funk/noNetApis",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "F",
+   "id": "funk/singleFormNoAction",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "F",
+   "id": "funk/demoLabelled",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "F",
+   "id": "funk/subscribeIsFirstSection",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "G",
+   "id": "triedAppended",
+   "pass": true,
+   "detail": "20 vs 20"
+  },
+  {
+   "group": "G",
+   "id": "runsAppended",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "G",
+   "id": "stylesAppended",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "G",
+   "id": "stylesTailMatchesSnapshot",
+   "pass": true,
+   "detail": "航空信封 airmail,植物图鉴图版 botanical-plate,七十年代放克 seventies-funk"
+  },
+  {
+   "group": "G",
+   "id": "noStyleCollisionWithHistory",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "G",
+   "id": "comboAppendedWithStyles",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "H",
+   "id": "airmail/repeatHasMinmax0",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "H",
+   "id": "airmail/noFixedWidth500plus",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "H",
+   "id": "airmail/noNowrap",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "H",
+   "id": "airmail/inputMinWidthZero",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "H",
+   "id": "botanical/repeatHasMinmax0",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "H",
+   "id": "botanical/noFixedWidth500plus",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "H",
+   "id": "botanical/noNowrap",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "H",
+   "id": "botanical/inputMinWidthZero",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "H",
+   "id": "funk/repeatHasMinmax0",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "H",
+   "id": "funk/noFixedWidth500plus",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "H",
+   "id": "funk/noNowrap",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "H",
+   "id": "funk/inputMinWidthZero",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "I",
+   "id": "entryLinks/airmail",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "I",
+   "id": "entryBytePrintsActual/airmail",
+   "pass": true,
+   "detail": "页面实际 11354B，入口列出 11354/11572/11792"
+  },
+  {
+   "group": "I",
+   "id": "entryLinks/botanical",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "I",
+   "id": "entryBytePrintsActual/botanical",
+   "pass": true,
+   "detail": "页面实际 11572B，入口列出 11354/11572/11792"
+  },
+  {
+   "group": "I",
+   "id": "entryLinks/funk",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "group": "I",
+   "id": "entryBytePrintsActual/funk",
+   "pass": true,
+   "detail": "页面实际 11792B，入口列出 11354/11572/11792"
+  },
+  {
+   "group": "I",
+   "id": "entryBytesIncludeAllThree",
+   "pass": true,
+   "detail": ""
+  }
+ ]
+}

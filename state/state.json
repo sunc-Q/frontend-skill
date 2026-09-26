@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T11:00+08:00",
+  "updated": "2026-09-26T11:55+08:00",
   "tried": [
     {
       "skill": "sites:sites-building",
@@ -273,6 +273,20 @@
       "conclusion": "留用，但**只当「写法清单」用，别当「正确性来源」用**：本轮它给的最有价值的一条（route loader 预取 + useSuspenseQuery 共用一次请求）同时埋了最贵的缺陷。①契约无资产第 3 次复跑确认未被修复：SKILL.md 引用的 resources/*.md 与 ../../vite.config.ts 共 10 个文件全部不存在（A1b），14 条一行摘要条款（A2b）必须自造判据才可证「按技能做了」。② loader 条款只说「预取」没说「别等它」：mount 里 await loader 在 mock（120ms）下完全无害，换到 ?api=1 慢源就变成约 2 秒**纯白屏**——页面从未挂载，任何 SuspenseLoader 都救不了（G 组逐帧采样抓到，改成 fire-and-forget 后 api 两级骨架 2159/1755ms、mock 300/0ms，G2「等待期零空窗」才成立）。③最可疑的 memo 条款做成双臂消融（同源码、只换 __FD_MEMO__）：一次击键两臂都重渲染 7 个叶子（N3，只看一次击键会误判「收益为 0」），30 次击键才分道 7 vs 210 次，墙钟 156 vs 314ms，且**被输入的那个字段也命中浅比较**（uncontrolled register，值不经过 props，N6b）——收益 ≈ 在场字段数 n 省 n-1，条款该写成「连续输入密集处才值得，且必须防住 props 真变时不跟上的旧界面」（N6d/N6e 反向控制）。④技能完全没提「字段级异步校验要参与步骤闸门」，这是表单密集场景最容易出事的地方：本轮自建六种拦法（未校验/校验中/占用/保留/失败/令牌与当前值不符=乱序回写，E13b）并用 H15a–H15e 走完闭环——包括「换回可用名后闸门重新打开」，拦的是当前结论而不是那次失败的历史。⑤三风格同一 DOM 是真的可断言的：三页 <script> 载荷逐字节相同（B2）、结构层零字面颜色（C5）、12 维指纹两两差异 ≥7 且分隔/阴影/字体手法实测互斥（D8–D12）；代价是两处只有 Chromium getComputedStyle 能看见的缺陷——paper-grid 次要文字 4.17:1 不达 AA（提到 5.29:1，底色连带调亮），以及签名层与结构层同权重时**源序**决定胜负，5px 模板边被结构层 border 简写静默重置为 1px。⑥成本（对照 07:00 同 skill 管理后台，分母从磁盘现读）：src 35 文件 3,516 行 vs 50/2,154=1.63× 行数（文件更少、每文件更厚），单文件产物 634,4xxB / bundle 633,905B / gzip 196,704B（后台轮 720,722B 的 0.88×）；懒加载条款仍需两个构建：证据构建入口 486,787B、懒块仅占 23.3%（L3b，表单页几乎没有可延迟的重量）、两构建总量差 <3%（L5）——这条款对本场景的收益上限就是 23%。⑦持久化与提交：草稿 version=3 信封在 http:// 与 file:// 两 origin 各自可写可读且互不相通（M1–M6），敌意草稿（非法步骤/类型不符/未知键）逐项消毒并回落第一步（M5）；幂等令牌由内容决定（E14），真浏览器里二次提交并入同一订单且回执号不变（K5/K5b）——本轮修掉的第三个缺陷就是「提交成功后草稿复活」。写回前 283 条全绿（node 101 / dom 112 / browser 70），写回后 I 组切到「已追加」分支复跑得 293 条，加清理后的 check-clean 20 条与 verify-ledger 12 条（收尾时又给两张卡各加一条：C9 无孤儿脚本、V12 候选确实入队），本轮累计 325 条",
       "artifacts": "artifacts/20260926-08-frontend-development-wizard/",
       "report": "reports/20260926-08-frontend-development-wizard.md"
+    },
+    {
+      "skill": "sites:sites-building（Qoder 内置插件 qoder.sites，Simple site 静态路径，第 7 次使用）",
+      "scenario": "邮件型订阅落地页（虚构周报「离线信号 OFFLINE SIGNAL」：订阅表单为页面本体（首分区首屏，会话内防重复、零持久化、零网络API、三处演示声明）+ 最新一期#47(2026-09-17) + 往期#42–46(details) + 3 读者来信 + 3 FAQ(details)；事实链 Node 现算：全部期日 getUTCDay()==4、逐级−7d、首期=最新−46×7d=2025-10-30）",
+      "styles": [
+        "航空信封 airmail",
+        "植物图鉴图版 botanical-plate",
+        "七十年代放克 seventies-funk"
+      ],
+      "time": "2026-09-26T11:00+08:00",
+      "reason": "next_candidates 排队项「sites:sites-building × 邮件型订阅落地页（新场景候选：表单+退订偏好+可访问性邮件安全色板，测内置技能条款在表单为主的场景里给多少支撑）」；核心验证问题=反膨胀条款（不授权 extra forms/persistence）与「Build the requested experience itself」在表单本体场景相遇时怎么裁决",
+      "conclusion": "留用（第 7 次通过，表单核心场景首过）。裁决定式：表单是否被授权看它是不是「被请求的体验本体」——订阅落地页的表单=requested experience→合法且按 working surface 放首屏第一分区；「记住已订阅」的持久化未进任何请求→不做，重复订阅防护用闭包数组（F 组断言页面零 localStorage/fetch/XHR/WebSocket）。170 条断言写回前全绿：A18 自包含+三页 body/script 逐字节同构 / B37 含 **Node 端 :root 静态 WCAG 对比度 21 条**（ink/paper≥7、mark/deep/ok≥4.5、btnInk/btnBg≥4.5，解析器必须 resolve var(--x) 引用链——funk 的 --btn-bg:var(--accent2) 实测捕获）/ C57 无障碍（label/aria-live/aria-labelledby×6/details==8/零重复id/4钩子id恰好一次）/ D27 表单行为（vm 桩零 jsdom：空/格式/一次性域名黑名单/大写+空格归一/成功清输入/重复=info/第二地址可续）/ E28 事实算术 / F20 反膨胀张力 / G4 台账幂等 / H12 溢出静态 / I7 入口字节自核。三风格 11 维指纹两两≥7、色板两两零交集（含各自的白 #f7f0df/#faf9f2/#fbf0cd）；真浏览器 file:// getComputedStyle 三页签名全部兑现（airmail 45° 斜纹::before+邮戳 50% 旋转 / botanical Palatino 图版卡 / funk 胶囊 65535px+accent2 解析生效），控制台零消息；面板 hidden 无截图、真实视口溢出记未验（rotate 元素仅内联块+max-width）。缺陷3：①日期事实链设计稿自相矛盾（2026-09-20 非周四+首期硬推错）——写码前 Node 现算修正并固化为断言；②检查器两例假失败复现：{6} 当 ≥6 用、场景去重关键词「订阅」撞 15:00「订阅收入看板」→ 去重断言关键词必须用历史全文不含的组合词；③vm 桩 form.reset() 清错对象（清了 form.value 而非 email.value）差点误判产物——桩自身语义要先冒烟。产物 airmail/botanical/funk = 11,354/11,572/11,792B 单文件双击即开零外链，styles.html 字节由构建同轮现读。对比：同场景 React 路线预计 245KB+，本轮单页 11.4KB 级；收尾成本≈0（零 node_modules/零 dist/未起服务）。",
+      "artifacts": "artifacts/20260926-11-sites-building-newsletter/",
+      "report": "reports/20260926-11-sites-building-newsletter.md"
     }
   ],
   "skills_seen": [
@@ -381,7 +395,7 @@
       "name": "sites:sites-building",
       "source": "Qoder 内置插件 qoder.sites",
       "path": "/Applications/Qoder CN.app/Contents/Resources/extensions/qoder.sites/cli/sites/skills/sites-building/SKILL.md",
-      "status": "已用于 14:00 落地页、15:00 仪表盘、19:00 定价页（与 vercel 叠加）、23:00 个人主页、04:00 多页站点、06:00 活动报名页，六轮全通过 → **实验室默认页面基座**。Simple site 路径零依赖零构建、单文件 52KB 级、双击即开、收尾成本近零；已证可承载乐观更新/回滚/延后取数/持久化 schema 级交互（06:00 轮 239 条行为断言）。天花板明确：分段 Suspense、真分包、跨模块 single-flight、useTransition、以及需要进程外服务端的时序证据 —— 这五类要换 React/Vite 路线。文档层面缺口：无「结构层/皮肤层分离」「零外链」条款（实验室自加纪律），且默认不做浏览器 QA（与实验室规范冲突，已定分工：浏览器只跑非事件驱动检查+真像素，交互走 jsdom）"
+      "status": "已用于 14:00 落地页、15:00 仪表盘、19:00 定价页（与 vercel 叠加）、23:00 个人主页、04:00 多页站点、06:00 活动报名页、11:00 邮件型订阅落地页（表单本体），七轮全通过 → **实验室默认页面基座**。Simple site 路径零依赖零构建、单文件 52KB 级、双击即开、收尾成本近零；已证可承载乐观更新/回滚/延后取数/持久化 schema 级交互（06:00 轮 239 条行为断言）。天花板明确：分段 Suspense、真分包、跨模块 single-flight、useTransition、以及需要进程外服务端的时序证据 —— 这五类要换 React/Vite 路线。文档层面缺口：无「结构层/皮肤层分离」「零外链」条款（实验室自加纪律），且默认不做浏览器 QA（与实验室规范冲突，已定分工：浏览器只跑非事件驱动检查+真像素，交互走 jsdom）｜11:00 轮新增：表单核心场景裁决定式=requested-experience-itself 授权 + 反膨胀条款禁未请求的持久化（会话内闭包+三处演示声明替代）；单页 11-12KB 成本基线（订阅落地页类）"
     }
   ],
   "runs": [
@@ -560,9 +574,22 @@
       "artifact_size": "2.31MB / 64 个文件（遍历本目录全部文件现算，上限 50MB，与 check-clean C5 同口径）。字节数**不在这里硬抄**：本文件自己也参与统计，抄进台账就永远差一点——C5 每次运行都现打印真实值，最后一行读数见报告 §13；上一轮「报告写 2.38MB、实测 2.39MB」就是这么来的。逐项（preview / scripts / src / package-lock / evidence / 配置与 styles.html）与构建期 J6 的 2.34MB / 72 个文件口径差都写在报告 §13。三页单文件 634,448 / 634,465 / 634,487B（合计 1,903,400B），共用 IIFE bundle 633,905B / gzip 196,704B，消融臂 633,927B（差 22B），styles.html 对照入口 13,701B（数字全部由断言 JSON 生成），src 35 文件 3,516 行，scripts 13 个 .mjs/.sh 共 2,602 行（构建期 J8 读数 2,686 行，含当时的临时探针），evidence/ 三份断言原文读数 61,034B",
       "cleanup": "删 node_modules 159MB + dist + dist-plain + dist-split + .tmp-check + 5 个 .tmp-probe/.tmp-smoke 探针 + .tmp-dom.txt + 3 个 .tmp-facts 转储（探针全文转写进报告 §10，断言读数留在 evidence/ 而不是删掉）；目录形态由 check-clean C1-C3 断言（C1 新增 dist-plain 一项，C2 现在把 .tmp-* 一律算残留，C6 改为要求 styles.html 而不是 index.html——本轮三套构建都以 src/main.tsx 为 Vite 入口，根目录不需要 HTML 入口，生成页若占用 index.html 会让 verify.sh 第二跑就没入口）；8157 端口由 check-browser 自起自关；技能目录与 前端skill实验室 之外零写入；推送后 LAB/.tmp（含 known_hosts）整体删除",
       "push": "已提交并推送：git@github.com:sunc-Q/frontend-skill.git main 分支 c9e0541..4607391（主体 commit 46073913b27b70a449afed447ecaa543dceb16d4，67 files / 13,062 insertions：产物目录 64 个文件 + 报告 + state.json + work-log 末行；随后的 补记 commit 回填本字段、报告 §13 推送区间与 §14 排队项，同样走 ssh.github.com:443，known_hosts 写 LAB/.tmp/known_hosts 并随 .tmp 整体删除；命令与文件内无任何 token，提交身份用内联 -c user.name/user.email，全局 git 配置未改动）"
+    },
+    {
+      "time": "2026-09-26T11:00+08:00",
+      "skill": "sites:sites-building（第 7 次，邮件型订阅落地页=表单本体场景）",
+      "scenario": "邮件型订阅落地页（离线信号周报）",
+      "result": "success",
+      "assertions": "170 条（写回前全绿；写回后 G 组切「已写回」分支复跑）",
+      "artifact_size": "112KB（三页 11,354/11,572/11,792B + styles.html + src 6 件 + scripts 4 件含 check-result.json；上限 50MB）",
+      "cleanup": "零中间产物可删：无 node_modules/dist/pip/构建缓存（全程 node 零依赖）；未起 http.server（file://）；/tmp 零写入；技能目录零写入（只读 SKILL.md）；LAB/.tmp 仅 git/known_hosts 与本次 refill 脚本，推送后整体删除",
+      "push": "PENDING"
     }
   ],
   "next_candidates": [
+    "★ 把「Node 端 :root 静态 WCAG 对比度解析（含 var 引用链 resolve）」移植回 23:00 个人主页、04:00 多页站点、06:00 活动页横检：这三轮的 AA 只有 07:00/08:00 React 轮在真浏览器量过，纯 CSS 轮从未系统量",
+    "★ sites-building × 邮件型订阅落地页补全：真浏览器（playwright-core 缓存 chromium）点按链验证 D 组同款行为 + aria-invalid 的 CSS 边框变色兑现（本轮桩验行为、浏览器只验了静态样式）",
+    "★ 同场景跨 skill 对照新基线：邮件型订阅落地页 sites-building 单页 11.4KB vs vercel-react / frontend-development 同场景成本（实验室第 3 组三线对照，前两组的曲线见 06:00/07:00 轮）",
     "把「清理后仍可跑的复查卡」补进历轮产物（本轮 scripts/verify-ledger.mjs 是第一个）：前 17 轮的验证脚本全部依赖构建现场（需要 dist/.tmp-check），收尾之后没有任何断言还能跑，等于清理之后无人复核",
     "用 M 组「跨载体」口径横检历轮持久化主张的产物（06:00 活动页 prefs、20:00 报名页票根）：它们大概率同样只在 http:// 验过，file:// 双击载体未测——本轮证明两个 origin 的结论可以相反",
     "★ frontend-development 其余绝对化条款的同产物消融：把本轮 ?control=early 配方移植到「memo 化行组件」「queryKey 常量化=稳定引用」两条，并回打 16:00 Vue 分支与历史 frontend-development 产物——只有对照组能判它们值不值一次重构",
@@ -604,7 +631,6 @@
     "（备查·跨技能条款冲突）js-early-exit vs frontend-development「禁早期 return」→ 已定规则：控制流允许早退，渲染输出一律三元 + 显式空态（18:00 报告 §10；叠加两技能时必须先解冲突）",
     "★ 低成本历史回归：把「零重复 id + getElementById/slot 目标唯一」两条式子回查 04:00 多页站点、23:00 个人主页、14:00 落地页产物（本轮 #schedule 重号缺陷说明这类静默杀手在前几轮同样可能存在，且当时没有任何断言能抓到）",
     "★ 真浏览器溢出+越界元素清单移植回历轮含 transform 的产物（21:00 drafter 图纸、22:00/00:00/01:00 ppt-generator SVG、02:00 graphic-gif 帧）：jsdom 判不了溢出，凡 skew/perspective/rotateX 风格都要按 06:00 轮 visual.mjs 的 `scrollWidth-innerWidth<=0 + 越界元素打印` 重跑一遍",
-    "sites:sites-building × 邮件型订阅落地页（新场景候选：表单+退订偏好+可访问性邮件安全色板，测内置技能条款在「表单为主」的场景里给多少支撑）",
     "跨技能产物互喂：06:00 轮活动页的票根 SVG 作为 02:00 graphic-gif 的动图素材 / 作为 ppt-generator 插图（验三技能产物口径是否兼容）",
     "★ frontend-development × 路由与代码分割密集场景（多页站点/门户）：08:00 向导轮量到「可延迟重量占比」只有 23.3%（L3b），这是表单场景的特征而不是「懒加载」条款的；换到路由密集场景才知道它是否名副其实，判据沿用同一对构建（单文件预览 vs split 证据构建，断言两构建总量差与首包差）",
     "vercel-react-best-practices × 表单密集多步向导：复测「字段级异步校验必须参与步骤闸门」的可发现性 —— 07:00 与 08:00 两轮里没有任何一个技能提到这条，而它正是表单密集场景最容易出事的地方（08:00 轮自建六种拦法 + H15a–H15e 闭环）。换一个技能、同一场景，看它是自带给出的判据还是同样需要自建"
@@ -666,7 +692,10 @@
     "监护仪荧光 phosphor",
     "方格信笺 paper-grid",
     "PCB 阻焊绿 pcb-green",
-    "清水混凝土玫瑰金 concrete-rose"
+    "清水混凝土玫瑰金 concrete-rose",
+    "航空信封 airmail",
+    "植物图鉴图版 botanical-plate",
+    "七十年代放克 seventies-funk"
   ],
   "environment_notes": [
     "本机无法直连 GitHub raw 与 skills.sh（curl exit 35 / WebFetch fetch failed），外部落地技能持续不可用",
@@ -789,6 +818,12 @@
     "「闸门重新打开」类断言必须走完真实路径：被拦下的那次点击停在第 1 步，测试若假设一次点击就到第 4 步，量到的是 STEP 2/4 而不是产品缺陷（H15e 首跑即如此）。凡是「条件解除后前进」的断言，都从当前停留位置逐点击重走",
     "同一份源码的两个构建（__FD_MEMO__ 真假）做消融，比读技能措辞便宜得多：字节只差 22B（633,905 vs 633,927），却把「memo 到底值不值」变成 7 vs 210 次、156 vs 314ms 的可测命题，还能顺手做反向控制（blur 后两臂 DOM 一致，证明 memo 没冻住界面）。任何绝对化的性能条款都该配这样一个同产物对照组",
     "复现文档必须点名每一张卡，包括跑不了的卡：本轮 verify.sh 的「清理后复跑」卡里漏了收尾时新加的 ledger-refill.mjs，于是照文档重建的人拿不到 artifact_size / cleanup / push 三个字段，只能手改 state.json——而 verify-ledger V3 是逐字段 deep-eq，手改必然打架。修法是 check-clean 新增 C9「无孤儿脚本」：每个留在 scripts/ 的脚本要么被 verify.sh 点名（步骤或注释卡都算），要么被别的脚本 import，否则红。凡是「只在某个时刻成立」的卡，都要在文档里写明它什么时候成立",
-    "体积口径要连着单位一起写：check-clean C5 用 bytes/1024² 却打印成「MB」，所以 2,421,258B 打印为 2.31MB，十进制其实是 2.42MB。更麻烦的是**字节数包含统计脚本自己所在目录里的 round-facts.mjs**：字段里硬抄字节，改一次文案就过期（本轮同一数字为追自己的改动重测四次）。定规则：台账字段只写「2.31MB / 64 个文件 + 由 C5 现打印」，字节与逐项拆分只留在产物目录外的报告里，并注明「写完本节后再未改动 artifacts/ 内任何文件」"
+    "体积口径要连着单位一起写：check-clean C5 用 bytes/1024² 却打印成「MB」，所以 2,421,258B 打印为 2.31MB，十进制其实是 2.42MB。更麻烦的是**字节数包含统计脚本自己所在目录里的 round-facts.mjs**：字段里硬抄字节，改一次文案就过期（本轮同一数字为追自己的改动重测四次）。定规则：台账字段只写「2.31MB / 64 个文件 + 由 C5 现打印」，字节与逐项拆分只留在产物目录外的报告里，并注明「写完本节后再未改动 artifacts/ 内任何文件」",
+    "反膨胀条款与表单本体场景的裁决定式（本轮）：表单被授权当且仅当它是「被请求的体验本体」（订阅落地页的订阅表单）；未请求的持久化（记住已订阅）一律不做，会话内闭包即可，并配 F 组「零 localStorage/fetch/XHR/WebSocket + 单 form 无 action + 演示声明在场」断言把边界钉住。",
+    "WCAG 对比度可以在 Node 端从 :root 静态解析计算（hex 转线性光 → ratio），不需要真浏览器——本实验室纯 CSS 页面通用；但解析器必须 resolve :root 内的 var(--x) 引用（--btn-bg:var(--accent2) 不解析就会按 fallback 色算出错误结论）。",
+    "台账去重类断言的关键词必须选「历史全文不含」的组合词：本轮 comboUntried 用「订阅」撞上 15:00 轮「订阅收入看板」产生假失败，改「邮件型订阅」后才对——与「别名映射防自环」「快照式幂等」同族。",
+    "vm 桩 DOM 的桩自身语义要先冒烟再当证据：form.reset() 默认清的是 form.value（不存在），断言「成功后清空输入」建在这种假动作上会把装置缺陷读成产物缺陷（本轮 D 组捕获后修桩）。",
+    "频率类事实（每周四发信）写进页面就要写成断言：全部日期 getUTCDay()===4 && 逐级 −7d && 首期=最新−(N−1)×7d 与页脚互查；设计稿阶段就该 Node 现算（本轮 2026-09-20 非周四在写码前被抓）。",
+    "evaluate_script 滞后现象再复现（历轮笔记 #7 同款）：导航后首读返回前一页的值，连读两次取第二次；导航后立刻放纯 DOM 读也会超时、重试即成。"
   ]
 }

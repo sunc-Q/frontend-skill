@@ -1,0 +1,50 @@
+/* ============ skin: botanical-plate 植物图鉴图版 ============ */
+:root {
+  --bg: #efeee3;
+  --paper: #faf9f2;
+  --ink: #23251b;
+  --mark: #5c5f4f;
+  --accent: #4e6b46;
+  --deep: #40593a;
+  --accent2: #8a6a3a;
+  --ok: #40593a;
+  --rule: #a8ab9a;
+  --radius: 2px;
+  --head-align: center;
+  --font-display: 'Palatino Linotype', 'Palatino', serif;
+  --font-body: 'Iowan Old Style', 'Charter', 'Georgia', serif;
+  --font-mono: 'Menlo', monospace;
+}
+body { background: var(--bg); }
+.masthead { border-bottom: 3px double var(--rule); }
+.mark { font-style: italic; letter-spacing: 0.3em; }
+.title {
+  font-weight: 400;
+  font-variant: small-caps;
+  letter-spacing: 0.4em;
+  text-indent: 0.4em;
+}
+.tagline { font-style: italic; max-width: 28em; }
+.wrap { max-width: 620px; }
+section { background: var(--paper); border: 1px solid var(--rule); padding: 22px; }
+h2 {
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.08em;
+}
+h2::before { content: "图版 · "; font-style: normal; color: var(--accent2); }
+.archive h2::before { content: "标本 · "; font-style: normal; color: var(--accent2); }
+.faq h2::before { content: "注解 · "; font-style: normal; color: var(--accent2); }
+.issue-date { letter-spacing: 0.12em; }
+.archive, .faq { border-top: 1px solid var(--rule); }
+details { border-bottom: 1px solid var(--rule); padding-bottom: 6px; }
+details:last-of-type { border-bottom: 0; }
+summary { font-style: italic; font-weight: 400; }
+summary::before { content: "✦ "; color: var(--accent); }
+.excerpt {
+  border-left: 1px solid var(--rule);
+  background: var(--bg);
+  font-family: var(--font-display);
+}
+.voice { border-left: 0; padding-left: 0; border-top: 1px dotted var(--rule); }
+.foot { border-top: 3px double var(--rule); }
