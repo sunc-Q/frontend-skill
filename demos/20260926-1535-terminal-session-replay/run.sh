@@ -2,6 +2,8 @@
 # Reproduce this round from scratch. Everything stays inside the lab: HOME is
 # redirected so the skill's hard-coded ~/.terminal-sessions never touches $HOME.
 set -u
+# Importing the skill's main.py otherwise drops __pycache__ into the read-only global skill dir.
+export PYTHONDONTWRITEBYTECODE=1
 HERE="$(cd "$(dirname "$0")" && pwd)"
 LAB="$(cd "$HERE/../.." && pwd)"
 SANDBOX="$LAB/.tmp/t21-home"

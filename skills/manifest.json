@@ -92,9 +92,9 @@
     },
     {
       "skill": "terminal-session-replay",
-      "files": 5,
-      "total_bytes": 49243,
-      "read_only": false,
+      "files": 4,
+      "total_bytes": 23647,
+      "read_only": true,
       "manifest": [
         {
           "path": "README.md",
@@ -110,11 +110,6 @@
           "path": "_meta.json",
           "bytes": 301,
           "sha256": "161e37064b616a5d"
-        },
-        {
-          "path": "scripts/__pycache__/main.cpython-314.pyc",
-          "bytes": 25596,
-          "sha256": "cfa383cb2d79eb7a"
         },
         {
           "path": "scripts/main.py",

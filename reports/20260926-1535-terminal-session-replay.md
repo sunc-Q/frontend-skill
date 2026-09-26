@@ -98,6 +98,13 @@ sort 一个 heredoc / echo done），12 行输入、每行配一个人为停顿�
 SIGTERM/SIGKILL 兜底回收）和 `build_player.py`（内联 timing 的单文件回放器）可以直接搬去下一轮做
 「命令行操作教程」类产物。**若日后要真用这个技能，前提是 Linux（util-linux）环境。**
 
+## 附带副作用与处置
+
+`sys.path.insert(...) + import main` 会在**全局技能目录**里落一个 `scripts/__pycache__/main.cpython-314.pyc`
+（技能文件本身是 0600 只读装的，写入照样成功），本轮已删掉它并在 `run.sh` 顶部加
+`export PYTHONDONTWRITEBYTECODE=1`；`skills/terminal-session-replay/` 快照随之回到 4 个文件、
+`chmod -R a-w`（manifest 的 `read_only` 由 `os.access` 实测，为 true）。
+
 ## 下一轮可接的线索
 
 - 同仓库 `openclaw/skills` 里同类「CLI 包装器」技能很多，**共同风险是市场只搬 SKILL.md、
