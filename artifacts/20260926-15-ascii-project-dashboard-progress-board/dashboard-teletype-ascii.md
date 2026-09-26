@@ -198,8 +198,8 @@
 | DIRS / REPORTS                           23 / 23 |
 | ARTIFACT BYTES                            37.9MB |
 | NOTES / CANDIDATES           150 / 55 (+28 star) |
-| GIT HEAD                            main@a3e796e |
-| GENERATED AT              2026-09-26T10:16:24.683Z |
+| GIT HEAD                            main@d746f71 |
+| GENERATED AT              2026-09-26T10:18:07.008Z |
 +--------------------------------------------------+
 
 <!-- f:03d2ea5e9a02 w:59cd42a0946b s:teletype -->
