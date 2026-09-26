@@ -271,7 +271,7 @@ curl -s -X POST "http://127.0.0.1:$SITE_PORT/api/admin/tickets/<上一步返回�
 | 渲染取证 | `node scripts/render-probe.mjs <SPA> <API> velvet nautical typewriter` | **42 条断言，0 失败**（现场造靶子 → 按编号/按购票人/按票号在 UI 里查得到 → 恶意文本 `innerHTML` 显示为 `&lt;img …&gt;`、`#root` 内 img/script/iframe/object/embed/onerror 属性全 0 → 资源全同源 → 无 JS 异常与控制台报错） |
 | 三风格 | `node scripts/style-evidence.mjs`（SPA 与 preview 各一轮 × 3 主题 × 6 页签） | 45 条断言全 PASS，18 份探针快照一致 |
 
-`evidence/verify-*.txt` 保留了三组的完整输出。
+`evidence/verify-*.txt` 保留了三组的完整输出（`api-smoke.mjs` 只在失败时逐条打印，跑通就是一行汇总，所以那份日志只有 37 字节；`render-probe.mjs` 与 `style-evidence.mjs` 每条断言都打一行）。
 
 ## 本轮踩坑（下轮别再踩）
 
