@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{TITLE}}</title>
+<meta name="description" content="{{SHOW_TITLE_ZH}} · {{VENUE}} · 示例站点" />
+<style>{{CSS}}</style>
+</head>
+<body class="style-{{STYLE_NAME}}">
+<canvas id="fx" class="fx" aria-hidden="true"></canvas>
+<div id="gl-fallback" class="gl-fallback" role="status" aria-live="polite"{{FALLBACK_ATTRS}}>本页面的视觉由 WebGL 实时生成。当前环境未取得 WebGL 上下文，因此只呈现可读的文字层。</div>
+
+<header class="hero" id="top">
+  <div class="hero-inner">
+  <p class="kicker">{{CITY}} · {{VENUE}}</p>
+  <h1 class="hero-title"><span class="zh">{{SHOW_TITLE_ZH}}</span><span class="en">{{SHOW_TITLE_EN}}</span></h1>
+  <p class="hero-sub">{{SUBTITLE}}</p>
+  <p class="hero-dates"><time datetime="{{OPEN}}">{{OPEN}}</time> — <time datetime="{{CLOSE}}">{{CLOSE}}</time><span class="run-days">（展期 {{RUN_DAYS}} 天）</span></p>
+  <div class="hero-actions">
+    <button type="button" id="motion-toggle" class="btn" aria-pressed="false">暂停画面</button>
+    <a class="ghost-link" href="#works">前往作品清单</a>
+  </div>
+  <p class="scrim-note">文字层带有可读性衬底：动效再变，正文对比度不跟随漂移。</p>
+  </div>
+</header>
+
+<nav class="nav" aria-label="页面分区">
+  <a href="#works">作品</a><a href="#variants">变体</a><a href="#visit">展期</a><a href="#rooms">场馆</a><a href="#notes">说明</a>
+</nav>
+
+<main>
+  <section id="works" class="section" aria-labelledby="works-h">
+    <h2 id="works-h">展陈作品</h2>
+    <p class="section-lead">{{STATEMENT}}</p>
+    <div class="work-grid">{{WORKS}}</div>
+    <p class="count-line">共 {{WORK_COUNT}} 件作品，累计实时时长 {{TOTAL_DURATION}} 秒。</p>
+  </section>
+
+  <section id="variants" class="section" aria-labelledby="variants-h">
+    <h2 id="variants-h">同一程序 · 三个变体</h2>
+    <p class="section-lead">一块画布、一个着色器程序、三次视口绘制，仅 <code>uVariant</code> 不同。作品 III 的现场版本就是用这条回路把一台主机推到三块幕上的。</p>
+    <div class="strip-wrap">
+      <canvas id="strip" class="strip" role="img" aria-label="同一着色器程序在 uVariant 为 0、1、2 时的三幅并排画面"></canvas>
+      <div class="strip-labels">{{VARIANT_LABELS}}</div>
+    </div>
+    <p class="count-line">色相位移按变体号递增 0.18 周期，域扭曲旋转 45°，其余参数完全相同。</p>
+  </section>
+
+  <section id="visit" class="section" aria-labelledby="visit-h">
+    <h2 id="visit-h">展期与参观</h2>
+    <dl class="facts">
+      <div><dt>开放日</dt><dd>{{VISIT_DAYS}}</dd></div>
+      <div><dt>开放时间</dt><dd>{{VISIT_HOURS}}（停止入场 {{LAST_ENTRY}}）</dd></div>
+      <div><dt>闭馆说明</dt><dd>{{CLOSED_NOTE}}</dd></div>
+      <div><dt>全票</dt><dd>¥{{TICKET_ADULT}}</dd></div>
+      <div><dt>优惠票</dt><dd>¥{{TICKET_CONCESSION}}</dd></div>
+      <div><dt>预计观众</dt><dd>{{VISITORS_EXPECTED}} 人次</dd></div>
+      <div><dt>导览</dt><dd>每周 {{GUIDED_TOURS}} 场，展期共 {{GUIDED_TOTAL}} 场</dd></div>
+    </dl>
+  </section>
+
+  <section id="rooms" class="section" aria-labelledby="rooms-h">
+    <h2 id="rooms-h">场馆与承载</h2>
+    <table class="rooms">
+      <caption>三个展陈空间，面积合计 {{ROOM_AREA_TOTAL}} ㎡，瞬时承载合计 {{ROOM_CAP_TOTAL}} 人，平均 {{ROOM_DENSITY}} ㎡/人</caption>
+      <thead><tr><th scope="col">空间</th><th scope="col">面积（㎡）</th><th scope="col">瞬时承载（人）</th><th scope="col">人均（㎡）</th></tr></thead>
+      <tbody>{{ROOMS}}</tbody>
+    </table>
+  </section>
+
+  <section id="notes" class="section" aria-labelledby="notes-h">
+    <h2 id="notes-h">布展说明</h2>
+    <ol class="notes">{{NOTES}}</ol>
+  </section>
+
+  <section id="credits" class="section" aria-labelledby="credits-h">
+    <h2 id="credits-h">制作</h2>
+    <ul class="credits">{{CREDITS}}</ul>
+  </section>
+</main>
+
+<footer class="footer">
+  <p class="demo-note">{{DEMO_NOTE}}</p>
+  <p class="tech">{{TECH}}</p>
+  <p class="style-line">当前风格：<span class="style-name">{{STYLE_NAME}}</span> · 着色器：<code>{{SHADER_FILE}}</code> · 上下文：WebGL1 / GLSL ES 1.0</p>
+  <a class="top-link" href="#top">回到顶部</a>
+</footer>
+
+<script type="application/json" id="facts">{{FACTS_JSON}}</script>
+<script>{{HOST}}</script>
+</body>
+</html>

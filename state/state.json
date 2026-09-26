@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T15:00+08:00",
+  "updated": "2026-09-26T18:00+08:00",
   "tried": [
     {
       "skill": "sites:sites-building",
@@ -315,6 +315,20 @@
       "conclusion": "留用（第 1 次，判据三条见报告 §14）。①**技能 §Calculation Rules 的公式会在 95%~99% 整段区间谎报「已完成」**：`filledBlocks=round(pct/10)` 把本轮 CLEAN 22/23(96%) 与 DEDUP 20/21(95%) 两条泳道画成满格，即 6 条泳道里 2 条骗人，而「只差最后一项」正是这种看板的常态落点（19/20、22/23、45/46…分母越大越密）。实现改为「满格只允许真·全完成，其余钳到 9/10」（dense 八分度钳 79/80），并由 A3x（产物里满格条必属全完成泳道）+ A4（**原公式在本轮数据上确实过度声明** —— 断言缺陷存在性，改回原公式即报红）+ M5a/b/c（构造 199/200 这一非本轮边界，证明与数据无关）三支从三个方向钉住。②**十格量化死区真实存在**：M1e 把自检泳道改坏一项（7/13→6/13、pct 54→46）后断言 matrix 条一字未动（落盘读数 `54% 与 46% 都画成 ▓▓▓▓▓░░░░░`），M1b 要求这份被十格吞掉的差异必须在 dense 的八分度上可见（43/80→37/80，且两态仍为 10 列）—— 死区不修（十格是技能原生主张），改用第二种风格把它测出来。③**本轮最贵的发现：技能的等宽前提在浏览器侧先天为假，且换字体救不了**。本机 Chrome 无头实测（font-size 12.5px、mono=7.526px）：CJK「项」=12.5px=**1.661 格**（恰为 1 个 em）、emoji ✅=2.126 格、盲文 ⣿=1.135 格、盒线/块字符/#/./空格=1.000 格 —— 前提只在技能的条字母表（▓░─█#）上成立。BB11 用 14 个字族（含 PingFang/Heiti/Songti/STSong/Kaiti 与号称 CJK 等宽的 Noto Sans Mono CJK SC / Source Han Mono / Sarasa Mono）各测一遍步进，比值最高 1.666、无一接近 2（三款「CJK 等宽」全测出 1.134，即本机根本没解析到它们）。修法：HTML 预览层按 charClass() 把连续同类宽字符包成 `<span class=\"fx-*>` + 内联脚本按 `目标格数×mono − 实测步进` 写 letter-spacing，**目标值一律由唯一口径 cells() 反推**（B11d 断言 WIDE_FIX[类]==cells(探针)，M11a/b/c 三臂值变异 + M10 五臂结构变异守住）。效果实测：matrix 同列关键字符跨度 68.88px（未校正）→0.08px（校正后），dense 25.5px→0.03px，teletype 纯 ASCII 无需脚本（0px）；BB6 断言校正对条形惰性（8 格条 raw/fixed 同宽 60.2px==8×mono）。④**ASCII 区必须围栏**：header/泳道/Sprint 框/时间线裸写会被 Markdown 折叠成段落，B14 把「非表格的 art 行必须落在 ``` 围栏内」升格为不变式（加围栏打断了 A6/A6b/M8b 三条旧的「第一个围栏」假设，改为按字符集特征选围栏）。⑤**同构核对是本轮主判据**：C1 三份 .md 反解「泳道→done/total/pct」逐行相同、C1b 与 facts 现算交叉回读（两个独立口径）、A7 合计行==各泳道相加、A8 每个 pct 可由 done/total 反算、E1/E2/E3+M9a/M9b（往源码注入手抄 pct 必须报警）、D6/CL10/M4a/M4b（陈旧读数）—— 全绿，`same=true`。⑥**顺带查出 4 条台账自身缺陷**（本轮只报告不代改他人字段）：tried[9]/[10]/[11] 缺 report/artifacts 字段（H9/H10）、tried[13]（build-game 3D 塔防轮）**完全没有 time**（H13，本轮新写的判据一写出来就抓到，此前 20 轮无人覆盖）、reports/20260926-04-sites-building-multipage-site 是个**目录**（含 build.mjs/check.mjs/visual.mjs/4 张 png/两份 check-output.txt —— 04:00 轮没清干净的中间件被留在 reports/ 里，H12）。⑦成本：三风格 .md 13.8/14.0/10.5KB + 四份 HTML 31.8/31.3/12.5/13.0KB，目录磁盘 651KB/入库 486KB（另有 164KB 可再生探针拷贝不入库，体积一律取整到 0.1KB —— 台账文本会进 facts.json，字节精确值每跑一次就抖，写死即埋假红），**零 node_modules、零构建、零依赖**，收尾成本近零（与 12:00 轮删 119MB 是两个极端）。⑧并行共存：本轮跑在 14:00 drafter 轮之后，`facts.mjs:59 BOUNDARY=14:00` 把「本轮开工之后写的东西」一律算在制品，故 TRACE 泳道 21 条（不含 14:00 与本轮自己）、`orphans` 写回前 2（含本轮目录）→ 写回后 1（只剩 14:00），**两个读数都正确**，H8 因此从「缺陷」降级为「在制品状态」；本轮对 14:00 目录零写入。⑨**写回后复跑抓出的两条自反缺陷**（详见报告 §9）：(a) **D4/D5 在自己的写回上自杀** —— 「本轮组合确不在 tried 里」「候选池预先排着这一组」查的是 live 台账，于是写回成功那一刻选题前置条件被自己判死；修法不是删也不是反向，而是**给判据配写回前快照** `scripts/ledger-before.json`（`git show HEAD:state/state.json`，164KB 随产物入库，复现无需 git），并补 **D4b**（live 比快照恰多一条 tried，证明它就是「紧邻写回前」那一版，不是随手抓的旧账）+ **D5b**（被消费的排队项在 live 已消失、候选池反而净增 3 条 → 台账是活的、不是只进不出）。(b) **差点写错一条归因**：首跑 `H2 mismatched=3`，我按「本轮 3 个风格名还没进 used_styles」解释，听起来完全合理；写回后 used_styles=66、本轮三名全在，**H2 却依然 3** —— 真凶是 `tried[2]`（2026-09-25 16:00 轮）把风格名写成 `暖纸数据新闻 editorial / 冷灰对账单 statement / 暗色霓虹 cyber`，而 used_styles 记的是无英文后缀的中文名，**同一次写回里两个字段对同一件事用两套名字**，与本轮毫无关系。两条合成一句口径：**凡「相对整本台账」的断言必须先声明基准集是写回前还是写回后；blocker 读数相同 ≠ 归因相同**（本实验室第三次遇到同类：12:00 轮 I8/I10、08:00 轮双时钟）。⑩判据总数 192（node 115 / mutate 36 / clean 13 / browser 28），其中约 50 条为本轮的宽度模型而设，4 条为写回自反而设。",
       "artifacts": "artifacts/20260926-15-ascii-project-dashboard-progress-board/",
       "report": "reports/20260926-15-ascii-project-dashboard-progress-board.md"
+    },
+    {
+      "skill": "shader（第 1 次使用，~/.qoder-cn/skills/shader；技能包 23 文件 44KB 只读快照已入库 skills/shader/，MANIFEST 登记 sha1 前 12 位 554b0fd8c482）",
+      "scenario": "沉浸式展览页（虚构展览「潮汐刻度」：hero + 三段展陈 + 作品表 + 结语；一个 WebGL1 全屏 canvas 用 gl.viewport 切三条横带、同一程序按 uVariant=0/1/2 出三种密度，鼠标与滚动进度进 uniform，正文压在活着色器上；三风格 = 三份着色器 + 三套 CSS 令牌，DOM 与哨兵后的共享宿主逐字节相同）",
+      "styles": [
+        "液态铬面 liquid-chrome",
+        "栅格磷光 crt-plasma",
+        "丝绸极光 silk-aurora"
+      ],
+      "time": "2026-09-26T18:00+08:00",
+      "reason": "未试组合：shader 不在 tried 也不在 skills_seen（前 22 轮的像素正确性全靠 DOM/CSS 侧断言，没有一个技能的产物「要先过 GPU 编译才有画面」，本轮第一次把编译与真帧像素纳入判据）；三风格名与 used_styles 现 66 条零碰撞；技能自带 CLI + 6 段 snippet 让「技能文档示例是否真跑得动」第一次可以整条跑一遍而不是读摘要。",
+      "conclusion": "**留用·核心（像素型判据的唯一来源）**。12/12 例变异全部被抓且点名（值 4/结构 7/语义 1）。① 技能 SKILL.md 的 14 条示例命令真跑通（读数在 evidence/cli-probe.json），6 段 snippet 全部真编译且在纯屏片元里改像素、3 段逐字复用到产物，但 4 处可机检缺陷（pixelate 在 effects 无别名 / scaffold 三组合回落默认 / snippet 名单与 assets 有 1 处不符 / intake 对描述性输入 0 命中）；② **gl_FragCoord 是画布坐标**：一屏多视口必须自带 uOrigin + 每带分辨率，否则三带只是同一张图的三个裁片，由 K/samevariant-flattens-strip 消融臂把住；③ **均值是坏判据**（软件 GL 三带均值差不到 1/10 而像素在动），改冻结 uTime + 201 采样点逐像素 diff；④ 三份产物互比抓不到「三份一起改」，补 src↔产物漂移闸（M3b/M2b 各验一次）；⑤ 对照页 176 条数字溯源 + 105 个测量区快照，集合判据被自己的转录洗白过一次后改位置绑定。技能完全不管视觉与排版，皮肤差异全部来自自建令牌纪律，故不宜单独承担「多风格设计」。",
+      "artifacts": "artifacts/20260926-18-shader-gallery/（444KB、31 文件：preview/ 三份双击即开的单文件页 liquid-chrome 38,341B / crt-plasma 39,017B / silk-aurora 38,180B + styles.html 19,012B 对照入口 + src 8 文件 1106 行 + scripts 六件套 + evidence 六份 + scripts/ledger-snapshot.json，零 node_modules/零 dist/零外链）",
+      "report": "reports/20260926-18-shader-immersive-exhibition.md"
     }
   ],
   "skills_seen": [
@@ -632,64 +646,26 @@
       "artifact_size": "磁盘 651KB / 入库 486KB（du 与 git ls-files 现算；体积一律取整到 0.1KB —— 台账文本会进 facts.json 再进产物，字节精确值每跑一次抖几十 B，写死就是给自己埋假红）。构成：交付物 276KB（三份 .md + 四份 HTML + facts.json + src/render.mjs + scripts/ 九件）+ 写回前快照 scripts/ledger-before.json 167KB + .tmp-check 断言读数 44KB + 浏览器探针拷贝 probe-*.html 164KB（可再生、已 gitignore 不入库）。上限 50MB，用了不到 1.4%",
       "cleanup": "已执行：①删仓库外一次性探针 /tmp/font-probe.mjs、/tmp/dbg-chrome.mjs（结论已固化进 scripts/check-browser.mjs，由 BB3/BB3b/BB11/BB11a 长期守住）与 Chrome 临时 profile（os.tmpdir 下按 PID 命名、退出即删）；②删本轮在 LAB/.tmp 里的全部临时脚本（写回 writeback-15/seen-15/log-15、打补丁 fixline/fix2..fix5/fix190/fixconc/fixlog2、探查 findpipe、回填 refill-15/note-15 等，本轮用完即删，不留可再生的脚手架），而 14:00 并行轮留下的 probe*.mjs / dom-swimlane.html / geo-*.json 一件未动 —— 不是本轮的临时件、归属未明就不删；③零 node_modules、零 dist、零构建日志，没有中间产物可清。④省磁盘口径在本轮定稿：可再生的不进 git —— 六份 .tmp-check/probe-*.html（164,434B，与交付 HTML 逐字节同源、verify.sh 每次重写）已用仓库根 .gitignore 的一行 **/.tmp-check/probe-*.html 排除；不可再生的四张断言卡读数与 browser/build-meta 随产物入库，让「192 条全绿」在 git 里留有原始依据。校验脚本九件全部入库，未触发「删脚本须抄全文」义务（报告 §12 记明条件不成立）。技能目录与 前端skill实验室 之外零写入",
       "push": "origin/main 走 SSH（github.com HTTPS 被 TLS 重置，本机只通 SSH）：第一段 3531814..a3e796e = 本轮主体 33 files（产物 27 件 + 复现报告 + state.json/work-log.md 两份台账 + skills/ascii-project-dashboard 只读快照 + MANIFEST/README 登记 + .gitignore 探针排除）；第二段 a3e796e..HEAD = 本次台账回填（artifact_size/cleanup/push 三格 + 回填后重跑 verify.sh 刷新的页脚哈希），两段区间的定稿读法见 git log 末两条标题。主机键写入 LAB/.tmp/known_hosts（GIT_SSH_COMMAND 指 UserKnownHostsFile 到仓库内 + StrictHostKeyChecking=accept-new），提交身份用内联 -c user.name / -c user.email 指定，未触碰任何全局 git 配置；命令与落库文件里零 token 零密钥（远端认证走 SSH 密钥）。14:00 drafter 轮的未跟踪目录 artifacts/20260926-14-drafter-flowchart/ 不在本轮暂存范围，留给它自己的会话提交"
+    },
+    {
+      "time": "2026-09-26T18:00+08:00",
+      "skill": "shader（第 1 次使用，~/.qoder-cn/skills/shader；技能包 23 文件 44KB 只读快照已入库 skills/shader/，MANIFEST 登记 sha1 前 12 位 554b0fd8c482） × 沉浸式展览页",
+      "scenario": "沉浸式展览页（一个 WebGL1 canvas 三横带 × 同程序 uVariant 三密度，正文压在活着色器上；三风格 = 着色器与令牌不同、DOM 相同）",
+      "result": "success",
+      "assertions": "静态 282 条（A 20 / B 43 / C 75 / D 43 / E 16 / F 27 / G 23 / H 6 / I 11 / N 17 / R 1）+ 真浏览器 91 条（J 45 / L 18 / K 14 / M 14，无头 Chrome + SwiftShader 真帧像素 + 10 条对照臂 + 6 段 snippet 真编译）+ 变异 12 例（值 4/结构 7/语义 1）全部被抓且点名，还原后复跑 check-node/check-browser 全绿 + check-clean 7 条。本轮像素读数（软件渲染，只比相对差异不作性能结论）：liquid-chrome 均值 67.5/σ 28.8/三带逐像素改变 201-200-201；crt-plasma 均值 46.7/σ 42.0/三带逐像素改变 182-186-191；silk-aurora 均值 193.7/σ 29.3/三带逐像素改变 142-156-156",
+      "artifact_size": "444KB / 31 文件（node 现读目录，上限 50MB；构成见 reports/20260926-18-shader-immersive-exhibition.md §13）",
+      "cleanup": "待补记",
+      "push": "待补记"
     }
   ],
   "next_candidates": [
-    "★ 把「Node 端 :root 静态 WCAG 对比度解析（含 var 引用链 resolve）」移植回 23:00 个人主页、04:00 多页站点、06:00 活动页横检：这三轮的 AA 只有 07:00/08:00 React 轮在真浏览器量过，纯 CSS 轮从未系统量",
-    "★ sites-building × 邮件型订阅落地页补全：真浏览器（playwright-core 缓存 chromium）点按链验证 D 组同款行为 + aria-invalid 的 CSS 边框变色兑现（本轮桩验行为、浏览器只验了静态样式）",
-    "★ 同场景跨 skill 对照新基线：邮件型订阅落地页 sites-building 单页 11.4KB vs vercel-react / frontend-development 同场景成本（实验室第 3 组三线对照，前两组的曲线见 06:00/07:00 轮）",
-    "把「清理后仍可跑的复查卡」补进历轮产物（本轮 scripts/verify-ledger.mjs 是第一个）：前 17 轮的验证脚本全部依赖构建现场（需要 dist/.tmp-check），收尾之后没有任何断言还能跑，等于清理之后无人复核",
-    "用 M 组「跨载体」口径横检历轮持久化主张的产物（06:00 活动页 prefs、20:00 报名页票根）：它们大概率同样只在 http:// 验过，file:// 双击载体未测——本轮证明两个 origin 的结论可以相反",
-    "★ frontend-development 其余绝对化条款的同产物消融：把本轮 ?control=early 配方移植到「memo 化行组件」「queryKey 常量化=稳定引用」两条，并回打 16:00 Vue 分支与历史 frontend-development 产物——只有对照组能判它们值不值一次重构",
-    "★ build-game × 手绘/设定图参考（Phase 1B 另一半输入形态：非摄影位图没有天空/地面分区，GROUND「下半区面积冠军」与 SUN「最亮 2% 均值」两条公式会退化——需要先写出「公式退化检测式」，这是本轮链条最可能塌的地方）",
-    "★ 把「整帧跨步采样 + 参考色调带 frame/ref ∈ 0.4..1.8」移植回 graphic-gif 与 ppt-generator 轮：它们此前用的是角采样或绝对亮度档，同一条缺陷可能一直在假通过（GIF 轮 terminal 深色稀释事件即前兆）",
-    "★ build-game × 性能预算档（本轮补上了真帧统计，仍只有 draw call/triangles；把 SSAO「1.59× 三角面 0 像素收益」与帧 σ/色调带并成一套性能-画质双约束，测技能条款是否允许直接删 pass）",
-    "build-game × 第一人称/FPS 或载具（技能菜单里未试的 genre：相机相对移动式子（D1/D2/D3）在 FPS 下应退化为直接朝向，可用来检验该组断言的普适性）",
-    "★ 把网页版曝光口径（p99.5-p0.5≥100 && σ≥18 + 主题兑现）移植回 graphic-gif 与 ppt-generator 轮横检：它们同样是平色块主导媒介，游戏版 mid% 口径此前可能一直在假失败或假通过",
-    "★ 用「目录索引禁用探针+零根绝对路径」式子复查 23:00 个人主页与 14:00 落地页历史产物（低成本回归）",
-    "sites:sites-building × 活动报名页（与 20:00 React 轮同场景零框架对照，排队中）",
-    "★ 把 H/contrast（帧 σ>30 且 mid%>10）+ H/exposureEnds（clipped/dark<10）两条式子移植回 graphic-gif 与 ppt-generator 轮做横检：本轮极冠首版 meanLuma 216.8/σ23 整屏泛白只有这条式子抓得到，历轮 GIF/PPT 同样有「亮但糊」的风险",
-    "★ build-game × 性能预算档（本轮只记 draw call/triangles，未做帧率与 GC 断言；SSAO 已被证明「1.59× 三角面换 0 像素变化」，正好用来测技能自带的性能条款是否允许直接删 pass）",
-    "★ graphic-gif × fade-in/slide-in 两型补全 + 把「末帧终值==目标值」式子移植回 15:00/20:00 轮的 CSS 动画场景横检",
-    "graphic-gif × 邮件横幅（<500KB 预算档，技能 Step6 的 email 预算从未压测；filesize 优化档 + gifsicle 缺位下的体积上限）",
-    "★ ppt-generator × 图表模板诚实度横筛（剩余 27 张 chart 模板，标注 vs 端点反推式子自动化）",
-    "★ ppt-generator × dark_warm 暖色商务提案（SKILL.md 菜单默认风格、index 漏列）",
-    "ppt-generator × charts_index bestFor/avoidFor 选图决策断言",
-    "ppt-generator × svg_quality_checker.py/batch_validate.py 黑盒对垒",
-    "★ 三条式子（色板封闭+七指纹+零交集）移植回 14/16/17/18 轮历史产物横检",
-    "三技能叠加 sites-building+vercel-react+drafter：反膨胀条款 vs 分包懒加载条款是否互斥",
-    "vercel-react × 真 Next.js 工程吃 RSC 专属 server-*（3 条）",
-    "跨技能：graphic-gif 产出的 GIF 作为 sites-building 落地页素材（动图入静态站，验证两技能产物互喂）",
-    "ppt-generator × charts_index.json 的 bestFor/avoidFor 选图决策：33 条目带适用/回避场景描述，本轮未验——给同一份数据故意配错图型（如漏斗数据画 donut），断言技能文档能否让 Agent 事后指出错配（选图条款第一次可测）",
-    "ppt-generator × svg_quality_checker.py / batch_validate.py 黑盒：22:00 轮记的「另一套未接线的质量脚本」，把它当第三方 linter 跑本轮 18 页 SVG，对照 check.py 的 350 条看谁抓到更多（验技能自带 QA 与自研 QA 的覆盖差）",
-    "三技能叠加 sites-building（定形+反膨胀）+ vercel-react（定码）+ drafter（定图）：验 F 组「不许加分包以外的功能」与 vercel「鼓励分包/懒加载」是否互斥；19:00 轮的先例是先解控制流冲突再叠加",
-    "sites:sites-building × 活动报名页（与 20:00 React 轮同场景零框架对照，本轮 15KB 已可作为成本基线）",
-    "vercel-react-best-practices × 真 Next.js 工程（server-serialization / server-dedup-props / React.cache 本体与流式 SSR 形态的 suspense-boundaries 只有 Next.js 能验；npmmirror 可装 next，需先确认 Node 22 兼容与构建时长配额）",
-    "★ vercel-react-best-practices × 真 Next.js 工程：server-* 剩余 3 条 RSC 专属（server-serialization / server-dedup-props / React.cache 本体）与流式 SSR 形态的 suspense-boundaries 只有 Next.js 能验；npmmirror 可装 next，但需先确认 Node 22 兼容与构建时长配额",
-    "★ vercel-react-best-practices × 「部分依赖扇出」数据形态（如列表返回 ids 后逐项取详情）：async-dependencies（better-all）是唯一还没落地的 async 条款，别为它凑题，等自然场景",
-    "sites:sites-building × 活动报名页（与 20:00 轮同场景零框架对照：同一张活动页，内置技能单文件 vs React+mock 服务端的成本/能力差）",
-    "（需用户授权）市场技能 ui-ux-pro-max × 数据报表",
-    "drafter × 单张长链流程图/时序图（技能主场未测点：连接线在 12+ 节点、直角折线与跨行虚线下的可读性与塌陷风险；产物仍应 15-20KB）",
-    "drafter + 规范型技能叠加 × 数据看板（测「主张型定形 + 规范型定码」配方在纯静态图纸上是否仍互补，且能否把 C 组视觉断言与 bundle 断言并成一套）",
-    "★ vercel-react-best-practices × 「部分依赖扇出」数据形态（列表返回 ids 后逐项取详情）：async-dependencies（better-all）是唯一还没落地的 async 条款，别为它凑题，等自然场景",
-    "drafter × 单张长链流程图/时序图（12+ 节点下连接线可读性与塌陷风险；产物仍应 15-20KB）",
-    "drafter + 规范型技能叠加 × 数据看板（测「主张型定形 + 规范型定码」在纯静态图纸上是否仍互补，能否把视觉断言与 bundle 断言并成一套）",
-    "（备查·跨技能条款冲突）js-early-exit vs frontend-development「禁早期 return」→ 已定规则：控制流允许早退，渲染输出一律三元 + 显式空态（18:00 报告 §10；叠加两技能时必须先解冲突）",
-    "★ 低成本历史回归：把「零重复 id + getElementById/slot 目标唯一」两条式子回查 04:00 多页站点、23:00 个人主页、14:00 落地页产物（本轮 #schedule 重号缺陷说明这类静默杀手在前几轮同样可能存在，且当时没有任何断言能抓到）",
-    "★ 真浏览器溢出+越界元素清单移植回历轮含 transform 的产物（21:00 drafter 图纸、22:00/00:00/01:00 ppt-generator SVG、02:00 graphic-gif 帧）：jsdom 判不了溢出，凡 skew/perspective/rotateX 风格都要按 06:00 轮 visual.mjs 的 `scrollWidth-innerWidth<=0 + 越界元素打印` 重跑一遍",
-    "跨技能产物互喂：06:00 轮活动页的票根 SVG 作为 02:00 graphic-gif 的动图素材 / 作为 ppt-generator 插图（验三技能产物口径是否兼容）",
-    "vercel-react-best-practices × 表单密集多步向导：复测「字段级异步校验必须参与步骤闸门」的可发现性 —— 07:00 与 08:00 两轮里没有任何一个技能提到这条，而它正是表单密集场景最容易出事的地方（08:00 轮自建六种拦法 + H15a–H15e 闭环）。换一个技能、同一场景，看它是自带给出的判据还是同样需要自建",
-    "★ 把本轮 G8 的「Suspense 边界层级」式子（逐帧量 chrome：masthead/stats 的 top 位移必须为 0，且占位高度与内容高度之差 == 页脚位移）移植回 07:00 后台轮、08:00 向导轮与 16:00 Vue 分支产物：那几轮同样把页头/页脚写在路由组件内部，等待期整页外壳被 fallback 吞掉的缺陷很可能一直在，而它们当时只量了「骨架是否出现」、从未量「骨架之外还有什么」",
-    "★ 「可延迟重量占比」跨场景曲线补第三个点并修分母：本轮 9.4%（L3b，已落盘）与 08:00 表单场景 23.3%（只在报告文本里、JSON 未留盘）——先重跑 07:00/08:00 两轮的 check-node 让 L3b 落盘，再加一个「单页重图表 / 无限滚动」场景，检验这条指标是否随「非运行时依赖的重量」而非随分割点数变化",
-    "★ 消融实验要按「功能失效 / 性能退化」分档：本轮四臂里只有 unstablekey 从未画出一行（89 次读、真 HTTP 16:1），另两臂只是变慢；把这条分档口径回打 07:00 轮 ?control=early（位移 1.7×）与 08:00 轮 __FD_MEMO__（30 击 7 vs 210）两组旧数据，重述它们的结论档次——技能原文把三句话写成同等语气，实测价值量级不同",
-    "虚拟滚动条款的另一半：本轮只有「等高行 + 视口窗口」，未测行高不定（富文本摘要折行数不同、图片延迟加载）时该技能是否给出任何可判的写法；配一个不定行高场景，测条款是否会退化成「按平均高度估算」并因此产生可量的位移",
-    "★ 把 M4b 的「有界消毒」口径（5,000 项敌意星单截到 60 条、落盘 1,097B）移植回 06:00 活动页 prefs 与 20:00 报名页票根：历轮只验过非法 JSON 与非法枚举，从未验过「形状合法但规模超大」的输入，而那正是把浏览器渲染卡死的量级",
-    "三皮肤行高（66/78/72px）会让同一视口下的窗口行数与「本页共 N 篇」的读数口径随皮肤变化——把这个「同一份数据在三种皮肤下读出不同统计口径」的判断题交给 vercel-react-best-practices × 表单向导轮（候选 46）交叉复核，看另一个技能是否自带裁决",
-    "★ 把「宽度口径只能有一个、校正目标必须由它反推」移植回所有含 CJK 的等宽排版产物：ppt-generator 的 SVG <text>（22:00/00:00/01:00 三轮）与 drafter 图纸（14:00/21:00）都按「字符数×估算宽」排过版，从未按字符类量过真实步进 —— 1.661 这个数在 SVG textLength 下同样成立的话，那些轮的表格列全是假对齐",
-    "★ 把「断言缺陷存在性」这一判据形式（本轮 A4/M1e：技能原公式确实会过度声明、十格死区确实存在）移植回历轮记为「技能条款只被用到、未被定价」的主张：07:00 后台轮与 08:00 向导轮的懒加载/骨架条款只有正向断言，缺一条「不纠偏就会错」的反向证据",
-    "★ 台账卫生一次性补记（**需人工判断、非本技能产物**）：tried[9]/[10]/[11] 缺 report/artifacts 字段、tried[13]（build-game 3D 塔防轮）完全没有 time、reports/20260926-04-sites-building-multipage-site 是目录（内含 build.mjs/check.mjs/visual.mjs 与 4 张 png，是 04:00 轮未清理的中间件）——H9/H10/H13/H12 四条判据已在 15:00 轮产物里，补完应自动转绿",
-    "★ ascii-project-dashboard × 值班表 / 工单看板（技能 §Integration Points 声明可与 planning 文档、release notes 互喂，本轮只验了「进度看板」这一种输入形态；release-notes 形态的「已发布事实」与看板的「进行中事实」混排时，pct 语义会互相污染，值得单独一轮）",
-    "真实终端（locale=zh_CN.UTF-8 的 iTerm2/Terminal.app）里歧义宽度字符（盒线、块字符、盲文，本轮三份 .md 共 294 个）按 1 列还是 2 列计 —— 未测；若为 2，.md 原生载体的对齐口径要按 locale 分流，这是 15:00 轮报告 §14 明确留下的未验证项"
+    "★ shader × 音乐/音频可视化：第一个「外部数据驱动着色器」的场景（AnalyserNode 真实频谱喂 uniform），能把 uAudio 这类自定义 uniform 的传参纪律逼出来，并复用本轮的冻结时钟 + 逐像素 diff 判据",
+    "★ shader × 商品 360° 展示：变体轴 = 视角，「一个程序多变体」做成可旋转的硬判据（本轮 K/samevariant 消融臂是现成起手式）",
+    "把「位置绑定判据」（生成器快照测量区 + checker 逐区比字节）移植回历轮的生成型对照页：20260926-15 自指看板、07/08 React 轮的 styles.html 都只有集合判据，同样会被自己的转录洗白",
+    "把「条件性断言会让总数跳变」这条查一遍历轮产物：凡页脚/报告引用了断言总数，而该组里有 if 才 push 的条目，都是潜在的假话来源",
+    "shader 技能上游回报四条（A 组可当复现脚本）：pixelate 在 effects 无别名、scaffold 三个组合回落默认、snippet 名单与 assets 有 1 处不符、intake 对描述性输入 0 命中；另建议 references/ 补「多视口需自带原点」",
+    "同场景跨 skill 对照：沉浸式/背景类页面至今只有 shader 一轮，可拉 sites-building 或 drafter 做同题零 WebGL 对照（实验室第 4 组三线对照）",
+    "台账卫生既有欠账（他人轮次，本轮只报告未代改）：tried[10]/[11] 缺 report、tried[13] 缺 time，reports/ 下仍有 1 个目录形态条目"
   ],
   "used_styles": [
     "瑞士极简",
@@ -757,7 +733,10 @@
     "黑胶唱片架 vinyl-crate",
     "泳道矩阵 lane-matrix",
     "盲文密排 braille-dense",
-    "电传稿 teletype-ascii"
+    "电传稿 teletype-ascii",
+    "液态铬面 liquid-chrome",
+    "栅格磷光 crt-plasma",
+    "丝绸极光 silk-aurora"
   ],
   "environment_notes": [
     "本机无法直连 GitHub raw 与 skills.sh（curl exit 35 / WebFetch fetch failed），外部落地技能持续不可用",
@@ -909,6 +888,12 @@
     "**测量装置自身必须有灵敏度对照（本轮最险的一次假绿）**：字族扫描第一版写成 `adv('M', fs, 40)`，而签名是 `adv(ch, cls, n, fam)` —— 家族名被当成 CSS class 传进去了，14 个字族测出**完全相同**的步进，数字漂亮、BB11 照样 PASS。修成 `adv('M', null, 40, fs)` 后各族比值才散开（1.088~1.666）。补的 BB11a 要求「各字族 ASCII 步进去重后 ≥3 个值」，专抓这类参数错位导致的空转。口径：**凡「换一批输入却读数完全相同」的扫描，都要配一条灵敏度判据证明它真的换了输入**",
     "**技能算术公式要用非本轮数据做变异（否则纠偏会退化成过拟合）**：`round(pct/10)` 的满格谎报若只拿本轮 22/23 断言，改回原公式也可能绿；M5a/b/c 补 199/200、9/10、0/5、1/1 等构造组合（钳位后 199/200→9 格、原公式 naive=10），再加 A4 这种「**断言缺陷存在性**」的反向判据（技能原公式在真实数据上必须确实会过度声明），两边一起夹住才叫定价。同类：十格死区由 M1e 断言「改坏一项后条不动」为真 —— 记录缺陷而不是掩盖缺陷，是变异臂的第二种用法",
     "**自指产物的写回顺序（第三次遇到，口径固化）**：facts.json 同时嵌入 state/work-log 的 sha1、reports/ 的文件数与每份报告字节数、artifacts 目录体积，所以「写台账 → 跑校验 → 报告里写数字」必然形成回路。本轮次序：①state/work-log 先定稿（其中 artifact_size/push 两格按先例留待补记）；②报告先写全文（它自己的字节数会进看板的 TRACE 泳道，故报告数字与产物体积要迭代至稳定）；③最后跑 verify.sh，让页脚水印 f:/w: 与事实一致；④补记卡（refill）再跑一次 verify，接受「最后一次提交本身落在产物之外」这一自指残余并在报告与 work-log 里写明，不假装收敛",
-    "**自指产物的体积/哈希读数不要写字节精确值（收尾阶段才撞上）**：回填 artifact_size 先写成 650,767B 与 486,333B，随后改台账、重跑 verify.sh，台账文本经 facts.json 进入三份 .md，产物长了 89B，刚写进去的字节数当场变成假话，页脚 f:/w: 哈希同样每跑一次就换。这类字段没有不动点，任何精度都会自抖。定稿口径：①体积取整到 0.1KB，让抖动落在舍入位之下；②页脚哈希只在台账彻底定稿后抄进报告，抄完不再动台账；③D6/CL10 的 staleness 是同一枚硬币的另一面 —— 它防的是「台账改了、看板留旧叙事」，但同样会抓到「报告抄了旧哈希」"
+    "**自指产物的体积/哈希读数不要写字节精确值（收尾阶段才撞上）**：回填 artifact_size 先写成 650,767B 与 486,333B，随后改台账、重跑 verify.sh，台账文本经 facts.json 进入三份 .md，产物长了 89B，刚写进去的字节数当场变成假话，页脚 f:/w: 哈希同样每跑一次就换。这类字段没有不动点，任何精度都会自抖。定稿口径：①体积取整到 0.1KB，让抖动落在舍入位之下；②页脚哈希只在台账彻底定稿后抄进报告，抄完不再动台账；③D6/CL10 的 staleness 是同一枚硬币的另一面 —— 它防的是「台账改了、看板留旧叙事」，但同样会抓到「报告抄了旧哈希」",
+    "**生成型对照页会把变异表转录进测量区，于是「页面数字必须属于溯源集合」这条集合判据被自己的证据洗白（本轮 M9 真实撞出）**：注入原文「内联色板 12 项」既进了页面又进了 evidence/mutation.json，12 因此成了合法溯源值，值变异当场放行。修法不是换更怪的注入值，而是加位置绑定判据：生成器末尾把本次全部测量区按文档顺序快照进 evidence/*.json，checker 用同一套正则从盘上再取一遍逐区比字节。集合判据问「在不在证据里」，位置判据问「这个位置上是不是生成器当次放的那串」——后者才是「页面 == 生成器输出」的形式化。代价：两处正则必须手工同步，快照文件要进磁盘纪律白名单。",
+    "**「已解释的红」必须和退出码共用同一个变量**：mutate 还原后那一遍容忍了页面新鲜度红（N/provenance-resolves、N/page-numbers-traceable），也把容忍清单写进了 evidence，但结尾仍按原始失败数 ++，于是 verify 在「其实全绿」的第 6 步中止一次。凡算出 tolerance/cleaned 集合的地方，判红、写盘、打印三处都要引用同一个值。",
+    "**被产物引用的断言总数不能由条件性断言组成**：I 组原本只在台账写回后才 push 3 条，总数在写回那一刻 +3，页脚与报告刚抄进去的数字立刻变假话，而 R/N 组都救不了（红的是写回之后那一遍，写回前跑多少遍都绿）。口径：断言恒存在、前置条件不满足时按 pending 通过（R 组对「报告尚未写出」早就是这么做的），总数只随代码组成变化才有不动点。",
+    "**变异锚点只能用稳定整数**：写过死实测对比度 >7.30:1< 的那版 M9，下一帧漂成 7.32 就成了「锚点未命中」，看着像判据失效其实是用例过期。选锚点先问「这个数会不会随运行抖」。",
+    "**收尾顺序：带浏览器的 verify 必须跑在删构建缓存之前**（本轮 playwright-core 缓存在 LAB/.tmp/shaderbuild，删掉后 check-browser 无法复跑，而 verify 第 3/6 步要它）。清理后还能跑的只剩静态两件套 check-node + check-clean，报告要按这个口径写「复现得先 npm i」。",
+    "**WebGL 轮次的像素判据不能看均值**：软件渲染（SwiftShader）三带均值差不到 1/10 而像素其实在动；冻结 uTime + 每带 201 采样点逐像素 diff 才有判据力，且这类读数每轮都漂，只写「本轮读数」不作跨轮结论。"
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-26T09:59:57.529Z",
+  "generated_at": "2026-09-26T13:39:22.978Z",
   "generated_by": "scripts/gen-skills-manifest.mjs（数字由脚本现读，禁止手抄）",
   "purpose": "skills/ 是每小时前端 Skill 验证实验室所用技能的本机只读快照，让零上下文的后续运行与仓库读者能核对产物当时依据的技能条款。",
   "sync_recipe": "rsync -a --exclude '__pycache__' --exclude '*.pyc' --exclude '.DS_Store' <source_path>/ skills/<name>/ && node scripts/gen-skills-manifest.mjs",
@@ -114,9 +114,21 @@
       "used_in_rounds": [
         "2026-09-26 15:00"
       ]
+    },
+    {
+      "name": "shader",
+      "source_path": "~/.qoder-cn/skills/shader",
+      "version_in_skillmd": null,
+      "version_in_meta": "1.0.0",
+      "skill_sha1": "554b0fd8c482",
+      "files": 23,
+      "bytes": 44964,
+      "used_in_rounds": [
+        "2026-09-26 18:00"
+      ]
     }
   ],
-  "台账_tried_total": 22,
+  "台账_tried_total": 23,
   "unattributed_tried": [],
   "secret_scan": {
     "pattern": "sk-[A-Za-z0-9]{16,}|ghp_[A-Za-z0-9]{20,}|gho_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|BEGIN (?:RSA|EC|DSA|OPENSSH) PRIVATE KEY|xox[baprs]-[A-Za-z0-9-]{10,}",

@@ -1,0 +1,628 @@
+{
+  "ran_at": "2026-09-26T13:29:55.185Z",
+  "chromium": "/Users/apple/Library/Caches/ms-playwright/chromium-1148/chrome-mac/Chromium.app/Contents/MacOS/Chromium",
+  "playwright_from": "/Users/apple/Documents/workProject/试验/前端skill实验室/.tmp/shaderbuild/node_modules",
+  "total": 91,
+  "failed": [],
+  "metrics": {
+    "liquid-chrome": {
+      "softFps": 5.6,
+      "frameMs": 229.8,
+      "fx": {
+        "mean": 67.51,
+        "sigma": 28.79,
+        "p05": 9.8,
+        "p995": 138.7,
+        "rgb": [
+          69.6,
+          66.2,
+          74.3
+        ]
+      },
+      "bands": [
+        67.69,
+        55.15,
+        69.7
+      ],
+      "bandPairDiff": [
+        201,
+        200,
+        201
+      ],
+      "uniformResponse": {
+        "mousePixels": 171,
+        "scrollPixels": 201,
+        "sampled": 201
+      },
+      "contrast": {
+        "hero-title": 10.84,
+        "hero-sub": 15.78,
+        "work-rule": 7.37,
+        "facts-dt": 7.31,
+        "rooms-td": 14.39,
+        "section-lead": 10.91
+      },
+      "consoleMessages": [],
+      "requests": 1
+    },
+    "crt-plasma": {
+      "softFps": 18.9,
+      "frameMs": 52.9,
+      "fx": {
+        "mean": 46.7,
+        "sigma": 42.04,
+        "p05": 6.4,
+        "p995": 208.3,
+        "rgb": [
+          25.3,
+          54.8,
+          29.9
+        ]
+      },
+      "bands": [
+        46.06,
+        47.58,
+        43.85
+      ],
+      "bandPairDiff": [
+        182,
+        186,
+        191
+      ],
+      "uniformResponse": {
+        "mousePixels": 159,
+        "scrollPixels": 86,
+        "sampled": 201
+      },
+      "contrast": {
+        "hero-title": 10.47,
+        "hero-sub": 13.43,
+        "work-rule": 6.59,
+        "facts-dt": 6.61,
+        "rooms-td": 12.74,
+        "section-lead": 10.61
+      },
+      "consoleMessages": [],
+      "requests": 1
+    },
+    "silk-aurora": {
+      "softFps": 7.8,
+      "frameMs": 124.8,
+      "fx": {
+        "mean": 193.69,
+        "sigma": 29.28,
+        "p05": 73.2,
+        "p995": 243.7,
+        "rgb": [
+          186.4,
+          195.4,
+          198
+        ]
+      },
+      "bands": [
+        193.82,
+        198.74,
+        200.53
+      ],
+      "bandPairDiff": [
+        142,
+        156,
+        156
+      ],
+      "uniformResponse": {
+        "mousePixels": 161,
+        "scrollPixels": 163,
+        "sampled": 201
+      },
+      "contrast": {
+        "hero-title": 10.44,
+        "hero-sub": 9.96,
+        "work-rule": 5.09,
+        "facts-dt": 5.27,
+        "rooms-td": 9.97,
+        "section-lead": 9.99
+      },
+      "consoleMessages": [],
+      "requests": 1
+    },
+    "scrimAblation": {
+      "withScrim": 13.85,
+      "noScrim": 4.08
+    },
+    "snippets": {
+      "dissolve": {
+        "diff": 7968,
+        "total": 9216,
+        "glError": 0,
+        "lit": true
+      },
+      "fresnel": {
+        "diff": 9216,
+        "total": 9216,
+        "glError": 0,
+        "lit": true
+      },
+      "pixelate": {
+        "diff": 9152,
+        "total": 9216,
+        "glError": 0,
+        "lit": true
+      },
+      "ripple": {
+        "diff": 64,
+        "total": 9216,
+        "glError": 0,
+        "lit": true
+      },
+      "scanline": {
+        "diff": 8352,
+        "total": 9216,
+        "glError": 0,
+        "lit": true
+      },
+      "vertex-wobble": {
+        "diff": 9210,
+        "total": 9216,
+        "glError": 0,
+        "lit": true
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "J/pipeline:liquid-chrome",
+      "pass": true,
+      "detail": "fx {\"c\":{\"vertex\":true,\"fragment\":true},\"l\":true,\"e\":0} / strip {\"c\":{\"vertex\":true,\"fragment\":true},\"l\":true,\"e\":0}"
+    },
+    {
+      "id": "J/uniform-locations:liquid-chrome",
+      "pass": true,
+      "detail": "空 location：无 / 无"
+    },
+    {
+      "id": "J/webgl1-only:liquid-chrome",
+      "pass": true,
+      "detail": "webgl1 画布 1280×800"
+    },
+    {
+      "id": "J/console-clean:liquid-chrome",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "J/requests-local:liquid-chrome",
+      "pass": true,
+      "detail": "1 个请求全为 file://"
+    },
+    {
+      "id": "J/no-dead-selectors:liquid-chrome",
+      "pass": true,
+      "detail": "有规则、无元素的选择器："
+    },
+    {
+      "id": "J/animates:liquid-chrome",
+      "pass": true,
+      "detail": "帧 9→14，uTime 0.368→0.618；软件 GL 下 6 fps / 每帧 229.8ms，宿主把 dt 钳在 0.05s，所以慢机器上是慢动作而非掉帧（性能不作结论）"
+    },
+    {
+      "id": "J/frame-has-signal:liquid-chrome",
+      "pass": true,
+      "detail": "整帧 p99.5-p0.5=128.9（阈 100）、σ=28.8（阈 18）"
+    },
+    {
+      "id": "J/theme-direction:liquid-chrome",
+      "pass": true,
+      "detail": "dark 期望平均亮度 <120，实测 67.5"
+    },
+    {
+      "id": "J/strip-variants-distinct:liquid-chrome",
+      "pass": true,
+      "detail": "uTime 冻结在 0.668，同一程序三种 uVariant 逐像素对照：0↔1 变 201、1↔2 变 200、0↔2 变 201/201 个采样点（最小比例 99.5%，阈 25%）；三带平均亮度 67.7/55.2/69.7，极差仅 14.55——均值不敏感，故不作门"
+    },
+    {
+      "id": "J/strip-band-textured:liquid-chrome",
+      "pass": true,
+      "detail": "各带 σ=28.7/22.9/49.0"
+    },
+    {
+      "id": "J/mouse-uniform:liquid-chrome",
+      "pass": true,
+      "detail": "uMouse 0.500,0.500→0.109,0.850；uTime 冻结下 171/201 个采样像素改变（平均亮度只动 0.038，可见均值不是好判据）"
+    },
+    {
+      "id": "J/scroll-uniform:liquid-chrome",
+      "pass": true,
+      "detail": "uScroll=0.823；同一 uTime 下 201/201 个采样像素改变"
+    },
+    {
+      "id": "L/contrast-live:liquid-chrome:hero-title",
+      "pass": true,
+      "detail": "10.84:1 ≥ 3（最坏合成底 rgb 34,53,68，实测 1213 个像素，字号 30px，衬底 1 层）"
+    },
+    {
+      "id": "L/contrast-live:liquid-chrome:hero-sub",
+      "pass": true,
+      "detail": "15.78:1 ≥ 4.5（最坏合成底 rgb 13,20,40，实测 1278 个像素，字号 17px，衬底 1 层）"
+    },
+    {
+      "id": "L/contrast-live:liquid-chrome:work-rule",
+      "pass": true,
+      "detail": "7.37:1 ≥ 4.5（最坏合成底 rgb 11,17,34，实测 1474 个像素，字号 12px，衬底 2 层）"
+    },
+    {
+      "id": "L/contrast-live:liquid-chrome:facts-dt",
+      "pass": true,
+      "detail": "7.31:1 ≥ 4.5（最坏合成底 rgb 12,18,36，实测 1125 个像素，字号 12px，衬底 1 层）"
+    },
+    {
+      "id": "L/contrast-live:liquid-chrome:rooms-td",
+      "pass": true,
+      "detail": "14.39:1 ≥ 4.5（最坏合成底 rgb 16,29,55，实测 1282 个像素，字号 15px，衬底 1 层）"
+    },
+    {
+      "id": "L/contrast-live:liquid-chrome:section-lead",
+      "pass": true,
+      "detail": "10.91:1 ≥ 4.5（最坏合成底 rgb 34,53,68，实测 1240 个像素，字号 17px，衬底 1 层）"
+    },
+    {
+      "id": "J/no-h-overflow:liquid-chrome:1280",
+      "pass": true,
+      "detail": "1280/1280 "
+    },
+    {
+      "id": "J/no-h-overflow:liquid-chrome:390",
+      "pass": true,
+      "detail": "390/390 "
+    },
+    {
+      "id": "J/pipeline:crt-plasma",
+      "pass": true,
+      "detail": "fx {\"c\":{\"vertex\":true,\"fragment\":true},\"l\":true,\"e\":0} / strip {\"c\":{\"vertex\":true,\"fragment\":true},\"l\":true,\"e\":0}"
+    },
+    {
+      "id": "J/uniform-locations:crt-plasma",
+      "pass": true,
+      "detail": "空 location：无 / 无"
+    },
+    {
+      "id": "J/webgl1-only:crt-plasma",
+      "pass": true,
+      "detail": "webgl1 画布 1280×800"
+    },
+    {
+      "id": "J/console-clean:crt-plasma",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "J/requests-local:crt-plasma",
+      "pass": true,
+      "detail": "1 个请求全为 file://"
+    },
+    {
+      "id": "J/no-dead-selectors:crt-plasma",
+      "pass": true,
+      "detail": "有规则、无元素的选择器："
+    },
+    {
+      "id": "J/animates:crt-plasma",
+      "pass": true,
+      "detail": "帧 15→32，uTime 0.581→1.333；软件 GL 下 19 fps / 每帧 52.9ms，宿主把 dt 钳在 0.05s，所以慢机器上是慢动作而非掉帧（性能不作结论）"
+    },
+    {
+      "id": "J/frame-has-signal:crt-plasma",
+      "pass": true,
+      "detail": "整帧 p99.5-p0.5=201.9（阈 100）、σ=42.0（阈 18）"
+    },
+    {
+      "id": "J/theme-direction:crt-plasma",
+      "pass": true,
+      "detail": "dark 期望平均亮度 <120，实测 46.7"
+    },
+    {
+      "id": "J/strip-variants-distinct:crt-plasma",
+      "pass": true,
+      "detail": "uTime 冻结在 1.383，同一程序三种 uVariant 逐像素对照：0↔1 变 182、1↔2 变 186、0↔2 变 191/204 个采样点（最小比例 89.2%，阈 25%）；三带平均亮度 46.1/47.6/43.9，极差仅 3.73——均值不敏感，故不作门"
+    },
+    {
+      "id": "J/strip-band-textured:crt-plasma",
+      "pass": true,
+      "detail": "各带 σ=41.0/45.2/44.0"
+    },
+    {
+      "id": "J/mouse-uniform:crt-plasma",
+      "pass": true,
+      "detail": "uMouse 0.500,0.500→0.109,0.850；uTime 冻结下 159/201 个采样像素改变（平均亮度只动 1.577，可见均值不是好判据）"
+    },
+    {
+      "id": "J/scroll-uniform:crt-plasma",
+      "pass": true,
+      "detail": "uScroll=0.819；同一 uTime 下 86/201 个采样像素改变"
+    },
+    {
+      "id": "L/contrast-live:crt-plasma:hero-title",
+      "pass": true,
+      "detail": "10.47:1 ≥ 3（最坏合成底 rgb 30,54,29，实测 1208 个像素，字号 28px，衬底 1 层）"
+    },
+    {
+      "id": "L/contrast-live:crt-plasma:hero-sub",
+      "pass": true,
+      "detail": "13.43:1 ≥ 4.5（最坏合成底 rgb 13,33,22，实测 1386 个像素，字号 15px，衬底 1 层）"
+    },
+    {
+      "id": "L/contrast-live:crt-plasma:work-rule",
+      "pass": true,
+      "detail": "6.59:1 ≥ 4.5（最坏合成底 rgb 18,34,24，实测 1297 个像素，字号 11px，衬底 2 层）"
+    },
+    {
+      "id": "L/contrast-live:crt-plasma:facts-dt",
+      "pass": true,
+      "detail": "6.61:1 ≥ 4.5（最坏合成底 rgb 14,35,23，实测 875 个像素，字号 11px，衬底 1 层）"
+    },
+    {
+      "id": "L/contrast-live:crt-plasma:rooms-td",
+      "pass": true,
+      "detail": "12.74:1 ≥ 4.5（最坏合成底 rgb 16,38,26，实测 1204 个像素，字号 14px，衬底 1 层）"
+    },
+    {
+      "id": "L/contrast-live:crt-plasma:section-lead",
+      "pass": true,
+      "detail": "10.61:1 ≥ 4.5（最坏合成底 rgb 31,52,30，实测 1237 个像素，字号 15px，衬底 1 层）"
+    },
+    {
+      "id": "J/no-h-overflow:crt-plasma:1280",
+      "pass": true,
+      "detail": "1280/1280 "
+    },
+    {
+      "id": "J/no-h-overflow:crt-plasma:390",
+      "pass": true,
+      "detail": "390/390 "
+    },
+    {
+      "id": "J/pipeline:silk-aurora",
+      "pass": true,
+      "detail": "fx {\"c\":{\"vertex\":true,\"fragment\":true},\"l\":true,\"e\":0} / strip {\"c\":{\"vertex\":true,\"fragment\":true},\"l\":true,\"e\":0}"
+    },
+    {
+      "id": "J/uniform-locations:silk-aurora",
+      "pass": true,
+      "detail": "空 location：无 / 无"
+    },
+    {
+      "id": "J/webgl1-only:silk-aurora",
+      "pass": true,
+      "detail": "webgl1 画布 1280×800"
+    },
+    {
+      "id": "J/console-clean:silk-aurora",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "J/requests-local:silk-aurora",
+      "pass": true,
+      "detail": "1 个请求全为 file://"
+    },
+    {
+      "id": "J/no-dead-selectors:silk-aurora",
+      "pass": true,
+      "detail": "有规则、无元素的选择器："
+    },
+    {
+      "id": "J/animates:silk-aurora",
+      "pass": true,
+      "detail": "帧 10→17，uTime 0.399→0.749；软件 GL 下 8 fps / 每帧 124.8ms，宿主把 dt 钳在 0.05s，所以慢机器上是慢动作而非掉帧（性能不作结论）"
+    },
+    {
+      "id": "J/frame-has-signal:silk-aurora",
+      "pass": true,
+      "detail": "整帧 p99.5-p0.5=170.5（阈 100）、σ=29.3（阈 18）"
+    },
+    {
+      "id": "J/theme-direction:silk-aurora",
+      "pass": true,
+      "detail": "light 期望平均亮度 >120，实测 193.7"
+    },
+    {
+      "id": "J/strip-variants-distinct:silk-aurora",
+      "pass": true,
+      "detail": "uTime 冻结在 0.799，同一程序三种 uVariant 逐像素对照：0↔1 变 142、1↔2 变 156、0↔2 变 156/206 个采样点（最小比例 68.9%，阈 25%）；三带平均亮度 193.8/198.7/200.5，极差仅 6.72——均值不敏感，故不作门"
+    },
+    {
+      "id": "J/strip-band-textured:silk-aurora",
+      "pass": true,
+      "detail": "各带 σ=29.4/27.7/31.9"
+    },
+    {
+      "id": "J/mouse-uniform:silk-aurora",
+      "pass": true,
+      "detail": "uMouse 0.500,0.500→0.109,0.850；uTime 冻结下 161/201 个采样像素改变（平均亮度只动 -1.838，可见均值不是好判据）"
+    },
+    {
+      "id": "J/scroll-uniform:silk-aurora",
+      "pass": true,
+      "detail": "uScroll=0.775；同一 uTime 下 163/201 个采样像素改变"
+    },
+    {
+      "id": "L/contrast-live:silk-aurora:hero-title",
+      "pass": true,
+      "detail": "10.44:1 ≥ 3（最坏合成底 rgb 221,207,200，实测 1205 个像素，字号 34px，衬底 1 层）"
+    },
+    {
+      "id": "L/contrast-live:silk-aurora:hero-sub",
+      "pass": true,
+      "detail": "9.96:1 ≥ 4.5（最坏合成底 rgb 211,204,198，实测 1289 个像素，字号 18px，衬底 1 层）"
+    },
+    {
+      "id": "L/contrast-live:silk-aurora:work-rule",
+      "pass": true,
+      "detail": "5.09:1 ≥ 4.5（最坏合成底 rgb 236,233,223，实测 1204 个像素，字号 13px，衬底 2 层）"
+    },
+    {
+      "id": "L/contrast-live:silk-aurora:facts-dt",
+      "pass": true,
+      "detail": "5.27:1 ≥ 4.5（最坏合成底 rgb 234,238,231，实测 1376 个像素，字号 13px，衬底 1 层）"
+    },
+    {
+      "id": "L/contrast-live:silk-aurora:rooms-td",
+      "pass": true,
+      "detail": "9.97:1 ≥ 4.5（最坏合成底 rgb 212,204,197，实测 1370 个像素，字号 17px，衬底 1 层）"
+    },
+    {
+      "id": "L/contrast-live:silk-aurora:section-lead",
+      "pass": true,
+      "detail": "9.99:1 ≥ 4.5（最坏合成底 rgb 212,204,198，实测 1224 个像素，字号 18px，衬底 1 层）"
+    },
+    {
+      "id": "J/no-h-overflow:silk-aurora:1280",
+      "pass": true,
+      "detail": "1280/1280 "
+    },
+    {
+      "id": "J/no-h-overflow:silk-aurora:390",
+      "pass": true,
+      "detail": "390/390 "
+    },
+    {
+      "id": "K/frozen-holds-time",
+      "pass": true,
+      "detail": "uTime 恒为 0.00 而帧计数仍 6→12（说明 J 组靠的是 uTime 推进，不是 rAF 在跑）"
+    },
+    {
+      "id": "K/samevariant-flattens-strip",
+      "pass": true,
+      "detail": "uVariant 恒 0 且三带几何已对齐后：平均亮度极差 0.000、逐像素最大改变 0/201 点（J 组门是 25%）。这条是 J 组新判据的对照臂——它证明逐像素差异来自 uVariant，而不是带位置/边界。"
+    },
+    {
+      "id": "K/nomouse-arm",
+      "pass": true,
+      "detail": "指针移动后 uMouse 仍 0.500,0.500，同时间戳画面 Δ=0.0000"
+    },
+    {
+      "id": "K/noscroll-arm",
+      "pass": true,
+      "detail": "页面真的滚了 2153px 而 uScroll 恒为 0"
+    },
+    {
+      "id": "K/solid-baseline-flat",
+      "pass": true,
+      "detail": "常量品红：σ=0.00、平均 rgb=255,0,255、极差 0.0（黑屏检查表第 1 步：通路活着，J 组的暗帧不是全黑）"
+    },
+    {
+      "id": "K/nogl-fallback",
+      "pass": true,
+      "detail": "{\"shown\":true,\"text\":49,\"fxHidden\":true}"
+    },
+    {
+      "id": "K/nogl-no-error",
+      "pass": true,
+      "detail": "无 error 级输出"
+    },
+    {
+      "id": "K/reduced-single-frame",
+      "pass": true,
+      "detail": "{\"f\":1,\"paused\":true,\"hint\":true,\"btnHidden\":true,\"framesAfterWait\":1}"
+    },
+    {
+      "id": "K/reduced-still-renders",
+      "pass": true,
+      "detail": "停在第 12 秒的单帧仍有画面：极差 218.5、σ 63.4"
+    },
+    {
+      "id": "K/pause-freezes-time",
+      "pass": true,
+      "detail": "按钮「暂停画面/false」→「恢复画面/true」；rAF 仍在画（帧号继续涨）但 uTime 锁在 0.85"
+    },
+    {
+      "id": "K/resume-continues",
+      "pass": true,
+      "detail": "再点一次恢复：uTime 0.85→1.15"
+    },
+    {
+      "id": "K/nopause-arm",
+      "pass": true,
+      "detail": "消融开关隐藏了暂停按钮（主臂该按钮可见，故 K 组按钮断言不是恒真）"
+    },
+    {
+      "id": "K/dpr-clamped",
+      "pass": true,
+      "detail": "devicePixelRatio=3 → 宿主取 2，画布 2560×1600 vs CSS 1280×800"
+    },
+    {
+      "id": "K/scrim-works",
+      "pass": true,
+      "detail": "同一段正文：有衬底 13.85:1（1 层）vs 去掉衬底 4.08:1（0 层）→ L 组的对比度确实是衬底给的"
+    },
+    {
+      "id": "M/snippets-discovered",
+      "pass": true,
+      "detail": "dissolve,fresnel,pixelate,ripple,scanline,vertex-wobble (期望 dissolve,fresnel,pixelate,ripple,scanline,vertex-wobble)"
+    },
+    {
+      "id": "M/harness-webgl",
+      "pass": true,
+      "detail": "在页面里另开 96×96 画布做隔离实验"
+    },
+    {
+      "id": "M/snippet-compiles:dissolve",
+      "pass": true,
+      "detail": "编译 + 链接均通过（真 ANGLE/SwiftShader 驱动，不是 Node 侧文本检查）"
+    },
+    {
+      "id": "M/snippet-mutates-frame:dissolve",
+      "pass": true,
+      "detail": "与「把该函数换成常量」的对照臂有 7968/9216 像素不同，glError=0，有输出=true"
+    },
+    {
+      "id": "M/snippet-compiles:fresnel",
+      "pass": true,
+      "detail": "编译 + 链接均通过（真 ANGLE/SwiftShader 驱动，不是 Node 侧文本检查）"
+    },
+    {
+      "id": "M/snippet-mutates-frame:fresnel",
+      "pass": true,
+      "detail": "与「把该函数换成常量」的对照臂有 9216/9216 像素不同，glError=0，有输出=true"
+    },
+    {
+      "id": "M/snippet-compiles:pixelate",
+      "pass": true,
+      "detail": "编译 + 链接均通过（真 ANGLE/SwiftShader 驱动，不是 Node 侧文本检查）"
+    },
+    {
+      "id": "M/snippet-mutates-frame:pixelate",
+      "pass": true,
+      "detail": "与「把该函数换成常量」的对照臂有 9152/9216 像素不同，glError=0，有输出=true"
+    },
+    {
+      "id": "M/snippet-compiles:ripple",
+      "pass": true,
+      "detail": "编译 + 链接均通过（真 ANGLE/SwiftShader 驱动，不是 Node 侧文本检查）"
+    },
+    {
+      "id": "M/snippet-mutates-frame:ripple",
+      "pass": true,
+      "detail": "与「把该函数换成常量」的对照臂有 64/9216 像素不同，glError=0，有输出=true"
+    },
+    {
+      "id": "M/snippet-compiles:scanline",
+      "pass": true,
+      "detail": "编译 + 链接均通过（真 ANGLE/SwiftShader 驱动，不是 Node 侧文本检查）"
+    },
+    {
+      "id": "M/snippet-mutates-frame:scanline",
+      "pass": true,
+      "detail": "与「把该函数换成常量」的对照臂有 8352/9216 像素不同，glError=0，有输出=true"
+    },
+    {
+      "id": "M/snippet-compiles:vertex-wobble",
+      "pass": true,
+      "detail": "编译 + 链接均通过（真 ANGLE/SwiftShader 驱动，不是 Node 侧文本检查）"
+    },
+    {
+      "id": "M/snippet-mutates-frame:vertex-wobble",
+      "pass": true,
+      "detail": "与「把该函数换成常量」的对照臂有 9210/9216 像素不同，glError=0，有输出=true"
+    }
+  ]
+}

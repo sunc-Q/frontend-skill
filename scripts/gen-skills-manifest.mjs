@@ -18,6 +18,7 @@ const SOURCES = {
   'frontend-development': '~/.qoder-cn/skills/frontend-development',
   'ppt-generator': '~/.qoder-cn/skills/ppt-generator',
   'ascii-project-dashboard': '~/.qoder-cn/skills/ascii-project-dashboard',
+  'shader': '~/.qoder-cn/skills/shader',
 };
 
 function walk(dir) {

@@ -1,0 +1,339 @@
+{
+  "ran_at": "2026-09-26T13:29:55.196Z",
+  "picked": [
+    "M1",
+    "M2",
+    "M2b",
+    "M6",
+    "M3",
+    "M4",
+    "M5",
+    "M3b",
+    "M7",
+    "M8",
+    "M9",
+    "M10"
+  ],
+  "baseline": {
+    "node_pass": true,
+    "browser_pass": true
+  },
+  "cases": [
+    {
+      "id": "M1",
+      "kind": "值变异",
+      "suite": "node",
+      "all": false,
+      "rebuild": false,
+      "file": "preview/exhibit-liquid-chrome.html",
+      "name": "把表格说明里的「面积合计 390 ㎡」手改成 360（页面数字不再由事实现算）",
+      "injection": {
+        "from": "面积合计 390 ㎡",
+        "to": "面积合计 360 ㎡"
+      },
+      "keyword": "面积合计 390",
+      "caught_by": [
+        "node(3)"
+      ],
+      "named": true,
+      "verdict": true,
+      "failed_assertions": [
+        "B/dom-identical-across-styles",
+        "E/text-present:liquid-chrome",
+        "N/provenance-resolves:check-browser.json"
+      ]
+    },
+    {
+      "id": "M2",
+      "kind": "值变异",
+      "suite": "node",
+      "all": false,
+      "rebuild": true,
+      "file": "src/css/skin-liquid-chrome.css",
+      "name": "在色板源文件里把 liquid-chrome 的 --accent 改成 crt-plasma 的橙（三套色板要求两两不相交）",
+      "injection": {
+        "from": "--accent: #4fd7e8;",
+        "to": "--accent: #ffb347;"
+      },
+      "keyword": "#ffb347",
+      "caught_by": [
+        "node(4)"
+      ],
+      "named": true,
+      "verdict": true,
+      "failed_assertions": [
+        "D/palette-disjoint:liquid-chrome~crt-plasma",
+        "N/provenance-resolves:skin-liquid-chrome.css",
+        "N/provenance-resolves:check-browser.json",
+        "N/provenance-resolves:check-node.json"
+      ]
+    },
+    {
+      "id": "M2b",
+      "kind": "结构变异",
+      "suite": "node",
+      "all": false,
+      "rebuild": false,
+      "file": "preview/exhibit-liquid-chrome.html",
+      "name": "只改产物不改源：页面里的 --accent 与 src/css 漂移（M2 第一轮就是从这里钻过去的）",
+      "injection": {
+        "from": "--accent: #4fd7e8;",
+        "to": "--accent: #9aa0a6;"
+      },
+      "keyword": "src/css",
+      "caught_by": [
+        "node(3)"
+      ],
+      "named": true,
+      "verdict": true,
+      "failed_assertions": [
+        "B/css-source-inlined:liquid-chrome",
+        "N/provenance-resolves:check-browser.json",
+        "N/provenance-resolves:check-node.json"
+      ]
+    },
+    {
+      "id": "M6",
+      "kind": "值变异",
+      "suite": "node",
+      "all": false,
+      "rebuild": false,
+      "file": "preview/exhibit-silk-aurora.html",
+      "name": "内联 GLSL 顶部加 #version 300 es（宿主是 WebGL1，GLSL ES 1.0 不允许）",
+      "injection": {
+        "from": "\\nprecision highp float;",
+        "to": "\\n#version 300 es\\nprecision highp float;"
+      },
+      "keyword": "产物内联",
+      "caught_by": [
+        "node(3)"
+      ],
+      "named": true,
+      "verdict": true,
+      "failed_assertions": [
+        "C/glsl-inlined:silk-aurora",
+        "N/provenance-resolves:check-browser.json",
+        "N/provenance-resolves:check-node.json"
+      ]
+    },
+    {
+      "id": "M3",
+      "kind": "结构变异",
+      "suite": "browser",
+      "all": false,
+      "rebuild": false,
+      "file": "preview/exhibit-liquid-chrome.html",
+      "name": "视口原点恒传 0（三带退化成同一张画布的三个裁片）",
+      "injection": {
+        "from": "gl.uniform2f(locations.uOrigin, x, 0);",
+        "to": "gl.uniform2f(locations.uOrigin, 0, 0);"
+      },
+      "keyword": "uVariant",
+      "caught_by": [
+        "node(4)",
+        "browser(1)"
+      ],
+      "named": true,
+      "verdict": true,
+      "failed_assertions": [
+        "B/host-identical-across-styles",
+        "B/host-source-inlined:liquid-chrome",
+        "N/provenance-resolves:check-browser.json",
+        "N/provenance-resolves:check-node.json",
+        "K/samevariant-flattens-strip"
+      ]
+    },
+    {
+      "id": "M4",
+      "kind": "结构变异",
+      "suite": "browser",
+      "all": false,
+      "rebuild": false,
+      "file": "preview/exhibit-crt-plasma.html",
+      "name": "变体轴拉平：三个视口都传 uVariant=0（展览页宣称的「一个程序三种密度」变假话）",
+      "injection": {
+        "from": "var v = probe === \"samevariant\" ? 0 : index;",
+        "to": "var v = 0;"
+      },
+      "keyword": "uVariant",
+      "caught_by": [
+        "node(4)",
+        "browser(1)"
+      ],
+      "named": true,
+      "verdict": true,
+      "failed_assertions": [
+        "B/host-identical-across-styles",
+        "B/host-source-inlined:crt-plasma",
+        "N/provenance-resolves:check-browser.json",
+        "N/provenance-resolves:check-node.json",
+        "J/strip-variants-distinct:crt-plasma"
+      ]
+    },
+    {
+      "id": "M5",
+      "kind": "结构变异",
+      "suite": "browser",
+      "all": false,
+      "rebuild": false,
+      "file": "preview/exhibit-silk-aurora.html",
+      "name": "删掉 gl.uniform1f(locations.uScroll, …)：滚动进度算好了却没进着色器",
+      "injection": {
+        "from": "      gl.uniform1f(locations.uScroll, values.uScroll);\n",
+        "to": ""
+      },
+      "keyword": "uScroll",
+      "caught_by": [
+        "node(4)",
+        "browser(1)"
+      ],
+      "named": true,
+      "verdict": true,
+      "failed_assertions": [
+        "B/host-identical-across-styles",
+        "B/host-source-inlined:silk-aurora",
+        "N/provenance-resolves:check-browser.json",
+        "N/provenance-resolves:check-node.json",
+        "J/scroll-uniform:silk-aurora"
+      ]
+    },
+    {
+      "id": "M3b",
+      "kind": "结构变异",
+      "suite": "node",
+      "all": true,
+      "rebuild": false,
+      "file": "preview/exhibit-liquid-chrome.html",
+      "name": "三份产物的共享宿主一起改（在 uOrigin 传参后加一句注释）——跨页互比仍然全绿，只有「产物 vs 源文件」能抓",
+      "injection": {
+        "from": "gl.uniform2f(locations.uOrigin, x, 0);",
+        "to": "gl.uniform2f(locations.uOrigin, x, 0); /* 手工微调过产物 */"
+      },
+      "keyword": "共享宿主",
+      "caught_by": [
+        "node(5)"
+      ],
+      "named": true,
+      "verdict": true,
+      "failed_assertions": [
+        "B/host-source-inlined:liquid-chrome",
+        "B/host-source-inlined:crt-plasma",
+        "B/host-source-inlined:silk-aurora",
+        "N/provenance-resolves:check-browser.json",
+        "N/provenance-resolves:check-node.json"
+      ]
+    },
+    {
+      "id": "M7",
+      "kind": "结构变异",
+      "suite": "browser",
+      "all": false,
+      "rebuild": false,
+      "file": "preview/exhibit-liquid-chrome.html",
+      "name": "删掉 .hero-inner 的衬底声明（正文直接压在活着色器上）",
+      "injection": {
+        "from": "  max-width: var(--measure);\n  background: var(--scrim);",
+        "to": "  max-width: var(--measure);"
+      },
+      "keyword": "衬底",
+      "caught_by": [
+        "node(4)",
+        "browser(2)"
+      ],
+      "named": true,
+      "verdict": true,
+      "failed_assertions": [
+        "B/base-css-identical",
+        "B/css-source-inlined:liquid-chrome",
+        "N/provenance-resolves:check-browser.json",
+        "N/provenance-resolves:check-node.json",
+        "L/contrast-live:liquid-chrome:hero-title",
+        "K/scrim-works"
+      ]
+    },
+    {
+      "id": "M8",
+      "kind": "结构变异",
+      "suite": "node",
+      "all": false,
+      "rebuild": false,
+      "file": "preview/exhibit-crt-plasma.html",
+      "name": "只给一个风格加一段 DOM（三风格必须同构，差异只允许在 CSS 与着色器）",
+      "injection": {
+        "from": "<caption>三个展陈空间，面积合计 390 ㎡",
+        "to": "<p>多出来的一段说明</p>\n      <caption>三个展陈空间，面积合计 390 ㎡"
+      },
+      "keyword": "dom-identical",
+      "caught_by": [
+        "node(3)"
+      ],
+      "named": true,
+      "verdict": true,
+      "failed_assertions": [
+        "B/dom-identical-across-styles",
+        "N/provenance-resolves:check-browser.json",
+        "N/provenance-resolves:check-node.json"
+      ]
+    },
+    {
+      "id": "M9",
+      "kind": "值变异",
+      "suite": "node",
+      "all": false,
+      "rebuild": false,
+      "file": "styles.html",
+      "name": "往对照页里手打一个更好的数字：把「内联色板 10 项」改成 12 项（页面数字脱离了 evidence）",
+      "injection": {
+        "from": "内联色板 10 项",
+        "to": "内联色板 12 项"
+      },
+      "keyword": "regions-match-generation",
+      "caught_by": [
+        "node(2)"
+      ],
+      "named": true,
+      "verdict": true,
+      "failed_assertions": [
+        "N/provenance-resolves:check-browser.json",
+        "N/regions-match-generation"
+      ]
+    },
+    {
+      "id": "M10",
+      "kind": "语义变异",
+      "suite": "node",
+      "all": false,
+      "rebuild": false,
+      "file": "src/shaders/silk-aurora.glsl",
+      "name": "给 silk-aurora 的「技法」注释里加上并没有实现的 fresnel 边缘光（文案与代码各说各话）",
+      "injection": {
+        "from": "// 技法：fbm 丝带（到扭曲曲线的距离场）+ 余弦调色板 + 加法干涉，亮底低对比",
+        "to": "// 技法：fbm 丝带（到扭曲曲线的距离场）+ 余弦调色板 + fresnel 边缘光，亮底低对比"
+      },
+      "keyword": "silk-aurora.glsl:technique",
+      "caught_by": [
+        "node(3)"
+      ],
+      "named": true,
+      "verdict": true,
+      "failed_assertions": [
+        "C/glsl-inlined:silk-aurora",
+        "N/provenance-resolves:silk-aurora.glsl",
+        "N/provenance-resolves:check-browser.json"
+      ]
+    }
+  ],
+  "restored": {
+    "node_pass": true,
+    "browser_pass": true,
+    "node_failures": [
+      "N/provenance-resolves:check-browser.json",
+      "N/provenance-resolves:check-node.json"
+    ],
+    "tolerated_page_freshness": [
+      "N/provenance-resolves:check-browser.json",
+      "N/provenance-resolves:check-node.json"
+    ]
+  },
+  "all_caught": true
+}

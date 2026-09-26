@@ -1,0 +1,81 @@
+/* 风格二 crt-plasma —— 磷光终端：全等宽、粗描边框、扫描线叠加、无圆角
+ * 色板封闭：本文件之外不得出现任何颜色字面量。
+ */
+:root {
+  --bg: #06120c;
+  --panel: #0a1b12;
+  --ink: #7cffa8;
+  --muted: #46b877;
+  --accent: #ffb347;
+  --line: #123324;
+  --grid: #0e2818;
+  --btn-bg: #ffb347;
+  --btn-ink: #1a0f02;
+  --btn-bg-pressed: #123324;
+  --scrim: color-mix(in srgb, var(--panel) 88%, transparent);
+  --scrim-strong: color-mix(in srgb, var(--panel) 95%, transparent);
+  --item-bg: color-mix(in srgb, var(--bg) 70%, transparent);
+
+  --font-body: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --font-meta: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --font-code: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+  --fs-hero: clamp(1.9rem, 6vw, 3.4rem);
+  --fs-title: clamp(1rem, 2.4vw, 1.25rem);
+  --fs-lead: 0.9375rem;
+  --fs-body: 0.875rem;
+  --fs-item: 0.9375rem;
+  --fs-meta: 0.6875rem;
+  --lh: 1.75;
+  --fw-title: 700;
+  --track-label: 0.06em;
+
+  --sp-2: 0.35rem;
+  --sp-3: 0.7rem;
+  --sp-4: 1.1rem;
+  --sp-6: 2.2rem;
+  --gutter: clamp(0.85rem, 3vw, 2rem);
+  --measure: 52rem;
+  --panel-pad: clamp(0.85rem, 2.4vw, 1.5rem);
+  --hero-min-height: 72vh;
+  --strip-height: 10rem;
+
+  --radius-panel: 2px;
+  --radius-item: 2px;
+  --radius-btn: 2px;
+  --rule: 2px dashed var(--line);
+  --panel-border: 2px solid var(--line);
+  --item-border: 1px solid var(--line);
+  --btn-border: 2px solid var(--accent);
+  --grid-works: minmax(0, 1fr);
+  --grid-facts: minmax(0, 1fr);
+  --list-style: decimal inside;
+  --caption-align: left;
+  --scanlines: repeating-linear-gradient(to bottom,
+    color-mix(in srgb, var(--grid) 42%, transparent) 0 1px,
+    transparent 1px 3px);
+}
+
+/* 签名构件：CRT 扫描线覆盖层（在着色器之上、文字之下） */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--scanlines);
+  opacity: 0.55;
+}
+
+main, .hero, .footer, .nav { position: relative; z-index: 1; }
+
+.btn { text-transform: uppercase; letter-spacing: 0.12em; }
+.work { border-top: 2px solid var(--accent); }
+.work h3::before { content: "> "; color: var(--accent); }
+.kicker::before { content: "["; color: var(--muted); }
+.kicker::after { content: "]"; color: var(--muted); }
+.strip { border: 2px solid var(--accent); }
+.rooms thead th { border-bottom: 2px solid var(--muted); }
+.notes li, .credits li { list-style: none; }
+.notes li::before { content: "> "; color: var(--accent); }
+.credits li::before { content: "| "; color: var(--muted); }

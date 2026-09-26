@@ -1,0 +1,70 @@
+/* 风格三 silk-aurora —— 骨白印刷：衬线、大圆角、居中题图、行内细点分隔
+ * 色板封闭：本文件之外不得出现任何颜色字面量。
+ */
+:root {
+  --bg: #efece1;
+  --panel: #f7f4ea;
+  --ink: #2a2118;
+  --muted: #6d5f4c;
+  --accent: #b0552e;
+  --line: #d9d1bd;
+  --grid: #e3ddcc;
+  --btn-bg: #b0552e;
+  --btn-ink: #fdf9f2;
+  --btn-bg-pressed: #6d5f4c;
+  --scrim: color-mix(in srgb, var(--panel) 80%, transparent);
+  --scrim-strong: color-mix(in srgb, var(--panel) 94%, transparent);
+  --item-bg: color-mix(in srgb, var(--bg) 74%, transparent);
+
+  --font-body: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Songti SC", serif;
+  --font-meta: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Songti SC", serif;
+  --font-code: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --fs-hero: clamp(2.4rem, 9vw, 4.6rem);
+  --fs-title: clamp(1.25rem, 3vw, 1.9rem);
+  --fs-lead: 1.125rem;
+  --fs-body: 1.0625rem;
+  --fs-item: 1.1875rem;
+  --fs-meta: 0.8125rem;
+  --lh: 1.85;
+  --fw-title: 500;
+  --track-label: 0.1em;
+
+  --sp-2: 0.45rem;
+  --sp-3: 0.9rem;
+  --sp-4: 1.6rem;
+  --sp-6: 3.6rem;
+  --gutter: clamp(1.1rem, 5vw, 4rem);
+  --measure: 58rem;
+  --panel-pad: clamp(1.2rem, 3.6vw, 2.8rem);
+  --hero-min-height: 82vh;
+  --strip-height: 13rem;
+
+  --radius-panel: 24px;
+  --radius-item: 14px;
+  --radius-btn: 999px;
+  --rule: 1px dotted var(--line);
+  --panel-border: none;
+  --item-border: none;
+  --btn-border: none;
+  --grid-works: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  --grid-facts: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  --list-style: disc inside;
+  --caption-align: center;
+}
+
+/* 签名构件：柔和的纸面晕影 + 居中排印 */
+.hero { align-items: center; text-align: center; }
+.hero-inner { text-align: center; }
+.hero-sub { margin-inline: auto; }
+.hero-actions { justify-content: center; }
+.kicker { font-variant: small-caps; }
+.section { text-align: center; }
+.section-lead { margin-inline: auto; }
+.work { text-align: left; box-shadow: 0 1px 0 var(--line); }
+.work h3 { font-variant: small-caps; }
+.notes, .credits { text-align: left; max-width: 46ch; margin-inline: auto; }
+.strip { border: 1px solid var(--line); box-shadow: 0 2px 0 var(--grid); }
+.rooms thead th { border-bottom: 1px solid var(--line); }
+.footer { text-align: center; }
+.btn { text-transform: none; }

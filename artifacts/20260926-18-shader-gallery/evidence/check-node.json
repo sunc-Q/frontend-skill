@@ -1,0 +1,1697 @@
+{
+  "results": [
+    {
+      "group": "A",
+      "id": "A/assets-listed-all-exist",
+      "pass": true,
+      "actual": "1101"
+    },
+    {
+      "group": "A",
+      "id": "A/asset-counts",
+      "pass": true,
+      "actual": "8/6/5 (期望 8/6/5)"
+    },
+    {
+      "group": "A",
+      "id": "A/disk-assets-fully-documented",
+      "pass": true,
+      "actual": "0 (期望 0)"
+    },
+    {
+      "group": "A",
+      "id": "A/script-count",
+      "pass": true,
+      "actual": "shader.js"
+    },
+    {
+      "group": "A",
+      "id": "A/doc-example-commands-all-run",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "A",
+      "id": "A/commands-advertised",
+      "pass": true,
+      "actual": "7 (期望 7)"
+    },
+    {
+      "group": "A",
+      "id": "A/webgl-fullscreen-demo-unreachable-by-own-router",
+      "pass": true,
+      "actual": "0 (期望 0)"
+    },
+    {
+      "group": "A",
+      "id": "A/router-matrix-covers-all-targets",
+      "pass": true,
+      "actual": "56"
+    },
+    {
+      "group": "A",
+      "id": "A/router-chosen-files-all-exist",
+      "pass": true,
+      "actual": "0 条指向不存在的文件"
+    },
+    {
+      "group": "A",
+      "id": "A/dead-ternary-in-material-branch",
+      "pass": true,
+      "actual": "{\"left\":\"assets/threejs-material-demo/index.html\",\"right\":\"assets/threejs-material-demo/index.html\",\"same\":true}"
+    },
+    {
+      "group": "A",
+      "id": "A/boilerplate-coverage-gap",
+      "pass": true,
+      "actual": "gradient,noise,fbm,pixelate (期望 gradient,noise,fbm,pixelate)"
+    },
+    {
+      "group": "A",
+      "id": "A/snippet-coverage-gap",
+      "pass": true,
+      "actual": "gradient,noise,fbm (期望 gradient,noise,fbm)"
+    },
+    {
+      "group": "A",
+      "id": "A/scaffold-aliases-pixelate-to-scanline",
+      "pass": true,
+      "actual": "scanline"
+    },
+    {
+      "group": "A",
+      "id": "A/scaffold-falls-back-to-ripple-for-gradient",
+      "pass": true,
+      "actual": "ripple"
+    },
+    {
+      "group": "A",
+      "id": "A/scaffold-gradient-demo-is-postprocess",
+      "pass": true,
+      "actual": "assets/postprocess-demo/index.html"
+    },
+    {
+      "group": "A",
+      "id": "A/skill-demos-use-webgl1",
+      "pass": true,
+      "actual": "两个模板的 getContext 调用"
+    },
+    {
+      "group": "A",
+      "id": "A/skill-demos-failure-path-loud",
+      "pass": true,
+      "actual": "缺显式失败与编译状态检查"
+    },
+    {
+      "group": "A",
+      "id": "A/threejs-demo-has-cdn-dependency",
+      "pass": true,
+      "actual": "https://unpkg.com/three@0.176.0/build/three.module.js"
+    },
+    {
+      "group": "A",
+      "id": "A/r3f-demo-needs-build",
+      "pass": true,
+      "actual": "r3f 模板用根绝对路径 + 需要 vite 起服务，双击不可用"
+    },
+    {
+      "group": "A",
+      "id": "A/r3f-demo-listed-as-template",
+      "pass": true,
+      "actual": "SKILL.md 的 Bundled templates 里确实列了这个不可直接打开的模板"
+    },
+    {
+      "group": "B",
+      "id": "B/exists:liquid-chrome",
+      "pass": true,
+      "actual": "38341B"
+    },
+    {
+      "group": "B",
+      "id": "B/zero-network-tags:liquid-chrome",
+      "pass": true,
+      "actual": "标签级外链"
+    },
+    {
+      "group": "B",
+      "id": "B/zero-import-or-fetch:liquid-chrome",
+      "pass": true,
+      "actual": "取数语句"
+    },
+    {
+      "group": "B",
+      "id": "B/zero-storage:liquid-chrome",
+      "pass": true,
+      "actual": "持久化语句"
+    },
+    {
+      "group": "B",
+      "id": "B/zero-form:liquid-chrome",
+      "pass": true,
+      "actual": "表单元素"
+    },
+    {
+      "group": "B",
+      "id": "B/single-style-block:liquid-chrome",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "B",
+      "id": "B/inline-script-count:liquid-chrome",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "B",
+      "id": "B/utf8-lang:liquid-chrome",
+      "pass": true,
+      "actual": "缺 lang 或 charset"
+    },
+    {
+      "group": "B",
+      "id": "B/viewport-meta:liquid-chrome",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "B",
+      "id": "B/demo-disclosure:liquid-chrome",
+      "pass": true,
+      "actual": "缺少虚构声明"
+    },
+    {
+      "group": "B",
+      "id": "B/shared-host:liquid-chrome",
+      "pass": true,
+      "actual": "15089B 共享段"
+    },
+    {
+      "group": "B",
+      "id": "B/exists:crt-plasma",
+      "pass": true,
+      "actual": "39017B"
+    },
+    {
+      "group": "B",
+      "id": "B/zero-network-tags:crt-plasma",
+      "pass": true,
+      "actual": "标签级外链"
+    },
+    {
+      "group": "B",
+      "id": "B/zero-import-or-fetch:crt-plasma",
+      "pass": true,
+      "actual": "取数语句"
+    },
+    {
+      "group": "B",
+      "id": "B/zero-storage:crt-plasma",
+      "pass": true,
+      "actual": "持久化语句"
+    },
+    {
+      "group": "B",
+      "id": "B/zero-form:crt-plasma",
+      "pass": true,
+      "actual": "表单元素"
+    },
+    {
+      "group": "B",
+      "id": "B/single-style-block:crt-plasma",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "B",
+      "id": "B/inline-script-count:crt-plasma",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "B",
+      "id": "B/utf8-lang:crt-plasma",
+      "pass": true,
+      "actual": "缺 lang 或 charset"
+    },
+    {
+      "group": "B",
+      "id": "B/viewport-meta:crt-plasma",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "B",
+      "id": "B/demo-disclosure:crt-plasma",
+      "pass": true,
+      "actual": "缺少虚构声明"
+    },
+    {
+      "group": "B",
+      "id": "B/shared-host:crt-plasma",
+      "pass": true,
+      "actual": "15089B 共享段"
+    },
+    {
+      "group": "B",
+      "id": "B/exists:silk-aurora",
+      "pass": true,
+      "actual": "38180B"
+    },
+    {
+      "group": "B",
+      "id": "B/zero-network-tags:silk-aurora",
+      "pass": true,
+      "actual": "标签级外链"
+    },
+    {
+      "group": "B",
+      "id": "B/zero-import-or-fetch:silk-aurora",
+      "pass": true,
+      "actual": "取数语句"
+    },
+    {
+      "group": "B",
+      "id": "B/zero-storage:silk-aurora",
+      "pass": true,
+      "actual": "持久化语句"
+    },
+    {
+      "group": "B",
+      "id": "B/zero-form:silk-aurora",
+      "pass": true,
+      "actual": "表单元素"
+    },
+    {
+      "group": "B",
+      "id": "B/single-style-block:silk-aurora",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "B",
+      "id": "B/inline-script-count:silk-aurora",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "B",
+      "id": "B/utf8-lang:silk-aurora",
+      "pass": true,
+      "actual": "缺 lang 或 charset"
+    },
+    {
+      "group": "B",
+      "id": "B/viewport-meta:silk-aurora",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "B",
+      "id": "B/demo-disclosure:silk-aurora",
+      "pass": true,
+      "actual": "缺少虚构声明"
+    },
+    {
+      "group": "B",
+      "id": "B/shared-host:silk-aurora",
+      "pass": true,
+      "actual": "15089B 共享段"
+    },
+    {
+      "group": "B",
+      "id": "B/host-identical-across-styles",
+      "pass": true,
+      "actual": "15089/15089/15089"
+    },
+    {
+      "group": "B",
+      "id": "B/dom-identical-across-styles",
+      "pass": true,
+      "actual": "5048/5048/5048"
+    },
+    {
+      "group": "B",
+      "id": "B/base-css-identical",
+      "pass": true,
+      "actual": "7239/7239/7239"
+    },
+    {
+      "group": "B",
+      "id": "B/skins-differ",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "B",
+      "id": "B/css-source-inlined:liquid-chrome",
+      "pass": true,
+      "actual": "产物 <style> 与 src/css/base.css + skin 不逐字一致"
+    },
+    {
+      "group": "B",
+      "id": "B/host-source-inlined:liquid-chrome",
+      "pass": true,
+      "actual": "哨兵之后的共享宿主段与 src/host.js 不逐字一致"
+    },
+    {
+      "group": "B",
+      "id": "B/css-source-inlined:crt-plasma",
+      "pass": true,
+      "actual": "产物 <style> 与 src/css/base.css + skin 不逐字一致"
+    },
+    {
+      "group": "B",
+      "id": "B/host-source-inlined:crt-plasma",
+      "pass": true,
+      "actual": "哨兵之后的共享宿主段与 src/host.js 不逐字一致"
+    },
+    {
+      "group": "B",
+      "id": "B/css-source-inlined:silk-aurora",
+      "pass": true,
+      "actual": "产物 <style> 与 src/css/base.css + skin 不逐字一致"
+    },
+    {
+      "group": "B",
+      "id": "B/host-source-inlined:silk-aurora",
+      "pass": true,
+      "actual": "哨兵之后的共享宿主段与 src/host.js 不逐字一致"
+    },
+    {
+      "group": "C",
+      "id": "C/glsl-inlined:liquid-chrome",
+      "pass": true,
+      "actual": "产物内联与源文件一致"
+    },
+    {
+      "group": "C",
+      "id": "C/no-webgl2-syntax:liquid-chrome",
+      "pass": true,
+      "actual": "出现 WebGL2/GLSL ES 3.0 写法"
+    },
+    {
+      "group": "C",
+      "id": "C/glsl-es1-output:liquid-chrome",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "C",
+      "id": "C/precision-declared:liquid-chrome",
+      "pass": true,
+      "actual": "缺 precision 限定符"
+    },
+    {
+      "group": "C",
+      "id": "C/no-shadertoy-builtins:liquid-chrome",
+      "pass": true,
+      "actual": "ShaderToy 内置未换形"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-prefix:liquid-chrome",
+      "pass": true,
+      "actual": "uTime,uResolution,uMouse,uScroll,uVariant,uOrigin"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-used:liquid-chrome:uTime",
+      "pass": true,
+      "actual": "declared=true used=true"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-used:liquid-chrome:uResolution",
+      "pass": true,
+      "actual": "declared=true used=true"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-used:liquid-chrome:uMouse",
+      "pass": true,
+      "actual": "declared=true used=true"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-used:liquid-chrome:uScroll",
+      "pass": true,
+      "actual": "declared=true used=true"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-used:liquid-chrome:uVariant",
+      "pass": true,
+      "actual": "declared=true used=true"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-used:liquid-chrome:uOrigin",
+      "pass": true,
+      "actual": "declared=true used=true"
+    },
+    {
+      "group": "C",
+      "id": "C/no-texture-dependency:liquid-chrome",
+      "pass": true,
+      "actual": "无纹理却采样"
+    },
+    {
+      "group": "C",
+      "id": "C/zero-invent-macros:liquid-chrome",
+      "pass": true,
+      "actual": "自造宏"
+    },
+    {
+      "group": "C",
+      "id": "C/aspect-correction:liquid-chrome",
+      "pass": true,
+      "actual": "缺 aspect 修正（技能 boilerplate 点名的常见缺陷）"
+    },
+    {
+      "group": "C",
+      "id": "C/loop-bounds-constant:liquid-chrome",
+      "pass": true,
+      "actual": "循环边界非常量（GLSL ES 1.0 会拒绝）"
+    },
+    {
+      "group": "C",
+      "id": "C/variant-visible:liquid-chrome",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "C",
+      "id": "C/glsl-size:liquid-chrome",
+      "pass": true,
+      "actual": "82 行"
+    },
+    {
+      "group": "C",
+      "id": "C/glsl-inlined:crt-plasma",
+      "pass": true,
+      "actual": "产物内联与源文件一致"
+    },
+    {
+      "group": "C",
+      "id": "C/no-webgl2-syntax:crt-plasma",
+      "pass": true,
+      "actual": "出现 WebGL2/GLSL ES 3.0 写法"
+    },
+    {
+      "group": "C",
+      "id": "C/glsl-es1-output:crt-plasma",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "C",
+      "id": "C/precision-declared:crt-plasma",
+      "pass": true,
+      "actual": "缺 precision 限定符"
+    },
+    {
+      "group": "C",
+      "id": "C/no-shadertoy-builtins:crt-plasma",
+      "pass": true,
+      "actual": "ShaderToy 内置未换形"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-prefix:crt-plasma",
+      "pass": true,
+      "actual": "uTime,uResolution,uMouse,uScroll,uVariant,uOrigin"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-used:crt-plasma:uTime",
+      "pass": true,
+      "actual": "declared=true used=true"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-used:crt-plasma:uResolution",
+      "pass": true,
+      "actual": "declared=true used=true"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-used:crt-plasma:uMouse",
+      "pass": true,
+      "actual": "declared=true used=true"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-used:crt-plasma:uScroll",
+      "pass": true,
+      "actual": "declared=true used=true"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-used:crt-plasma:uVariant",
+      "pass": true,
+      "actual": "declared=true used=true"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-used:crt-plasma:uOrigin",
+      "pass": true,
+      "actual": "declared=true used=true"
+    },
+    {
+      "group": "C",
+      "id": "C/no-texture-dependency:crt-plasma",
+      "pass": true,
+      "actual": "无纹理却采样"
+    },
+    {
+      "group": "C",
+      "id": "C/zero-invent-macros:crt-plasma",
+      "pass": true,
+      "actual": "自造宏"
+    },
+    {
+      "group": "C",
+      "id": "C/aspect-correction:crt-plasma",
+      "pass": true,
+      "actual": "缺 aspect 修正（技能 boilerplate 点名的常见缺陷）"
+    },
+    {
+      "group": "C",
+      "id": "C/loop-bounds-constant:crt-plasma",
+      "pass": true,
+      "actual": "循环边界非常量（GLSL ES 1.0 会拒绝）"
+    },
+    {
+      "group": "C",
+      "id": "C/variant-visible:crt-plasma",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "C",
+      "id": "C/glsl-size:crt-plasma",
+      "pass": true,
+      "actual": "88 行"
+    },
+    {
+      "group": "C",
+      "id": "C/glsl-inlined:silk-aurora",
+      "pass": true,
+      "actual": "产物内联与源文件一致"
+    },
+    {
+      "group": "C",
+      "id": "C/no-webgl2-syntax:silk-aurora",
+      "pass": true,
+      "actual": "出现 WebGL2/GLSL ES 3.0 写法"
+    },
+    {
+      "group": "C",
+      "id": "C/glsl-es1-output:silk-aurora",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "C",
+      "id": "C/precision-declared:silk-aurora",
+      "pass": true,
+      "actual": "缺 precision 限定符"
+    },
+    {
+      "group": "C",
+      "id": "C/no-shadertoy-builtins:silk-aurora",
+      "pass": true,
+      "actual": "ShaderToy 内置未换形"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-prefix:silk-aurora",
+      "pass": true,
+      "actual": "uTime,uResolution,uMouse,uScroll,uVariant,uOrigin"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-used:silk-aurora:uTime",
+      "pass": true,
+      "actual": "declared=true used=true"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-used:silk-aurora:uResolution",
+      "pass": true,
+      "actual": "declared=true used=true"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-used:silk-aurora:uMouse",
+      "pass": true,
+      "actual": "declared=true used=true"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-used:silk-aurora:uScroll",
+      "pass": true,
+      "actual": "declared=true used=true"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-used:silk-aurora:uVariant",
+      "pass": true,
+      "actual": "declared=true used=true"
+    },
+    {
+      "group": "C",
+      "id": "C/uniform-used:silk-aurora:uOrigin",
+      "pass": true,
+      "actual": "declared=true used=true"
+    },
+    {
+      "group": "C",
+      "id": "C/no-texture-dependency:silk-aurora",
+      "pass": true,
+      "actual": "无纹理却采样"
+    },
+    {
+      "group": "C",
+      "id": "C/zero-invent-macros:silk-aurora",
+      "pass": true,
+      "actual": "自造宏"
+    },
+    {
+      "group": "C",
+      "id": "C/aspect-correction:silk-aurora",
+      "pass": true,
+      "actual": "缺 aspect 修正（技能 boilerplate 点名的常见缺陷）"
+    },
+    {
+      "group": "C",
+      "id": "C/loop-bounds-constant:silk-aurora",
+      "pass": true,
+      "actual": "循环边界非常量（GLSL ES 1.0 会拒绝）"
+    },
+    {
+      "group": "C",
+      "id": "C/variant-visible:silk-aurora",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "C",
+      "id": "C/glsl-size:silk-aurora",
+      "pass": true,
+      "actual": "80 行"
+    },
+    {
+      "group": "C",
+      "id": "C/fragcoord-through-origin:liquid-chrome",
+      "pass": true,
+      "actual": "gl_FragCoord 出现 1 次（应为 1，且只在减去 uOrigin 那一行）"
+    },
+    {
+      "group": "C",
+      "id": "C/fragcoord-through-origin:crt-plasma",
+      "pass": true,
+      "actual": "gl_FragCoord 出现 1 次（应为 1，且只在减去 uOrigin 那一行）"
+    },
+    {
+      "group": "C",
+      "id": "C/fragcoord-through-origin:silk-aurora",
+      "pass": true,
+      "actual": "gl_FragCoord 出现 1 次（应为 1，且只在减去 uOrigin 那一行）"
+    },
+    {
+      "group": "C",
+      "id": "C/host-passes-uOrigin-per-band",
+      "pass": true,
+      "actual": "每个视口把自己的原点 x 传进着色器"
+    },
+    {
+      "group": "C",
+      "id": "C/host-uses-webgl1",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "C",
+      "id": "C/host-no-es-module-or-300es",
+      "pass": true,
+      "actual": "注释外出现 import/export/#version"
+    },
+    {
+      "group": "C",
+      "id": "C/uniforms-set-every-frame",
+      "pass": true,
+      "actual": "6 处"
+    },
+    {
+      "group": "C",
+      "id": "C/dpr-clamped",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "C",
+      "id": "C/visible-baseline-path",
+      "pass": true,
+      "actual": "黑屏检查表第 1 步（常量可见色）没有实现成可跑的通路"
+    },
+    {
+      "group": "C",
+      "id": "C/fallback-for-no-gl",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "C",
+      "id": "C/passive-listeners",
+      "pass": true,
+      "actual": "2 处"
+    },
+    {
+      "group": "C",
+      "id": "C/pointer-listener-on-window",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "C",
+      "id": "C/host-no-innerHTML",
+      "pass": true,
+      "actual": "宿主用了 innerHTML 注入用户输入"
+    },
+    {
+      "group": "C",
+      "id": "C/skill-snippets-reused",
+      "pass": true,
+      "actual": "pixelateUv,scanlineMask,rippleRing (期望 pixelateUv,scanlineMask,rippleRing)"
+    },
+    {
+      "group": "C",
+      "id": "C/snippets-verbatim-set",
+      "pass": true,
+      "actual": "pixelate,ripple,scanline (期望 pixelate,ripple,scanline)"
+    },
+    {
+      "group": "C",
+      "id": "C/snippet-applicability:fresnel",
+      "pass": true,
+      "actual": "需要法线/网格，全屏屏幕空间着色器不适用"
+    },
+    {
+      "group": "C",
+      "id": "C/snippet-applicability:dissolve",
+      "pass": true,
+      "actual": "需要法线/网格，全屏屏幕空间着色器不适用"
+    },
+    {
+      "group": "C",
+      "id": "C/snippet-applicability:ripple",
+      "pass": true,
+      "actual": "屏空间技法应可复用"
+    },
+    {
+      "group": "C",
+      "id": "C/snippet-applicability:scanline",
+      "pass": true,
+      "actual": "屏空间技法应可复用"
+    },
+    {
+      "group": "C",
+      "id": "C/snippet-applicability:pixelate",
+      "pass": true,
+      "actual": "屏空间技法应可复用"
+    },
+    {
+      "group": "C",
+      "id": "C/snippet-applicability:vertex-wobble",
+      "pass": true,
+      "actual": "需要法线/网格，全屏屏幕空间着色器不适用"
+    },
+    {
+      "group": "D",
+      "id": "D/base-css-zero-color-literals",
+      "pass": true,
+      "actual": "基座里出现颜色字面量"
+    },
+    {
+      "group": "D",
+      "id": "D/hex-only-in-root:liquid-chrome",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "D",
+      "id": "D/func-colors-only-in-root:liquid-chrome",
+      "pass": true,
+      "actual": "函数式颜色出现在 :root 之外"
+    },
+    {
+      "group": "D",
+      "id": "D/vars-defined:liquid-chrome",
+      "pass": true,
+      "actual": "未定义令牌："
+    },
+    {
+      "group": "D",
+      "id": "D/no-dead-tokens:liquid-chrome",
+      "pass": true,
+      "actual": "死令牌："
+    },
+    {
+      "group": "D",
+      "id": "D/palette-color-decls:liquid-chrome",
+      "pass": true,
+      "actual": "10 (期望 10)"
+    },
+    {
+      "group": "D",
+      "id": "D/palette-distinct-hex:liquid-chrome",
+      "pass": true,
+      "actual": "独立色 8 个（btn-bg≡accent、btn-bg-pressed≡line 为有意别名）"
+    },
+    {
+      "group": "D",
+      "id": "D/no-pure-black-white:liquid-chrome",
+      "pass": true,
+      "actual": "#05070d,#0b1120,#e8eefc,#8fa3c8,#4fd7e8,#1b2740,#16203a,#04121a"
+    },
+    {
+      "group": "D",
+      "id": "D/contrast-ink-panel:liquid-chrome",
+      "pass": true,
+      "actual": "16.41:1（正文/衬底合成色）"
+    },
+    {
+      "group": "D",
+      "id": "D/contrast-muted-panel:liquid-chrome",
+      "pass": true,
+      "actual": "7.48:1"
+    },
+    {
+      "group": "D",
+      "id": "D/contrast-accent-panel:liquid-chrome",
+      "pass": true,
+      "actual": "11.09:1"
+    },
+    {
+      "group": "D",
+      "id": "D/contrast-button:liquid-chrome",
+      "pass": true,
+      "actual": "11.04:1"
+    },
+    {
+      "group": "D",
+      "id": "D/scrim-is-translucent:liquid-chrome",
+      "pass": true,
+      "actual": "alpha=0.84"
+    },
+    {
+      "group": "D",
+      "id": "D/hex-only-in-root:crt-plasma",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "D",
+      "id": "D/func-colors-only-in-root:crt-plasma",
+      "pass": true,
+      "actual": "函数式颜色出现在 :root 之外"
+    },
+    {
+      "group": "D",
+      "id": "D/vars-defined:crt-plasma",
+      "pass": true,
+      "actual": "未定义令牌："
+    },
+    {
+      "group": "D",
+      "id": "D/no-dead-tokens:crt-plasma",
+      "pass": true,
+      "actual": "死令牌："
+    },
+    {
+      "group": "D",
+      "id": "D/palette-color-decls:crt-plasma",
+      "pass": true,
+      "actual": "10 (期望 10)"
+    },
+    {
+      "group": "D",
+      "id": "D/palette-distinct-hex:crt-plasma",
+      "pass": true,
+      "actual": "独立色 8 个（btn-bg≡accent、btn-bg-pressed≡line 为有意别名）"
+    },
+    {
+      "group": "D",
+      "id": "D/no-pure-black-white:crt-plasma",
+      "pass": true,
+      "actual": "#06120c,#0a1b12,#7cffa8,#46b877,#ffb347,#123324,#0e2818,#1a0f02"
+    },
+    {
+      "group": "D",
+      "id": "D/contrast-ink-panel:crt-plasma",
+      "pass": true,
+      "actual": "14.33:1（正文/衬底合成色）"
+    },
+    {
+      "group": "D",
+      "id": "D/contrast-muted-panel:crt-plasma",
+      "pass": true,
+      "actual": "7.18:1"
+    },
+    {
+      "group": "D",
+      "id": "D/contrast-accent-panel:crt-plasma",
+      "pass": true,
+      "actual": "10.10:1"
+    },
+    {
+      "group": "D",
+      "id": "D/contrast-button:crt-plasma",
+      "pass": true,
+      "actual": "10.59:1"
+    },
+    {
+      "group": "D",
+      "id": "D/scrim-is-translucent:crt-plasma",
+      "pass": true,
+      "actual": "alpha=0.88"
+    },
+    {
+      "group": "D",
+      "id": "D/hex-only-in-root:silk-aurora",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "D",
+      "id": "D/func-colors-only-in-root:silk-aurora",
+      "pass": true,
+      "actual": "函数式颜色出现在 :root 之外"
+    },
+    {
+      "group": "D",
+      "id": "D/vars-defined:silk-aurora",
+      "pass": true,
+      "actual": "未定义令牌："
+    },
+    {
+      "group": "D",
+      "id": "D/no-dead-tokens:silk-aurora",
+      "pass": true,
+      "actual": "死令牌："
+    },
+    {
+      "group": "D",
+      "id": "D/palette-color-decls:silk-aurora",
+      "pass": true,
+      "actual": "10 (期望 10)"
+    },
+    {
+      "group": "D",
+      "id": "D/palette-distinct-hex:silk-aurora",
+      "pass": true,
+      "actual": "独立色 8 个（btn-bg≡accent、btn-bg-pressed≡line 为有意别名）"
+    },
+    {
+      "group": "D",
+      "id": "D/no-pure-black-white:silk-aurora",
+      "pass": true,
+      "actual": "#efece1,#f7f4ea,#2a2118,#6d5f4c,#b0552e,#d9d1bd,#e3ddcc,#fdf9f2"
+    },
+    {
+      "group": "D",
+      "id": "D/contrast-ink-panel:silk-aurora",
+      "pass": true,
+      "actual": "14.15:1（正文/衬底合成色）"
+    },
+    {
+      "group": "D",
+      "id": "D/contrast-muted-panel:silk-aurora",
+      "pass": true,
+      "actual": "5.55:1"
+    },
+    {
+      "group": "D",
+      "id": "D/contrast-accent-panel:silk-aurora",
+      "pass": true,
+      "actual": "4.50:1"
+    },
+    {
+      "group": "D",
+      "id": "D/contrast-button:silk-aurora",
+      "pass": true,
+      "actual": "4.78:1"
+    },
+    {
+      "group": "D",
+      "id": "D/scrim-is-translucent:silk-aurora",
+      "pass": true,
+      "actual": "alpha=0.8"
+    },
+    {
+      "group": "D",
+      "id": "D/palette-disjoint:liquid-chrome~crt-plasma",
+      "pass": true,
+      "actual": "交集 "
+    },
+    {
+      "group": "D",
+      "id": "D/palette-disjoint:liquid-chrome~silk-aurora",
+      "pass": true,
+      "actual": "交集 "
+    },
+    {
+      "group": "D",
+      "id": "D/palette-disjoint:crt-plasma~silk-aurora",
+      "pass": true,
+      "actual": "交集 "
+    },
+    {
+      "group": "D",
+      "id": "D/fingerprint>=6:liquid-chrome~crt-plasma",
+      "pass": true,
+      "actual": "9 维：radius,family,rule,listStyle,heroHeight,lineHeight,tracking,worksGrid,scrimAlpha"
+    },
+    {
+      "group": "D",
+      "id": "D/fingerprint>=6:liquid-chrome~silk-aurora",
+      "pass": true,
+      "actual": "10 维：radius,family,rule,listStyle,heroHeight,lineHeight,tracking,worksGrid,caption,scrimAlpha"
+    },
+    {
+      "group": "D",
+      "id": "D/fingerprint>=6:crt-plasma~silk-aurora",
+      "pass": true,
+      "actual": "10 维：radius,family,rule,listStyle,heroHeight,lineHeight,tracking,worksGrid,caption,scrimAlpha"
+    },
+    {
+      "group": "E",
+      "id": "E/run_days",
+      "pass": true,
+      "actual": "45 (期望 45)"
+    },
+    {
+      "group": "E",
+      "id": "E/embedded-derived:liquid-chrome",
+      "pass": true,
+      "actual": "45|5|141|390|95|39|4.11 (期望 45|5|141|390|95|39|4.11)"
+    },
+    {
+      "group": "E",
+      "id": "E/text-present:liquid-chrome",
+      "pass": true,
+      "actual": "缺失："
+    },
+    {
+      "group": "E",
+      "id": "E/works-present:liquid-chrome",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "E",
+      "id": "E/notes-credits:liquid-chrome",
+      "pass": true,
+      "actual": "0/0"
+    },
+    {
+      "group": "E",
+      "id": "E/room-rows:liquid-chrome",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "E",
+      "id": "E/embedded-derived:crt-plasma",
+      "pass": true,
+      "actual": "45|5|141|390|95|39|4.11 (期望 45|5|141|390|95|39|4.11)"
+    },
+    {
+      "group": "E",
+      "id": "E/text-present:crt-plasma",
+      "pass": true,
+      "actual": "缺失："
+    },
+    {
+      "group": "E",
+      "id": "E/works-present:crt-plasma",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "E",
+      "id": "E/notes-credits:crt-plasma",
+      "pass": true,
+      "actual": "0/0"
+    },
+    {
+      "group": "E",
+      "id": "E/room-rows:crt-plasma",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "E",
+      "id": "E/embedded-derived:silk-aurora",
+      "pass": true,
+      "actual": "45|5|141|390|95|39|4.11 (期望 45|5|141|390|95|39|4.11)"
+    },
+    {
+      "group": "E",
+      "id": "E/text-present:silk-aurora",
+      "pass": true,
+      "actual": "缺失："
+    },
+    {
+      "group": "E",
+      "id": "E/works-present:silk-aurora",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "E",
+      "id": "E/notes-credits:silk-aurora",
+      "pass": true,
+      "actual": "0/0"
+    },
+    {
+      "group": "E",
+      "id": "E/room-rows:silk-aurora",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "F",
+      "id": "F/one-button:liquid-chrome",
+      "pass": true,
+      "actual": "1 个按钮"
+    },
+    {
+      "group": "F",
+      "id": "F/no-aria-live-abuse:liquid-chrome",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "F",
+      "id": "F/no-router:liquid-chrome",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "F",
+      "id": "F/no-timers-outside-raf:liquid-chrome",
+      "pass": true,
+      "actual": "宿主里出现额外定时器"
+    },
+    {
+      "group": "F",
+      "id": "F/canvas-count:liquid-chrome",
+      "pass": true,
+      "actual": "2 块画布"
+    },
+    {
+      "group": "F",
+      "id": "F/ids-unique:liquid-chrome",
+      "pass": true,
+      "actual": "存在重复 id"
+    },
+    {
+      "group": "F",
+      "id": "F/anchors-resolve:liquid-chrome",
+      "pass": true,
+      "actual": "锚点指向不存在的目标"
+    },
+    {
+      "group": "F",
+      "id": "F/headings:liquid-chrome",
+      "pass": true,
+      "actual": "7"
+    },
+    {
+      "group": "F",
+      "id": "F/no-console-log:liquid-chrome",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "F",
+      "id": "F/one-button:crt-plasma",
+      "pass": true,
+      "actual": "1 个按钮"
+    },
+    {
+      "group": "F",
+      "id": "F/no-aria-live-abuse:crt-plasma",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "F",
+      "id": "F/no-router:crt-plasma",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "F",
+      "id": "F/no-timers-outside-raf:crt-plasma",
+      "pass": true,
+      "actual": "宿主里出现额外定时器"
+    },
+    {
+      "group": "F",
+      "id": "F/canvas-count:crt-plasma",
+      "pass": true,
+      "actual": "2 块画布"
+    },
+    {
+      "group": "F",
+      "id": "F/ids-unique:crt-plasma",
+      "pass": true,
+      "actual": "存在重复 id"
+    },
+    {
+      "group": "F",
+      "id": "F/anchors-resolve:crt-plasma",
+      "pass": true,
+      "actual": "锚点指向不存在的目标"
+    },
+    {
+      "group": "F",
+      "id": "F/headings:crt-plasma",
+      "pass": true,
+      "actual": "7"
+    },
+    {
+      "group": "F",
+      "id": "F/no-console-log:crt-plasma",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "F",
+      "id": "F/one-button:silk-aurora",
+      "pass": true,
+      "actual": "1 个按钮"
+    },
+    {
+      "group": "F",
+      "id": "F/no-aria-live-abuse:silk-aurora",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "F",
+      "id": "F/no-router:silk-aurora",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "F",
+      "id": "F/no-timers-outside-raf:silk-aurora",
+      "pass": true,
+      "actual": "宿主里出现额外定时器"
+    },
+    {
+      "group": "F",
+      "id": "F/canvas-count:silk-aurora",
+      "pass": true,
+      "actual": "2 块画布"
+    },
+    {
+      "group": "F",
+      "id": "F/ids-unique:silk-aurora",
+      "pass": true,
+      "actual": "存在重复 id"
+    },
+    {
+      "group": "F",
+      "id": "F/anchors-resolve:silk-aurora",
+      "pass": true,
+      "actual": "锚点指向不存在的目标"
+    },
+    {
+      "group": "F",
+      "id": "F/headings:silk-aurora",
+      "pass": true,
+      "actual": "7"
+    },
+    {
+      "group": "F",
+      "id": "F/no-console-log:silk-aurora",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "G",
+      "id": "G/repeat-guarded:liquid-chrome",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "G",
+      "id": "G/no-wide-fixed:liquid-chrome",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "G",
+      "id": "G/no-nowrap:liquid-chrome",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "G",
+      "id": "G/grid-minmax-zero:liquid-chrome",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "G",
+      "id": "G/uses-fluid-type:liquid-chrome",
+      "pass": true,
+      "actual": "字号与间距未用 clamp() 做流体缩放"
+    },
+    {
+      "group": "G",
+      "id": "G/grid-uses-minmax:liquid-chrome",
+      "pass": true,
+      "actual": "网格列没用 minmax()，窄屏会顶破容器"
+    },
+    {
+      "group": "G",
+      "id": "G/media-queries:liquid-chrome",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "G",
+      "id": "G/repeat-guarded:crt-plasma",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "G",
+      "id": "G/no-wide-fixed:crt-plasma",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "G",
+      "id": "G/no-nowrap:crt-plasma",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "G",
+      "id": "G/grid-minmax-zero:crt-plasma",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "G",
+      "id": "G/uses-fluid-type:crt-plasma",
+      "pass": true,
+      "actual": "字号与间距未用 clamp() 做流体缩放"
+    },
+    {
+      "group": "G",
+      "id": "G/grid-uses-minmax:crt-plasma",
+      "pass": true,
+      "actual": "网格列没用 minmax()，窄屏会顶破容器"
+    },
+    {
+      "group": "G",
+      "id": "G/media-queries:crt-plasma",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "G",
+      "id": "G/repeat-guarded:silk-aurora",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "G",
+      "id": "G/no-wide-fixed:silk-aurora",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "G",
+      "id": "G/no-nowrap:silk-aurora",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "G",
+      "id": "G/grid-minmax-zero:silk-aurora",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "G",
+      "id": "G/uses-fluid-type:silk-aurora",
+      "pass": true,
+      "actual": "字号与间距未用 clamp() 做流体缩放"
+    },
+    {
+      "group": "G",
+      "id": "G/grid-uses-minmax:silk-aurora",
+      "pass": true,
+      "actual": "网格列没用 minmax()，窄屏会顶破容器"
+    },
+    {
+      "group": "G",
+      "id": "G/media-queries:silk-aurora",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "G",
+      "id": "G/mobile-breakpoint-in-base",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "G",
+      "id": "G/reduced-motion-handled",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "H",
+      "id": "H/no-build-dirs",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "H",
+      "id": "H/under-50mb",
+      "pass": true,
+      "actual": "443.8KB"
+    },
+    {
+      "group": "H",
+      "id": "H/pages-present",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "H",
+      "id": "H/no-stray-logs",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "I",
+      "id": "I/tried-delta",
+      "pass": true,
+      "actual": "23 (期望 23)"
+    },
+    {
+      "group": "I",
+      "id": "I/runs-delta",
+      "pass": true,
+      "actual": "23 (期望 23)"
+    },
+    {
+      "group": "I",
+      "id": "I/used-styles-delta",
+      "pass": true,
+      "actual": "69 (期望 69)"
+    },
+    {
+      "group": "I",
+      "id": "I/combo-was-untried",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "group": "I",
+      "id": "I/styles-were-unused",
+      "pass": true,
+      "actual": "快照中已存在："
+    },
+    {
+      "group": "I",
+      "id": "I/worklog-delta",
+      "pass": true,
+      "actual": "1 (期望 1)"
+    },
+    {
+      "group": "I",
+      "id": "I/tried-fields-complete",
+      "pass": true,
+      "actual": "skill,scenario,styles,time,reason,conclusion,artifacts,report"
+    },
+    {
+      "group": "I",
+      "id": "I/report-exists",
+      "pass": true,
+      "actual": "reports/20260926-18-shader-immersive-exhibition.md"
+    },
+    {
+      "group": "I",
+      "id": "I/run-linked",
+      "pass": true,
+      "actual": "444KB / 31 文件（node 现读目录，上限 50MB；构成见 reports/20260926-18-shader-immersive-exhibition.md §13）"
+    },
+    {
+      "group": "I",
+      "id": "I/no-new-ledger-debt",
+      "pass": true,
+      "actual": "新增欠账：（既有欠账 3 条，属他人轮次，本轮只报告）"
+    },
+    {
+      "group": "I",
+      "id": "I/ledger-debt-unchanged",
+      "pass": true,
+      "actual": "3 (期望 3)"
+    },
+    {
+      "group": "I",
+      "id": "H/no-new-report-dirs",
+      "pass": true,
+      "actual": "reports/ 下的目录：20260926-04-sites-building-multipage-site（快照 1 个，属 04:00 轮未清理中间件，本轮只报告）"
+    },
+    {
+      "group": "I",
+      "id": "H/this-round-report-shape",
+      "pass": true,
+      "actual": "本轮复现文档必须是 .md 文件"
+    },
+    {
+      "group": "N",
+      "id": "N/styles-html-exists",
+      "pass": true,
+      "actual": "19012 字节"
+    },
+    {
+      "group": "N",
+      "id": "N/provenance-recorded",
+      "pass": true,
+      "actual": "176 条溯源"
+    },
+    {
+      "group": "N",
+      "id": "N/provenance-resolves:liquid-chrome.glsl",
+      "pass": true,
+      "actual": "2 条对得上"
+    },
+    {
+      "group": "N",
+      "id": "N/provenance-resolves:build-sizes.json",
+      "pass": true,
+      "actual": "6 条对得上"
+    },
+    {
+      "group": "N",
+      "id": "N/provenance-resolves:skin-liquid-chrome.css",
+      "pass": true,
+      "actual": "7 条对得上"
+    },
+    {
+      "group": "N",
+      "id": "N/provenance-resolves:crt-plasma.glsl",
+      "pass": true,
+      "actual": "3 条对得上"
+    },
+    {
+      "group": "N",
+      "id": "N/provenance-resolves:skin-crt-plasma.css",
+      "pass": true,
+      "actual": "7 条对得上"
+    },
+    {
+      "group": "N",
+      "id": "N/provenance-resolves:silk-aurora.glsl",
+      "pass": true,
+      "actual": "2 条对得上"
+    },
+    {
+      "group": "N",
+      "id": "N/provenance-resolves:skin-silk-aurora.css",
+      "pass": true,
+      "actual": "7 条对得上"
+    },
+    {
+      "group": "N",
+      "id": "N/provenance-resolves:check-browser.json",
+      "pass": true,
+      "actual": "81 条对得上"
+    },
+    {
+      "group": "N",
+      "id": "N/provenance-resolves:check-node.json",
+      "pass": true,
+      "actual": "8 条对得上"
+    },
+    {
+      "group": "N",
+      "id": "N/provenance-resolves:mutation.json",
+      "pass": true,
+      "actual": "53 条对得上"
+    },
+    {
+      "group": "N",
+      "id": "N/measurement-regions",
+      "pass": true,
+      "actual": "105 个测量区"
+    },
+    {
+      "group": "N",
+      "id": "N/page-numbers-traceable",
+      "pass": true,
+      "actual": "171 个溯源值覆盖了全部测量区数字"
+    },
+    {
+      "group": "N",
+      "id": "N/regions-match-generation",
+      "pass": true,
+      "actual": "105/105 区"
+    },
+    {
+      "group": "N",
+      "id": "N/styles-links-resolve",
+      "pass": true,
+      "actual": "preview/exhibit-liquid-chrome.html preview/exhibit-crt-plasma.html preview/exhibit-silk-aurora.html"
+    },
+    {
+      "group": "N",
+      "id": "N/styles-no-placeholder",
+      "pass": true,
+      "actual": "0 处未展开/未定义"
+    },
+    {
+      "group": "R",
+      "id": "R/report-numbers-current",
+      "pass": true,
+      "actual": "报告里缺这些与产物同源的原文："
+    }
+  ],
+  "counts": null
+}

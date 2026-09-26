@@ -1,0 +1,814 @@
+{
+  "skill_dir": "/Users/apple/.qoder-cn/skills/shader",
+  "cli": {
+    "bytes": 14342,
+    "lines": 397
+  },
+  "manifest": {
+    "templates": [
+      {
+        "path": "assets/webgl-fullscreen-demo/index.html",
+        "exists": true
+      },
+      {
+        "path": "assets/threejs-material-demo/index.html",
+        "exists": true
+      },
+      {
+        "path": "assets/postprocess-demo/index.html",
+        "exists": true
+      },
+      {
+        "path": "assets/r3f-demo/App.jsx",
+        "exists": true
+      },
+      {
+        "path": "assets/r3f-demo/main.jsx",
+        "exists": true
+      },
+      {
+        "path": "assets/r3f-demo/index.html",
+        "exists": true
+      },
+      {
+        "path": "assets/r3f-demo/package.json",
+        "exists": true
+      },
+      {
+        "path": "assets/r3f-demo/vite.config.js",
+        "exists": true
+      }
+    ],
+    "snippets": [
+      {
+        "path": "assets/snippets/fresnel.md",
+        "exists": true
+      },
+      {
+        "path": "assets/snippets/dissolve.md",
+        "exists": true
+      },
+      {
+        "path": "assets/snippets/ripple.md",
+        "exists": true
+      },
+      {
+        "path": "assets/snippets/scanline.md",
+        "exists": true
+      },
+      {
+        "path": "assets/snippets/pixelate.md",
+        "exists": true
+      },
+      {
+        "path": "assets/snippets/vertex-wobble.md",
+        "exists": true
+      }
+    ],
+    "references": [
+      {
+        "path": "references/glsl-quick-reference.md",
+        "exists": true
+      },
+      {
+        "path": "references/black-screen-checklist.md",
+        "exists": true
+      },
+      {
+        "path": "references/effect-starters-zh.md",
+        "exists": true
+      },
+      {
+        "path": "references/snippets.md",
+        "exists": true
+      },
+      {
+        "path": "references/runtime-translation.md",
+        "exists": true
+      }
+    ]
+  },
+  "on_disk": {
+    "assets": [
+      "postprocess-demo/index.html",
+      "r3f-demo/App.jsx",
+      "r3f-demo/index.html",
+      "r3f-demo/main.jsx",
+      "r3f-demo/package.json",
+      "r3f-demo/vite.config.js",
+      "snippets/dissolve.md",
+      "snippets/fresnel.md",
+      "snippets/pixelate.md",
+      "snippets/ripple.md",
+      "snippets/scanline.md",
+      "snippets/vertex-wobble.md",
+      "threejs-material-demo/index.html",
+      "webgl-fullscreen-demo/index.html"
+    ],
+    "references": [
+      "black-screen-checklist.md",
+      "effect-starters-zh.md",
+      "glsl-quick-reference.md",
+      "runtime-translation.md",
+      "snippets.md"
+    ],
+    "scripts": [
+      "shader.js"
+    ]
+  },
+  "unlisted": {
+    "assets": [],
+    "references": [],
+    "scripts": [
+      "shader.js"
+    ]
+  },
+  "doc_runs": [
+    {
+      "line": "intake \"fullscreen ocean background in three.js\"",
+      "args": [
+        "intake",
+        "fullscreen ocean background in three.js"
+      ],
+      "code": 0,
+      "first": "Shader intake for: fullscreen ocean background in three.js"
+    },
+    {
+      "line": "intake \"port this shadertoy to r3f\" --json",
+      "args": [
+        "intake",
+        "port this shadertoy to r3f",
+        "--json"
+      ],
+      "code": 0,
+      "first": "{"
+    },
+    {
+      "line": "debug black-screen",
+      "args": [
+        "debug",
+        "black-screen"
+      ],
+      "code": 0,
+      "first": "Debug checklist: black-screen"
+    },
+    {
+      "line": "debug uniform",
+      "args": [
+        "debug",
+        "uniform"
+      ],
+      "code": 0,
+      "first": "Debug checklist: uniform"
+    },
+    {
+      "line": "debug varyings",
+      "args": [
+        "debug",
+        "varyings"
+      ],
+      "code": 0,
+      "first": "Debug checklist: varyings"
+    },
+    {
+      "line": "effects",
+      "args": [
+        "effects"
+      ],
+      "code": 0,
+      "first": "gradient: Start from UV remapping and color mixing."
+    },
+    {
+      "line": "boilerplate fresnel",
+      "args": [
+        "boilerplate",
+        "fresnel"
+      ],
+      "code": 0,
+      "first": "Boilerplate: fresnel"
+    },
+    {
+      "line": "boilerplate dissolve --json",
+      "args": [
+        "boilerplate",
+        "dissolve",
+        "--json"
+      ],
+      "code": 0,
+      "first": "{"
+    },
+    {
+      "line": "snippet fresnel",
+      "args": [
+        "snippet",
+        "fresnel"
+      ],
+      "code": 0,
+      "first": "Snippet: fresnel"
+    },
+    {
+      "line": "snippet ripple --json",
+      "args": [
+        "snippet",
+        "ripple",
+        "--json"
+      ],
+      "code": 0,
+      "first": "{"
+    },
+    {
+      "line": "demo webgl ripple",
+      "args": [
+        "demo",
+        "webgl",
+        "ripple"
+      ],
+      "code": 0,
+      "first": "Demo plan: webgl + ripple"
+    },
+    {
+      "line": "demo r3f fresnel --json",
+      "args": [
+        "demo",
+        "r3f",
+        "fresnel",
+        "--json"
+      ],
+      "code": 0,
+      "first": "{"
+    },
+    {
+      "line": "scaffold r3f dissolve",
+      "args": [
+        "scaffold",
+        "r3f",
+        "dissolve"
+      ],
+      "code": 0,
+      "first": "Scaffold: r3f + dissolve"
+    },
+    {
+      "line": "scaffold postprocess scanline --json",
+      "args": [
+        "scaffold",
+        "postprocess",
+        "scanline",
+        "--json"
+      ],
+      "code": 0,
+      "first": "{"
+    }
+  ],
+  "matrix": [
+    {
+      "target": "webgl",
+      "effect": "gradient",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start."
+    },
+    {
+      "target": "webgl",
+      "effect": "noise",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start."
+    },
+    {
+      "target": "webgl",
+      "effect": "fbm",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start."
+    },
+    {
+      "target": "webgl",
+      "effect": "fresnel",
+      "file": "assets/threejs-material-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a mesh/material effect, so the material demo is the closest bundled fit."
+    },
+    {
+      "target": "webgl",
+      "effect": "dissolve",
+      "file": "assets/threejs-material-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a mesh/material effect, so the material demo is the closest bundled fit."
+    },
+    {
+      "target": "webgl",
+      "effect": "ripple",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start."
+    },
+    {
+      "target": "webgl",
+      "effect": "scanline",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start."
+    },
+    {
+      "target": "webgl",
+      "effect": "pixelate",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start."
+    },
+    {
+      "target": "three",
+      "effect": "gradient",
+      "file": "assets/threejs-material-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for Three.js ShaderMaterial and mesh-bound effects."
+    },
+    {
+      "target": "three",
+      "effect": "noise",
+      "file": "assets/threejs-material-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for Three.js ShaderMaterial and mesh-bound effects."
+    },
+    {
+      "target": "three",
+      "effect": "fbm",
+      "file": "assets/threejs-material-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for Three.js ShaderMaterial and mesh-bound effects."
+    },
+    {
+      "target": "three",
+      "effect": "fresnel",
+      "file": "assets/threejs-material-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for Three.js ShaderMaterial and mesh-bound effects."
+    },
+    {
+      "target": "three",
+      "effect": "dissolve",
+      "file": "assets/threejs-material-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for Three.js ShaderMaterial and mesh-bound effects."
+    },
+    {
+      "target": "three",
+      "effect": "ripple",
+      "file": "assets/threejs-material-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for Three.js ShaderMaterial and mesh-bound effects."
+    },
+    {
+      "target": "three",
+      "effect": "scanline",
+      "file": "assets/threejs-material-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for Three.js ShaderMaterial and mesh-bound effects."
+    },
+    {
+      "target": "three",
+      "effect": "pixelate",
+      "file": "assets/threejs-material-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for Three.js ShaderMaterial and mesh-bound effects."
+    },
+    {
+      "target": "r3f",
+      "effect": "gradient",
+      "file": "assets/r3f-demo/App.jsx",
+      "exists": true,
+      "why": "Why: Best fit for React Three Fiber projects that already use JSX and useFrame."
+    },
+    {
+      "target": "r3f",
+      "effect": "noise",
+      "file": "assets/r3f-demo/App.jsx",
+      "exists": true,
+      "why": "Why: Best fit for React Three Fiber projects that already use JSX and useFrame."
+    },
+    {
+      "target": "r3f",
+      "effect": "fbm",
+      "file": "assets/r3f-demo/App.jsx",
+      "exists": true,
+      "why": "Why: Best fit for React Three Fiber projects that already use JSX and useFrame."
+    },
+    {
+      "target": "r3f",
+      "effect": "fresnel",
+      "file": "assets/r3f-demo/App.jsx",
+      "exists": true,
+      "why": "Why: Best fit for React Three Fiber projects that already use JSX and useFrame."
+    },
+    {
+      "target": "r3f",
+      "effect": "dissolve",
+      "file": "assets/r3f-demo/App.jsx",
+      "exists": true,
+      "why": "Why: Best fit for React Three Fiber projects that already use JSX and useFrame."
+    },
+    {
+      "target": "r3f",
+      "effect": "ripple",
+      "file": "assets/r3f-demo/App.jsx",
+      "exists": true,
+      "why": "Why: Best fit for React Three Fiber projects that already use JSX and useFrame."
+    },
+    {
+      "target": "r3f",
+      "effect": "scanline",
+      "file": "assets/r3f-demo/App.jsx",
+      "exists": true,
+      "why": "Why: Best fit for React Three Fiber projects that already use JSX and useFrame."
+    },
+    {
+      "target": "r3f",
+      "effect": "pixelate",
+      "file": "assets/r3f-demo/App.jsx",
+      "exists": true,
+      "why": "Why: Best fit for React Three Fiber projects that already use JSX and useFrame."
+    },
+    {
+      "target": "postprocess",
+      "effect": "gradient",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for full-screen screen-space effects and post-style passes."
+    },
+    {
+      "target": "postprocess",
+      "effect": "noise",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for full-screen screen-space effects and post-style passes."
+    },
+    {
+      "target": "postprocess",
+      "effect": "fbm",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for full-screen screen-space effects and post-style passes."
+    },
+    {
+      "target": "postprocess",
+      "effect": "fresnel",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for full-screen screen-space effects and post-style passes."
+    },
+    {
+      "target": "postprocess",
+      "effect": "dissolve",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for full-screen screen-space effects and post-style passes."
+    },
+    {
+      "target": "postprocess",
+      "effect": "ripple",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for full-screen screen-space effects and post-style passes."
+    },
+    {
+      "target": "postprocess",
+      "effect": "scanline",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for full-screen screen-space effects and post-style passes."
+    },
+    {
+      "target": "postprocess",
+      "effect": "pixelate",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for full-screen screen-space effects and post-style passes."
+    },
+    {
+      "target": "screen",
+      "effect": "gradient",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for full-screen screen-space effects and post-style passes."
+    },
+    {
+      "target": "screen",
+      "effect": "noise",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for full-screen screen-space effects and post-style passes."
+    },
+    {
+      "target": "screen",
+      "effect": "fbm",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for full-screen screen-space effects and post-style passes."
+    },
+    {
+      "target": "screen",
+      "effect": "fresnel",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for full-screen screen-space effects and post-style passes."
+    },
+    {
+      "target": "screen",
+      "effect": "dissolve",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for full-screen screen-space effects and post-style passes."
+    },
+    {
+      "target": "screen",
+      "effect": "ripple",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for full-screen screen-space effects and post-style passes."
+    },
+    {
+      "target": "screen",
+      "effect": "scanline",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for full-screen screen-space effects and post-style passes."
+    },
+    {
+      "target": "screen",
+      "effect": "pixelate",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: Best fit for full-screen screen-space effects and post-style passes."
+    },
+    {
+      "target": "shadertoy",
+      "effect": "gradient",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start."
+    },
+    {
+      "target": "shadertoy",
+      "effect": "noise",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start."
+    },
+    {
+      "target": "shadertoy",
+      "effect": "fbm",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start."
+    },
+    {
+      "target": "shadertoy",
+      "effect": "fresnel",
+      "file": "assets/threejs-material-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a mesh/material effect, so the material demo is the closest bundled fit."
+    },
+    {
+      "target": "shadertoy",
+      "effect": "dissolve",
+      "file": "assets/threejs-material-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a mesh/material effect, so the material demo is the closest bundled fit."
+    },
+    {
+      "target": "shadertoy",
+      "effect": "ripple",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start."
+    },
+    {
+      "target": "shadertoy",
+      "effect": "scanline",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start."
+    },
+    {
+      "target": "shadertoy",
+      "effect": "pixelate",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start."
+    },
+    {
+      "target": "unknown-target",
+      "effect": "gradient",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start."
+    },
+    {
+      "target": "unknown-target",
+      "effect": "noise",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start."
+    },
+    {
+      "target": "unknown-target",
+      "effect": "fbm",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start."
+    },
+    {
+      "target": "unknown-target",
+      "effect": "fresnel",
+      "file": "assets/threejs-material-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a mesh/material effect, so the material demo is the closest bundled fit."
+    },
+    {
+      "target": "unknown-target",
+      "effect": "dissolve",
+      "file": "assets/threejs-material-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a mesh/material effect, so the material demo is the closest bundled fit."
+    },
+    {
+      "target": "unknown-target",
+      "effect": "ripple",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start."
+    },
+    {
+      "target": "unknown-target",
+      "effect": "scanline",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start."
+    },
+    {
+      "target": "unknown-target",
+      "effect": "pixelate",
+      "file": "assets/postprocess-demo/index.html",
+      "exists": true,
+      "why": "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start."
+    }
+  ],
+  "scaffold_matrix": [
+    {
+      "effect": "gradient",
+      "demo": "assets/postprocess-demo/index.html",
+      "boilerplate": "ripple",
+      "snippet": "No direct bundled snippet; start from the closest boilerplate."
+    },
+    {
+      "effect": "noise",
+      "demo": "assets/postprocess-demo/index.html",
+      "boilerplate": "ripple",
+      "snippet": "No direct bundled snippet; start from the closest boilerplate."
+    },
+    {
+      "effect": "fbm",
+      "demo": "assets/postprocess-demo/index.html",
+      "boilerplate": "ripple",
+      "snippet": "No direct bundled snippet; start from the closest boilerplate."
+    },
+    {
+      "effect": "fresnel",
+      "demo": "assets/threejs-material-demo/index.html",
+      "boilerplate": "fresnel",
+      "snippet": "assets/snippets/fresnel.md"
+    },
+    {
+      "effect": "dissolve",
+      "demo": "assets/threejs-material-demo/index.html",
+      "boilerplate": "dissolve",
+      "snippet": "assets/snippets/dissolve.md"
+    },
+    {
+      "effect": "ripple",
+      "demo": "assets/postprocess-demo/index.html",
+      "boilerplate": "ripple",
+      "snippet": "assets/snippets/ripple.md"
+    },
+    {
+      "effect": "scanline",
+      "demo": "assets/postprocess-demo/index.html",
+      "boilerplate": "scanline",
+      "snippet": "assets/snippets/scanline.md"
+    },
+    {
+      "effect": "pixelate",
+      "demo": "assets/postprocess-demo/index.html",
+      "boilerplate": "scanline",
+      "snippet": "assets/snippets/pixelate.md"
+    }
+  ],
+  "coverage": {
+    "effects": [
+      "gradient",
+      "noise",
+      "fbm",
+      "fresnel",
+      "dissolve",
+      "ripple",
+      "scanline",
+      "pixelate"
+    ],
+    "boilerplate": {
+      "gradient": 1,
+      "noise": 1,
+      "fbm": 1,
+      "fresnel": 0,
+      "dissolve": 0,
+      "ripple": 0,
+      "scanline": 0,
+      "pixelate": 1
+    },
+    "snippet": {
+      "gradient": 1,
+      "noise": 1,
+      "fbm": 1,
+      "fresnel": 0,
+      "dissolve": 0,
+      "ripple": 0,
+      "scanline": 0,
+      "pixelate": 0
+    },
+    "debug_black-screen": 0,
+    "debug_compile": 0,
+    "debug_uniform": 0,
+    "debug_varyings": 0,
+    "debug_uv": 0,
+    "debug_unknown": 1,
+    "unknown_command": 1,
+    "no_args": 1
+  },
+  "snippets": {
+    "fresnel": {
+      "blocks": [
+        "float fresnelTerm(vec3 viewDir, vec3 normal, float power) {\n  return pow(1.0 - max(dot(normalize(viewDir), normalize(normal)), 0.0), power);\n}\n"
+      ],
+      "signatures": [
+        "float fresnelTerm("
+      ]
+    },
+    "dissolve": {
+      "blocks": [
+        "float dissolveMask(float noiseValue, float progress) {\n  return step(progress, noiseValue);\n}\n\nfloat dissolveEdge(float noiseValue, float progress, float edgeWidth) {\n  return smoothstep(progress, progress + edgeWidth, noiseValue);\n}\n"
+      ],
+      "signatures": [
+        "float dissolveMask(",
+        "float dissolveEdge("
+      ]
+    },
+    "ripple": {
+      "blocks": [
+        "float rippleRing(vec2 uv, float time) {\n  vec2 p = uv * 2.0 - 1.0;\n  float dist = length(p);\n  float wave = sin(dist * 24.0 - time * 4.0);\n  return smoothstep(0.2, 0.21, wave) - smoothstep(0.21, 0.22, wave);\n}\n"
+      ],
+      "signatures": [
+        "float rippleRing("
+      ]
+    },
+    "scanline": {
+      "blocks": [
+        "float scanlineMask(float coord, float time, float density, float strength) {\n  float scan = 0.5 + 0.5 * sin(coord * density + time * 6.0);\n  return mix(1.0 - strength, 1.0, scan);\n}\n"
+      ],
+      "signatures": [
+        "float scanlineMask("
+      ]
+    },
+    "pixelate": {
+      "blocks": [
+        "vec2 pixelateUv(vec2 uv, vec2 pixelSize) {\n  return floor(uv * pixelSize) / pixelSize;\n}\n"
+      ],
+      "signatures": [
+        "vec2 pixelateUv("
+      ]
+    },
+    "vertex-wobble": {
+      "blocks": [
+        "vec3 vertexWobble(vec3 position, float time, float amplitude, float frequency) {\n  vec3 transformed = position;\n  transformed.z += sin(position.x * frequency + time * 2.0) * amplitude;\n  transformed.y += sin(position.y * (frequency * 0.75) + time * 1.5) * (amplitude * 0.6);\n  return transformed;\n}\n"
+      ],
+      "signatures": [
+        "vec3 vertexWobble("
+      ]
+    }
+  },
+  "dead_ternary": {
+    "left": "assets/threejs-material-demo/index.html",
+    "right": "assets/threejs-material-demo/index.html",
+    "same": true
+  },
+  "meta": {
+    "owner": "jvy",
+    "slug": "shader",
+    "displayName": "shader",
+    "latest": {
+      "version": "1.0.0",
+      "publishedAt": 1774095508050,
+      "commit": "https://github.com/openclaw/skills/commit/29d4e050995c71f361ff33110b0feade4845237b"
+    },
+    "history": []
+  },
+  "skill_md_bytes": 5387
+}

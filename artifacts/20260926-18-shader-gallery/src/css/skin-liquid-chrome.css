@@ -1,0 +1,70 @@
+/* 风格一 liquid-chrome —— 冷铬：细发丝线、零圆角、大字距、无衬线
+ * 色板封闭：本文件之外不得出现任何颜色字面量。
+ */
+:root {
+  --bg: #05070d;
+  --panel: #0b1120;
+  --ink: #e8eefc;
+  --muted: #8fa3c8;
+  --accent: #4fd7e8;
+  --line: #1b2740;
+  --grid: #16203a;
+  --btn-bg: #4fd7e8;
+  --btn-ink: #04121a;
+  --btn-bg-pressed: #1b2740;
+  --scrim: color-mix(in srgb, var(--panel) 84%, transparent);
+  --scrim-strong: color-mix(in srgb, var(--panel) 92%, transparent);
+  --item-bg: color-mix(in srgb, var(--bg) 62%, transparent);
+
+  --font-body: system-ui, -apple-system, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-meta: "Helvetica Neue", "Avenir Next", "PingFang SC", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --fs-hero: clamp(2.6rem, 8vw, 5.2rem);
+  --fs-title: clamp(1.1rem, 2.6vw, 1.55rem);
+  --fs-lead: 1.0625rem;
+  --fs-body: 0.9375rem;
+  --fs-item: 1.0625rem;
+  --fs-meta: 0.75rem;
+  --lh: 1.62;
+  --fw-title: 600;
+  --track-label: 0.24em;
+
+  --sp-2: 0.4rem;
+  --sp-3: 0.8rem;
+  --sp-4: 1.4rem;
+  --sp-6: 3rem;
+  --gutter: clamp(1rem, 4vw, 3.5rem);
+  --measure: 62rem;
+  --panel-pad: clamp(1rem, 3vw, 2.25rem);
+  --hero-min-height: 88vh;
+  --strip-height: 12rem;
+
+  --radius-panel: 0px;
+  --radius-item: 0px;
+  --radius-btn: 0px;
+  --rule: 1px solid var(--line);
+  --panel-border: 1px solid var(--line);
+  --item-border: 1px solid var(--line);
+  --btn-border: 1px solid var(--accent);
+  --grid-works: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  --grid-facts: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  --list-style: none;
+  --caption-align: left;
+}
+
+/* 签名构件：右上角发丝十字 + 作品序号左侧色条 */
+.work { border-left: 2px solid var(--accent); }
+.notes li, .credits li { padding-left: 1.1rem; position: relative; }
+.notes li::before, .credits li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+.hero-title .en { color: var(--muted); }
+.strip { border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line); }
+.rooms thead th { border-bottom: 2px solid var(--accent); }
+/* 次级发丝线：--grid 比 --line 更暗一档，只用于行分隔，避免全表都重描边 */
+.rooms tbody td { border-bottom: 1px solid var(--grid); }
+.work .meta { border-top: 1px solid var(--grid); padding-top: var(--sp-2); margin-top: var(--sp-2); }

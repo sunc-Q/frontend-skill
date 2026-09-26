@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>shader × 沉浸式展览页 · 三风格对照</title>
+<style>
+:root{--bg:#0e1013;--panel:#171a20;--ink:#eef1f6;--muted:#9aa4b2;--line:#2a2f38;--accent:#7dd3fc;--grid:#20252d;--mono:'SF Mono',Monaco,Consolas,monospace;--ui:system-ui,-apple-system,'Segoe UI',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--ui);line-height:1.6;padding:clamp(20px,4vw,44px);max-width:1120px;margin:0 auto}
+h1{font-size:clamp(22px,3.2vw,30px);letter-spacing:.01em;border-bottom:2px solid var(--ink);padding-bottom:10px}
+p.lead{color:var(--muted);font-size:14px;margin:12px 0 26px;max-width:840px}
+h2{font-size:15px;margin:30px 0 10px;color:var(--accent);font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.card{border:1px solid var(--line);background:var(--panel);padding:16px 18px}
+.card .tag{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em}
+.card h3{font-size:17px;margin:4px 0 8px}
+.card p{font-size:13px;color:var(--muted)}
+.card ul{list-style:none;margin:12px 0;font-size:12px;font-family:var(--mono)}
+.card li{display:flex;align-items:center;gap:8px;margin:3px 0;color:var(--muted)}
+.card i{width:14px;height:14px;border:1px solid var(--line);display:inline-block;flex:none}
+.card a{display:inline-block;margin-top:6px;font-family:var(--mono);font-size:12px;border:1px solid var(--accent);color:var(--accent);padding:6px 12px;text-decoration:none}
+table{width:100%;border-collapse:collapse;margin-top:8px;font-size:12.5px}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+thead th{background:var(--panel);font-family:var(--mono);font-size:11px}
+tbody th{background:var(--panel);font-weight:500;white-space:nowrap}
+td.m{font-family:var(--mono)}
+.pass{color:#6ee7a8}.failed{color:#fca5a5}
+footer{margin-top:34px;border-top:1px solid var(--line);padding-top:12px;font-size:11.5px;color:var(--muted);font-family:var(--mono)}
+code{font-family:var(--mono);font-size:.92em;word-break:break-all}
+</style></head><body>
+<h1>shader × 沉浸式展览页 · 三风格对照</h1>
+<p class="lead">同一个 WebGL1 宿主、同一份事实源（虚构展览「潮汐刻度」），三份产物只在 <code>:root</code> 令牌与着色器上不同。下面每一格数字都由 <code>scripts/make-styles.mjs</code> 从 <code>evidence/check-node.json</code>、<code>evidence/check-browser.json</code>、<code>scripts/build-sizes.json</code>、<code>evidence/mutation.json</code> 与 <code>src/</code> 现取，并在 <code>evidence/styles-numbers.json</code> 留下溯源，由 check-node 的 N 组独立复算——页面上没有第二个数字来源。</p>
+
+<div class="cards">
+<div class="card"><p class="tag">liquid-chrome</p><h3>液态铬面</h3>
+<p>value noise -&gt; 三层域扭曲 fbm -&gt; 余弦调色板的铬面高光</p>
+<ul>
+<li><span>技能 snippet 引用：无（这份自写域扭曲/距离场，未套用技能现成 snippet）</span></li>
+<li><span>GLSL 82 行 / 内联色板 10 项</span></li>
+<li><span>产物 38,341 字节，单文件零外链</span></li>
+</ul>
+<ul>
+<li><i style="background:#05070d"></i><code>--bg</code> #05070d</li>
+<li><i style="background:#0b1120"></i><code>--panel</code> #0b1120</li>
+<li><i style="background:#e8eefc"></i><code>--ink</code> #e8eefc</li>
+<li><i style="background:#8fa3c8"></i><code>--muted</code> #8fa3c8</li>
+<li><i style="background:#4fd7e8"></i><code>--accent</code> #4fd7e8</li>
+<li><i style="background:#1b2740"></i><code>--line</code> #1b2740</li>
+<li><i style="background:#16203a"></i><code>--grid</code> #16203a</li>
+</ul>
+<a href="preview/exhibit-liquid-chrome.html">打开 liquid-chrome</a></div>
+<div class="card"><p class="tag">crt-plasma</p><h3>栅格磷光</h3>
+<p>像素量化（技能 snippet: pixelate）+ plasma + 扫描线（snippet: scanline）+ 光栅掩膜</p>
+<ul>
+<li><span>技能 snippet 引用：pixelate、scanline、ripple</span></li>
+<li><span>GLSL 88 行 / 内联色板 10 项</span></li>
+<li><span>产物 39,017 字节，单文件零外链</span></li>
+</ul>
+<ul>
+<li><i style="background:#06120c"></i><code>--bg</code> #06120c</li>
+<li><i style="background:#0a1b12"></i><code>--panel</code> #0a1b12</li>
+<li><i style="background:#7cffa8"></i><code>--ink</code> #7cffa8</li>
+<li><i style="background:#46b877"></i><code>--muted</code> #46b877</li>
+<li><i style="background:#ffb347"></i><code>--accent</code> #ffb347</li>
+<li><i style="background:#123324"></i><code>--line</code> #123324</li>
+<li><i style="background:#0e2818"></i><code>--grid</code> #0e2818</li>
+</ul>
+<a href="preview/exhibit-crt-plasma.html">打开 crt-plasma</a></div>
+<div class="card"><p class="tag">silk-aurora</p><h3>丝绸极光</h3>
+<p>fbm 丝带（到扭曲曲线的距离场）+ 余弦调色板 + 加法干涉，亮底低对比</p>
+<ul>
+<li><span>技能 snippet 引用：无（这份自写域扭曲/距离场，未套用技能现成 snippet）</span></li>
+<li><span>GLSL 80 行 / 内联色板 10 项</span></li>
+<li><span>产物 38,180 字节，单文件零外链</span></li>
+</ul>
+<ul>
+<li><i style="background:#efece1"></i><code>--bg</code> #efece1</li>
+<li><i style="background:#f7f4ea"></i><code>--panel</code> #f7f4ea</li>
+<li><i style="background:#2a2118"></i><code>--ink</code> #2a2118</li>
+<li><i style="background:#6d5f4c"></i><code>--muted</code> #6d5f4c</li>
+<li><i style="background:#b0552e"></i><code>--accent</code> #b0552e</li>
+<li><i style="background:#d9d1bd"></i><code>--line</code> #d9d1bd</li>
+<li><i style="background:#e3ddcc"></i><code>--grid</code> #e3ddcc</li>
+</ul>
+<a href="preview/exhibit-silk-aurora.html">打开 silk-aurora</a></div>
+</div>
+
+<h2>真帧像素实测（无头 Chrome + SwiftShader 软件渲染，只比相对差异，不作性能结论）</h2>
+<table><thead><tr><th>维度</th><th>liquid-chrome</th><th>crt-plasma</th><th>silk-aurora</th></tr></thead><tbody>
+<tr><th scope="row">整帧平均亮度 / σ</th><td class="m">67.5 / 28.8</td><td class="m">46.7 / 42.0</td><td class="m">193.7 / 29.3</td></tr>
+<tr><th scope="row">整帧动态范围 p99.5−p0.5</th><td class="m">128.9</td><td class="m">201.9</td><td class="m">170.5</td></tr>
+<tr><th scope="row">三带 uVariant 逐像素改变（每对 / 201 采样点）</th><td class="m">201 / 200 / 201</td><td class="m">182 / 186 / 191</td><td class="m">142 / 156 / 156</td></tr>
+<tr><th scope="row">指针响应（uTime 冻结下改变像素）</th><td class="m">171 / 201</td><td class="m">159 / 201</td><td class="m">161 / 201</td></tr>
+<tr><th scope="row">滚动响应（同上）</th><td class="m">201 / 201</td><td class="m">86 / 201</td><td class="m">163 / 201</td></tr>
+<tr><th scope="row">软件帧率 / 每帧耗时</th><td class="m">5.6 fps / 229.8 ms</td><td class="m">18.9 fps / 52.9 ms</td><td class="m">7.8 fps / 124.8 ms</td></tr>
+<tr><th scope="row">最坏正文对比度（压活着色器 + 衬底合成）</th><td class="m">7.31:1</td><td class="m">6.59:1</td><td class="m">5.09:1</td></tr>
+<tr><th scope="row">逐段对比度（hero-title / hero-sub / work-rule / facts-dt / rooms-td / section-lead）</th><td class="m">10.84 · 15.78 · 7.37 · 7.31 · 14.39 · 10.91</td><td class="m">10.47 · 13.43 · 6.59 · 6.61 · 12.74 · 10.61</td><td class="m">10.44 · 9.96 · 5.09 · 5.27 · 9.97 · 9.99</td></tr>
+<tr><th scope="row">横向溢出断言 1280 / 390</th><td class="m">✓ / ✓</td><td class="m">✓ / ✓</td><td class="m">✓ / ✓</td></tr>
+<tr><th scope="row">死选择器（有规则、无元素）</th><td class="m">无</td><td class="m">无</td><td class="m">无</td></tr>
+<tr><th scope="row">Node 侧静态断言（该风格通过/总数）</th><td class="m">71/71</td><td class="m">71/71</td><td class="m">71/71</td></tr>
+</tbody></table>
+
+<h2>对照臂：每个「生效」断言都配一条让它失效的臂</h2>
+<table><thead><tr><th>对照臂</th><th>结论</th><th>实测</th></tr></thead><tbody>
+<tr><td>uTime 冻结臂（?probe=frozen）</td><td class="pass">符合预期</td><td class="m">uTime 恒为 0.00 而帧计数仍 6→12（说明 J 组靠的是 uTime 推进，不是 rAF 在跑）</td></tr>
+<tr><td>变体轴归零臂（?probe=samevariant）</td><td class="pass">符合预期</td><td class="m">uVariant 恒 0 且三带几何已对齐后：平均亮度极差 0.000、逐像素最大改变 0/201 点（J 组门是 25%）。这条是 J 组新判据的对照臂——它证明逐像素差异来自 uVariant，而不是带位置/边界。</td></tr>
+<tr><td>指针隔离臂（?probe=nomouse）</td><td class="pass">符合预期</td><td class="m">指针移动后 uMouse 仍 0.500,0.500，同时间戳画面 Δ=0.0000</td></tr>
+<tr><td>滚动隔离臂（?probe=noscroll）</td><td class="pass">符合预期</td><td class="m">页面真的滚了 2153px 而 uScroll 恒为 0</td></tr>
+<tr><td>纯色基线臂（?probe=solid）</td><td class="pass">符合预期</td><td class="m">常量品红：σ=0.00、平均 rgb=255,0,255、极差 0.0（黑屏检查表第 1 步：通路活着，J 组的暗帧不是全黑）</td></tr>
+<tr><td>无 WebGL 降级臂（?probe=nogl）</td><td class="pass">符合预期</td><td class="m">{"shown":true,"text":49,"fxHidden":true}</td></tr>
+<tr><td>减动效臂</td><td class="pass">符合预期</td><td class="m">{"f":1,"paused":true,"hint":true,"btnHidden":true,"framesAfterWait":1}</td></tr>
+<tr><td>暂停按钮真停住时钟</td><td class="pass">符合预期</td><td class="m">按钮「暂停画面/false」→「恢复画面/true」；rAF 仍在画（帧号继续涨）但 uTime 锁在 0.85</td></tr>
+<tr><td>DPR 钳到 2</td><td class="pass">符合预期</td><td class="m">devicePixelRatio=3 → 宿主取 2，画布 2560×1600 vs CSS 1280×800</td></tr>
+<tr><td>衬底消融（有/无衬底对比度）</td><td class="pass">符合预期</td><td class="m">同一段正文：有衬底 13.85:1（1 层）vs 去掉衬底 4.08:1（0 层）→ L 组的对比度确实是衬底给的</td></tr>
+</tbody></table>
+
+<h2>技能自带 CLI 与 snippet 真编译</h2>
+<table><thead><tr><th>维度</th><th>实测</th></tr></thead><tbody>
+<tr><th>snippet 段数（技能 assets/snippets/）</th><td class="m">dissolve,fresnel,pixelate,ripple,scanline,vertex-wobble (期望 dissolve,fresnel,pixelate,ripple,scanline,vertex-wobble)</td></tr>
+<tr><th>fresnel</th><td class="m">编译 ✓ · 改像素 ✓｜与「把该函数换成常量」的对照臂有 9216/9216 像素不同，glError=0，有输出=true</td></tr>
+<tr><th>dissolve</th><td class="m">编译 ✓ · 改像素 ✓｜与「把该函数换成常量」的对照臂有 7968/9216 像素不同，glError=0，有输出=true</td></tr>
+<tr><th>ripple</th><td class="m">编译 ✓ · 改像素 ✓｜与「把该函数换成常量」的对照臂有 64/9216 像素不同，glError=0，有输出=true</td></tr>
+<tr><th>scanline</th><td class="m">编译 ✓ · 改像素 ✓｜与「把该函数换成常量」的对照臂有 8352/9216 像素不同，glError=0，有输出=true</td></tr>
+<tr><th>pixelate</th><td class="m">编译 ✓ · 改像素 ✓｜与「把该函数换成常量」的对照臂有 9152/9216 像素不同，glError=0，有输出=true</td></tr>
+<tr><th>vertex-wobble</th><td class="m">编译 ✓ · 改像素 ✓｜与「把该函数换成常量」的对照臂有 9210/9216 像素不同，glError=0，有输出=true</td></tr>
+<tr><th>技能 CLI 命令全跑通</th><td class="m">✓｜</td></tr>
+</tbody></table>
+
+<h2>变异测试</h2>
+<p class="lead">往产物（或色板源文件）里注入缺陷，看两套校验抓不抓得到、报错有没有点名；每例改完立刻还原并复跑双套。用例定义在 <code>scripts/mutate.mjs</code>，下表每行都是 <code>evidence/mutation.json</code> 里的实录，不是手写摘要。</p>
+<table><thead><tr><th>用例</th><th>类型</th><th>注入</th><th>抓到它的断言</th><th>判定</th></tr></thead><tbody>
+<tr><td class="m">M1</td><td>值变异→node</td>
+<td>把表格说明里的「面积合计 390 ㎡」手改成 360（页面数字不再由事实现算）<br><code>面积合计 390 ㎡</code> → <code>面积合计 360 ㎡</code></td>
+<td class="m">B/dom-identical-across-styles, E/text-present:liquid-chrome, N/provenance-resolves:check-browser.json</td><td class="pass">被抓且点名</td></tr>
+<tr><td class="m">M2 /改源后重建</td><td>值变异→node</td>
+<td>在色板源文件里把 liquid-chrome 的 --accent 改成 crt-plasma 的橙（三套色板要求两两不相交）<br><code>--accent: #4fd7e8;</code> → <code>--accent: #ffb347;</code></td>
+<td class="m">D/palette-disjoint:liquid-chrome~crt-plasma, N/provenance-resolves:skin-liquid-chrome.css, N/provenance-resolves:check-browser.json, N/provenance-resolves:check-node.json</td><td class="pass">被抓且点名</td></tr>
+<tr><td class="m">M2b</td><td>结构变异→node</td>
+<td>只改产物不改源：页面里的 --accent 与 src/css 漂移（M2 第一轮就是从这里钻过去的）<br><code>--accent: #4fd7e8;</code> → <code>--accent: #9aa0a6;</code></td>
+<td class="m">B/css-source-inlined:liquid-chrome, N/provenance-resolves:check-browser.json, N/provenance-resolves:check-node.json</td><td class="pass">被抓且点名</td></tr>
+<tr><td class="m">M6</td><td>值变异→node</td>
+<td>内联 GLSL 顶部加 #version 300 es（宿主是 WebGL1，GLSL ES 1.0 不允许）<br><code>\nprecision highp float;</code> → <code>\n#version 300 es\nprecision highp float;</code></td>
+<td class="m">C/glsl-inlined:silk-aurora, N/provenance-resolves:check-browser.json, N/provenance-resolves:check-node.json</td><td class="pass">被抓且点名</td></tr>
+<tr><td class="m">M3</td><td>结构变异→browser</td>
+<td>视口原点恒传 0（三带退化成同一张画布的三个裁片）<br><code>gl.uniform2f(locations.uOrigin, x, 0);</code> → <code>gl.uniform2f(locations.uOrigin, 0, 0);</code></td>
+<td class="m">B/host-identical-across-styles, B/host-source-inlined:liquid-chrome, N/provenance-resolves:check-browser.json, N/provenance-resolves:check-node.json, K/samevariant-flattens-strip</td><td class="pass">被抓且点名</td></tr>
+<tr><td class="m">M4</td><td>结构变异→browser</td>
+<td>变体轴拉平：三个视口都传 uVariant=0（展览页宣称的「一个程序三种密度」变假话）<br><code>var v = probe === "samevariant" ? 0 : index;</code> → <code>var v = 0;</code></td>
+<td class="m">B/host-identical-across-styles, B/host-source-inlined:crt-plasma, N/provenance-resolves:check-browser.json, N/provenance-resolves:check-node.json, J/strip-variants-distinct:crt-plasma</td><td class="pass">被抓且点名</td></tr>
+<tr><td class="m">M5</td><td>结构变异→browser</td>
+<td>删掉 gl.uniform1f(locations.uScroll, …)：滚动进度算好了却没进着色器<br><code>      gl.uniform1f(locations.uScroll, values.u</code> → <code>（整段删掉）</code></td>
+<td class="m">B/host-identical-across-styles, B/host-source-inlined:silk-aurora, N/provenance-resolves:check-browser.json, N/provenance-resolves:check-node.json, J/scroll-uniform:silk-aurora</td><td class="pass">被抓且点名</td></tr>
+<tr><td class="m">M3b /三份同改</td><td>结构变异→node</td>
+<td>三份产物的共享宿主一起改（在 uOrigin 传参后加一句注释）——跨页互比仍然全绿，只有「产物 vs 源文件」能抓<br><code>gl.uniform2f(locations.uOrigin, x, 0);</code> → <code>gl.uniform2f(locations.uOrigin, x, 0); /* 手工微调</code></td>
+<td class="m">B/host-source-inlined:liquid-chrome, B/host-source-inlined:crt-plasma, B/host-source-inlined:silk-aurora, N/provenance-resolves:check-browser.json, N/provenance-resolves:check-node.json</td><td class="pass">被抓且点名</td></tr>
+<tr><td class="m">M7</td><td>结构变异→browser</td>
+<td>删掉 .hero-inner 的衬底声明（正文直接压在活着色器上）<br><code>  max-width: var(--measure);
+  background: var</code> → <code>  max-width: var(--measure);</code></td>
+<td class="m">B/base-css-identical, B/css-source-inlined:liquid-chrome, N/provenance-resolves:check-browser.json, N/provenance-resolves:check-node.json, L/contrast-live:liquid-chrome:hero-title, K/scrim-works</td><td class="pass">被抓且点名</td></tr>
+<tr><td class="m">M8</td><td>结构变异→node</td>
+<td>只给一个风格加一段 DOM（三风格必须同构，差异只允许在 CSS 与着色器）<br><code>&lt;caption&gt;三个展陈空间，面积合计 390 ㎡</code> → <code>&lt;p&gt;多出来的一段说明&lt;/p&gt;
+      &lt;caption&gt;三个展陈空间，面积合计 390</code></td>
+<td class="m">B/dom-identical-across-styles, N/provenance-resolves:check-browser.json, N/provenance-resolves:check-node.json</td><td class="pass">被抓且点名</td></tr>
+<tr><td class="m">M9</td><td>值变异→node</td>
+<td>往对照页里手打一个更好的数字：把「内联色板 10 项」改成 12 项（页面数字脱离了 evidence）<br><code>内联色板 10 项</code> → <code>内联色板 12 项</code></td>
+<td class="m">N/provenance-resolves:check-browser.json, N/regions-match-generation</td><td class="pass">被抓且点名</td></tr>
+<tr><td class="m">M10</td><td>语义变异→node</td>
+<td>给 silk-aurora 的「技法」注释里加上并没有实现的 fresnel 边缘光（文案与代码各说各话）<br><code>// 技法：fbm 丝带（到扭曲曲线的距离场）+ 余弦调色板 + 加法干涉，亮底低对比</code> → <code>// 技法：fbm 丝带（到扭曲曲线的距离场）+ 余弦调色板 + fresnel 边缘光，亮</code></td>
+<td class="m">C/glsl-inlined:silk-aurora, N/provenance-resolves:silk-aurora.glsl, N/provenance-resolves:check-browser.json</td><td class="pass">被抓且点名</td></tr>
+</tbody></table>
+<p class="lead">本批 12 例（值变异 4 例、结构变异 7 例、语义变异 1 例）；还原后复跑 check-node 全绿、check-browser 全绿（记录时间 2026-09-26T13:29:55.196Z）。</p>
+
+/* 页脚故意不写 check-node 的「通过数」：那个数被这一页自己引用，通过/失败会让它自己跳变（奇偶振荡），
+ * 只写与引用无关的断言总数。 */
+<footer>数据来源：2026-09-26T13:29:55.185Z 的 check-browser 运行（Chromium MacOS/Chromium，playwright-core 取自 /Users/apple/Documents/workProject/试验/前端skill实验室/.tmp/shaderbuild/node_modules）；check-node 共 282 条静态断言、check-browser 91/91。本页由 scripts/make-styles.mjs 生成，改 evidence 或 src 后重跑即可复现；每个数字的出处见 evidence/styles-numbers.json，由 check-node 的 N 组独立复算；本页每个测量区还和 <code>evidence/styles-regions.json</code>（本脚本同批写下的区间快照）逐区比对，手改一格文字也会红。</footer>
+</body></html>

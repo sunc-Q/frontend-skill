@@ -1,0 +1,52 @@
+{
+  "built": [
+    {
+      "style": "liquid-chrome",
+      "shader": "liquid-chrome.glsl",
+      "file": "exhibit-liquid-chrome.html",
+      "bytes": 38341,
+      "palette_count": 10
+    },
+    {
+      "style": "crt-plasma",
+      "shader": "crt-plasma.glsl",
+      "file": "exhibit-crt-plasma.html",
+      "bytes": 39017,
+      "palette_count": 10
+    },
+    {
+      "style": "silk-aurora",
+      "shader": "silk-aurora.glsl",
+      "file": "exhibit-silk-aurora.html",
+      "bytes": 38180,
+      "palette_count": 10
+    }
+  ],
+  "derived": {
+    "run_days": 45,
+    "work_count": 5,
+    "total_duration": 141,
+    "room_area_total": 390,
+    "room_cap_total": 95,
+    "guided_total": 39,
+    "visitors": "42,000",
+    "room_density": "4.11"
+  },
+  "styles": [
+    {
+      "name": "liquid-chrome",
+      "shader": "liquid-chrome",
+      "skin": "skin-liquid-chrome"
+    },
+    {
+      "name": "crt-plasma",
+      "shader": "crt-plasma",
+      "skin": "skin-crt-plasma"
+    },
+    {
+      "name": "silk-aurora",
+      "shader": "silk-aurora",
+      "skin": "skin-silk-aurora"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "owner": "jvy",
+  "slug": "shader",
+  "displayName": "shader",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1774095508050,
+    "commit": "https://github.com/openclaw/skills/commit/29d4e050995c71f361ff33110b0feade4845237b"
+  },
+  "history": []
+}

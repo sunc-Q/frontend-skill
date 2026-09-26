@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>回声的形状 ECHO SHAPE · 屿光美术馆 第三展厅</title>
+<meta name="description" content="回声的形状 · 屿光美术馆 第三展厅 · 示例站点" />
+<style>/* 共享基座：三页此段逐字节相同，且不含任何颜色字面量（色板只存在于各风格 :root）
+ * 结构约定：所有文字都放在 .panel 里，.panel 的底色由 var(--scrim) 提供半透明衬底，
+ * 于是「着色器在动、正文对比度不漂」成为可量的一句话。
+ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { background: var(--bg); }
+
+body {
+  margin: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh);
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+.fx {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.gl-fallback {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  font-size: var(--fs-meta);
+  background: var(--scrim);
+  border-bottom: 1px solid var(--line);
+}
+
+
+.hero {
+  min-height: var(--hero-min-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--gutter);
+}
+
+.hero-inner {
+  max-width: var(--measure);
+  background: var(--scrim);
+  padding: var(--panel-pad);
+  border-radius: var(--radius-panel);
+}
+
+/* 消融开关：?probe=noscrim 时拿掉所有衬底，用来证明对比度断言真的在量着色器之上的文字 */
+body.probe-noscrim .hero-inner,
+body.probe-noscrim .section,
+body.probe-noscrim .footer,
+body.probe-noscrim .nav { background: none; }
+
+.kicker {
+  margin: 0 0 var(--sp-3);
+  font-family: var(--font-meta);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero-title { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--sp-3); }
+.hero-title .zh { font-size: var(--fs-hero); line-height: 1.04; font-weight: var(--fw-title); }
+.hero-title .en { font-size: var(--fs-title); font-family: var(--font-meta); letter-spacing: var(--track-label); }
+.hero-sub { margin: var(--sp-3) 0 0; font-size: var(--fs-lead); max-width: 34ch; }
+.hero-dates { margin: var(--sp-2) 0 0; font-family: var(--font-meta); font-size: var(--fs-meta); }
+.run-days { color: var(--muted); }
+
+.hero-actions { margin: var(--sp-4) 0 0; display: flex; flex-wrap: wrap; gap: var(--sp-3); align-items: center; }
+
+.btn {
+  font: inherit;
+  font-family: var(--font-meta);
+  font-size: var(--fs-meta);
+  padding: 0.55rem 1.1rem;
+  border: var(--btn-border);
+  border-radius: var(--radius-btn);
+  background: var(--btn-bg);
+  color: var(--btn-ink);
+  cursor: pointer;
+  letter-spacing: var(--track-label);
+}
+
+.btn[aria-pressed="true"] { background: var(--btn-bg-pressed); }
+
+.ghost-link, .top-link {
+  font-family: var(--font-meta);
+  font-size: var(--fs-meta);
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.scrim-note, .reduced-hint { margin: var(--sp-3) 0 0; font-size: var(--fs-meta); color: var(--muted); }
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  padding: var(--sp-2) var(--gutter);
+  background: var(--scrim-strong);
+  border-block: var(--rule);
+  font-family: var(--font-meta);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.nav a { color: var(--ink); text-decoration: none; }
+.nav a:hover, .nav a:focus-visible { color: var(--accent); text-decoration: underline; }
+
+main { padding: 0 var(--gutter) var(--sp-6); }
+
+.section {
+  max-width: var(--measure);
+  margin-inline: auto;
+  margin-block: var(--sp-6) 0;
+  padding: var(--sp-4) var(--panel-pad);
+  background: var(--scrim);
+  border: var(--panel-border);
+  border-radius: var(--radius-panel);
+}
+
+.section h2 { margin: 0 0 var(--sp-3); font-size: var(--fs-title); line-height: 1.15; }
+.section-lead { margin: 0 0 var(--sp-4); font-size: var(--fs-lead); max-width: 62ch; }
+.count-line { margin: var(--sp-3) 0 0; font-family: var(--font-meta); font-size: var(--fs-meta); color: var(--muted); }
+
+.work-grid { display: grid; gap: var(--sp-3); grid-template-columns: var(--grid-works); }
+
+.work {
+  margin: 0;
+  padding: var(--sp-3);
+  border: var(--item-border);
+  border-radius: var(--radius-item);
+  background: var(--item-bg);
+  display: grid;
+  gap: var(--sp-2);
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+}
+
+.work .no { font-family: var(--font-meta); font-size: var(--fs-meta); color: var(--accent); letter-spacing: var(--track-label); }
+.work h3 { margin: 0; font-size: var(--fs-item); font-weight: var(--fw-title); }
+.work .rule { margin: 0; font-size: var(--fs-meta); color: var(--muted); }
+.work .meta { margin: 0; font-family: var(--font-meta); font-size: var(--fs-meta); }
+.work .dur { font-variant-numeric: tabular-nums; }
+
+.strip-wrap { display: grid; gap: var(--sp-2); }
+.strip { width: 100%; height: var(--strip-height); display: block; border: var(--item-border); border-radius: var(--radius-item); }
+.strip-labels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-2); font-family: var(--font-meta); font-size: var(--fs-meta); color: var(--muted); }
+.strip-labels span { text-align: center; }
+
+.facts { margin: 0; display: grid; gap: var(--sp-2); grid-template-columns: var(--grid-facts); }
+.facts > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--sp-2); border-bottom: var(--rule); padding-bottom: var(--sp-2); }
+.facts dt { margin: 0; font-family: var(--font-meta); font-size: var(--fs-meta); letter-spacing: var(--track-label); text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 0; font-variant-numeric: tabular-nums; }
+
+.rooms { width: 100%; border-collapse: collapse; font-size: var(--fs-body); }
+.rooms caption { text-align: var(--caption-align); font-family: var(--font-meta); font-size: var(--fs-meta); color: var(--muted); padding-bottom: var(--sp-2); }
+.rooms th, .rooms td { padding: var(--sp-2) 0; border-bottom: var(--rule); text-align: left; }
+.rooms thead th { font-family: var(--font-meta); font-size: var(--fs-meta); letter-spacing: var(--track-label); text-transform: uppercase; color: var(--muted); }
+.rooms td { font-variant-numeric: tabular-nums; }
+
+.notes, .credits { margin: 0; padding: 0; list-style: var(--list-style); display: grid; gap: var(--sp-2); }
+.notes li, .credits li { font-size: var(--fs-body); }
+.notes .when { font-family: var(--font-meta); font-size: var(--fs-meta); color: var(--muted); }
+.credits .role { font-family: var(--font-meta); font-size: var(--fs-meta); letter-spacing: var(--track-label); text-transform: uppercase; color: var(--muted); }
+
+.footer {
+  max-width: var(--measure);
+  margin: var(--sp-6) auto 0;
+  padding: var(--sp-4) var(--panel-pad) var(--sp-6);
+  background: var(--scrim);
+  border-top: var(--rule);
+  border-radius: var(--radius-panel) var(--radius-panel) 0 0;
+  font-size: var(--fs-meta);
+}
+.footer p { margin: 0 0 var(--sp-2); }
+.footer .demo-note { color: var(--ink); border-left: 2px solid var(--accent); padding-left: var(--sp-3); }
+.footer .tech { font-family: var(--font-meta); }
+.footer .style-line { color: var(--muted); }
+.style-name { font-family: var(--font-meta); color: var(--accent); }
+
+code { font-family: var(--font-code); font-size: 0.92em; }
+
+@media (max-width: 44rem) {
+  :root { --fs-hero: clamp(2.1rem, 11vw, 3rem); }
+  .hero { min-height: 78vh; }
+  .facts { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto; }
+}
+
+/* 风格一 liquid-chrome —— 冷铬：细发丝线、零圆角、大字距、无衬线
+ * 色板封闭：本文件之外不得出现任何颜色字面量。
+ */
+:root {
+  --bg: #05070d;
+  --panel: #0b1120;
+  --ink: #e8eefc;
+  --muted: #8fa3c8;
+  --accent: #4fd7e8;
+  --line: #1b2740;
+  --grid: #16203a;
+  --btn-bg: #4fd7e8;
+  --btn-ink: #04121a;
+  --btn-bg-pressed: #1b2740;
+  --scrim: color-mix(in srgb, var(--panel) 84%, transparent);
+  --scrim-strong: color-mix(in srgb, var(--panel) 92%, transparent);
+  --item-bg: color-mix(in srgb, var(--bg) 62%, transparent);
+
+  --font-body: system-ui, -apple-system, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-meta: "Helvetica Neue", "Avenir Next", "PingFang SC", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --fs-hero: clamp(2.6rem, 8vw, 5.2rem);
+  --fs-title: clamp(1.1rem, 2.6vw, 1.55rem);
+  --fs-lead: 1.0625rem;
+  --fs-body: 0.9375rem;
+  --fs-item: 1.0625rem;
+  --fs-meta: 0.75rem;
+  --lh: 1.62;
+  --fw-title: 600;
+  --track-label: 0.24em;
+
+  --sp-2: 0.4rem;
+  --sp-3: 0.8rem;
+  --sp-4: 1.4rem;
+  --sp-6: 3rem;
+  --gutter: clamp(1rem, 4vw, 3.5rem);
+  --measure: 62rem;
+  --panel-pad: clamp(1rem, 3vw, 2.25rem);
+  --hero-min-height: 88vh;
+  --strip-height: 12rem;
+
+  --radius-panel: 0px;
+  --radius-item: 0px;
+  --radius-btn: 0px;
+  --rule: 1px solid var(--line);
+  --panel-border: 1px solid var(--line);
+  --item-border: 1px solid var(--line);
+  --btn-border: 1px solid var(--accent);
+  --grid-works: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  --grid-facts: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  --list-style: none;
+  --caption-align: left;
+}
+
+/* 签名构件：右上角发丝十字 + 作品序号左侧色条 */
+.work { border-left: 2px solid var(--accent); }
+.notes li, .credits li { padding-left: 1.1rem; position: relative; }
+.notes li::before, .credits li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+.hero-title .en { color: var(--muted); }
+.strip { border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line); }
+.rooms thead th { border-bottom: 2px solid var(--accent); }
+/* 次级发丝线：--grid 比 --line 更暗一档，只用于行分隔，避免全表都重描边 */
+.rooms tbody td { border-bottom: 1px solid var(--grid); }
+.work .meta { border-top: 1px solid var(--grid); padding-top: var(--sp-2); margin-top: var(--sp-2); }
+</style>
+</head>
+<body class="style-liquid-chrome">
+<canvas id="fx" class="fx" aria-hidden="true"></canvas>
+<div id="gl-fallback" class="gl-fallback" role="status" aria-live="polite" hidden>本页面的视觉由 WebGL 实时生成。当前环境未取得 WebGL 上下文，因此只呈现可读的文字层。</div>
+
+<header class="hero" id="top">
+  <div class="hero-inner">
+  <p class="kicker">厦门 · 屿光美术馆 第三展厅</p>
+  <h1 class="hero-title"><span class="zh">回声的形状</span><span class="en">ECHO SHAPE</span></h1>
+  <p class="hero-sub">五件生成图像装置 · 实时着色器现场</p>
+  <p class="hero-dates"><time datetime="2026-10-24">2026-10-24</time> — <time datetime="2026-12-07">2026-12-07</time><span class="run-days">（展期 45 天）</span></p>
+  <div class="hero-actions">
+    <button type="button" id="motion-toggle" class="btn" aria-pressed="false">暂停画面</button>
+    <a class="ghost-link" href="#works">前往作品清单</a>
+  </div>
+  <p class="scrim-note">文字层带有可读性衬底：动效再变，正文对比度不跟随漂移。</p>
+  </div>
+</header>
+
+<nav class="nav" aria-label="页面分区">
+  <a href="#works">作品</a><a href="#variants">变体</a><a href="#visit">展期</a><a href="#rooms">场馆</a><a href="#notes">说明</a>
+</nav>
+
+<main>
+  <section id="works" class="section" aria-labelledby="works-h">
+    <h2 id="works-h">展陈作品</h2>
+    <p class="section-lead">声音没有形状，但它有波形。这五件作品把同一段录音反复重绘，直到回声长出可以测量的轮廓。</p>
+    <div class="work-grid"><article class="work" id="work-I">
+  <p class="no">作品 I</p>
+  <div>
+    <h3>潮汐刻度</h3>
+    <p class="rule">domain-warped fbm · 三层域扭曲</p>
+    <p class="meta">2026 年 · 循环 <span class="dur">24</span> 秒 · 种子 1</p>
+  </div>
+</article>
+<article class="work" id="work-II">
+  <p class="no">作品 II</p>
+  <div>
+    <h3>栅格磷光</h3>
+    <p class="rule">plasma + 像素量化 + 扫描线</p>
+    <p class="meta">2026 年 · 循环 <span class="dur">18</span> 秒 · 种子 2</p>
+  </div>
+</article>
+<article class="work" id="work-III">
+  <p class="no">作品 III</p>
+  <div>
+    <h3>丝绸极光</h3>
+    <p class="rule">fbm ribbon · 余弦调色板</p>
+    <p class="meta">2025 年 · 循环 <span class="dur">32</span> 秒 · 种子 3</p>
+  </div>
+</article>
+<article class="work" id="work-IV">
+  <p class="no">作品 IV</p>
+  <div>
+    <h3>回声室</h3>
+    <p class="rule">极坐标折叠 + 域扭曲</p>
+    <p class="meta">2025 年 · 循环 <span class="dur">27</span> 秒 · 种子 4</p>
+  </div>
+</article>
+<article class="work" id="work-V">
+  <p class="no">作品 V</p>
+  <div>
+    <h3>无源之光</h3>
+    <p class="rule">加法干涉纹 + 色相漂移</p>
+    <p class="meta">2024 年 · 循环 <span class="dur">40</span> 秒 · 种子 5</p>
+  </div>
+</article></div>
+    <p class="count-line">共 5 件作品，累计实时时长 141 秒。</p>
+  </section>
+
+  <section id="variants" class="section" aria-labelledby="variants-h">
+    <h2 id="variants-h">同一程序 · 三个变体</h2>
+    <p class="section-lead">一块画布、一个着色器程序、三次视口绘制，仅 <code>uVariant</code> 不同。作品 III 的现场版本就是用这条回路把一台主机推到三块幕上的。</p>
+    <div class="strip-wrap">
+      <canvas id="strip" class="strip" role="img" aria-label="同一着色器程序在 uVariant 为 0、1、2 时的三幅并排画面"></canvas>
+      <div class="strip-labels"><span>变体 A · uVariant 0</span><span>变体 B · uVariant 1</span><span>变体 C · uVariant 2</span></div>
+    </div>
+    <p class="count-line">色相位移按变体号递增 0.18 周期，域扭曲旋转 45°，其余参数完全相同。</p>
+  </section>
+
+  <section id="visit" class="section" aria-labelledby="visit-h">
+    <h2 id="visit-h">展期与参观</h2>
+    <dl class="facts">
+      <div><dt>开放日</dt><dd>周二至周日</dd></div>
+      <div><dt>开放时间</dt><dd>10:00–18:30（停止入场 17:45）</dd></div>
+      <div><dt>闭馆说明</dt><dd>周一闭馆（含法定节假日）</dd></div>
+      <div><dt>全票</dt><dd>¥60</dd></div>
+      <div><dt>优惠票</dt><dd>¥30</dd></div>
+      <div><dt>预计观众</dt><dd>42,000 人次</dd></div>
+      <div><dt>导览</dt><dd>每周 6 场，展期共 39 场</dd></div>
+    </dl>
+  </section>
+
+  <section id="rooms" class="section" aria-labelledby="rooms-h">
+    <h2 id="rooms-h">场馆与承载</h2>
+    <table class="rooms">
+      <caption>三个展陈空间，面积合计 390 ㎡，瞬时承载合计 95 人，平均 4.11 ㎡/人</caption>
+      <thead><tr><th scope="col">空间</th><th scope="col">面积（㎡）</th><th scope="col">瞬时承载（人）</th><th scope="col">人均（㎡）</th></tr></thead>
+      <tbody><tr><th scope="row">黑盒厅</th><td>180</td><td>40</td><td>4.50</td></tr>
+<tr><th scope="row">白盒厅</th><td>120</td><td>30</td><td>4.00</td></tr>
+<tr><th scope="row">长廊</th><td>90</td><td>25</td><td>3.60</td></tr></tbody>
+    </table>
+  </section>
+
+  <section id="notes" class="section" aria-labelledby="notes-h">
+    <h2 id="notes-h">布展说明</h2>
+    <ol class="notes"><li><span class="when">2026-09-18</span> 全部五件作品在浏览器内实时生成，无预渲染视频。</li>
+<li><span class="when">2026-09-02</span> 第三展厅的投影幕更换为 2.4m 高无缝幕，色带边缘不再出现拼缝。</li>
+<li><span class="when">2026-08-11</span> 作品 IV 的极坐标折叠算法改为单程序多变体驱动，现场只需一台主机。</li></ol>
+  </section>
+
+  <section id="credits" class="section" aria-labelledby="credits-h">
+    <h2 id="credits-h">制作</h2>
+    <ul class="credits"><li><span class="role">策展</span> 柯屿</li>
+<li><span class="role">技术监制</span> 林知白</li>
+<li><span class="role">声音设计</span> 陈叙</li></ul>
+  </section>
+</main>
+
+<footer class="footer">
+  <p class="demo-note">本页面为技能验证用的示例站点，展览、场馆、人名与数据均为虚构。</p>
+  <p class="tech">WebGL1 · GLSL ES 1.0 · 单程序多视口</p>
+  <p class="style-line">当前风格：<span class="style-name">liquid-chrome</span> · 着色器：<code>liquid-chrome.glsl</code> · 上下文：WebGL1 / GLSL ES 1.0</p>
+  <a class="top-link" href="#top">回到顶部</a>
+</footer>
+
+<script type="application/json" id="facts">{"show":{"title_zh":"回声的形状","title_en":"ECHO SHAPE","subtitle":"五件生成图像装置 · 实时着色器现场","venue":"屿光美术馆 第三展厅","city":"厦门","open":"2026-10-24","close":"2026-12-07","statement":"声音没有形状，但它有波形。这五件作品把同一段录音反复重绘，直到回声长出可以测量的轮廓。"},"visit":{"days":"周二至周日","hours":"10:00–18:30","last_entry":"17:45","ticket_adult":60,"ticket_concession":30,"closed_note":"周一闭馆（含法定节假日）"},"works":[{"no":"I","name":"潮汐刻度","year":2026,"seed":1,"rule":"domain-warped fbm · 三层域扭曲","duration_s":24},{"no":"II","name":"栅格磷光","year":2026,"seed":2,"rule":"plasma + 像素量化 + 扫描线","duration_s":18},{"no":"III","name":"丝绸极光","year":2025,"seed":3,"rule":"fbm ribbon · 余弦调色板","duration_s":32},{"no":"IV","name":"回声室","year":2025,"seed":4,"rule":"极坐标折叠 + 域扭曲","duration_s":27},{"no":"V","name":"无源之光","year":2024,"seed":5,"rule":"加法干涉纹 + 色相漂移","duration_s":40}],"rooms":[{"name":"黑盒厅","area_m2":180,"capacity":40},{"name":"白盒厅","area_m2":120,"capacity":30},{"name":"长廊","area_m2":90,"capacity":25}],"credits":[{"role":"策展","name":"柯屿"},{"role":"技术监制","name":"林知白"},{"role":"声音设计","name":"陈叙"}],"notes":[{"date":"2026-09-18","text":"全部五件作品在浏览器内实时生成，无预渲染视频。"},{"date":"2026-09-02","text":"第三展厅的投影幕更换为 2.4m 高无缝幕，色带边缘不再出现拼缝。"},{"date":"2026-08-11","text":"作品 IV 的极坐标折叠算法改为单程序多变体驱动，现场只需一台主机。"}],"stats":{"visitors_expected":42000,"guided_tours_per_week":6,"canvas_px_cap_dpr":2},"footer":{"demo_note":"本页面为技能验证用的示例站点，展览、场馆、人名与数据均为虚构。","tech":"WebGL1 · GLSL ES 1.0 · 单程序多视口"},"derived":{"run_days":45,"work_count":5,"total_duration":141,"room_area_total":390,"room_cap_total":95,"guided_total":39,"visitors":"42,000","room_density":"4.11"}}</script>
+<script>/* 共享宿主：由 scripts/build.mjs 原样内联进三个风格页面（三页此段逐字节相同）
+ * 运行时锁定：WebGL1（getContext("webgl")，不用 webgl2、不用 #version 300 es）
+ * uniform 命名遵循技能护栏：uTime / uResolution / uMouse / uScroll / uVariant
+ * 消融开关（同一份源码，只换 query）：
+ *   ?probe=solid        —— 黑屏检查表第 1 步：把着色器换成常量品红，证明绘制通路是活的
+ *   ?probe=frozen       —— uTime 不再更新（用来证明「动画存活」断言真的有牙）
+ *   ?probe=nomouse      —— uMouse 只在初始化时写一次
+ *   ?probe=noscroll     —— uScroll 恒为 0
+ *   ?probe=samevariant  —— uVariant 恒为 0（用来打「三视口必须互异」）
+ *   ?probe=noscrim      —— 移除文字衬底（用来打对比度断言）
+ *   ?probe=nogl         —— 强制走无 WebGL 分支
+ *   ?probe=nopause      —— 去掉暂停分支
+ */
+(function () {
+  "use strict";
+
+  var STYLE = {
+    name: "liquid-chrome",
+    palette: ["#05070d","#0b1120","#e8eefc","#8fa3c8","#4fd7e8","#1b2740","#16203a","#4fd7e8","#04121a","#1b2740"],
+    fragmentSource: "// 作品 I「潮汐刻度」/ 风格 liquid-chrome\n// 技法：value noise -> 三层域扭曲 fbm -> 余弦调色板的铬面高光\n// 运行时：GLSL ES 1.0 / WebGL1（不使用 #version 300 es、不使用 in/out 内置）\n// 宿主约定：uniform 一律 u 前缀；iTime/iResolution/fragCoord 等 ShaderToy 内置已全部换形\nprecision highp float;\n\nuniform float uTime;\nuniform vec2 uResolution;\nuniform vec2 uMouse;    // 0..1，y 由上向下\nuniform float uScroll;  // 0..1 页面进度\nuniform float uVariant; // 0/1/2 变体条\nuniform vec2 uOrigin;  // 本视口的窗口原点（strip 才有非零值）\n\nfloat hash21(vec2 p) {\n  return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);\n}\n\nfloat vnoise(vec2 p) {\n  vec2 i = floor(p);\n  vec2 f = fract(p);\n  f = f * f * (3.0 - 2.0 * f);\n  float a = hash21(i);\n  float b = hash21(i + vec2(1.0, 0.0));\n  float c = hash21(i + vec2(0.0, 1.0));\n  float d = hash21(i + vec2(1.0, 1.0));\n  return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);\n}\n\nfloat fbm(vec2 p) {\n  float value = 0.0;\n  float amp = 0.5;\n  for (int i = 0; i \u003c 5; i++) {\n    value += amp * vnoise(p);\n    p = p * 2.03 + vec2(1.7, 9.2);\n    amp *= 0.5;\n  }\n  return value;\n}\n\nvec3 chromePalette(float t) {\n  return 0.5 + 0.5 * cos(6.2831853 * (vec3(1.0, 1.0, 1.0) * t + vec3(0.62, 0.74, 0.92)));\n}\n\nmat2 rot2(float a) {\n  float s = sin(a);\n  float c = cos(a);\n  return mat2(c, -s, s, c);\n}\n\nvoid main() {\n  vec2 fc = gl_FragCoord.xy - uOrigin; // 视口内坐标：三带才在像素级可比\n  vec2 uv = fc / max(uResolution.xy, vec2(1.0));\n  vec2 p = uv * 2.0 - 1.0;\n  p.x *= uResolution.x / max(uResolution.y, 1.0);\n\n  float variant = floor(uVariant + 0.5);\n  p = rot2(variant * 0.7854) * p;\n\n  vec2 mouse = uMouse * 2.0 - 1.0;\n  float t = uTime * 0.12 + uScroll * 1.6;\n\n  // 三层域扭曲：q1 -> q2 -> f\n  vec2 q = vec2(fbm(p * 1.4 + vec2(0.0, t)), fbm(p * 1.4 + vec2(5.2, 1.3) - t * 0.6));\n  vec2 r = vec2(fbm(p * 1.7 + 2.2 * q + mouse * 0.35 + t * 0.3),\n                fbm(p * 1.7 + 2.2 * q + vec2(3.7, 8.1) - t * 0.25));\n  float f = fbm(p * 2.0 + 2.6 * r);\n\n  float band = smoothstep(0.28, 0.86, f + 0.18 * length(q));\n  float spec = pow(clamp(1.0 - abs(f - 0.52) * 2.6, 0.0, 1.0), 3.0);\n\n  vec3 deep = vec3(0.020, 0.031, 0.062);\n  vec3 mid = vec3(0.094, 0.176, 0.310);\n  vec3 color = mix(deep, mid, band);\n  color += chromePalette(0.18 * variant + band * 0.9 + t * 0.35) * spec * 0.72;\n  color += vec3(0.74, 0.82, 0.96) * pow(spec, 2.4) * 0.35;\n\n  float vig = 1.0 - 0.34 * dot(uv - 0.5, uv - 0.5) * 2.0;\n  color *= clamp(vig, 0.55, 1.0);\n\n  gl_FragColor = vec4(color, 1.0);\n}\n"
+  };
+
+  /* ==SHARED-HOST-BOUNDARY== 从这一行起三个风格页面逐字节相同 */
+
+  var VERTEX_SOURCE = [
+    "attribute vec2 position;",
+    "void main() {",
+    "  gl_Position = vec4(position, 0.0, 1.0);",
+    "}"
+  ].join("\n");
+
+  /* uOrigin 是每个视口自己的窗口原点（只有 strip 会非零），着色器用它把三带对齐 */
+  var SOLID_SOURCE = [
+    "precision mediump float;",
+    "void main() {",
+    "  gl_FragColor = vec4(1.0, 0.0, 1.0, 1.0);",
+    "}"
+  ].join("\n");
+
+  var QUAD = new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]);
+  var params = new URLSearchParams(window.location.search);
+  var probe = params.get("probe") || "";
+
+  var fxCanvas = document.getElementById("fx");
+  var stripCanvas = document.getElementById("strip");
+  var fallback = document.getElementById("gl-fallback");
+  var toggle = document.getElementById("motion-toggle");
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (probe === "noscrim") document.body.classList.add("probe-noscrim");
+
+  var hostFx = makeHost(fxCanvas, "fx");
+  var hostStrip = makeHost(stripCanvas, "strip");
+
+  var state = {
+    time: 0,
+    last: 0,
+    frames: 0,
+    draws: 0,
+    frameMs: 0,
+    paused: false,
+    hidden: false,
+    mouse: [0.5, 0.5],
+    scroll: 0,
+    raf: 0
+  };
+  var started = Date.now();
+
+  function makeHost(canvas, tag) {
+    var gl = null;
+    var log = "";
+    var glError = 0;
+    if (probe === "nogl") {
+      canvas.style.display = "none";
+      fallback.hidden = false;
+      return {
+        tag: tag, gl: null, ok: false,
+        locations: { uTime: null, uResolution: null, uMouse: null, uScroll: null, uVariant: null, uOrigin: null },
+        draw: function () {}, sample: function () { return null; }, size: function () { return [0, 0]; },
+        stats: function () { return { ok: false, reason: "nogl" }; }
+      };
+    }
+    try {
+      gl = canvas.getContext("webgl", { alpha: false, antialias: false, preserveDrawingBuffer: true });
+    } catch (e) {
+      gl = null;
+    }
+    if (!gl) {
+      canvas.style.display = "none";
+      fallback.hidden = false;
+      return {
+        tag: tag, gl: null, ok: false,
+        locations: { uTime: null, uResolution: null, uMouse: null, uScroll: null, uVariant: null, uOrigin: null },
+        draw: function () {}, sample: function () { return null; }, size: function () { return [0, 0]; },
+        stats: function () { return { ok: false, reason: "no-context" }; }
+      };
+    }
+
+    var fsrc = probe === "solid" ? SOLID_SOURCE : STYLE.fragmentSource;
+    var vs = compile(gl.VERTEX_SHADER, VERTEX_SOURCE);
+    var fs = compile(gl.FRAGMENT_SHADER, fsrc);
+    var compiled = { vertex: !!vs, fragment: !!fs };
+    if (!vs || !fs) {
+      return {
+        tag: tag, gl: gl, ok: false, compile: function () { return compiled; },
+        linked: function () { return false; }, log: function () { return log.trim(); },
+        glError: function () { return 0; },
+        locations: { uTime: null, uResolution: null, uMouse: null, uScroll: null, uVariant: null, uOrigin: null },
+        lastUniforms: function () { return null; },
+        draw: function () {}, sampleBand: function () { return null; },
+        size: function () { return [canvas.width, canvas.height]; },
+        cssSize: function () { return [canvas.clientWidth, canvas.clientHeight]; },
+        dpr: function () { return Math.min(window.devicePixelRatio || 1, 2); },
+        resize: function () { return [canvas.width, canvas.height]; },
+        stats: function () { return { ok: false, reason: "compile-failed" }; }
+      };
+    }
+    var program = gl.createProgram();
+    gl.attachShader(program, vs);
+    gl.attachShader(program, fs);
+    gl.linkProgram(program);
+    var link = !!gl.getProgramParameter(program, gl.LINK_STATUS);
+    log = (gl.getShaderInfoLog(fs) || "") + (gl.getProgramInfoLog(program) || "");
+    gl.useProgram(program);
+
+    var buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, QUAD, gl.STATIC_DRAW);
+    var position = gl.getAttribLocation(program, "position");
+    gl.enableVertexAttribArray(position);
+    gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+
+    var locations = {
+      uTime: gl.getUniformLocation(program, "uTime"),
+      uResolution: gl.getUniformLocation(program, "uResolution"),
+      uMouse: gl.getUniformLocation(program, "uMouse"),
+      uScroll: gl.getUniformLocation(program, "uScroll"),
+      uVariant: gl.getUniformLocation(program, "uVariant"),
+      uOrigin: gl.getUniformLocation(program, "uOrigin")
+    };
+
+    var lastUniforms = { uTime: null, uResolution: [0, 0], uMouse: null, uScroll: null, uVariant: null, uOrigin: null };
+    var bands = tag === "strip" ? 3 : 1;
+
+    function compile(type, source) {
+      var shader = gl.createShader(type);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        log += "\n" + (gl.getShaderInfoLog(shader) || "compile failed");
+        gl.deleteShader(shader);
+        return null;
+      }
+      return shader;
+    }
+
+    function resize() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var w = Math.max(1, Math.floor(canvas.clientWidth * dpr));
+      var h = Math.max(1, Math.floor(canvas.clientHeight * dpr));
+      /* 多视口画布：把宽度凑成 bands 的整数倍，三带才拿到同一份 uResolution，
+       * 否则「同一程序三变体」的亮度差异里混进了几何差异。 */
+      if (bands > 1) w = Math.max(bands, Math.floor(w / bands) * bands);
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+      }
+      return [w, h];
+    }
+
+    function drawBand(index, total, values) {
+      var size = resize();
+      var w = size[0];
+      var h = size[1];
+      var bandW = Math.floor(w / total);
+      var x = index * bandW;
+      var width = index === total - 1 ? w - x : bandW;
+      gl.viewport(x, 0, width, h);
+      gl.useProgram(program);
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+      gl.enableVertexAttribArray(position);
+      gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+      gl.uniform1f(locations.uTime, values.uTime);
+      gl.uniform2f(locations.uResolution, width, h);
+      gl.uniform2f(locations.uMouse, values.uMouse[0], values.uMouse[1]);
+      gl.uniform1f(locations.uScroll, values.uScroll);
+      gl.uniform1f(locations.uVariant, values.uVariant);
+      /* gl_FragCoord 是整块画布的窗口坐标；把视口原点交给着色器减掉，
+       * 三个视口才真的只差一个 uVariant（见作品 IV 的「同一程序三变体」）。 */
+      gl.uniform2f(locations.uOrigin, x, 0);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+      lastUniforms = { uTime: values.uTime, uResolution: [width, h], uMouse: [values.uMouse[0], values.uMouse[1]], uScroll: values.uScroll, uVariant: values.uVariant, uOrigin: [x, 0] };
+      glError = gl.getError();
+    }
+
+    return {
+      tag: tag,
+      gl: gl,
+      ok: compiled.vertex && compiled.fragment && link && glError === 0,
+      compile: function () { return compiled; },
+      linked: function () { return link; },
+      log: function () { return log.trim(); },
+      glError: function () { return glError; },
+      locations: locations,
+      lastUniforms: function () { return lastUniforms; },
+      bands: bands,
+      size: function () { return [canvas.width, canvas.height]; },
+      cssSize: function () { return [canvas.clientWidth, canvas.clientHeight]; },
+      dpr: function () { return Math.min(window.devicePixelRatio || 1, 2); },
+      resize: resize,
+      draw: function (values) {
+        for (var i = 0; i < bands; i++) {
+          drawBand(i, bands, tag === "strip" ? variantValues(values, i) : values);
+        }
+      },
+      sampleBand: function (index, maxPoints) {
+        var size = resize();
+        var w = size[0];
+        var h = size[1];
+        var bandW = Math.floor(w / bands);
+        var x = Math.min(index * bandW, Math.max(0, w - 1));
+        var width = Math.min(bandW, w - x);
+        if (width < 1 || h < 1) return null;
+        var px = new Uint8Array(width * h * 4);
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+        gl.readPixels(x, 0, width, h, gl.RGBA, gl.UNSIGNED_BYTE, px);
+        var err = gl.getError();
+        if (err !== gl.NO_ERROR) return null;
+        return analyze(px, width, h, maxPoints || 4000);
+      },
+      /* CSS 视口坐标 → 画布像素：宿主是 position:fixed; inset:0，两套坐标只差一个 DPR 比例。
+       * readPixels 的原点在左下，CSS 的原点在左上，所以 y 要翻一次。 */
+      sampleRect: function (cssX, cssY, cssW, cssH, maxPoints) {
+        var size = resize();
+        var w = size[0];
+        var h = size[1];
+        var cw = Math.max(1, canvas.clientWidth);
+        var chh = Math.max(1, canvas.clientHeight);
+        var x = Math.max(0, Math.min(w - 1, Math.floor((cssX * w) / cw)));
+        var width = Math.max(1, Math.min(w - x, Math.ceil((cssW * w) / cw)));
+        var yTop = Math.max(0, Math.min(chh - 1, Math.floor((cssY * h) / chh)));
+        var height = Math.max(1, Math.min(h - yTop, Math.ceil((cssH * h) / chh)));
+        var y = h - yTop - height;
+        var px = new Uint8Array(width * height * 4);
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+        gl.readPixels(x, y, width, height, gl.RGBA, gl.UNSIGNED_BYTE, px);
+        if (gl.getError() !== gl.NO_ERROR) return null;
+        var a = analyze(px, width, height, maxPoints || 1200);
+        a.rect = [x, y, width, height];
+        return a;
+      },
+      stats: function () { return { ok: true }; }
+    };
+  }
+
+  function variantValues(values, index) {
+    var v = probe === "samevariant" ? 0 : index;
+    var copy = { uTime: values.uTime, uMouse: values.uMouse, uScroll: values.uScroll, uVariant: v };
+    return copy;
+  }
+
+  function analyze(px, width, height, maxPoints) {
+    var step = Math.max(1, Math.floor((width * height) / maxPoints));
+    var lumas = [];
+    var samples = [];
+    var sum = 0;
+    var sumSq = 0;
+    var rgb = [0, 0, 0];
+    for (var i = 0; i < width * height; i += step) {
+      var o = i * 4;
+      var r = px[o], g = px[o + 1], b = px[o + 2];
+      var l = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+      lumas.push(l);
+      samples.push([r, g, b]);
+      sum += l;
+      sumSq += l * l;
+      rgb[0] += r; rgb[1] += g; rgb[2] += b;
+    }
+    var n = lumas.length;
+    lumas.sort(function (a, b) { return a - b; });
+    var mean = sum / n;
+    return {
+      points: n,
+      width: width,
+      height: height,
+      mean: mean,
+      sigma: Math.sqrt(Math.max(0, sumSq / n - mean * mean)),
+      p05: lumas[Math.floor(n * 0.005)],
+      p50: lumas[Math.floor(n * 0.5)],
+      p995: lumas[Math.min(n - 1, Math.floor(n * 0.995))],
+      min: lumas[0],
+      max: lumas[n - 1],
+      meanRgb: [rgb[0] / n, rgb[1] / n, rgb[2] / n],
+      samples: samples.filter(function (_, idx) { return idx % Math.max(1, Math.floor(samples.length / 200)) === 0; })
+    };
+  }
+
+  function frameValues() {
+    return {
+      uTime: state.time,
+      uMouse: state.mouse,
+      uScroll: state.scroll,
+      uVariant: 0
+    };
+  }
+
+  function drawFrame() {
+    var t0 = Date.now();
+    var values = frameValues();
+    hostFx.draw(values);
+    hostStrip.draw(values);
+    state.draws += (hostFx.bands || 0) + (hostStrip.bands || 0);
+    state.frameMs = state.frameMs ? state.frameMs * 0.7 + (Date.now() - t0) * 0.3 : Date.now() - t0;
+  }
+
+  function loop(now) {
+    if (!state.last) state.last = now;
+    var dt = Math.min(0.05, (now - state.last) / 1000);
+    state.last = now;
+    if (probe !== "frozen" && !state.paused && !state.hidden) {
+      state.time += dt;
+    }
+    state.frames += 1;
+    drawFrame();
+    state.raf = window.requestAnimationFrame(loop);
+  }
+
+  if (probe === "nopause") {
+    toggle.hidden = true;
+  } else {
+    toggle.addEventListener("click", function () {
+      state.paused = !state.paused;
+      toggle.setAttribute("aria-pressed", state.paused ? "true" : "false");
+      toggle.textContent = state.paused ? "恢复画面" : "暂停画面";
+    });
+  }
+
+  if (probe !== "nomouse") {
+    window.addEventListener("pointermove", function (ev) {
+      var x = ev.clientX / Math.max(1, window.innerWidth);
+      var y = 1 - ev.clientY / Math.max(1, window.innerHeight);
+      state.mouse = [Math.min(1, Math.max(0, x)), Math.min(1, Math.max(0, y))];
+    }, { passive: true });
+  }
+
+  if (probe !== "noscroll") {
+    window.addEventListener("scroll", function () {
+      var span = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      state.scroll = Math.min(1, Math.max(0, window.scrollY / span));
+    }, { passive: true });
+  }
+
+  document.addEventListener("visibilitychange", function () {
+    state.hidden = document.hidden;
+  });
+
+  if (reduced) {
+    state.time = 12;
+    state.paused = true;
+    toggle.hidden = true;
+    drawFrame();
+    state.frames = 1;
+    var hint = document.createElement("p");
+    hint.className = "reduced-hint";
+    hint.id = "reduced-hint";
+    hint.textContent = "已按系统「减少动态效果」偏好停在单帧。";
+    document.querySelector(".hero-actions").after(hint);
+  } else {
+    drawFrame();
+    state.raf = window.requestAnimationFrame(loop);
+  }
+
+  window.__shaderProbe = {
+    style: STYLE.name,
+    palette: STYLE.palette,
+    probe: probe,
+    reduced: reduced,
+    glVersion: "webgl1",
+    frames: function () { return state.frames; },
+    draws: function () { return state.draws; },
+    fps: function () { return state.frames / Math.max(0.001, (Date.now() - started) / 1000); },
+    frameMs: function () { return state.frameMs; },
+    viewport: function () { return [window.innerWidth, window.innerHeight]; },
+
+    time: function () { return state.time; },
+    paused: function () { return state.paused; },
+    hiddenFlag: function () { return state.hidden; },
+    mouse: function () { return state.mouse.slice(); },
+    scroll: function () { return state.scroll; },
+    host: function (tag) { return tag === "strip" ? hostStrip : hostFx; },
+    info: function () {
+      function pack(h) {
+        var locs = h.locations || {};
+        return {
+          tag: h.tag,
+          ok: !!h.ok,
+          compiled: h.compile ? h.compile() : { vertex: false, fragment: false },
+          linked: h.linked ? h.linked() : false,
+          log: h.log ? h.log() : "no-context",
+          glError: h.glError ? h.glError() : -1,
+          nullLocations: Object.keys(locs).filter(function (k) { return locs[k] === null; }),
+          lastUniforms: h.lastUniforms ? h.lastUniforms() : null,
+          buffer: h.size(),
+          css: h.cssSize ? h.cssSize() : [0, 0],
+          dpr: h.dpr ? h.dpr() : 0
+        };
+      }
+      return { fx: pack(hostFx), strip: pack(hostStrip) };
+    },
+    stats: function (tag, band) {
+      var h = tag === "strip" ? hostStrip : hostFx;
+      if (!h.gl) return null;
+      h.draw(frameValues());
+      return h.sampleBand(band || 0, 6000);
+    },
+    rect: function (tag, x, y, w, hh) {
+      var h = tag === "strip" ? hostStrip : hostFx;
+      if (!h.gl || !h.sampleRect) return null;
+      h.draw(frameValues());
+      return h.sampleRect(x, y, w, hh, 1200);
+    },
+    forceDraw: function () { drawFrame(); },
+    setPaused: function (v) { state.paused = !!v; },
+    setHidden: function (v) { state.hidden = !!v; }
+  };
+})();
+</script>
+</body>
+</html>

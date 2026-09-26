@@ -1,0 +1,1523 @@
+{
+  "generated_at": "2026-09-26T13:29:55.293Z",
+  "entries": [
+    {
+      "rendered": "value noise -> 三层域扭曲 fbm -> 余弦调色板的铬面高光",
+      "op": "exact",
+      "source": {
+        "file": "src/shaders/liquid-chrome.glsl",
+        "path": "technique"
+      }
+    },
+    {
+      "rendered": "82",
+      "op": "exact",
+      "source": {
+        "file": "src/shaders/liquid-chrome.glsl",
+        "path": "lines"
+      }
+    },
+    {
+      "rendered": "10",
+      "op": "exact",
+      "source": {
+        "file": "scripts/build-sizes.json",
+        "path": "built[style=liquid-chrome].palette_count"
+      }
+    },
+    {
+      "rendered": "38,341",
+      "op": "thousands",
+      "source": {
+        "file": "scripts/build-sizes.json",
+        "path": "built[style=liquid-chrome].bytes"
+      }
+    },
+    {
+      "rendered": "#05070d",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-liquid-chrome.css",
+        "path": ":root.--bg"
+      }
+    },
+    {
+      "rendered": "#0b1120",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-liquid-chrome.css",
+        "path": ":root.--panel"
+      }
+    },
+    {
+      "rendered": "#e8eefc",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-liquid-chrome.css",
+        "path": ":root.--ink"
+      }
+    },
+    {
+      "rendered": "#8fa3c8",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-liquid-chrome.css",
+        "path": ":root.--muted"
+      }
+    },
+    {
+      "rendered": "#4fd7e8",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-liquid-chrome.css",
+        "path": ":root.--accent"
+      }
+    },
+    {
+      "rendered": "#1b2740",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-liquid-chrome.css",
+        "path": ":root.--line"
+      }
+    },
+    {
+      "rendered": "#16203a",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-liquid-chrome.css",
+        "path": ":root.--grid"
+      }
+    },
+    {
+      "rendered": "像素量化（技能 snippet: pixelate）+ plasma + 扫描线（snippet: scanline）+ 光栅掩膜",
+      "op": "exact",
+      "source": {
+        "file": "src/shaders/crt-plasma.glsl",
+        "path": "technique"
+      }
+    },
+    {
+      "rendered": "pixelate、scanline、ripple",
+      "op": "exact",
+      "source": {
+        "file": "src/shaders/crt-plasma.glsl",
+        "path": "snippets"
+      }
+    },
+    {
+      "rendered": "88",
+      "op": "exact",
+      "source": {
+        "file": "src/shaders/crt-plasma.glsl",
+        "path": "lines"
+      }
+    },
+    {
+      "rendered": "10",
+      "op": "exact",
+      "source": {
+        "file": "scripts/build-sizes.json",
+        "path": "built[style=crt-plasma].palette_count"
+      }
+    },
+    {
+      "rendered": "39,017",
+      "op": "thousands",
+      "source": {
+        "file": "scripts/build-sizes.json",
+        "path": "built[style=crt-plasma].bytes"
+      }
+    },
+    {
+      "rendered": "#06120c",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-crt-plasma.css",
+        "path": ":root.--bg"
+      }
+    },
+    {
+      "rendered": "#0a1b12",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-crt-plasma.css",
+        "path": ":root.--panel"
+      }
+    },
+    {
+      "rendered": "#7cffa8",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-crt-plasma.css",
+        "path": ":root.--ink"
+      }
+    },
+    {
+      "rendered": "#46b877",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-crt-plasma.css",
+        "path": ":root.--muted"
+      }
+    },
+    {
+      "rendered": "#ffb347",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-crt-plasma.css",
+        "path": ":root.--accent"
+      }
+    },
+    {
+      "rendered": "#123324",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-crt-plasma.css",
+        "path": ":root.--line"
+      }
+    },
+    {
+      "rendered": "#0e2818",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-crt-plasma.css",
+        "path": ":root.--grid"
+      }
+    },
+    {
+      "rendered": "fbm 丝带（到扭曲曲线的距离场）+ 余弦调色板 + 加法干涉，亮底低对比",
+      "op": "exact",
+      "source": {
+        "file": "src/shaders/silk-aurora.glsl",
+        "path": "technique"
+      }
+    },
+    {
+      "rendered": "80",
+      "op": "exact",
+      "source": {
+        "file": "src/shaders/silk-aurora.glsl",
+        "path": "lines"
+      }
+    },
+    {
+      "rendered": "10",
+      "op": "exact",
+      "source": {
+        "file": "scripts/build-sizes.json",
+        "path": "built[style=silk-aurora].palette_count"
+      }
+    },
+    {
+      "rendered": "38,180",
+      "op": "thousands",
+      "source": {
+        "file": "scripts/build-sizes.json",
+        "path": "built[style=silk-aurora].bytes"
+      }
+    },
+    {
+      "rendered": "#efece1",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-silk-aurora.css",
+        "path": ":root.--bg"
+      }
+    },
+    {
+      "rendered": "#f7f4ea",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-silk-aurora.css",
+        "path": ":root.--panel"
+      }
+    },
+    {
+      "rendered": "#2a2118",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-silk-aurora.css",
+        "path": ":root.--ink"
+      }
+    },
+    {
+      "rendered": "#6d5f4c",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-silk-aurora.css",
+        "path": ":root.--muted"
+      }
+    },
+    {
+      "rendered": "#b0552e",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-silk-aurora.css",
+        "path": ":root.--accent"
+      }
+    },
+    {
+      "rendered": "#d9d1bd",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-silk-aurora.css",
+        "path": ":root.--line"
+      }
+    },
+    {
+      "rendered": "#e3ddcc",
+      "op": "exact",
+      "source": {
+        "file": "src/css/skin-silk-aurora.css",
+        "path": ":root.--grid"
+      }
+    },
+    {
+      "rendered": "67.5",
+      "op": "toFixed",
+      "digits": 1,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.fx.mean"
+      }
+    },
+    {
+      "rendered": "28.8",
+      "op": "toFixed",
+      "digits": 1,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.fx.sigma"
+      }
+    },
+    {
+      "rendered": "46.7",
+      "op": "toFixed",
+      "digits": 1,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.fx.mean"
+      }
+    },
+    {
+      "rendered": "42.0",
+      "op": "toFixed",
+      "digits": 1,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.fx.sigma"
+      }
+    },
+    {
+      "rendered": "193.7",
+      "op": "toFixed",
+      "digits": 1,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.fx.mean"
+      }
+    },
+    {
+      "rendered": "29.3",
+      "op": "toFixed",
+      "digits": 1,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.fx.sigma"
+      }
+    },
+    {
+      "rendered": "128.9",
+      "op": "diff",
+      "digits": 1,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.fx.p995"
+      },
+      "operand": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.fx.p05"
+      }
+    },
+    {
+      "rendered": "201.9",
+      "op": "diff",
+      "digits": 1,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.fx.p995"
+      },
+      "operand": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.fx.p05"
+      }
+    },
+    {
+      "rendered": "170.5",
+      "op": "diff",
+      "digits": 1,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.fx.p995"
+      },
+      "operand": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.fx.p05"
+      }
+    },
+    {
+      "rendered": "201",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.uniformResponse.sampled"
+      }
+    },
+    {
+      "rendered": "201",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.bandPairDiff[0]"
+      }
+    },
+    {
+      "rendered": "200",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.bandPairDiff[1]"
+      }
+    },
+    {
+      "rendered": "201",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.bandPairDiff[2]"
+      }
+    },
+    {
+      "rendered": "182",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.bandPairDiff[0]"
+      }
+    },
+    {
+      "rendered": "186",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.bandPairDiff[1]"
+      }
+    },
+    {
+      "rendered": "191",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.bandPairDiff[2]"
+      }
+    },
+    {
+      "rendered": "142",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.bandPairDiff[0]"
+      }
+    },
+    {
+      "rendered": "156",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.bandPairDiff[1]"
+      }
+    },
+    {
+      "rendered": "156",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.bandPairDiff[2]"
+      }
+    },
+    {
+      "rendered": "171",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.uniformResponse.mousePixels"
+      }
+    },
+    {
+      "rendered": "201",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.uniformResponse.sampled"
+      }
+    },
+    {
+      "rendered": "159",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.uniformResponse.mousePixels"
+      }
+    },
+    {
+      "rendered": "201",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.uniformResponse.sampled"
+      }
+    },
+    {
+      "rendered": "161",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.uniformResponse.mousePixels"
+      }
+    },
+    {
+      "rendered": "201",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.uniformResponse.sampled"
+      }
+    },
+    {
+      "rendered": "201",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.uniformResponse.scrollPixels"
+      }
+    },
+    {
+      "rendered": "201",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.uniformResponse.sampled"
+      }
+    },
+    {
+      "rendered": "86",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.uniformResponse.scrollPixels"
+      }
+    },
+    {
+      "rendered": "201",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.uniformResponse.sampled"
+      }
+    },
+    {
+      "rendered": "163",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.uniformResponse.scrollPixels"
+      }
+    },
+    {
+      "rendered": "201",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.uniformResponse.sampled"
+      }
+    },
+    {
+      "rendered": "5.6",
+      "op": "toFixed",
+      "digits": 1,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.softFps"
+      }
+    },
+    {
+      "rendered": "229.8",
+      "op": "toFixed",
+      "digits": 1,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.frameMs"
+      }
+    },
+    {
+      "rendered": "18.9",
+      "op": "toFixed",
+      "digits": 1,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.softFps"
+      }
+    },
+    {
+      "rendered": "52.9",
+      "op": "toFixed",
+      "digits": 1,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.frameMs"
+      }
+    },
+    {
+      "rendered": "7.8",
+      "op": "toFixed",
+      "digits": 1,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.softFps"
+      }
+    },
+    {
+      "rendered": "124.8",
+      "op": "toFixed",
+      "digits": 1,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.frameMs"
+      }
+    },
+    {
+      "rendered": "7.31:1",
+      "op": "min",
+      "digits": 2,
+      "suffix": ":1",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.contrast"
+      }
+    },
+    {
+      "rendered": "6.59:1",
+      "op": "min",
+      "digits": 2,
+      "suffix": ":1",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.contrast"
+      }
+    },
+    {
+      "rendered": "5.09:1",
+      "op": "min",
+      "digits": 2,
+      "suffix": ":1",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.contrast"
+      }
+    },
+    {
+      "rendered": "10.84",
+      "op": "toFixed",
+      "digits": 2,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.contrast.hero-title"
+      }
+    },
+    {
+      "rendered": "15.78",
+      "op": "toFixed",
+      "digits": 2,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.contrast.hero-sub"
+      }
+    },
+    {
+      "rendered": "7.37",
+      "op": "toFixed",
+      "digits": 2,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.contrast.work-rule"
+      }
+    },
+    {
+      "rendered": "7.31",
+      "op": "toFixed",
+      "digits": 2,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.contrast.facts-dt"
+      }
+    },
+    {
+      "rendered": "14.39",
+      "op": "toFixed",
+      "digits": 2,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.contrast.rooms-td"
+      }
+    },
+    {
+      "rendered": "10.91",
+      "op": "toFixed",
+      "digits": 2,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.liquid-chrome.contrast.section-lead"
+      }
+    },
+    {
+      "rendered": "10.47",
+      "op": "toFixed",
+      "digits": 2,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.contrast.hero-title"
+      }
+    },
+    {
+      "rendered": "13.43",
+      "op": "toFixed",
+      "digits": 2,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.contrast.hero-sub"
+      }
+    },
+    {
+      "rendered": "6.59",
+      "op": "toFixed",
+      "digits": 2,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.contrast.work-rule"
+      }
+    },
+    {
+      "rendered": "6.61",
+      "op": "toFixed",
+      "digits": 2,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.contrast.facts-dt"
+      }
+    },
+    {
+      "rendered": "12.74",
+      "op": "toFixed",
+      "digits": 2,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.contrast.rooms-td"
+      }
+    },
+    {
+      "rendered": "10.61",
+      "op": "toFixed",
+      "digits": 2,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.crt-plasma.contrast.section-lead"
+      }
+    },
+    {
+      "rendered": "10.44",
+      "op": "toFixed",
+      "digits": 2,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.contrast.hero-title"
+      }
+    },
+    {
+      "rendered": "9.96",
+      "op": "toFixed",
+      "digits": 2,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.contrast.hero-sub"
+      }
+    },
+    {
+      "rendered": "5.09",
+      "op": "toFixed",
+      "digits": 2,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.contrast.work-rule"
+      }
+    },
+    {
+      "rendered": "5.27",
+      "op": "toFixed",
+      "digits": 2,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.contrast.facts-dt"
+      }
+    },
+    {
+      "rendered": "9.97",
+      "op": "toFixed",
+      "digits": 2,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.contrast.rooms-td"
+      }
+    },
+    {
+      "rendered": "9.99",
+      "op": "toFixed",
+      "digits": 2,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "metrics.silk-aurora.contrast.section-lead"
+      }
+    },
+    {
+      "rendered": "",
+      "op": "strip",
+      "needle": "有规则、无元素的选择器：",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=J/no-dead-selectors:liquid-chrome].detail"
+      }
+    },
+    {
+      "rendered": "",
+      "op": "strip",
+      "needle": "有规则、无元素的选择器：",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=J/no-dead-selectors:crt-plasma].detail"
+      }
+    },
+    {
+      "rendered": "",
+      "op": "strip",
+      "needle": "有规则、无元素的选择器：",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=J/no-dead-selectors:silk-aurora].detail"
+      }
+    },
+    {
+      "rendered": "71",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-node.json",
+        "path": "results[id~liquid-chrome][pass].length"
+      }
+    },
+    {
+      "rendered": "71",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-node.json",
+        "path": "results[id~liquid-chrome].length"
+      }
+    },
+    {
+      "rendered": "71",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-node.json",
+        "path": "results[id~crt-plasma][pass].length"
+      }
+    },
+    {
+      "rendered": "71",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-node.json",
+        "path": "results[id~crt-plasma].length"
+      }
+    },
+    {
+      "rendered": "71",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-node.json",
+        "path": "results[id~silk-aurora][pass].length"
+      }
+    },
+    {
+      "rendered": "71",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-node.json",
+        "path": "results[id~silk-aurora].length"
+      }
+    },
+    {
+      "rendered": "uTime 恒为 0.00 而帧计数仍 6→12（说明 J 组靠的是 uTime 推进，不是 rAF 在跑）",
+      "op": "verbatim",
+      "digits": 190,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=K/frozen-holds-time].detail"
+      }
+    },
+    {
+      "rendered": "uVariant 恒 0 且三带几何已对齐后：平均亮度极差 0.000、逐像素最大改变 0/201 点（J 组门是 25%）。这条是 J 组新判据的对照臂——它证明逐像素差异来自 uVariant，而不是带位置/边界。",
+      "op": "verbatim",
+      "digits": 190,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=K/samevariant-flattens-strip].detail"
+      }
+    },
+    {
+      "rendered": "指针移动后 uMouse 仍 0.500,0.500，同时间戳画面 Δ=0.0000",
+      "op": "verbatim",
+      "digits": 190,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=K/nomouse-arm].detail"
+      }
+    },
+    {
+      "rendered": "页面真的滚了 2153px 而 uScroll 恒为 0",
+      "op": "verbatim",
+      "digits": 190,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=K/noscroll-arm].detail"
+      }
+    },
+    {
+      "rendered": "常量品红：σ=0.00、平均 rgb=255,0,255、极差 0.0（黑屏检查表第 1 步：通路活着，J 组的暗帧不是全黑）",
+      "op": "verbatim",
+      "digits": 190,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=K/solid-baseline-flat].detail"
+      }
+    },
+    {
+      "rendered": "{\"shown\":true,\"text\":49,\"fxHidden\":true}",
+      "op": "verbatim",
+      "digits": 190,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=K/nogl-fallback].detail"
+      }
+    },
+    {
+      "rendered": "{\"f\":1,\"paused\":true,\"hint\":true,\"btnHidden\":true,\"framesAfterWait\":1}",
+      "op": "verbatim",
+      "digits": 190,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=K/reduced-single-frame].detail"
+      }
+    },
+    {
+      "rendered": "按钮「暂停画面/false」→「恢复画面/true」；rAF 仍在画（帧号继续涨）但 uTime 锁在 0.85",
+      "op": "verbatim",
+      "digits": 190,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=K/pause-freezes-time].detail"
+      }
+    },
+    {
+      "rendered": "devicePixelRatio=3 → 宿主取 2，画布 2560×1600 vs CSS 1280×800",
+      "op": "verbatim",
+      "digits": 190,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=K/dpr-clamped].detail"
+      }
+    },
+    {
+      "rendered": "同一段正文：有衬底 13.85:1（1 层）vs 去掉衬底 4.08:1（0 层）→ L 组的对比度确实是衬底给的",
+      "op": "verbatim",
+      "digits": 190,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=K/scrim-works].detail"
+      }
+    },
+    {
+      "rendered": "dissolve,fresnel,pixelate,ripple,scanline,vertex-wobble (期望 dissolve,fresnel,pixelate,ripple,scanline,vertex-wobble)",
+      "op": "verbatim",
+      "digits": 160,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=M/snippets-discovered].detail"
+      }
+    },
+    {
+      "rendered": "与「把该函数换成常量」的对照臂有 9216/9216 像素不同，glError=0，有输出=true",
+      "op": "verbatim",
+      "digits": 120,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=M/snippet-mutates-frame:fresnel].detail"
+      }
+    },
+    {
+      "rendered": "与「把该函数换成常量」的对照臂有 7968/9216 像素不同，glError=0，有输出=true",
+      "op": "verbatim",
+      "digits": 120,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=M/snippet-mutates-frame:dissolve].detail"
+      }
+    },
+    {
+      "rendered": "与「把该函数换成常量」的对照臂有 64/9216 像素不同，glError=0，有输出=true",
+      "op": "verbatim",
+      "digits": 120,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=M/snippet-mutates-frame:ripple].detail"
+      }
+    },
+    {
+      "rendered": "与「把该函数换成常量」的对照臂有 8352/9216 像素不同，glError=0，有输出=true",
+      "op": "verbatim",
+      "digits": 120,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=M/snippet-mutates-frame:scanline].detail"
+      }
+    },
+    {
+      "rendered": "与「把该函数换成常量」的对照臂有 9152/9216 像素不同，glError=0，有输出=true",
+      "op": "verbatim",
+      "digits": 120,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=M/snippet-mutates-frame:pixelate].detail"
+      }
+    },
+    {
+      "rendered": "与「把该函数换成常量」的对照臂有 9210/9216 像素不同，glError=0，有输出=true",
+      "op": "verbatim",
+      "digits": 120,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[id=M/snippet-mutates-frame:vertex-wobble].detail"
+      }
+    },
+    {
+      "rendered": "",
+      "op": "verbatim",
+      "digits": 160,
+      "source": {
+        "file": "evidence/check-node.json",
+        "path": "results[id=A/doc-example-commands-all-run].actual"
+      }
+    },
+    {
+      "rendered": "M1",
+      "op": "exact",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[0].id"
+      }
+    },
+    {
+      "rendered": "面积合计 390 ㎡",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[0].injection.from"
+      }
+    },
+    {
+      "rendered": "面积合计 360 ㎡",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[0].injection.to"
+      }
+    },
+    {
+      "rendered": "B/dom-identical-across-styles, E/text-present:liquid-chrome, N/provenance-resolves:check-browser.json",
+      "op": "join",
+      "sep": ", ",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[0].failed_assertions"
+      }
+    },
+    {
+      "rendered": "M2",
+      "op": "exact",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[1].id"
+      }
+    },
+    {
+      "rendered": "--accent: #4fd7e8;",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[1].injection.from"
+      }
+    },
+    {
+      "rendered": "--accent: #ffb347;",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[1].injection.to"
+      }
+    },
+    {
+      "rendered": "D/palette-disjoint:liquid-chrome~crt-plasma, N/provenance-resolves:skin-liquid-chrome.css, N/provenance-resolves:check-browser.json, N/provenance-resolves:check-node.json",
+      "op": "join",
+      "sep": ", ",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[1].failed_assertions"
+      }
+    },
+    {
+      "rendered": "M2b",
+      "op": "exact",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[2].id"
+      }
+    },
+    {
+      "rendered": "--accent: #4fd7e8;",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[2].injection.from"
+      }
+    },
+    {
+      "rendered": "--accent: #9aa0a6;",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[2].injection.to"
+      }
+    },
+    {
+      "rendered": "B/css-source-inlined:liquid-chrome, N/provenance-resolves:check-browser.json, N/provenance-resolves:check-node.json",
+      "op": "join",
+      "sep": ", ",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[2].failed_assertions"
+      }
+    },
+    {
+      "rendered": "M6",
+      "op": "exact",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[3].id"
+      }
+    },
+    {
+      "rendered": "\\nprecision highp float;",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[3].injection.from"
+      }
+    },
+    {
+      "rendered": "\\n#version 300 es\\nprecision highp float;",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[3].injection.to"
+      }
+    },
+    {
+      "rendered": "C/glsl-inlined:silk-aurora, N/provenance-resolves:check-browser.json, N/provenance-resolves:check-node.json",
+      "op": "join",
+      "sep": ", ",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[3].failed_assertions"
+      }
+    },
+    {
+      "rendered": "M3",
+      "op": "exact",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[4].id"
+      }
+    },
+    {
+      "rendered": "gl.uniform2f(locations.uOrigin, x, 0);",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[4].injection.from"
+      }
+    },
+    {
+      "rendered": "gl.uniform2f(locations.uOrigin, 0, 0);",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[4].injection.to"
+      }
+    },
+    {
+      "rendered": "B/host-identical-across-styles, B/host-source-inlined:liquid-chrome, N/provenance-resolves:check-browser.json, N/provenance-resolves:check-node.json, K/samevariant-flattens-strip",
+      "op": "join",
+      "sep": ", ",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[4].failed_assertions"
+      }
+    },
+    {
+      "rendered": "M4",
+      "op": "exact",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[5].id"
+      }
+    },
+    {
+      "rendered": "var v = probe === \"samevariant\" ? 0 : index;",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[5].injection.from"
+      }
+    },
+    {
+      "rendered": "var v = 0;",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[5].injection.to"
+      }
+    },
+    {
+      "rendered": "B/host-identical-across-styles, B/host-source-inlined:crt-plasma, N/provenance-resolves:check-browser.json, N/provenance-resolves:check-node.json, J/strip-variants-distinct:crt-plasma",
+      "op": "join",
+      "sep": ", ",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[5].failed_assertions"
+      }
+    },
+    {
+      "rendered": "M5",
+      "op": "exact",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[6].id"
+      }
+    },
+    {
+      "rendered": "      gl.uniform1f(locations.uScroll, values.u",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[6].injection.from"
+      }
+    },
+    {
+      "rendered": "",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[6].injection.to"
+      }
+    },
+    {
+      "rendered": "B/host-identical-across-styles, B/host-source-inlined:silk-aurora, N/provenance-resolves:check-browser.json, N/provenance-resolves:check-node.json, J/scroll-uniform:silk-aurora",
+      "op": "join",
+      "sep": ", ",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[6].failed_assertions"
+      }
+    },
+    {
+      "rendered": "M3b",
+      "op": "exact",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[7].id"
+      }
+    },
+    {
+      "rendered": "gl.uniform2f(locations.uOrigin, x, 0);",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[7].injection.from"
+      }
+    },
+    {
+      "rendered": "gl.uniform2f(locations.uOrigin, x, 0); /* 手工微调",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[7].injection.to"
+      }
+    },
+    {
+      "rendered": "B/host-source-inlined:liquid-chrome, B/host-source-inlined:crt-plasma, B/host-source-inlined:silk-aurora, N/provenance-resolves:check-browser.json, N/provenance-resolves:check-node.json",
+      "op": "join",
+      "sep": ", ",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[7].failed_assertions"
+      }
+    },
+    {
+      "rendered": "M7",
+      "op": "exact",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[8].id"
+      }
+    },
+    {
+      "rendered": "  max-width: var(--measure);\n  background: var",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[8].injection.from"
+      }
+    },
+    {
+      "rendered": "  max-width: var(--measure);",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[8].injection.to"
+      }
+    },
+    {
+      "rendered": "B/base-css-identical, B/css-source-inlined:liquid-chrome, N/provenance-resolves:check-browser.json, N/provenance-resolves:check-node.json, L/contrast-live:liquid-chrome:hero-title, K/scrim-works",
+      "op": "join",
+      "sep": ", ",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[8].failed_assertions"
+      }
+    },
+    {
+      "rendered": "M8",
+      "op": "exact",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[9].id"
+      }
+    },
+    {
+      "rendered": "<caption>三个展陈空间，面积合计 390 ㎡",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[9].injection.from"
+      }
+    },
+    {
+      "rendered": "<p>多出来的一段说明</p>\n      <caption>三个展陈空间，面积合计 390",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[9].injection.to"
+      }
+    },
+    {
+      "rendered": "B/dom-identical-across-styles, N/provenance-resolves:check-browser.json, N/provenance-resolves:check-node.json",
+      "op": "join",
+      "sep": ", ",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[9].failed_assertions"
+      }
+    },
+    {
+      "rendered": "M9",
+      "op": "exact",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[10].id"
+      }
+    },
+    {
+      "rendered": "内联色板 10 项",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[10].injection.from"
+      }
+    },
+    {
+      "rendered": "内联色板 12 项",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[10].injection.to"
+      }
+    },
+    {
+      "rendered": "N/provenance-resolves:check-browser.json, N/regions-match-generation",
+      "op": "join",
+      "sep": ", ",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[10].failed_assertions"
+      }
+    },
+    {
+      "rendered": "M10",
+      "op": "exact",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[11].id"
+      }
+    },
+    {
+      "rendered": "// 技法：fbm 丝带（到扭曲曲线的距离场）+ 余弦调色板 + 加法干涉，亮底低对比",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[11].injection.from"
+      }
+    },
+    {
+      "rendered": "// 技法：fbm 丝带（到扭曲曲线的距离场）+ 余弦调色板 + fresnel 边缘光，亮",
+      "op": "verbatim",
+      "digits": 46,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[11].injection.to"
+      }
+    },
+    {
+      "rendered": "C/glsl-inlined:silk-aurora, N/provenance-resolves:silk-aurora.glsl, N/provenance-resolves:check-browser.json",
+      "op": "join",
+      "sep": ", ",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[11].failed_assertions"
+      }
+    },
+    {
+      "rendered": "12",
+      "op": "exact",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases.length"
+      }
+    },
+    {
+      "rendered": "4",
+      "op": "exact",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[kind=值变异].length"
+      }
+    },
+    {
+      "rendered": "7",
+      "op": "exact",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[kind=结构变异].length"
+      }
+    },
+    {
+      "rendered": "1",
+      "op": "exact",
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "cases[kind=语义变异].length"
+      }
+    },
+    {
+      "rendered": "2026-09-26T13:29:55.196Z",
+      "op": "verbatim",
+      "digits": 40,
+      "source": {
+        "file": "evidence/mutation.json",
+        "path": "ran_at"
+      }
+    },
+    {
+      "rendered": "2026-09-26T13:29:55.185Z",
+      "op": "verbatim",
+      "digits": 40,
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "ran_at"
+      }
+    },
+    {
+      "rendered": "282",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-node.json",
+        "path": "results.length"
+      }
+    },
+    {
+      "rendered": "91",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "results[pass].length"
+      }
+    },
+    {
+      "rendered": "91",
+      "op": "exact",
+      "source": {
+        "file": "evidence/check-browser.json",
+        "path": "total"
+      }
+    }
+  ]
+}
