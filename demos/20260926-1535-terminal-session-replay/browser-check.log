@@ -1,5 +1,37 @@
 # Browser verification of replay.html (browser-use / Chrome, page kept in a hidden tab)
 
+Numbers below describe the capture taken at 15:48 (total 11.209759 s, replay.html 10,127 B
+before the hidden-tab fix). == 1. record a real session through a pty (the skill's own record is Linux-only) ==
+recorded deploy-run -> /Users/apple/Documents/workProject/试验/skill演示场/.tmp/t21-home/.terminal-sessions/deploy-run.typescript
+== 2. write the metadata file the skill's record() would have written ==
+meta -> /Users/apple/Documents/workProject/试验/skill演示场/.tmp/t21-home/.terminal-sessions/deploy-run.meta.json
+== 3. drive every CLI sub-command of the skill for real ==
+  collision(v1.2, v1) = True
+
+=== exit codes ===
+{
+  "record": 0,
+  "list": 0,
+  "info": 0,
+  "list_hit": 0,
+  "list_miss": 0,
+  "replay": 0,
+  "replay_cat": 0,
+  "export": 0,
+  "traversal": 0,
+  "missing": 0,
+  "collision": 0
+}
+== 4. reuse the recording + the exported markdown ==
+== 5. build the browser player and verify ==
+events=16 total=11.243s bytes=2153 -> replay.html (10124B)
+PASS  M4 a mutated delay moves the replay total (so R6/P4 stay honest) 
+
+39 PASS / 0 FAIL
+verify exit=0 re-records live, so every later run has slightly
+different delays and a slightly bigger file -- that drift is expected, the assertions are
+parameterised off the timing file (verify.py R6/P4/M4), not off these numbers.
+
 Hidden-tab is exactly the environment constraint here: `document.hidden === true`,
 so `requestAnimationFrame` never fires. Every observation below was read back with
 `evaluate_script`, not inferred.

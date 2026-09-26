@@ -248,7 +248,7 @@
       "task": "按它设计意图走完整链路：录一段真实终端会话（12 行命令 + 逐行人为停顿）→ 用它自己的 CLI list/info/replay/export/delete → 导出 markdown 文档 → 按时序在浏览器里回放。record 在 macOS 必挂（它拼 util-linux 的 `script --quiet --timing`，BSD script 只有 `[-adkpqr] [-t time]`），改用自己写的 pty.fork() 采集器录，产出技能期望的 <name>.typescript + <name>.timing 三件套后再驱动技能代码。",
       "verdict": "不推荐（本机）。它主打的 record 与带时序 replay 在 darwin 上全废（replay 依赖不存在的 scriptreplay），唯一活路是 --no-timing（内部就是 cat）；还能把会话库硬写进 ~/.terminal-sessions（CLI 无参数可改，必须 export HOME 沙箱）、所有错误路径 exit 0（CI 会把失败当成功）、export 的时长差 8.9 倍。产物好看是自己写播放器换来的，不是技能给的。可复用的是 util-linux 录制格式本身。",
       "time": "2026-09-26T16:02+08:00",
-      "artifact": "demos/20260926-1535-terminal-session-replay/{replay.html(10,135B 单文件终端回放器：播放/暂停/重启+1×2×4×+进度条 seek+16 行事件表，数据内联 file:// 即跑), deploy-run.typescript(2,153B 真实 pty 字节流), deploy-run.timing(192B/16 事件), deploy-run.meta.json, SESSION.md(2,452B 技能 export 真实产出), transcript-raw.log(11 子命令逐条真实输出), output.log(39 断言), browser-check.log, record_pty.py/build_player.py/run-transcript.py/verify.py/run.sh/feed.txt/pace.txt}",
+      "artifact": "demos/20260926-1535-terminal-session-replay/{replay.html(10124B 单文件终端回放器：播放/暂停/重启+1×2×4×+进度条 seek+16 行事件表，数据内联 file:// 即跑), deploy-run.typescript(2153B 真实 pty 字节流), deploy-run.timing(192B/16 事件), deploy-run.meta.json, SESSION.md(2452B 技能 export 真实产出), transcript-raw.log(11 子命令逐条真实输出), output.log(39 断言), browser-check.log, record_pty.py/build_player.py/run-transcript.py/verify.py/run.sh/feed.txt/pace.txt} —— 注：run.sh 每次现场重录，字节数与总时长会小幅漂移（当前 total 11.264s，verify.py 的 R6/P4/M4 断言都从 timing 现读，不抄死）。",
       "report": "reports/20260926-1535-terminal-session-replay.md",
       "installed_by_this_task": [
         "terminal-session-replay (market official_SFz4lDum → ~/.qoder-cn/skills/terminal-session-replay/)"
@@ -1252,10 +1252,10 @@
       "skill": "terminal-session-replay",
       "result": "成功跑出产物，但技能判定「不推荐（本机）」",
       "seconds": 1560,
-      "artifact_size": "84K（demos/20260926-1535-terminal-session-replay，15 个文件）",
+      "artifact_size": "84K（demos/20260926-1535-terminal-session-replay，15 个文件）+ 技能快照 4 文件（只读）",
       "cleanup": "已删 LAB/.tmp/t21-home 会话沙箱与 mut-* 临时目录；无 node_modules（纯 stdlib Python）；未启动任何监听端口；未回收进程；全局缓存未动；技能包保留在 ~/.qoder-cn/skills（市场安装无法改路径），只读快照入 LAB/skills/",
       "push": "成功：git push origin skill-showcase → efbb3d9..5e78af9（普通推送，无 --force / 无 --no-verify）；先 fetch+rebase FETCH_HEAD，远端无新提交（up to date）。SSH 走 GIT_SSH_COMMAND=UserKnownHostsFile=LAB/.tmp/known_hosts + accept-new，命令行与文件内容零 token。",
-      "notes": "record/replay 在 macOS 全废（BSD script 无 --timing、无 scriptreplay），自写 pty 录制器 + 浏览器回放器补位，再驱动技能自身的 list/info/export/delete。39 条断言 39 PASS / 0 FAIL，其中 E5/S10 断言的是「技能 bug 仍在」（导出时长 1.3s vs 真实 11.21s，8.9 倍），技能一旦修好这两条会变红。4 条变异对照全绿：M1 单条 delay+3.5s 会红 P7、M2/M3 切掉 40 字节会红 R1/R3、M4 delay 变动会带动总时长。浏览器取证：隐藏态下 shown 从 0 自行播到 9（rAF 兜底生效）、16 事件表、9 行命令行 rgb(63,185,80)/600、total 11.209759 与 timing 求和逐位一致。最大方法学增量：跑第三方技能前先把「它落的盘在哪」问清楚 —— 本轮真在 ~ 下造过一次目录并当场清掉。"
+      "notes": "record/replay 在 macOS 全废（BSD script 无 --timing、无 scriptreplay），自写 pty 录制器 + 浏览器回放器补位，再驱动技能自身的 list/info/export/delete。39 条断言 39 PASS / 0 FAIL，其中 E5/S10 断言的是「技能 bug 仍在」（导出时长 1.3s vs 真实 11.21s，8.9 倍），技能一旦修好这两条会变红。4 条变异对照全绿：M1 单条 delay+3.5s 会红 P7、M2/M3 切掉 40 字节会红 R1/R3、M4 delay 变动会带动总时长。浏览器取证：隐藏态下 shown 从 0 自行播到 9（rAF 兜底生效）、16 事件表、9 行命令行 rgb(63,185,80)/600、total 11.209759 与 timing 求和逐位一致。最大方法学增量：跑第三方技能前先把「它落的盘在哪」问清楚 —— 本轮真在 ~ 下造过一次目录并当场清掉。 收工前二次修正：发现 import 技能 main.py 会往只读的全局技能目录写 __pycache__/*.pyc（快照被带成 5 文件），已删除 + run.sh 顶部 PYTHONDONTWRITEBYTECODE=1 + 快照 chmod -R a-w，manifest 现读 2 snapshots/20 files/read_only=true；从零重跑 run.sh 仍 39 PASS/0 FAIL，家目录零污染。"
     }
   ],
   "evaluation_snapshot": {

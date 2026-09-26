@@ -29,7 +29,7 @@ drwxr-xr-x  17 apple  staff  544 Sep 26 15:56 20260926-1535-terminal-session-rep
 ❯ echo "terminal-session-replay demo"
 terminal-session-replay demo
 ❯ date
-Sat Sep 26 16:02:11 CST 2026
+Sat Sep 26 16:02:55 CST 2026
 ❯ wc -c record_pty.py
     2652 record_pty.py
 ❯ printf 'line-%02d\n' 1 2 3

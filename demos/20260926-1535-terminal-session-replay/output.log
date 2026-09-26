@@ -3,8 +3,8 @@ PASS  R2 every timing row slices a non-empty chunk | 16 events
 PASS  R3 concatenated chunks == recording (lossless) 
 PASS  R4 all recorded commands appear in the capture | fed lines
 PASS  R5 sort heredoc output is really there 
-PASS  R6 recorded wall span is human-scale | 11.264s
-PASS  R7 pauses preserved (>=3 gaps over 0.9s) | 0.00 1.17 0.56 0.00 0.00 0.00 0.96 1.67 0.76 1.36 0.66 0.67 0.66 0.96 0.57 1.26
+PASS  R6 recorded wall span is human-scale | 11.243s
+PASS  R7 pauses preserved (>=3 gaps over 0.9s) | 0.00 1.17 0.56 0.00 0.00 0.00 0.96 1.66 0.76 1.36 0.66 0.66 0.66 0.96 0.56 1.26
 PASS  S1 record FAILS on macOS (BSD script has no --timing) | }
 PASS  S2 record error still exits 0 -> CI cannot detect it | exit=0
 PASS  S3 record left no usable session 
@@ -14,7 +14,7 @@ PASS  S6 path traversal rejected
 PASS  S7 dot-only and slash names rejected 
 PASS  S8 missing session reported as error 
 PASS  S9 dotted names collide (validate allows '.', with_suffix eats it) | v1.typescript == v1.typescript
-PASS  S10 get_session_duration != sum of delays (bug) | skill=1.258s real=11.264s ratio=9.0x
+PASS  S10 get_session_duration != sum of delays (bug) | skill=1.260s real=11.243s ratio=8.9x
 PASS  S11 list sees the session and its tags 
 PASS  S12 tag filter hits 
 PASS  S13 tag filter misses 
@@ -22,15 +22,15 @@ PASS  E1 export keeps title
 PASS  E2 export keeps tags 
 PASS  E3 export keeps the recorded commands 
 PASS  E4 export wraps body in a bash fence 
-PASS  E5 exported duration is wrong by >5x (inherits S10) | says 1.3 s, really 11.26 s
+PASS  E5 exported duration is wrong by >5x (inherits S10) | says 1.3 s, really 11.24 s
 PASS  E6 export keeps ANSI-free prompt glyph 
 PASS  P1 player is single-file (no external src/href) 
 PASS  P2 recording inlined as JSON 
 PASS  P3 every timing event made it into the page | 16 fields vs 16 events
-PASS  P4 total matches the recording | 11.26
+PASS  P4 total matches the recording | 11.24
 PASS  P5 command lines are styled separately 
 PASS  P6 seek/controls wired 
-PASS  P7 inlined delays == timing file (byte-for-byte semantics) | [3.3e-05, 1.171998, 0.559703, 0.000117, 4.3e-05, 3.3e-05, 0.961657, 1.
+PASS  P7 inlined delays == timing file (byte-for-byte semantics) | [2.6e-05, 1.173656, 0.56473, 0.000168, 9.4e-05, 4.4e-05, 0.956984, 1.6
 PASS  P8 hidden-tab fallback present (rAF never fires when document.hidden) 
 PASS  M0 preconditions: mutation actually changed one field 
 PASS  M1 value mutation (+3.5s on one delay) would turn P7 red 

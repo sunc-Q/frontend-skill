@@ -20,14 +20,14 @@ Found 1 session(s):
   "sessions": [
     {
       "name": "deploy-run",
-      "created": "2026-09-26T08:02:26.324768+00:00",
+      "created": "2026-09-26T08:03:10.480405+00:00",
       "title": "Skill showcase: deploy-run smoke test",
       "description": "Recorded through a real pty because the skill record path needs util-linux script.",
       "tags": [
         "showcase",
         "terminal"
       ],
-      "duration": 1.257902
+      "duration": 1.259851
     }
   ],
   "count": 1
@@ -39,7 +39,7 @@ $ /Users/apple/Library/Application Support/DoubaoWork/sandbox_runtime/bases/e741
   "status": "success",
   "session": "deploy-run",
   "metadata": {
-    "created": "2026-09-26T08:02:26.324768+00:00",
+    "created": "2026-09-26T08:03:10.480405+00:00",
     "title": "Skill showcase: deploy-run smoke test",
     "description": "Recorded through a real pty because the skill record path needs util-linux script.",
     "tags": [
@@ -48,7 +48,7 @@ $ /Users/apple/Library/Application Support/DoubaoWork/sandbox_runtime/bases/e741
     ],
     "command": "script --quiet --timing <timing> <typescript>"
   },
-  "duration_seconds": 1.257902,
+  "duration_seconds": 1.259851,
   "file_sizes": {
     "typescript": 2153,
     "timing": 192,
@@ -70,14 +70,14 @@ Found 1 session(s):
   "sessions": [
     {
       "name": "deploy-run",
-      "created": "2026-09-26T08:02:26.324768+00:00",
+      "created": "2026-09-26T08:03:10.480405+00:00",
       "title": "Skill showcase: deploy-run smoke test",
       "description": "Recorded through a real pty because the skill record path needs util-linux script.",
       "tags": [
         "showcase",
         "terminal"
       ],
-      "duration": 1.257902
+      "duration": 1.259851
     }
   ],
   "count": 1
@@ -132,7 +132,7 @@ drwxr-xr-x  17 apple  staff  544 Sep 26 15:56 20260926-1535-terminal-session-rep
 ❯ echo "terminal-session-replay demo"
 terminal-session-replay demo
 ❯ date
-Sat Sep 26 16:02:11 CST 2026
+Sat Sep 26 16:02:55 CST 2026
 ❯ wc -c record_pty.py
     2652 record_pty.py
 ❯ printf 'line-%02d\n' 1 2 3

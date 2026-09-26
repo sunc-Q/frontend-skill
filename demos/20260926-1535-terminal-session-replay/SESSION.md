@@ -1,6 +1,6 @@
 # Terminal Session: Skill showcase: deploy-run smoke test
 
-**Recorded:** 2026-09-26T08:02:26.324768+00:00  
+**Recorded:** 2026-09-26T08:03:10.480405+00:00  
 **Duration:** 1.3 seconds  
 **Description:** Recorded through a real pty because the skill record path needs util-linux script.  
 **Tags:** showcase, terminal  
@@ -39,7 +39,7 @@ drwxr-xr-x  17 apple  staff  544 Sep 26 15:56 20260926-1535-terminal-session-rep
 ❯ echo "terminal-session-replay demo"
 terminal-session-replay demo
 ❯ date
-Sat Sep 26 16:02:11 CST 2026
+Sat Sep 26 16:02:55 CST 2026
 ❯ wc -c record_pty.py
     2652 record_pty.py
 ❯ printf 'line-%02d\n' 1 2 3
