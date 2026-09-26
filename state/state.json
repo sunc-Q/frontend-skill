@@ -764,7 +764,7 @@
       "id": "20260926-17",
       "slug": "event-ticketing-checkin",
       "started": "2026-09-26T15:50:00+08:00",
-      "finished": "2026-09-26T17:50:00+08:00",
+      "finished": "2026-09-26T18:00:00+08:00",
       "scenario": "灯塔票务 · 本地活动票务与核销台（入场窗口与退票留存）",
       "styles": [
         "丝绒影院售票亭",
@@ -775,9 +775,10 @@
       "disk": {
         "df_k_avail_before": 15150064,
         "df_k_avail_after": 15145244,
-        "lab_total_bytes_human": "112M（其中 .git 约 16M；sites/recruitment-ats-pipeline 65M 是别的会话产物未动）",
+        "lab_total_bytes_human": "114M（其中 .git 18M；sites/recruitment-ats-pipeline 65M 是别的会话产物未动）",
         "scenario_dir_human": "3.0M / 75 文件（上限 5MB）：backend 232K + web(含 dist 308K) 496K + preview 912K + scripts 88K + evidence 1.3M（三张整页截图）",
-        "note": "开工 df 可用 15,150,064KB≈14.4GiB（85% 已用），高于 1.5GiB 熔断线；收工 15,145,244KB≈14.4GiB。删除：web/node_modules、/tmp 下本轮全部临时目录（etk-* 二进制/库三件套/日志/探针 JSON/截图）与 evidence/chrome-profile。共享缓存（~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache）未动，全程无 go clean -cache/-testcache。本轮端口 :18901-:18904/:18907/:18908 + CDP :19833-:19862，逐个 lsof→PID→ps -o command= 核对命令行后 kill，收工 lsof 复核监听数 0（无残留 headless Chrome）"
+        "note": "开工 df 可用 15,150,064KB≈14.4GiB（85% 已用），高于 1.5GiB 熔断线；收工 15,145,244KB≈14.4GiB。删除：web/node_modules、/tmp 下本轮全部临时目录（etk-* 二进制/库三件套/日志/探针 JSON/截图）与 evidence/chrome-profile。共享缓存（~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache）未动，全程无 go clean -cache/-testcache。本轮端口 :18901-:18904/:18907/:18908 + CDP :19833-:19862，逐个 lsof→PID→ps -o command= 核对命令行后 kill，收工 lsof 复核监听数 0（无残留 headless Chrome）",
+        "df_k_avail_final": 15130260
       },
       "volume": {
         "go_files": 16,
@@ -806,7 +807,8 @@
         "tickets 数组元素是对象，取 code 写成元素本身得到 [object Object]，进而 404 + 两条 console noise 假失败",
         "列表断言「存在含目标值的行」在筛选未生效时立刻通过；改成 settledOn（恰好 1 行且含目标值）。同页还挂两张 .table，探针必须限定第一张",
         "fail-closed 段打到主实例（helper 闭包绑 base）拿到 401 而不是 503，期望码还写成未实现的 admin_disabled——负向鉴权探针要自带 base 与真实错误码",
-        "误改：以为 App.tsx 直接渲染 tickets 对象，改完发现上游已 .map(t=>t.code) 归一为字符串，回滚。改代码前先读调用点"
+        "误改：以为 App.tsx 直接渲染 tickets 对象，改完发现上游已 .map(t=>t.code) 归一为字符串，回滚。改代码前先读调用点",
+        "改了契约要同扫三处：api-smoke / render-probe 把令牌从 argv 改成环境变量后，脚本报错串仍写着 `<SPA> <API> <ADMIN_TOKEN> [主题...]`（argv[3] 其实是 API 基址），与 README 的真实调用互相打脸——收工审计才发现"
       ],
       "environment": [
         "本轮 Bash 工具多次返回 `Tool execution failed: [unknown]`（同一命令重试即成功），node-repl MCP 作为兜底 shell 查过一次监听表；一次工具报错不等于业务失败",
@@ -814,8 +816,8 @@
       ],
       "push": {
         "branch": "go-gin_react",
-        "result": "见 note（本条哈希由下一轮按 git log 实测校正）",
-        "commit": "第 14 轮场景主提交 + 本记录回写提交",
+        "result": "成功：远端 go-gin_react bafb21d..4712556（第 14 轮场景主提交 78 文件 / +25,512 行）",
+        "commit": "4712556（场景 + 记录）+ 本条收工审计提交",
         "note": "git fetch origin go-gin_react → git rebase FETCH_HEAD → 普通 git push origin go-gin_react；未 --force、未 --no-verify、未碰 main、未改任何全局 git 配置，身份只用命令行内联 -c user.name=sunc-Q -c user.email=sunc-Q@users.noreply.github.com；全程走 SSH 键，命令行与文件里无 token/密钥（ADMIN_TOKEN 由 openssl rand 现场生成、只经环境变量注入，README/evidence 里只有占位符）；只 git add 本任务自己的路径，三个不属于本任务的未跟踪目录（clinic-appointment-desk / charity-donation-progress / recruitment-ats-pipeline）不提交不删除"
       }
     }
@@ -908,7 +910,8 @@
     "**负向鉴权探针必须自己绑定 base**（第 14 轮）：fail-closed 的 503 段复用了主实例的 fetch 闭包，请求带着「无 Authorization」打到有令牌的实例 → 401，且期望码写成没实现的 admin_disabled。规则：每节断言用自己那一对 (base, helper)，期望码以 domain 常量为源。",
     "**注入靶子要放在真正接受自由文本的字段**（第 14 轮）：购票人字段白名单只收字母数字-_，`<img src=x onerror=alert(1)>` 被 400 挡下——那是校验生效而不是取证成功。先读一遍 domain 校验器，把载荷放进场次名称/场馆/备注这类长自由文本，其余字段给合规 ASCII。",
     "**改代码前先读调用点**（第 14 轮）：认定 App.tsx 把 tickets 对象直接渲染并动手改，随后发现上游 `res.tickets.map((t)=>t.code)` 已归一为字符串，白改一遍再回滚。同一份数据在「取值处」和「渲染处」只可能有一处转换。",
-    "**校验代码与它的错误文案同源**（第 14 轮）：ValidPhone 只判长度 11，字段回显却写「1 开头（次位 3-9）」，用户照文案理解到的规则比实现严。补校验而不是松文案，并给表驱动用例钉住。"
+    "**校验代码与它的错误文案同源**（第 14 轮）：ValidPhone 只判长度 11，字段回显却写「1 开头（次位 3-9）」，用户照文案理解到的规则比实现严。补校验而不是松文案，并给表驱动用例钉住。",
+    "**脚本的用法串、头注释与 README 是同一份契约的三个副本**（第 14 轮）：把令牌从 argv 改成只走环境变量时只改了取值处，报错提示仍写着 `<SPA> <API> <ADMIN_TOKEN> [主题...]`，而 argv[3] 其实是 API 基址、主题从 argv[4] 起。改任何 CLI 契约后用 grep 扫 `用法|usage` 并与 README 的调用行对一遍参数个数。"
   ],
   "next_candidates": [
     "医院门诊排班与挂号",

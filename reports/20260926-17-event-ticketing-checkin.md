@@ -78,6 +78,7 @@
 6. **fail-closed 段打到主实例**：503 断言用了绑 `base` 的 fetch 闭包，请求带着「无 Authorization」打到有令牌实例 → 401；期望码还写成没实现的 `admin_disabled`。改成该节自带 `npost`/`nget` + 以 domain 常量为源的 `server_misconfigured`。
 7. **误改后回滚**：认定 `App.tsx` 把 `tickets` 对象直接渲染并动手改，随后发现上游 `setCreated({tickets: res.tickets.map(t => t.code)})` 已归一为字符串。改代码前先读调用点。
 8. **工具侧**：本轮 Bash 工具多次返回 `Tool execution failed: [unknown]`（同一命令重试即成功），node-repl MCP 兜底查过一次监听表；`zsh` 通配无匹配（`rm -f prev*`）会中止整条链式命令，清理一律列精确文件名。
+9. **收工审计时抓到一处自埋的口径矛盾**：`render-probe.mjs` 改成了「令牌只走环境变量」，可它的报错用法串还写着 `<SPA基址> <API基址> <ADMIN_TOKEN> [主题...]`，与 README 的真实调用形态（第三个位置参数是主题）互相打脸——注释、用法串、README 三处必须同源，改了契约要一并扫。
 
 ## 从零复现
 
@@ -105,8 +106,8 @@ node scripts/style-evidence.mjs          # dist 与 preview 两种托管
 - 清理：`web/node_modules`、`evidence/chrome-profile`、`/tmp` 下本轮全部临时目录与产物（二进制、库三件套、日志、探针、截图）删除，编译产物不留在场景目录；共享缓存（`~/Library/Caches/go-build`、`~/go/pkg/mod`、`~/.npm/_cacache`）一律未删，全程无 `go clean -cache/-testcache`。
 - 进程：本轮端口 `:18901-:18904`、`:18907`、`:18908` 与 CDP `:19833-:19862`，逐个「端口 → PID → `ps -o command=` 核对命令行」后 kill；收工 `lsof -iTCP -sTCP:LISTEN -nP` 无本轮残留，也没有遗留的 headless Chrome。
 - 记录回写：`state.json`（`used_scenarios` 14、`used_styles` 42、`tried` 14、`runs` 第 14 条 `20260926-17`、`environment_notes` 6 条、`backlog` 5 条、`next_style_candidates` 摘掉本轮三名）、`records/work-log.md` 追加第 14 轮一行、本报告。
-- 磁盘：LAB **112M**（`.git` 约 16M）；场景目录 **3.0M / 75 文件**；`df -k .` 可用 15,145,244KB≈14.4GiB（85% 已用）。
-- 推送：结果见紧随其后的收工审计提交与 `state.json.runs[13].push`（本行写于推送之前）。
+- 磁盘：LAB **114M**（`.git` 18M）；场景目录 **3.0M / 75 文件**；`df -k .` 可用 15,130,260KB≈14.4GiB（85% 已用，开工 15,150,064KB）。
+- 推送：`git fetch origin go-gin_react` → `git rebase FETCH_HEAD` 返回 up to date（远端已在 `bafb21d`，正是本地父提交）→ `git push origin go-gin_react`，远端 **bafb21d..4712556**（78 文件 / +25,512 行）；随后收工审计提交校正终值。提交身份只用命令行内联 `-c user.name/-c user.email`，未改任何全局 git 配置；无 `--force`、无 `--no-verify`、未碰 `main`；staged 内容扫 16 位以上十六进制命中 0，README 里唯一像令牌的字符串是 `ADMIN_TOKEN='<自造随机串>'` 占位。
 
 ## 留痕
 
