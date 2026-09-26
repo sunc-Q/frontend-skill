@@ -134,9 +134,13 @@ ADMIN_TOKEN=<本地演示令牌> bash scripts/run-smoke.sh
 #   其中 ③ 用一段独立的 Python 复算实现逐分核对 ComputeBill（三种时长/电量/超时组合 + 峰谷仲裁）
 
 # ② 三风格计算样式取证（真无头 Chrome，需要 playwright-core）
-PW_PATH=<path>/playwright-core node scripts/style-shoot.mjs 'http://127.0.0.1:18501/?theme={theme}' /tmp/fco-probe.json /tmp/fco-shot-
-python3 scripts/style-diff.py /tmp/fco-probe.json      # 末行「失败项：0」
-#   同一命令把 URL 换成 'http://127.0.0.1:18509/{theme}.html' 就是对 preview/ 单文件版再做一遍
+#    后端只出接口、不托管前端，所以页面由 scripts/serve-static.mjs 托管并注入 __API_BASE__/__THEME__；
+#    注意 serve-static 没有 SPA 回退，dist 那份必须写 /index.html?theme=，写 / 会拿到 "not found"
+node scripts/serve-static.mjs web/dist 18512 http://127.0.0.1:18501/api &
+node scripts/serve-static.mjs preview 18513 &
+PW_PATH=<path>/playwright-core node scripts/style-shoot.mjs 'http://127.0.0.1:18512/index.html?theme={theme}' /tmp/fco-probe-dist.json /tmp/fco-shot-
+python3 scripts/style-diff.py /tmp/fco-probe-dist.json      # 末行「失败项：0」
+#   单文件版再做一遍：URL 换成 'http://127.0.0.1:18513/{theme}.html'（preview 里的 API 基址已烤成 :18501）
 
 # ③ UI 真操作回归：三套风格各完整点一遍
 PW_PATH=<path>/playwright-core BASE=http://127.0.0.1:18501 ADMIN_TOKEN=<本地演示令牌> \
@@ -185,3 +189,17 @@ PW_PATH=<path>/playwright-core BASE=http://127.0.0.1:18501 ADMIN_TOKEN=<本地�
    结构层（`closest('svg') === null`），否则抓到的是图形差异而不是结构漂移。
 6. macOS 自带 bash 3.2 会把 `$(urlq "$(…)")` 三层嵌套解析错；zsh 的 `nomatch` 会让
    `rm x.db*` 直接中断整条 `&&` 链；`python3` 的 `strptime` 不吃小数秒，用 `fromisoformat`。
+7. **`serve-static.mjs` 没有 SPA 回退**：`GET /` 会 `readFile(目录)` 失败并回 `not found`，
+   所以取证 URL 必须写全 `/index.html?theme=…`。另外本场景后端**不托管前端**（无 `STATIC_DIR`
+   分支），页面只能靠这个静态服务器起；用工具后台跑命令时记得 `nohup`，否则服务在下一条命令
+   开始前就被回收，症状是 playwright 干等 `.bar-fill` 超时，看着像前端 bug。
+
+## 交付证据（`evidence/`）
+
+`api-smoke.txt`（⓪~⑩ 全量日志，末行 `pass=266 fail=0`，末尾附库三件套 0600 权限）、
+`style-diff.txt`（dist 与 preview 两份判定的完整输出，两份均「失败项：0」）、
+`style-probe-{dist,preview}.json`（71 项计算样式 + 结构/内容不变量原始读数）、
+`style-{flight-board,watch-dial,botanical-plate}.jpg`（三套风格整页截图，720px 宽）。
+截图与 `style-diff.txt` 来自**另起的一次独立播种实例**（`/tmp` 临时库，取证后已删），
+所以金额与上文引用的交付库种子统计（¥16,462.49）会有小幅差异——结构、行数、恒等式与
+三主题逐字相同的那份首行文本才是这两份证据要证明的东西。
