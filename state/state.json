@@ -1042,14 +1042,20 @@
       "time": "2026-09-26T14:16+08:00",
       "skill": "mermaid-cli",
       "result": "成功（留用·推荐）。23 条结构断言 23 PASS / 0 FAIL（SVG 节点/边/切片/事件计数与 .mmd 源码独立重算对账 + PNG 523×1600 + 浏览器 getBBox 783×1155 零 script）；负对照坏语法 exit=1+Parse error 且不落盘；语义变异 shader 1080→600 双 True（图例锚值）",
-      "seconds": null,
+      "seconds": 360,
       "artifact_size": "demos 本轮 516KB（4 SVG + 1 PNG 74KB + 6 个 .mmd + 4 脚本 + 3 证据件，限 5MB）",
       "cleanup": "删 LAB/.tmp/mmdc-r18（451MB：@mermaid-js/mermaid-cli 12.0.0 本地安装）与 LAB/.tmp-puppeteer.json（副本移入 demos）；零本轮进程与监听（pgrep 复核，macOS 下未用 --no-sandbox）；全局技能库新增 1 项 mermaid-cli（有意安装项，登记 installed_by_this_task）；全局缓存未动",
-      "push": "",
+      "push": "已推送：git push origin skill-showcase 成功（cb0298a..1afb9d9，普通推送、无 --force / 无 --no-verify）。fetch 确认远端 cb0298a 正是本地 HEAD 父提交 → 无需 rebase；ls-remote 复核 skill-showcase=1afb9d9e5ee484874c0f7209b576d9c2a72fd8cd，main=62070f4 / go-gin_react=7b0c7f0 为兄弟任务所写、本任务未触碰。走 git@github.com SSH + LAB/.tmp/known_hosts；staged diff 凭据形状扫描零命中，命令行与文件内容无 token。",
       "installed_by_this_task": [
         "mermaid-cli / dashed-mermaid-cli (market official_1QyH2lCy, publisher dashed, tags origin:modelscope) -> ~/.qoder-cn/skills/mermaid-cli/ 经 install_extension；npm 运行依赖本地装 LAB/.tmp 并已删"
       ],
-      "notes": "来源①第一个候选即中。历轮第一个真自动布局引擎产物（矢量 SVG 图），打破 drafter『不含数据→图形映射』的局限。三条真实报错全走技能自己的 Pattern 8 回路修复：①SKILL.md 参数表的 -w 在 v12 不存在（真名 --size）；②timeline 周期文本含冒号必 parse error（冒号是分隔符）；③stateDiagram 状态 ID 混排中文+连字符 INVALID（改 ASCII ID + 描述行）。SKILL『禁止自动安装 mmdc』条款与无人值守冲突，按『不写全局』本意改道 LAB 本地安装（run.sh 已复现）。"
+      "notes": "来源①第一个候选即中。历轮第一个真自动布局引擎产物（矢量 SVG 图），打破 drafter『不含数据→图形映射』的局限。三条真实报错全走技能自己的 Pattern 8 回路修复：①SKILL.md 参数表的 -w 在 v12 不存在（真名 --size）；②timeline 周期文本含冒号必 parse error（冒号是分隔符）；③stateDiagram 状态 ID 混排中文+连字符 INVALID（改 ASCII ID + 描述行）。SKILL『禁止自动安装 mmdc』条款与无人值守冲突，按『不写全局』本意改道 LAB 本地安装（run.sh 已复现）。",
+      "final_check": {
+        "git_status": "回填后二次提交再推",
+        "pushed": "1afb9d9",
+        "demos_this_round_kb": 512,
+        "lab_kb": null
+      }
     }
   ],
   "evaluation_snapshot": {
