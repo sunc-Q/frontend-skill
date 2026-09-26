@@ -1,0 +1,59 @@
+== Ledger ==
+  A1='轮次' | B1='日期' | C1='技能' | D1='来源' | E1='产物类别' | F1='主产物 (B)' | G1='主产物 (KB)' | H1='耗时 (s)' | I1='耗时 (min)' | J1='B/s' | K1='日志 PASS 标记' | L1='日志 FAIL 标记' | M1='验证标记合计' | N1='PASS 占比' | O1='本轮新装技能' | P1='结论' | Q1='主产物路径'
+  A2=1 | B2='2026-09-25' | C2='drafter' | D2='官方市场' | E2='工程图纸 HTML' | F2=15146 | G2==F2/1024→14.791015625 | H2=420 | I2==IF(H2="","",H2/60)→7.0 | J2==IFERROR(F2/H2,"")→36.06190476190476 | K2=34 | L2=4 | M2==K2+L2→38.0 | N2==IFERROR(K2/M2,"")→0.8947368421052632 | O2=1 | P2='留用' | Q2='demos/20260925-1723-drafter/skill-'
+  A3=2 | B3='2026-09-25' | C3='ascii-project-dashboard' | D3='官方市场' | E3='终端 ASCII 看板' | F3=2846 | G3==F3/1024→2.779296875 | H3=600 | I3==IF(H3="","",H3/60)→10.0 | J3==IFERROR(F3/H3,"")→4.743333333333333 | K3=20 | L3=6 | M3==K3+L3→26.0 | N3==IFERROR(K3/M3,"")→0.7692307692307693 | O3=1 | P3='留用' | Q3='demos/20260925-1737-ascii-project-'
+  A4=3 | B4='2026-09-25' | C4='algorithmic-art' | D4='外部仓库' | E4='生成艺术 HTML' | F4=998549 | G4==F4/1024→975.1455078125 | H4=1140 | I4==IF(H4="","",H4/60)→19.0 | J4==IFERROR(F4/H4,"")→875.9201754385965 | K4=20 | L4=0 | M4==K4+L4→20.0 | N4==IFERROR(K4/M4,"")→1.0 | O4=0 | P4='留用' | Q4='demos/20260925-1810-algorithmic-ar'
+  A5=4 | B5='2026-09-25' | C5='SQLite-Database-Expert' | D5='本机已装' | E5='SQLite 检索库' | F5=299008 | G5==F5/1024→292.0 | H5=780 | I5==IF(H5="","",H5/60)→13.0 | J5==IFERROR(F5/H5,"")→383.34358974358975 | K5=14 | L5=1 | M5==K5+L5→15.0 | N5==IFERROR(K5/M5,"")→0.9333333333333333 | O5=0 | P5='留用' | Q5='demos/20260925-1845-sqlite-databas'
+  A6=5 | B6='2026-09-25' | C6='ppt-generator' | D6='官方市场' | E6='幻灯片 PPTX' | F6=48873 | G6==F6/1024→47.7275390625 | H6=600 | I6==IF(H6="","",H6/60)→10.0 | J6==IFERROR(F6/H6,"")→81.455 | K6=14 | L6=0 | M6==K6+L6→14.0 | N6==IFERROR(K6/M6,"")→1.0 | O6=1 | P6='留用' | Q6='demos/20260925-1906-ppt-generator/'
+  A7=6 | B7='2026-09-25' | C7='graphic-gif' | D7='官方市场' | E7='动画 GIF' | F7=48293 | G7==F7/1024→47.1611328125 | H7=900 | I7==IF(H7="","",H7/60)→15.0 | J7==IFERROR(F7/H7,"")→53.65888888888889 | K7=27 | L7=1 | M7==K7+L7→28.0 | N7==IFERROR(K7/M7,"")→0.9642857142857143 | O7=1 | P7='留用' | Q7='demos/20260925-1950-graphic-gif/an'
+  A8=7 | B8='2026-09-25' | C8='build-game' | D8='官方市场' | E8='3D 游戏 HTML' | F8=750620 | G8==F8/1024→733.02734375 | H8=1440 | I8==IF(H8="","",H8/60)→24.0 | J8==IFERROR(F8/H8,"")→521.2638888888889 | K8=24 | L8=1 | M8==K8+L8→25.0 | N8==IFERROR(K8/M8,"")→0.96 | O8=1 | P8='留用·强推荐' | Q8='demos/20260925-2332-build-game/fro'
+  A9=8 | B9='2026-09-26' | C9='sec-audit-cn' | D9='本机已装' | E9='审计报告 MD' | F9=11247 | G9==F9/1024→10.9833984375 | I9==IF(H9="","",H9/60)→ | J9==IFERROR(F9/H9,"")→ | K9=0 | L9=0 | M9==K9+L9→0.0 | N9==IFERROR(K9/M9,"")→ | O9=0 | P9='留用' | Q9='demos/20260926-0000-sec-audit-cn/S'
+== Metrics ==
+  A1='流水线指标看板（全部为公式，随 Ledger 输入自动重算）'
+  A2='蓝色格为唯一手工输入（README!B13 预算基准）；本表无一处硬'
+  A4='指标' | B4='值' | C4='公式口径（本表所有值均为公式，无一硬编码）'
+  A5='■ 总量'
+  A6='已完成轮次' | B6==COUNT(Ledger!$A$2:$A$9)→8 | C6==COUNT(Ledger!$A$2:$A$9)→=COUNT(Ledger!$A$2:$A$9)
+  A7='主产物合计 (B)' | B7==SUM(Ledger!$F$2:$F$9)→2174582.0 | C7==SUM(Ledger!$F$2:$F$9)→=SUM(Ledger!$F$2:$F$9)
+  A8='主产物合计 (KB)' | B8==SUM(Ledger!$F$2:$F$9)/1024→2123.615234375 | C8==SUM(Ledger!$F$2:$F$9)/1024→=SUM(Ledger!$F$2:$F$9)/1024
+  A9='单轮平均产物 (KB)' | B9==AVERAGE(Ledger!$G$2:$G$9)→265.451904296875 | C9==AVERAGE(Ledger!$G$2:$G$9)→=AVERAGE(Ledger!$G$2:$G$9)
+  A10='最大单产物 (KB)' | B10==MAX(Ledger!$G$2:$G$9)→975.1455078125 | C10==MAX(Ledger!$G$2:$G$9)→=MAX(Ledger!$G$2:$G$9)
+  A11='最大单产物所属技能' | B11==INDEX(Ledger!$C$2:$C$9,MATCH(MAX(Ledger!$F$2:→algorithmic-art | C11==INDEX(Ledger!$C$2:$C$9,MATCH(MAX(Ledger!$F$2:→=INDEX(Ledger!$C$2:$C$9,MATCH(MAX(Ledger!$F$2:$F$9),Ledger!$F$2:$F$9,0))
+  A12='最小单产物所属技能' | B12==INDEX(Ledger!$C$2:$C$9,MATCH(MIN(Ledger!$F$2:→ascii-project-dashboard | C12==INDEX(Ledger!$C$2:$C$9,MATCH(MIN(Ledger!$F$2:→=INDEX(Ledger!$C$2:$C$9,MATCH(MIN(Ledger!$F$2:$F$9),Ledger!$F$2:$F$9,0))
+  A13='■ 耗时与预算'
+  A14='有耗时记录轮次' | B14==COUNT(Ledger!$H$2:$H$9)→7 | C14==COUNT(Ledger!$H$2:$H$9)→=COUNT(Ledger!$H$2:$H$9)
+  A15='累计耗时 (min)' | B15==SUM(Ledger!$H$2:$H$9)/60→98.0 | C15==SUM(Ledger!$H$2:$H$9)/60→=SUM(Ledger!$H$2:$H$9)/60
+  A16='平均单轮耗时 (min)' | B16==IFERROR(SUM(Ledger!$H$2:$H$9)/COUNT(Ledger!$H→14.0 | C16==IFERROR(SUM(Ledger!$H$2:$H$9)/COUNT(Ledger!$H→=IFERROR(SUM(Ledger!$H$2:$H$9)/COUNT(Ledger!$H$2:$H$9)/60,"")
+  A17='超预算轮数 (>预算基准)' | B17==COUNTIF(Ledger!$H$2:$H$9,">"&README!$B$13)→2 | C17==COUNTIF(Ledger!$H$2:$H$9,">"&README!$B$13)→=COUNTIF(Ledger!$H$2:$H$9,">"&README!$B$13)
+  A18='预算基准 (s)' | B18==README!$B$13→900 | C18==README!$B$13→=README!$B$13
+  A19='预算利用率' | B19==IFERROR(SUM(Ledger!$H$2:$H$9)/(COUNT(Ledger!$→0.9333333333333333 | C19==IFERROR(SUM(Ledger!$H$2:$H$9)/(COUNT(Ledger!$→=IFERROR(SUM(Ledger!$H$2:$H$9)/(COUNT(Ledger!$H$2:$H$9)*README!$B$13),"")
+  A20='最慢轮次技能' | B20==INDEX(Ledger!$C$2:$C$9,MATCH(MAX(Ledger!$H$2:→build-game | C20==INDEX(Ledger!$C$2:$C$9,MATCH(MAX(Ledger!$H$2:→=INDEX(Ledger!$C$2:$C$9,MATCH(MAX(Ledger!$H$2:$H$9),Ledger!$H$2:$H$9,0))
+  A21='■ 验证强度'
+  A22='验证标记合计' | B22==SUM(Ledger!$M$2:$M$9)→166.0 | C22==SUM(Ledger!$M$2:$M$9)→=SUM(Ledger!$M$2:$M$9)
+  A23='PASS 标记合计' | B23==SUM(Ledger!$K$2:$K$9)→153.0 | C23==SUM(Ledger!$K$2:$K$9)→=SUM(Ledger!$K$2:$K$9)
+  A24='FAIL 标记合计' | B24==SUM(Ledger!$L$2:$L$9)→13.0 | C24==SUM(Ledger!$L$2:$L$9)→=SUM(Ledger!$L$2:$L$9)
+  A25='总体 PASS 占比' | B25==IFERROR(SUM(Ledger!$K$2:$K$9)/SUM(Ledger!$M$2→0.9216867469879518 | C25==IFERROR(SUM(Ledger!$K$2:$K$9)/SUM(Ledger!$M$2→=IFERROR(SUM(Ledger!$K$2:$K$9)/SUM(Ledger!$M$2:$M$9),"")
+  A26='每千 KB 产物验证标记' | B26==IFERROR(SUM(Ledger!$M$2:$M$9)/(SUM(Ledger!$F$→0.07816858596272755 | C26==IFERROR(SUM(Ledger!$M$2:$M$9)/(SUM(Ledger!$F$→=IFERROR(SUM(Ledger!$M$2:$M$9)/(SUM(Ledger!$F$2:$F$9)/1024),"")
+  A27='最高 PASS 占比轮次技能' | B27==INDEX(Ledger!$C$2:$C$9,MATCH(MAX(Ledger!$N$2:→algorithmic-art | C27==INDEX(Ledger!$C$2:$C$9,MATCH(MAX(Ledger!$N$2:→=INDEX(Ledger!$C$2:$C$9,MATCH(MAX(Ledger!$N$2:$N$9),Ledger!$N$2:$N$9,0))
+  A28='■ 来源结构'
+  A29='分组' | B29='轮次数' | C29='产物合计 (KB)' | D29='平均耗时 (min)'
+  A30='官方市场' | B30==COUNTIF(Ledger!$D$2:$D$9,$A$30)→5 | C30==SUMIF(Ledger!$D$2:$D$9,$A$30,Ledger!$F$2:$F$9→845.486328125 | D30==IFERROR(SUMIF(Ledger!$D$2:$D$9,$A$30,Ledger!$→13.2
+  A31='外部仓库' | B31==COUNTIF(Ledger!$D$2:$D$9,$A$31)→1 | C31==SUMIF(Ledger!$D$2:$D$9,$A$31,Ledger!$F$2:$F$9→975.1455078125 | D31==IFERROR(SUMIF(Ledger!$D$2:$D$9,$A$31,Ledger!$→19.0
+  A32='本机已装' | B32==COUNTIF(Ledger!$D$2:$D$9,$A$32)→2 | C32==SUMIF(Ledger!$D$2:$D$9,$A$32,Ledger!$F$2:$F$9→302.9833984375 | D32==IFERROR(SUMIF(Ledger!$D$2:$D$9,$A$32,Ledger!$→13.0
+  A33='■ 产物类别多样性'
+  A34='分组' | B34='轮次数' | C34='产物合计 (KB)' | D34='平均耗时 (min)'
+  A35='工程图纸 HTML' | B35==COUNTIF(Ledger!$E$2:$E$9,$A$35)→1 | C35==SUMIF(Ledger!$E$2:$E$9,$A$35,Ledger!$F$2:$F$9→14.791015625 | D35==IFERROR(SUMIF(Ledger!$E$2:$E$9,$A$35,Ledger!$→7.0
+  A36='终端 ASCII 看板' | B36==COUNTIF(Ledger!$E$2:$E$9,$A$36)→1 | C36==SUMIF(Ledger!$E$2:$E$9,$A$36,Ledger!$F$2:$F$9→2.779296875 | D36==IFERROR(SUMIF(Ledger!$E$2:$E$9,$A$36,Ledger!$→10.0
+  A37='生成艺术 HTML' | B37==COUNTIF(Ledger!$E$2:$E$9,$A$37)→1 | C37==SUMIF(Ledger!$E$2:$E$9,$A$37,Ledger!$F$2:$F$9→975.1455078125 | D37==IFERROR(SUMIF(Ledger!$E$2:$E$9,$A$37,Ledger!$→19.0
+  A38='SQLite 检索库' | B38==COUNTIF(Ledger!$E$2:$E$9,$A$38)→1 | C38==SUMIF(Ledger!$E$2:$E$9,$A$38,Ledger!$F$2:$F$9→292.0 | D38==IFERROR(SUMIF(Ledger!$E$2:$E$9,$A$38,Ledger!$→13.0
+  A39='幻灯片 PPTX' | B39==COUNTIF(Ledger!$E$2:$E$9,$A$39)→1 | C39==SUMIF(Ledger!$E$2:$E$9,$A$39,Ledger!$F$2:$F$9→47.7275390625 | D39==IFERROR(SUMIF(Ledger!$E$2:$E$9,$A$39,Ledger!$→10.0
+  A40='动画 GIF' | B40==COUNTIF(Ledger!$E$2:$E$9,$A$40)→1 | C40==SUMIF(Ledger!$E$2:$E$9,$A$40,Ledger!$F$2:$F$9→47.1611328125 | D40==IFERROR(SUMIF(Ledger!$E$2:$E$9,$A$40,Ledger!$→15.0
+  A41='3D 游戏 HTML' | B41==COUNTIF(Ledger!$E$2:$E$9,$A$41)→1 | C41==SUMIF(Ledger!$E$2:$E$9,$A$41,Ledger!$F$2:$F$9→733.02734375 | D41==IFERROR(SUMIF(Ledger!$E$2:$E$9,$A$41,Ledger!$→24.0
+  A42='审计报告 MD' | B42==COUNTIF(Ledger!$E$2:$E$9,$A$42)→1 | C42==SUMIF(Ledger!$E$2:$E$9,$A$42,Ledger!$F$2:$F$9→10.9833984375 | D42==IFERROR(SUMIF(Ledger!$E$2:$E$9,$A$42,Ledger!$→
+  A43='■ 留用结论'
+  A44='留用轮次' | B44==COUNTIF(Ledger!$P$2:$P$9,"留用*")→8 | C44==COUNTIF(Ledger!$P$2:$P$9,"留用*")→=COUNTIF(Ledger!$P$2:$P$9,"留用*")
+  A45='非留用轮次' | B45==COUNTIF(Ledger!$P$2:$P$9,"一般")+COUNTIF(Ledger→0.0 | C45==COUNTIF(Ledger!$P$2:$P$9,"一般")+COUNTIF(Ledger→=COUNTIF(Ledger!$P$2:$P$9,"一般")+COUNTIF(Ledger!$P$2:$P$9,"不推荐")
+  A46='本轮新装技能数' | B46==SUM(Ledger!$O$2:$O$9)→5.0 | C46==SUM(Ledger!$O$2:$O$9)→=SUM(Ledger!$O$2:$O$9)
+  A47='零安装轮次数' | B47==COUNTIF(Ledger!$O$2:$O$9,0)→3 | C47==COUNTIF(Ledger!$O$2:$O$9,0)→=COUNTIF(Ledger!$O$2:$O$9,0)
+== OOXML 部件 == 18 个文件；XML 非良构: []
+chart1.xml 含 barChart: True 含数值引用: False
