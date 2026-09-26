@@ -816,8 +816,8 @@
       ],
       "push": {
         "branch": "go-gin_react",
-        "result": "成功：远端 go-gin_react bafb21d..4712556（第 14 轮场景主提交 78 文件 / +25,512 行）",
-        "commit": "4712556（场景 + 记录）+ 本条收工审计提交",
+        "result": "成功：远端 go-gin_react bafb21d..4712556..8812eef..dbb1995（3 笔，均已推送并同步）",
+        "commit": "4712556（场景 78 文件 / +25,512 行）+ 8812eef（收工审计）+ dbb1995（README 说明补充）",
         "note": "git fetch origin go-gin_react → git rebase FETCH_HEAD → 普通 git push origin go-gin_react；未 --force、未 --no-verify、未碰 main、未改任何全局 git 配置，身份只用命令行内联 -c user.name=sunc-Q -c user.email=sunc-Q@users.noreply.github.com；全程走 SSH 键，命令行与文件里无 token/密钥（ADMIN_TOKEN 由 openssl rand 现场生成、只经环境变量注入，README/evidence 里只有占位符）；只 git add 本任务自己的路径，三个不属于本任务的未跟踪目录（clinic-appointment-desk / charity-donation-progress / recruitment-ats-pipeline）不提交不删除"
       }
     }
@@ -911,7 +911,8 @@
     "**注入靶子要放在真正接受自由文本的字段**（第 14 轮）：购票人字段白名单只收字母数字-_，`<img src=x onerror=alert(1)>` 被 400 挡下——那是校验生效而不是取证成功。先读一遍 domain 校验器，把载荷放进场次名称/场馆/备注这类长自由文本，其余字段给合规 ASCII。",
     "**改代码前先读调用点**（第 14 轮）：认定 App.tsx 把 tickets 对象直接渲染并动手改，随后发现上游 `res.tickets.map((t)=>t.code)` 已归一为字符串，白改一遍再回滚。同一份数据在「取值处」和「渲染处」只可能有一处转换。",
     "**校验代码与它的错误文案同源**（第 14 轮）：ValidPhone 只判长度 11，字段回显却写「1 开头（次位 3-9）」，用户照文案理解到的规则比实现严。补校验而不是松文案，并给表驱动用例钉住。",
-    "**脚本的用法串、头注释与 README 是同一份契约的三个副本**（第 14 轮）：把令牌从 argv 改成只走环境变量时只改了取值处，报错提示仍写着 `<SPA> <API> <ADMIN_TOKEN> [主题...]`，而 argv[3] 其实是 API 基址、主题从 argv[4] 起。改任何 CLI 契约后用 grep 扫 `用法|usage` 并与 README 的调用行对一遍参数个数。"
+    "**脚本的用法串、头注释与 README 是同一份契约的三个副本**（第 14 轮）：把令牌从 argv 改成只走环境变量时只改了取值处，报错提示仍写着 `<SPA> <API> <ADMIN_TOKEN> [主题...]`，而 argv[3] 其实是 API 基址、主题从 argv[4] 起。改任何 CLI 契约后用 grep 扫 `用法|usage` 并与 README 的调用行对一遍参数个数。",
+    "**取证日志「很短」可能是全绿的证据而不是被截断**（第 14 轮）：api-smoke 类脚本只在失败时逐条打印、跑通只回一行汇总，于是 evidence 里那份 37 字节的日志看起来像丢了内容。README 必须写清「全绿时 stdout 只有一行，逐条明细只打失败项」，否则下一轮会白花时间去「修复日志」。"
   ],
   "next_candidates": [
     "医院门诊排班与挂号",
