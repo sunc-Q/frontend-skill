@@ -28,7 +28,7 @@ export const TRIED = {
 
 /** Filled with the write-back-time value; the 补记 commit rewrites it from disk. */
 export const PUSH_TEXT =
-  '已推送 origin/main（两次提交：首轮写回 + 补记；github.com HTTPS 被 TLS 重置，走 SSH，host key 写入 gitignored LAB/.tmp 后随清理删除）';
+  '已提交并推送 git@github.com:sunc-Q/frontend-skill.git @ main：写回区间 62070f4..8ba7a5b（主体 commit 8ba7a5ba936613c72e2299266e1961cb00b58990，81 文件 9,511 插入 = 产物目录 76 件 + 报告 + state.json + work-log 末行 + skills/MANIFEST.json 与 skills/README.md 再生；补记 commit 紧随其后回填本字段与报告 §13 的完整区间，同样走 SSH——本机 github.com HTTPS 被 TLS 层重置，known_hosts 写入 gitignored 的 LAB/.tmp 并随收尾整体删除；命令与文件内无任何 token，提交身份用内联 -c user.name/user.email，全局 git 配置未改动）';
 
 export const RUN = {
   time: TRIED.time,

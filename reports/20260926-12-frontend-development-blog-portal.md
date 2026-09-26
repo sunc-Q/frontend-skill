@@ -416,8 +416,13 @@ C5 实测体积：2,286,020B / 2.18MB / 76 个文件   ← 改完该文案之后
 check-clean: 30/30 assertions passed
 ```
 
-- 写回区间：`PLACEHOLDER_PUSH_MAIN`
-- 补记区间：`PLACEHOLDER_PUSH_REFILL`
+- 写回区间：`62070f4..8ba7a5b`（主体 commit `8ba7a5b`：产物目录 76 件 + 本报告 + `state.json` +
+  work-log 末行 + `skills/MANIFEST.json`、`skills/README.md` 经 `node scripts/gen-skills-manifest.mjs`
+  再生——本轮 `frontend-development` 的 `used_in_rounds` 追加 `2026-09-26 12:00`，`台账_tried_total`
+  20→21；数字全部脚本现读，未手抄）
+- 补记区间：`8ba7a5b..PLACEHOLDER_PUSH_REFILL`（补记 commit 由 `scripts/ledger-refill.mjs` 触发，
+  回填 `artifact_size` / `cleanup` / `push` 三格 + 3 条清理期踩坑 + 6 条下一轮候选；它的哈希只能由
+  第三次「区间定稿」提交写出，这也是本轮留下该机制的自证：**任何指向自身的读数都必须晚于自身产生**）
 
 ## 14. 下一轮候选（已排入台账）
 
