@@ -1,0 +1,811 @@
+/* 丝绒影院售票亭：深红丝绒底、烫金描边、灯泡跑马边框。
+   全部颜色走这里一组变量，换主题只改变量与少数装饰性规则。 */
+:root {
+  --bg: #17070b;
+  --bg-2: #24101a;
+  --surface: #2b1220;
+  --surface-2: #371827;
+  --ink: #f6e7d8;
+  --ink-2: #c9a894;
+  --ink-3: #8d6c60;
+  --line: #6b4a2a;
+  --gold: #e5b968;
+  --gold-2: #a8762c;
+  --ok: #62c08c;
+  --warn: #e0a83c;
+  --bad: #e56a6a;
+  --info: #78b0d8;
+  --font-display: Georgia, 'Songti SC', 'Times New Roman', serif;
+  --font-body: Georgia, 'Songti SC', 'Times New Roman', serif;
+  --font-mono: 'Courier New', Courier, monospace;
+  --radius: 3px;
+  --radius-lg: 6px;
+  --shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
+  --gap: 14px;
+  --cell: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: radial-gradient(circle at 20% -10%, #40182a 0%, var(--bg) 62%);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h2,
+p,
+ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+.app {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 18px 40px;
+}
+
+/* ---- 顶栏：售票亭门脸，上下两道灯泡跑马 ---- */
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gap);
+  padding: 18px 18px;
+  margin: 18px 0 0;
+  border: 1px solid var(--gold-2);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.topbar::before,
+.topbar::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  height: 6px;
+  background-image: radial-gradient(circle, var(--gold) 2.4px, transparent 2.8px);
+  background-size: 22px 6px;
+  background-repeat: repeat-x;
+}
+
+.topbar::before {
+  top: -3px;
+}
+
+.topbar::after {
+  bottom: -3px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-right: auto;
+}
+
+.brand-text {
+  min-width: 0;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-size: 21px;
+  letter-spacing: 1.2px;
+  color: var(--gold);
+  text-transform: none;
+}
+
+.brand-sub {
+  color: var(--ink-3);
+  font-size: 12.5px;
+  letter-spacing: 0.4px;
+}
+
+.themes {
+  display: flex;
+  gap: 6px;
+}
+
+.theme-btn {
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.theme-btn:hover {
+  border-color: var(--gold);
+  color: var(--ink);
+}
+
+.theme-btn.is-on {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #2b1220;
+  font-weight: 700;
+}
+
+.token-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.token-label {
+  color: var(--ink-3);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.token-input {
+  width: 210px;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #1c0c14;
+  color: var(--ink);
+  letter-spacing: 2px;
+}
+
+/* ---- 页签：丝绒帘幕上的烫金字 ---- */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 18px 0 14px;
+  padding: 0 4px;
+  border-bottom: 2px solid var(--gold-2);
+}
+
+.tab {
+  padding: 9px 15px;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.tab.is-on {
+  background: var(--surface);
+  border-color: var(--gold-2);
+  color: var(--gold);
+}
+
+/* ---- KPI 带 ---- */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gap);
+  margin-bottom: 18px;
+}
+
+.kpi {
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold-2);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.kpi-label {
+  color: var(--ink-3);
+  font-size: 11.5px;
+  letter-spacing: 1.4px;
+}
+
+.kpi-value {
+  font-family: var(--font-display);
+  font-size: 26px;
+  line-height: 1.2;
+  color: var(--gold);
+}
+
+.kpi-foot {
+  color: var(--ink-2);
+  font-size: 12px;
+}
+
+.kpi-empty {
+  grid-column: 1 / -1;
+  padding: 22px;
+  text-align: center;
+  color: var(--ink-2);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.kpi-empty.is-err {
+  color: var(--bad);
+  border-color: var(--bad);
+}
+
+.identity {
+  grid-column: 1 / -1;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: #1c0c14;
+}
+
+.identity.is-ok {
+  border-color: var(--ok);
+}
+
+.identity.is-bad {
+  border-color: var(--bad);
+}
+
+.identity-title {
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: var(--ok);
+}
+
+.identity.is-bad .identity-title {
+  color: var(--bad);
+}
+
+.identity-note {
+  color: var(--ink-3);
+  font-size: 12px;
+}
+
+.identity-list {
+  margin-top: 6px;
+  color: var(--bad);
+  font-size: 12.5px;
+}
+
+.identity-list li {
+  padding-left: 14px;
+  position: relative;
+}
+
+.identity-list li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  color: var(--gold-2);
+}
+
+/* ---- 主体 ---- */
+.panel {
+  display: block;
+}
+
+.grid {
+  display: grid;
+  gap: var(--gap);
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card {
+  padding: 14px 16px 16px;
+  margin-bottom: var(--gap);
+  border: 1px solid var(--gold-2);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface) 42%);
+  box-shadow: var(--shadow);
+}
+
+.card-head {
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dotted var(--gold-2);
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 16.5px;
+  letter-spacing: 1.6px;
+  color: var(--gold);
+}
+
+.card-sub {
+  color: var(--ink-3);
+  font-size: 12px;
+}
+
+/* ---- 筛选与表单 ---- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-end;
+  margin-bottom: 12px;
+}
+
+.form {
+  display: grid;
+  gap: 10px;
+}
+
+.field {
+  display: grid;
+  gap: 4px;
+}
+
+.label {
+  color: var(--ink-3);
+  font-size: 11.5px;
+  letter-spacing: 1.4px;
+}
+
+.input,
+.select {
+  min-width: 120px;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #1c0c14;
+  color: var(--ink);
+}
+
+.input:focus,
+.select:focus,
+.token-input:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+
+.btn {
+  padding: 8px 14px;
+  border: 1px solid var(--gold-2);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #2b1220;
+  font-weight: 700;
+}
+
+.btn-danger {
+  border-color: var(--bad);
+  color: var(--bad);
+  background: transparent;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+/* ---- 表格：票台台账 ---- */
+.table {
+  margin-top: 4px;
+  font-size: 13.5px;
+}
+
+.table th {
+  padding: 8px 10px;
+  text-align: left;
+  color: var(--gold-2);
+  font-size: 11.5px;
+  letter-spacing: 1.4px;
+  border-bottom: 1px solid var(--gold-2);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 8px 10px;
+  border-bottom: 1px dotted var(--line);
+  vertical-align: top;
+}
+
+.table-dense th,
+.table-dense td {
+  padding: 5px 8px;
+  font-size: 12.5px;
+}
+
+.table tbody tr:hover {
+  background: #3a1a29;
+}
+
+.table tbody tr.is-sel {
+  background: #46202f;
+  outline: 1px solid var(--gold-2);
+  cursor: pointer;
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.94em;
+}
+
+.mute {
+  color: var(--ink-3);
+}
+
+.strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.strike {
+  color: var(--ink-3);
+  text-decoration: line-through;
+}
+
+/* ---- 状态标签 ---- */
+.tag {
+  display: inline-block;
+  padding: 1px 9px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  font-size: 11.5px;
+  letter-spacing: 1px;
+}
+
+.tag-ok {
+  color: var(--ok);
+}
+
+.tag-bad {
+  color: var(--bad);
+}
+
+.tag-warn {
+  color: var(--warn);
+}
+
+.tag-mute {
+  color: var(--ink-3);
+}
+
+.tag-info {
+  color: var(--info);
+}
+
+/* ---- 进度条 ---- */
+.cell-bar {
+  min-width: 150px;
+}
+
+.bar {
+  display: block;
+  position: relative;
+  height: 14px;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: repeating-linear-gradient(135deg, var(--gold) 0 6px, var(--gold-2) 6px 12px);
+}
+
+.bar-label {
+  position: absolute;
+  inset: 0;
+  padding-left: 8px;
+  font-size: 11px;
+  line-height: 14px;
+  color: #17070b;
+  font-family: var(--font-mono);
+}
+
+/* ---- 文案态 ---- */
+.empty {
+  padding: 18px;
+  text-align: center;
+  color: var(--ink-3);
+  font-style: italic;
+}
+
+.err,
+.ok {
+  padding: 7px 10px;
+  margin: 6px 0;
+  border-radius: var(--radius);
+  font-size: 13px;
+}
+
+.err {
+  color: var(--bad);
+  border: 1px solid var(--bad);
+  background: rgba(229, 106, 106, 0.08);
+}
+
+.ok {
+  color: var(--ok);
+  border: 1px solid var(--ok);
+  background: rgba(98, 192, 140, 0.08);
+}
+
+.err-code {
+  margin-left: 6px;
+  padding: 0 5px;
+  border: 1px solid currentColor;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.hint {
+  margin: 8px 0;
+  color: var(--ink-3);
+  font-size: 12.5px;
+  border-left: 2px solid var(--gold-2);
+  padding-left: 9px;
+}
+
+.fieldlist {
+  margin: 6px 0;
+  color: var(--bad);
+  font-size: 12.5px;
+}
+
+.fieldlist li {
+  padding-left: 13px;
+  position: relative;
+}
+
+.fieldlist li::before {
+  content: '✕';
+  position: absolute;
+  left: 0;
+}
+
+/* ---- 票价试算与存根 ---- */
+.calc {
+  margin-top: 6px;
+  padding: 10px 12px;
+  border: 1px dashed var(--gold-2);
+  border-radius: var(--radius);
+  background: #1c0c14;
+}
+
+.calc-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.calc-total {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid var(--line);
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.calc-note {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.receipt {
+  margin-top: 10px;
+}
+
+.lookup {
+  margin-top: 10px;
+}
+
+/* 票根：中间一条撕口虚线 */
+.stub {
+  position: relative;
+  padding: 10px 12px;
+  border: 1px solid var(--gold-2);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.stub::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 34px;
+  border-top: 1px dashed var(--line);
+}
+
+.stub-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 13px;
+  padding: 2px 0;
+}
+
+.stub-k {
+  color: var(--ink-3);
+  letter-spacing: 1.2px;
+  font-size: 11.5px;
+}
+
+.stub-v {
+  text-align: right;
+  color: var(--ink);
+}
+
+/* ---- 验票流水 ---- */
+.log {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #1c0c14;
+}
+
+.log-title {
+  color: var(--gold-2);
+  font-size: 11.5px;
+  letter-spacing: 1.4px;
+  margin-bottom: 6px;
+}
+
+.log-item {
+  font-size: 12.5px;
+  padding: 2px 0;
+}
+
+.log-ok {
+  color: var(--ok);
+}
+
+.log-err {
+  color: var(--bad);
+}
+
+/* ---- 分段切换与分页 ---- */
+.seg {
+  display: inline-flex;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #1c0c14;
+}
+
+.seg-btn {
+  padding: 5px 14px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.seg-btn.is-on {
+  background: var(--gold);
+  color: #2b1220;
+  font-weight: 700;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.page-info {
+  color: var(--ink-3);
+  font-size: 12.5px;
+}
+
+.page-extra {
+  margin-left: auto;
+  color: var(--ink-3);
+  font-size: 12px;
+}
+
+/* ---- 品牌图形：售票房票根 ---- */
+.swatch {
+  width: 30px;
+  height: 30px;
+  color: var(--gold);
+  flex: none;
+}
+
+.swatch-body {
+  fill: currentColor;
+  opacity: 0.9;
+}
+
+.swatch-line {
+  stroke: #2b1220;
+  stroke-width: 1.4;
+  stroke-dasharray: 2 2;
+  fill: none;
+}
+
+.swatch-dot {
+  fill: #2b1220;
+}
+
+/* ---- 页脚 ---- */
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-3);
+  font-size: 12px;
+}
+
+.foot-right {
+  margin-left: auto;
+  color: var(--gold-2);
+  letter-spacing: 1.2px;
+}
+
+@media (max-width: 900px) {
+  .kpis,
+  .grid-2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

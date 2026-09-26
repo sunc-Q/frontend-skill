@@ -1,0 +1,50 @@
+PASS DOM同构/overview  velvet=4087565968:2083/on2 nautical=4087565968:2083/on2 typewriter=4087565968:2083/on2
+PASS DOM同构/events  velvet=624887435:3356/on2 nautical=624887435:3356/on2 typewriter=624887435:3356/on2
+PASS DOM同构/sell  velvet=209439492:1876/on2 nautical=209439492:1876/on2 typewriter=209439492:1876/on2
+PASS DOM同构/gate  velvet=1831319799:1879/on2 nautical=1831319799:1879/on2 typewriter=1831319799:1879/on2
+PASS DOM同构/refund  velvet=3022980838:1622/on2 nautical=3022980838:1622/on2 typewriter=3022980838:1622/on2
+PASS DOM同构/ledger  velvet=722685390:2267/on3 nautical=722685390:2267/on3 typewriter=722685390:2267/on3
+PASS 数据同构/overview  velvet:19/8/6/3/夜航班 · 巡演收尾场ETLIVE01/¥38.23万/对账恒等式全绿/金额一律由后端按分计算， nautical:19/8/6/3/夜航班 · 巡演收尾场ETLIVE01/¥38.23万/对账恒等式全绿/金额一律由后端按分计算， typewriter:19/8/6/3/夜航班 · 巡演收尾场ETLIVE01/¥38.23万/对账恒等式全绿/金额一律由后端按分计算，
+PASS 数据同构/events  velvet:11/8/6/3/秋声四重奏 · 音乐厅之夜ET260920A · 城市音乐厅 · 大厅 · 音乐会/¥38.23万/对账恒等式全绿/金额一律由后端按分计算， nautical:11/8/6/3/秋声四重奏 · 音乐厅之夜ET260920A · 城市音乐厅 · 大厅 · 音乐会/¥38.23万/对账恒等式全绿/金额一律由后端按分计算， typewriter:11/8/6/3/秋声四重奏 · 音乐厅之夜ET260920A · 城市音乐厅 · 大厅 · 音乐会/¥38.23万/对账恒等式全绿/金额一律由后端按分计算，
+PASS 数据同构/sell  velvet:0/8/6/3//¥38.23万/对账恒等式全绿/金额一律由后端按分计算， nautical:0/8/6/3//¥38.23万/对账恒等式全绿/金额一律由后端按分计算， typewriter:0/8/6/3//¥38.23万/对账恒等式全绿/金额一律由后端按分计算，
+PASS 数据同构/gate  velvet:12/8/6/3/TKLIVE0105302/¥38.23万/对账恒等式全绿/金额一律由后端按分计算， nautical:12/8/6/3/TKLIVE0105302/¥38.23万/对账恒等式全绿/金额一律由后端按分计算， typewriter:12/8/6/3/TKLIVE0105302/¥38.23万/对账恒等式全绿/金额一律由后端按分计算，
+PASS 数据同构/refund  velvet:10/8/6/3/ET260926-011/¥38.23万/对账恒等式全绿/金额一律由后端按分计算， nautical:10/8/6/3/ET260926-011/¥38.23万/对账恒等式全绿/金额一律由后端按分计算， typewriter:10/8/6/3/ET260926-011/¥38.23万/对账恒等式全绿/金额一律由后端按分计算，
+PASS 数据同构/ledger  velvet:12/8/6/3/ET260926-011/¥38.23万/对账恒等式全绿/金额一律由后端按分计算， nautical:12/8/6/3/ET260926-011/¥38.23万/对账恒等式全绿/金额一律由后端按分计算， typewriter:12/8/6/3/ET260926-011/¥38.23万/对账恒等式全绿/金额一律由后端按分计算，
+PASS 零外链资源
+PASS 页面无 .err 提示
+PASS 主题 CSS 真的注入了 <style>  velvet:12298B nautical:13551B typewriter:13138B
+PASS 无 JS 异常与控制台报错
+PASS 自比反证/velvet  44 项属性（少于 30 说明探针取空了）
+PASS 自比一致/velvet/overview  44 项属性
+PASS 自比一致/velvet/events  55 项属性
+PASS 自比一致/velvet/sell  44 项属性
+PASS 自比一致/velvet/gate  50 项属性
+PASS 自比一致/velvet/refund  49 项属性
+PASS 自比一致/velvet/ledger  49 项属性
+PASS 自比反证/nautical  44 项属性（少于 30 说明探针取空了）
+PASS 自比一致/nautical/overview  44 项属性
+PASS 自比一致/nautical/events  55 项属性
+PASS 自比一致/nautical/sell  44 项属性
+PASS 自比一致/nautical/gate  50 项属性
+PASS 自比一致/nautical/refund  49 项属性
+PASS 自比一致/nautical/ledger  49 项属性
+PASS 自比反证/typewriter  44 项属性（少于 30 说明探针取空了）
+PASS 自比一致/typewriter/overview  44 项属性
+PASS 自比一致/typewriter/events  55 项属性
+PASS 自比一致/typewriter/sell  44 项属性
+PASS 自比一致/typewriter/gate  50 项属性
+PASS 自比一致/typewriter/refund  49 项属性
+PASS 自比一致/typewriter/ledger  49 项属性
+PASS 两两差异≥3（最弱页签 overview）：velvet×nautical  最少 31 项
+     velvet×nautical 差异示例：bodyBg.backgroundColor=rgba(0, 0, 0, 0) ↔ bodyBg.backgroundColor=rgb(6, 34, 49)  |  bodyBg.backgroundImage=radial-gradient(circle at 20% -10%, rgb(64, 24, 42) 0%, rgb(23, 7, 11) 62%) ↔ bodyBg.backgroundImage=repeating-linear-gradient(0deg, rgba(100, 200, 255, 0.09) 0px, rgba(100, 200, 255, 0.09) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 24px), repeating-linear-gradient(90deg, rgba(100, 200, 255, 0.09) 0px, rgba(100, 200, 255, 0.09) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 24px), radial-gradient(circle at 78% 8%, rgba(240, 180, 41, 0.13) 0px, rgba(240, 180, 41, 0.13) 12%, rgba(0, 0, 0, 0) 13%), radial-gradient(at 12% 88%, rgba(63, 208, 164, 0.1) 0px, rgba(63, 208, 164, 0.1) 22%, rgba(0, 0, 0, 0) 23%)  |  bodyBg.color=rgb(246, 231, 216) ↔ bodyBg.color=rgb(232, 244, 242)  |  bodyBg.fontFamily=Georgia, "Songti SC", "Times New Roman", serif ↔ bodyBg.fontFamily="Avenir Next", "Helvetica Neue", "PingFang SC", sans-serif  |  shell.maxWidth=1180px ↔ shell.maxWidth=1240px
+PASS 两两差异≥3（最弱页签 overview）：velvet×typewriter  最少 36 项
+     velvet×typewriter 差异示例：bodyBg.backgroundColor=rgba(0, 0, 0, 0) ↔ bodyBg.backgroundColor=rgb(239, 233, 220)  |  bodyBg.backgroundImage=radial-gradient(circle at 20% -10%, rgb(64, 24, 42) 0%, rgb(23, 7, 11) 62%) ↔ bodyBg.backgroundImage=repeating-linear-gradient(rgba(29, 28, 26, 0.055) 0px, rgba(29, 28, 26, 0.055) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 28px), linear-gradient(90deg, rgba(155, 44, 44, 0.22) 0px, rgba(155, 44, 44, 0.22) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(rgb(230, 223, 207), rgb(239, 233, 220))  |  bodyBg.color=rgb(246, 231, 216) ↔ bodyBg.color=rgb(29, 28, 26)  |  bodyBg.fontFamily=Georgia, "Songti SC", "Times New Roman", serif ↔ bodyBg.fontFamily="Courier New", Courier, "Songti SC", monospace  |  bodyBg.fontSize=15px ↔ bodyBg.fontSize=14px
+PASS 两两差异≥3（最弱页签 sell）：nautical×typewriter  最少 37 项
+     nautical×typewriter 差异示例：bodyBg.backgroundColor=rgb(6, 34, 49) ↔ bodyBg.backgroundColor=rgb(239, 233, 220)  |  bodyBg.backgroundImage=repeating-linear-gradient(0deg, rgba(100, 200, 255, 0.09) 0px, rgba(100, 200, 255, 0.09) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 24px), repeating-linear-gradient(90deg, rgba(100, 200, 255, 0.09) 0px, rgba(100, 200, 255, 0.09) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 24px), radial-gradient(circle at 78% 8%, rgba(240, 180, 41, 0.13) 0px, rgba(240, 180, 41, 0.13) 12%, rgba(0, 0, 0, 0) 13%), radial-gradient(at 12% 88%, rgba(63, 208, 164, 0.1) 0px, rgba(63, 208, 164, 0.1) 22%, rgba(0, 0, 0, 0) 23%) ↔ bodyBg.backgroundImage=repeating-linear-gradient(rgba(29, 28, 26, 0.055) 0px, rgba(29, 28, 26, 0.055) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 28px), linear-gradient(90deg, rgba(155, 44, 44, 0.22) 0px, rgba(155, 44, 44, 0.22) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(rgb(230, 223, 207), rgb(239, 233, 220))  |  bodyBg.color=rgb(232, 244, 242) ↔ bodyBg.color=rgb(29, 28, 26)  |  bodyBg.fontFamily="Avenir Next", "Helvetica Neue", "PingFang SC", sans-serif ↔ bodyBg.fontFamily="Courier New", Courier, "Songti SC", monospace  |  bodyBg.fontSize=15px ↔ bodyBg.fontSize=14px
+PASS class 全集同构  76 个 class
+PASS 页面有 class 可测  76 个
+PASS CSS 全覆盖：velvet  76 类全部命中
+PASS CSS 全覆盖：nautical  76 类全部命中
+PASS CSS 全覆盖：typewriter  76 类全部命中
+
+三风格取证全部通过

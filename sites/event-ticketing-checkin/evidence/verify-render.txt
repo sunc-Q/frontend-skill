@@ -1,0 +1,47 @@
+靶子就绪：场次 ETXSS212650 / 订单 ET260926-003（ETLIVE01·TTLIVE011）/ 票 TK260926-003-1
+
+PASS velvet: 页面加载  data-theme=velvet
+PASS velvet: 场次列表已加载
+PASS velvet: 按编号搜到来自接口的靶子场次  冒烟靶子 <img src=x onerror=alert(1)>ETXSS212650 ·
+PASS velvet: 恶意串作搜索词按字面命中且每行都是靶子  1 行 / 冒烟靶子 <img src=x onerror=alert(1)>ETXSS21
+PASS velvet: 场次详情小票显示了接口里的恶意文本  备注/演出方文本已出现
+PASS velvet: 恶意串没有生成任何可执行节点  img=0 script=0 iframe=0 object=0 embed=0 onerror属性=0
+PASS velvet: 恶意串存在于纯文本节点  3 个文本节点 / 首个 "冒烟靶子 <img src=x onerror=alert(1)>"
+PASS velvet: 该节点 innerHTML 是转义后的文本  冒烟靶子 &lt;img src=x onerror=alert(1)&gt;
+PASS velvet: 台账列表已加载
+PASS velvet: 购票人按字面命中且只 1 行  ET260926-003夜航班 · 巡演收尾场预售站席SMOKE212650 1
+PASS velvet: 命中行的订单号就是接口返回的那个  ET260926-003
+PASS velvet: 票券详情小票显示接口里的购票人  TK260926-003-1
+PASS velvet: 无跨源资源请求  全部同源
+PASS velvet: 无 JS 异常与控制台报错
+PASS nautical: 页面加载  data-theme=nautical
+PASS nautical: 场次列表已加载
+PASS nautical: 按编号搜到来自接口的靶子场次  冒烟靶子 <img src=x onerror=alert(1)>ETXSS212650 ·
+PASS nautical: 恶意串作搜索词按字面命中且每行都是靶子  1 行 / 冒烟靶子 <img src=x onerror=alert(1)>ETXSS21
+PASS nautical: 场次详情小票显示了接口里的恶意文本  备注/演出方文本已出现
+PASS nautical: 恶意串没有生成任何可执行节点  img=0 script=0 iframe=0 object=0 embed=0 onerror属性=0
+PASS nautical: 恶意串存在于纯文本节点  3 个文本节点 / 首个 "冒烟靶子 <img src=x onerror=alert(1)>"
+PASS nautical: 该节点 innerHTML 是转义后的文本  冒烟靶子 &lt;img src=x onerror=alert(1)&gt;
+PASS nautical: 台账列表已加载
+PASS nautical: 购票人按字面命中且只 1 行  ET260926-003夜航班 · 巡演收尾场预售站席SMOKE212650 1
+PASS nautical: 命中行的订单号就是接口返回的那个  ET260926-003
+PASS nautical: 票券详情小票显示接口里的购票人  TK260926-003-1
+PASS nautical: 无跨源资源请求  全部同源
+PASS nautical: 无 JS 异常与控制台报错
+PASS typewriter: 页面加载  data-theme=typewriter
+PASS typewriter: 场次列表已加载
+PASS typewriter: 按编号搜到来自接口的靶子场次  冒烟靶子 <img src=x onerror=alert(1)>ETXSS212650 ·
+PASS typewriter: 恶意串作搜索词按字面命中且每行都是靶子  1 行 / 冒烟靶子 <img src=x onerror=alert(1)>ETXSS21
+PASS typewriter: 场次详情小票显示了接口里的恶意文本  备注/演出方文本已出现
+PASS typewriter: 恶意串没有生成任何可执行节点  img=0 script=0 iframe=0 object=0 embed=0 onerror属性=0
+PASS typewriter: 恶意串存在于纯文本节点  3 个文本节点 / 首个 "冒烟靶子 <img src=x onerror=alert(1)>"
+PASS typewriter: 该节点 innerHTML 是转义后的文本  冒烟靶子 &lt;img src=x onerror=alert(1)&gt;
+PASS typewriter: 台账列表已加载
+PASS typewriter: 购票人按字面命中且只 1 行  ET260926-003夜航班 · 巡演收尾场预售站席SMOKE212650 1
+PASS typewriter: 命中行的订单号就是接口返回的那个  ET260926-003
+PASS typewriter: 票券详情小票显示接口里的购票人  TK260926-003-1
+PASS typewriter: 无跨源资源请求  全部同源
+PASS typewriter: 无 JS 异常与控制台报错
+
+靶子善后：close=200（场次 ETXSS212650 已关闸留档，订单 ET260926-003 保留为审计记录）
+渲染断言：42 通过 / 0 失败

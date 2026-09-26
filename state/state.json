@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T15:45:00+08:00",
+  "updated": "2026-09-26T17:50:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -167,6 +167,19 @@
       "result": "成功：3 表（categories/listings/offers）+ 6 读 3 写（单 ADMIN_TOKEN，503·401·403 三层 fail-closed）+ 挂单四态机 available→reserved→sold／withdrawn、出价六态机 pending→accepted/rejected/expired/outbid + 加价阶梯 MinIncrementCent=2000 与出价带 floor≤amount≤asking-1 + OfferTTL=24h + best_offer_cent 一律按「live pending 的 MAX」重算（不跟新单走）+ 三条 GMV 恒等式（Sold+Reserved==Deals、GmvCent==Σby_category.gmv_cent、Σby_category.listings==ListingsTotal）由 /api/metrics 自检并回显 identity_ok；留言与卖家名全程只当文本，页面零 innerHTML。go build/vet/test 全绿（23 Test，表驱动 ≥3）；tsc 0 错、vite build 287,621B；api-smoke **pass=123 fail=0**（鉴权矩阵/状态机 409 全分支/11 个字段边界/40KB→413/CORS 精确 loopback/CSP/56 条 4xx 契约 + 泄露总扫）；style-verify 双托管全绿（39 项计算样式两两互斥 36/31/31、自比反证 0、71 个 class 三套 CSS 全覆盖、DOM 同构 853713233/6085、零外链）；render-probe **pass=30 fail=0**（真浏览器里 <img src=x onerror=alert(1)> 与 a' OR '1'='1 都只成文本节点，#root 内 img/script/iframe/object/embed 全 0）",
       "code_dir": "sites/secondhand-marketplace/{backend,web,scripts}",
       "artifact_dir": "sites/secondhand-marketplace/{web/dist,preview,evidence}"
+    },
+    {
+      "time": "2026-09-26T17:45:00+08:00",
+      "scenario": "灯塔票务 · 本地活动票务与核销台（入场窗口与退票留存）",
+      "slug": "event-ticketing-checkin",
+      "styles": [
+        "丝绒影院售票亭",
+        "航海图罗盘",
+        "老式打字机稿件"
+      ],
+      "result": "成功：4 表（events/ticket_types/orders/tickets，票面由订单派生）+ 7 读 5 写接口（单 ADMIN_TOKEN，503·401·403 三层 fail-closed）+ 三张状态机（场次 draft→on_sale→closed／cancelled、票档 open↔paused、订单 pending→paid→refunded／cancelled）与两条判定优先级契约（核销：入场窗口先于票态；退票：订单态→票态→截止）；金额分与折扣万分比全整型，8 条恒等式由 /api/stats 自检回显 identity_ok/identity_issues[]。go gofmt/build/vet/test 全绿（3 包 31 个 Test）；tsc 0 错、vite build 307,974B；api-smoke pass=327 fail=0（含第二个无令牌实例的 503 段）；render-probe pass=42 fail=0（真浏览器里靶子字段只成文本、#root 内 img/script/iframe/object/embed/onerror 全 0、零跨源、零 console 报错）；style-evidence 45 项 ×（dist + preview）两种托管全 PASS（两两互异 31/36/37、自比反证 0、76 个 class 三份 CSS 全覆盖）。场景 3.0M / 75 文件",
+      "code_dir": "sites/event-ticketing-checkin/{backend,web,scripts}",
+      "artifact_dir": "sites/event-ticketing-checkin/{web/dist,preview,evidence}"
     }
   ],
   "used_scenarios": [
@@ -182,7 +195,8 @@
     "auto-repair-workorder",
     "freight-waybill-tracking",
     "fleet-charging-ops",
-    "secondhand-marketplace"
+    "secondhand-marketplace",
+    "event-ticketing-checkin"
   ],
   "used_styles": [
     "瑞士网格",
@@ -223,7 +237,10 @@
     "植物标本图鉴版画风",
     "地铁线路图导视风",
     "旧货手写价签风",
-    "黑胶唱片封套风"
+    "黑胶唱片封套风",
+    "丝绒影院售票亭",
+    "航海图罗盘",
+    "老式打字机稿件"
   ],
   "runs": [
     {
@@ -742,6 +759,65 @@
         "commit": "1d4fc5a（61 文件 / +18,165 行）+ 本条收工审计提交",
         "note": "git ls-remote 见远端 go-gin_react 已在 7b0c7f0（第 12 轮补，正是本地 HEAD 的父）→ git fetch origin go-gin_react → git rebase FETCH_HEAD 返回 up to date（无改写、无冲突）→ git push origin go-gin_react，远端 7b0c7f0..1d4fc5a；提交身份用命令行内联 -c user.name/-c user.email（未改任何全局 git 配置）；无 --force、无 --no-verify、未碰 main；只 git add 自己的 4 条路径（绝不 add -A），git status 余 3 项全是不属于本任务的未跟踪目录；令牌只经 argv 注入，staged diff 正则扫 secret/token 命中 0，api-smoke.mjs 用法注释里的示例令牌已改成 $ADMIN_TOKEN 占位"
       }
+    },
+    {
+      "id": "20260926-17",
+      "slug": "event-ticketing-checkin",
+      "started": "2026-09-26T15:50:00+08:00",
+      "finished": "2026-09-26T17:50:00+08:00",
+      "scenario": "灯塔票务 · 本地活动票务与核销台（入场窗口与退票留存）",
+      "styles": [
+        "丝绒影院售票亭",
+        "航海图罗盘",
+        "老式打字机稿件"
+      ],
+      "template_created": false,
+      "disk": {
+        "df_k_avail_before": 15150064,
+        "df_k_avail_after": 15145244,
+        "lab_total_bytes_human": "112M（其中 .git 约 16M；sites/recruitment-ats-pipeline 65M 是别的会话产物未动）",
+        "scenario_dir_human": "3.0M / 75 文件（上限 5MB）：backend 232K + web(含 dist 308K) 496K + preview 912K + scripts 88K + evidence 1.3M（三张整页截图）",
+        "note": "开工 df 可用 15,150,064KB≈14.4GiB（85% 已用），高于 1.5GiB 熔断线；收工 15,145,244KB≈14.4GiB。删除：web/node_modules、/tmp 下本轮全部临时目录（etk-* 二进制/库三件套/日志/探针 JSON/截图）与 evidence/chrome-profile。共享缓存（~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache）未动，全程无 go clean -cache/-testcache。本轮端口 :18901-:18904/:18907/:18908 + CDP :19833-:19862，逐个 lsof→PID→ps -o command= 核对命令行后 kill，收工 lsof 复核监听数 0（无残留 headless Chrome）"
+      },
+      "volume": {
+        "go_files": 16,
+        "go_test_files": 3,
+        "test_packages_ok": 3,
+        "test_functions": 31,
+        "endpoints": 12,
+        "read_endpoints": 7,
+        "admin_writes": 5,
+        "tables": 4,
+        "seed_rows": "8 场演出(1 草稿·4 在售·2 已散场·1 取消) / 20 票档 / 约 60 单 / 150 张票（随机源 20260926，票态与核销闸口、退款金额全部调同一套判定函数算出）",
+        "frontend_src_files": 10,
+        "theme_css_files": 3,
+        "theme_css_bytes": "velvet 12,298 / nautical 13,551 / typewriter 13,138",
+        "dist_bundle_bytes": 307974,
+        "preview_files": 3,
+        "preview_each_bytes": "308,576 / 308,578 / 308,586",
+        "api_smoke": "pass=327 fail=0（九节，含无令牌第二实例的 503 段、售票→核销→退票→散场因果链、退款后配额回补、全量响应泄露扫描、写后对账仍 identity_ok）",
+        "ui_check": "render-probe pass=42 fail=0（×3 主题：现场造靶子场次→按编号/购票人/票号在 UI 里查得到→恶意文本只成文本节点→资源全同源→console 0 错）",
+        "style_diff": "45 项断言 ×（dist 托管 + preview 托管）两种托管全 PASS：两两互异 31/36/37 项、自比反证 0、76 class 三份 CSS 全覆盖、零外链、DOM 同构"
+      },
+      "defects_found": [
+        "domain.ValidPhone 只判「11 位数字」，而 query.go 的字段错误文案承诺「1 开头（次位 3-9）」——实现比文案松。补校验为 1[3-9] 并让文案与断言同源",
+        "render-probe 从上一轮场景继承（选择器、临时路径、handoff JSON 全是旧契约），第一次跑满屏 null——跨轮复用的取证脚本必须按本轮 DOM/接口契约重写",
+        "注入靶子放错字段：购票人白名单只收字母数字-_，载荷被 400 挡在门外（这是校验生效不是漏洞），靶子改放真正接受自由文本的场次名称/场馆/备注",
+        "tickets 数组元素是对象，取 code 写成元素本身得到 [object Object]，进而 404 + 两条 console noise 假失败",
+        "列表断言「存在含目标值的行」在筛选未生效时立刻通过；改成 settledOn（恰好 1 行且含目标值）。同页还挂两张 .table，探针必须限定第一张",
+        "fail-closed 段打到主实例（helper 闭包绑 base）拿到 401 而不是 503，期望码还写成未实现的 admin_disabled——负向鉴权探针要自带 base 与真实错误码",
+        "误改：以为 App.tsx 直接渲染 tickets 对象，改完发现上游已 .map(t=>t.code) 归一为字符串，回滚。改代码前先读调用点"
+      ],
+      "environment": [
+        "本轮 Bash 工具多次返回 `Tool execution failed: [unknown]`（同一命令重试即成功），node-repl MCP 作为兜底 shell 查过一次监听表；一次工具报错不等于业务失败",
+        "三主题取证走「常驻 headless Chrome + Node 内置 WebSocket 自写 CDP」；Chrome CLI --screenshot 循环在第二个主题卡死，弃用"
+      ],
+      "push": {
+        "branch": "go-gin_react",
+        "result": "见 note（本条哈希由下一轮按 git log 实测校正）",
+        "commit": "第 14 轮场景主提交 + 本记录回写提交",
+        "note": "git fetch origin go-gin_react → git rebase FETCH_HEAD → 普通 git push origin go-gin_react；未 --force、未 --no-verify、未碰 main、未改任何全局 git 配置，身份只用命令行内联 -c user.name=sunc-Q -c user.email=sunc-Q@users.noreply.github.com；全程走 SSH 键，命令行与文件里无 token/密钥（ADMIN_TOKEN 由 openssl rand 现场生成、只经环境变量注入，README/evidence 里只有占位符）；只 git add 本任务自己的路径，三个不属于本任务的未跟踪目录（clinic-appointment-desk / charity-donation-progress / recruitment-ats-pipeline）不提交不删除"
+      }
     }
   ],
   "environment_notes": [
@@ -826,7 +902,13 @@
     "**CSS 覆盖断言：页面 class 集合必须三份主题都命中**（`[...new Set([...document.querySelectorAll('#root *')].flatMap(e=>[...e.classList]))].sort()`）。漏写规则的元素掉回浏览器默认值，计算样式互斥统计照样充足、截图也不难看，只有这条抓得到；配套「同主题自比必须 0 差异」的反证，防止 diff 计数器自己出错。",
     "**gofmt -l 要放进每轮收工复跑**：手写注释对齐极易不合 gofmt，而 build/vet/test 全绿不会提示；`gofmt -w` 后用 `go test -count=1 ./...` 重跑确认。",
     "**Go 的 CSP 与三风格注入方式互相约束**：`?raw` 把主题 CSS 在运行时注进 `<style>`，`style-src` 必须留 `'unsafe-inline'`；`script-src 'self'` 收紧后 SPA 仍能跑，别顺手把 style 也收紧，否则三主题同时变裸样式而接口全绿。",
-    "**React 受控输入的无头驱动写法**：`Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set.call(el,v)` 再 `dispatchEvent(new Event('input',{bubbles:true}))`，直接赋 `el.value` 不会进 state。"
+    "**React 受控输入的无头驱动写法**：`Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set.call(el,v)` 再 `dispatchEvent(new Event('input',{bubbles:true}))`，直接赋 `el.value` 不会进 state。",
+    "**跨轮复用的取证脚本必须重写，不能只改基址**（第 14 轮）：render-probe.mjs 带着上一轮的选择器与临时路径（#f-q / .detail-main / /tmp/fleaprobe / handoff JSON）跑起来满屏 null，看起来像前端坏了。开工先 grep 一遍脚本里的旧 DOM 常量与旧 slug。",
+    "**异步筛选的列表断言要等「恰好 1 行且含目标值」，而不是「存在含目标值的行」**（第 14 轮，第 10 轮同类复发）：输入注入后 React 还没重渲染，旧表格立刻满足「有行含该串」，于是把上一份数据当证据。同一页面可能挂两张 .table（列表 + 详情子表），探针必须限定 `[...document.querySelectorAll(\".table\")][0]`。",
+    "**负向鉴权探针必须自己绑定 base**（第 14 轮）：fail-closed 的 503 段复用了主实例的 fetch 闭包，请求带着「无 Authorization」打到有令牌的实例 → 401，且期望码写成没实现的 admin_disabled。规则：每节断言用自己那一对 (base, helper)，期望码以 domain 常量为源。",
+    "**注入靶子要放在真正接受自由文本的字段**（第 14 轮）：购票人字段白名单只收字母数字-_，`<img src=x onerror=alert(1)>` 被 400 挡下——那是校验生效而不是取证成功。先读一遍 domain 校验器，把载荷放进场次名称/场馆/备注这类长自由文本，其余字段给合规 ASCII。",
+    "**改代码前先读调用点**（第 14 轮）：认定 App.tsx 把 tickets 对象直接渲染并动手改，随后发现上游 `res.tickets.map((t)=>t.code)` 已归一为字符串，白改一遍再回滚。同一份数据在「取值处」和「渲染处」只可能有一处转换。",
+    "**校验代码与它的错误文案同源**（第 14 轮）：ValidPhone 只判长度 11，字段回显却写「1 开头（次位 3-9）」，用户照文案理解到的规则比实现严。补校验而不是松文案，并给表驱动用例钉住。"
   ],
   "next_candidates": [
     "医院门诊排班与挂号",
@@ -849,15 +931,12 @@
     "和纸浮世绘",
     "像素机街机 CRT",
     "包豪斯纺织样卡",
-    "航海图罗盘",
     "医用腕带标签",
     "旧报纸分类广告栏",
     "实验室玻璃器皿白板",
-    "丝绒影院售票亭",
     "铸铁锅菜谱卡片",
     "邮政邮戳与航空信封",
     "渔港拍卖锣声板",
-    "老式打字机稿件",
     "铁路客票硬板票"
   ],
   "backlog": [
@@ -893,6 +972,11 @@
     "fleet-charging-ops：价目规则的日类型与六段窗口写死在 seed.go，没有规则变更审计表；已结算会话的 segments_json 是当时快照（口径正确），但无法回答「上周这一度电按哪版价目算的」。",
     "fleet-charging-ops：超占费 `OverstayCentsPerMin=8` 与 360 分钟封顶是 domain 常量，未按桩型/时段差异化；要做「快充超占更贵」需提升为配置表 + Bearer 写接口。",
     "fleet-charging-ops：/api/stats 每次全表聚合（14 天趋势 + 桩位矩阵 + 三条恒等式全表自检），153 单无感；上万单需日汇总表 + 对账任务（与第 10/11 轮同类遗留合并）。",
-    "templates/go-gin-react：**第 6 次**现场重写同一批工具（api-smoke/run-smoke/ui-check/style-probe/style-diff/style-shoot/inline-preview/serve-static/derive-themes）。本轮它们已经稳定到可以直接拷：建议把 9 个脚本 + base.css 的 98-token 约定固化进模板骨架，并附一份「新场景只需改业务常量」的清单（含：别带上轮注释——本轮 base.css/models.go 就残留了「运单/线路队」）。"
+    "templates/go-gin-react：**第 6 次**现场重写同一批工具（api-smoke/run-smoke/ui-check/style-probe/style-diff/style-shoot/inline-preview/serve-static/derive-themes）。本轮它们已经稳定到可以直接拷：建议把 9 个脚本 + base.css 的 98-token 约定固化进模板骨架，并附一份「新场景只需改业务常量」的清单（含：别带上轮注释——本轮 base.css/models.go 就残留了「运单/线路队」）。",
+    "event-ticketing-checkin：场次状态迁移（open/close/cancel）与票档停售没有变更审计表，cancelled 场次的退款责任只能从订单状态反推；若做「运营改口径」需加 audit 表 + Bearer 写接口。",
+    "event-ticketing-checkin：入场窗口（开门/开演/迟到宽限）是场次字段，但早鸟立减万分比、服务费与退票留存比例写死在 seed/domain 常量里，没有促销/费率配置表；换一套定价要改代码。",
+    "event-ticketing-checkin：订单号与票号流水靠事务内 `code LIKE` 计数 + 冲突重试，安全前提是 SetMaxOpenConns(1) 单写者；放开多连接或换 PG/MySQL 前必须改序列表/行锁（与第 11/12/13 轮同类遗留合并）。",
+    "event-ticketing-checkin：/api/stats 每次全表聚合（8 条恒等式 + 14 天趋势 + 渠道分组），60 单/150 票无感；上万票需日汇总表 + 对账任务（与第 10/11/12/13 轮同类遗留合并）。",
+    "templates/go-gin-react：**第 7 次**现场重写同一批取证工具（api-smoke.mjs / render-probe.mjs / style-evidence.mjs + style-probe.js / inline-preview.mjs / 自写 CDP 客户端），第 14 轮因此多花一整段调试时间——下一轮开工第一步应把上一轮 scripts/ 拷进模板再按业务常量改，而不是原地改旧脚本。"
   ]
 }

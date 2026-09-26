@@ -1,0 +1,842 @@
+/* 老式打字机稿件：机械打字、等宽铅字、回格线与色带印痕。
+   与前两份同一套选择器，只换取值：纸白底 + 墨黑字 + 直角 + 色带三色。 */
+:root {
+  --bg: #efe9dc;
+  --bg-2: #e6dfcf;
+  --surface: #f7f3ea;
+  --surface-2: #fbf8f1;
+  --ink: #1d1c1a;
+  --ink-2: #4a4741;
+  --ink-3: #7d776c;
+  --line: #b9b1a1;
+  --ribbon-black: #23211f;
+  --ribbon-red: #9b2c2c;
+  --ribbon-blue: #2f4858;
+  --ok: #2f4858;
+  --warn: #9b6b1e;
+  --bad: #9b2c2c;
+  --info: #4a6b7c;
+  --font-display: 'Courier New', Courier, 'Songti SC', monospace;
+  --font-body: 'Courier New', Courier, 'Songti SC', monospace;
+  --font-mono: 'Courier New', Courier, monospace;
+  --radius: 0px;
+  --radius-lg: 0px;
+  --shadow: 2px 2px 0 rgba(29, 28, 26, 0.28);
+  --gap: 18px;
+  --cell: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* 纸面：横向回格线 + 左侧装订孔 */
+body {
+  background-color: var(--bg);
+  background-image:
+    repeating-linear-gradient(180deg, rgba(29, 28, 26, 0.055) 0 1px, transparent 1px 28px),
+    linear-gradient(90deg, rgba(155, 44, 44, 0.22) 0 1px, transparent 1px),
+    linear-gradient(180deg, var(--bg-2), var(--bg));
+  background-position: 0 0, 34px 0, 0 0;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h2,
+p,
+ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+.app {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 34px 48px;
+}
+
+/* ---- 顶栏：稿件抬头 ---- */
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--gap);
+  padding: 14px 0 10px;
+  margin: 22px 0 0;
+  border-top: 3px double var(--ribbon-black);
+  border-bottom: 1px solid var(--ink);
+  background: transparent;
+  box-shadow: none;
+  position: relative;
+}
+
+/* 色带印痕：红蓝两条细线压在抬头下沿 */
+.topbar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 3px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ribbon-red) 0 22%, transparent 22% 30%, var(--ribbon-blue) 30% 58%, transparent 58% 66%, var(--ribbon-red) 66% 100%);
+  opacity: 0.5;
+}
+
+.topbar::after {
+  content: 'CONFIDENTIAL COPY · 内部稿件 · 不得外传';
+  position: absolute;
+  right: 0;
+  top: -14px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 3px;
+  color: var(--ink-3);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: auto;
+}
+
+.brand-text {
+  min-width: 0;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: 0;
+  color: var(--ink);
+  text-transform: none;
+  font-weight: 700;
+}
+
+.brand-sub {
+  color: var(--ribbon-blue);
+  font-size: 11.5px;
+  letter-spacing: 1px;
+}
+
+.themes {
+  display: flex;
+  gap: 2px;
+}
+
+.theme-btn {
+  padding: 4px 9px;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.theme-btn:hover {
+  border-color: var(--ribbon-red);
+  color: var(--ink);
+}
+
+.theme-btn.is-on {
+  background: var(--ribbon-black);
+  border-color: var(--ribbon-black);
+  color: var(--surface-2);
+  font-weight: 700;
+}
+
+.token-box {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.token-label {
+  color: var(--ink-3);
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.token-input {
+  width: 208px;
+  padding: 3px 6px;
+  border: none;
+  border-bottom: 1px solid var(--ink);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  letter-spacing: 0;
+}
+
+/* ---- 页签：卷宗标签 ---- */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 18px 0 16px;
+  padding: 0;
+  border-bottom: 2px solid var(--ink);
+}
+
+.tab {
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-bottom: none;
+  border-radius: 0;
+  background: var(--bg-2);
+  color: var(--ink-2);
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.tab.is-on {
+  background: var(--surface-2);
+  border-color: var(--ink);
+  border-top: 4px solid var(--ribbon-red);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* ---- KPI 带：统计附表 ---- */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-bottom: 20px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+}
+
+.kpi {
+  padding: 10px 12px;
+  border: none;
+  border-radius: 0;
+  background: var(--surface);
+}
+
+.kpi-label {
+  color: var(--ink-3);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+}
+
+.kpi-value {
+  font-family: var(--font-display);
+  font-size: 21px;
+  line-height: 1.35;
+  color: var(--ribbon-blue);
+  font-weight: 700;
+}
+
+.kpi-foot {
+  color: var(--ink-2);
+  font-size: 11.5px;
+}
+
+.kpi-empty {
+  grid-column: 1 / -1;
+  padding: 26px 12px;
+  text-align: center;
+  color: var(--ink-2);
+  border: 1px dashed var(--ink);
+  border-radius: 0;
+  background: var(--surface);
+}
+
+.kpi-empty.is-err {
+  color: var(--bad);
+  border-color: var(--bad);
+}
+
+.identity {
+  grid-column: 1 / -1;
+  padding: 9px 12px;
+  border-radius: 0;
+  border: none;
+  border-left: 4px solid var(--ink);
+  background: var(--surface-2);
+}
+
+.identity.is-ok {
+  border-left-color: var(--ok);
+}
+
+.identity.is-bad {
+  border-left-color: var(--bad);
+}
+
+.identity-title {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--ok);
+  font-weight: 700;
+}
+
+.identity.is-bad .identity-title {
+  color: var(--bad);
+}
+
+.identity-note {
+  color: var(--ink-3);
+  font-size: 11.5px;
+}
+
+.identity-list {
+  margin-top: 4px;
+  color: var(--bad);
+  font-size: 12px;
+}
+
+.identity-list li {
+  padding-left: 14px;
+  position: relative;
+}
+
+.identity-list li::before {
+  content: '-';
+  position: absolute;
+  left: 0;
+  color: var(--ribbon-red);
+}
+
+/* ---- 主体 ---- */
+.panel {
+  display: block;
+}
+
+.grid {
+  display: grid;
+  gap: var(--gap);
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card {
+  padding: 12px 14px 14px;
+  margin-bottom: var(--gap);
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.card-head {
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed var(--ink-3);
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--ink);
+  text-transform: none;
+  font-weight: 700;
+}
+
+.card-sub {
+  color: var(--ink-3);
+  font-size: 11.5px;
+}
+
+/* ---- 筛选与表单 ---- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-end;
+  margin-bottom: 14px;
+}
+
+.form {
+  display: grid;
+  gap: 11px;
+}
+
+.field {
+  display: grid;
+  gap: 2px;
+}
+
+.label {
+  color: var(--ink-3);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+}
+
+.input,
+.select {
+  min-width: 118px;
+  padding: 4px 6px;
+  border: none;
+  border-bottom: 1px solid var(--ink);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+}
+
+.input:focus,
+.select:focus,
+.token-input:focus {
+  outline: none;
+  border-bottom: 2px solid var(--ribbon-red);
+  background: #fdf6e6;
+}
+
+.btn {
+  padding: 6px 13px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--surface-2);
+  color: var(--ink);
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.btn-primary {
+  background: var(--ribbon-black);
+  border-color: var(--ribbon-black);
+  color: #f7f3ea;
+  font-weight: 700;
+}
+
+.btn-danger {
+  border-color: var(--ribbon-red);
+  color: var(--ribbon-red);
+  background: transparent;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+/* ---- 表格：打印清单 ---- */
+.table {
+  margin-top: 2px;
+  font-size: 13px;
+}
+
+.table th {
+  padding: 6px 9px;
+  text-align: left;
+  color: var(--ink);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  border-bottom: 2px solid var(--ink);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 6px 9px;
+  border-bottom: 1px dotted var(--line);
+  vertical-align: top;
+}
+
+.table-dense th,
+.table-dense td {
+  padding: 3px 7px;
+  font-size: 12px;
+}
+
+.table tbody tr:hover {
+  background: #fdf6e6;
+}
+
+.table tbody tr.is-sel {
+  background: var(--ribbon-blue);
+  outline: none;
+  color: var(--surface-2);
+  cursor: pointer;
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 1em;
+}
+
+.mute {
+  color: var(--ink-3);
+}
+
+.strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.strike {
+  color: var(--ink-3);
+  text-decoration: line-through;
+}
+
+/* ---- 状态标签：色带打字 ---- */
+.tag {
+  display: inline-block;
+  padding: 0 5px;
+  border-radius: 0;
+  border: none;
+  border-bottom: 2px solid currentColor;
+  font-size: 11.5px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.tag-ok {
+  color: var(--ok);
+}
+
+.tag-bad {
+  color: var(--bad);
+}
+
+.tag-warn {
+  color: var(--warn);
+}
+
+.tag-mute {
+  color: var(--ink-3);
+}
+
+.tag-info {
+  color: var(--info);
+}
+
+/* ---- 进度条：填格 ---- */
+.cell-bar {
+  min-width: 148px;
+}
+
+.bar {
+  display: block;
+  position: relative;
+  height: 12px;
+  border: 1px solid var(--ink);
+  background: var(--surface-2);
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 0;
+  background: repeating-linear-gradient(90deg, var(--ribbon-black) 0 4px, transparent 4px 7px);
+}
+
+.bar-label {
+  position: absolute;
+  inset: 0;
+  padding-left: 7px;
+  font-size: 10.5px;
+  line-height: 12px;
+  color: var(--ink);
+  font-family: var(--font-mono);
+}
+
+/* ---- 文案态 ---- */
+.empty {
+  padding: 22px 12px;
+  text-align: center;
+  color: var(--ink-3);
+  letter-spacing: 2px;
+}
+
+.err,
+.ok {
+  padding: 6px 10px;
+  margin: 7px 0;
+  border-radius: 0;
+  font-size: 12.5px;
+}
+
+.err {
+  color: var(--bad);
+  border: 1px dashed var(--bad);
+  background: #fbeeee;
+}
+
+.ok {
+  color: var(--ok);
+  border: 1px dashed var(--ok);
+  background: #eef3f6;
+}
+
+.err-code {
+  margin-left: 5px;
+  padding: 0 4px;
+  border: 1px dotted currentColor;
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.hint {
+  margin: 8px 0;
+  color: var(--ink-2);
+  font-size: 12px;
+  border-left: 3px solid var(--ribbon-red);
+  padding-left: 8px;
+}
+
+.fieldlist {
+  margin: 5px 0;
+  color: var(--bad);
+  font-size: 12px;
+}
+
+.fieldlist li {
+  padding-left: 13px;
+  position: relative;
+}
+
+.fieldlist li::before {
+  content: '!';
+  position: absolute;
+  left: 2px;
+  font-weight: 700;
+}
+
+/* ---- 票价试算与存根 ---- */
+.calc {
+  margin-top: 6px;
+  padding: 9px 11px;
+  border: 1px dashed var(--ink);
+  border-radius: 0;
+  background: var(--surface-2);
+}
+
+.calc-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12.5px;
+  color: var(--ink-2);
+}
+
+.calc-total {
+  margin-top: 3px;
+  padding-top: 3px;
+  border-top: 2px solid var(--ink);
+  color: var(--ribbon-red);
+  font-weight: 700;
+}
+
+.calc-note {
+  margin-top: 5px;
+  font-size: 11.5px;
+  color: var(--ink-3);
+}
+
+.receipt {
+  margin-top: 10px;
+}
+
+.lookup {
+  margin-top: 10px;
+}
+
+/* 票根：复写纸连号联，撕口在下方 */
+.stub {
+  position: relative;
+  padding: 10px 12px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--surface-2);
+}
+
+.stub::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 32px;
+  border-top: 2px dotted var(--ink-3);
+}
+
+.stub-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12.5px;
+  padding: 1px 0;
+}
+
+.stub-k {
+  color: var(--ink-3);
+  letter-spacing: 1.5px;
+  font-size: 11px;
+}
+
+.stub-v {
+  text-align: right;
+  color: var(--ink);
+}
+
+/* ---- 验票流水 ---- */
+.log {
+  margin-top: 10px;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--surface-2);
+}
+
+.log-title {
+  color: var(--ink-3);
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+
+.log-item {
+  font-size: 12px;
+  padding: 1px 0;
+}
+
+.log-ok {
+  color: var(--ok);
+}
+
+.log-err {
+  color: var(--bad);
+}
+
+/* ---- 分段切换与分页 ---- */
+.seg {
+  display: inline-flex;
+  gap: 0;
+  padding: 0;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--surface-2);
+}
+
+.seg-btn {
+  padding: 5px 15px;
+  border: none;
+  border-right: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.seg-btn.is-on {
+  background: var(--ribbon-black);
+  color: #f7f3ea;
+  font-weight: 700;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.page-info {
+  color: var(--ink-3);
+  font-size: 12px;
+}
+
+.page-extra {
+  margin-left: auto;
+  color: var(--ink-3);
+  font-size: 11.5px;
+}
+
+/* ---- 品牌图形：票根铅字块 ---- */
+.swatch {
+  width: 26px;
+  height: 26px;
+  color: var(--ribbon-black);
+  flex: none;
+}
+
+.swatch-body {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.swatch-line {
+  stroke: var(--ribbon-red);
+  stroke-width: 1.6;
+  stroke-dasharray: 1 3;
+  fill: none;
+}
+
+.swatch-dot {
+  fill: var(--ribbon-blue);
+}
+
+/* ---- 页脚 ---- */
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 26px;
+  padding-top: 10px;
+  border-top: 2px solid var(--ink);
+  color: var(--ink-3);
+  font-size: 11.5px;
+}
+
+.foot-right {
+  margin-left: auto;
+  color: var(--ribbon-blue);
+  letter-spacing: 1.5px;
+}
+
+@media (max-width: 900px) {
+  .kpis,
+  .grid-2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
