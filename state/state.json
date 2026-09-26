@@ -704,7 +704,9 @@
         "方格账簿 graph-ledger",
         "井月水墨 ink-moon",
         "声纹热像 thermogram"
-      ]
+      ],
+      "cleanup": "删 .tmp/audiobuild（本轮 playwright-core 依赖 8.0MB）与 /tmp 本轮临时件 （cb22*.log / measure22.* / calib22*.* / smoke22.mjs / probe-launch.mjs / overflow22.mjs / inject22.py / renum22.py / report22-extra.md / verify22*.log / mut22.log）；产物目录 5.3MB（限额 50MB，三页各 ~995KB 其中 919KB 是内联音频），删完仍可双击打开，重跑真浏览器判据按报告 §3 的装法复原依赖即可。",
+      "push": "origin git@github.com:sunc-Q/frontend-skill.git main → b0555b1（SSH；known_hosts 用 LAB/.tmp/known_hosts；提交用 git -c user.name/email，未动全局配置）"
     },
     {
       "time": "2026-09-27T00:20+08:00",

@@ -373,7 +373,11 @@ const logText = fs.readFileSync(path.join(LAB, "records", "work-log.md"), "utf8"
 function grow(name, prevArr, curArr, added) {
   const lost = prevArr.filter((x) => !curArr.includes(x));
   eq(name + " 历史条目一条不少", lost.length, 0);
-  eq(name + " = 快照 + 本轮新增", curArr.length, prevArr.length + added.length);
+  /* 「= 快照 + 本轮新增」这个等式假设了这一轮是唯一的写入者，并发轮次下不成立
+   * （本轮 --apply 之后 00:20 轮又追加了自己的条目）。等式改成下界：本轮新增必须在、
+   * 历史不能少，多出来的条目属于别的轮次，不做归属断言。 */
+  ok(name + " ≥ 快照 + 本轮新增（并发轮次只会上界更宽，实测 " + curArr.length + " ≥ " + (prevArr.length + added.length) + "）",
+    curArr.length >= prevArr.length + added.length);
   const extra = added.filter((x) => !curArr.includes(x));
   eq(name + " 新增项确实写进了台账", extra.length, 0);
 }
@@ -383,12 +387,21 @@ const triedKeys = (arr) => arr.map((t) => (typeof t === "string" ? t : t.skill +
 grow("E1 tried", snap.prev.tried, triedKeys(state.tried), snap.add.tried);
 grow("E2 used_styles", snap.prev.used_styles, state.used_styles, snap.add.used_styles);
 grow("E3 environment_notes", snap.prev.environment_notes, state.environment_notes, snap.add.environment_notes);
-eq("E4 runs 比快照多 1", state.runs.length, snap.prev.runs + 1);
-ok("E5 本轮目录名出现在 work-log 最后一行与 state.runs 末条",
+ok("E4 runs ≥ 快照 + 1（本轮那一条在内；并发轮次各自追加，实测 " + state.runs.length + " ≥ " + (snap.prev.runs + 1) + "）",
+  state.runs.length >= snap.prev.runs + 1);
+/* E5 原口径是「本轮目录名必须在 work-log 末行」——这个假设在并发轮次下不成立：
+ * 本轮 --apply 之后，另一个 00:20 轮又追加了它自己的一行，末行就不再是本轮的了。
+ * 改成不依赖「谁是最后一行」的写法：本轮行必须出现且只出现一次，并且排在快照记下的
+ * 上一轮行之后（这同时守住「只追加、不改历史」）。runs 末条同样按目录名查，不按位置。 */
+const logLinesAll = logText.trimEnd().split("\n");
+const myIdx = logLinesAll.findIndex((l) => l.includes(snap.round_dir));
+const prevIdx = logLinesAll.findIndex((l) => l.includes(snap.prev_log_marker));
+ok("E5 本轮目录名在 work-log 中出现一次且晚于快照记下的上一轮行（" + (myIdx + 1) + " > " + (prevIdx + 1) + "）",
   /* runs 末条是对象，直接 .includes 会在「work-log 那半已经为真」时抛 TypeError——
    * 也就是说这条判据只在通过的边缘上炸，入账前红着反而看不出来，所以先序列化再比。 */
-  logText.trimEnd().split("\n").pop().includes(snap.round_dir) &&
-    JSON.stringify(state.runs[state.runs.length - 1]).includes(snap.round_dir),
+  myIdx >= 0 && prevIdx >= 0 && myIdx > prevIdx &&
+    logLinesAll.filter((l) => l.includes(snap.round_dir)).length === 1 &&
+    JSON.stringify(state.runs.find((r) => JSON.stringify(r).includes(snap.round_dir)) || {}).includes(snap.round_dir),
   snap.round_dir);
 ok("E6 work-log 历史行只追加：上一轮的关键行仍在",
   logText.includes(snap.prev_log_marker));

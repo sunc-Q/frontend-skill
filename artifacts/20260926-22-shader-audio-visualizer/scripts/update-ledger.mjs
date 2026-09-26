@@ -100,7 +100,27 @@ if (process.argv[2] === "--snapshot") {
   process.exit(0);
 }
 
-if (process.argv[2] !== "--apply") { console.error("用法：node update-ledger.mjs --snapshot|--apply"); process.exit(2); }
+/* --stamp-push <commit-sha>：给本轮自己的 run 条目补 cleanup / push 两格。
+ * 为什么不按 runs 末条定位：并发的轮次会往台账后面追加行（本轮就被 00:20 轮挤下去过一次），
+ * 所以只能用本轮目录名在自己的条目里查，查不到就报错——绝不去动别人的条目。 */
+if (process.argv[2] === "--stamp-push") {
+  const sha = String(process.argv[3] || "");
+  if (!/^[0-9a-f]{7,40}$/.test(sha)) { console.error("用法：--stamp-push <commit-sha>"); process.exit(2); }
+  const mine = state.runs.filter((r) => JSON.stringify(r).includes(ROUND_DIR));
+  if (mine.length !== 1) { console.error("按本轮目录名在 runs 里找到 " + mine.length + " 条，应为 1 条，拒绝写入"); process.exit(2); }
+  mine[0].cleanup = "删 .tmp/audiobuild（本轮 playwright-core 依赖 8.0MB）与 /tmp 本轮临时件 " +
+    "（cb22*.log / measure22.* / calib22*.* / smoke22.mjs / probe-launch.mjs / overflow22.mjs / " +
+    "inject22.py / renum22.py / report22-extra.md / verify22*.log / mut22.log）；" +
+    "产物目录 5.3MB（限额 50MB，三页各 ~995KB 其中 919KB 是内联音频），删完仍可双击打开，" +
+    "重跑真浏览器判据按报告 §3 的装法复原依赖即可。";
+  mine[0].push = "origin git@github.com:sunc-Q/frontend-skill.git main → " + sha +
+    "（SSH；known_hosts 用 LAB/.tmp/known_hosts；提交用 git -c user.name/email，未动全局配置）";
+  fs.writeFileSync(STATE, JSON.stringify(state, null, 2) + "\n");
+  console.log("已给本轮 run 补 cleanup / push 两格（定位方式：按本轮目录名，push=" + sha.slice(0, 7) + "）");
+  process.exit(0);
+}
+
+if (process.argv[2] !== "--apply") { console.error("用法：node update-ledger.mjs --snapshot|--apply|--stamp-push <sha>"); process.exit(2); }
 if (!fs.existsSync(SNAP)) { console.error("先跑 --snapshot"); process.exit(2); }
 
 const t = totals();
