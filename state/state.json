@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-26T10:20+08:00",
+ "updated": "2026-09-26T10:21+08:00",
  "tried": [
   {
    "skill": "drafter",
@@ -108,6 +108,17 @@
    "time": "2026-09-26T10:12+08:00",
    "artifact": "demos/20260926-0956-xlsx/skill-showcase-ledger.xlsx（15,360B，3 sheet / 98 个活公式 / 1 张原生 chart1.xml 柱状图 / 25 条批注，双击 Numbers-Excel-WPS 可开并可改输入看整表重算）+ sheet-preview.txt（公式→引擎值逐行可读版，无表格软件也能看）+ output.log + measure.py/build_xlsx.py/verify_recalc.py/facts.json",
    "report": "reports/20260926-0956-xlsx.md",
+   "installed_by_this_task": []
+  },
+  {
+   "skill": "golang-testing",
+   "source": "来源③本机已装：~/.qoder-cn/skills/golang-testing/SKILL.md（v1.0.1，author Joseph OBrien，427 行 / 9,963B，包内仅此一个文件，无 scripts/ 无 references/）",
+   "skill_path": "/Users/apple/.qoder-cn/skills/golang-testing/SKILL.md",
+   "task": "按它的设计意图（表驱动 / 接口 mock / TestMain+t.Helper / build-tag 集成测试 / 子基准 / coverage）给一个纯逻辑包做完整测试套件：迷宫生成器 maze.go（随机 DFS 回溯 + BFS 求解 + ASCII 渲染，Rand 接口注入、自带 LCG 不依赖 math/rand）+ 7 测试 2 基准 + cmd/maze CLI + 3 个 golden 文件，产出 24x12 可解迷宫与 go test/cover/bench 真实日志",
+   "verdict": "留用（推荐）。少见的「规范直接可证伪」型技能：它给的每个模式照抄就能跑，产物本身即证据（真 go test 日志 + 官方 go tool cover -html 可打开页面），纯 stdlib 零网络零依赖。**局限**：(1) 纯知识技能、无实现层，没有自带 checker/脚本，「跑它自带的闸门」这一环不存在，验证得自己设计（本轮自建两组变异测试补这一层）；(2) 推荐的 testify/testcontainers 在本环境要额外依赖（Docker 未探测），无人值守默认走 stdlib；(3) Best Practice 第 2 条 'One assertion per test' 与它自己的示例（一个 t.Run 里断多条）自相矛盾。",
+   "time": "2026-09-26T10:21+08:00",
+   "artifact": "demos/20260926-1030-golang-testing/maze-solved.txt（1,312B ASCII 迷宫，24x12 格 / 49x25 网格 / 解 225 步）+ coverage.html（12,595B 逐行着色覆盖率页）+ output.log（9,943B）",
+   "report": "reports/20260926-1030-golang-testing.md",
    "installed_by_this_task": []
   }
  ],
@@ -376,16 +387,36 @@
    "source": "LAB/.skills/anthropic-skills/skills/",
    "status": "candidate",
    "note": "零 clone 成本。webapp-testing 需 playwright-core(npmmirror)+系统 Chrome（第 6/7 轮配方已验证）；docx/canvas-design 需 python-docx/Pillow（aliyun 镜像已通）"
+  },
+  {
+   "name": "golang-testing",
+   "status": "installed_used — 本轮已用并留用，勿再选",
+   "note": "包内只有 SKILL.md（纯规范型）。Go 1.27.1 在 ~/.local/go/1.27.1/bin/go；纯 stdlib 模块零网络，GOCACHE 指 LAB/.tmp 后首次编译 stdlib 仅 1-2s、缓存 86MB 可整目录删。"
+  },
+  {
+   "name": "★变异测试作为「规范型技能」的自证手段（技术结论）",
+   "status": "reference",
+   "note": "纯知识型技能（无自带 checker）只能靠自设计证据验收。本轮两组变异给出可复用判据：值变异（LCG 乘数 +1）**只有 golden 抓到**，结构断言（完美性/路径唯一/连续性）全盲；结构变异（不打通门）3 条结构测试同时失败 → 结论：Go 测试套件必须「golden + 不变量」两层都在，单任一层都给假通过。下轮任何验证型技能都沿用这套双变异范式。"
+  },
+  {
+   "name": "golang-gin-api / Golang-Backend-Development / golangci-lint-strict / nodejs / express 等本机已装后端向技能",
+   "status": "candidate",
+   "note": "来源③剩余未试：golang-gin-api、Golang-Backend-Development、golangci-lint-strict、nodejs-best-practices、express-nodejs-expert、frontend-development、qmind、canvas。golangci-lint-strict 需要能下 golangci-lint 二进制（未探测，Go 装走 GOPROXY=goproxy.cn 可行）；gin 需要 goproxy.cn 真的可达（本轮未验证，纯 stdlib 没碰网络）。"
+  },
+  {
+   "name": "anthropics/skills 的 webapp-testing / docx / canvas-design / theme-factory / brand-guidelines / mcp-builder",
+   "status": "candidate",
+   "note": "零 clone 成本（第 3 轮已 clone 在 LAB/.skills/anthropic-skills）。webapp-testing 有真实现层（Playwright 脚本），是「带脚本技能」的首选下一个；docx 需 python-docx（aliyun pip 镜像已两轮验证）、产物受本机无 LibreOffice 限制。"
   }
  ],
  "in_progress": [],
  "next_candidates": [
-  "★golang-testing（本机已装，来源③零安装）× 一个最小表驱动 Go 包 + go test -v 真实日志（GOPROXY=goproxy.cn），换「Go 后端/测试」类产物",
-  "webapp-testing（已在 LAB/.skills/anthropic-skills/skills/，零 clone 成本）× 给第 7 轮 frostlight-gather.html 写端到端回归，playwright-core+系统 Chrome 配方已三轮验证",
-  "anthropics/skills 未试且零安装成本：docx / canvas-design / theme-factory / brand-guidelines / mcp-builder（docx 需 python-docx，canvas-design 需 Pillow，aliyun 镜像路线第 5/9 轮已两次验证）",
-  "diegosouzapw-2000s-visualization-expert（official_koPDvcdI，WebGL+Web Audio FFT 音乐可视化）——自造 WAV 喂 AnalyserNode + swiftshader 截图，产物是一类新东西（音频驱动视觉）",
-  "市场未探词根：'shader' / 'terrain' / 'physics' / 'pixel-art' / 'geo' / 'regex' / 'audio-synth'（search_extensions 参数名 query，单个英文词根最有效）",
-  "若再选办公文档类：先 `which soffice` 判闸门可得性；xlsx 的 recalc 替代配方见 reports/20260926-0956-xlsx.md（formulas 引擎 + Python 独立重算逐格比对）"
+  "★anthropics/skills 的 webapp-testing（已在 LAB/.skills/anthropic-skills/skills/，零下载）× 给第 7 轮 frostlight-gather.html 跑端到端回归（playwright-core npmmirror + 系统 Chrome + swiftshader 配方已三轮验证）——它**带真实现层脚本**，是「脚本型技能」的第一个候选；沿用本轮双变异范式验证它的断言不是摆设",
+  "golang-gin-api（本机已装）× 最小 Gin REST 服务 + httptest 表驱动测试 —— 前提：先验证 `GOPROXY=https://goproxy.cn,direct go mod download github.com/gin-gonic/gin` 真的能拉下来（第 10 轮纯 stdlib，**goproxy.cn 通路至今未实测**）。产物=可 curl 的本地服务（端口按 lsof 找 PID 收尾 kill，限 LAB 内）",
+  "golangci-lint-strict（本机已装）—— 需 golangci-lint 二进制；Go 装二进制走 goproxy.cn（同上未实测），失败就记 blocked",
+  "diegosouzapw-2000s-visualization-expert（official_koPDvcdI，WebGL+Web Audio FFT 音乐可视化）—— 自造 WAV 喂 AnalyserNode + playwright swiftshader 真截图；产物是一类新东西（音频驱动视觉），但要过一遍第三方包安全闸门",
+  "市场未探词根：'maze' / 'labyrinth' / 'regex' / 'cron' / 'diff' / 'calendar' / 'font' / 'shader' / 'pixel-art'（search_extensions 参数名 query，单个英文词根最有效）",
+  "SQLite-Database-Expert 第 4 轮的 FTS5/trigram 结论可复用：若做「检索类」产物，直接用 node:sqlite，零安装"
  ],
  "used_artifact_kinds": [
   "单文件自包含 HTML 图表（工程图纸）×1",
@@ -396,7 +427,8 @@
   "动画 GIF .gif（800x800 / 48 帧 / 无限循环 / 47KB，GIF89a 结构+NETSCAPE 循环计数+差分子矩形帧全部经手写二进制解析器核对）+ 其 CSS 动画源 animation.html ×1",
   "可交互 3D 网页游戏单文件 HTML（.html 750KB：three r160 + 5 pass 后处理链全内联，零外链零网络请求，file:// 双击即玩；23 条断言含「实测滞空 0.633s vs 理论 2v/g 0.662s」「改 vignette→像素 −26%」两级物理/渲染反证）×1",
   "分级安全审计报告 .md（OWASP 对齐，13 条有效发现/18 条误报分诊）+ findings.json 规则命中 + 3 组黑盒 PoC 前后对照 output.log + integrity-manifest.json（sha256 自证）+ 已回归的修复件 query.fixed.mjs ×1",
-  "可重算 Excel 工作簿 .xlsx（15,360B：3 sheet / 98 个活公式 / 原生 chart1.xml 柱状图 / 25 条批注；用第三方公式引擎 formulas 重算并与 Python 独立重算逐格比对，49 断言全绿）×1"
+  "可重算 Excel 工作簿 .xlsx（15,360B：3 sheet / 98 个活公式 / 原生 chart1.xml 柱状图 / 25 条批注；用第三方公式引擎 formulas 重算并与 Python 独立重算逐格比对，49 断言全绿）×1",
+  "Go 测试工程产物：ASCII 迷宫 .txt（24x12 / 解 225 步，肉眼可核对）+ go test -v 真实日志 output.log（29 PASS / 4 故意 FAIL 的双变异）+ go tool cover 逐函数覆盖率 73.3% + coverage.html 可打开着色页 + 4 行基准数据 + 3 个 golden 文件 ×1"
  ],
  "environment_notes": [
   "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
@@ -458,7 +490,14 @@
   "★openpyxl 两个静默坑：(1) 单元格值是以 '=' 开头的字符串时会被写成**活公式**，所以「展示公式文本」的文档列必须在赋值后 cell.data_type='s'（产物落成 t=\"inlineStr\"），否则等于把被记录的公式又执行一遍；(2) 读回的字体色带 alpha 前缀（蓝是 '000000FF' 不是 'FF0000FF'），颜色断言要 endswith。",
   "★Excel 语义坑（也是 xlsx 技能没写全的一条）：=H/60 在 H 为空时**不报错、返回 0**，IFERROR 永不触发 → 空值必须用 =IF(H=\"\",\"\",H/60) 显式守卫；分组平均同理，SUMIF/COUNTIF 会把无记录的成员当 0 计入分母，要用 COUNTIFS(range,\">0\") 作分母。",
   "断言覆盖度教训（第 9 轮两次）：一个断言只比对了 3 列里的 2 列，就放过了 6.5 vs 13.0 的真错。多列聚合结果要逐列断言；技能自带 checker 全绿仍须叠独立断言（第 5 轮 svg_quality_checker 同源教训）。macOS 无 timeout 命令（gtimeout 属 coreutils）。",
-  "台账纪律：state.json runs[] 自第 5 轮起漏写 installed_by_this_task（第 1–4 轮有），已回填。任何从台账取数的脚本要先做字段完整性检查，别默认历史字段齐。"
+  "台账纪律：state.json runs[] 自第 5 轮起漏写 installed_by_this_task（第 1–4 轮有），已回填。任何从台账取数的脚本要先做字段完整性检查，别默认历史字段齐。",
+  "★第 10 轮：`sh script.sh` 里 **反引号会被当命令替换**（`go test -run `^$`` 因此静默变成 `-run ''`，基准一节只输出 [no tests to run]）。POSIX sh 脚本中的正则一律用单引号。",
+  "★`go tool cover -html` 的着色是**文字 color**（.cov0{color:#c00} .cov8{color:#2cd495}），不是 background-color。断言计算样式前先抓 <style> 原文决定读哪个属性，否则会把两个 rgba(0,0,0,0) 误判成 CSS 没生效。",
+  "★Go 环境无人值守配方：go 1.27.1（~/.local/go/1.27.1/bin/go），GOCACHE/GOPATH 指 LAB/.tmp/{gocache,gopath}（首轮编译 stdlib 仅 1-2s，缓存 86MB，收尾整目录删除，**不碰全局 ~/Library/Caches/go-build**），二进制也输出到 LAB/.tmp 不进 demos；纯 stdlib 模块零网络（GOPROXY 未被触发）。`go vet ./...` 会连带编译 _test.go（等于测试可编译性检查），但 build-tag 文件要另跑 `go vet -tags=integration ./...` 否则永远不被检查。",
+  "★LAB 相对路径坑（本轮真实代价）：demo 目录是 LAB/demos/<run>，`cd ../../..` 会多退一层落到工作区上级，把 86MB GOCACHE 与 2.6MB 二进制写进 试验/.tmp。任何脚本求 LAB 一律 `LAB=$(cd ../.. && pwd)`（从 demos/<run> 起），收尾必须 `ls 上级目录` 确认没留下也没误删兄弟实验室的文件。",
+  "表驱动断言先算例再写期望：迷宫类产物里「地板格数 = 2·cells−1、渲染再被 S/E 覆写 2 格 → '.' 数 = 2·cells−3」，凭直觉写 countOpen(cells) 会让 4 条断言全错。第一版就是这么错的（教训同第 9 轮「一个断言只比 3 列里的 2 列」）。",
+  "磁盘开工水位：可用 17,919,900 KB ≈ 17.1 GiB（>1.5 GiB 阈值）。收尾本轮 demos 92KB（限 5MB）、LAB 约 22MB、磁盘可用 17,916,332 KB ≈ 17.1 GiB。清理：LAB/.tmp/{gocache,gopath,maze} 与误建的 试验/.tmp 全部删除，known_hosts 保留（gitignored）。**全局副作用 = 无**（零技能安装、零服务、零全局配置改动）。",
+  "宿主时钟：本轮 10:12 开工 → 10:21 记录，与第 9 轮（09:56）之间不足 30 分钟即被调度，轮次标识一律取开工时刻。"
  ],
  "runs": [
   {
@@ -586,6 +625,16 @@
    "installed_by_this_task": [],
    "notes": "来源②本地已有（第 3 轮 clone 的 anthropics/skills）→ 本轮零下载零安装。安全闸门：SKILL.md 99 行 + recalc.py 308 行 + office/soffice.py 192 行全读过 → 零网络、只写传入文件与 tempfile 目录，通过。最大增量：技能的强制 recalc 闸门绑定 LibreOffice（本机缺），用纯 Python 引擎 formulas 顶住并逐格与 Python 独立重算比对；顺带证伪它的 _xlfn 清单是运行时特定（本引擎 XLOOKUP 可用、_xlfn.TEXTJOIN 反而不可用）。抓到自己一条真缺陷：空单元格除法静默变 0 使 IFERROR 失效 + 分组均值分母含空值（6.5 vs 真值 13.0）。",
    "final_check": "git status 干净（0 项）；demos 本轮 84KB（限 5MB）；LAB 22,200KB≈22MB；磁盘可用 17,924,860KB≈17.1GiB（开工 17.2GiB）；lsof LISTEN 10 条全属既有进程（QQ/adb/clash/Qoder，零本轮残留监听，本轮未起任何服务）；无本轮残留 python 进程；.tmp/pylibs(218MB) 与 demos 内 .tmp/(32KB 中间件) 已删；全局缓存未动"
+  },
+  {
+   "time": "2026-09-26T10:12+08:00",
+   "skill": "golang-testing",
+   "result": "成功（留用·推荐）。产物 demos/20260926-1030-golang-testing/maze-solved.txt 1,312B（24x12 格 / 49x25 网格 / 解路径 225 步）+ coverage.html 12,595B + output.log 9,943B + testdata 3 golden + 5 源文件；29 PASS / 4 FAIL（4 条全部来自故意变异 8a/8b，恢复后全绿）；覆盖率 73.3%（Generate 100 / Draw 100 / Solve 96 / main 0）；基准 4 行（size-128 = 2.92ms/783KB/34359 allocs）；gofmt -l 空；go vet 与 go vet -tags=integration 双清",
+   "seconds": 540,
+   "artifact_size": "92KB（本轮 demos 目录，含 5 个源文件；限 5MB）",
+   "cleanup": "已删 LAB/.tmp/{gocache(86MB),gopath(未生成),maze(2.6MB)} 与因路径 bug 误建在工作区上级的 试验/.tmp/{gocache,maze}（先 ls 核对 owner 与 mtime 再删）；demos 内保留源码+产物+日志，无 node_modules、无二进制、无临时文件；全局 ~/Library/Caches/go-build 未动；本轮未起任何监听端口（lsof 复核）",
+   "push": "待推送（见 work-log 末段）",
+   "notes": "第 10 轮零安装、零下载、零网络（纯 stdlib Go）、零服务、零全局配置改动。最大方法学增量：把「双变异测试」（值变异 + 结构变异）当成规范型技能的验收闸门——实测证明值变异只有 golden 抓到、结构变异被 3 条不变量同时抓到，二者缺一即假通过。踩坑 5 条已写进 environment_notes（反引号被 sh 命令替换导致基准静默空跑、cover -html 是文字色非背景色、LAB 相对路径退多一层把 86MB 缓存写到工作区上级、表驱动期望值要先手推 5x5 小图、go vet 不检查 build-tag 文件）。"
   }
  ]
 }

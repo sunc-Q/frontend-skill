@@ -1,0 +1,251 @@
+
+===== go version / env (no network, stdlib only) =====
+go version go1.27.1 darwin/amd64
+go1.27.1
+/Users/apple/Documents/workProject/试验/skill演示场/.tmp/gocache
+/Users/apple/Documents/workProject/试验/skill演示场/.tmp/gopath
+https://goproxy.cn,direct
+
+===== 1. build the CLI into LAB/.tmp (binary is NOT left in demos) =====
+built /Users/apple/Documents/workProject/试验/skill演示场/.tmp/maze
+
+===== 2. visible artifact: maze-solved.txt (24x12 cells, seed 20260926) =====
+wrote maze-solved.txt
+wrote maze-plain.txt
+24x12 cells / 25x49 grid / seed 20260926 / solution 225 steps
+#################################################
+#S#...........#...#...............#...#......***#
+#*#########.#.###.#.#########.###.#.#.#.#####*#*#
+#*#*******#.#.....#.#.....#...#.....#.#.#...#*#*#
+#*#*#####*#.#####.#.###.#.#.#########.#.###.#*#*#
+#*#*#...#*#.#.....#...#.#.#.........#.#.....#*#*#
+#*#*#.###*#.#.#######.#.#.#########.#####.###*#*#
+#*#*#.#***#.#...#...#.#.#.......#.#.......#***#*#
+#*#*#.#*###.###.#.###.#.#.#####.#.#########*###*#
+#*#*#.#***#...#...#...#.#.#***#...........#*#***#
+#*#*#.###*#.#.#####.#####.#*#*#############*#*###
+#***#.#***#.#.........#...#*#*********#*****#*#.#
+#####.#*#############.#.#.#*#########*#*#####*#.#
+#.....#*#..*****#***#...#.#*#***#...#***#...#*#.#
+#.#####*###*###*#*#*###.###*#*#*#.#######.#.#*#.#
+#.#...#***#***#*#*#*#...#***#*#*#.........#.#*#.#
+#.#.#.###*#.#*#*#*#*###.#*###*#*#.###.#.#####*#.#
+#...#...#*#.#*#***#***#.#*****#*#.#...#.#*****#.#
+#####.#.#*###*#######*#########*###.#####*#####.#
+#.....#.#***#*#.#...#*********#***#.#...#*#***#.#
+#.#########*#*#.#.#.#########*###*#.#.#.#*#*#*#.#
+#.#...#*****#*#...#.#.......#*#***#...#.#***#***#
+#.#.#.#*#####*#.###.#.#.#####*#*###.###.#######*#
+#...#..*******#...#...#......***#.....#........E#
+#################################################
+
+===== 3. CLI boundary behaviour (real error, exit code must be 1) =====
+error: maze: bad size: 1x5 (want 2..200)
+exit=1 (expected non-zero)
+
+===== 4. go test -v -coverprofile (unit + golden + mock + property) =====
+=== RUN   TestGenerate_Sizes
+=== PAUSE TestGenerate_Sizes
+=== RUN   TestGenerate_Errors
+=== PAUSE TestGenerate_Errors
+=== RUN   TestGenerate_DeterministicLCG
+=== PAUSE TestGenerate_DeterministicLCG
+=== RUN   TestGenerate_MockFirstChoosesFirstDirection
+--- PASS: TestGenerate_MockFirstChoosesFirstDirection (0.00s)
+=== RUN   TestGenerate_MockLastDiffersFromFirst
+--- PASS: TestGenerate_MockLastDiffersFromFirst (0.00s)
+=== RUN   TestMazeIsPerfect
+=== PAUSE TestMazeIsPerfect
+=== RUN   TestSolve_PathIsContiguous
+=== PAUSE TestSolve_PathIsContiguous
+=== RUN   TestSolve_NoPath
+--- PASS: TestSolve_NoPath (0.00s)
+=== RUN   TestDraw_MarksPath
+--- PASS: TestDraw_MarksPath (0.00s)
+=== CONT  TestGenerate_Sizes
+=== RUN   TestGenerate_Sizes/minimum_2x2
+=== PAUSE TestGenerate_Sizes/minimum_2x2
+=== RUN   TestGenerate_Sizes/wide_9x2
+=== PAUSE TestGenerate_Sizes/wide_9x2
+=== RUN   TestGenerate_Sizes/tall_2x9
+=== CONT  TestMazeIsPerfect
+=== RUN   TestMazeIsPerfect/small_lcg
+=== CONT  TestGenerate_Errors
+=== PAUSE TestMazeIsPerfect/small_lcg
+=== CONT  TestGenerate_DeterministicLCG
+=== RUN   TestGenerate_Errors/valid
+=== PAUSE TestGenerate_Sizes/tall_2x9
+=== CONT  TestSolve_PathIsContiguous
+=== RUN   TestSolve_PathIsContiguous/2x2
+=== PAUSE TestSolve_PathIsContiguous/2x2
+=== RUN   TestMazeIsPerfect/rect_lcg
+=== RUN   TestGenerate_Errors/zero_width
+=== PAUSE TestMazeIsPerfect/rect_lcg
+=== RUN   TestGenerate_Sizes/square_9x7
+=== RUN   TestSolve_PathIsContiguous/5x4_seed_42
+=== PAUSE TestSolve_PathIsContiguous/5x4_seed_42
+=== RUN   TestSolve_PathIsContiguous/9x7_seed_42
+--- PASS: TestGenerate_DeterministicLCG (0.00s)
+=== PAUSE TestGenerate_Sizes/square_9x7
+=== PAUSE TestSolve_PathIsContiguous/9x7_seed_42
+=== CONT  TestGenerate_Sizes/tall_2x9
+=== CONT  TestGenerate_Sizes/minimum_2x2
+=== CONT  TestSolve_PathIsContiguous/5x4_seed_42
+=== CONT  TestSolve_PathIsContiguous/2x2
+=== RUN   TestGenerate_Errors/one_cell_tall
+=== RUN   TestMazeIsPerfect/seed_7
+=== RUN   TestGenerate_Errors/negative
+=== PAUSE TestMazeIsPerfect/seed_7
+=== CONT  TestGenerate_Sizes/square_9x7
+=== RUN   TestMazeIsPerfect/mock_first
+=== CONT  TestSolve_PathIsContiguous/9x7_seed_42
+=== PAUSE TestMazeIsPerfect/mock_first
+=== CONT  TestGenerate_Sizes/wide_9x2
+=== RUN   TestGenerate_Errors/width_too_large
+=== RUN   TestGenerate_Errors/height_at_boundary
+--- PASS: TestGenerate_Sizes (0.00s)
+    --- PASS: TestGenerate_Sizes/tall_2x9 (0.00s)
+    --- PASS: TestGenerate_Sizes/minimum_2x2 (0.00s)
+    --- PASS: TestGenerate_Sizes/square_9x7 (0.00s)
+    --- PASS: TestGenerate_Sizes/wide_9x2 (0.00s)
+=== RUN   TestMazeIsPerfect/wide
+=== PAUSE TestMazeIsPerfect/wide
+=== CONT  TestMazeIsPerfect/small_lcg
+=== CONT  TestMazeIsPerfect/mock_first
+=== CONT  TestMazeIsPerfect/seed_7
+--- PASS: TestSolve_PathIsContiguous (0.00s)
+    --- PASS: TestSolve_PathIsContiguous/2x2 (0.00s)
+    --- PASS: TestSolve_PathIsContiguous/5x4_seed_42 (0.00s)
+    --- PASS: TestSolve_PathIsContiguous/9x7_seed_42 (0.00s)
+=== CONT  TestMazeIsPerfect/wide
+=== CONT  TestMazeIsPerfect/rect_lcg
+=== RUN   TestGenerate_Errors/nil_rand
+--- PASS: TestGenerate_Errors (0.00s)
+    --- PASS: TestGenerate_Errors/valid (0.00s)
+    --- PASS: TestGenerate_Errors/zero_width (0.00s)
+    --- PASS: TestGenerate_Errors/one_cell_tall (0.00s)
+    --- PASS: TestGenerate_Errors/negative (0.00s)
+    --- PASS: TestGenerate_Errors/width_too_large (0.00s)
+    --- PASS: TestGenerate_Errors/height_at_boundary (0.00s)
+    --- PASS: TestGenerate_Errors/nil_rand (0.00s)
+--- PASS: TestMazeIsPerfect (0.00s)
+    --- PASS: TestMazeIsPerfect/small_lcg (0.00s)
+    --- PASS: TestMazeIsPerfect/wide (0.00s)
+    --- PASS: TestMazeIsPerfect/mock_first (0.00s)
+    --- PASS: TestMazeIsPerfect/seed_7 (0.00s)
+    --- PASS: TestMazeIsPerfect/rect_lcg (0.00s)
+PASS
+coverage: 98.0% of statements
+ok  	skilllab.dev/mazedemo	0.269s	coverage: 98.0% of statements
+	skilllab.dev/mazedemo/cmd/maze		coverage: 0.0% of statements
+
+===== 5. integration tests (build tag) + -short skip behaviour =====
+=== RUN   TestIntegration_WriteAndReloadMaze
+--- PASS: TestIntegration_WriteAndReloadMaze (0.00s)
+PASS
+ok  	skilllab.dev/mazedemo	0.201s
+?   	skilllab.dev/mazedemo/cmd/maze	[no test files]
+--- SKIP: TestIntegration_WriteAndReloadMaze (0.00s)
+PASS
+ok  	skilllab.dev/mazedemo	0.196s
+
+===== 6. coverage per function + coverage.html (open this in a browser) =====
+skilllab.dev/mazedemo/cmd/maze/main.go:12:	main		0.0%
+skilllab.dev/mazedemo/maze.go:29:		NewLCG		100.0%
+skilllab.dev/mazedemo/maze.go:31:		Intn		75.0%
+skilllab.dev/mazedemo/maze.go:46:		Cols		100.0%
+skilllab.dev/mazedemo/maze.go:47:		Rows		100.0%
+skilllab.dev/mazedemo/maze.go:48:		at		100.0%
+skilllab.dev/mazedemo/maze.go:49:		set		100.0%
+skilllab.dev/mazedemo/maze.go:52:		cellRC		100.0%
+skilllab.dev/mazedemo/maze.go:57:		Generate	100.0%
+skilllab.dev/mazedemo/maze.go:98:		m_size		100.0%
+skilllab.dev/mazedemo/maze.go:100:		open		100.0%
+skilllab.dev/mazedemo/maze.go:106:		Start		100.0%
+skilllab.dev/mazedemo/maze.go:107:		End		100.0%
+skilllab.dev/mazedemo/maze.go:110:		Solve		96.0%
+skilllab.dev/mazedemo/maze.go:143:		trace		100.0%
+skilllab.dev/mazedemo/maze.go:159:		Draw		100.0%
+skilllab.dev/mazedemo/maze.go:189:		String		100.0%
+total:						(statements)	73.3%
+-rw-r--r--  1 apple  staff  12595 Sep 26 10:18 coverage.html
+
+===== 7. benchmarks (sub-benchmarks over sizes + RunParallel) =====
+goos: darwin
+goarch: amd64
+pkg: skilllab.dev/mazedemo
+cpu: Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz
+BenchmarkGenerate/size-8-8 	     200	     12505 ns/op	    3069 B/op	     126 allocs/op
+BenchmarkGenerate/size-32-8         	     200	    187267 ns/op	   48719 B/op	    2109 allocs/op
+BenchmarkGenerate/size-128-8        	     200	   2888476 ns/op	  783128 B/op	   34359 allocs/op
+BenchmarkSolveParallel-8            	     200	   1041536 ns/op	 1557187 B/op	    5381 allocs/op
+PASS
+ok  	skilllab.dev/mazedemo	1.044s
+
+===== 8a. NEGATIVE CONTROL A: value mutation (LCG multiplier +1) -> only golden tests must fail =====
+--- FAIL: TestGenerate_DeterministicLCG (0.00s)
+    maze_test.go:233: golden mismatch for lcg42_9x7.golden.txt:
+        --- got ---
+        ###################
+        #S..#.....#...#...#
+        ###.###.#.#.#.#.#.#
+        #.#...#.#.#.#.#.#.#
+        #.###.#.###.#.#.#.#
+        #...#.#.....#...#.#
+        #.#.#.###.#######.#
+        #.#.#...#.#.......#
+        #.#.###.###.#####.#
+        #.#.#.#...#.#...#.#
+        #.#.#.###.#.#.#.#.#
+        #.#...#...#.#.#.#.#
+        #.#####.###.#.#.#.#
+        #...........#.#..E#
+        ###################
+        --- want ---
+        ###################
+        #S........#.....#.#
+        #########.#.###.#.#
+        #...#.....#...#.#.#
+        #.###.#####.#.#.#.#
+        #.....#.#...#.#.#.#
+        #.#####.#.###.#.#.#
+        #.#.....#.#...#.#.#
+        #.###.###.#.###.#.#
+        #...#.....#.#...#.#
+        ###.#.#####.#.###.#
+        #...#...#...#...#.#
+        #.#######.#####.#.#
+        #.........#......E#
+        ###################
+FAIL
+FAIL	skilllab.dev/mazedemo	0.203s
+FAIL
+
+===== 8b. NEGATIVE CONTROL B: structural mutation (stop carving doors) -> property tests must fail =====
+--- FAIL: TestSolve_PathIsContiguous (0.00s)
+--- FAIL: TestGenerate_Sizes (0.00s)
+--- FAIL: TestMazeIsPerfect (0.00s)
+FAIL
+FAIL	skilllab.dev/mazedemo	0.265s
+FAIL
+
+===== 9. restore check: suite must be green again =====
+ok  	skilllab.dev/mazedemo	0.205s
+gofmt -l reported nothing above if the package is formatted
+
+===== SUMMARY =====
+PASS=29 FAIL=4  (section 8a/8b FAILs are the two deliberate negative controls)
+go vet: clean
+go vet -tags=integration: clean
+
+===== 10. coverage.html browser verification (browser-use, file:// URL) =====
+page title            : "maze: Go Coverage Report"
+<pre> blocks (file panes): 2   (maze.go + cmd/maze/main.go)
+<select> options      : 2
+line spans            : 72 total = 57 class="cov8" (covered) + 15 class="cov0" (uncovered)
+getComputedStyle color: span.cov0 -> rgb(192,0,0) | span.cov8 -> rgb(44,212,149)  (DIFFERENT, live CSS)
+getComputedStyle bg   : rgba(0,0,0,0) for both  -> go tool cover colours by TEXT colour, not background
+body scrollWidth      : 925
+note: two evaluate_script calls hit the harness 15s timeout (cssRules scan / multi-field probe); the
+      split single-purpose probes below all returned. Viewport in this panel is 0x0, so only
+      structure + computed style were asserted, no pixels.
