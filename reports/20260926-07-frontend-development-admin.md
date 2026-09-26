@@ -1,13 +1,13 @@
 # 第 18 轮 · frontend-development × 管理后台（2026-09-26 07:00）
 
 > 结论一句话：**留用，但定位必须降格为「规范补充」，不能单独承担多风格页面任务。**
-> 358 条断言全绿（check-node 117 / check-dom 174 / check-browser 67），冷启动复现 97 秒；清理后再加 17 条目录形态锁。
+> 358 条断言全绿（check-node 117 / check-dom 174 / check-browser 67），冷启动复现 97 秒；清理与推送后再加 29 条独立锁（check-clean 18 + verify-ledger 11），累计 387 条。
 > 本轮最大价值不是产出三个后台页面，而是把该技能最可疑的一条绝对化条款（"No Early Returns"）
 > 变成了同一份产物上的可测消融：**位移 749px vs 429px = 1.7×，占位 124px vs 444px**——
 > 它是「减小 CLS」，不是技能原文暗示的「防止 CLS」。
 
-- 台账：`records/work-log.md` 末行（第 30 行，即第 18 轮）| `state/state.json`（tried 18 / runs 18 / used_styles 54 / environment_notes 108）
-- 产物：`artifacts/20260926-07-frontend-development-admin/`（2.38MB，72 个文件，零中间物）
+- 台账：`records/work-log.md` 末行（第 30 行，即第 18 轮）| `state/state.json`（tried 18 / runs 18 / used_styles 54 / environment_notes 110）
+- 产物：`artifacts/20260926-07-frontend-development-admin/`（2.39MB / 74 个文件，零中间物）
 - 三风格：软浮雕 neumorph / 1-bit 系统 bitmap / 监护仪荧光 phosphor
 
 ---
@@ -52,7 +52,8 @@ artifacts/20260926-07-frontend-development-admin/
 ├── index.html                     三风格对照入口（数字全部由断言 JSON 生成，见 §5 步骤 8）
 ├── preview/admin-{neumorph,bitmap,phosphor}.html   各 ~721KB 单文件，双击即开，零外链
 ├── src/                           50 个 .ts/.tsx，2,154 行
-├── scripts/                       verify.sh + 三个 checker + build-inline + make-styles + round-facts + 台账锁
+├── scripts/                       verify.sh + 三个 checker（node/dom/browser）+ check-clean + verify-ledger
+│                              + build-inline + make-styles + round-facts + ledger-snapshot(.mjs/.json) + ledger-apply
 ├── vite.config.ts                 IIFE 单文件构建（inlineDynamicImports）
 ├── vite.split.config.ts           ES 证据构建（保留真实 chunk 边界）
 ├── tsconfig.json / package.json / package-lock.json / .npmrc
@@ -95,7 +96,7 @@ cd artifacts/20260926-07-frontend-development-admin
 bash scripts/verify.sh        # real 97.25s（本机冷启动：npm install 194 包 4s + 两次构建 4.3s/4.1s + 三组 checker）
 ```
 
-手工九步与各自产出（第 9 步在验证之后、收尾时才跑）：
+手工十步与各自产出（第 1-8 步在 `verify.sh` 里连跑，第 9、10 步必须等中间物删完、台账 补记 完才能跑，所以脚本里以注释形式挂在末尾）：
 
 | 步骤 | 命令 | 产出 / 判据 |
 | --- | --- | --- |
@@ -107,7 +108,8 @@ bash scripts/verify.sh        # real 97.25s（本机冷启动：npm install 194 
 | 6 | `node scripts/check-node.mjs` | A22 B30 C20 E13 J11 L6 I5（写回后 I=15）= 117 |
 | 7 | `node scripts/check-dom.mjs` | F + H（三页各一遍交互全链路）= 174 |
 | 8 | `node scripts/check-browser.mjs` | D G K M = 67；然后 `node scripts/make-styles.mjs` 生成 index.html |
-| 9 | 收尾后 `rm -rf node_modules dist dist-split .tmp-check && node scripts/check-clean.mjs` | 17 条目录形态锁（无中间物、无探针残留、三页字节与 meta 一致、50 个源文件在位、≤50MB） |
+| 9 | 收尾后 `rm -rf node_modules dist dist-split .tmp-check && node scripts/check-clean.mjs` | 18 条目录形态锁（无中间物、无探针残留、三页字节与 meta 一致、50 个源文件在位、9 个脚本+台账快照在位、≤50MB） |
+| 10 | `node scripts/verify-ledger.mjs` | 11 条台账锁的**清理后版本**：I 组里的 check-node 需要 `dist/`、`dist-split/`、`.tmp-check/` 才能跑完（B6c/L/J 三组读的就是这些），删完中间物之后它必然红；这条脚本只读 `state/state.json`、`records/work-log.md`、`scripts/ledger-snapshot.json`、`scripts/round-facts.mjs`，所以推送与 补记 之后仍然可复跑，V3 把 `runs[-1]` 与 `RUN` 做**全字段** deep-eq（含 补记 才填的 push / cleanup / artifact_size），比 I2c 更严一档 |
 
 消融对照怎么亲手看：
 
@@ -148,10 +150,12 @@ python3 -m http.server 8157      # 在产物目录里
 | G 早期返回消融 | 浏览器 | 见 §4 表格第 2 行 |
 | H 交互全链路 | 174 的一部分 | 三页各跑一遍：KPI/趋势条/Top5/事件 vs 事实源、搜索防抖窗口、筛选计数、三排序单调、展开/收起、暂停+1 次 POST、两步删除+toast、密钥掩码正则、校验预言机相等、持久化与损坏 JSON 回退 |
 | I 台账幂等锁 | 5（写回后 15） | 见 §11 |
-| J 磁盘与成本 | 11 | 行数/字节比、gzip、场景目录体积 2.38MB ≤50MB |
+| J 磁盘与成本 | 11 | 行数/字节比、gzip、场景目录体积 2.39MB（J9 构建期读数，与清理后 C5 同口径，见 §13）≤50MB |
 | K 真实浏览器补验 | 3 | 真点击提交、剪贴板可用、复制 toast |
 | L 懒加载证据构建 | 6 | 见 §4 表格第 3 行（入口字节随构建目录路径长度浮动 ~0.07%：`.tmp` 下 512,421B、产物目录下 512,763B；可延迟比例稳定在 29.0%） |
 | M 持久化跨载体 | 12 | 见 §8 |
+| C 清理后目录形态（`check-clean.mjs`） | 18 | 独立进程、删完中间物再跑；含 9 个脚本/快照在位 |
+| V 清理后台账锁（`verify-ledger.mjs`） | 11 | I 组的可复跑版本，`runs[-1]` 与 `RUN` 全字段 deep-eq，见 §5 步骤 10 与 §11 |
 
 ## 8. 持久化跨载体（M 组，本轮新增的第二块硬证据）
 
@@ -380,9 +384,27 @@ dom.window.close();
 写回是**一次性脚本**（`scripts/ledger-apply.mjs`，随产物保留）：它只吃 `scripts/round-facts.mjs` 的导出，写回前必须先有 `scripts/ledger-snapshot.mjs` 生成的快照，且检测到本轮已在 `tried` 里就直接退出。读侧的锁是 check-node 的 I 组：
 
 - 写回前（5 条）：`tried` 至多出现 1 次；四个长数组的历史前缀 SHA 未变；台账七个键与快照逐项相等；work-log 行数 = 快照行数。
-- 写回后（15 条）：`tried` 末条 deep-eq `round-facts.TRIED`；`runs` 末条字段一致；`used_styles` = 快照 + 恰好 3 个且全表无重复；`environment_notes` = 快照 + 12 条无重复；work-log 行数 29→30、**前 29 行 SHA 未变**、末行逐字节等于 `WORK_LOG_LINE` 且切出 6 段；末行写到的产物目录与本报告文件真实存在；预览目录只含 3 个 HTML。产物目录的「无中间物」形态改由 `scripts/check-clean.mjs`（17 条）在删掉构建目录之后单独把关——它与本文档 §5 的验证步骤互斥（跑验证时 `dist/` 必须存在），放在同一组里只会自相矛盾。
+- 写回后（15 条）：`tried` 末条 deep-eq `round-facts.TRIED`；`runs` 末条字段一致；`used_styles` = 快照 + 恰好 3 个且全表无重复；`environment_notes` = 快照 + 14 条无重复（构建期 12 条，清理与 补记 阶段又撞出 2 条，见 §11 末尾与 §13.1）；work-log 行数 29→30、**前 29 行 SHA 未变**、末行逐字节等于 `WORK_LOG_LINE` 且切出 6 段；末行写到的产物目录与本报告文件真实存在；预览目录只含 3 个 HTML。产物目录的「无中间物」形态改由 `scripts/check-clean.mjs`（18 条）在删掉构建目录之后单独把关——它与本文档 §5 的验证步骤互斥（跑验证时 `dist/` 必须存在），放在同一组里只会自相矛盾。I 组里原本那条「artifacts 场景目录内零 node_modules/dist」也为此改成只断预览目录形态（I5 = 恰好 3 个 HTML、无子目录）：它断言的东西在 `verify.sh` 跑起来时必然为假，而 B7/L 两组本来就依赖 `dist/` 存在，这条断言留着就是设计自相矛盾。
 
 因此「台账被写两次」「只写了一半」「work-log 被改写历史」三类事故都会在断言层暴露，而不是靠下次运行的人凭印象发现。
+
+**但 I 组有个时序缺口**：它跑在 `verify.sh` 中段，此时 `dist/`、`dist-split/`、`.tmp-check/` 必须存在（B6c/L/J 三组读它们），所以「清理之后」和「补记 之后」的台账状态它管不到——而 补记 恰恰会改写 `runs[-1].push / cleanup / artifact_size` 与 work-log 末行的对应文字。补上的是 `scripts/verify-ledger.mjs`（11 条，见 §5 步骤 10）：只读四个 JSON/MD 文件，删完中间物、推完两次之后仍可跑，并且把 I2c 的「cleanup/push 豁免」收紧成全字段 deep-eq（V3）。
+
+两条锁都做过**故意造出来的负例**，不是「写了就信」：
+
+```bash
+# V3：模拟「只改了 state.json、忘了 round-facts」
+node -e "const fs=require('fs');const p='state/state.json';const s=JSON.parse(fs.readFileSync(p,'utf8'));
+  s.runs.at(-1).push='';fs.writeFileSync(p,JSON.stringify(s,null,2)+'\n')"
+node artifacts/20260926-07-frontend-development-admin/scripts/verify-ledger.mjs
+#   FAIL V3 runs 末条 = RUN，含 补记 回填的 push / cleanup / artifact_size（全字段，不留豁免） push=已提交并推送：git@github.com:sunc-Q/…
+#   verify-ledger: 10/11 assertions passed   → exit=1；恢复备份后 11/11
+# C1：真的抓到过一次——我为了复跑 I 组，在产物目录里直接 node scripts/check-node.mjs，
+#     它的 dumpResults 把 .tmp-check/ 写进了 artifacts/…/.tmp-check，check-clean 立刻 FAIL C1。
+#     结论不是「脚本太严」而是「产物目录不该跑写中间物的 checker」：删掉后 18/18。
+```
+
+同理，work-log 末行的 2.39MB 与 §13 的字节合计是同一事实的两处表述，所以本轮收尾时用一个脚本同时改 `round-facts.WORK_LOG_LINE` + `records/work-log.md` 末行 + `state.json`，改完立刻跑 V8/V3 复核；单独手改任一处都会在那里失败。
 
 ## 12. 判定与后续候选
 
@@ -392,18 +414,103 @@ dom.window.close();
 - 但它不含任何视觉主张，且「契约无资产」使得 32 处引用无法执行；约七成条款绑定 MUI/TanStack/React，换栈即失效；
 - 绝对化措辞需要外部装置才能判：本轮的 `?control=early` 消融与 split 证据构建都是技能本身不提供的。
 
-给后续轮次的候选（不扩大本轮范围，只排队）：
+给后续轮次的候选（不扩大本轮范围，只排队；下列 1-4 已写入 `state.json → next_candidates`，队列 40→44 条。第 5 条与队列里已有的「frontend-development + vercel-react-best-practices 叠加（同场景）」重复，故不重复登记）：
 
 1. ★ 把「同产物消融」配方移植回 16:00 的 Vue 分支与历史 frontend-development 产物：技能里其余绝对化条款（如「memo 化行组件」「queryKey 常量化带来稳定引用」）同样只有做成对照组才可判。
 2. ★ frontend-development × 表单密集场景（向导/多步校验）：本轮只有 3 字段设置表单，`reset` 清 dirty 这类 RHF 陷阱是意外撞上的，值得正面测一轮。
 3. 用 M 组口径横检历轮「持久化」主张的产物（06:00 活动页 prefs、20:00 报名页票根）：它们大概率同样只在 http:// 载体上验过，`file://` 未测。
-4. frontend-development + vercel-react-best-practices 叠加（同场景）：先解 `js-early-exit` vs「禁早期 return」冲突（18:00 已定规则：控制流可早退，渲染输出一律三元 + 显式空态），再用本轮的 `RouteGate` 消融装置验证解法是否真无冲突。
+4. 把「清理后仍可跑的复查卡」（本轮 `verify-ledger.mjs` 这种只读 JSON/MD 的第二把锁）补进历轮产物：前 17 轮的验证脚本全部依赖构建现场，收尾之后没有任何一条断言还能跑，等于「清理之后无人复核」。
+5. frontend-development + vercel-react-best-practices 叠加（同场景）：先解 `js-early-exit` vs「禁早期 return」冲突（18:00 已定规则：控制流可早退，渲染输出一律三元 + 显式空态），再用本轮的 `RouteGate` 消融装置验证解法是否真无冲突。
 
 ## 13. 收尾与推送
 
-- 清理：删 `node_modules`（166MB）、`dist`、`dist-split`、`.tmp-check`、四个日志、三个 `.dbg` 探针、`smoke.mjs`、`probe-persistence.mjs`（内容全部在 §10）；`.tmp/fd-admin` 整目录随后删除。
-- 场景目录：73 个文件、字节合计 2,501,085B = 2.39MB（check-clean C5 现算；工作目录口径 J9 = 2.38MB，差的是本轮多出的日志与探针被删掉），远低于 50MB 上限；目录内零 `node_modules`、零 `dist`、零 `.tmp-check`、零探针残留。
+- 清理：删 `node_modules`（167MB，`du -sm` 实测量）、`dist`、`dist-split`、`.tmp-check`、四个日志、三个 `.dbg` 探针、`smoke.mjs`、`probe-persistence.mjs`（内容全部在 §10）；`.tmp/fd-admin` 整目录随后删除。
+- 场景目录：74 个文件、字节合计 2,509,052B = 2.39MB（check-clean C5 清理后现算；此后只改过 `reports/` 里的本文档，产物目录未再动）。**这一条是本报告收尾时改的**：初稿写的是「2.38MB / 72 个文件」，那是补齐最后两个收尾脚本（`check-clean.mjs` 的第 9 项、`verify-ledger.mjs`）之前手抄的中间态数字，而复算得到的 2.39MB 与构建期 J9 写进 `index.html` 成本表的读数本来就一致——也就是说那 0.01MB 是抄错，不是口径差异（返工过程见 §13.1）。手抄一过就不再复算，正是本轮 §4 批评技能「口号化条款无法核对」的同一个毛病，所以在此明写修正过程而不静悄悄改掉。远低于 50MB 上限；目录内零 `node_modules`、零 `dist`、零 `.tmp-check`、零探针残留（C1-C3）。
 - 端口：8157 / 8158 由脚本内 `server.close()` 释放，收尾后按 PID 核对命令行确认无残留监听。
 - 写入范围：只有 `前端skill实验室/` 下的 `artifacts/`、`reports/`、`records/`、`state/` 与本目录的 `.tmp/`；技能目录 `~/.qoder-cn/skills/frontend-development/` 只读未改。
 - 推送：`git@github.com:sunc-Q/frontend-skill.git` main 分支（本机 github.com HTTPS 会被 TLS 层重置，只走 SSH），known_hosts 写在 `前端skill实验室/.tmp/known_hosts`；提交使用 `git -c user.name=… -c user.email=…` 内联身份，未改动任何全局 git 配置；命令与文件内容零 token/密钥。
-- 推送结果：<PUSH_RESULT>
+- 推送结果：主体 commit `fbc7461`（76 files / 8,876 insertions）已推送，`origin/main 4e10646..fbc7461`，走 `ssh.github.com:443`（host key 落在 `LAB/.tmp/known_hosts`，随 `.tmp` 一并删除）。回填 `state.runs[-1].push` 与本行的 补记 commit 紧随其后再次推送，所以 main 末端比 `fbc7461` 多一个提交——这与前几轮（如 `13ac4d6..4f7fbb2` + 4e10646）的做法一致：区间只写在被引用处一次，不两处手抄。全程命令与文件内容零 token/密钥。
+
+### 13.1 补记 那一步到底改了什么（可照抄）
+
+推送之后不算收尾，还要把「推送结果」这件事实写回台账，而它同时活在四个地方，必须一次改齐：
+`round-facts.mjs` 的 `RUN`（push/cleanup/assertions/artifact_size）→ `state.json` 的 `runs[-1]` → `round-facts.mjs` 的 `WORK_LOG_LINE` → `records/work-log.md` 末行。所以用一个脚本按顺序做完，再用两组锁复核：
+
+```bash
+cd 前端skill实验室
+mkdir -p .tmp && GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=$PWD/.tmp/known_hosts -o StrictHostKeyChecking=accept-new" \
+  git push origin main                       # → 4e10646..fbc7461
+node .tmp/patch-log.mjs                      # 改 WORK_LOG_LINE + work-log 末行 + 用 RUN 覆盖 state.runs[-1]
+node artifacts/20260926-07-frontend-development-admin/scripts/verify-ledger.mjs   # 11/11
+node artifacts/20260926-07-frontend-development-admin/scripts/check-clean.mjs     # 18/18
+git add -A && git -c user.name=sunc-Q -c user.email=sunc-Q@users.noreply.github.com commit -m '07:00 补记 …'
+GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=$PWD/.tmp/known_hosts" git push origin main
+```
+
+`.tmp/patch-log.mjs` 是一次性的（它带本轮专属的替换串），但 `verify-ledger.mjs` / `check-clean.mjs` 随产物保留，任何时候都能重跑。上面 `verify-ledger` 的 11/11 就是这条链跑完之后的读数；把它改红的负例见 §11 第二段。
+
+一次性脚本的最后一版全文（随 `.tmp` 删除，按契约抄在这里）——它的关键设计是**替换串只作用于两处（round-facts 与 work-log）且用同一份 `SUBS`**，之后 `state.json` 的所有 `runs[-1]` 字段一律由 `round-facts` 覆盖，绝不手写：
+
+```js
+import { readFileSync, writeFileSync } from 'node:fs';
+import path from 'node:path';
+import { pathToFileURL } from 'node:url';
+
+const LAB = '/Users/apple/Documents/workProject/试验/前端skill实验室';
+const A = path.join(LAB, 'artifacts/20260926-07-frontend-development-admin/scripts/round-facts.mjs');
+const B = path.join(LAB, 'records/work-log.md');
+const STATE = path.join(LAB, 'state/state.json');
+
+const SUBS = [
+  [
+    '⑦踩坑另记 environment_notes 12 条（emotion 级联骗过 jsdom、',
+    '⑦踩坑另记 environment_notes 14 条（前 12 条构建期、后 2 条是清理与 补记 阶段撞出来的：验证脚本要按「清理后还能不能跑」分工、手抄数字不会自己复查；emotion 级联骗过 jsdom、',
+  ],
+];
+
+for (const f of [A, B]) {
+  let s = readFileSync(f, 'utf8');
+  let n = 0;
+  for (const [from, to] of SUBS) {
+    if (s.includes(from)) {
+      s = s.split(from).join(to);
+      n += 1;
+    }
+  }
+  writeFileSync(f, s);
+  console.log(path.basename(f), 'subs', n);
+}
+
+const { TRIED, RUN, ENV_NOTES, WORK_LOG_LINE } = await import(pathToFileURL(A).href);
+const state = JSON.parse(readFileSync(STATE, 'utf8'));
+const missing = ENV_NOTES.filter((note) => !state.environment_notes.includes(note));
+state.environment_notes.push(...missing);
+const last = state.runs[state.runs.length - 1];
+for (const k of Object.keys(RUN)) last[k] = RUN[k];
+writeFileSync(STATE, JSON.stringify(state, null, 2) + '\n');
+
+const log = readFileSync(B, 'utf8').trimEnd().split('\n');
+const de = (x, y) => JSON.stringify(x) === JSON.stringify(y);
+console.log('补记 env notes', missing.length, '| environment_notes 总数', state.environment_notes.length,
+  '| 无重复', new Set(state.environment_notes).size === state.environment_notes.length);
+console.log('tried 末条 = TRIED', de(state.tried.at(-1), TRIED));
+console.log('runs 末条 = RUN（全字段）', de(state.runs.at(-1), RUN));
+console.log('work-log 末行 = WORK_LOG_LINE', log.at(-1) === WORK_LOG_LINE, '| 行数', log.length, '| 段数', WORK_LOG_LINE.split(' | ').length);
+console.log('updated', state.updated);
+```
+
+它的读数（末次运行）：
+
+```
+round-facts.mjs subs 0
+work-log.md subs 0
+补记 env notes 0 | environment_notes 总数 110 | 无重复 true
+tried 末条 = TRIED true
+runs 末条 = RUN（全字段） true
+work-log 末行 = WORK_LOG_LINE true | 行数 30 | 段数 6
+updated 2026-09-26T08:18+08:00
+```
+
+`subs 0` 是预期：这一版脚本只补环境笔记与 `runs[-1]` 同步，文字替换在前几版（体积子句、`I5` 误标）已经落定，重复跑不该再改任何东西——把同一个脚本跑到 `subs 0`，本身就是「没有残留不一致」的读数。`environment_notes` 由 96 → 110（构建期 12 条 + 补记 阶段 2 条），`next_candidates` 由 40 → 44（§12 的 1-4 条排进队列，V11 从「只减不增」改成「本组合已出队 + 快照里其余每条仍在」，否则 补记 期间追加新候选会被自己的锁判成丢候选——这是脚本自身的一处过严，改完 11/11）。
+
+本轮在这里返工过一次，值得记下来：初稿把体积写成「2.38MB / 72 个文件」，是从中间态手抄的；补完 `verify-ledger.mjs`、`check-clean.mjs` 第 9 项、`verify.sh` 第 10 步注释与两条 补记 期环境笔记后逐文件 `stat` 复算得 2,509,052B = 2.39MB / 74 个文件，而构建期 J9 写进 `index.html` 的读数本来就是 2.39MB——**是我抄错，不是两个口径本来的差异**（两者在两位小数上恰好重合，所以「差一个文件」的故事听起来成立，其实没证据）。我当时确实先编了一个自洽解释：「J9 早于 make-styles 运行，少算 `index.html` 的 10,260B」，代入清理前的 2,501,085 − 10,260 = 2,490,825B 换算成 2.38MB 甚至能对上数——但只要去读 `index.html` 里那条 J9 自己的输出，它就当场证伪。教训：**一个自洽但错误的解释比一个明显的错误更贵**，因为它让下一轮不再检查；数字要么现算要么标注「手抄未核」。修正过程保留在本行与 §13 正文，不静悄悄改掉。

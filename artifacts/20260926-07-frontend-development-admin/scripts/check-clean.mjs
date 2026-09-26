@@ -42,7 +42,7 @@ chk('C5 场景目录 ≤50MB', total <= 50 * 1024 * 1024, `${(total / 1024 / 102
 chk('C6 复现所需文件齐备（配置 + lock + 校验脚本 + 台账锁）',
   ['package.json', 'package-lock.json', 'tsconfig.json', 'vite.config.ts', 'vite.split.config.ts', 'index.html', '.npmrc']
     .every((f) => existsSync(path.join(ROOT, f))), 'root files');
-for (const s of ['verify.sh', 'check-node.mjs', 'check-dom.mjs', 'check-browser.mjs', 'make-styles.mjs', 'round-facts.mjs', 'ledger-snapshot.json', 'build-inline.mjs']) {
+for (const s of ['verify.sh', 'check-node.mjs', 'check-dom.mjs', 'check-browser.mjs', 'make-styles.mjs', 'round-facts.mjs', 'ledger-snapshot.json', 'build-inline.mjs', 'verify-ledger.mjs']) {
   chk(`C7 scripts/${s} 在位`, existsSync(path.join(ROOT, 'scripts', s)), s);
 }
 const srcTs = [];

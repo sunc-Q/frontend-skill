@@ -16,7 +16,8 @@ node scripts/check-dom.mjs                    # F single-flight 与无早期 ret
 node scripts/check-browser.mjs                # D 计算样式与对比度 / G ?control=early 消融 / K 真实提交 / M 持久化跨载体
 node scripts/make-styles.mjs                  # index.html —— 数字全部来自 .tmp-check/assertions-*.json
 
-# 收尾后再跑这条（它断言的是「删掉构建中间物之后」的目录形态，与本脚本前半段互斥）：
-#   rm -rf node_modules dist dist-split .tmp-check && node scripts/check-clean.mjs
+# 收尾后再跑这两条（它们断言的是「删掉构建中间物之后」的形态，与本脚本前半段互斥）：
+#   rm -rf node_modules dist dist-split .tmp-check && node scripts/check-clean.mjs      # 目录形态
+#   node scripts/verify-ledger.mjs                                                      # 台账（补记 之后仍须绿）
 
 echo "see reports/20260926-07-frontend-development-admin.md in the lab root for the write-up"
