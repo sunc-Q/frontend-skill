@@ -1,0 +1,31 @@
+/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1135-pdf/verify.py:109: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  px = list(im.getdata())
+PASS | A1 base page count == 3 | 3
+PASS | A2 watermarked page count == base
+PASS | A3 base opens without password
+PASS | A4 watermark size grew over base
+PASS | B1 all 12 prior skill names present in extracted text | missing=[]
+PASS | B2 chinese string present: 技能演示场
+PASS | B2 chinese string present: 第 13 轮快验报告
+PASS | B2 chinese string present: 流水线概览
+PASS | B2 chinese string present: 耗时（秒
+PASS | B2 chinese string present: 结论
+PASS | B3 live total minutes rendered (153.0)
+PASS | B4 no tofu placeholders (U+FFFD / missing-glyph box marker)
+PASS | C1 watermark adds exactly one 印-glyph per page (3 pages) | delta=3
+PASS | C2 watermark text absent from base
+PASS | C3 base content survives watermarking (skill names still found)
+PASS | D1 encrypted file refuses text access without password | FileNotDecryptedError
+PASS | D2a WRONG password returns 0 and blocks page access | ret=0, access=FileNotDecryptedError
+PASS | D2b correct user pw returns 1, pages==3, text extractable | ret=1, textlen=899
+PASS | D3 owner-password semantics on THIS writer (pypdf6): record actual | decrypt() returned 2; extraction-with-owner-password: True
+PASS | E1 bar count == timed rounds (11) | found 11
+PASS | E2 bar heights proportional to seconds (ratio spread < 5%) | ratios=[0.11, 0.11, 0.11, 0.11, 0.11, 0.11, 0.11, 0.11, 0.11, 0.11, 0.11]
+PASS | F1 qlmanage produced a thumbnail PNG | 110142B
+PASS | F2 page has real ink (non-white ratio > 0.3%) | ink=4.491% size=695x900
+PASS | F3 red watermark visible in render | red samples=39
+INFO | sha256(report-base.pdf) = b6bcb3a0cca6f08d size=99100
+INFO | sha256(report-watermarked.pdf) = 286065e2ce50746b size=120885
+INFO | sha256(report-encrypted.pdf) = c7684a2fa56746c3 size=121176
+
+== RESULT: 24 PASS / 0 FAIL ==

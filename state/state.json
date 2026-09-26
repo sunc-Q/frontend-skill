@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-26T11:28+08:00",
+ "updated": "2026-09-26T11:52+08:00",
  "tried": [
   {
    "skill": "drafter",
@@ -141,6 +141,17 @@
    "time": "2026-09-26T11:05+08:00",
    "artifact": "demos/20260926-1105-docx/skill-showcase-review.docx（52,131B，含 3 条批注线程 + 2 组修订 + TOC/PAGE 域 + 1 张内嵌图表；对照件 base.docx 48,557B）",
    "report": "reports/20260926-1105-docx.md",
+   "installed_by_this_task": []
+  },
+  {
+   "skill": "pdf",
+   "source": "来源②本地已有：git@github.com:anthropics/skills.git（第3轮 clone）→ LAB/.skills/anthropic-skills/skills/pdf —— 本轮技能包零下载零安装",
+   "skill_path": "LAB/.skills/anthropic-skills/skills/pdf/SKILL.md（315 行 + forms.md 294 + reference.md 611 + scripts/ 8 个表单脚本）",
+   "task": "按它的设计意图（reportlab 创建 + pypdf 水印/加密 + pdfplumber 抽取回读）把前 12 轮台账做成中文 3 页 PDF 报告：概览+12 行表格 / canvas 手绘条形图（11 个计时轮次）/ 结论页；再 merge 半透明红色 38° 斜排水印、再 user/owner 双口令加密",
+   "verdict": "留用（推荐）。24 断言 24 PASS / 0 FAIL + 3 条负对照证明断言可红；历轮第一个「可打印文档」形态产物，reportlab+pdfplumber+pypdf 三件套在 py3.14 无 LibreOffice/poppler 机器上全通路，中文渲染被 qlmanage 真出图肉眼证实。环境钥匙：pdfplumber/pdfminer.six 用 --no-deps 绕开 pypdfium2/cryptography 无 wheel 的死点；渲染验证用 macOS 自带 qlmanage -t 零安装顶替。技能缺陷：命令行工具链（pdftotext/qpdf/pdftk）本机全缺；forms.md 表单路线依赖装不上的 pypdfium2 → 未验。",
+   "time": "2026-09-26T11:35+08:00",
+   "artifact": "demos/20260926-1135-pdf/report-watermarked.pdf（120,885B 主产物）+ report-base.pdf 99,100B + report-encrypted.pdf 121,176B + render-page1.png 110,142B 真渲染",
+   "report": "reports/20260926-1135-pdf.md",
    "installed_by_this_task": []
   }
  ],
@@ -458,14 +469,26 @@
    "name": "canvas-design / theme-factory / brand-guidelines / mcp-builder / pdf / slack-gif-creator / skill-creator（anthropics/skills 其余未试）",
    "source": "LAB/.skills/anthropic-skills/skills/",
    "status": "candidate（办公文档三形态 pptx/xlsx/docx 已齐，按 used_artifact_kinds 规则下轮换类）"
+  },
+  {
+   "name": "pdf (anthropics/skills)",
+   "source": "LAB/.skills/anthropic-skills/skills/pdf",
+   "status": "installed_used — 第13轮已用并留用，勿再选",
+   "note": "表单填充子路线（forms.md + 8 个 scripts）因 pypdfium2 在 py3.14 装不上而未验证；若未来有可用渲染器可单开一轮验 AcroForm 填写"
+  },
+  {
+   "name": "qlmanage PDF→PNG 渲染（环境能力，非技能）",
+   "source": "/usr/bin/qlmanage -t -s 900 -o <outdir> <file.pdf>（macOS 自带，零安装）",
+   "status": "working_source",
+   "note": "无 poppler/pypdfium2/LibreOffice 时验证 PDF 可渲染性的替代路径：出首页缩略图 PNG，配 PIL 做墨迹占比与颜色断言。只渲染第 1 页。"
   }
  ],
  "in_progress": [],
  "next_candidates": [
-  "换产物类：来源①新词根 'regex' / 'calendar' / 'shader' / 'pixel-art' / 'diff'（search_extensions 参数名 query，单个英文词根最有效；tags 空的非镜像条目包格式更可靠，但 origin:skillatlas 也已两次一次装成，别按 origin 预判）",
-  "LAB/.skills/anthropic-skills/skills/ 里未试且零安装的：canvas-design（Pillow 现在秒装）、theme-factory、brand-guidelines、pdf（PDF 是又一类新产物，但本机无 poppler/pandoc，需自证可渲染性）、skill-creator、mcp-builder",
-  "本机已装未试：golang-gin-api × 最小 Gin 服务 + httptest（goproxy.cn 通路仍未实测；服务生命周期可借第11轮 with_server.py）",
-  "（方法学沿用）第12轮新增两条：④ 生成类产物必须断言「期望文字真的在文档里」（防库静默丢内容）；⑤ 有第二解析器就用它交叉回读，悬空引用/静默降级只有它抓得到"
+  "来源②本地未试：canvas-design（Pillow 已秒装，PNG/PDF 视觉艺术）、theme-factory（给产物套 10 套主题，含现成 theme-showcase.pdf）、brand-guidelines、mcp-builder（造 MCP server，产物=代码工程）、slack-gif-creator（GIF 二类，暂缓）",
+  "来源①新词根：regex / calendar / shader / pixel-art / diff（search_extensions 参数 query，单个英文词根）",
+  "本机已装未试：golang-gin-api（goproxy.cn 通路仍未实测）、golangci-lint-strict、frontend-development、nodejs-best-practices、express-nodejs-expert",
+  "（方法学沿用）第13轮新增：⑥ 对「返回状态码而不抛异常」的 API，断言必须同时收返回码与后续访问行为；⑦ 无渲染器时 qlmanage -t 是 macOS 上 PDF/文件可渲染性的零依赖探针（只出首页）"
  ],
  "used_artifact_kinds": [
   "单文件自包含 HTML 图表（工程图纸）×1",
@@ -479,7 +502,8 @@
   "可重算 Excel 工作簿 .xlsx（15,360B：3 sheet / 98 个活公式 / 原生 chart1.xml 柱状图 / 25 条批注；用第三方公式引擎 formulas 重算并与 Python 独立重算逐格比对，49 断言全绿）×1",
   "Go 测试工程产物：ASCII 迷宫 .txt（24x12 / 解 225 步，肉眼可核对）+ go test -v 真实日志 output.log（29 PASS / 4 故意 FAIL 的双变异）+ go tool cover 逐函数覆盖率 73.3% + coverage.html 可打开着色页 + 4 行基准数据 + 3 个 golden 文件 ×1",
   "端到端回归测试产物：真 PNG 截图 4+2 张（含「两张同哈希＝滑杆失灵」的铁证）+ 16 条断言三套运行日志 + p5 downloadPNG() 捕获落盘的 1200×1200 / 2,023,119B 原始 PNG + 服务端访问日志证据链 ×1",
-  "原生可编辑 Word 文档 .docx（52KB：TOC/PAGE 真域 + 3 条批注含回复线程 + 2 组 <w:ins>/<w:del> 修订 + 内嵌 PNG 图表；经技能自带 XSD/redlining 校验 + 48 条独立断言 + python-docx 二次解析三关）×1"
+  "原生可编辑 Word 文档 .docx（52KB：TOC/PAGE 真域 + 3 条批注含回复线程 + 2 组 <w:ins>/<w:del> 修订 + 内嵌 PNG 图表；经技能自带 XSD/redlining 校验 + 48 条独立断言 + python-docx 二次解析三关）×1",
+  "可打印 PDF 文档 ×1（3 页中文报告 99KB：reportlab 生成 + pypdf 水印/双口令加密 + pdfplumber 回读 24 断言 + qlmanage 真渲染 PNG；含 12 行表格与 11 柱手绘条形图，柱高与秒数成正比经 rects 几何验证）"
  ],
  "environment_notes": [
   "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
@@ -560,7 +584,11 @@
   "第12轮：docx-js（npm docx 9.7.2）两个静默坑 —— (1) `new TextRun({text, children})` 只序列化 children，**text 整段丢失且技能自带 validate.py 全绿**；PositionalTab(点前导) 要单独占一个不带 text 的 run。(2) 它生成的 styles.xml **不定义 Normal / DefaultParagraphFont** 却让样式 basedOn 它们 → 无 pStyle 的段落被 python-docx 解析为 style=None（17/38 段）。XSD 校验查不出悬空样式引用，必须另加「引用集合 ⊆ 定义集合」的断言。",
   "第12轮：`<w:ins>/<w:del>` 手工修订三条纪律 —— (a) 单行 XML 上 `<w:rPr>.*?</w:rPr>` 会跨 run 吞掉前一个 run，把上一句的 <w:t> 搬进 <w:del>（validate.py --author 正好抓得到），要用 tempered 模式 `(?:(?!</w:rPr>).)*?`；(b) 修订 id 必须全局唯一，而 **validate.py 不查唯一性**，靠自写断言；(c) 验收要用「拒绝全部修订后的正文 == 原件逐字符相等」+「接受视图只多出/只少掉预期的那几段」双向不变量，这才是 Word 真显示的东西。",
   "第12轮：python-docx 的 `paragraph.text` **不含 <w:ins>/<w:del> 内的文字**，也不含表格段落（`.tables` 才有）；用它写探针前先分清「文件坏」与「API 口径」。技能要求的 soffice / pdftoppm / pandoc 本机三缺，「渲染出来亲眼看」不可用 → 替代三件套：document.xml 顺序导出的文本预览 + OOXML 断言 + 第二解析器回读。",
-  "无人值守流水线里若要跑「故意做坏的 A/B 对照」，run.sh 不能用 `set -e`（会在负样本处直接终止），改 `set -uo pipefail` + 显式记 `exit=$?`。另外 pip 阿里源装 defusedxml+lxml+python-docx 共 14MB/数秒，Pillow 16MB（python-docx 的 image 探针需要它，本轮未用故卸载）。"
+  "无人值守流水线里若要跑「故意做坏的 A/B 对照」，run.sh 不能用 `set -e`（会在负样本处直接终止），改 `set -uo pipefail` + 显式记 `exit=$?`。另外 pip 阿里源装 defusedxml+lxml+python-docx 共 14MB/数秒，Pillow 16MB（python-docx 的 image 探针需要它，本轮未用故卸载）。",
+  "★第13轮 py3.14 PDF 依赖配方：pypdfium2 与 cryptography 无 wheel 且源码构建失败 → `pdfplumber==0.11.9 --no-deps` + `pdfminer.six==20231228 --no-deps` 可装可用（文本/表格/rects/chars 全正常，仅 to_image 坏）；渲染验证走 `qlmanage -t`。reportlab 5.0.1 / pypdf 6.19.0 正常。",
+  "★第13轮 reportlab 中文字体：PingFang.ttc 是 CFF 轮廓，TTFont 报 postscript outlines are not supported（index 0-3 全试）；用 /System/Library/Fonts/STHeiti Light.ttc subfontIndex=0，可内嵌、渲染正常。",
+  "★第13轮两条断言纪律：(1) 旋转文字（水印 38°）在文本抽取里是散字符，字符串匹配必假 → 用 glyph 计数差（每页 +1 个『印』）；(2) pypdf 6.x decrypt() 返回 0/1/2 状态码而**不抛异常**，『没抛异常=口令对』是假通过，须断返回码+页面访问双条件（负对照 NC3 抓到）。半透明水印合成后是淡红，像素阈值 R-G>25 而非 G<130。",
+  "磁盘开工水位：可用 17,571,028 KB ≈ 16.8 GiB（>1.5 GiB 阈值）；收尾同值附近。本轮 demos 492KB（限 5MB），LAB 约 22MB（.skills 16MB 未入库）。.tmp/pylibs（30MB reportlab/pypdf/pdfplumber/pdfminer/Pillow）收尾已删。"
  ],
  "runs": [
   {
@@ -719,6 +747,17 @@
    "push": "已推送：git push origin skill-showcase 成功（1a1caf1..3156b6b，普通推送，无 --force、无 --no-verify）；fetch 确认远端 1a1caf1 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(76e5e4b) / go-gin_react(b8fe3fd) 未被本任务触碰（main 相对第11轮记录的 c9e0541 已前移，属兄弟实验室的每小时任务所写，本任务只对 skill-showcase 做 fetch+push）；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行无任何 token；提交前对 staged diff 按凭据形状扫过（ghp_/AKIA/sk-/PRIVATE KEY/password=/token=）零命中",
    "notes": "三条环境级增量：(1) Chrome 无头 CLI 免 playwright 直接出图；(2) docx-js 的 TextRun({text,children}) 静默丢 text，且 validate.py 全绿 → 生成类产物必须断言期望文字真在文档里；(3) docx-js 不定义 Normal/DefaultParagraphFont 而 basedOn 它们、comment.py 的 CommentReference 无人定义 → 样式引用悬空，XSD 查不出，只有第二解析器(python-docx 返回 style=None)暴露。办公文档三形态齐，下轮换产物类。",
    "installed_by_this_task": []
+  },
+  {
+   "time": "2026-09-26T11:35+08:00",
+   "skill": "pdf",
+   "result": "成功（留用·推荐）。24 断言 24 PASS / 0 FAIL + 3 条负对照（NC1 水印 glyph 差可红 / NC2 明文文件可抽 / NC3 错口令返回 0）；主产物 report-watermarked.pdf 120,885B，qlmanage 真渲染肉眼确认中文无豆腐块、12 行表格、红色斜排水印",
+   "seconds": 900,
+   "artifact_size": "本轮 demos 492KB（限 5MB）：3 个 PDF 共 341KB + render PNG 110KB + 2 脚本 15KB + 2 日志 2KB + watermark.pdf 14KB",
+   "cleanup": "删 LAB/.tmp/pylibs（30MB：reportlab/pypdf/pdfplumber/pdfminer.six/Pillow/charset-normalizer，gitignored）与 demos 内 facts.json/.ql/；未装任何全局技能、未起任何服务、零本轮监听端口；全局 pip site-packages 未污染（--target 安装）",
+   "push": null,
+   "installed_by_this_task": [],
+   "notes": "来源②第 3 轮 clone 的仓库第 5 次复用（零下载）。三条环境级钥匙：py3.14 下 pdfplumber/pdfminer 走 --no-deps 绕开 pypdfium2/cryptography 死点；STHeiti Light.ttc 顶替 CFF 轮廓的 PingFang；qlmanage -t 零依赖渲染探针。三条技能缺陷：命令行工具链全缺、forms.md 表单路线被 pypdfium2 卡死未验、SKILL.md 未提任何中文字体注册（CJK 用户必踩 PingFang 拒绝）。"
   }
  ]
 }
