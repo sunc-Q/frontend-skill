@@ -755,7 +755,7 @@
    "seconds": 900,
    "artifact_size": "本轮 demos 492KB（限 5MB）：3 个 PDF 共 341KB + render PNG 110KB + 2 脚本 15KB + 2 日志 2KB + watermark.pdf 14KB",
    "cleanup": "删 LAB/.tmp/pylibs（30MB：reportlab/pypdf/pdfplumber/pdfminer.six/Pillow/charset-normalizer，gitignored）与 demos 内 facts.json/.ql/；未装任何全局技能、未起任何服务、零本轮监听端口；全局 pip site-packages 未污染（--target 安装）",
-   "push": null,
+   "push": "已推送：git push origin skill-showcase 成功（a854d20..4b451b4，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 a854d20 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(b44dfc6，兄弟实验室所写，未触碰) / go-gin_react(b8fe3fd) 未被本任务改动；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行无任何 token；staged diff 凭据形状扫描 1 处命中=历史台账描述扫描手法的散文自述（第8/11轮同类），非凭据",
    "installed_by_this_task": [],
    "notes": "来源②第 3 轮 clone 的仓库第 5 次复用（零下载）。三条环境级钥匙：py3.14 下 pdfplumber/pdfminer 走 --no-deps 绕开 pypdfium2/cryptography 死点；STHeiti Light.ttc 顶替 CFF 轮廓的 PingFang；qlmanage -t 零依赖渲染探针。三条技能缺陷：命令行工具链全缺、forms.md 表单路线被 pypdfium2 卡死未验、SKILL.md 未提任何中文字体注册（CJK 用户必踩 PingFang 拒绝）。"
   }
