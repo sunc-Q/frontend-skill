@@ -1,0 +1,62 @@
+# golang-gin-api 演示场 — 真实运行转录
+# host darwin/amd64, go1.27.1, gin v1.12.0 via goproxy.cn; PORT=8787 API_KEY=lab-secret APP_ENV=development
+
+### RUN A — golden transcript (./run-transcript.sh, 19 assertions)
+PASS  A1 /health 200 ok
+PASS  A2 POST/users 201, role default, email lowercased, password_hash never serialized
+PASS  A3 400 carries field-level messages for Name/Email/Password
+PASS  A4 html.EscapeString after bind: decoded name == &lt;b&gt;Xss&lt;/b&gt; (no live markup)
+PASS  A5 duplicate email -> 409 resource already exists
+PASS  A6 GET /users?limit=200 rejected by binding max=100
+PASS  A7 list returns total=2 after two successful creates
+PASS  A19 bare GET /users echoes the effective page=1 limit=20, not the zero values
+PASS  A8 non-UUID path param -> 400 field ID (ShouldBindUri)
+PASS  A9 unknown id -> 404 from domain.ErrNotFound (status decided in domain layer)
+PASS  A10 DELETE: no key 401, wrong key 401, right key 204
+PASS  A11 second delete -> 404 (repo ErrNoRows mapped to AppError)
+PASS  A12 /debug/slow returned 503 (handler gave up at 250ms deadline, no 504 fallback needed)
+PASS  A13 panic -> JSON 500 generic message, stack only in server log
+PASS  A14 OWASP headers present on 404 (SecurityHeaders registered before routes)
+PASS  A15 incoming X-Request-ID reused verbatim (net/http canonicalises the header name to X-Request-Id)
+PASS  A16 CORS allowlist: 5173 accepted, evil.example refused
+PASS  A17 slog middleware: 10 WARN (>=400) + 3 ERROR (>=500) lines, panic stack logged server-side
+PASS  A18 SIGTERM -> srv.Shutdown -> exit 0, port released
+SERVER LOG (slog JSON, /var/folders/lv/5drqt22d2vj48b0rlv__jdv00000gn/T/tmp.TG4eAZ8d):
+{"time":"2026-09-26T13:50:40.015069+08:00","level":"INFO","msg":"server listening","addr":"127.0.0.1:8787"}
+{"time":"2026-09-26T13:50:40.225026+08:00","level":"INFO","msg":"http request","method":"GET","path":"/health","status":200,"duration":"129µs","ip":"127.0.0.1","request_id":"05ff654d-112d-4e48-904e-4a599cf98e8c"}
+{"time":"2026-09-26T13:50:40.238677+08:00","level":"INFO","msg":"http request","method":"GET","path":"/health","status":200,"duration":"30µs","ip":"127.0.0.1","request_id":"80c40d99-dc53-47b4-84eb-4cc74ee32169"}
+{"time":"2026-09-26T13:50:40.264408+08:00","level":"INFO","msg":"http request","method":"POST","path":"/api/v1/users","status":201,"duration":"522µs","ip":"127.0.0.1","request_id":"0b73d9fe-00af-439f-a60e-bbf8b8fc6e7e"}
+{"time":"2026-09-26T13:50:40.292427+08:00","level":"WARN","msg":"http request","method":"POST","path":"/api/v1/users","status":400,"duration":"242µs","ip":"127.0.0.1","request_id":"a8a3b0da-bb07-4a7a-acc0-a9716c7d3f42"}
+{"time":"2026-09-26T13:50:40.325585+08:00","level":"INFO","msg":"http request","method":"POST","path":"/api/v1/users","status":201,"duration":"87µs","ip":"127.0.0.1","request_id":"8135aa8a-ca41-4d33-a534-6a72a74e7119"}
+{"time":"2026-09-26T13:50:40.431604+08:00","level":"WARN","msg":"http request","method":"POST","path":"/api/v1/users","status":409,"duration":"169µs","ip":"127.0.0.1","request_id":"03b922ee-b2f9-4c2e-bba0-f395632951a1"}
+{"time":"2026-09-26T13:50:40.453232+08:00","level":"WARN","msg":"http request","method":"GET","path":"/api/v1/users","status":400,"duration":"103µs","ip":"127.0.0.1","request_id":"7c2962ad-85da-44f4-ab1c-5eaada96d3b6","query":"limit=200"}
+{"time":"2026-09-26T13:50:40.481309+08:00","level":"INFO","msg":"http request","method":"GET","path":"/api/v1/users","status":200,"duration":"116µs","ip":"127.0.0.1","request_id":"091ec06e-94f9-45bb-bf34-9d4c3b259253","query":"page=1&limit=2"}
+{"time":"2026-09-26T13:50:40.504255+08:00","level":"INFO","msg":"http request","method":"GET","path":"/api/v1/users","status":200,"duration":"92µs","ip":"127.0.0.1","request_id":"b620d0c5-5104-47d8-bc5b-6f50500dd438"}
+{"time":"2026-09-26T13:50:40.527586+08:00","level":"WARN","msg":"http request","method":"GET","path":"/api/v1/users/not-a-uuid","status":400,"duration":"223µs","ip":"127.0.0.1","request_id":"ea68bb3c-76e9-4391-8acf-a48d44a7627d"}
+{"time":"2026-09-26T13:50:40.548767+08:00","level":"WARN","msg":"http request","method":"GET","path":"/api/v1/users/6ba7b810-9dad-11d1-80b4-00c04fd430c8","status":404,"duration":"49µs","ip":"127.0.0.1","request_id":"17d28782-82f6-414d-9ec4-5f0ae24fe9cc"}
+{"time":"2026-09-26T13:50:40.569904+08:00","level":"WARN","msg":"http request","method":"DELETE","path":"/api/v1/users/9c3af07d-b92b-4908-a0bd-5d95e2a34ab1","status":401,"duration":"42µs","ip":"127.0.0.1","request_id":"98635c6e-26ae-492e-b978-d76f6e65a111"}
+{"time":"2026-09-26T13:50:40.586134+08:00","level":"WARN","msg":"http request","method":"DELETE","path":"/api/v1/users/9c3af07d-b92b-4908-a0bd-5d95e2a34ab1","status":401,"duration":"55µs","ip":"127.0.0.1","request_id":"a6d988cf-dacd-4a04-a83b-ecdb697ab026"}
+{"time":"2026-09-26T13:50:40.600916+08:00","level":"INFO","msg":"protected request","status":204,"path":"/api/v1/users/:id","request_id":"f321a957-6681-4c8a-bbc3-2aa2f73e36a4"}
+{"time":"2026-09-26T13:50:40.600956+08:00","level":"INFO","msg":"http request","method":"DELETE","path":"/api/v1/users/9c3af07d-b92b-4908-a0bd-5d95e2a34ab1","status":204,"duration":"108µs","ip":"127.0.0.1","request_id":"f321a957-6681-4c8a-bbc3-2aa2f73e36a4"}
+{"time":"2026-09-26T13:50:40.61672+08:00","level":"INFO","msg":"protected request","status":404,"path":"/api/v1/users/:id","request_id":"4edc82d8-db5f-42a7-baea-97b1f1312290"}
+{"time":"2026-09-26T13:50:40.616776+08:00","level":"WARN","msg":"http request","method":"DELETE","path":"/api/v1/users/9c3af07d-b92b-4908-a0bd-5d95e2a34ab1","status":404,"duration":"107µs","ip":"127.0.0.1","request_id":"4edc82d8-db5f-42a7-baea-97b1f1312290"}
+{"time":"2026-09-26T13:50:40.88733+08:00","level":"WARN","msg":"handler gave up on context","err":"context deadline exceeded"}
+{"time":"2026-09-26T13:50:40.887424+08:00","level":"ERROR","msg":"http request","method":"GET","path":"/api/v1/debug/slow","status":503,"duration":"251.182ms","ip":"127.0.0.1","request_id":"5630dcfa-e43d-404b-8322-2e01cb1e3b48"}
+{"time":"2026-09-26T13:50:40.907339+08:00","level":"ERROR","msg":"panic recovered","panic":"runtime error: index out of range [3] with length 0","stack":"goroutine 67 [running]:\nruntime/debug.Stack()\n\t/Users/apple/.local/go/1.27.1/src/runtime/debug/stack.go:26 +0x5e\ndemo/gin-users-api/pkg/middleware.Recovery.func1.1()\n\t/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1340-golang-gin-api/src/pkg/middleware/recovery.go:17 +0x67\npanic({0x4e0bc68?, 0x15e010b32420?})\n\t/Users/apple/.local/go/1.27.1/src/runtime/panic.go:859 +0x125\ndemo/gin-users-api/internal/handler.(*UserHandler).Panic(0x3d8afe5?, 0xee6b280?)\n\t/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1340-golang-gin-api/src/internal/handler/user_handler.go:114 +0x9\ngithub.com/gin-gonic/gin.(*Context).Next(0x15e010b4a000)\n\t/Users/apple/Documents/workProject/试验/skill演示场/.tmp/gomod-gin/github.com/gin-gonic/gin@v1.12.0/context.go:192 +0x5f\ndemo/gin-users-api/pkg/middleware.Timeout.func1(0x15e010b4a000)\n\t/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1340-golang-gin-api/src/pkg/middleware/timeout.go:17 +0xa5\ngithub.com/gin-gonic/gin.(*Context).Next(0x15e010b4a000)\n\t/Users/apple/Documents/workProject/试验/skill演示场/.tmp/gomod-gin/github.com/gin-gonic/gin@v1.12.0/context.go:192 +0x5f\ndemo/gin-users-api/pkg/middleware.Recovery.func1(0x3b07e73?)\n\t/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1340-golang-gin-api/src/pkg/middleware/recovery.go:27 +0x48\ngithub.com/gin-gonic/gin.(*Context).Next(0x15e010b4a000)\n\t/Users/apple/Documents/workProject/试验/skill演示场/.tmp/gomod-gin/github.com/gin-gonic/gin@v1.12.0/context.go:192 +0x5f\ndemo/gin-users-api/pkg/middleware.Logger.func1(0x15e010b4a000)\n\t/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1340-golang-gin-api/src/pkg/middleware/logger.go:16 +0x8d\ngithub.com/gin-gonic/gin.(*Context).Next(0x15e010b4a000)\n\t/Users/apple/Documents/workProject/试验/skill演示场/.tmp/gomod-gin/github.com/gin-gonic/gin@v1.12.0/context.go:192 +0x5f\ndemo/gin-users-api/pkg/middleware.RequestID.func1(0x15e010b4a000)\n\t/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1340-golang-gin-api/src/pkg/middleware/request_id.go:19 +0x8f\ngithub.com/gin-gonic/gin.(*Context).Next(0x15e010b4a000)\n\t/Users/apple/Documents/workProject/试验/skill演示场/.tmp/gomod-gin/github.com/gin-gonic/gin@v1.12.0/context.go:192 +0x5f\ndemo/gin-users-api/pkg/middleware.SecurityHeaders.func1(0x15e010b4a000)\n\t/Users/apple/Documents/workProject/试验/skill演示场/demos/20260926-1340-golang-gin-api/src/pkg/middleware/security_headers.go:14 +0x10f\ngithub.com/gin-gonic/gin.(*Context).Next(0x15e010b4a000)\n\t/Users/apple/Documents/workProject/试验/skill演示场/.tmp/gomod-gin/github.com/gin-gonic/gin@v1.12.0/context.go:192 +0x5f\ngithub.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0x15e010cf0380, 0x15e010b4a000)\n\t/Users/apple/Documents/workProject/试验/skill演示场/.tmp/gomod-gin/github.com/gin-gonic/gin@v1.12.0/gin.go:722 +0x45b\ngithub.com/gin-gonic/gin.(*Engine).ServeHTTP(0x15e010cf0380, {0x4e40d40, 0x15e010b46780}, 0x15e010b41cc0)\n\t/Users/apple/Documents/workProject/试验/skill演示场/.tmp/gomod-gin/github.com/gin-gonic/gin@v1.12.0/gin.go:672 +0x1dc\nnet/http.serverHandler.ServeHTTP({0x15e010b36cc0?}, {0x4e40d40?, 0x15e010b46780?}, 0x1?)\n\t/Users/apple/.local/go/1.27.1/src/net/http/server.go:3413 +0x8e\nnet/http.(*conn).serve(0x15e010b3b0e0, {0x4e417d8, 0x15e010b2c240})\n\t/Users/apple/.local/go/1.27.1/src/net/http/server.go:2137 +0x6dc\ncreated by net/http.(*Server).Serve in goroutine 20\n\t/Users/apple/.local/go/1.27.1/src/net/http/server.go:3581 +0x4fd\n","method":"GET","path":"/api/v1/debug/panic","request_id":"726dcafd-01d0-4d30-98e8-152820a75cb0"}
+{"time":"2026-09-26T13:50:40.907598+08:00","level":"ERROR","msg":"http request","method":"GET","path":"/api/v1/debug/panic","status":500,"duration":"720µs","ip":"127.0.0.1","request_id":"726dcafd-01d0-4d30-98e8-152820a75cb0"}
+{"time":"2026-09-26T13:50:40.932466+08:00","level":"WARN","msg":"http request","method":"GET","path":"/api/v1/users/6ba7b810-9dad-11d1-80b4-00c04fd430c8","status":404,"duration":"61µs","ip":"127.0.0.1","request_id":"941aa30e-da80-4c31-8727-defcaafba41a"}
+{"time":"2026-09-26T13:50:40.95569+08:00","level":"INFO","msg":"http request","method":"GET","path":"/health","status":200,"duration":"28µs","ip":"127.0.0.1","request_id":"trace-me-42"}
+{"time":"2026-09-26T13:50:40.970563+08:00","level":"INFO","msg":"http request","method":"GET","path":"/health","status":200,"duration":"24µs","ip":"127.0.0.1","request_id":"3a5da619-c9e4-442e-bda5-02f3c5682764"}
+{"time":"2026-09-26T13:50:41.001718+08:00","level":"INFO","msg":"shutting down"}
+{"time":"2026-09-26T13:50:41.001797+08:00","level":"INFO","msg":"server stopped"}
+SUMMARY pass=19 fail=0
+
+### RUN B — negative controls (./mutants.sh)
+=== M1: SecurityHeaders removed ===
+FAIL  A14  <<HTTP/1.1 404 Not Found|Content-Type: application/json; charset=utf-8|X-Request-Id: 041754e0-a666-439e-9a60-6b93eb0c7d77|Date: Sat, 26 Sep 2026 05:50:47 GMT|Content-Length: 30|>>
+SUMMARY pass=18 fail=1
+=== M2: ListQuery max=100 -> 1000 ===
+FAIL  A6  <<200 {"items":[{"id":"8bcce11e-e258-4b59-a9a0-4bb1aa07f828","name":"Qiushi Lyu","email":"qiushi.lyu@example.com","role":"user","created_at":"2026-09-26T05:50:48.260773Z"},{"id":"142fa3d2-e223-47a8-b5f7-a64fafbc24a5","name":"\u0026lt;b\u0026gt;Xss\u0026lt;/b\u0026gt;","email":"x@example.com","role":"user","created_at":"2026-09-26T05:50:48.320914Z"}],"limit":200,"page":1,"total":2}>>
+SUMMARY pass=18 fail=1
+=== baseline restored ===
+SUMMARY pass=19 fail=0

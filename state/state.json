@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T13:22+08:00",
+  "updated": "2026-09-26T13:48+08:00",
   "tried": [
     {
       "skill": "drafter",
@@ -188,6 +188,19 @@
       "artifact": "demos/20260926-1306-mcp-builder/skill-showcase-ledger-mcp-server/{index.mjs 14115B, verify.mjs, output.log(32 PASS/0 FAIL + 3 变异体各 1 FAIL), evaluation.xml, gen_eval.py, protocol-transcript.log(裸 JSON-RPC 帧), README.md, mutants.sh, package.json}",
       "report": "reports/20260926-1306-mcp-builder.md",
       "installed_by_this_task": "无（技能包第3轮已在盘上）；npm 依赖装在本轮 demos 目录内并在收尾删除"
+    },
+    {
+      "skill": "golang-gin-api",
+      "source": "来源③本机已装：~/.qoder-cn/skills/golang-gin-api（v1.0.5, henriqueatila）—— 本轮零下载；依赖 gin + gin-contrib/cors + google/uuid 走 GOPROXY=https://goproxy.cn,direct（约 40s，GOMODCACHE/GOCACHE 全指 LAB/.tmp，收尾删除）",
+      "skill_path": "~/.qoder-cn/skills/golang-gin-api/SKILL.md + references/{middleware,error-handling}.md",
+      "task": "按技能的 Project Structure 落地 Users REST API（cmd/api + internal/{domain,repository,service,handler} + pkg/middleware 7 个中间件：CORS/SecurityHeaders/RequestID/Logger(slog)/Recovery/Timeout/APIKey），起真服务在 127.0.0.1:8787 跑 19 条 curl 断言，再 SIGTERM 验优雅关闭",
+      "verdict": "留用（推荐）—— 它把 Gin 新手必漏的生产细节（gin.New 而非 Default、SetTrustedProxies、ReadHeaderTimeout 防 Slowloris、ShouldBind* 而非 Bind*、AppError 把状态码留在域层、panic 栈只进日志、c.Copy() 进协程）给齐了，19 条断言全绿即证据。代价：文档里 2 个 API 名是错的（见 environment_notes）",
+      "time": "2026-09-26T13:48+08:00",
+      "artifact": "demos/20260926-1340-golang-gin-api/（src 可编译源码 + run-transcript.sh + mutants.sh + output.log；目录 100KB/21 文件）",
+      "report": "reports/20260926-1340-golang-gin-api.md",
+      "installed_by_this_task": [
+        "dlazy-logo-design@1.3.4（官方市场 official id 53f9bd2e-95b1-4301-b449-3fd4b9d46ff8 → ~/.qoder-cn/skills/dlazy-logo-design，本轮已装但按闸门放弃使用，未执行其任何命令）"
+      ]
     }
   ],
   "skills_seen": [
@@ -592,15 +605,50 @@
       "url": "qoder://extension-market/official_lBqJkiIr",
       "status": "unreachable",
       "note": "要下模型权重+GPU 依赖，重依赖排除项"
+    },
+    {
+      "name": "dlazy-logo-design",
+      "source": "Qoder 官方市场 53f9bd2e-95b1-4301-b449-3fd4b9d46ff8 / query 'logo'",
+      "url": "https://github.com/dlazyai/cli",
+      "status": "blocked",
+      "note": "读完整 SKILL.md 后放弃：托管 SaaS 瘦客户端，需 DLAZY_API_KEY（付费凭据）+ `npm install -g @dlazy/cli@1.2.3`（全局安装）+ 把 --files 本地文件上传 files.dlazy.com（内容外发），三条各触闸门。包内只有 SKILL.md/SKILL-cn.md，零实现层。SKILL.md 里还带「AGENT CRITICAL INSTRUCTION」指挥 agent 跑 CLI —— 未执行"
+    },
+    {
+      "name": "ui-mockup / mockup-export / html-mockup-prototyping / frontend-mockup",
+      "source": "Qoder 官方市场 / query 'mockup'",
+      "url": "",
+      "status": "candidate",
+      "note": "本轮未选：产物仍是单文件 HTML/线框（该形态已做 5 次以上）。mockup-export（6 张 1080x1920 Play 商店 PNG）若要做，可复用系统 Chrome 无头出图管线，留作候选"
+    },
+    {
+      "name": "pptx-pdf-font-fix / python-matplotlib-chinese-font / fontpreview / fonts(网络排版)",
+      "source": "Qoder 官方市场 / query 'font'",
+      "url": "",
+      "status": "candidate",
+      "note": "font 词根只 4 条：前两条依赖本机 PPTX 文件/matplotlib 中文字体（可做但与已做类型重叠），后两条是纯知识指南。优先级低于 websocket/rate-limiting 补验"
+    },
+    {
+      "name": "gin 的 websocket / rate-limiting / JWT 子路线",
+      "source": "~/.qoder-cn/skills/golang-gin-api/references/",
+      "url": "",
+      "status": "candidate",
+      "note": "本轮只验了 SKILL.md 主干 + middleware.md + error-handling.md；websocket.md 要 gorilla/websocket，rate-limiting.md 要 golang.org/x/time/rate，JWT 指向未安装的 golang-gin-auth skill。想验需另开一轮"
+    },
+    {
+      "name": "★Go 侧取证管线（环境能力，非技能）",
+      "source": "本机 go1.27.1 + goproxy.cn",
+      "url": "",
+      "status": "working_source",
+      "note": "以后任何 Go 类技能照抄：GOMODCACHE/GOCACHE 必须**绝对路径**（go 直接拒相对值）且放 LAB/.tmp 内；GOPROXY=https://goproxy.cn,direct；GOPROXY=off 可让变异重建离线秒过；**收尾删模块缓存要先 `chmod -R u+w`**（go 给模块文件上 0444，rm -rf 会整片 Permission denied）；产物 -o 用字面绝对路径"
     }
   ],
   "in_progress": null,
   "next_candidates": [
-    "anthropic-skills 盘上未试（零下载，成本最低）：theme-factory（10 套主题给既有产物换皮）、brand-guidelines、slack-gif-creator、doc-coauthoring、frontend-design、web-artifacts-builder、internal-comms、skill-creator、claude-api",
-    "MCP 路线已被本轮打通，可续：给既有 MCP 服务器补 resources/prompts（本轮只做了 tools，A2 断言里 resources/prompts 缺席是有意范围），或改 streamable HTTP 传输（需限制端口在 LAB 内 + 按端口找 PID 收尾）",
-    "来源①新词根继续扫：audio / voice / chart / calendar / diff / regex / font（search_extensions 的 query 用单个英文词根）；注意 mind-map-skill 仍在候选但要先确认包内是否真带渲染脚本",
-    "来源③本机已装未试：golang-gin-api、golangci-lint-strict、frontend-development、nodejs-best-practices、express-nodejs-expert、Golang-Backend-Development",
-    "（方法学沿用）本轮新增：⑪ 声明式输出 schema 必须对**所有**返回路径断言（含空/not-found/截断），且只有起真会话才测得到；⑫ append-only 数据源做评测时，题目要锚定不可变事实，并把断言依据的数字冻结进 state（evaluation_snapshot）；⑬ 截断/降级分支在小真实数据上是死代码，必须合成超限 fixture 才能证伪"
+    "补验 golang-gin-api 的三条未覆盖子路线（同一技能包已在盘上，零下载）：references/websocket.md（gorilla/websocket + hub + ping/pong，产物=真 WS 帧转录）、rate-limiting.md（golang.org/x/time/rate token bucket + 429 响应头）、golang-gin-auth 的 JWT（该技能未装，需先确认市场能否装或走 github SSH clone）",
+    "来源③本机已装未试：golangci-lint-strict（要联网取版本化 config，注意上游 raw.githubusercontent 被 TLS 重置）、Golang-Backend-Development、nodejs-best-practices、express-nodejs-expert、frontend-development",
+    "anthropic-skills 盘上未试（零下载）：theme-factory（10 套主题换皮）、brand-guidelines、slack-gif-creator、doc-coauthoring、frontend-design、web-artifacts-builder、internal-comms、skill-creator、claude-api",
+    "来源①候选（本轮扫 font/mockup/logo 记下的）：mockup-export（6 张 1080x1920 Play 商店 PNG，可复用系统 Chrome 无头出图管线）、python-matplotlib-chinese-font + matplotlib 数据可视化路线（pip --target 已打通）；注意产物形态别再用单文件 HTML（已 5 次以上）",
+    "（方法学沿用）本轮新增：⑭ 规范型 Go 技能照抄前先编译——它的示例代码可能含不存在的 API 名；⑮ 断言字符串前先确认序列化层的转义/大小写规范化（Go json 转义 & < >、net/http 规范头名）；⑯ Go 产物与模块缓存路径一律字面绝对路径，删模块缓存先 chmod -R u+w；⑰ 检查「未填充零值是否被外显」（page=0 这类示例代码缺陷）"
   ],
   "used_artifact_kinds": [
     "单文件自包含 HTML 图表（工程图纸）×1",
@@ -618,7 +666,8 @@
     "可打印 PDF 文档 ×1（3 页中文报告 99KB：reportlab 生成 + pypdf 水印/双口令加密 + pdfplumber 回读 24 断言 + qlmanage 真渲染 PNG；含 12 行表格与 11 柱手绘条形图，柱高与秒数成正比经 rects 几何验证）",
     "WebGL/GLSL 片元着色器单文件 HTML（13,962B，零外链，file:// 即跑；5 个 uniform 全接滑杆 + 冻结/定尺寸取帧）+ 系统 Chrome swiftshader 真渲染 PNG 2 张 + 15 条像素断言（含 speed=0 差值精确为 0 的反证、规约探针实测 1.4076 vs 解析 1.4075）+ 7/7 双变异日志 + golden-pixels.json ×1",
     "原创视觉艺术 PNG 图版（1650×2340 / 485,901B，Pillow 纯绘制：15万点纤维噪声+工程网格+高斯暗角+24h表盘13条时长弧+分钟格账本）+ 设计宣言 .md；16 条像素断言（分钟格逐格数回台账、朱红弧实测307.8°、出血位零墨、脚注恰8词隙）+ 变异负对照（改 1080s→600s 使 B2/B3 变红）×1",
-    "只读 stdio MCP 服务器（4 工具 / Zod 双向 schema / annotations / 分页 / 截断 / 可执行错误）+ 裸 JSON-RPC 帧转录 + 10 题 evaluation.xml + 32 条真协议会话断言日志（含 3 个变异体各红 1 条）×1"
+    "只读 stdio MCP 服务器（4 工具 / Zod 双向 schema / annotations / 分页 / 截断 / 可执行错误）+ 裸 JSON-RPC 帧转录 + 10 题 evaluation.xml + 32 条真协议会话断言日志（含 3 个变异体各红 1 条）×1",
+    "运行中的 Gin HTTP 服务（127.0.0.1，端口收尾已释放）+ 19 条真实 curl 断言转录 output.log（201/400字段级/409/404/401/204/503/500 全覆盖 + slog 服务端 JSON 日志 + SIGTERM→Shutdown→exit 0 + 2 个变异体各只红 1 条）×1"
   ],
   "environment_notes": [
     "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
@@ -722,7 +771,12 @@
     "SDK 1.30.1 的 tools/list 里 inputSchema 只带 properties、无 required 数组（.default() 字段视作可选）——别断言 required。",
     "落 package.json 的依赖版本要用 node -e require(.../package.json).version 核对，别照 guide 猜（zod 我写 ^4.4.3 实装 4.6.5）。",
     "把 MCP server 复制到子目录（如 .mut/）会让 import.meta.url 相对路径少算一层，表现为客户端 'Connection closed' 这种极难定位的错——一律用环境变量显式注入数据路径（中文目录仍需 fileURLToPath 解码）。",
-    "回填推送哈希只准用 git log / push 输出的实际值，凭记忆写会编出不存在的 commit（第16轮首填写成 76e37ee，实为 42dc3a4..df1df6c）；已改的两处：runs[].push 与 final_check.pushed。"
+    "回填推送哈希只准用 git log / push 输出的实际值，凭记忆写会编出不存在的 commit（第16轮首填写成 76e37ee，实为 42dc3a4..df1df6c）；已改的两处：runs[].push 与 final_check.pushed。",
+    "golang-gin-api 文档有两处 API 名是错的：`c.ShouldBindURI` 在 Gin 里不存在（真名 `ShouldBindUri`，小写 r），`http.StatusServerTimeout` 也不存在（用 503 StatusServiceUnavailable）。照抄示例代码首次编译必失败，报 `has no field or method ShouldBindURI, but does have method ShouldBindUri`。",
+    "Go 断言脚本两个隐蔽取证坑：①`encoding/json` 把 & < > 转义成 \\u0026/\\u003c，消毒后的 `&lt;b&gt;` 在线上是 `\\u0026lt;b\\u0026gt;`，grep 原始串必假失败——要 JSON 解码后再比字符串；②`net/http` 规范化响应头大小写，技能设 `X-Request-ID` 实回 `X-Request-Id`，断言需 -i。",
+    "`go build -o ../../.tmp/xxx` 的相对路径按 cwd 解析：在 `src/` 下 `../..` 已是 `demos/`，产物静默写到 demos/.tmp，导致后续两轮跑的是**旧二进制**，表现为「改了代码断言仍红」的假故障（本轮连踩两次，另一次是子 shell 里用 $PWD 拼接）。一律用字面绝对路径。",
+    "技能示例代码自身有缺陷：List handler 直接回显绑定值 `q.Page/q.Limit`，而默认值只在 service 内补 → 不带参数的 GET /users 回显 `\"page\":0`。本轮在 handler 归一化并补断言 A19。启示：照抄规范型技能的示例时，把「未填充零值会不会外显」列进断言清单。",
+    "市场安装 dlazy 系技能=付费 SaaS 客户端（key+全局 npm i -g+本地文件外发），一律读 SKILL.md 后即弃；它的 tags 为空（历轮『tags 空即可靠』指的是安装格式可靠，不代表内容安全）。"
   ],
   "runs": [
     {
@@ -934,6 +988,16 @@
         "pushed": "df1df6c",
         "lab_size": "40M"
       }
+    },
+    {
+      "time": "2026-09-26T13:48+08:00",
+      "skill": "golang-gin-api",
+      "result": "成功（留用·推荐）。run-transcript.sh 19 PASS / 0 FAIL；变异反证 M1(删 SecurityHeaders)→只红 A14、M2(max=100→1000)→只红 A6，各 18/1，基线还原 19/19；服务端 slog 实测 status=503 duration=251.101ms（对上 250ms deadline）、panic 栈只进日志；SIGTERM→srv.Shutdown→exit 0 且端口释放；另修掉示例代码 `page:0` 外显缺陷并加 A19",
+      "seconds": 1080,
+      "artifact_size": "本轮 demos 100KB / 21 文件（output.log 11,804B + src 分层源码(go.mod/go.sum, gin v1.12.0) + run-transcript.sh + mutants.sh + README），限 5MB",
+      "cleanup": "删 .tmp/api-r17(32MB) + .tmp/mut-r17(2 个变异二进制+2 份源码副本) + .tmp/gomod-gin + .tmp/gocache-gin（go 模块缓存 0444，先 chmod -R u+w 才删得掉）+ /tmp 本轮 5 个临时文件 + 误建的 demos/.tmp 与 demos/20260926-1340-golang-gin-api/.tmp；pkill/pgrep 复核本轮零进程、lsof 复核 87xx 零监听；全局缓存(~/go/pkg/mod、~/Library/Caches/go-build)未动；收尾为改代码风格(time_After→time.After，删 timehelper.go)后**重新构建并重跑**了 RUN A/B，日志以重跑结果为准",
+      "push": "待填（见下条 commit 实际哈希，凭 git 输出回填，不凭记忆）",
+      "notes": "全局副作用=官方市场装 dlazy-logo-design（本轮按闸门放弃使用，未执行其命令，包内零实现层）。产物类型换到「运行中的后端服务 + 命令转录」，历轮首个真 HTTP 服务演示。最大环境增量：Go 侧离线变异取证管线（GOPROXY=off 秒级重建两个变异体）+ 三条 Go 专属取证坑入库"
     }
   ],
   "evaluation_snapshot": {
