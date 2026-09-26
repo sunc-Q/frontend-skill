@@ -1,0 +1,353 @@
+{
+ "flight-board": {
+  "theme": "flight-board",
+  "shell": {
+   "fontFamily": "\"Avenir Next\", \"Helvetica Neue\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "lineHeight": "21px",
+   "paddingTop": "16px",
+   "color": "rgb(240, 230, 210)"
+  },
+  "brand": {
+   "fontFamily": "\"DIN Condensed\", \"DIN Alternate\", \"Avenir Next Condensed\", Haettenschweiler, Impact, sans-serif",
+   "fontSize": "34px",
+   "letterSpacing": "2.04px",
+   "textTransform": "uppercase",
+   "color": "rgb(240, 230, 210)"
+  },
+  "kpi": {
+   "borderTopLeftRadius": "2px",
+   "borderTopWidth": "4px",
+   "borderTopStyle": "solid",
+   "paddingTop": "14px",
+   "boxShadow": "rgba(0, 0, 0, 0.65) 0px 2px 0px 0px, rgba(255, 255, 255, 0.05) 0px 1px 0px 0px inset",
+   "backgroundColor": "rgb(20, 26, 34)"
+  },
+  "label": {
+   "fontFamily": "\"Avenir Next\", \"Helvetica Neue\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+   "fontSize": "11px",
+   "letterSpacing": "1.54px",
+   "textTransform": "uppercase",
+   "fontStyle": "normal"
+  },
+  "value": {
+   "fontFamily": "\"DIN Condensed\", \"DIN Alternate\", \"Avenir Next Condensed\", Haettenschweiler, Impact, sans-serif",
+   "fontSize": "27px",
+   "fontWeight": "700",
+   "color": "rgb(240, 230, 210)"
+  },
+  "head": {
+   "fontFamily": "\"Avenir Next\", \"Helvetica Neue\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+   "fontSize": "11px",
+   "color": "rgb(255, 176, 32)",
+   "backgroundColor": "rgb(26, 34, 48)",
+   "textTransform": "uppercase",
+   "borderTopStyle": "none"
+  },
+  "row": {
+   "borderBottomStyle": "dashed",
+   "borderBottomWidth": "1px",
+   "paddingTop": "6px",
+   "fontSize": "12px",
+   "color": "rgb(240, 230, 210)"
+  },
+  "btn": {
+   "borderTopLeftRadius": "1px",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "color": "rgb(240, 230, 210)",
+   "textTransform": "uppercase",
+   "paddingTop": "4px"
+  },
+  "input": {
+   "borderTopLeftRadius": "1px",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "backgroundColor": "rgb(10, 14, 19)"
+  },
+  "badge": {
+   "borderTopLeftRadius": "1px",
+   "borderTopStyle": "dashed",
+   "letterSpacing": "1px",
+   "textTransform": "uppercase",
+   "fontSize": "10px"
+  },
+  "gap": {
+   "columnGap": "12px",
+   "rowGap": "12px"
+  },
+  "bar": {
+   "height": "12px",
+   "borderTopLeftRadius": "999px",
+   "backgroundColor": "rgb(25, 31, 40)",
+   "borderBottomStyle": "dashed"
+  },
+  "fill": {
+   "borderTopLeftRadius": "0px",
+   "backgroundColor": "rgb(255, 176, 32)",
+   "backgroundImage": "none"
+  },
+  "status": {
+   "fontFamily": "\"Avenir Next\", \"Helvetica Neue\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+   "fontSize": "14px",
+   "letterSpacing": "normal",
+   "textTransform": "none",
+   "borderTopStyle": "solid"
+  },
+  "stamp": {
+   "fontFamily": "\"Avenir Next\", \"Helvetica Neue\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+   "fontSize": "10px",
+   "color": "rgb(126, 224, 138)",
+   "borderLeftStyle": "solid",
+   "borderLeftWidth": "4px",
+   "letterSpacing": "normal"
+  },
+  "rowCount": 40,
+  "kpiCount": 14,
+  "badgeCount": 51,
+  "trackCount": 28,
+  "tabCount": 3,
+  "firstKpi": "¥1.63 万",
+  "firstBadge": "已结算",
+  "firstTrack": "2026-09-13",
+  "firstRow": "CS20260926-004DC-A03沪AD10548通勤班线已结算29.7 kWh¥52.31—11:4912:0415 分 · 119 kW吴建军 138****1244",
+  "external": [],
+  "inlineScripts": 2,
+  "inlineStyles": 1,
+  "consoleErrors": []
+ },
+ "watch-dial": {
+  "theme": "watch-dial",
+  "shell": {
+   "fontFamily": "Optima, Palatino, \"Avenir Next\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "lineHeight": "24.3px",
+   "paddingTop": "18px",
+   "color": "rgb(35, 40, 58)"
+  },
+  "brand": {
+   "fontFamily": "Didot, \"Bodoni 72\", Baskerville, \"Times New Roman\", serif",
+   "fontSize": "38px",
+   "letterSpacing": "5.32px",
+   "textTransform": "none",
+   "color": "rgb(35, 40, 58)"
+  },
+  "kpi": {
+   "borderTopLeftRadius": "999px",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "paddingTop": "16px",
+   "boxShadow": "rgba(35, 40, 58, 0.16) 0px 1px 2px 0px, rgba(255, 255, 255, 0.6) 0px 0px 0px 1px inset, rgba(28, 53, 87, 0.1) 0px 0px 0px 1px inset",
+   "backgroundColor": "rgb(242, 239, 230)"
+  },
+  "label": {
+   "fontFamily": "Optima, Palatino, \"Avenir Next\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+   "fontSize": "10px",
+   "letterSpacing": "2.6px",
+   "textTransform": "uppercase",
+   "fontStyle": "italic"
+  },
+  "value": {
+   "fontFamily": "Didot, \"Bodoni 72\", Baskerville, \"Times New Roman\", serif",
+   "fontSize": "30px",
+   "fontWeight": "400",
+   "color": "rgb(35, 40, 58)"
+  },
+  "head": {
+   "fontFamily": "Didot, \"Bodoni 72\", Baskerville, \"Times New Roman\", serif",
+   "fontSize": "10px",
+   "color": "rgb(28, 53, 87)",
+   "backgroundColor": "rgb(224, 216, 198)",
+   "textTransform": "uppercase",
+   "borderTopStyle": "none"
+  },
+  "row": {
+   "borderBottomStyle": "dotted",
+   "borderBottomWidth": "1px",
+   "paddingTop": "7px",
+   "fontSize": "12px",
+   "color": "rgb(35, 40, 58)"
+  },
+  "btn": {
+   "borderTopLeftRadius": "999px",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "color": "rgb(35, 40, 58)",
+   "textTransform": "uppercase",
+   "paddingTop": "5px"
+  },
+  "input": {
+   "borderTopLeftRadius": "999px",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "backgroundColor": "rgb(251, 249, 243)"
+  },
+  "badge": {
+   "borderTopLeftRadius": "999px",
+   "borderTopStyle": "dotted",
+   "letterSpacing": "2.6px",
+   "textTransform": "uppercase",
+   "fontSize": "10px"
+  },
+  "gap": {
+   "columnGap": "13px",
+   "rowGap": "13px"
+  },
+  "bar": {
+   "height": "8px",
+   "borderTopLeftRadius": "999px",
+   "backgroundColor": "rgb(227, 221, 205)",
+   "borderBottomStyle": "dotted"
+  },
+  "fill": {
+   "borderTopLeftRadius": "0px",
+   "backgroundColor": "rgb(28, 53, 87)",
+   "backgroundImage": "none"
+  },
+  "status": {
+   "fontFamily": "Optima, Palatino, \"Avenir Next\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+   "fontSize": "15px",
+   "letterSpacing": "normal",
+   "textTransform": "none",
+   "borderTopStyle": "solid"
+  },
+  "stamp": {
+   "fontFamily": "Optima, Palatino, \"Avenir Next\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+   "fontSize": "10px",
+   "color": "rgb(44, 107, 82)",
+   "borderLeftStyle": "solid",
+   "borderLeftWidth": "2px",
+   "letterSpacing": "normal"
+  },
+  "rowCount": 40,
+  "kpiCount": 14,
+  "badgeCount": 51,
+  "trackCount": 28,
+  "tabCount": 3,
+  "firstKpi": "¥1.63 万",
+  "firstBadge": "已结算",
+  "firstTrack": "2026-09-13",
+  "firstRow": "CS20260926-004DC-A03沪AD10548通勤班线已结算29.7 kWh¥52.31—11:4912:0415 分 · 119 kW吴建军 138****1244",
+  "external": [],
+  "inlineScripts": 2,
+  "inlineStyles": 1,
+  "consoleErrors": []
+ },
+ "botanical-plate": {
+  "theme": "botanical-plate",
+  "shell": {
+   "fontFamily": "\"Iowan Old Style\", \"Palatino Linotype\", Baskerville, \"Songti SC\", \"PingFang SC\", serif",
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "lineHeight": "25.8px",
+   "paddingTop": "22px",
+   "color": "rgb(38, 48, 31)"
+  },
+  "brand": {
+   "fontFamily": "Baskerville, \"Hoefler Text\", \"Times New Roman\", \"Songti SC\", serif",
+   "fontSize": "40px",
+   "letterSpacing": "0.8px",
+   "textTransform": "none",
+   "color": "rgb(38, 48, 31)"
+  },
+  "kpi": {
+   "borderTopLeftRadius": "0px",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "dashed",
+   "paddingTop": "18px",
+   "boxShadow": "rgba(38, 48, 31, 0.2) 1px 1px 0px 0px",
+   "backgroundColor": "rgb(241, 239, 226)"
+  },
+  "label": {
+   "fontFamily": "\"Iowan Old Style\", \"Palatino Linotype\", Baskerville, \"Songti SC\", \"PingFang SC\", serif",
+   "fontSize": "12px",
+   "letterSpacing": "0.72px",
+   "textTransform": "none",
+   "fontStyle": "italic"
+  },
+  "value": {
+   "fontFamily": "Baskerville, \"Hoefler Text\", \"Times New Roman\", \"Songti SC\", serif",
+   "fontSize": "26px",
+   "fontWeight": "600",
+   "color": "rgb(38, 48, 31)"
+  },
+  "head": {
+   "fontFamily": "Baskerville, \"Hoefler Text\", \"Times New Roman\", \"Songti SC\", serif",
+   "fontSize": "12px",
+   "color": "rgb(51, 80, 47)",
+   "backgroundColor": "rgb(227, 227, 208)",
+   "textTransform": "none",
+   "borderTopStyle": "none"
+  },
+  "row": {
+   "borderBottomStyle": "dashed",
+   "borderBottomWidth": "1px",
+   "paddingTop": "8px",
+   "fontSize": "13px",
+   "color": "rgb(38, 48, 31)"
+  },
+  "btn": {
+   "borderTopLeftRadius": "0px",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "color": "rgb(38, 48, 31)",
+   "textTransform": "none",
+   "paddingTop": "6px"
+  },
+  "input": {
+   "borderTopLeftRadius": "0px",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "backgroundColor": "rgb(248, 246, 234)"
+  },
+  "badge": {
+   "borderTopLeftRadius": "0px",
+   "borderTopStyle": "dashed",
+   "letterSpacing": "0.88px",
+   "textTransform": "none",
+   "fontSize": "11px"
+  },
+  "gap": {
+   "columnGap": "15px",
+   "rowGap": "15px"
+  },
+  "bar": {
+   "height": "10px",
+   "borderTopLeftRadius": "0px",
+   "backgroundColor": "rgb(221, 222, 203)",
+   "borderBottomStyle": "dashed"
+  },
+  "fill": {
+   "borderTopLeftRadius": "0px",
+   "backgroundColor": "rgb(51, 80, 47)",
+   "backgroundImage": "none"
+  },
+  "status": {
+   "fontFamily": "\"Iowan Old Style\", \"Palatino Linotype\", Baskerville, \"Songti SC\", \"PingFang SC\", serif",
+   "fontSize": "15px",
+   "letterSpacing": "normal",
+   "textTransform": "none",
+   "borderTopStyle": "solid"
+  },
+  "stamp": {
+   "fontFamily": "\"Iowan Old Style\", \"Palatino Linotype\", Baskerville, \"Songti SC\", \"PingFang SC\", serif",
+   "fontSize": "11px",
+   "color": "rgb(51, 80, 47)",
+   "borderLeftStyle": "dotted",
+   "borderLeftWidth": "2px",
+   "letterSpacing": "normal"
+  },
+  "rowCount": 40,
+  "kpiCount": 14,
+  "badgeCount": 51,
+  "trackCount": 28,
+  "tabCount": 3,
+  "firstKpi": "¥1.63 万",
+  "firstBadge": "已结算",
+  "firstTrack": "2026-09-13",
+  "firstRow": "CS20260926-004DC-A03沪AD10548通勤班线已结算29.7 kWh¥52.31—11:4912:0415 分 · 119 kW吴建军 138****1244",
+  "external": [],
+  "inlineScripts": 2,
+  "inlineStyles": 1,
+  "consoleErrors": []
+ }
+}

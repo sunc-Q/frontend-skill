@@ -1,0 +1,212 @@
+/* ============================================================
+   风格三：植物标本图鉴版画风（herbarium plate / engraved folio）
+   主张：一页夹在图鉴里的蜡叶标本——灰绿台纸、羽状排线的暗角、
+   铅字印刷的双细线框与手写斜体定名；数据像采集签一样右对齐，
+   状态不用色块而用墨色深浅与虚线戳记表达，整版留白最宽。
+   ============================================================ */
+:root {
+  color-scheme: light;
+
+  --font-body: 'Iowan Old Style', 'Palatino Linotype', 'Baskerville', 'Songti SC', 'PingFang SC', serif;
+  --font-head: 'Baskerville', 'Hoefler Text', 'Times New Roman', 'Songti SC', serif;
+  --font-mono: 'Menlo', 'SFMono-Regular', Consolas, 'Courier New', monospace;
+
+  --bg: #dfe2d4;
+  --bg-texture:
+    repeating-linear-gradient(45deg, rgba(60, 78, 55, 0.045) 0 1px, transparent 1px 6px),
+    radial-gradient(circle at 82% 90%, rgba(84, 96, 68, 0.14), transparent 52%);
+  --bg-panel: #f1efe2;
+  --bg-alt: #e6e6d5;
+  --bg-input: #f8f6ea;
+  --bg-head: #e3e3d0;
+
+  --ink: #26301f;
+  --ink-soft: #4d563f;
+  --ink-faint: #8a8b73;
+  --head-ink: #33502f;
+
+  --accent: #33502f;
+  --accent-2: #7d4a2b;
+  --accent-ink: #f4f2e4;
+
+  --line: #b3b79c;
+  --line-strong: #33502f;
+  --border: 1px solid #b3b79c;
+  --border-hair: 1px dashed #a3a888;
+  --border-dotted: 2px dotted #7d4a2b;
+  --border-bottom-strong: 3px double #33502f;
+  --edge-w: 1px;
+  --edge-w-lg: 3px;
+  --shadow: 1px 1px 0 rgba(38, 48, 31, 0.2);
+
+  --ok: #33502f;
+  --ok-bg: #e4ead8;
+  --warn: #7d4a2b;
+  --warn-bg: #efe2d2;
+  --bad: #6d2f2f;
+  --bad-bg: #ecdcd6;
+  --idle: #8a8b73;
+  --track: #dddecb;
+  --hover: #eaeade;
+  --zebra: #f4f3e6;
+  --sel-bg: #33502f;
+  --sel-ink: #f4f2e4;
+
+  --radius: 0px;
+  --radius-sm: 0px;
+  --chip-radius: 0px;
+  --dot-radius: 0;
+  --pad: 18px;
+  --pad-sm: 12px;
+  --pad-xs: 6px;
+  --gap: 22px;
+  --gap-sm: 15px;
+  --maxw: 1240px;
+  --side-w: 356px;
+  --lede-w: 58ch;
+  --kpi-min: 200px;
+  --fact-min: 250px;
+  --field-min: 190px;
+  --form-min: 320px;
+  --pager-w: 104px;
+  --spark-w: 88px;
+  --bill-label-w: 100px;
+  --bill-val-w: 112px;
+  --check-size: 16px;
+
+  --fs-tiny: 11px;
+  --fs-small: 13px;
+  --fs-label: 12px;
+  --fs-base: 15px;
+  --fs-title: 26px;
+  --fs-brand: 40px;
+  --fs-kpi: 26px;
+  --fs-bill: 15px;
+  --lh: 1.72;
+  --fw-normal: 400;
+  --fw-bold: 600;
+  --fw-kpi: 600;
+
+  --bar-h: 10px;
+  --bar-h-sm: 6px;
+  --rail-w: 3px;
+  --rail-w-line: 1px;
+  --icon-size: 18px;
+  --mark-size: 32px;
+  --dot-size: 7px;
+  --dot-ring: 1px;
+  --dot-pop: 1.6;
+  --cell-pad: 8px 10px;
+  --focus-w: 3px;
+  --sticky-z: 2;
+  --t: 160ms ease-in;
+  --identity-bullet: '\2014 ';
+  --off-strike: line-through dashed;
+  --rail-dash: repeating-linear-gradient(135deg, #b3b79c 0 2px, transparent 2px 8px);
+  --btn-shadow: 1px 1px 0 rgba(38, 48, 31, 0.28);
+  --chip-shadow: inset 0 0 0 1px rgba(51, 80, 47, 0.3);
+  --seg-w: 6px;
+  --stamp-align: left;
+  --topbar-align: start;
+  --head-transform: none;
+  --head-tracking: 0.02em;
+  --label-transform: none;
+  --label-tracking: 0.06em;
+  --label-style: italic;
+  --mono-tracking: 0;
+  --tilt-brand: rotate(-0.6deg);
+  --tilt-title: none;
+  --tilt-kpi: rotate(0.35deg);
+
+  --tab-bg: #e6e6d5;
+  --tab-idle: #8a8b73;
+  --tab-ink: #33502f;
+  --tab-focus: #7d4a2b;
+}
+
+/* 气质补丁：台纸与签条——双细线版框、采集签式表格、戳记式徽章。 */
+
+.topbar {
+  border: var(--border-dotted);
+  outline: var(--edge-w) solid var(--line);
+  outline-offset: calc(var(--pad-xs) * -1);
+  background-image: none;
+}
+
+.brand-name {
+  font-family: var(--font-head);
+  font-style: italic;
+  transform: var(--tilt-brand);
+}
+
+.section-title {
+  font-family: var(--font-head);
+  border-bottom: var(--border-bottom-strong);
+  padding-bottom: var(--pad-xs);
+}
+
+.section-note {
+  font-style: var(--label-style);
+}
+
+.kpi {
+  border: var(--border-hair);
+  transform: var(--tilt-kpi);
+}
+
+.kpi-label {
+  font-style: italic;
+}
+
+.badge {
+  border: var(--edge-w) dashed currentColor;
+  border-radius: var(--radius);
+  letter-spacing: 0.08em;
+}
+
+.chip {
+  border-style: dashed;
+  background-image: none;
+}
+
+.table thead th {
+  font-family: var(--font-head);
+  font-style: var(--label-style);
+  border-bottom: var(--border-bottom-strong);
+}
+
+.table tbody tr {
+  border-bottom: var(--border-hair);
+}
+
+.tab {
+  border: var(--border-hair);
+  border-radius: var(--radius);
+  font-style: var(--label-style);
+}
+
+.tab[aria-selected='true'] {
+  border-style: solid;
+  box-shadow: var(--btn-shadow);
+}
+
+.btn {
+  border-radius: var(--radius);
+  box-shadow: var(--btn-shadow);
+}
+
+.pile {
+  border-left: var(--edge-w-lg) double var(--line-strong);
+  background-image: var(--rail-dash);
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  background-size: 28px var(--rail-w);
+}
+
+.identity {
+  border: var(--border-dotted);
+}
+
+.footnote {
+  font-style: var(--label-style);
+}

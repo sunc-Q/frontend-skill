@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T08:40:00+08:00",
+  "updated": "2026-09-26T12:10:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -141,6 +141,19 @@
       "result": "成功：4 表 + 6 读 5 写（单 ADMIN_TOKEN fail-closed 503/401/403）+ 八态机 + 单一报价引擎 QuoteOf（体积重/ceilTo500/燃油/保价/附加费仲裁封顶 80%）；go build/vet/gofmt/test 全绿（24 Test）；tsc 0 错、vite build 355,707B；api-smoke 11 节 pass=253 fail=0（库三件套 0600、日志零令牌）；style-diff 失败项 0（72 项计算样式互斥 54/52/49、同构 rowCount=31·kpiCount=12·badgeCount=17·外链 0）；ui-check pass=93 fail=0（×3 主题、脏库重跑仍绿）；抓出 6 处应用侧真缺陷（CORS 前缀匹配、SQLite 时间混偏移致文本排序、种子落在未来、排序回显泄漏列名、请求体无上限、表单默认值低于后端下限）",
       "code_dir": "sites/freight-waybill-tracking/{backend,web,scripts}",
       "artifact_dir": "sites/freight-waybill-tracking/{web/dist,preview,evidence}"
+    },
+    {
+      "time": "2026-09-26T12:10:00+08:00",
+      "scenario": "封闭场站车队充电运营台（分时计价与桩位占用）",
+      "slug": "fleet-charging-ops",
+      "styles": [
+        "机场航班信息板风",
+        "机械腕表表盘剖视风",
+        "植物标本图鉴版画风"
+      ],
+      "result": "成功：4 表 15 接口（7 Bearer 写）+ 分钟步进切价/跨零点窗口/最大余数分摊，三条恒等式接口层自检并公开 identity_ok；go build/vet/test 全绿（24 Test，domain 75.3%/repository 82.1%/server 80.4%）；api-smoke pass=266（含独立 Python 重算引擎对账 + 无令牌 503 实例）；三风格 71 项计算样式两两互斥 55/53/48、同构全等、零外链、console 0 错（dist + preview 两份探针）；ui-check pass=186 ×2 轮（新鲜库 + 脏实例）。抓到并修掉真 bug：同一分钟内结算出账 ¥0。场景 2.8M / 62 文件",
+      "code_dir": "sites/fleet-charging-ops/{backend,web,scripts}",
+      "artifact_dir": "sites/fleet-charging-ops/{web/dist,preview,evidence}"
     }
   ],
   "used_scenarios": [
@@ -154,7 +167,8 @@
     "support-ticket-sla-desk",
     "library-circulation-desk",
     "auto-repair-workorder",
-    "freight-waybill-tracking"
+    "freight-waybill-tracking",
+    "fleet-charging-ops"
   ],
   "used_styles": [
     "瑞士网格",
@@ -189,7 +203,10 @@
     "塔罗神谕卡牌风",
     "老式票证打孔风",
     "指南烫金卡风",
-    "青瓷开片冰裂风"
+    "青瓷开片冰裂风",
+    "机场航班信息板风",
+    "机械腕表表盘剖视风",
+    "植物标本图鉴版画风"
   ],
   "runs": [
     {
@@ -607,6 +624,56 @@
         "commit": "2508543（场景，62 文件 / 34,297 行）+ c0b970c（记录回写，4 文件）+ 本条审计提交",
         "note": "git fetch origin go-gin_react → rebase FETCH_HEAD（up-to-date，无改写）→ git push origin go-gin_react，远端 7cb2210..c0b970c；提交身份用命令行内联 -c user.name/-c user.email（不改任何全局 git 配置）；未 --force、未跳 hook、未碰 main；命令行与文件里均无令牌（令牌在 macOS 钥匙串，命令替换注入，grep 验证 evidence/api-smoke.txt 命中 0）"
       }
+    },
+    {
+      "id": "20260926-12",
+      "slug": "fleet-charging-ops",
+      "started": "2026-09-26T09:05:00+08:00",
+      "finished": "2026-09-26T12:10:00+08:00",
+      "scenario": "封闭场站车队充电运营台（分时计价与桩位占用）",
+      "styles": [
+        "机场航班信息板风",
+        "机械腕表表盘剖视风",
+        "植物标本图鉴版画风"
+      ],
+      "template_created": false,
+      "disk": {
+        "df_k_avail_before": 17809256,
+        "df_k_avail_after": 17809256,
+        "lab_total_bytes_human": "35M（其中 .git 11M）",
+        "scenario_dir_human": "2.8M / 62 文件（上限 5MB）",
+        "note": "开工 df≈17.8GiB（82% 已用），远高于 1.5GiB 熔断线；收工 node_modules 64M 与 /tmp/fco-* 六处临时目录（含 38MB 二进制、13MB playwright-core）全删，:18099/:18501/:18502/:18509/:18512/:18601/:18602/:18603 监听数 0"
+      },
+      "volume": {
+        "go_files": 19,
+        "go_test_files": 3,
+        "test_packages_ok": 3,
+        "test_functions": 24,
+        "coverage": "domain 75.3% / repository 82.1% / server 80.4%",
+        "endpoints": 15,
+        "tables": 4,
+        "seed_rows": "12 piles / 18 vehicles / 10 tariff rules / 153 sessions(149 结算·2 在充·1 故障·1 弃单, 13,557 kWh, ¥16,462.49)",
+        "frontend_src_files": 7,
+        "theme_css_files": 3,
+        "dist_bundle_bytes": 354728,
+        "preview_files": 3,
+        "preview_each_bytes": 355300,
+        "api_smoke": "pass=266 fail=0 (11 节 ⓪~⑩，含 Python 独立重算 ComputeBill 对账)",
+        "ui_check": "pass=186 fail=0 (×3 主题，新鲜库 + 脏实例各一轮)",
+        "style_diff": "互斥 55/53/48 项（71 项计算样式）·同构全等·失败项 0（dist + preview 两份探针）"
+      },
+      "defects_found": [
+        "同一分钟内结算出账 ¥0：零时长区间把已充电量全记为 unpriced，三条恒等式照样全绿（恒等式在退化输入上自我证明）→ 仓库层计价区间下限 1 分钟，补 Go 子用例 + UI 断言「一分钟内结算也出账」",
+        "一条既有 server_test 把 0 元行为写成期望（total_cents==0），修产品代码时它先红——按根因改断言而不是放宽",
+        "Go encoding/json 会把 \\ud800 孤立代理对修成 U+FFFD 放行（201），非法 UTF-8 对抗输入必须发裸 CESU-8 字节才拿到 400",
+        "base.css / domain/models.go 残留上一轮文案（运单详情、线路队）——生成器复制的老坑，注释也是口径"
+      ],
+      "push": {
+        "branch": "go-gin_react",
+        "result": "待推送后回填",
+        "commit": "",
+        "note": ""
+      }
     }
   ],
   "environment_notes": [
@@ -673,13 +740,20 @@
     "第 11 轮：**`grep -c \"…http://[::1]:3000\"` 恒为 0**（方括号被当字符类），本机 IPv6 放行用例永远「失败」。凡按字面计数一律 `grep -F`。",
     "第 11 轮：**UI 提交回执必须认「新节点」**：`useAction` 与试算台在提交时会把 message 置空（节点卸载后重建），所以「等 `data-kind` 变成 ok」会从上一单的旧回执上读到假绿。做法：提交前给旧 `.form-msg` 打 `data-ui-stale`，只等 `.form-msg[data-kind=ok]:not([data-ui-stale])`。另：整块 `:has-text()` 定位会被 `<option>` 文案污染（找「固定额（分）」输入框时命中了「计费方式」的下拉 label，`fill` 干等 30 秒）→ 只按 `.field-label` 自身文案定位。",
     "第 11 轮：**表单默认值可以是产品级缺陷**：新增附加费规则的 `heavy_piece` 门槛默认 5000 g，后端下限 10 000 g，照默认点提交必然 400——UI 套件抓到了它，但第一轮被误记成「脚本没等回执」。凡是「提交前不该失败」的默认值，都该在 UI 里跑一次裸提交。",
-    "第 11 轮：**Gin 的路径归一化会把 `/api/waybills/`（空 :code）变成 301**，不是 404。断言要写成「不进 handler、不 500」而不是猜一个 404；配合「缺样本就 exit 1」才不会让一条空值污染十条断言（第 10 轮同类）。"
+    "第 11 轮：**Gin 的路径归一化会把 `/api/waybills/`（空 :code）变成 301**，不是 404。断言要写成「不进 handler、不 500」而不是猜一个 404；配合「缺样本就 exit 1」才不会让一条空值污染十条断言（第 10 轮同类）。",
+    "**后台进程会被 Bash 工具回收**：`cmd &` 在工具返回后即被杀，取证/验证用的服务一律 `nohup … &`；否则下一次 playwright 打到的是已退出的端口，症状是「等 .bar-fill 超时」，看起来完全像前端 bug（第 12 轮）。",
+    "playwright-core 第 7 轮记的借用路径 `skill演示场/.tmp/pw2` **已不存在**；现装现用：`mkdir /tmp/xxx && cd /tmp/xxx && npm i playwright-core --registry=https://registry.npmmirror.com`（13MB/2s），跑取证时 `PW_PATH=/tmp/xxx/node_modules/playwright-core`，收工删目录，不进仓库。",
+    "**`<input type=number max=N>` 会在提交前把整个表单挡住**（浏览器校验失败 → 不触发 submit → 无请求、无 `.form-msg`），UI 用例等 30s 超时且看起来像后端没回。这类「非法输入」用例改断 `el.validity.rangeOverflow === true`，服务端字段回显的证据要挪到真能发请求的那条探针上（第 12 轮）。",
+    "**DOM 同构断言必须排除每主题一枚的装饰 SVG**：三套 swatch 子节点数天然不同，整页「标签+class 序列」会差 1 个节点而误报「换风格动了 DOM」（1251 vs 1250）。口径：`closest('svg') === null` 过滤后再比（第 12 轮）。",
+    "**多主题共库跑写操作用例，基线必须在动手之前取**：每套主题各建一条 priority=1 的全天规则且留着启用，第二套的「停用后报价回到原规则」基线已被第一套劫持——断言 `10000 → 10000` 假绿（比的其实是自己）。改法：建规则前取 `baseQuote`，末尾把规则停掉（第 12 轮）。",
+    "**Go 的 `encoding/json` 会「修好」孤立代理对**：`\\ud800` 被替换成 U+FFFD 后正常入库，拿它当非法 UTF-8 断 400 会实拿 201。真正的对抗输入是**裸 CESU-8 字节**（`\\xed\\xa0\\x80`），解码器才拒绝 → 400；转义写法降级为「不报 5xx」保留（第 12 轮）。",
+    "**恒等式自检挡不住退化区间**：同一分钟内开充即结算时 `Σseg(0) + actual == actual` 完全成立，金额却是 0 元——三条对账式、接口 identity_ok、页脚徽标全绿。教训：**边界用例要从业务直觉出发（「这单收了钱吗」），不能只写「式子配平吗」**；计价区间这类量要有下限（1 分钟），并给它一条专门的 Go 用例（第 12 轮）。",
+    "**同一时刻 `sites/` 下可能有别的会话留下的未提交场景目录**（第 12 轮见 clinic-appointment-desk / charity-donation-progress，风格仍是上一轮的三套）。既不提交也不删除别人的产物，只在本文件留痕；恢复那两个会话时必须重读本文件做去重，它们的风格名已在 `used_styles` 里。"
   ],
   "next_candidates": [
     "医院门诊排班与挂号",
     "房产租赁管理",
     "招聘 ATS 候选人流水线",
-    "充电桩车队运营",
     "二手交易平台撮合",
     "宠物医院门诊排班",
     "二手车评估上架",
@@ -701,14 +775,11 @@
     "航海图罗盘",
     "黑胶唱片封套",
     "医用腕带标签",
-    "机场航班信息板",
     "旧报纸分类广告栏",
     "实验室玻璃器皿白板",
     "丝绒影院售票亭",
     "铸铁锅菜谱卡片",
-    "邮政邮戳与航空信封",
-    "植物标本图鉴版画",
-    "机械腕表表盘剖视"
+    "邮政邮戳与航空信封"
   ],
   "backlog": [
     "fitness-studio-booking：bookings 目前无 (session_id,member_id) 复合唯一索引，查重依赖事务内 SELECT + 单写者；若放开多连接必须先补索引（confirmed/waitlist 用部分索引）。",
@@ -738,6 +809,11 @@
     "freight-waybill-tracking：/api/stats 每次全表聚合（营收/准点率/14 天趋势），150 单无感，上万单需要日汇总表 + 对账任务（与第 10 轮同类遗留合并）。",
     "freight-waybill-tracking：种子轨迹链「按比例压缩到不超过 now」是交付物兜底（fitTrackWindow），真实系统应在扫码写入时落库；否则历史单时间跨度会被压缩失真，异常/签收时刻不可用作 SLA 复盘。",
     "templates/go-gin-react：**第 5 次**现场重写同一批验证工具（style-probe/style-diff/style-shoot/api-smoke/run-smoke/ui-check/inline-preview/serve-static），已成熟到该回灌进 templates 骨架：下一轮开工应先把上一轮 scripts/ 拷进模板再改业务字段。",
-    "跨轮系统性风险：**带本地时区的 macOS 上，任何「把 time.Now() 直接写进 SQLite datetime 列」的种子都会埋文本排序雷**（第 11 轮复现：+08:00 与 +00:00 混排，ORDER BY 按字符串比较）。模板骨架应把「所有落库时间 .UTC()」写成 repository 层的强制 helper + 一条 `NOT LIKE '%+00:00'` 断言。"
+    "跨轮系统性风险：**带本地时区的 macOS 上，任何「把 time.Now() 直接写进 SQLite datetime 列」的种子都会埋文本排序雷**（第 11 轮复现：+08:00 与 +00:00 混排，ORDER BY 按字符串比较）。模板骨架应把「所有落库时间 .UTC()」写成 repository 层的强制 helper + 一条 `NOT LIKE '%+00:00'` 断言。",
+    "fleet-charging-ops：会话号 `CS<业务日>-<3位流水>` 靠事务内 `code LIKE` 计数 + 冲突重试，安全前提是 SetMaxOpenConns(1) 单写者；放开多连接或换 PG/MySQL 前必须改序列表/行锁（与第 11 轮同类遗留合并）。",
+    "fleet-charging-ops：价目规则的日类型与六段窗口写死在 seed.go，没有规则变更审计表；已结算会话的 segments_json 是当时快照（口径正确），但无法回答「上周这一度电按哪版价目算的」。",
+    "fleet-charging-ops：超占费 `OverstayCentsPerMin=8` 与 360 分钟封顶是 domain 常量，未按桩型/时段差异化；要做「快充超占更贵」需提升为配置表 + Bearer 写接口。",
+    "fleet-charging-ops：/api/stats 每次全表聚合（14 天趋势 + 桩位矩阵 + 三条恒等式全表自检），153 单无感；上万单需日汇总表 + 对账任务（与第 10/11 轮同类遗留合并）。",
+    "templates/go-gin-react：**第 6 次**现场重写同一批工具（api-smoke/run-smoke/ui-check/style-probe/style-diff/style-shoot/inline-preview/serve-static/derive-themes）。本轮它们已经稳定到可以直接拷：建议把 9 个脚本 + base.css 的 98-token 约定固化进模板骨架，并附一份「新场景只需改业务常量」的清单（含：别带上轮注释——本轮 base.css/models.go 就残留了「运单/线路队」）。"
   ]
 }

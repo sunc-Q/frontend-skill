@@ -1,0 +1,67 @@
+# 第 12 轮三风格判定实跑日志（2026-09-26 12:05 CST 复跑）
+# 取证实例：/tmp/fco-ev/api（:18501，全新临时库，独立重新播种，故金额与交付库的种子统计略有差异）
+# 探针来源：scripts/style-probe.js（71 项计算样式 + 结构/内容不变量），逐主题真无头 Chrome
+
+########## 一、web/dist（serve-static :18602 注入 __API_BASE__/__THEME__）
+探针主题：botanical-plate, flight-board, watch-dial；比较计算样式属性 71 项
+
+① 互斥性：每对主题至少 3 项计算样式不同
+ok   botanical-plate vs flight-board：55 项不同 -> shell.color, shell.fontFamily, shell.lineHeight, shell.paddingTop, brand.color, brand.fontFamily, brand.fontSize, brand.letterSpacing, brand.textTransform
+ok   botanical-plate vs watch-dial：53 项不同 -> shell.color, shell.fontFamily, shell.lineHeight, shell.paddingTop, brand.color, brand.fontFamily, brand.fontSize, brand.letterSpacing, kpi.backgroundColor
+ok   flight-board vs watch-dial：48 项不同 -> shell.color, shell.fontFamily, shell.lineHeight, shell.paddingTop, brand.color, brand.fontFamily, brand.fontSize, brand.letterSpacing, brand.textTransform
+
+② 同构性：结构字段必须全等（同一份 DOM + 同一份 JS，只换 CSS）
+ok   rowCount 全等：40
+ok   kpiCount 全等：14
+ok   badgeCount 全等：51
+ok   trackCount 全等：28
+ok   tabCount 全等：3
+ok   inlineScripts 全等：2
+ok   inlineStyles 全等：1
+ok   external 全等：[]
+ok   firstKpi 全等且非空：'¥1.63 万'
+ok   firstBadge 全等且非空：'已结算'
+ok   firstTrack 全等且非空：'2026-09-13'
+ok   firstRow 全等且非空：'CS20260926-004DC-A03沪AD10548通勤班线已结算29.7 kWh¥52.31—11:4912:0415 分 · 119 kW吴建军 138****1244'
+ok   botanical-plate.consoleErrors 为空
+ok   flight-board.consoleErrors 为空
+ok   watch-dial.consoleErrors 为空
+
+③ 内容取样（页面确实从接口取到了数）
+  botanical-plate: 行=40 KPI=14 徽标=51 首KPI='¥1.63 万' 首徽标='已结算'
+  flight-board: 行=40 KPI=14 徽标=51 首KPI='¥1.63 万' 首徽标='已结算'
+  watch-dial: 行=40 KPI=14 徽标=51 首KPI='¥1.63 万' 首徽标='已结算'
+
+失败项：0
+
+########## 二、preview/*.html（单文件版，serve-static :18603）
+探针主题：botanical-plate, flight-board, watch-dial；比较计算样式属性 71 项
+
+① 互斥性：每对主题至少 3 项计算样式不同
+ok   botanical-plate vs flight-board：55 项不同 -> shell.color, shell.fontFamily, shell.lineHeight, shell.paddingTop, brand.color, brand.fontFamily, brand.fontSize, brand.letterSpacing, brand.textTransform
+ok   botanical-plate vs watch-dial：53 项不同 -> shell.color, shell.fontFamily, shell.lineHeight, shell.paddingTop, brand.color, brand.fontFamily, brand.fontSize, brand.letterSpacing, kpi.backgroundColor
+ok   flight-board vs watch-dial：48 项不同 -> shell.color, shell.fontFamily, shell.lineHeight, shell.paddingTop, brand.color, brand.fontFamily, brand.fontSize, brand.letterSpacing, brand.textTransform
+
+② 同构性：结构字段必须全等（同一份 DOM + 同一份 JS，只换 CSS）
+ok   rowCount 全等：40
+ok   kpiCount 全等：14
+ok   badgeCount 全等：51
+ok   trackCount 全等：28
+ok   tabCount 全等：3
+ok   inlineScripts 全等：3
+ok   inlineStyles 全等：1
+ok   external 全等：[]
+ok   firstKpi 全等且非空：'¥1.63 万'
+ok   firstBadge 全等且非空：'已结算'
+ok   firstTrack 全等且非空：'2026-09-13'
+ok   firstRow 全等且非空：'CS20260926-004DC-A03沪AD10548通勤班线已结算29.7 kWh¥52.31—11:4912:0415 分 · 119 kW吴建军 138****1244'
+ok   botanical-plate.consoleErrors 为空
+ok   flight-board.consoleErrors 为空
+ok   watch-dial.consoleErrors 为空
+
+③ 内容取样（页面确实从接口取到了数）
+  botanical-plate: 行=40 KPI=14 徽标=51 首KPI='¥1.63 万' 首徽标='已结算'
+  flight-board: 行=40 KPI=14 徽标=51 首KPI='¥1.63 万' 首徽标='已结算'
+  watch-dial: 行=40 KPI=14 徽标=51 首KPI='¥1.63 万' 首徽标='已结算'
+
+失败项：0

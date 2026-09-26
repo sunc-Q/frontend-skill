@@ -1,0 +1,204 @@
+/* ============================================================
+   风格一：机场候机楼航班信息板风（airport departures board）
+   主张：整页是一块翻页式出发板——磨砂黑铝框、琥珀色分栏线、
+   数据一律等宽高对比，状态用「ON TIME / GATE CLOSED」式的翻牌色块表达；
+   页面标题是窄长压缩体（Gill Sans 的近亲），正文靠字重差而非颜色差分层。
+   ============================================================ */
+:root {
+  color-scheme: dark;
+
+  --font-body: 'Avenir Next', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-head: 'DIN Condensed', 'DIN Alternate', 'Avenir Next Condensed', 'Haettenschweiler', 'Impact', sans-serif;
+  --font-mono: 'SFMono-Regular', Menlo, Consolas, 'Courier New', monospace;
+
+  --bg: #0c1015;
+  --bg-texture:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.022) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at 50% -10%, rgba(255, 176, 32, 0.1), transparent 58%);
+  --bg-panel: #141a22;
+  --bg-alt: #0f141b;
+  --bg-input: #0a0e13;
+  --bg-head: #1a2230;
+
+  --ink: #f0e6d2;
+  --ink-soft: #b6ab95;
+  --ink-faint: #7d7461;
+  --head-ink: #ffb020;
+
+  --accent: #ffb020;
+  --accent-2: #56c9d8;
+  --accent-ink: #10161d;
+
+  --line: #2e3947;
+  --line-strong: #6f5c22;
+  --border: 1px solid #2e3947;
+  --border-hair: 1px dashed #3b4756;
+  --border-dotted: 1px dotted #4a3f18;
+  --border-bottom-strong: 3px solid #6f5c22;
+  --edge-w: 1px;
+  --edge-w-lg: 4px;
+  --shadow: 0 2px 0 rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  --ok: #7ee08a;
+  --ok-bg: #0e2114;
+  --warn: #ffb020;
+  --warn-bg: #211803;
+  --bad: #ff6d5a;
+  --bad-bg: #26100c;
+  --idle: #8d97a5;
+  --track: #191f28;
+  --hover: #1c2634;
+  --zebra: #12171f;
+  --row-bg: #141a22;
+  --sel-bg: #ffb020;
+  --sel-ink: #10161d;
+  --badge-bg: #1a2230;
+  --badge-ink: #f0e6d2;
+
+  --radius: 2px;
+  --radius-sm: 1px;
+  --chip-radius: 999px;
+  --dot-radius: 0;
+  --pad: 14px;
+  --pad-sm: 10px;
+  --pad-xs: 4px;
+  --gap: 16px;
+  --gap-sm: 12px;
+  --maxw: 1660px;
+  --side-w: 400px;
+  --lede-w: 70ch;
+  --kpi-min: 150px;
+  --fact-min: 220px;
+  --field-min: 168px;
+  --form-min: 300px;
+  --pager-w: 92px;
+  --spark-w: 96px;
+  --bill-label-w: 92px;
+  --bill-val-w: 118px;
+  --check-size: 18px;
+
+  --fs-tiny: 10px;
+  --fs-small: 12px;
+  --fs-label: 11px;
+  --fs-base: 14px;
+  --fs-title: 20px;
+  --fs-brand: 34px;
+  --fs-kpi: 27px;
+  --fs-bill: 15px;
+  --lh: 1.5;
+  --fw-normal: 500;
+  --fw-bold: 700;
+  --fw-kpi: 700;
+
+  --bar-h: 12px;
+  --bar-h-sm: 6px;
+  --rail-w: 4px;
+  --rail-w-line: 1px;
+  --icon-size: 17px;
+  --mark-size: 30px;
+  --dot-size: 9px;
+  --dot-ring: 2px;
+  --dot-pop: 1.45;
+  --cell-pad: 6px 9px;
+  --focus-w: 2px;
+  --sticky-z: 2;
+  --t: 120ms ease-out;
+  --identity-bullet: '▸ ';
+  --off-strike: line-through;
+  --rail-dash: repeating-linear-gradient(90deg, #6f5c22 0 6px, transparent 6px 12px);
+  --btn-shadow: 0 1px 0 #000000;
+  --chip-shadow: inset 0 0 0 1px #2e3947;
+  --seg-w: 5px;
+  --stamp-align: right;
+  --topbar-align: end;
+  --head-transform: uppercase;
+  --head-tracking: 0.06em;
+  --label-transform: uppercase;
+  --label-tracking: 0.14em;
+  --label-style: normal;
+  --mono-tracking: 0.02em;
+  --tilt-brand: none;
+  --tilt-title: none;
+  --tilt-kpi: none;
+
+  --tab-bg: #0f141b;
+  --tab-idle: #7d7461;
+  --tab-ink: #ffb020;
+  --tab-focus: #ffb020;
+}
+
+/* 气质补丁：翻页板的物理性——铝框、翻牌窗、走马灯分隔线。
+   只加外观，不改结构语义（选择器与尺寸仍走 token）。 */
+
+.topbar {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 42%);
+  border-top: var(--edge-w-lg) solid var(--line);
+}
+
+.brand-name {
+  letter-spacing: var(--head-tracking);
+  text-transform: var(--head-transform);
+}
+
+.kpi {
+  border-top: var(--edge-w-lg) solid var(--line);
+  background-image: radial-gradient(circle at 78% 0%, rgba(255, 176, 32, 0.14), transparent 62%);
+}
+
+.kpi-value {
+  text-shadow: 0 0 14px rgba(255, 176, 32, 0.28);
+}
+
+.badge {
+  border-radius: var(--radius-sm);
+  padding: 1px 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.chip {
+  border-style: solid;
+  background-image: none;
+  box-shadow: var(--chip-shadow);
+}
+
+.table thead th {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: var(--edge-w-lg) solid var(--line-strong);
+}
+
+.table tbody tr {
+  border-bottom: var(--rail-w-line) solid var(--line);
+}
+
+.tab {
+  border-block: var(--edge-w) solid var(--line);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.btn {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pile {
+  border-left: var(--edge-w-lg) solid var(--line);
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.04), transparent 55%);
+}
+
+.pile[data-selected='true'] {
+  background-image: none;
+}
+
+.identity {
+  border-left: var(--edge-w-lg) solid var(--accent);
+}
+
+.footnote {
+  background-image: var(--rail-dash);
+  background-repeat: repeat-x;
+  background-position: top;
+  background-size: 100% var(--rail-w);
+}

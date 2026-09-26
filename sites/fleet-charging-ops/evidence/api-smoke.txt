@@ -1,0 +1,316 @@
+· 构建后端…
+· 跑 api-smoke.sh（BASE=:18501，未配令牌实例=:18502）
+
+[1m⓪ 从接口反查测试样本（不猜常量）[0m
+  ok   样本 S_CHARGING — CS20260926-001
+  ok   样本 S_FAULTED — CS20260926-003
+  ok   样本 S_DONE — CS20260926-005
+  ok   样本 S_ABORTED — CS20260925-004
+  ok   加分样本 S_OVERSTAY — CS20260926-011
+  ok   加分样本 S_MULTI — CS20260925-010
+  ok   加分样本 PILE_BUSY — DC-B04
+  ok   加分样本 PILE_DOWN — DC-B03
+  ok   加分样本 PLATE_RETIRED — 沪AE12329
+  ok   加分样本 RULE_INACTIVE — 10
+
+[1m① 读接口：信封键名、分页上限、排序回显、统计口径[0m
+  ok   GET /api/health 200 — 200
+  ok   health 含 status ok — {"status":"ok","time":"2026-09-26T03:51:29Z"}
+  ok   health 时间是 RFC3339 UTC — {"status":"ok","time":"2026-09-26T03:51:29Z"}
+  ok   piles 用 items 信封 — {"items":[{"id":5,"code":"DC-B01","station":"临港冷链基地","bay":"B区01","type":"dc
+  ok   piles total 是整数 — total=12
+  ok   桩带在充会话数（一桩一开单的可见证据） — {"items":[{"id":5,"code":"DC-B01","station":"临港冷链基地","bay":"B区01","type":"dc
+  ok   桩带功率 — {"items":[{"id":5,"code":"DC-B01","station":"临港冷链基地","bay":"B区01","type":"dc
+  ok   桩状态是三态之一（存在非在线桩：3） — [[ 3 -ge 0 ]]
+  ok   page_size 封顶 100 — 100
+  ok   排序回显为键名 — {"items":[{"id":131,"code":"CS20260925-004","pile_id":9,"vehicle_id":15,"status":"aborted"
+  ok   排序回显不含内部列名 — 不含「"sort":"s.」
+  ok   方向回显 — {"items":[{"id":131,"code":"CS20260925-004","pile_id":9,"vehicle_id":15,"status":"aborted"
+  ok   page_size=0 回落默认 20 — 20
+  ok   page=0 回落第 1 页 — 1
+  ok   逐页翻完不重不漏 — OK
+  ok   open=1 覆盖在充+故障（3 = 2 + 1） — [[ 3 -eq 3 ]]
+  ok   按桩筛选给出整数计数 — [[ 18 =~ ^[0-9]+$ ]]
+  ok   空闲车牌在 open=1 下为 0 条 — 0
+  ok   列表里没有未来时刻 — OK
+  ok   平均功率不超桩额定功率（留计量容差） — OK
+  ok   排序 code 降序有效 — OK
+  ok   排序 start 降序有效 — OK
+  ok   排序 end 降序有效 — OK
+  ok   排序 energy 降序有效 — OK
+  ok   排序 total 降序有效 — OK
+  ok   排序 status 降序有效 — OK
+  ok   排序 pile 降序有效 — OK
+  ok   排序 plate 降序有效 — OK
+  ok   排序 overstay 降序有效 — OK
+  ok   排序 id 降序有效 — OK
+  ok   stats 含恒等式结论 — {"generated_at":"2026-09-26T03:51:31.186075Z","today":"2026-09-26","trend_days":14,"window
+  ok   stats 恒等式无告警 — []
+  ok   营收总额 — revenue_cents=1660558
+  ok   今日营收 — revenue_today_cents=72388
+  ok   电费 — elec_cents=1112450
+  ok   服务费 — service_cents=531292
+  ok   超时占用费 — overstay_cents=16816
+  ok   营收 = 电费+服务费+占用费（只计已结算，故不超过全口径之和） — [[ 1660558 -le 1660558 ]]
+  ok   峰+平+谷 <= 总电量（未定价部分不计入） — [[ 13517 -le 13518 ]]
+  ok   超时占桩率非零且合理 — 26.8
+  ok   趋势按天稠密补齐 — 14
+  ok   状态分布含 charging — [{"status": "aborted", "count": 1}, {"status": "charging", "count": 2}, {"status": "comple
+  ok   状态分布含 completed — [{"status": "aborted", "count": 1}, {"status": "charging", "count": 2}, {"status": "comple
+  ok   状态分布含 faulted — [{"status": "aborted", "count": 1}, {"status": "charging", "count": 2}, {"status": "comple
+  ok   状态分布含 aborted — [{"status": "aborted", "count": 1}, {"status": "charging", "count": 2}, {"status": "comple
+  ok   桩分组行数等于桩数 — 12
+  ok   价目板有窗口（跨零点窗口也在内） — [[ 11 -gt 6 ]]
+  ok   days=0 被夹到合理区间 — [[ 200 == 200 && 7 -ge 7 && 7 -le 30 ]]
+  ok   days=-5 被夹到合理区间 — [[ 200 == 200 && 7 -ge 7 && 7 -le 30 ]]
+  ok   days=abc 被夹到合理区间 — [[ 200 == 200 && 7 -ge 7 && 7 -le 30 ]]
+  ok   days=99999 被夹到合理区间 — [[ 200 == 200 && 30 -ge 7 && 30 -le 30 ]]
+  ok   聚合口径自洽（分组求和 == 总数） — OK
+
+[1m② 手机号：只出掩码，原文永不出接口[0m
+  ok   /api/vehicles 不含 phone 原文键 — 不含「"phone":」
+  ok   /api/vehicles 不含 driver_phone — 不含「driver_phone」
+  ok   /api/vehicles?all=1 不含 phone 原文键 — 不含「"phone":」
+  ok   /api/vehicles?all=1 不含 driver_phone — 不含「driver_phone」
+  ok   /api/sessions?page_size=100 不含 phone 原文键 — 不含「"phone":」
+  ok   /api/sessions?page_size=100 不含 driver_phone — 不含「driver_phone」
+  ok   /api/sessions/CS20260926-001 不含 phone 原文键 — 不含「"phone":」
+  ok   /api/sessions/CS20260926-001 不含 driver_phone — 不含「driver_phone」
+  ok   车辆掩码形状正确 — 138****0622
+  ok   会话掩码形状正确 — 138****1866
+  ok   列表不给分时明细（那是详情接口） — 不含「"rate_board":」
+  ok   详情含 rate_board（口径回显） — {"id":143,"code":"CS20260926-001","pile_id":3,"vehicle_id":7,"status":"charging","start_at
+  ok   详情含掩码 — {"id":143,"code":"CS20260926-001","pile_id":3,"vehicle_id":7,"status":"charging","start_at
+
+[1m③ 分时计价引擎：脚本独立复算，不采信 Go 的自我证明[0m
+  ok   独立复算三组试算（窗口拆分/取整/占用费） — OK
+  ok   峰谷价差 + 规则仲裁生效 — OK 7500>2100（wd-peak-a vs wd-valley）
+  ok   已结算快照自洽（金额/拆分/功率/覆盖位） — OK
+  ok   开充 201 — 201
+  ok   结算与试算同源（同一引擎两条入口自洽） — OK
+
+[1m④ 参数校验（逐字段回显，绝不 500）[0m
+  ok   缺 pile 报 invalid_request — {"code":"invalid_request","message":"参数校验未通过","fields":{"pile":"必须指定
+  ok   缺 pile 定位到字段 — {"code":"invalid_request","message":"参数校验未通过","fields":{"pile":"必须指定
+  ok   缺 wh 被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"wh":"wh 为必填�
+  ok   wh 低于 100 被拒（过滤误录） — {"code":"invalid_request","message":"参数校验未通过","fields":{"wh":"wh 需为 100-
+  ok   wh 超 600kWh 被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"wh":"wh 需为 100-
+  ok   天文数字电量被拒（不溢出） — {"code":"invalid_request","message":"参数校验未通过","fields":{"wh":"wh 需为 100-
+  ok   小数瓦时被拒（单位必须整数） — {"code":"invalid_request","message":"参数校验未通过","fields":{"wh":"wh 需为 100-
+  ok   非数字瓦时被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"wh":"wh 需为 100-
+  ok   时长过短被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"minutes":"minutes �
+  ok   时长超一天被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"minutes":"minutes �
+  ok   推迟分钟越界被拒（最多一周） — {"code":"invalid_request","message":"参数校验未通过","fields":{"delay_min":"delay_m
+  ok   超时分钟越界被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"overstay_min":"超�
+  ok   不存在的桩 404 — 404
+  ok   延迟一周内的合法试算可用 — {"pile_code":"DC-B01","station":"临港冷链基地","bay":"B区01","power_kw":180,"start_
+  ok   会话号注入被白名单挡下 — {"code":"invalid_code","message":"会话编号需为 1-24 位字母、数字、- 或 _"}
+  ok   空会话号被归一化重定向（不 500） — 301
+
+[1m⑤ 鉴权：503 / 401 / 403 三层各就各位[0m
+  ok   服务端未配令牌 → 503 server_misconfigured — {"code":"server_misconfigured","message":"服务端未配置管理令牌"}
+  ok   503 状态码 — 503
+  ok   503 实例的读接口照常可用 — {"generated_at":"2026-09-26T03:51:34.673258Z","today":"2026-09-26","trend_days":7,"window"
+  ok   无 Authorization → 401 — 401
+  ok   只有方案名无令牌 → 401 — 401
+  ok   非 Bearer 方案 → 401 — 401
+  ok   Bearer 后为空 → 401 — 401
+  ok   Bearer 只有空格 → 401 — 401
+  ok   错令牌 → 403 — 403
+  ok   401 提示要 Bearer 形式 — {"code":"unauthorized","message":"Authorization 需为 Bearer \u003ctoken\u003e 形式"}
+  ok   403 说令牌无效 — {"code":"forbidden","message":"管理令牌无效"}
+  ok   被拒的写请求一条都没开成 — 154
+  ok   小写 bearer 方案名可用 — 201
+  ok   读接口不需要令牌 — 200
+
+[1m⑥ 开充 → 故障挂起 → 补结算 / 弃单（四态正反两向）[0m
+  ok   取到空闲桩车 — DC-B01(180 kW) / 沪AF10274
+  ok   开充 201 — 201
+  ok   会话号前缀 CS — CS20260926-013
+  ok   号段日期为业务日（UTC+8） — CS20260926-013
+  ok   新单初始状态 charging — charging
+  ok   新单尚无结算时间戳 — <nil>
+  ok   新单实际电量为 0 — 0
+  ok   计划电量落库 — planned_wh=45000
+  ok   开单响应不含手机号原文 — 不含「"phone":」
+  ok   开单响应含掩码 — {"id":155,"code":"CS20260926-013","pile_id":5,"vehicle_id":3,"status":"charging","start_at
+  ok   开单响应带当前价目板 — {"id":155,"code":"CS20260926-013","pile_id":5,"vehicle_id":3,"status":"charging","start_at
+  ok   开单后桩显示占用 — 1
+  ok   同桩冲突码 pile_occupied — {"code":"pile_occupied","message":"该桩已有未关闭的充电会话"}
+  ok   同桩重复开充 409 — 409
+  ok   同车冲突码 vehicle_busy — {"code":"vehicle_busy","message":"该车辆已有未关闭的充电会话"}
+  ok   非在线桩不可开充 — 409
+  ok   在充桩不可切检修 409 — 409
+  ok   在充桩切换被拒的码 — {"code":"pile_busy","message":"该桩还有未关闭的充电会话，不能切出在线�
+  ok   在充可登记故障 200 — 200
+  ok   故障接口给出 message — {"message":"会话已登记故障","session":{"id":155,"code":"CS20260926-013","pile_id":5
+  ok   故障后状态 faulted — faulted
+  ok   故障原因进备注 — 故障：枪头过温保护，暂停充电
+  ok   故障仍占着桩（open=1 查得到） — 1
+  ok   重复登记故障 409 — 409
+  ok   故障单可补结算 — completed
+  ok   补结算金额三件套自洽 — OK
+  ok   超时占用费 = 分钟 × 8 分 — 240
+  ok   已结算不能再结算 — 409
+  ok   重复结算报 invalid_transition — {"code":"invalid_transition","message":"「completed」状态的会话不能结算"}
+  ok   已结算不能再登记故障 — 409
+  ok   结算后桩被释放 — 0
+  ok   二次开充 201 — 201
+  ok   弃单样本会话 — CS20260926-014
+  ok   在充单不能直接弃单 409 — 409
+  ok   在充可转故障 — faulted
+  ok   故障单可弃单 — aborted
+  ok   弃单不计费：总额为 0 — 0
+  ok   弃单不计费：电量为 0 — 0
+  ok   弃单为终态 409 — 409
+  ok   弃单不能补结算 409 — 409
+  ok   超物理电量结算被拒 400 — 400
+  ok   超物理电量定位到 actual_wh — {"code":"invalid_request","message":"参数校验未通过","fields":{"actual_wh":"实际�
+  ok   拒因不回显 SQL/驱动细节 — 不含「no such」
+  ok   负超时分钟被拒 — 400
+  ok   超物理单改正常电量后可结算 — 200
+  ok   非法状态样本可读 — charging
+  ok   种子弃单不计入营收 — 0
+  ok   种子超时单有占用费明细 — {"id":153,"code":"CS20260926-011","pile_id":8,"vehicle_id":6,"status":"completed","start_a
+  ok   本轮净增 3 条会话（被拒的写请求零留痕） — 157
+  ok   统计里的在充数没被写脏 — [[ 2 -ge 1 ]]
+
+[1m⑦ 价目规则：校验、新建、启停、对报价的即时影响[0m
+  ok   非法 period 被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"period":"period 只
+  ok   非法 day_type 被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"day_type":"day_type
+  ok   起止相同被拒（全天用 0-1440） — {"code":"invalid_request","message":"参数校验未通过","fields":{"end_min":"窗口起
+  ok   电价越界被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"elec_cents_per_kwh"
+  ok   服务费越界被拒（0-300 分） — {"code":"invalid_request","message":"参数校验未通过","fields":{"service_cents_per_k
+  ok   服务费为 0 合法 — True
+  ok   零服务费探针用完即停用 — 200
+  ok   priority=0 被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"priority":"优先�
+  ok   priority=100 被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"priority":"优先�
+  ok   超长 name 被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"name":"规则名称
+  ok   非法 code 形状 → 400 — 400
+  ok   新建规则返回 id — id=13
+  ok   新规则默认启用 — True
+  ok   重复规则标识 → 409 — 409
+<stdin>:19: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  ok   停用规则立刻涨价、启用后复原（priority 参与仲裁） — OK 峰前=660 停用后=1980 复原=660
+     └─ 峰前=660 停用后=1980 复原=660
+  ok   默认列表长度 <= all 列表 — [[ 11 -le 13 ]]
+  ok   all=1 能看到刚建的规则 — {"items":[{"id":13,"code":"smoke-valley-1790394697","name":"冒烟深夜谷中谷","period
+  ok   规则 id=0 → 400 — 400
+  ok   规则 id 非数字 → 400 — 400
+  ok   不存在的规则 id → 404 — 404
+  ok   探针规则可停用于收尾 — 200
+  ok   停用后默认列表不含该规则 — 不含「smoke-valley-1790394697」
+  ok   种子停用规则不在默认列表 — ABSENT
+
+[1m⑧ 桩状态切换与车辆侧写[0m
+  ok   离线/检修桩可恢复在线 200 — 200
+  ok   切换后状态生效 — online
+  ok   非法桩状态被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"status":"status 只
+  ok   超长备注被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"note":"备注不得
+  ok   不存在的桩 404 — 404
+  ok   桩号注入被挡（400） — 400
+  ok   退役车辆不能开充 — {"code":"vehicle_retired","message":"该车辆已退役，不能开充"}
+  ok   不存在的车牌 404 — 404
+  ok   桩不存在给 404 码 — {"code":"pile_not_found","message":"充电桩不存在"}
+  ok   不存在的会话 404 — 404
+  ok   不存在的会话给出 not_found — {"code":"not_found","message":"资源不存在"}
+
+[1m⑨ 注入、LIKE 转义与畸形输入[0m
+  ok   注入串查不到数据：' OR '1'='1 — 0
+  ok   注入响应不含 SQL 细节 — 不含「no such table」
+  ok   注入串查不到数据：%' UNION SELECT id,code FROM piles-- — 0
+  ok   注入响应不含 SQL 细节 — 不含「no such table」
+  ok   注入串查不到数据：a;b=c — 0
+  ok   注入响应不含 SQL 细节 — 不含「no such table」
+  ok   注入串查不到数据：'-- — 0
+  ok   注入响应不含 SQL 细节 — 不含「no such table」
+  ok   注入串查不到数据：1' AND SLEEP(3)-- — 0
+  ok   注入响应不含 SQL 细节 — 不含「no such table」
+  ok   注入串查不到数据：<script>alert(1)</script> — 0
+  ok   注入响应不含 SQL 细节 — 不含「no such table」
+  ok   裸 % 作为字面量匹配（0 条） — 0
+  ok   下划线同样按字面量 — 0
+  ok   按车牌检索命中 — {"items":[{"id":157,"code":"CS20260926-015","pile_id":5,"vehicle_id":3,"status":"completed
+  ok   备注不参与检索（口径明确） — 0
+  ok   按会话号精确检索命中 — {"items":[{"id":156,"code":"CS20260926-014","pile_id":5,"vehicle_id":3,"status":"aborted",
+  ok   掩码不参与检索（原文列不出接口） — 0
+  ok   车牌注入不改变筛选语义（回落全量） — 不含「"no such"」
+  ok   超长搜索串不报错（服务端截断） — 200
+  ok   翻页越界返回空列表而非报错 — []
+  ok   未知排序键回落默认 — start
+  ok   非法 status 被忽略（不过滤） — 20
+  ok   dept 超长被夹住（不 500） — 200
+  ok   路径注入被拒 — CS%27%20OR%201%3D1 -> 400
+  ok   注入响应不含 SQL 细节 — 不含「SELECT」
+  ok   路径注入被拒 — ..%2f..%2fetc%2fpasswd -> 400
+  ok   注入响应不含 SQL 细节 — 不含「SELECT」
+  ok   路径注入被拒 — a%27b -> 400
+  ok   注入响应不含 SQL 细节 — 不含「SELECT」
+  ok   路径注入被拒 — a%22b -> 400
+  ok   注入响应不含 SQL 细节 — 不含「SELECT」
+  ok   路径注入被拒 — a%20b -> 400
+  ok   注入响应不含 SQL 细节 — 不含「SELECT」
+  ok   路径注入被拒 — a%27-- -> 400
+  ok   注入响应不含 SQL 细节 — 不含「SELECT」
+  ok   路径注入被拒 — xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -> 400
+  ok   注入响应不含 SQL 细节 — 不含「SELECT」
+  ok   超长请求体被拒（400） — [[ 400 == 413 || 400 == 400 ]]
+  ok   超长请求体的响应不泄露内部文案 — 不含「request body too large」
+  ok   坏 JSON → 400 — 400
+  ok   空 body → 400 — 400
+  ok   数组 body → 400 — 400
+  ok   逐字段回显：pile_code — {"code":"invalid_request","message":"参数校验未通过","fields":{"note":"备注不得
+  ok   逐字段回显：plate_no — {"code":"invalid_request","message":"参数校验未通过","fields":{"note":"备注不得
+  ok   逐字段回显：planned_wh — {"code":"invalid_request","message":"参数校验未通过","fields":{"note":"备注不得
+  ok   逐字段回显：note — {"code":"invalid_request","message":"参数校验未通过","fields":{"note":"备注不得
+  ok   计划电量超电池容量被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"planned_wh":"计划
+  ok   裸非法 UTF-8 字节 → 400 — 400
+  ok   坏 UTF-8 未落库（读侧不泄露） — 0
+  ok   孤立代理对转义不报 5xx（201） — [[ 201 == 2* || 201 == 4* ]]
+
+[1m⑩ 静态托管、安全响应头、CORS、404 形状[0m
+  ok   根路径给出 SPA — 200
+  ok   SPA 有 #root 挂载点 — <!doctype html>
+<html lang="zh-CN" data-theme="flight-board">
+  <head>
+    <meta charset="
+  ok   SPA 不引外部资源 — 不含「https://」
+  ok   禁缓存头 — http/1.1 200 ok
+cache-control: no-store
+content-type: application/json; charset=utf-8
+p
+  ok   nosniff — http/1.1 200 ok
+cache-control: no-store
+content-type: application/json; charset=utf-8
+p
+  ok   frame deny — http/1.1 200 ok
+cache-control: no-store
+content-type: application/json; charset=utf-8
+p
+  ok   referrer policy — http/1.1 200 ok
+cache-control: no-store
+content-type: application/json; charset=utf-8
+p
+  ok   permissions policy — http/1.1 200 ok
+cache-control: no-store
+content-type: application/json; charset=utf-8
+p
+  ok   深链回落 SPA — 200
+  ok   未知接口是 JSON 404 — {"code":"not_found","message":"接口不存在"}
+  ok   未知接口状态码 404 — 404
+  ok   穿越路径不给 passwd — 不含「root:」
+  ok   外部 Origin 仍能应答（只是不给 ACAO） — 200
+  ok   Origin=https://evil.example 不给 ACAO — 0
+  ok   Origin=null 不给 ACAO — 0
+  ok   Origin=http://127.0.0.1.evil.example 不给 ACAO — 0
+  ok   Origin= 不给 ACAO — 0
+  ok   本机 Origin 放行：http://127.0.0.1:18509 — 1
+  ok   本机 Origin 放行：http://localhost:5173 — 1
+  ok   本机 Origin 放行：http://[::1]:3000 — 1
+  ok   OPTIONS 预检 204 — 204
+
+[1mpass=266 fail=0[0m
+· 库文件权限（应为 0600）
+    -rw------- /tmp/fco-smoke/18501/api.db
+    -rw------- /tmp/fco-smoke/18501/api.db-shm
+    -rw------- /tmp/fco-smoke/18501/api.db-wal
