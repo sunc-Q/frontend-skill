@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-26T12:25+08:00",
+ "updated": "2026-09-26T12:32+08:00",
  "tried": [
   {
    "skill": "drafter",
@@ -630,7 +630,8 @@
   "验证「乘性/径向」shader 项（暗角、衰减）不能在带纹理的背景上测环平均：本轮实测外环(0.345)比内环(0.252)还亮，因为中环正落在 fbm 亮流区——既有假绿又抓不到删项变异。做法：用页面暴露的换编译口把片元退到「常量底色 + 只留该乘项」，再按解析公式核对，实测 relErr 1e-4。",
   "页面里做「重新编译并替换 program」的钩子时，必须同步更新对外暴露的源码引用（__shaderFragSource），否则变异体下的派生探针读到的仍是基线源码 → 假存活。",
   "双变异在 GPU 产物上的分工（本轮实测）：t=0 操作点上 `uTime*uSpeed`→`uTime` 的变异 golden 哈希抓不到（数值等价），只有行为断言抓到；反之单条域扭曲通路归零，聚合的 uWarp 响应断言仍绿，只有 golden 像素哈希抓到。→ 行为断言 + golden 哈希两套都要有。",
-  "extension-market 的 origin:skillatlas 条目本轮（第 14 轮）再次一次装成（shader）；tags 为空的条目也可靠。安装仍走 Full Access 免确认。"
+  "extension-market 的 origin:skillatlas 条目本轮（第 14 轮）再次一次装成（shader）；tags 为空的条目也可靠。安装仍走 Full Access 免确认。",
+  "收尾核查数值：LAB 37,516KB（含 .skills 16MB 未入库）、本轮 demos 2.4MB（限 5MB）、磁盘可用 17,664,700KB≈16.9GiB、零新增监听端口、误建的 %E8%AF%95%E9%AA%8C 假目录已删（find 复核为 0）。日志文件名坑：LAB/.gitignore 的 *.log 只放行 !demos/**/output.log，所以每轮的 CLI/断言/变异输出要合并成 demos/<轮>/output.log 才会入库（本轮首提交漏了 3 个日志，合并后补交）。"
  ],
  "runs": [
   {
@@ -808,7 +809,7 @@
    "seconds": 1080,
    "artifact_size": "本轮 demos 2.4MB（4 张 PNG 共 2.4MB + HTML 14KB + 4 个 .mjs + 3 份日志 + golden-pixels.json），限 5MB",
    "cleanup": "删 node_modules(8.3MB playwright-core) + package-lock.json + verify-run.log；★并找回/删除因 import.meta.url 未解码而误建的 /Users/apple/Documents/workProject/%E8%AF%95%E9%AA%8C/ 整棵假目录（先 find 确认里面只有本轮 6 个文件，把 PNG/JSON/log 移回 demos 再 rm -rf）；本轮未起任何监听端口（零服务，全程 file://）；全局缓存与 ~/.qoder-cn/skills 之外的东西未动（shader 技能包是本轮有意安装项，保留）",
-   "push": "见下方 work-log 同步行（推送结果在收尾时回填）",
+   "push": "已推送：git push origin skill-showcase 成功（ddf8870..0016df2，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 ddf8870 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(b44dfc6) / go-gin_react(7b0c7f0) 均为兄弟任务所写、本任务未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容无 token（staged diff 按凭据形状 ghp_/github_pat_/AKIA/sk-/PRIVATE KEY/password=/token= 扫描零命中）",
    "notes": "第 14 轮：唯一一次全局安装 = 官方市场 shader 技能（installed_by_this_task 已记）。最大环境增量：WebGL 像素取证管线打通（playwright-core + swiftshader），并抓到中文路径的 import.meta.url 编码坑（产物会静默写到 LAB 外）。最大方法学增量：规约探针隔离乘性项 + 行为断言与 golden 哈希互补（本轮 7 个变异体里 M1 只有行为断言能抓、M3/M3b 只有 golden 能抓）。",
    "installed_by_this_task": [
     "shader (/Users/apple/.qoder-cn/skills/shader)"
