@@ -1306,8 +1306,14 @@
       "seconds": 1620,
       "artifact_size": "demos 本轮 4.9MB（3 档成品 1.7MB + 原始语音 1.0MB + 变异件 1.1MB + 5 PNG 40KB + 2 脚本 + 2 日志 + 试听页），限 5MB 软 / 20MB 硬",
       "cleanup": "删 build/*.wav（3×2.1MB 中间产物）、inputs/music_raw.wav（7.0MB lavfi 中间产物）、mutation/m3_longest.wav（3.5MB）、__pycache__、ROOT 陈旧 loudnorm_measured.json；evidence/ 留实测 JSON 与静音参考波形；零本轮进程与监听端口（纯命令行 ffmpeg，未起服务）；全局缓存未动；全局技能库新增 1 项 audio-editing-automation（市场安装无法改路径，已登记 installed_by_this_task），只读快照入 LAB/skills/ 并跑 scripts/gen-skills-manifest.py 重生成清单",
-      "push": "待补（见 work-log）",
-      "notes": "★技能自称的规格第一次成为「可证伪闸门」：三档平台数字全部由 ebur128/astats 实测回读，不是我们自设的断言；ACX「底噪≤−60dB」与「带音乐床」物理互斥，逼出有声书支路必须纯语音。技能包零 scripts 反而无碍（干活的是本机 ffmpeg）。"
+      "push": "成功：git push origin skill-showcase → 714598c..004c57d（单 commit 004c57d）。普通推送，无 --force / 无 --no-verify；先 fetch+rebase FETCH_HEAD（远端无新提交，本地已 up to date）。SSH 走 GIT_SSH_COMMAND=UserKnownHostsFile=LAB/.tmp/known_hosts + StrictHostKeyChecking=accept-new，命令行与文件内容零 token。",
+      "notes": "★技能自称的规格第一次成为「可证伪闸门」：三档平台数字全部由 ebur128/astats 实测回读，不是我们自设的断言；ACX「底噪≤−60dB」与「带音乐床」物理互斥，逼出有声书支路必须纯语音。技能包零 scripts 反而无碍（干活的是本机 ffmpeg）。",
+      "final_counts": {
+        "verify": "42 PASS / 0 FAIL",
+        "files": 26,
+        "tried": 22,
+        "runs": 22
+      }
     }
   ],
   "evaluation_snapshot": {
