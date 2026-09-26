@@ -1,0 +1,15 @@
+import { chromium } from 'playwright-core';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import crypto from 'node:crypto';
+const DIR = path.dirname(fileURLToPath(import.meta.url));
+const b = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+const p = await b.newPage({ viewport: { width: 900, height: 620 } });
+await p.goto('file://' + path.join(DIR, 'shader-showcase.html') + '?w=640&h=400&t=0');
+await p.waitForFunction(() => window.__shaderReady === true, { timeout: 15000 });
+const r = await p.evaluate(() => window.__shaderProbe({ t: 0, grid: 16, speed: 1, warp: 0.85, hue: 0.58, scan: 0.14, mouse: [0.5, 0.5] }));
+const hex = crypto.createHash('sha256').update(JSON.stringify(r.pixels)).digest('hex');
+fs.writeFileSync(path.join(DIR, 'golden-pixels.json'), JSON.stringify({ hash: hex, grid: 16, t: 0, params: { speed: 1, warp: 0.85, hue: 0.58, scan: 0.14, mouse: [0.5, 0.5] }, meanLum: r.meanLum, captured: new Date().toISOString(), note: 'captured from the 15/15-green baseline build; regenerate only together with an intentional shader change' }, null, 2));
+console.log('golden hash', hex.slice(0, 32), 'meanLum', r.meanLum.toFixed(4));
+await b.close();

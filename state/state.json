@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-26T11:52+08:00",
+ "updated": "2026-09-26T12:25+08:00",
  "tried": [
   {
    "skill": "drafter",
@@ -153,6 +153,19 @@
    "artifact": "demos/20260926-1135-pdf/report-watermarked.pdf（120,885B 主产物）+ report-base.pdf 99,100B + report-encrypted.pdf 121,176B + render-page1.png 110,142B 真渲染",
    "report": "reports/20260926-1135-pdf.md",
    "installed_by_this_task": []
+  },
+  {
+   "skill": "shader",
+   "source": "Qoder 官方市场 official_zPx4JQep (canonicalName=shader, tags origin:skillatlas)",
+   "skill_path": "/Users/apple/.qoder-cn/skills/shader",
+   "task": "ShaderToy 风格域扭曲 fbm 流体 + 鼠标涟漪：单文件 raw WebGL 页面 + 像素级断言 + 双变异验证",
+   "verdict": "留用（推荐）：给的是流程（锁 runtime→可见基线→逐项加回→留调试出口）+ 纯 Node 无依赖 CLI；第一轮 GPU 光栅化产物类",
+   "time": "2026-09-26T12:07+08:00",
+   "artifact": "demos/20260926-1207-shader/shader-showcase.html (13,962B, 零外链, file:// 可跑) + render-1280x800.png + output.log(技能CLI/verify 15条/mutants 7个 三段合一)",
+   "report": "reports/20260926-1207-shader.md",
+   "installed_by_this_task": [
+    "shader -> /Users/apple/.qoder-cn/skills/shader（经 mcp__extension-market__install_extension，本轮唯一全局安装项）"
+   ]
   }
  ],
  "skills_seen": [
@@ -481,14 +494,36 @@
    "source": "/usr/bin/qlmanage -t -s 900 -o <outdir> <file.pdf>（macOS 自带，零安装）",
    "status": "working_source",
    "note": "无 poppler/pypdfium2/LibreOffice 时验证 PDF 可渲染性的替代路径：出首页缩略图 PNG，配 PIL 做墨迹占比与颜色断言。只渲染第 1 页。"
+  },
+  {
+   "name": "shader",
+   "source": "official_zPx4JQep",
+   "url": "market://official_zPx4JQep",
+   "status": "installed_used — 第14轮已用并留用，勿再选",
+   "note": "包体完整（SKILL.md + scripts/shader.js 396 行纯 stdout CLI + 5 references + 4 assets 模板，108KB）。唯一外链是 threejs-material-demo 引 unpkg three（本机不可达），走 raw WebGL / postprocess 路线即无网络依赖。"
+  },
+  {
+   "name": "majiayu000-shader-creator / animation-shader / godot-shader / vvvv-shaders / metal-shader-expert",
+   "source": "官方市场 query=shader 其余命中",
+   "url": "",
+   "status": "candidate",
+   "note": "同类着色器向：shader-creator 主打「交互式参数探索」与本轮最接近；Godot/vvvv/Metal 本机无对应引擎运行时，产物无法验证，暂不选。"
+  },
+  {
+   "name": "pixel-office / slides-as-code / pixel-perfect-design-system",
+   "source": "官方市场 query=pixel 命中",
+   "url": "",
+   "status": "candidate",
+   "note": "pixel-office 要拉代码+起服务（重）；slides-as-code 要 Slidev/Marp npm 链；pixel-perfect 是 58 套设计规范文档（产物仍是 HTML，与已做 3 类重叠）。"
   }
  ],
- "in_progress": [],
+ "in_progress": null,
  "next_candidates": [
-  "来源②本地未试：canvas-design（Pillow 已秒装，PNG/PDF 视觉艺术）、theme-factory（给产物套 10 套主题，含现成 theme-showcase.pdf）、brand-guidelines、mcp-builder（造 MCP server，产物=代码工程）、slack-gif-creator（GIF 二类，暂缓）",
-  "来源①新词根：regex / calendar / shader / pixel-art / diff（search_extensions 参数 query，单个英文词根）",
-  "本机已装未试：golang-gin-api（goproxy.cn 通路仍未实测）、golangci-lint-strict、frontend-development、nodejs-best-practices、express-nodejs-expert",
-  "（方法学沿用）第13轮新增：⑥ 对「返回状态码而不抛异常」的 API，断言必须同时收返回码与后续访问行为；⑦ 无渲染器时 qlmanage -t 是 macOS 上 PDF/文件可渲染性的零依赖探针（只出首页）"
+  "来源①新词根：calendar / diff / regex / map / maze / font（search_extensions 参数 query 用单个英文词根）",
+  "来源①同类可续：majiayu000-shader-creator（交互式参数着色器，本轮已验证 WebGL 取证管线，成本最低）",
+  "来源③本机已装未试：golang-gin-api（goproxy.cn 通路仍未实测）、golangci-lint-strict、frontend-development、nodejs-best-practices、express-nodejs-expert、Golang-Backend-Development",
+  "来源②零成本备选（LAB/.skills/anthropic-skills 已在盘上）：canvas-design（Pillow 已证可 pip --target 装）、theme-factory、brand-guidelines、mcp-builder（产物=代码工程，换类）、slack-gif-creator",
+  "（方法学沿用）本轮新增：⑧ 乘性/径向项要用「规约探针」隔离测量，别在纹理背景上做环平均；⑨ 行为断言与 golden 像素哈希互补，缺一即有等价变异漏网；⑩ Node 脚本里 import.meta.url 必须过 fileURLToPath"
  ],
  "used_artifact_kinds": [
   "单文件自包含 HTML 图表（工程图纸）×1",
@@ -503,7 +538,8 @@
   "Go 测试工程产物：ASCII 迷宫 .txt（24x12 / 解 225 步，肉眼可核对）+ go test -v 真实日志 output.log（29 PASS / 4 故意 FAIL 的双变异）+ go tool cover 逐函数覆盖率 73.3% + coverage.html 可打开着色页 + 4 行基准数据 + 3 个 golden 文件 ×1",
   "端到端回归测试产物：真 PNG 截图 4+2 张（含「两张同哈希＝滑杆失灵」的铁证）+ 16 条断言三套运行日志 + p5 downloadPNG() 捕获落盘的 1200×1200 / 2,023,119B 原始 PNG + 服务端访问日志证据链 ×1",
   "原生可编辑 Word 文档 .docx（52KB：TOC/PAGE 真域 + 3 条批注含回复线程 + 2 组 <w:ins>/<w:del> 修订 + 内嵌 PNG 图表；经技能自带 XSD/redlining 校验 + 48 条独立断言 + python-docx 二次解析三关）×1",
-  "可打印 PDF 文档 ×1（3 页中文报告 99KB：reportlab 生成 + pypdf 水印/双口令加密 + pdfplumber 回读 24 断言 + qlmanage 真渲染 PNG；含 12 行表格与 11 柱手绘条形图，柱高与秒数成正比经 rects 几何验证）"
+  "可打印 PDF 文档 ×1（3 页中文报告 99KB：reportlab 生成 + pypdf 水印/双口令加密 + pdfplumber 回读 24 断言 + qlmanage 真渲染 PNG；含 12 行表格与 11 柱手绘条形图，柱高与秒数成正比经 rects 几何验证）",
+  "WebGL/GLSL 片元着色器单文件 HTML（13,962B，零外链，file:// 即跑；5 个 uniform 全接滑杆 + 冻结/定尺寸取帧）+ 系统 Chrome swiftshader 真渲染 PNG 2 张 + 15 条像素断言（含 speed=0 差值精确为 0 的反证、规约探针实测 1.4076 vs 解析 1.4075）+ 7/7 双变异日志 + golden-pixels.json ×1"
  ],
  "environment_notes": [
   "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
@@ -588,7 +624,13 @@
   "★第13轮 py3.14 PDF 依赖配方：pypdfium2 与 cryptography 无 wheel 且源码构建失败 → `pdfplumber==0.11.9 --no-deps` + `pdfminer.six==20231228 --no-deps` 可装可用（文本/表格/rects/chars 全正常，仅 to_image 坏）；渲染验证走 `qlmanage -t`。reportlab 5.0.1 / pypdf 6.19.0 正常。",
   "★第13轮 reportlab 中文字体：PingFang.ttc 是 CFF 轮廓，TTFont 报 postscript outlines are not supported（index 0-3 全试）；用 /System/Library/Fonts/STHeiti Light.ttc subfontIndex=0，可内嵌、渲染正常。",
   "★第13轮两条断言纪律：(1) 旋转文字（水印 38°）在文本抽取里是散字符，字符串匹配必假 → 用 glyph 计数差（每页 +1 个『印』）；(2) pypdf 6.x decrypt() 返回 0/1/2 状态码而**不抛异常**，『没抛异常=口令对』是假通过，须断返回码+页面访问双条件（负对照 NC3 抓到）。半透明水印合成后是淡红，像素阈值 R-G>25 而非 G<130。",
-  "磁盘开工水位：可用 17,571,028 KB ≈ 16.8 GiB（>1.5 GiB 阈值）；收尾同值附近。本轮 demos 492KB（限 5MB），LAB 约 22MB（.skills 16MB 未入库）。.tmp/pylibs（30MB reportlab/pypdf/pdfplumber/pdfminer/Pillow）收尾已删。"
+  "磁盘开工水位：可用 17,571,028 KB ≈ 16.8 GiB（>1.5 GiB 阈值）；收尾同值附近。本轮 demos 492KB（限 5MB），LAB 约 22MB（.skills 16MB 未入库）。.tmp/pylibs（30MB reportlab/pypdf/pdfplumber/pdfminer/Pillow）收尾已删。",
+  "browser-use 面板对持续 rAF 的 WebGL 页不可用：单次 probe 也 15s 超时（面板 viewport 0x0 + 软件光栅）。像素级取证一律走 playwright-core(npmmirror, 8.3MB/1s 装完) + 系统 Chrome，args 用 --use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader，WebGL 可正常编译/链接/readPixels。",
+  "★Node 脚本中文路径坑：`new URL(import.meta.url).pathname` 是百分号编码，fs 写文件/Playwright screenshot 会照着在 /Users/apple/Documents/workProject/%E8%AF%95%E9%AA%8C/... 建假目录，产物静默落到 LAB 之外且当前目录 ls 看不见。必须 `fileURLToPath(import.meta.url)`。找回方法：find /Users/apple/Documents/workProject -maxdepth 3 -name '*%*'。",
+  "验证「乘性/径向」shader 项（暗角、衰减）不能在带纹理的背景上测环平均：本轮实测外环(0.345)比内环(0.252)还亮，因为中环正落在 fbm 亮流区——既有假绿又抓不到删项变异。做法：用页面暴露的换编译口把片元退到「常量底色 + 只留该乘项」，再按解析公式核对，实测 relErr 1e-4。",
+  "页面里做「重新编译并替换 program」的钩子时，必须同步更新对外暴露的源码引用（__shaderFragSource），否则变异体下的派生探针读到的仍是基线源码 → 假存活。",
+  "双变异在 GPU 产物上的分工（本轮实测）：t=0 操作点上 `uTime*uSpeed`→`uTime` 的变异 golden 哈希抓不到（数值等价），只有行为断言抓到；反之单条域扭曲通路归零，聚合的 uWarp 响应断言仍绿，只有 golden 像素哈希抓到。→ 行为断言 + golden 哈希两套都要有。",
+  "extension-market 的 origin:skillatlas 条目本轮（第 14 轮）再次一次装成（shader）；tags 为空的条目也可靠。安装仍走 Full Access 免确认。"
  ],
  "runs": [
   {
@@ -758,6 +800,19 @@
    "push": "已推送：git push origin skill-showcase 成功（a854d20..4b451b4，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 a854d20 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(b44dfc6，兄弟实验室所写，未触碰) / go-gin_react(b8fe3fd) 未被本任务改动；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行无任何 token；staged diff 凭据形状扫描 1 处命中=历史台账描述扫描手法的散文自述（第8/11轮同类），非凭据",
    "installed_by_this_task": [],
    "notes": "来源②第 3 轮 clone 的仓库第 5 次复用（零下载）。三条环境级钥匙：py3.14 下 pdfplumber/pdfminer 走 --no-deps 绕开 pypdfium2/cryptography 死点；STHeiti Light.ttc 顶替 CFF 轮廓的 PingFang；qlmanage -t 零依赖渲染探针。三条技能缺陷：命令行工具链全缺、forms.md 表单路线被 pypdfium2 卡死未验、SKILL.md 未提任何中文字体注册（CJK 用户必踩 PingFang 拒绝）。"
+  },
+  {
+   "time": "2026-09-26T12:07+08:00",
+   "skill": "shader",
+   "result": "成功（留用·推荐）。verify.mjs 15 PASS / 0 FAIL（两次独立运行一致）；mutants.mjs 7/7 捕获 + 基线全绿 + 还原全绿 + 零 console/page 错误；产物 shader-showcase.html 13,962B 零外链 file:// 即跑，render-1280x800.png 731,653B 真渲染（域扭曲 fbm 流体 + 扫描线 + 暗角 + 中文滑杆面板 + HUD compile/link ok）",
+   "seconds": 1080,
+   "artifact_size": "本轮 demos 2.4MB（4 张 PNG 共 2.4MB + HTML 14KB + 4 个 .mjs + 3 份日志 + golden-pixels.json），限 5MB",
+   "cleanup": "删 node_modules(8.3MB playwright-core) + package-lock.json + verify-run.log；★并找回/删除因 import.meta.url 未解码而误建的 /Users/apple/Documents/workProject/%E8%AF%95%E9%AA%8C/ 整棵假目录（先 find 确认里面只有本轮 6 个文件，把 PNG/JSON/log 移回 demos 再 rm -rf）；本轮未起任何监听端口（零服务，全程 file://）；全局缓存与 ~/.qoder-cn/skills 之外的东西未动（shader 技能包是本轮有意安装项，保留）",
+   "push": "见下方 work-log 同步行（推送结果在收尾时回填）",
+   "notes": "第 14 轮：唯一一次全局安装 = 官方市场 shader 技能（installed_by_this_task 已记）。最大环境增量：WebGL 像素取证管线打通（playwright-core + swiftshader），并抓到中文路径的 import.meta.url 编码坑（产物会静默写到 LAB 外）。最大方法学增量：规约探针隔离乘性项 + 行为断言与 golden 哈希互补（本轮 7 个变异体里 M1 只有行为断言能抓、M3/M3b 只有 golden 能抓）。",
+   "installed_by_this_task": [
+    "shader (/Users/apple/.qoder-cn/skills/shader)"
+   ]
   }
  ]
 }

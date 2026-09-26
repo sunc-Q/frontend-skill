@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fbm Flow + Mouse Ripple — WebGL Shader Showcase</title>
+<style>
+  html,body{margin:0;height:100%;background:#050816;color:#dfe7ff;font-family:ui-monospace,Menlo,monospace}
+  #stage{position:fixed;inset:0;width:100%;height:100%;display:block}
+  #panel{position:fixed;left:16px;bottom:16px;z-index:2;background:rgba(8,12,28,.72);
+    border:1px solid rgba(120,160,255,.28);border-radius:10px;padding:12px 14px;width:262px;backdrop-filter:blur(6px)}
+  #panel h1{font-size:12px;margin:0 0 10px;letter-spacing:.08em;color:#9fd0ff;font-weight:600}
+  .row{display:flex;align-items:center;gap:8px;font-size:11px;margin:6px 0}
+  .row label{width:62px;color:#a9b6d8}
+  .row input[type=range]{flex:1;accent-color:#59a7ff}
+  .row output{width:42px;text-align:right;color:#e8f1ff}
+  #stat{margin-top:10px;font-size:10.5px;line-height:1.5;color:#8fa2c9;border-top:1px dashed rgba(120,160,255,.25);padding-top:8px}
+  #stat b{color:#7ef0b2}
+</style>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<div id="panel">
+  <h1>GLSL · fbm flow / mouse ripple</h1>
+  <div class="row"><label>速度</label><input id="speed" type="range" min="0" max="3" step="0.01" value="1"><output id="speed-o">1.00</output></div>
+  <div class="row"><label>扭曲</label><input id="warp" type="range" min="0" max="2" step="0.01" value="0.85"><output id="warp-o">0.85</output></div>
+  <div class="row"><label>色相</label><input id="hue" type="range" min="0" max="1" step="0.005" value="0.58"><output id="hue-o">0.580</output></div>
+  <div class="row"><label>扫描线</label><input id="scan" type="range" min="0" max="0.6" step="0.01" value="0.14"><output id="scan-o">0.14</output></div>
+  <div class="row"><label>冻结</label><input id="frozen" type="checkbox"><output id="frozen-o">off</output></div>
+  <div id="stat">init…</div>
+</div>
+<script>
+(function () {
+  var canvas = document.getElementById("stage");
+  var gl = canvas.getContext("webgl", { preserveDrawingBuffer: true, antialias: false });
+  var statEl = document.getElementById("stat");
+  var report = { webgl: !!gl, compileVertex: null, compileFragment: null, link: null, infoLog: "" };
+  if (!gl) { statEl.textContent = "WebGL unavailable"; window.__shaderReady = false; return; }
+
+  var VERTEX = [
+    "attribute vec2 position;",
+    "varying vec2 vUv;",
+    "void main(){",
+    "  vUv = position * 0.5 + 0.5;",
+    "  gl_Position = vec4(position, 0.0, 1.0);",
+    "}"
+  ].join("\n");
+
+  var FRAGMENT = [
+    "precision highp float;",
+    "varying vec2 vUv;",
+    "uniform vec2 uResolution;",
+    "uniform float uTime;",
+    "uniform vec2 uMouse;",
+    "uniform float uSpeed;",
+    "uniform float uWarp;",
+    "uniform float uHue;",
+    "uniform float uScan;",
+    "",
+    "float hash(vec2 p){",
+    "  return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);",
+    "}",
+    "float noise(vec2 p){",
+    "  vec2 i = floor(p), f = fract(p);",
+    "  vec2 u = f * f * (3.0 - 2.0 * f);",
+    "  return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), u.x),",
+    "             mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);",
+    "}",
+    "float fbm(vec2 p){",
+    "  float v = 0.0, a = 0.5;",
+    "  for (int i = 0; i < 5; i++) {",
+    "    v += a * noise(p);",
+    "    p = p * 2.03 + vec2(1.7, 9.2);",
+    "    a *= 0.5;",
+    "  }",
+    "  return v;",
+    "}",
+    "vec3 palette(float t){",
+    "  vec3 a = vec3(0.52, 0.46, 0.60);",
+    "  vec3 b = vec3(0.45, 0.42, 0.44);",
+    "  vec3 c = vec3(1.00, 1.00, 1.00);",
+    "  vec3 d = vec3(0.00, 0.28, 0.55) + uHue;",
+    "  return a + b * cos(6.28318 * (c * t + d));",
+    "}",
+    "void main(){",
+    "  float aspect = uResolution.x / max(uResolution.y, 1.0);",
+    "  vec2 uv = vUv;",
+    "  vec2 p = vec2(uv.x * aspect, uv.y);",
+    "  float t = uTime * uSpeed;",
+    "",
+    "  vec2 q = vec2(fbm(p * 1.7 + t * 0.10), fbm(p * 1.7 + vec2(5.2, 1.3) + t * 0.12));",
+    "  vec2 r = vec2(fbm(p * 2.1 + uWarp * 2.4 * q + vec2(1.7, 9.2) + t * 0.05),",
+    "                fbm(p * 2.1 + uWarp * 2.4 * q + vec2(8.3, 2.8) - t * 0.06));",
+    "  float f = fbm(p * 2.4 + uWarp * 2.0 * r);",
+    "",
+    "  vec2 md = vec2((uv.x - uMouse.x) * aspect, uv.y - uMouse.y);",
+    "  float d = length(md);",
+    "  float ring = sin(d * 34.0 - t * 5.0) * exp(-d * 3.2);",
+    "  float glow = exp(-d * 4.5) * 0.35;",
+    "",
+    "  float shade = clamp(f * f * 1.5 + dot(q, r) * 0.6 + ring * 0.22, 0.0, 1.6);",
+    "  vec3 col = palette(shade);",
+    "  col = mix(col, vec3(0.86, 0.94, 1.0), glow);",
+    "  col += 0.16 * clamp(length(r) - 0.42, 0.0, 1.0);",
+    "",
+    "  float lines = 0.5 + 0.5 * sin(gl_FragCoord.y * 2.2 + t * 5.0);",
+    "  col *= mix(1.0 - uScan, 1.0, lines);",
+    "",
+    "  vec2 cc = vec2((uv.x - 0.5) * 0.62, uv.y - 0.5);",
+    "  col *= 1.0 - 0.88 * smoothstep(0.16, 0.52, length(cc));",
+    "  gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);",
+    "}"
+  ].join("\n");
+
+  function compile(type, src, key) {
+    var sh = gl.createShader(type);
+    gl.shaderSource(sh, src);
+    gl.compileShader(sh);
+    report[key] = gl.getShaderParameter(sh, gl.COMPILE_STATUS) ? "ok" : "fail";
+    if (report[key] === "fail") report.infoLog += gl.getShaderInfoLog(sh);
+    return sh;
+  }
+
+  var buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+
+  var program = null, U = {}, loc = 0;
+  function build(fragSrc) {
+    var r = { compileVertex: null, compileFragment: null, link: null, infoLog: "" };
+    var vs = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(vs, VERTEX); gl.compileShader(vs);
+    r.compileVertex = gl.getShaderParameter(vs, gl.COMPILE_STATUS) ? "ok" : "fail";
+    if (r.compileVertex === "fail") r.infoLog += gl.getShaderInfoLog(vs);
+    var fs = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(fs, fragSrc); gl.compileShader(fs);
+    r.compileFragment = gl.getShaderParameter(fs, gl.COMPILE_STATUS) ? "ok" : "fail";
+    if (r.compileFragment === "fail") r.infoLog += gl.getShaderInfoLog(fs);
+    var pr = gl.createProgram();
+    gl.attachShader(pr, vs); gl.attachShader(pr, fs); gl.linkProgram(pr);
+    r.link = gl.getProgramParameter(pr, gl.LINK_STATUS) ? "ok" : "fail";
+    if (r.link === "fail") r.infoLog += gl.getProgramInfoLog(pr);
+    if (r.link !== "ok") { gl.deleteProgram(pr); return null; }
+    program = pr;
+    U = {};
+    ["uResolution","uTime","uMouse","uSpeed","uWarp","uHue","uScan"].forEach(function (n) {
+      U[n] = gl.getUniformLocation(program, n);
+    });
+    loc = gl.getAttribLocation(program, "position");
+    gl.useProgram(program);
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    return r;
+  }
+
+  var built = build(FRAGMENT);
+  if (!built) { statEl.textContent = "baseline program link failed"; return; }
+  report = built;
+  window.__shaderReport = report;
+
+  // Recompiler hook: lets a verifier splice the fragment source and measure the pixel effect.
+  window.__shaderBaseFragSource = FRAGMENT;
+  window.__shaderFragSource = FRAGMENT;
+  window.__shaderSwapFragment = function (fragSrc) {
+    var r = build(fragSrc);
+    if (!r) { build(FRAGMENT); window.__shaderFragSource = FRAGMENT; return { ok: false, infoLog: "compile/link failed, baseline restored" }; }
+    report = r; window.__shaderReport = r; window.__shaderFragSource = fragSrc;
+    return { ok: true, infoLog: r.infoLog };
+  };
+  window.__shaderRestoreFragment = function () {
+    var r = build(FRAGMENT);
+    if (!r) { return { ok: false }; }
+    report = r; window.__shaderReport = r; window.__shaderFragSource = FRAGMENT; return { ok: true };
+  };
+
+  var params = { speed: 1, warp: 0.85, hue: 0.58, scan: 0.14, mouse: [0.5, 0.5] };
+  var qs = new URLSearchParams(location.search);
+  var frozenT = qs.has("t") ? parseFloat(qs.get("t")) : null;
+  // ?w=1200&h=800 renders at a fixed buffer size: makes pixel probing and screenshots
+  // deterministic even when the host viewport is 0x0.
+  var fixedSize = qs.has("w") && qs.has("h") ? [parseInt(qs.get("w"), 10), parseInt(qs.get("h"), 10)] : null;
+
+  function resize() {
+    if (fixedSize) {
+      if (canvas.width !== fixedSize[0] || canvas.height !== fixedSize[1]) {
+        canvas.width = fixedSize[0];
+        canvas.height = fixedSize[1];
+      }
+      gl.viewport(0, 0, canvas.width, canvas.height);
+      return;
+    }
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = Math.max(1, Math.floor(window.innerWidth * dpr));
+    var h = Math.max(1, Math.floor(window.innerHeight * dpr));
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+
+  function draw(timeSeconds) {
+    resize();
+    gl.useProgram(program);
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    gl.uniform2f(U.uResolution, canvas.width, canvas.height);
+    gl.uniform1f(U.uTime, timeSeconds);
+    gl.uniform2f(U.uMouse, params.mouse[0], params.mouse[1]);
+    gl.uniform1f(U.uSpeed, params.speed);
+    gl.uniform1f(U.uWarp, params.warp);
+    gl.uniform1f(U.uHue, params.hue);
+    gl.uniform1f(U.uScan, params.scan);
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+  }
+
+  var clock = frozenT === null ? 0 : frozenT;
+  var last = null, frames = 0, running = true;
+  window.__shaderStop = function () { running = false; };
+  function loop(now) {
+    if (!running) { return; }
+    if (frozenT === null && !document.getElementById("frozen").checked) {
+      if (last !== null) clock += (now - last) / 1000;
+      last = now;
+    } else { last = now; }
+    draw(clock);
+    frames++;
+    statEl.innerHTML = "compile v/f <b>" + report.compileVertex + "/" + report.compileFragment +
+      "</b> · link <b>" + report.link + "</b><br>gl " + canvas.width + "x" + canvas.height +
+      " · t <b>" + clock.toFixed(2) + "</b>s · frame <b>" + frames + "</b>";
+    requestAnimationFrame(loop);
+  }
+
+  var ui = {
+    speed: document.getElementById("speed"),
+    warp: document.getElementById("warp"),
+    hue: document.getElementById("hue"),
+    scan: document.getElementById("scan"),
+    frozen: document.getElementById("frozen")
+  };
+  ["speed","warp","hue","scan"].forEach(function (k) {
+    ui[k].addEventListener("input", function () {
+      params[k] = parseFloat(ui[k].value);
+      document.getElementById(k + "-o").textContent = params[k].toFixed(k === "hue" ? 3 : 2);
+    });
+  });
+  ui.frozen.addEventListener("change", function () {
+    document.getElementById("frozen-o").textContent = ui.frozen.checked ? "on" : "off";
+  });
+  window.addEventListener("pointermove", function (e) {
+    params.mouse = [e.clientX / window.innerWidth, 1 - e.clientY / window.innerHeight];
+  });
+
+  // Deterministic probe for automated verification: freeze time + params, render, read back a pixel grid.
+  window.__shaderProbe = function (cfg) {
+    cfg = cfg || {};
+    if ("speed" in cfg) { params.speed = cfg.speed; ui.speed.value = cfg.speed; }
+    if ("warp" in cfg) { params.warp = cfg.warp; ui.warp.value = cfg.warp; }
+    if ("hue" in cfg) { params.hue = cfg.hue; ui.hue.value = cfg.hue; }
+    if ("scan" in cfg) { params.scan = cfg.scan; ui.scan.value = cfg.scan; }
+    if ("mouse" in cfg) { params.mouse = cfg.mouse; }
+    var t = ("t" in cfg) ? cfg.t : clock;
+    draw(t);
+    var n = cfg.grid || 8, out = [], lum = 0, maxd = 0, mind = 1;
+    var px = new Uint8Array(4);
+    for (var gy = 0; gy < n; gy++) {
+      for (var gx = 0; gx < n; gx++) {
+        var x = Math.floor((gx + 0.5) * canvas.width / n);
+        var y = Math.floor((gy + 0.5) * canvas.height / n);
+        gl.readPixels(x, canvas.height - 1 - y, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px);
+        var r = px[0] / 255, g = px[1] / 255, b = px[2] / 255;
+        var L = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+        lum += L; if (L > maxd) maxd = L; if (L < mind) mind = L;
+        out.push([px[0], px[1], px[2]]);
+      }
+    }
+    return { t: t, canvas: [canvas.width, canvas.height], meanLum: lum / (n * n),
+             minLum: mind, maxLum: maxd, pixels: out, report: report };
+  };
+  // Radial sampler: averages many angles at a given radius so that a radial
+  // multiplier (vignette) can be measured without the fbm texture or a local
+  // glow peak dominating a single-pixel probe.
+  window.__shaderRadial = function (cfg) {
+    cfg = cfg || {};
+    if ('speed' in cfg) { params.speed = cfg.speed; }
+    if ('warp' in cfg) { params.warp = cfg.warp; }
+    if ('hue' in cfg) { params.hue = cfg.hue; }
+    if ('scan' in cfg) { params.scan = cfg.scan; }
+    if ('mouse' in cfg) { params.mouse = cfg.mouse; }
+    var t = ('t' in cfg) ? cfg.t : clock;
+    draw(t);
+    var radii = cfg.radii || [0.12, 0.42], n = cfg.angles || 24;
+    var px = new Uint8Array(4);
+    var cx = canvas.width / 2, cy = canvas.height / 2;
+    var R = Math.min(canvas.width, canvas.height) / 2;
+    var rings = [];
+    for (var k = 0; k < radii.length; k++) {
+      var acc = [], L = 0;
+      for (var i = 0; i < n; i++) {
+        var a = (i / n) * Math.PI * 2;
+        var x = Math.max(0, Math.min(canvas.width - 1, Math.round(cx + Math.cos(a) * radii[k] * R)));
+        var y = Math.max(0, Math.min(canvas.height - 1, Math.round(cy + Math.sin(a) * radii[k] * R)));
+        gl.readPixels(x, canvas.height - 1 - y, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px);
+        var r = px[0] / 255, g = px[1] / 255, b = px[2] / 255;
+        var v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+        L += v; acc.push([px[0], px[1], px[2]]);
+      }
+      rings.push({ radius: radii[k], meanLum: L / n, pixels: acc });
+    }
+    return { t: t, rings: rings };
+  };
+  window.__shaderReady = true;
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

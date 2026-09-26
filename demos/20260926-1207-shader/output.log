@@ -1,0 +1,82 @@
+###### SECTION 1: skill CLI (scripts/shader.js) real stdout ######
+## effects
+gradient: Start from UV remapping and color mixing.
+noise: Use hash/value noise for simple breakup or motion.
+fbm: Layer noise octaves for clouds, terrain, or flowing texture.
+fresnel: Use view direction dot normal for edge glow or rim light.
+dissolve: Use noise + threshold + edge band coloring.
+ripple: Use radial distance and sin(time - dist * k).
+scanline: Use repeated screen-space bands with time modulation.
+pixelate: Quantize UVs or screen coordinates before sampling.
+
+## intake
+Shader intake for: fullscreen flowing ocean/aurora background with fbm noise and mouse ripple, raw webgl
+1. Runtime: raw WebGL / GLSL ES
+2. Stage shape: fragment-first
+3. Confirm required uniforms: uTime, uResolution, uMouse, uTexture as needed.
+4. Decide whether the effect is screen-space, material-space, or post-processing.
+5. Start with a visible baseline color or UV gradient before adding complexity.
+6. If porting existing code, map all source-specific built-ins to host uniforms and varyings.
+
+## scaffold postprocess fbm
+Scaffold: postprocess + fbm
+1. Start from: assets/postprocess-demo/index.html
+2. Closest boilerplate: ripple
+3. Closest snippet: No direct bundled snippet; start from the closest boilerplate.
+4. Start by running the demo unchanged and confirm the render path works.
+5. Then splice in the snippet or follow the boilerplate build order, one term at a time.
+6. Keep a visible fallback color until the effect renders correctly end-to-end.
+
+## demo webgl ripple
+{
+  "title": "Demo plan: webgl + ripple",
+  "items": [
+    "Start from: assets/postprocess-demo/index.html",
+    "Why: The requested effect reads like a screen-space effect, so a postprocess-style template is the fastest start.",
+    "First step: make the bundled demo run unchanged before swapping shader logic.",
+    "Second step: replace only the fragment or vertex section that matches the effect.",
+    "Third step: add uniforms one at a time and keep a visible fallback color while integrating."
+  ]
+}
+
+## debug black-screen
+Debug checklist: black-screen
+1. Replace shader body with a constant visible color like pure magenta.
+2. Verify the mesh or full-screen quad is actually being drawn.
+3. Check that required uniforms exist and are updated every frame.
+4. Reduce math until only UV mapping remains; then re-add features one by one.
+5. Look for divide-by-zero, normalize(vec3(0.0)), invalid texture reads, or discarded fragments.
+6. Confirm the host runtime expects the same GLSL version and output convention.
+
+###### SECTION 2: verify.mjs (15 pixel/layout assertions) ######
+PASS | 1 WebGL context | buffer 640x400 @grid10
+PASS | 2 shader stages compile+link | v=ok f=ok link=ok log=""
+PASS | 3 output is not black | meanLum=0.2576 min=0.028 max=0.715
+PASS | 4 image has contrast (not a flat fill) | spread=0.6869 rgbMeans=[75.2,59.1,102.5]
+     deadRows=[]
+PASS | 5 every fbm octave has ink (no dead row) | per-row ink counted over 10x10 lattice
+PASS | 6 uTime advances the picture | meanAbsDiff(t=0 vs t=6)=26.457/255
+PASS | 7 speed=0 freezes frame (proves uSpeed is really wired, not coincidence) | meanAbsDiff=0.0000 (want 0)
+PASS | 8 uMouse moves the ripple + glow | meanAbsDiff=11.567 cornerPx centerMouse=[52,6,37] mouseAtCorner=[29,27,68]
+PASS | 9 uHue shifts the palette | channelMeans |Δ|=[31.1,6.1,32.7] A=[89.7,85.3,74.3] B=[58.6,79.2,107.0]
+PASS | 10 uScan dims without crushing to black | lum(scan0)=0.3441 lum(scan0.6)=0.1590 ratio=0.462
+PASS | 11 vignette isolated by reduced-form probe (constant base, only radial term) | measured inner/outer=1.4076 analytic=1.4075 relErr=0.0001 rings=[0.6196,0.4402]
+PASS | 12 real Chrome rasterises the shader (screenshot evidence) | shot-t0.png=470334B shot-later.png=470447B bytesIdentical=false
+PASS | 13 control panel + HUD are laid out | panel=292px canvasCSS=620px bodyBg=rgb(5, 8, 22) stat="compile v/f ok/ok · link okgl 640x400 · t 0.00s · frame 127"
+PASS | 14 zero console/page errors | no errors
+PASS | 15 shader source is exposed for repro/mutation | window.__shaderFragSource splice of aspect term detected
+
+TOTAL PASS=15 FAIL=0
+
+###### SECTION 3: mutants.mjs (double-mutation validation) ######
+GOLDEN baseline | allGreen=true | {"a7_speedWired":true,"a8_mouseWired":true,"a16_warpWired":true,"a11_vignetteAnalytic":true,"a18_goldenHash":true} | {"speedFreezeDiff":0,"mouseDiff":11.5667,"warpDiff":41.5633,"vignetteRelErr":0.0001,"goldenHash":"fb6086497033"}
+CAUGHT   | M1 value: uSpeed dropped from time term | semantic=yes golden=NO | broken=[a7_speedWired] | {"speedFreezeDiff":28.22,"mouseDiff":13.1233,"warpDiff":47.24,"vignetteRelErr":0.0001,"goldenHash":"fb6086497033"}
+CAUGHT   | M2 structural: radial distance hardcoded | semantic=yes golden=yes | broken=[a8_mouseWired,a18_goldenHash] | {"speedFreezeDiff":0,"mouseDiff":0,"warpDiff":48.06,"vignetteRelErr":0.0005,"goldenHash":"7fd75c6041ec"}
+CAUGHT   | M3 structural: warp path 1 zeroed | semantic=NO golden=yes | broken=[a18_goldenHash] | {"speedFreezeDiff":0,"mouseDiff":13.49,"warpDiff":39.8933,"vignetteRelErr":0.0001,"goldenHash":"71d727da439c"}
+CAUGHT   | M3b structural: warp path 2 zeroed | semantic=NO golden=yes | broken=[a18_goldenHash] | {"speedFreezeDiff":0,"mouseDiff":13.33,"warpDiff":15.7467,"vignetteRelErr":0.0001,"goldenHash":"f6ec61b8c08d"}
+CAUGHT   | M4 structural: vignette removed | semantic=yes golden=yes | broken=[a11_vignetteAnalytic,a18_goldenHash] | {"speedFreezeDiff":0,"mouseDiff":19.5467,"warpDiff":80.38,"vignetteRelErr":0.2895,"goldenHash":"70cbc1c847f8"}
+CAUGHT   | M5 structural: fbm octave step decorrelation broken | semantic=NO golden=yes | broken=[a18_goldenHash] | {"speedFreezeDiff":0,"mouseDiff":12.5233,"warpDiff":51.5,"vignetteRelErr":0.0001,"goldenHash":"7ae459840218"}
+CAUGHT   | M6 value: palette hue offset ignored | semantic=yes golden=yes | broken=[a18_goldenHash] | {"speedFreezeDiff":0,"mouseDiff":12.6667,"warpDiff":48.81,"vignetteRelErr":0.0001,"goldenHash":"e9a532cc5864"}
+RESTORE check | allGreen=true | {"a7_speedWired":true,"a8_mouseWired":true,"a16_warpWired":true,"a11_vignetteAnalytic":true,"a18_goldenHash":true}
+MUTATION SCORE 7/7 | console/page errors=0
+LESSON: per-warp-path mutants (M3/M3b) leave the aggregate uWarp assertion green — only the golden-pixel hash catches them.

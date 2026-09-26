@@ -1,0 +1,16 @@
+import { chromium } from 'playwright-core';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const DIR = path.dirname(fileURLToPath(import.meta.url));
+const b = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+const p = await b.newPage({ viewport: { width: 1280, height: 800 } });
+await p.goto('file://' + path.join(DIR, 'shader-showcase.html'));
+await p.waitForFunction(() => window.__shaderReady === true, { timeout: 15000 });
+await p.mouse.move(430, 300);
+await p.waitForTimeout(9000);
+await p.screenshot({ path: path.join(DIR, 'render-1280x800.png') });
+await p.waitForTimeout(3000);
+await p.screenshot({ path: path.join(DIR, 'render-later.png') });
+const stat = await p.evaluate(() => document.getElementById('stat').textContent.replace(/\s+/g, ' '));
+console.log('HUD:', stat);
+await b.close();
