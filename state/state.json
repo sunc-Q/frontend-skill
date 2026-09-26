@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-26T10:12+08:00",
+ "updated": "2026-09-26T10:20+08:00",
  "tried": [
   {
    "skill": "drafter",
@@ -582,10 +582,10 @@
    "seconds": 720,
    "artifact_size": "本轮 demos 目录 84KB（xlsx 15,360B + sheet-preview.txt 9,917B + output.log 8,011B + 四个脚本/facts.json）",
    "cleanup": "已删 LAB/.tmp/pylibs（218MB openpyxl+formulas+scipy，gitignored）与 demos 内 .tmp/（mutated.xlsx/probe.xlsx 中间件 32KB）；未装任何技能、未起任何服务、无本轮进程与监听；全局缓存未动",
-   "push": "待推送（本字段在推送后回填）",
+   "push": "已推送：git push origin skill-showcase 成功（4f8fa8e..00066d2，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 4f8fa8e 是本地 HEAD 父提交 → 无需 rebase；main / go-gin_react / crypto-forecast 分支未触碰（本轮只对 skill-showcase 做 fetch+push）；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
    "installed_by_this_task": [],
    "notes": "来源②本地已有（第 3 轮 clone 的 anthropics/skills）→ 本轮零下载零安装。安全闸门：SKILL.md 99 行 + recalc.py 308 行 + office/soffice.py 192 行全读过 → 零网络、只写传入文件与 tempfile 目录，通过。最大增量：技能的强制 recalc 闸门绑定 LibreOffice（本机缺），用纯 Python 引擎 formulas 顶住并逐格与 Python 独立重算比对；顺带证伪它的 _xlfn 清单是运行时特定（本引擎 XLOOKUP 可用、_xlfn.TEXTJOIN 反而不可用）。抓到自己一条真缺陷：空单元格除法静默变 0 使 IFERROR 失效 + 分组均值分母含空值（6.5 vs 真值 13.0）。",
-   "final_check": "git status / du -sh LAB / df -k / lsof 见本轮回填"
+   "final_check": "git status 干净（0 项）；demos 本轮 84KB（限 5MB）；LAB 22,200KB≈22MB；磁盘可用 17,924,860KB≈17.1GiB（开工 17.2GiB）；lsof LISTEN 10 条全属既有进程（QQ/adb/clash/Qoder，零本轮残留监听，本轮未起任何服务）；无本轮残留 python 进程；.tmp/pylibs(218MB) 与 demos 内 .tmp/(32KB 中间件) 已删；全局缓存未动"
   }
  ]
 }
