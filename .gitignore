@@ -4,3 +4,6 @@ node_modules/
 .DS_Store
 .single/
 dist/
+
+# 浏览器探针副本 = 交付 HTML 的可再生拷贝（verify.sh 每次重写），只留 JSON 读数入库，省磁盘
+**/.tmp-check/probe-*.html

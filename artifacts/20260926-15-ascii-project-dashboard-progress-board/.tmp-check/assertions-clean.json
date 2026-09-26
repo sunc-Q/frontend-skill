@@ -1,0 +1,84 @@
+{
+ "card": "clean",
+ "rows": [
+  {
+   "id": "CL1",
+   "desc": "本轮目录零构建残留（node_modules/dist/缓存目录数为 0）",
+   "pass": true,
+   "detail": "clean"
+  },
+  {
+   "id": "CL2",
+   "desc": "本轮目录总体积 0.62MB < 50MB（技能与规程的磁盘预算）",
+   "pass": true,
+   "detail": "31 个文件，650767 字节"
+  },
+  {
+   "id": "CL2b",
+   "desc": "最大的单个文件 < 5MB（看板类产物不该被图片撑大）",
+   "pass": true,
+   "detail": "max=162.8KB scripts/ledger-before.json"
+  },
+  {
+   "id": "CL3",
+   "desc": "三风格 .md + 三预览 + 对照入口页共 7 个交付物齐备且各 >1KB",
+   "pass": true,
+   "detail": "dashboard-lane-matrix.md:13758B dashboard-braille-dense.md:14044B dashboard-teletype-ascii.md:10522B preview/matrix.html:31765B preview/dense.html:31223B preview/teletype.html:12516B preview/styles.html:12961B"
+  },
+  {
+   "id": "CL4",
+   "desc": "零字节文件数为 0",
+   "pass": true,
+   "detail": "none"
+  },
+  {
+   "id": "CL5",
+   "desc": "无 .DS_Store / 备份文件（*~、*.bak、*.tmp）",
+   "pass": true,
+   "detail": "none"
+  },
+  {
+   "id": "CL6",
+   "desc": "4 份 HTML 全部自包含（零 http(s) 外链、零 src/href 外部引用、零 url()/@import；脚本只允许内联，且脚本体本身纯 ASCII）",
+   "pass": true,
+   "detail": "preview/dense.html:1脚本 preview/matrix.html:1脚本 preview/styles.html:0脚本 preview/teletype.html:0脚本"
+  },
+  {
+   "id": "CL7",
+   "desc": "3 份 .md 零外链（可直接贴进任意 Markdown 渲染器不变形）",
+   "pass": true,
+   "detail": "dashboard-braille-dense.md dashboard-lane-matrix.md dashboard-teletype-ascii.md"
+  },
+  {
+   "id": "CL8",
+   "desc": "仓库同级没有 %XX 形式的中文路径逃逸目录（fileURLToPath 生效）",
+   "pass": true,
+   "detail": "none"
+  },
+  {
+   "id": "CL9",
+   "desc": ".tmp-check 只放可再生读数：JSON 快照 + 浏览器卡探针副本（12 个，208509B），无依赖目录无二进制帧",
+   "pass": true,
+   "detail": ".tmp-check/assertions-browser.json:7004B .tmp-check/assertions-clean.json:3168B .tmp-check/assertions-mutate.json:6766B .tmp-check/assertions-node.json:20701B .tmp-check/browser-meta.json:2698B .tmp-check/build-meta.json:3738B .tmp-check/probe-dense-raw.html:32722B .tmp-check/probe-dense.html:33850B .tmp-check/probe-matrix-raw.html:33248B .tmp-check/probe-matrix.html:34376B .tmp-check/probe-telety"
+  },
+  {
+   "id": "CL9b",
+   "desc": "探针副本没漏进交付目录（根下与 preview/ 只有交付 HTML）",
+   "pass": true,
+   "detail": "preview/dense.html preview/matrix.html preview/styles.html preview/teletype.html"
+  },
+  {
+   "id": "CL10",
+   "desc": "产物尾部水印自洽：三份 .md 的 <!-- f:sha --> 与 facts.json 记录一致（陈旧会被抓）",
+   "pass": true,
+   "detail": "md 水印=fba586c11379,fba586c11379,fba586c11379 facts=fba586c11379 现读=fba586c11379"
+  },
+  {
+   "id": "CL11",
+   "desc": "台账写回后本卡仍可跑：只读断言不依赖任何被删的中间脚本",
+   "pass": true,
+   "detail": "10 个脚本随产物留档"
+  }
+ ],
+ "printed_at": "2026-09-26T10:00:12.883Z"
+}

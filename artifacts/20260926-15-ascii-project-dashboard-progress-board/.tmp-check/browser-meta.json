@@ -1,0 +1,174 @@
+{
+ "chrome": "Google Chrome（无头 --dump-dom）",
+ "font": "monospace",
+ "fontSize": "12.5px",
+ "monoPx": 7.526,
+ "families": {
+  "monospace": {
+   "ascii": 7.526,
+   "cjk": 12.5,
+   "ratio": 1.661
+  },
+  "Menlo": {
+   "ascii": 7.526,
+   "cjk": 12.5,
+   "ratio": 1.661
+  },
+  "Monaco": {
+   "ascii": 7.502,
+   "cjk": 12.5,
+   "ratio": 1.666
+  },
+  "SFMono-Regular": {
+   "ascii": 11.025,
+   "cjk": 12.5,
+   "ratio": 1.134
+  },
+  "Courier New": {
+   "ascii": 7.502,
+   "cjk": 12.5,
+   "ratio": 1.666
+  },
+  "PingFang SC": {
+   "ascii": 11.025,
+   "cjk": 12.5,
+   "ratio": 1.134
+  },
+  "Heiti SC": {
+   "ascii": 11.488,
+   "cjk": 12.5,
+   "ratio": 1.088
+  },
+  "Songti SC": {
+   "ascii": 10.588,
+   "cjk": 12.5,
+   "ratio": 1.181
+  },
+  "STSong": {
+   "ascii": 10.412,
+   "cjk": 12.5,
+   "ratio": 1.201
+  },
+  "Kaiti SC": {
+   "ascii": 11.025,
+   "cjk": 12.5,
+   "ratio": 1.134
+  },
+  "Noto Sans Mono CJK SC": {
+   "ascii": 11.025,
+   "cjk": 12.5,
+   "ratio": 1.134
+  },
+  "Source Han Mono SC": {
+   "ascii": 11.025,
+   "cjk": 12.5,
+   "ratio": 1.134
+  },
+  "Sarasa Mono SC": {
+   "ascii": 11.025,
+   "cjk": 12.5,
+   "ratio": 1.134
+  },
+  "Microsoft YaHei Mono": {
+   "ascii": 11.025,
+   "cjk": 12.5,
+   "ratio": 1.134
+  }
+ },
+ "charPx": {
+  "matrix": {
+   "▓": 7.526,
+   "░": 7.526,
+   "─": 7.526,
+   "✅": 16,
+   "项": 12.5
+  },
+  "dense": {
+   "█": 7.526,
+   "▉": 7.526,
+   "▒": 7.526,
+   "║": 7.526,
+   "═": 7.526,
+   "⣿": 8.545,
+   "项": 12.5
+  },
+  "teletype": {
+   "0": 7.526,
+   "#": 7.526,
+   ".": 7.526,
+   "+": 7.526,
+   "|": 7.526,
+   "-": 7.526,
+   " ": 7.526
+  }
+ },
+ "classes": {
+  "matrix": {
+   "cjk": {
+    "raw": 12.5,
+    "fixed": 15.052,
+    "target": 2
+   },
+   "emoji": {
+    "raw": 16,
+    "fixed": 15.052,
+    "target": 2
+   },
+   "shape": {
+    "raw": 7.526,
+    "fixed": 7.526,
+    "target": 1
+   }
+  },
+  "dense": {
+   "cjk": {
+    "raw": 12.5,
+    "fixed": 15.052,
+    "target": 2
+   },
+   "braille": {
+    "raw": 8.545,
+    "fixed": 7.526,
+    "target": 1
+   },
+   "shape": {
+    "raw": 7.526,
+    "fixed": 7.526,
+    "target": 1
+   }
+  },
+  "teletype": {}
+ },
+ "align": {
+  "matrix": {
+   "critChars": 17,
+   "groups": 2,
+   "fixedSpreadPx": 0.08,
+   "rawSpreadPx": 68.88,
+   "fixedPredMaxPx": 0.04,
+   "hasScript": true
+  },
+  "dense": {
+   "critChars": 18,
+   "groups": 2,
+   "fixedSpreadPx": 0.03,
+   "rawSpreadPx": 25.5,
+   "fixedPredMaxPx": 0.03,
+   "hasScript": true
+  },
+  "teletype": {
+   "critChars": 16,
+   "groups": 2,
+   "fixedSpreadPx": 0,
+   "rawSpreadPx": 0,
+   "fixedPredMaxPx": 0.02,
+   "hasScript": false
+  }
+ },
+ "barPx": {
+  "matrix": 60.2,
+  "dense": 60.2,
+  "teletype": 60.21
+ },
+ "printed_at": "2026-09-26T10:00:25.133Z"
+}

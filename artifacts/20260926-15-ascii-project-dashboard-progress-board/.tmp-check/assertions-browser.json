@@ -1,0 +1,174 @@
+{
+ "card": "browser",
+ "rows": [
+  {
+   "id": "BB1",
+   "desc": "三份预览都被 Chrome 真渲染（正文字符 matrix=10469 dense=10226 teletype=10522）",
+   "pass": true,
+   "detail": "字体=monospace 12.5px"
+  },
+  {
+   "id": "BB2-matrix",
+   "desc": "matrix 的条形与框线字符实测步进 = 等宽步进（±2%）：技能 \"10 chars = 10 cols\" 的字面前提成立",
+   "pass": true,
+   "detail": "▓=1 ░=1 ─=1"
+  },
+  {
+   "id": "BB2-dense",
+   "desc": "dense 的条形与框线字符实测步进 = 等宽步进（±2%）：技能 \"10 chars = 10 cols\" 的字面前提成立",
+   "pass": true,
+   "detail": "█=1 ▉=1 ▒=1 ║=1 ═=1"
+  },
+  {
+   "id": "BB2-teletype",
+   "desc": "teletype 的条形与框线字符实测步进 = 等宽步进（±2%）：技能 \"10 chars = 10 cols\" 的字面前提成立",
+   "pass": true,
+   "detail": "#=1 .=1 +=1 |=1 -=1  =1 0=1"
+  },
+  {
+   "id": "BB3",
+   "desc": "CJK 在浏览器回退字体里是 1.661 列而不是 2 列：技能那句排版前提在浏览器侧先天不成立",
+   "pass": true,
+   "detail": "cjk=12.50px mono=7.53px 比率=1.661"
+  },
+  {
+   "id": "BB3b",
+   "desc": "实测 CJK 步进恰为 1 个 font-size（回退到 PingFang 一类比例字体的 em 宽），所以「CJK=2 列」只在 CJK locale 终端成立",
+   "pass": true,
+   "detail": "cjk=12.50px font-size=12.5px"
+  },
+  {
+   "id": "BB3c-matrix",
+   "desc": "matrix 的 span 校正把每类宽字符拉到 cells() 的列数（±3%）：cjk 1.66→2.00 列，emoji 2.13→2.00 列，shape 1.00→1.00 列",
+   "pass": true,
+   "detail": "cjk: target=2 raw=1.661 fixed=2.000 emoji: target=2 raw=2.126 fixed=2.000 shape: target=1 raw=1.000 fixed=1.000"
+  },
+  {
+   "id": "BB3c-dense",
+   "desc": "dense 的 span 校正把每类宽字符拉到 cells() 的列数（±3%）：cjk 1.66→2.00 列，braille 1.14→1.00 列，shape 1.00→1.00 列",
+   "pass": true,
+   "detail": "cjk: target=2 raw=1.661 fixed=2.000 braille: target=1 raw=1.135 fixed=1.000 shape: target=1 raw=1.000 fixed=1.000"
+  },
+  {
+   "id": "BB3c-teletype",
+   "desc": "teletype 无宽字符 → 不注脚本、不包 span（strict ASCII 不需要校正）",
+   "pass": true,
+   "detail": "cls=0 hasScript=false"
+  },
+  {
+   "id": "BB4-matrix",
+   "desc": "matrix 修正后：17 个列临界字符（竖线/角）的实测 x 与 cells() 预测一致（最大残差 0.04px ≤ 1.2px），2 组同列字符跨行贴合（组内跨度 0.08px ≤ 0.6px）",
+   "pass": true,
+   "detail": "残差≤0.04px 组内≤0.08px 组数=2"
+  },
+  {
+   "id": "BB5-matrix",
+   "desc": "matrix 同一份看板去掉校正脚本立刻露馅：同列字符跨行最大跨度 68.88px（≥2px）——校正不是摆设",
+   "pass": true,
+   "detail": "raw=68.88px fixed=0.08px；raw 预测残差≤68.92px"
+  },
+  {
+   "id": "BB6-matrix",
+   "desc": "matrix 条形未被校正碰到：▓×8 实测 60.20px == 8×等宽（±1px），raw/fixed 两版同宽",
+   "pass": true,
+   "detail": "bar=60.20px vs 60.21px"
+  },
+  {
+   "id": "BB4-dense",
+   "desc": "dense 修正后：18 个列临界字符（竖线/角）的实测 x 与 cells() 预测一致（最大残差 0.03px ≤ 1.2px），2 组同列字符跨行贴合（组内跨度 0.03px ≤ 0.6px）",
+   "pass": true,
+   "detail": "残差≤0.03px 组内≤0.03px 组数=2"
+  },
+  {
+   "id": "BB5-dense",
+   "desc": "dense 同一份看板去掉校正脚本立刻露馅：同列字符跨行最大跨度 25.5px（≥2px）——校正不是摆设",
+   "pass": true,
+   "detail": "raw=25.5px fixed=0.03px；raw 预测残差≤25.53px"
+  },
+  {
+   "id": "BB6-dense",
+   "desc": "dense 条形未被校正碰到：█×8 实测 60.20px == 8×等宽（±1px），raw/fixed 两版同宽",
+   "pass": true,
+   "detail": "bar=60.20px vs 60.21px"
+  },
+  {
+   "id": "BB4-teletype",
+   "desc": "teletype 修正后：16 个列临界字符（竖线/角）的实测 x 与 cells() 预测一致（最大残差 0.02px ≤ 1.2px），2 组同列字符跨行贴合（组内跨度 0px ≤ 0.6px）",
+   "pass": true,
+   "detail": "残差≤0.02px 组内≤0px 组数=2"
+  },
+  {
+   "id": "BB5-teletype",
+   "desc": "teletype 无脚本可信：纯 ASCII 本来就不需要校正（同列跨行跨度 0px，与修正版同图）",
+   "pass": true,
+   "detail": "raw=0px fixed=0px"
+  },
+  {
+   "id": "BB6-teletype",
+   "desc": "teletype 条形未被校正碰到：#×8 实测 60.21px == 8×等宽（±1px），raw/fixed 两版同宽",
+   "pass": true,
+   "detail": "bar=60.21px vs 60.21px"
+  },
+  {
+   "id": "BB7-matrix",
+   "desc": "matrix 渲染行数 == .md 行数（<pre> 没吞行，span 没换行）",
+   "pass": true,
+   "detail": "204 行"
+  },
+  {
+   "id": "BB8-matrix",
+   "desc": "matrix 预览区横向可滚而非裁切（scrollWidth 1266 ≥ clientWidth 718）",
+   "pass": true,
+   "detail": "需横向滚动 548px"
+  },
+  {
+   "id": "BB7-dense",
+   "desc": "dense 渲染行数 == .md 行数（<pre> 没吞行，span 没换行）",
+   "pass": true,
+   "detail": "210 行"
+  },
+  {
+   "id": "BB8-dense",
+   "desc": "dense 预览区横向可滚而非裁切（scrollWidth 1281 ≥ clientWidth 718）",
+   "pass": true,
+   "detail": "需横向滚动 563px"
+  },
+  {
+   "id": "BB7-teletype",
+   "desc": "teletype 渲染行数 == .md 行数（<pre> 没吞行，span 没换行）",
+   "pass": true,
+   "detail": "206 行"
+  },
+  {
+   "id": "BB8-teletype",
+   "desc": "teletype 预览区横向可滚而非裁切（scrollWidth 942 ≥ clientWidth 718）",
+   "pass": true,
+   "detail": "需横向滚动 224px"
+  },
+  {
+   "id": "BB9",
+   "desc": "Chrome 侧记账：data-fx 只在含宽字符的两份里出现，且记录的正是被校正的类",
+   "pass": true,
+   "detail": "matrix fx={\"cjk\":2.55,\"emoji\":-0.95,\"shape\":0} dense fx={\"cjk\":2.55,\"braille\":-1.02,\"shape\":0} teletype fx=-"
+  },
+  {
+   "id": "BB10",
+   "desc": "探针只写在 .tmp-check 副本上，交付 HTML 未被改写（删掉 .tmp-check 三份产物照旧可双击）",
+   "pass": true,
+   "detail": "probe-matrix.html+probe-matrix-raw.html probe-dense.html+probe-dense-raw.html probe-teletype.html+probe-teletype-raw.html"
+  },
+  {
+   "id": "BB11a",
+   "desc": "字族扫描本身有效：各字族的 ASCII 步进并非全同（若全同说明 font-family 没生效，BB11 就成了空转）",
+   "pass": true,
+   "detail": "7.526 7.502 11.025 11.488 10.588 10.412"
+  },
+  {
+   "id": "BB11",
+   "desc": "14 个候选字族（含中文字族与 Noto/Source Han/Sarasa 三款宣称等宽的 CJK 字体）里，无一族的 CJK:ASCII 步进比接近 2 —— 换字体救不了这条前提，校正必须由预览层自己做",
+   "pass": true,
+   "detail": "实测比率 monospace=1.661 Menlo=1.661 Monaco=1.666 SFMono-Regular=1.134 Courier New=1.666 PingFang SC=1.134 Heiti SC=1.088 Songti SC=1.181 STSong=1.201 Kaiti SC=1.134 Noto Sans Mono CJK SC=1.134 Source Han Mono SC=1.134 Sarasa Mono SC=1.134 Microsoft YaHei Mono=1.134"
+  }
+ ],
+ "printed_at": "2026-09-26T10:00:25.135Z"
+}

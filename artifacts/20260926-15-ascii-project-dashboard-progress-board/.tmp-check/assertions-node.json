@@ -1,0 +1,696 @@
+{
+ "card": "node",
+ "rows": [
+  {
+   "id": "A1-matrix",
+   "desc": "汇总表有 6 条泳道行（技能 §3 Summary Table）",
+   "pass": true,
+   "detail": "6"
+  },
+  {
+   "id": "A2-matrix",
+   "desc": "每条主进度条恰好 10 格（\"Always 10 characters\"）",
+   "pass": true,
+   "detail": "10,10,10,10,10,10"
+  },
+  {
+   "id": "A2b-matrix",
+   "desc": "进度条字符封闭于本风格字母表（\"Mix bar styles\" 反模式）",
+   "pass": true,
+   "detail": "▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓░ ▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓░ ▓▓▓▓▓▓▓▓░░ ▓▓▓▓▓░░░░░"
+  },
+  {
+   "id": "A3-matrix-0",
+   "desc": "trace 填充格数 == round(pct/10) 且未满格钳到 9",
+   "pass": true,
+   "detail": "= 10"
+  },
+  {
+   "id": "A3-matrix-1",
+   "desc": "clean 填充格数 == round(pct/10) 且未满格钳到 9",
+   "pass": true,
+   "detail": "= 9"
+  },
+  {
+   "id": "A3-matrix-2",
+   "desc": "source 填充格数 == round(pct/10) 且未满格钳到 9",
+   "pass": true,
+   "detail": "= 10"
+  },
+  {
+   "id": "A3-matrix-3",
+   "desc": "dedup 填充格数 == round(pct/10) 且未满格钳到 9",
+   "pass": true,
+   "detail": "= 9"
+  },
+  {
+   "id": "A3-matrix-4",
+   "desc": "push 填充格数 == round(pct/10) 且未满格钳到 9",
+   "pass": true,
+   "detail": "= 8"
+  },
+  {
+   "id": "A3-matrix-5",
+   "desc": "health 填充格数 == round(pct/10) 且未满格钳到 9",
+   "pass": true,
+   "detail": "= 5"
+  },
+  {
+   "id": "A3x-matrix",
+   "desc": "满格条只出现在真·全完成的泳道",
+   "pass": true,
+   "detail": "21/21:FULL 22/23:partial 8/8:FULL 20/21:partial 19/23:partial 7/13:partial"
+  },
+  {
+   "id": "A4-matrix",
+   "desc": "技能原公式在本轮数据上会过度声明（96%→满格），实现已纠偏",
+   "pass": true,
+   "detail": "trace=21/21=100% clean=22/23=96%←原公式画满 source=8/8=100% dedup=20/21=95%←原公式画满 push=19/23=83% health=7/13=54%"
+  },
+  {
+   "id": "A5-matrix",
+   "desc": "状态符封闭（技能 §4 图标字母表）：109 行任务只用到 3/4 种声明符",
+   "pass": true,
+   "detail": "✅ 🔄 🚫"
+  },
+  {
+   "id": "A6-matrix",
+   "desc": "里程碑字形行只用本风格声明的图形字符（Pattern C）",
+   "pass": true,
+   "detail": "  ●────●────●────●────●────●────●────●────●────●────🎯────"
+  },
+  {
+   "id": "A6b-matrix",
+   "desc": "里程碑标签行只有数字、冒号、连字符与空格",
+   "pass": true,
+   "detail": "  01:0002:0003:0004:0005:0006:0007:0008:0011:0012:0015:00 /   09-2609-2609-2609-2609-2609-2609-2609-2609-2609-2609-26"
+  },
+  {
+   "id": "A7-matrix",
+   "desc": "TOTAL 行 == 各泳道相加（两级汇总互查，独立解析）",
+   "pass": true,
+   "detail": "= [109,97,10]"
+  },
+  {
+   "id": "A8-matrix",
+   "desc": "每个 pct 都能由 done/total 反算（\"Hardcode percentages\" 反模式）",
+   "pass": true,
+   "detail": "21/21=100% 22/23=96% 8/8=100% 20/21=95% 19/23=83% 7/13=54%"
+  },
+  {
+   "id": "A11-matrix",
+   "desc": "Sprint 勾选框数 == 规程步骤数（技能 §5 Sprint Box）",
+   "pass": true,
+   "detail": "= 8"
+  },
+  {
+   "id": "A11b-matrix",
+   "desc": "Sprint 已完成数与事实一致",
+   "pass": true,
+   "detail": "= 2"
+  },
+  {
+   "id": "A12-matrix",
+   "desc": "Markdown 表格不做像素对齐（技能 §Alignment 只适用于版式区）",
+   "pass": true,
+   "detail": "表尾列宽 54..85"
+  },
+  {
+   "id": "A1-dense",
+   "desc": "汇总表有 6 条泳道行（技能 §3 Summary Table）",
+   "pass": true,
+   "detail": "6"
+  },
+  {
+   "id": "A2-dense",
+   "desc": "每条主进度条恰好 10 格（\"Always 10 characters\"）",
+   "pass": true,
+   "detail": "10,10,10,10,10,10"
+  },
+  {
+   "id": "A2b-dense",
+   "desc": "进度条字符封闭于本风格字母表（\"Mix bar styles\" 反模式）",
+   "pass": true,
+   "detail": "██████████ █████████▋ ██████████ █████████▌ ████████▎▒ █████▍▒▒▒▒"
+  },
+  {
+   "id": "A3-dense-0",
+   "desc": "trace 八分度条未越 10 格",
+   "pass": true,
+   "detail": "██████████"
+  },
+  {
+   "id": "A3-dense-1",
+   "desc": "clean 八分度条未越 10 格",
+   "pass": true,
+   "detail": "█████████▋"
+  },
+  {
+   "id": "A3-dense-2",
+   "desc": "source 八分度条未越 10 格",
+   "pass": true,
+   "detail": "██████████"
+  },
+  {
+   "id": "A3-dense-3",
+   "desc": "dedup 八分度条未越 10 格",
+   "pass": true,
+   "detail": "█████████▌"
+  },
+  {
+   "id": "A3-dense-4",
+   "desc": "push 八分度条未越 10 格",
+   "pass": true,
+   "detail": "████████▎▒"
+  },
+  {
+   "id": "A3-dense-5",
+   "desc": "health 八分度条未越 10 格",
+   "pass": true,
+   "detail": "█████▍▒▒▒▒"
+  },
+  {
+   "id": "A3x-dense",
+   "desc": "满格条只出现在真·全完成的泳道",
+   "pass": true,
+   "detail": "21/21:FULL 22/23:partial 8/8:FULL 20/21:partial 19/23:partial 7/13:partial"
+  },
+  {
+   "id": "A4-dense",
+   "desc": "技能原公式在本轮数据上会过度声明（96%→满格），实现已纠偏",
+   "pass": true,
+   "detail": "trace=21/21=100% clean=22/23=96%←原公式画满 source=8/8=100% dedup=20/21=95%←原公式画满 push=19/23=83% health=7/13=54%"
+  },
+  {
+   "id": "A5-dense",
+   "desc": "状态符封闭（技能 §4 图标字母表）：109 行任务只用到 3/4 种声明符",
+   "pass": true,
+   "detail": "完成 进行 阻塞"
+  },
+  {
+   "id": "A6-dense",
+   "desc": "里程碑字形行只用本风格声明的图形字符（Pattern C）",
+   "pass": true,
+   "detail": "  ◆════◆════◆════◆════◆════◆════◆════◆════◆════◆════◇════"
+  },
+  {
+   "id": "A6b-dense",
+   "desc": "里程碑标签行只有数字、冒号、连字符与空格",
+   "pass": true,
+   "detail": "  01:0002:0003:0004:0005:0006:0007:0008:0011:0012:0015:00 /   09-2609-2609-2609-2609-2609-2609-2609-2609-2609-2609-26"
+  },
+  {
+   "id": "A7-dense",
+   "desc": "TOTAL 行 == 各泳道相加（两级汇总互查，独立解析）",
+   "pass": true,
+   "detail": "= [109,97,10]"
+  },
+  {
+   "id": "A8-dense",
+   "desc": "每个 pct 都能由 done/total 反算（\"Hardcode percentages\" 反模式）",
+   "pass": true,
+   "detail": "21/21=100% 22/23=96% 8/8=100% 20/21=95% 19/23=83% 7/13=54%"
+  },
+  {
+   "id": "A11-dense",
+   "desc": "Sprint 勾选框数 == 规程步骤数（技能 §5 Sprint Box）",
+   "pass": true,
+   "detail": "= 8"
+  },
+  {
+   "id": "A11b-dense",
+   "desc": "Sprint 已完成数与事实一致",
+   "pass": true,
+   "detail": "= 2"
+  },
+  {
+   "id": "A12-dense",
+   "desc": "Markdown 表格不做像素对齐（技能 §Alignment 只适用于版式区）",
+   "pass": true,
+   "detail": "表尾列宽 54..82"
+  },
+  {
+   "id": "A1-teletype",
+   "desc": "汇总表有 6 条泳道行（技能 §3 Summary Table）",
+   "pass": true,
+   "detail": "6"
+  },
+  {
+   "id": "A2-teletype",
+   "desc": "每条主进度条恰好 10 格（\"Always 10 characters\"）",
+   "pass": true,
+   "detail": "10,10,10,10,10,10"
+  },
+  {
+   "id": "A2b-teletype",
+   "desc": "进度条字符封闭于本风格字母表（\"Mix bar styles\" 反模式）",
+   "pass": true,
+   "detail": "########## #########. ########## #########. ########.. #####....."
+  },
+  {
+   "id": "A3-teletype-0",
+   "desc": "trace 填充格数 == round(pct/10) 且未满格钳到 9",
+   "pass": true,
+   "detail": "= 10"
+  },
+  {
+   "id": "A3-teletype-1",
+   "desc": "clean 填充格数 == round(pct/10) 且未满格钳到 9",
+   "pass": true,
+   "detail": "= 9"
+  },
+  {
+   "id": "A3-teletype-2",
+   "desc": "source 填充格数 == round(pct/10) 且未满格钳到 9",
+   "pass": true,
+   "detail": "= 10"
+  },
+  {
+   "id": "A3-teletype-3",
+   "desc": "dedup 填充格数 == round(pct/10) 且未满格钳到 9",
+   "pass": true,
+   "detail": "= 9"
+  },
+  {
+   "id": "A3-teletype-4",
+   "desc": "push 填充格数 == round(pct/10) 且未满格钳到 9",
+   "pass": true,
+   "detail": "= 8"
+  },
+  {
+   "id": "A3-teletype-5",
+   "desc": "health 填充格数 == round(pct/10) 且未满格钳到 9",
+   "pass": true,
+   "detail": "= 5"
+  },
+  {
+   "id": "A3x-teletype",
+   "desc": "满格条只出现在真·全完成的泳道",
+   "pass": true,
+   "detail": "21/21:FULL 22/23:partial 8/8:FULL 20/21:partial 19/23:partial 7/13:partial"
+  },
+  {
+   "id": "A4-teletype",
+   "desc": "技能原公式在本轮数据上会过度声明（96%→满格），实现已纠偏",
+   "pass": true,
+   "detail": "trace=21/21=100% clean=22/23=96%←原公式画满 source=8/8=100% dedup=20/21=95%←原公式画满 push=19/23=83% health=7/13=54%"
+  },
+  {
+   "id": "A5-teletype",
+   "desc": "状态符封闭（技能 §4 图标字母表）：109 行任务只用到 3/4 种声明符",
+   "pass": true,
+   "detail": "[x] [>] [!]"
+  },
+  {
+   "id": "A6-teletype",
+   "desc": "里程碑字形行只用本风格声明的图形字符（Pattern C）",
+   "pass": true,
+   "detail": "  x----x----x----x----x----x----x----x----x----x----*----"
+  },
+  {
+   "id": "A6b-teletype",
+   "desc": "里程碑标签行只有数字、冒号、连字符与空格",
+   "pass": true,
+   "detail": "  01:0002:0003:0004:0005:0006:0007:0008:0011:0012:0015:00 /   09-2609-2609-2609-2609-2609-2609-2609-2609-2609-2609-26"
+  },
+  {
+   "id": "A7-teletype",
+   "desc": "TOTAL 行 == 各泳道相加（两级汇总互查，独立解析）",
+   "pass": true,
+   "detail": "= [109,97,10]"
+  },
+  {
+   "id": "A8-teletype",
+   "desc": "每个 pct 都能由 done/total 反算（\"Hardcode percentages\" 反模式）",
+   "pass": true,
+   "detail": "21/21=100% 22/23=96% 8/8=100% 20/21=95% 19/23=83% 7/13=54%"
+  },
+  {
+   "id": "A11-teletype",
+   "desc": "Sprint 勾选框数 == 规程步骤数（技能 §5 Sprint Box）",
+   "pass": true,
+   "detail": "= 8"
+  },
+  {
+   "id": "A11b-teletype",
+   "desc": "Sprint 已完成数与事实一致",
+   "pass": true,
+   "detail": "= 2"
+  },
+  {
+   "id": "A12-teletype",
+   "desc": "Markdown 表格不做像素对齐（技能 §Alignment 只适用于版式区）",
+   "pass": true,
+   "detail": "表尾列宽 56..84"
+  },
+  {
+   "id": "B1-teletype",
+   "desc": "电传稿 .md 全部码点 ≤ U+007E（严格 7-bit，无任何高位字符）",
+   "pass": true,
+   "detail": "max=124"
+  },
+  {
+   "id": "B1b-teletype",
+   "desc": "电传稿 HTML 也保持纯 ASCII",
+   "pass": true,
+   "detail": "max=}"
+  },
+  {
+   "id": "B2-matrix",
+   "desc": "泳道矩阵用到 emoji 且用到 ▓ 与 ░",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "B2-dense",
+   "desc": "盲文密排零 emoji、零 ▓░、有盲文点字",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "B2-teletype",
+   "desc": "电传稿零 emoji、零块元素、有 #/. 条",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "B3-matrix",
+   "desc": "版式区每行 ≤ 118 列（窄终端不折行）",
+   "pass": true,
+   "detail": "max=116 table_max=165"
+  },
+  {
+   "id": "B5-matrix",
+   "desc": "无 tab / 无 CR / 无行尾空格（复制进别处不变形）",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "B6-matrix",
+   "desc": ".md 零外链（无 http(s)://、无图片语法）",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "B6b-matrix",
+   "desc": "HTML 零外部资源（无 src/href/url()/@import）",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "B11-matrix",
+   "desc": "HTML 仍自包含：脚本至多一个且内联（无 src）、无联网字体、样式全为系统栈",
+   "pass": true,
+   "detail": "1 个内联 script"
+  },
+  {
+   "id": "B11b-matrix",
+   "desc": "本风格有宽字符 → 注入脚本 + span 成组，二者要么都有要么都没有",
+   "pass": true,
+   "detail": "spans=514"
+  },
+  {
+   "id": "B8-matrix",
+   "desc": "凡是 10 列宽的进度条都同时带数字百分比（屏幕阅读器读得出数）",
+   "pass": true,
+   "detail": "13 条条；缺 pct：无"
+  },
+  {
+   "id": "B3-dense",
+   "desc": "版式区每行 ≤ 78 列（窄终端不折行）",
+   "pass": true,
+   "detail": "max=77 table_max=167"
+  },
+  {
+   "id": "B5-dense",
+   "desc": "无 tab / 无 CR / 无行尾空格（复制进别处不变形）",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "B6-dense",
+   "desc": ".md 零外链（无 http(s)://、无图片语法）",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "B6b-dense",
+   "desc": "HTML 零外部资源（无 src/href/url()/@import）",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "B11-dense",
+   "desc": "HTML 仍自包含：脚本至多一个且内联（无 src）、无联网字体、样式全为系统栈",
+   "pass": true,
+   "detail": "1 个内联 script"
+  },
+  {
+   "id": "B11b-dense",
+   "desc": "本风格有宽字符 → 注入脚本 + span 成组，二者要么都有要么都没有",
+   "pass": true,
+   "detail": "spans=493"
+  },
+  {
+   "id": "B8-dense",
+   "desc": "凡是 10 列宽的进度条都同时带数字百分比（屏幕阅读器读得出数）",
+   "pass": true,
+   "detail": "13 条条；缺 pct：无"
+  },
+  {
+   "id": "B3-teletype",
+   "desc": "版式区每行 ≤ 80 列（窄终端不折行）",
+   "pass": true,
+   "detail": "max=78 table_max=122"
+  },
+  {
+   "id": "B5-teletype",
+   "desc": "无 tab / 无 CR / 无行尾空格（复制进别处不变形）",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "B6-teletype",
+   "desc": ".md 零外链（无 http(s)://、无图片语法）",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "B6b-teletype",
+   "desc": "HTML 零外部资源（无 src/href/url()/@import）",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "B11-teletype",
+   "desc": "HTML 仍自包含：脚本至多一个且内联（无 src）、无联网字体、样式全为系统栈",
+   "pass": true,
+   "detail": "0 个内联 script"
+  },
+  {
+   "id": "B11b-teletype",
+   "desc": "电传稿 HTML 零脚本零 span（strict ASCII 无需宽字符校正）",
+   "pass": true,
+   "detail": "spans=0"
+  },
+  {
+   "id": "B8-teletype",
+   "desc": "凡是 10 列宽的进度条都同时带数字百分比（屏幕阅读器读得出数）",
+   "pass": true,
+   "detail": "13 条条；缺 pct：无"
+  },
+  {
+   "id": "B4",
+   "desc": "三风格均未发生截断（没有用截断掩盖溢出）",
+   "pass": true,
+   "detail": "= 0"
+  },
+  {
+   "id": "B11c",
+   "desc": "三套条形/框线字母表都不在需校正的类里（条不会被 span 切断，HTML 与终端的列宽口径一致）",
+   "pass": true,
+   "detail": "matrix:block,block dense:block,block,block,block,block,block,block,block,block teletype:ascii,ascii"
+  },
+  {
+   "id": "B11d",
+   "desc": "需校正的类 = cjk/emoji/braille/shape，且目标列数与 cells() 逐项一致（校正不引入第二套宽度口径）",
+   "pass": true,
+   "detail": "cjk=2(2) emoji=2(2) braille=1(1) shape=1(1)"
+  },
+  {
+   "id": "B11e",
+   "desc": "条形字母表字符在 HTML 里永不进 span（进了一次即结构变异被 B7c 抓到）",
+   "pass": true,
+   "detail": "span 内字符类别：cjk/emoji/shape/braille"
+  },
+  {
+   "id": "B7",
+   "desc": "md ↔ html 逐字节回环（剥掉宽字符 span 并反转义后等于原 md）",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "B7b",
+   "desc": "HTML 里的每个宽字符 span 只装它声明那一类的字符（结构化配对，不是整段剥标签）",
+   "pass": true,
+   "detail": "matrix=514 个 span dense=493 个 span teletype=0 个 span"
+  },
+  {
+   "id": "B7c",
+   "desc": "span 组数 == md 里的连续宽字符段数（成组包裹，没跨字乱切）",
+   "pass": true,
+   "detail": "= \"514,493,0\""
+  },
+  {
+   "id": "B7d",
+   "desc": "拿同一 span 规则从 .md 重新生成正文，与交付 HTML 逐字节相同（第二个序列化器交叉回读）",
+   "pass": true,
+   "detail": "matrix:25182B dense:24072B teletype:10537B"
+  },
+  {
+   "id": "B12",
+   "desc": "HTML 里每根 10 格条都完好且带 pct：span 与转义都没吃掉条字符（对 md 逐风格计数相同）",
+   "pass": true,
+   "detail": "matrix=8 dense=11 teletype=8"
+  },
+  {
+   "id": "B13",
+   "desc": "预览脚本注入符合约定：含宽字符的风格各注入 1 个内联 script，纯 ASCII 的 teletype 一个都不注",
+   "pass": true,
+   "detail": "matrix=1 dense=1 teletype=0"
+  },
+  {
+   "id": "B13b",
+   "desc": "注入的脚本源码本身仍是纯 ASCII（电传稿风格不被脚本污染，B1b 才成立）",
+   "pass": true,
+   "detail": "脚本体最大码点 ≤ U+007E"
+  },
+  {
+   "id": "B14",
+   "desc": "版式区（非表格的条形行）全部在 ``` 代码围栏内（技能三张示例都把看板写进围栏；裸写会被 Markdown 折叠成段落）",
+   "pass": true,
+   "detail": "matrix=2 个围栏 dense=2 个围栏 teletype=2 个围栏"
+  },
+  {
+   "id": "B9",
+   "desc": "HTML 三件套：lang / charset / role=region + aria 摘要",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "B10",
+   "desc": "歧义宽度字符：电传稿=0，另两风格 >0（技能 \"10 chars=10 chars\" 只在纯 ASCII 下无条件成立）",
+   "pass": true,
+   "detail": "matrix=63 dense=231 teletype=0"
+  },
+  {
+   "id": "C1",
+   "desc": "三份产物反解出的「泳道→done/total/pct」表逐行相同（同构）",
+   "pass": true,
+   "detail": "[[\"trace\",21,21,100],[\"clean\",22,23,96],[\"source\",8,8,100],[\"dedup\",20,21,95],[\"push\",19,23,83],[\"health\",7,13,54]]"
+  },
+  {
+   "id": "C1b",
+   "desc": "反解结果与 facts 现算一致（交叉回读，两个独立口径）",
+   "pass": true,
+   "detail": "lanes=3"
+  },
+  {
+   "id": "C2",
+   "desc": "三份产物都覆盖全部 109 个任务 id（风格不吞内容）",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "C3",
+   "desc": "三风格 9 维呈现指纹两两差异 ≥4 维（互斥）",
+   "pass": true,
+   "detail": "matrix/dense=4维 matrix/teletype=6维 dense/teletype=6维"
+  },
+  {
+   "id": "C4",
+   "desc": "三份产物的进度条字母表两两不相交（空白除外）",
+   "pass": true,
+   "detail": "matrix:▓░ | dense:█▋▌▎▒▍▉ | teletype:#."
+  },
+  {
+   "id": "C5",
+   "desc": "三份 md 各 ≤ 60KB 且总产物 ≤ 50MB",
+   "pass": true,
+   "detail": "matrix=13758B dense=14044B teletype=10522B"
+  },
+  {
+   "id": "D2a",
+   "desc": "facts.tried_len == state.json 现读 tried 长度（未被并发改动）",
+   "pass": true,
+   "detail": "= 22"
+  },
+  {
+   "id": "D2b",
+   "desc": "facts 记录的 updated 与现读台账一致（取数后台账未被别人改写）",
+   "pass": true,
+   "detail": "= \"2026-09-26T15:00+08:00\""
+  },
+  {
+   "id": "D3",
+   "desc": "clean 泳道每条目录名都真在 artifacts/ 下（泳道没造出磁盘上不存在的任务）",
+   "pass": true,
+   "detail": "泳道 23 条 / 磁盘 23 个目录"
+  },
+  {
+   "id": "D3b",
+   "desc": "看板里 HEALTH 泳道的判据条数 == facts 现算条数（不自增判据）",
+   "pass": true,
+   "detail": "= 13"
+  },
+  {
+   "id": "D4",
+   "desc": "本轮组合在**写回前快照**里确未出现（选题去重前置条件，基准集=ledger-before.json）",
+   "pass": true,
+   "detail": "快照 tried=21 无此组 / 现读 tried=22 已有"
+  },
+  {
+   "id": "D4b",
+   "desc": "快照确实是「紧邻写回前」那一版：live 比快照恰好多一条 tried",
+   "pass": true,
+   "detail": "= 22"
+  },
+  {
+   "id": "D5",
+   "desc": "候选池里确实预先排着这一组（本轮不是临时起意；基准集=写回前快照）",
+   "pass": true,
+   "detail": "快照候选 52 条，命中 2 条"
+  },
+  {
+   "id": "D5b",
+   "desc": "消费掉的排队项已从现读候选池移除，且本轮新移植项已入池（台账是活的，不是只进不出）",
+   "pass": true,
+   "detail": "候选 52 -> 55"
+  },
+  {
+   "id": "D6",
+   "desc": "facts.json 不是陈旧读数：其内 sha1 与现读 state.json 字节一致",
+   "pass": true,
+   "detail": "fba586c11379"
+  },
+  {
+   "id": "E1",
+   "desc": "生成器源码里没有手抄的百分比字面量",
+   "pass": true,
+   "detail": "clean"
+  },
+  {
+   "id": "E2",
+   "desc": "生成器源码里没有手抄的任务数/完成数（只做算术）",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "E3",
+   "desc": "渲染层唯一的数字来源是 stats()/filledBlocks()/eighths() 三个函数",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "printed_at": "2026-09-26T10:00:12.672Z"
+}

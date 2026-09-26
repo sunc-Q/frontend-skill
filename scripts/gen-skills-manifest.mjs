@@ -17,6 +17,7 @@ const SOURCES = {
   'vercel-react-best-practices': '~/.qoder-cn/skills/vercel-react-best-practices',
   'frontend-development': '~/.qoder-cn/skills/frontend-development',
   'ppt-generator': '~/.qoder-cn/skills/ppt-generator',
+  'ascii-project-dashboard': '~/.qoder-cn/skills/ascii-project-dashboard',
 };
 
 function walk(dir) {

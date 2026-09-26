@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>前端 Skill 验证流水线 · 进度看板 · 泳道矩阵 lane-matrix</title>
+<style>
+:root{--bg:#f6f4ee;--fg:#1c1a17;--acc:#b4453a;--rule:#d8d2c4;--font:"SFMono-Regular",Menlo,Consolas,"Noto Sans Mono",monospace}
+*{box-sizing:border-box}
+body{margin:0;padding:28px 18px 60px;background:var(--bg);color:var(--fg);font-family:var(--font);line-height:1.45}
+.wrap{max-width:1280px;margin:0 auto}
+h1{font-size:19px;margin:0 0 4px;letter-spacing:0}
+.meta{font-size:12px;color:var(--acc);margin:0 0 14px;border-bottom:1px solid var(--rule);padding-bottom:10px;white-space:pre-wrap}
+pre{font-family:var(--font);font-size:12.5px;margin:0;white-space:pre;overflow-x:auto;padding:12px;background:#fffdf7;border:1px solid var(--rule);border-radius:2px;box-shadow:0 1px 0 var(--rule)}
+table{border-collapse:collapse;font-size:12.5px;margin:0}
+.mark{display:inline-block;margin-top:14px;font-size:11px;color:var(--acc);text-transform:uppercase;letter-spacing:.5px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.fx-cjk{letter-spacing:var(--fx-cjk,0)}
+.fx-emoji{letter-spacing:var(--fx-emoji,0)}
+.fx-braille{letter-spacing:var(--fx-braille,0)}
+.fx-shape{letter-spacing:var(--fx-shape,0)}
+a{color:var(--acc)}</style></head>
+<body><div class="wrap">
+<h1>前端 Skill 验证流水线 · 进度看板</h1>
+<p class="meta">技能原生形态：emoji 图标 + ▓░ 十格条 + 横向泳道（Pattern A）+ Markdown 汇总表 + 待办表 + 里程碑时间线（Pattern C）</p>
+<p class="vh" id="alt">共 109 项任务，完成 97 项，阻塞 10 项，进行中 2 项，整体 89%。分泳道：留痕 TRACE 21/21；收尾 CLEAN 22/23；快照 SOURCE 8/8；去重 DEDUP 20/21；推送 PUSH 19/23；自检 HEALTH 7/13。</p>
+<div role="region" aria-labelledby="alt" tabindex="0">
+<pre aria-describedby="alt"><code id="board"># <span class="fx-cjk">前端</span> Skill <span class="fx-cjk">验证流水线</span> · <span class="fx-cjk">进度看板</span>
+  <span class="fx-cjk">技能原生形态：</span>emoji <span class="fx-cjk">图标</span> + ▓░ <span class="fx-cjk">十格条</span> + <span class="fx-cjk">横向泳道（</span>Pattern A<span class="fx-cjk">）</span>+ Markdown <span class="fx-cjk">汇总表</span> + <span class="fx-cjk">待办表</span> + <span class="fx-cjk">里程碑时间线（</span>Pattern C<span class="fx-cjk">）</span>
+
+```
+        <span class="fx-emoji">🧱</span> <span class="fx-cjk">留痕</span> TRACE 21/21         |        <span class="fx-emoji">🧹</span> <span class="fx-cjk">收尾</span> CLEAN 22/23         |         <span class="fx-emoji">📚</span> <span class="fx-cjk">快照</span> SOURCE 8/8         
+<span class="fx-cjk">每轮产物目录</span> + <span class="fx-cjk">复现报告是否都在盘上</span> |    <span class="fx-cjk">单场景</span> &lt;50MB<span class="fx-cjk">、无残留、可双击</span>    |        <span class="fx-cjk">技能原文随仓库可核对</span>        
+       ----------------------       +       ----------------------       +       ----------------------       
+          ▓▓▓▓▓▓▓▓▓▓ 100%           |           ▓▓▓▓▓▓▓▓▓░ 96%           |          ▓▓▓▓▓▓▓▓▓▓ 100%           
+        <span class="fx-emoji">🎨</span> <span class="fx-cjk">去重</span> DEDUP 20/21         |         <span class="fx-emoji">🚀</span> <span class="fx-cjk">推送</span> PUSH 19/23         |        <span class="fx-emoji">🩺</span> <span class="fx-cjk">自检</span> HEALTH 7/13         
+  <span class="fx-cjk">同风格不复用；每轮三风格均已登记</span>  | <span class="fx-cjk">产物进过</span> origin/main <span class="fx-cjk">且台账有声明</span>  |        <span class="fx-cjk">台账自身的一致性判据</span>        
+       ----------------------       +       ----------------------       +       ----------------------       
+           ▓▓▓▓▓▓▓▓▓░ 95%           |           ▓▓▓▓▓▓▓▓░░ 83%           |           ▓▓▓▓▓░░░░░ 54%           
+```
+
+## <span class="fx-cjk">汇总表</span>
+
+| <span class="fx-cjk">泳道</span> | <span class="fx-cjk">焦点</span> | Tasks | Done | Block | <span class="fx-cjk">进度条</span> |
+| ---- | ---- | ----- | ---- | ----- | ------------ |
+| <span class="fx-emoji">🧱</span> <span class="fx-cjk">留痕</span> TRACE | <span class="fx-cjk">每轮产物目录</span> + <span class="fx-cjk">复现报告是否都在盘上</span> | 21 | 21 | 0 | ▓▓▓▓▓▓▓▓▓▓ 100% |
+| <span class="fx-emoji">🧹</span> <span class="fx-cjk">收尾</span> CLEAN | <span class="fx-cjk">单场景</span> &lt;50MB<span class="fx-cjk">、无残留、可双击</span> | 23 | 22 | 0 | ▓▓▓▓▓▓▓▓▓░ 96% |
+| <span class="fx-emoji">📚</span> <span class="fx-cjk">快照</span> SOURCE | <span class="fx-cjk">技能原文随仓库可核对</span> | 8 | 8 | 0 | ▓▓▓▓▓▓▓▓▓▓ 100% |
+| <span class="fx-emoji">🎨</span> <span class="fx-cjk">去重</span> DEDUP | <span class="fx-cjk">同风格不复用；每轮三风格均已登记</span> | 21 | 20 | 1 | ▓▓▓▓▓▓▓▓▓░ 95% |
+| <span class="fx-emoji">🚀</span> <span class="fx-cjk">推送</span> PUSH | <span class="fx-cjk">产物进过</span> origin/main <span class="fx-cjk">且台账有声明</span> | 23 | 19 | 3 | ▓▓▓▓▓▓▓▓░░ 83% |
+| <span class="fx-emoji">🩺</span> <span class="fx-cjk">自检</span> HEALTH | <span class="fx-cjk">台账自身的一致性判据</span> | 13 | 7 | 6 | ▓▓▓▓▓░░░░░ 54% |
+| **<span class="fx-cjk">合计</span>** | <span class="fx-cjk">全部泳道</span> | 109 | 97 | 10 | ▓▓▓▓▓▓▓▓▓░ 89% |
+
+## <span class="fx-cjk">各泳道待办</span>
+
+#### <span class="fx-emoji">🧱</span> <span class="fx-cjk">留痕</span> TRACE (21/21)
+
+| ID | <span class="fx-cjk">任务</span> | <span class="fx-cjk">状态</span> | <span class="fx-cjk">备注</span> |
+| ---- | ---- | ---- | ---- |
+| T1 | -14-sites-building-landing-page · <span class="fx-cjk">报告</span> 9567B | <span class="fx-emoji">✅</span> | — |
+| T2 | -15-sites-building-dashboard · <span class="fx-cjk">报告</span> 10925B | <span class="fx-emoji">✅</span> | — |
+| T3 | -16-frontend-development-report · <span class="fx-cjk">报告</span> 16016B | <span class="fx-emoji">✅</span> | — |
+| T4 | -17-vercel-react-best-practices-admin · <span class="fx-cjk">报告</span> 9990B | <span class="fx-emoji">✅</span> | — |
+| T5 | -18-vercel-react-best-practices-landing · <span class="fx-cjk">报告</span> 25406B | <span class="fx-emoji">✅</span> | — |
+| T6 | -19-sites-react-pricing · <span class="fx-cjk">报告</span> 23867B | <span class="fx-emoji">✅</span> | — |
+| T7 | -20-vercel-react-activity · <span class="fx-cjk">报告</span> 13935B | <span class="fx-emoji">✅</span> | — |
+| T8 | -21-drafter-architecture · <span class="fx-cjk">报告</span> 14293B | <span class="fx-emoji">✅</span> | — |
+| T9 | -22-ppt-generator-deck · <span class="fx-cjk">报告</span> 23474B | <span class="fx-emoji">✅</span> | — |
+| T10 | -23-sites-building-personal-homepage · <span class="fx-cjk">报告</span> 20540B | <span class="fx-emoji">✅</span> | — |
+| T11 | -00-ppt-generator-charts · <span class="fx-cjk">报告</span> 18457B | <span class="fx-emoji">✅</span> | <span class="fx-cjk">台账缺</span> report <span class="fx-cjk">字段</span> |
+| T12 | -01-ppt-generator-proposal · <span class="fx-cjk">报告</span> 12490B | <span class="fx-emoji">✅</span> | <span class="fx-cjk">台账缺</span> report <span class="fx-cjk">字段</span> |
+| T13 | -02-graphic-gif-banner · <span class="fx-cjk">报告</span> 12602B | <span class="fx-emoji">✅</span> | — |
+| T14 | -03-build-game-tower-defense · <span class="fx-cjk">报告</span> 32976B | <span class="fx-emoji">✅</span> | — |
+| T15 | -04-sites-building-multipage-site · <span class="fx-cjk">报告</span> 8832B | <span class="fx-emoji">✅</span> | — |
+| T16 | -05-build-game-reference-driven · <span class="fx-cjk">报告</span> 16187B | <span class="fx-emoji">✅</span> | — |
+| T17 | -06-sites-building-activity · <span class="fx-cjk">报告</span> 13891B | <span class="fx-emoji">✅</span> | — |
+| T18 | -07-frontend-development-admin · <span class="fx-cjk">报告</span> 44373B | <span class="fx-emoji">✅</span> | — |
+| T19 | -08-frontend-development-wizard · <span class="fx-cjk">报告</span> 40478B | <span class="fx-emoji">✅</span> | — |
+| T20 | -11-sites-building-newsletter · <span class="fx-cjk">报告</span> 9806B | <span class="fx-emoji">✅</span> | — |
+| T21 | -12-frontend-development-blog-portal · <span class="fx-cjk">报告</span> 32633B | <span class="fx-emoji">✅</span> | — |
+
+#### <span class="fx-emoji">🧹</span> <span class="fx-cjk">收尾</span> CLEAN (22/23)
+
+| ID | <span class="fx-cjk">任务</span> | <span class="fx-cjk">状态</span> | <span class="fx-cjk">备注</span> |
+| ---- | ---- | ---- | ---- |
+| K20260925-1 | -14-sites-building-landing-page · 65KB · <span class="fx-cjk">残留</span>0 · 4 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260925-1 | -15-sites-building-dashboard · 93KB · <span class="fx-cjk">残留</span>0 · 4 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260925-1 | -16-frontend-development-report · 464KB · <span class="fx-cjk">残留</span>0 · 7 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260925-1 | -17-vercel-react-best-practices-admin · 906KB · <span class="fx-cjk">残留</span>0 · 4 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260925-1 | -18-vercel-react-best-practices-landing · 968KB · <span class="fx-cjk">残留</span>0 · 4 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260925-1 | -19-sites-react-pricing · 1033KB · <span class="fx-cjk">残留</span>0 · 5 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260925-2 | -20-vercel-react-activity · 987KB · <span class="fx-cjk">残留</span>0 · 5 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260925-2 | -21-drafter-architecture · 64KB · <span class="fx-cjk">残留</span>0 · 4 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260925-2 | -22-ppt-generator-deck · 445KB · <span class="fx-cjk">残留</span>0 · 4 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260925-2 | -23-sites-building-personal-homepage · 67KB · <span class="fx-cjk">残留</span>0 · 4 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260926-0 | -00-ppt-generator-charts · 480KB · <span class="fx-cjk">残留</span>0 · 4 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260926-0 | -01-ppt-generator-proposal · 451KB · <span class="fx-cjk">残留</span>0 · 4 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260926-0 | -02-graphic-gif-banner · 3123KB · <span class="fx-cjk">残留</span>0 · 4 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260926-0 | -03-build-game-tower-defense · 8019KB · <span class="fx-cjk">残留</span>0 · 8 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260926-0 | -04-sites-building-multipage-site · 79KB · <span class="fx-cjk">残留</span>0 · 12 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260926-0 | -05-build-game-reference-driven · 13271KB · <span class="fx-cjk">残留</span>0 · 7 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260926-0 | -06-sites-building-activity · 268KB · <span class="fx-cjk">残留</span>0 · 5 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260926-0 | -07-frontend-development-admin · 2450KB · <span class="fx-cjk">残留</span>0 · 4 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260926-0 | -08-frontend-development-wizard · 2366KB · <span class="fx-cjk">残留</span>0 · 4 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260926-1 | -11-sites-building-newsletter · 89KB · <span class="fx-cjk">残留</span>0 · 5 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260926-1 | -12-frontend-development-blog-portal · 2233KB · <span class="fx-cjk">残留</span>0 · 8 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260926-1 | -14-drafter-flowchart · 301KB · <span class="fx-cjk">残留</span>0 · 4 <span class="fx-cjk">页</span> | <span class="fx-emoji">✅</span> | — |
+| K20260926-1 | -15-ascii-project-dashboard-progress-board · 636KB · <span class="fx-cjk">残留</span>12 · 10 <span class="fx-cjk">页</span> | <span class="fx-emoji">🔄</span> | bytes=650767 residue=12 html=10 |
+
+#### <span class="fx-emoji">📚</span> <span class="fx-cjk">快照</span> SOURCE (8/8)
+
+| ID | <span class="fx-cjk">任务</span> | <span class="fx-cjk">状态</span> | <span class="fx-cjk">备注</span> |
+| ---- | ---- | ---- | ---- |
+| S1 | sites-building · <span class="fx-cjk">快照在</span> · <span class="fx-cjk">清单收</span> | <span class="fx-emoji">✅</span> | — |
+| S2 | vercel-react-best-practices · <span class="fx-cjk">快照在</span> · <span class="fx-cjk">清单收</span> | <span class="fx-emoji">✅</span> | — |
+| S3 | frontend-development · <span class="fx-cjk">快照在</span> · <span class="fx-cjk">清单收</span> | <span class="fx-emoji">✅</span> | — |
+| S4 | drafter · <span class="fx-cjk">快照在</span> · <span class="fx-cjk">清单收</span> | <span class="fx-emoji">✅</span> | — |
+| S5 | ppt-generator · <span class="fx-cjk">快照在</span> · <span class="fx-cjk">清单收</span> | <span class="fx-emoji">✅</span> | — |
+| S6 | graphic-gif · <span class="fx-cjk">快照在</span> · <span class="fx-cjk">清单收</span> | <span class="fx-emoji">✅</span> | — |
+| S7 | build-game · <span class="fx-cjk">快照在</span> · <span class="fx-cjk">清单收</span> | <span class="fx-emoji">✅</span> | — |
+| S8 | ascii-project-dashboard · <span class="fx-cjk">快照在</span> · <span class="fx-cjk">清单收</span> | <span class="fx-emoji">✅</span> | — |
+
+#### <span class="fx-emoji">🎨</span> <span class="fx-cjk">去重</span> DEDUP (20/21)
+
+| ID | <span class="fx-cjk">任务</span> | <span class="fx-cjk">状态</span> | <span class="fx-cjk">备注</span> |
+| ---- | ---- | ---- | ---- |
+| D1 | -14-sites-building-landing-page · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D2 | -15-sites-building-dashboard · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D3 | -16-frontend-development-report · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>3 | <span class="fx-emoji">🚫</span> | <span class="fx-cjk">未登记：暖纸数据新闻</span> editorial/<span class="fx-cjk">冷灰对账单</span> statement/<span class="fx-cjk">暗色霓虹</span> cyber |
+| D4 | -17-vercel-react-best-practices-admin · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D5 | -18-vercel-react-best-practices-landing · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D6 | -19-sites-react-pricing · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D7 | -20-vercel-react-activity · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D8 | -21-drafter-architecture · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D9 | -22-ppt-generator-deck · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D10 | -23-sites-building-personal-homepage · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D11 | -00-ppt-generator-charts · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D12 | -01-ppt-generator-proposal · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D13 | -02-graphic-gif-banner · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D14 | -03-build-game-tower-defense · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D15 | -04-sites-building-multipage-site · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D16 | -05-build-game-reference-driven · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D17 | -06-sites-building-activity · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D18 | -07-frontend-development-admin · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D19 | -08-frontend-development-wizard · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D20 | -11-sites-building-newsletter · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+| D21 | -12-frontend-development-blog-portal · 3 <span class="fx-cjk">风格</span> · <span class="fx-cjk">撞车</span>0 · <span class="fx-cjk">未登记</span>0 | <span class="fx-emoji">✅</span> | — |
+
+#### <span class="fx-emoji">🚀</span> <span class="fx-cjk">推送</span> PUSH (19/23)
+
+| ID | <span class="fx-cjk">任务</span> | <span class="fx-cjk">状态</span> | <span class="fx-cjk">备注</span> |
+| ---- | ---- | ---- | ---- |
+| P20260925-1 | -14-sites-building-landing-page · <span class="fx-cjk">提交</span> 1 <span class="fx-cjk">次</span> | <span class="fx-emoji">🚫</span> | runs <span class="fx-cjk">缺</span> push <span class="fx-cjk">字段（早期轮未记）</span> |
+| P20260925-1 | -15-sites-building-dashboard · <span class="fx-cjk">提交</span> 1 <span class="fx-cjk">次</span> | <span class="fx-emoji">🚫</span> | runs <span class="fx-cjk">缺</span> push <span class="fx-cjk">字段（早期轮未记）</span> |
+| P20260925-1 | -16-frontend-development-report · <span class="fx-cjk">提交</span> 1 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260925-1 | -17-vercel-react-best-practices-admin · <span class="fx-cjk">提交</span> 1 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260925-1 | -18-vercel-react-best-practices-landing · <span class="fx-cjk">提交</span> 1 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260925-1 | -19-sites-react-pricing · <span class="fx-cjk">提交</span> 1 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260925-2 | -20-vercel-react-activity · <span class="fx-cjk">提交</span> 1 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260925-2 | -21-drafter-architecture · <span class="fx-cjk">提交</span> 1 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260925-2 | -22-ppt-generator-deck · <span class="fx-cjk">提交</span> 1 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260925-2 | -23-sites-building-personal-homepage · <span class="fx-cjk">提交</span> 1 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260926-0 | -00-ppt-generator-charts · <span class="fx-cjk">提交</span> 1 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260926-0 | -01-ppt-generator-proposal · <span class="fx-cjk">提交</span> 1 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260926-0 | -02-graphic-gif-banner · <span class="fx-cjk">提交</span> 1 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260926-0 | -03-build-game-tower-defense · <span class="fx-cjk">提交</span> 1 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260926-0 | -04-sites-building-multipage-site · <span class="fx-cjk">提交</span> 1 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260926-0 | -05-build-game-reference-driven · <span class="fx-cjk">提交</span> 1 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260926-0 | -06-sites-building-activity · <span class="fx-cjk">提交</span> 1 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260926-0 | -07-frontend-development-admin · <span class="fx-cjk">提交</span> 2 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260926-0 | -08-frontend-development-wizard · <span class="fx-cjk">提交</span> 2 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260926-1 | -11-sites-building-newsletter · <span class="fx-cjk">提交</span> 3 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260926-1 | -12-frontend-development-blog-portal · <span class="fx-cjk">提交</span> 3 <span class="fx-cjk">次</span> · <span class="fx-cjk">台账已声明</span> | <span class="fx-emoji">✅</span> | — |
+| P20260926-1 | -14-drafter-flowchart · <span class="fx-cjk">提交</span> 0 <span class="fx-cjk">次</span> | <span class="fx-emoji">🚫</span> | <span class="fx-cjk">未跟踪（在制品或未推送）</span> |
+| P20260926-1 | -15-ascii-project-dashboard-progress-board · <span class="fx-cjk">提交</span> 0 <span class="fx-cjk">次</span> | <span class="fx-emoji">🔄</span> | <span class="fx-cjk">未跟踪（在制品或未推送）</span> |
+
+#### <span class="fx-emoji">🩺</span> <span class="fx-cjk">自检</span> HEALTH (7/13)
+
+| ID | <span class="fx-cjk">任务</span> | <span class="fx-cjk">状态</span> | <span class="fx-cjk">备注</span> |
+| ---- | ---- | ---- | ---- |
+| H1 | tried <span class="fx-cjk">与</span> runs <span class="fx-cjk">等长</span> · tried=22 runs=22 | <span class="fx-emoji">✅</span> | tried=22 runs=22 |
+| H2 | <span class="fx-cjk">每轮风格均已登记进</span> used_styles · mismatched=3 | <span class="fx-emoji">🚫</span> | mismatched=3 |
+| H3 | used_styles <span class="fx-cjk">长度</span> == tried <span class="fx-cjk">展开长度</span> · used=66 flat=66 | <span class="fx-emoji">✅</span> | used=66 flat=66 |
+| H4 | <span class="fx-cjk">每轮产物目录在盘</span> · dirs=23 | <span class="fx-emoji">✅</span> | dirs=23 |
+| H5 | work-log <span class="fx-cjk">轮次行数</span> &gt;= tried <span class="fx-cjk">数</span> · log=23 tried=22 | <span class="fx-emoji">✅</span> | log=23 tried=22 |
+| H6 | state.updated <span class="fx-cjk">不早于末轮</span> time · updated=2026-09-26T15:00+08:00 last=2026-09-26T12:00+08:00 | <span class="fx-emoji">✅</span> | updated=2026-09-26T15:00+08:00 last=2026-09-26T12:00+08:00 |
+| H7 | <span class="fx-cjk">每个技能族都出现在</span> skills_seen · seen=19 | <span class="fx-emoji">✅</span> | seen=19 |
+| H8 | <span class="fx-cjk">无孤儿产物目录</span> · orphans=1 | <span class="fx-emoji">🚫</span> | orphans=1 |
+| H9 | <span class="fx-cjk">每条</span> tried <span class="fx-cjk">都有字符串</span> report <span class="fx-cjk">字段</span> · missing=2 | <span class="fx-emoji">🚫</span> | missing=2 |
+| H10 | tried[].artifacts <span class="fx-cjk">全为字符串</span> · nonstring=2 | <span class="fx-emoji">🚫</span> | nonstring=2 |
+| H11 | runs[i] <span class="fx-cjk">与</span> tried[i] <span class="fx-cjk">同轮</span> · pairs=22 | <span class="fx-emoji">✅</span> | pairs=22 |
+| H12 | reports/ <span class="fx-cjk">下无与产物目录同名的子目录</span> · nonmd_in_reports=1 | <span class="fx-emoji">🚫</span> | nonmd_in_reports=1 |
+| H13 | <span class="fx-cjk">每条</span> tried <span class="fx-cjk">自带</span> time<span class="fx-cjk">（无需</span> runs <span class="fx-cjk">回填）</span> · missing=1 | <span class="fx-emoji">🚫</span> | missing=1 |
+
+## <span class="fx-cjk">里程碑时间线（末</span> 10 <span class="fx-cjk">轮</span> + <span class="fx-cjk">本轮）</span>
+
+```
+  <span class="fx-shape">●</span>────<span class="fx-shape">●</span>────<span class="fx-shape">●</span>────<span class="fx-shape">●</span>────<span class="fx-shape">●</span>────<span class="fx-shape">●</span>────<span class="fx-shape">●</span>────<span class="fx-shape">●</span>────<span class="fx-shape">●</span>────<span class="fx-shape">●</span>────<span class="fx-emoji">🎯</span>────
+  01:0002:0003:0004:0005:0006:0007:0008:0011:0012:0015:00
+  09-2609-2609-2609-2609-2609-2609-2609-2609-2609-2609-26
+```
+  <span class="fx-cjk">图例：</span>▓ <span class="fx-cjk">已完成格</span>  ░ <span class="fx-cjk">未完成格</span>  <span class="fx-emoji">✅</span> <span class="fx-cjk">完成</span>  <span class="fx-emoji">🔄</span> <span class="fx-cjk">进行中</span>  <span class="fx-emoji">🚫</span> <span class="fx-cjk">阻塞</span>  <span class="fx-shape">⬜</span> <span class="fx-cjk">待办</span>  <span class="fx-shape">●</span> <span class="fx-cjk">里程碑</span>  <span class="fx-shape">○</span> <span class="fx-cjk">未来</span>  <span class="fx-emoji">🎯</span> <span class="fx-cjk">本轮</span>
+
+### <span class="fx-cjk">本轮</span> Sprint 20260926-1
+
+#### Spec steps
+- <span class="fx-emoji">✅</span> <span class="fx-cjk">读取工作记录与台账</span> — <span class="fx-cjk">两本账读完才选题</span>
+- <span class="fx-emoji">✅</span> <span class="fx-cjk">选题未试组合</span> — tried <span class="fx-cjk">里没有这一组</span>
+- <span class="fx-shape">⬜</span> <span class="fx-cjk">按技能流程产出三风格</span> — <span class="fx-cjk">渲染层见</span> src/render.mjs
+- <span class="fx-shape">⬜</span> <span class="fx-cjk">断言与变异复核</span> — node/mutate/browser <span class="fx-cjk">三张卡</span>
+- <span class="fx-shape">⬜</span> <span class="fx-cjk">清理中间产物</span> — <span class="fx-cjk">本轮零</span> node_modules
+- <span class="fx-shape">⬜</span> <span class="fx-cjk">写复现文档到</span> reports — <span class="fx-cjk">与产物同名片段</span>
+- <span class="fx-shape">⬜</span> <span class="fx-cjk">写回台账与工作日志</span> — tried/runs/notes <span class="fx-cjk">全部追加</span>
+- <span class="fx-shape">⬜</span> <span class="fx-cjk">提交并推送到</span> origin — HTTPS <span class="fx-cjk">被重置故走</span> SSH
+
+## <span class="fx-cjk">数据出处（本页每个数字均由脚本现算，非手抄）</span>
+
+| <span class="fx-cjk">键</span> | <span class="fx-cjk">值</span> |
+| --- | --- |
+| facts <span class="fx-cjk">摘要</span> | `fba586c11379` |
+| work-log <span class="fx-cjk">摘要</span> | `f8b80cc790e6` |
+| <span class="fx-cjk">台账</span> updated | `2026-09-26T15:00+08:00` |
+| tried / runs | `22 / 22` |
+| <span class="fx-cjk">产物目录</span> / <span class="fx-cjk">报告</span> | `23 / 23` |
+| artifacts <span class="fx-cjk">体积</span> | `37.9MB` |
+| <span class="fx-cjk">环境注记</span> / <span class="fx-cjk">候选</span> | `149 / 55 (+28 star)` |
+| git | `main@3531814` |
+| <span class="fx-cjk">生成时刻</span> | `2026-09-26T10:00:12.292Z` |
+
+&lt;!-- f:fba586c11379 w:f8b80cc790e6 s:matrix --&gt;
+</code></pre>
+</div>
+<span class="mark">style=matrix | bytes=13758 | lines=204 | maxcells=165 | ambiguous=63 | facts=fba586c11379 | fix=cjk+emoji+braille</span>
+<script>
+(function(){
+ var board=document.getElementById('board'); if(!board) return;
+ var cs=getComputedStyle(board);
+ function adv(ch,cls,n){
+  var s=document.createElement('span');
+  s.style.cssText='position:absolute;left:0;top:-9999px;white-space:pre;line-height:normal;font-family:'
+   +cs.fontFamily+';font-size:'+cs.fontSize+';font-weight:'+cs.fontWeight;
+  if(cls) s.className='fx-'+cls;
+  document.body.appendChild(s); s.textContent=new Array(n+1).join(ch);
+  var w=s.getBoundingClientRect().width/n; s.remove(); return w;
+ }
+ var mono=adv('M',null,40); if(!(mono>0)) return;
+ var want={"cjk":2,"emoji":2,"braille":1,"shape":1};
+ var root=document.documentElement.style, done={};
+ Object.keys(want).forEach(function(k){
+  if(!document.querySelector('.fx-'+k)) return;
+  var probe={cjk:'\u9879',emoji:'\u2705',braille:'\u28bf',shape:'\u25cf'}[k];
+  var a=adv(probe,k,40); if(!(a>0)) return;
+  root.setProperty('--fx-'+k,(want[k]*mono-a).toFixed(3)+'px'); done[k]=+(want[k]*mono-a).toFixed(2);
+ });
+ board.setAttribute('data-fx-mono',mono.toFixed(4));
+ board.setAttribute('data-fx',JSON.stringify(done));
+})();
+</script>
+</div></body></html>

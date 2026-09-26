@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T15:00+08:00",
+  "updated": "2026-09-26T14:00+08:00",
   "tried": [
     {
       "skill": "sites:sites-building",
@@ -301,20 +301,6 @@
       "conclusion": "留用，且本轮把它从「写法清单」升级为「必须自带消融的清单」。①排队问题有答案了：路由与分割最密集的场景可延迟重量占比只有 9.4%（L3b：入口 282,817B / 全部 chunk 312,157B，可延迟 29,340B），比 08:00 表单场景的 23.3% 还低——「懒加载」条款的收益上限从来不由场景的分割点数决定，因为 React 与 React Query 运行时占掉九成且无法延迟；这条判据现在有两个落盘点，可以当跨轮基线。②三臂消融（N 组，四臂字节完全相同 307,155/307,155/307,155/307,155）：虚拟滚动值 229 个 DOM 行（240→11，真实像素下 11 行/视口 558px/内容 15,840px）；memo 行组件值 5.4 倍渲染（3 次击键 10 次 vs 54 次，每击键 3.33 vs 18），且列表容器渲染两臂相同（5 vs 5）证明省的确实在行这一层；queryKey 不稳定是唯一「坏掉」而不是「变慢」的一臂——1.5s 窗口 89 次读（主臂 1 次）、真 HTTP 2s 窗口 16:1、至今从未画出任何一行，另外三臂只是变慢。技能原文三句话给的是同等语气，实测价值量级完全不同。③本轮最贵的结构缺陷不在技能条款里而在条款没说的地方：把 <Layout> 放在路由组件内部时，路由级 fallback 连站名、导航、全站统计、页脚一起吞掉，1.8s 慢接口下整页只剩占位、页脚位移 1,066px（G8d3）；把 chrome 提到边界之外后 masthead/stats 全程 0px 位移（G8d），残余 386px 被如实报成「固定预留 520px 对 907px 内容的欠挡」而不是被断言掉——技能只说「用 Suspense 包住懒组件」，没说边界挂在哪一层，而这一层决定的是整页可用性。④成本对照（分母现读盘）：单页 311,053B / bundle 310,329B = 08:00 向导轮的 0.49×、07:00 后台轮的 0.43×，src 44 文件 2,648 行（J1 与 wc -l 同口径）——路由数翻倍并没有让产物变贵，因为贵的东西是运行时。⑤技能契约第 4 次复跑仍无资产：SKILL.md 引用的 11 个资源文件（resources/*.md 与 ../../vite.config.ts）100% 缺失（A1c/A1e），连它声明别名所在的 vite.config.ts 都不存在（A1f），可机检的 15 条一行摘要条款全部由本轮自建判据兑现（A2c）。⑥三皮肤主张首次在真浏览器里逐条兑现：结构层零字面颜色（C2）、三页 <script> 载荷逐字节相同 307,155B（B2）、分隔手法 ruled-grid/offset-shadow/cut-groove 与热帖手法 left-bar/badge-lift/label-invert 实测互斥（D9/D9b）、行高令牌 66/78/72 真的画出对应像素（D1）、12 维计算样式指纹两两差异 7~12/12（D8）；一处只有真浏览器能抓的缺陷：topo muted 在 Node 侧按 bg 算得 5.68:1 而文字实际落在 paper 上、量出 4.2:1 不达 AA，令牌改深到 #565a46 后 4.83:1。⑦持久化跨载体（M 组，同一浏览器实例）：file:// 与 http:// 是两个 origin、同一个键互不相通且各自选中自己的皮肤；敌意输入有界——非 JSON 草稿回落默认并照常画行，5,000 项星单截到 60 条上限（落盘 1,097B）。⑧299 条断言全绿（写回后 I 组把 work-log 行数假设拆成 I8a/I8b，check-node 121→123 / check-dom 88 / check-browser 88）；踩坑 17 条另记 environment_notes；收尾删 node_modules 与五套 dist*/构建日志/探针，产物目录形态由 check-clean C1–C9 断言（C3a/b/c 点名 7 个 HTML 各自的角色：3 交付页 + 3 消融臂宿主 + 1 证据构建宿主）",
       "artifacts": "artifacts/20260926-12-frontend-development-blog-portal/",
       "report": "reports/20260926-12-frontend-development-blog-portal.md"
-    },
-    {
-      "skill": "ascii-project-dashboard（第 1 次使用，~/.qoder-cn/skills/ascii-project-dashboard；本机技能包只有 SKILL.md 一件 7,810B、无 reference/、无脚本、无版本字段，只读快照已入库 skills/ 并由 MANIFEST 登记 sha1 前 12 位 724710bb0c61）",
-      "scenario": "项目进度看板（**自指场景**：看板的被测对象就是本实验室自己 —— scripts/facts.mjs 现读 state.json + work-log + artifacts/ + reports/ + git log 生成 facts.json，6 条泳道 109 项任务 23 个产物目录 8 步规程，虚构数据为零；三种风格共用同一份 facts.json，因此「三份产物的泳道数字必须逐行相同」第一次成为可机检的判据）",
-      "styles": [
-        "泳道矩阵 lane-matrix",
-        "盲文密排 braille-dense",
-        "电传稿 teletype-ascii"
-      ],
-      "time": "2026-09-26T15:00+08:00",
-      "reason": "排队项原文（用户 09-25 17:36 装入的唯一未试装本地页面类技能，「可顺带对照本实验室 work-log 的真实形态」）。选它的理由不是「没试过」：①它是唯一一个**产物与事实源同构**的轮次，前 20 轮看板内容全为虚构，本轮 109 项任务全部现读，「数字有没有被手抄」第一次有可证伪形式；②它的全部视觉主张压在 SKILL.md:179 那一句「Use monospace font assumption (10 chars = 10 chars)」上，而前 20 轮的字体宽度由 CSS 负责、技能不负责 —— 这条前提本轮第一次变成产物正确性的一部分。",
-      "conclusion": "留用（第 1 次，判据三条见报告 §14）。①**技能 §Calculation Rules 的公式会在 95%~99% 整段区间谎报「已完成」**：`filledBlocks=round(pct/10)` 把本轮 CLEAN 22/23(96%) 与 DEDUP 20/21(95%) 两条泳道画成满格，即 6 条泳道里 2 条骗人，而「只差最后一项」正是这种看板的常态落点（19/20、22/23、45/46…分母越大越密）。实现改为「满格只允许真·全完成，其余钳到 9/10」（dense 八分度钳 79/80），并由 A3x（产物里满格条必属全完成泳道）+ A4（**原公式在本轮数据上确实过度声明** —— 断言缺陷存在性，改回原公式即报红）+ M5a/b/c（构造 199/200 这一非本轮边界，证明与数据无关）三支从三个方向钉住。②**十格量化死区真实存在**：M1e 把自检泳道改坏一项（7/13→6/13、pct 54→46）后断言 matrix 条一字未动（落盘读数 `54% 与 46% 都画成 ▓▓▓▓▓░░░░░`），M1b 要求这份被十格吞掉的差异必须在 dense 的八分度上可见（43/80→37/80，且两态仍为 10 列）—— 死区不修（十格是技能原生主张），改用第二种风格把它测出来。③**本轮最贵的发现：技能的等宽前提在浏览器侧先天为假，且换字体救不了**。本机 Chrome 无头实测（font-size 12.5px、mono=7.526px）：CJK「项」=12.5px=**1.661 格**（恰为 1 个 em）、emoji ✅=2.126 格、盲文 ⣿=1.135 格、盒线/块字符/#/./空格=1.000 格 —— 前提只在技能的条字母表（▓░─█#）上成立。BB11 用 14 个字族（含 PingFang/Heiti/Songti/STSong/Kaiti 与号称 CJK 等宽的 Noto Sans Mono CJK SC / Source Han Mono / Sarasa Mono）各测一遍步进，比值最高 1.666、无一接近 2（三款「CJK 等宽」全测出 1.134，即本机根本没解析到它们）。修法：HTML 预览层按 charClass() 把连续同类宽字符包成 `<span class=\"fx-*>` + 内联脚本按 `目标格数×mono − 实测步进` 写 letter-spacing，**目标值一律由唯一口径 cells() 反推**（B11d 断言 WIDE_FIX[类]==cells(探针)，M11a/b/c 三臂值变异 + M10 五臂结构变异守住）。效果实测：matrix 同列关键字符跨度 68.88px（未校正）→0.08px（校正后），dense 25.5px→0.03px，teletype 纯 ASCII 无需脚本（0px）；BB6 断言校正对条形惰性（8 格条 raw/fixed 同宽 60.2px==8×mono）。④**ASCII 区必须围栏**：header/泳道/Sprint 框/时间线裸写会被 Markdown 折叠成段落，B14 把「非表格的 art 行必须落在 ``` 围栏内」升格为不变式（加围栏打断了 A6/A6b/M8b 三条旧的「第一个围栏」假设，改为按字符集特征选围栏）。⑤**同构核对是本轮主判据**：C1 三份 .md 反解「泳道→done/total/pct」逐行相同、C1b 与 facts 现算交叉回读（两个独立口径）、A7 合计行==各泳道相加、A8 每个 pct 可由 done/total 反算、E1/E2/E3+M9a/M9b（往源码注入手抄 pct 必须报警）、D6/CL10/M4a/M4b（陈旧读数）—— 全绿，`same=true`。⑥**顺带查出 4 条台账自身缺陷**（本轮只报告不代改他人字段）：tried[9]/[10]/[11] 缺 report/artifacts 字段（H9/H10）、tried[13]（build-game 3D 塔防轮）**完全没有 time**（H13，本轮新写的判据一写出来就抓到，此前 20 轮无人覆盖）、reports/20260926-04-sites-building-multipage-site 是个**目录**（含 build.mjs/check.mjs/visual.mjs/4 张 png/两份 check-output.txt —— 04:00 轮没清干净的中间件被留在 reports/ 里，H12）。⑦成本：三风格 .md 13,758/14,044/10,522B + 四份 HTML 31,765/31,223/12,516/12,961B，目录 692KB（含可再生的 .tmp-check/ 与 164KB 写回前台账快照），**零 node_modules、零构建、零依赖**，收尾成本近零（与 12:00 轮删 119MB 是两个极端）。⑧并行共存：本轮跑在 14:00 drafter 轮之后，`facts.mjs:59 BOUNDARY=14:00` 把「本轮开工之后写的东西」一律算在制品，故 TRACE 泳道 21 条（不含 14:00 与本轮自己）、`orphans` 写回前 2（含本轮目录）→ 写回后 1（只剩 14:00），**两个读数都正确**，H8 因此从「缺陷」降级为「在制品状态」；本轮对 14:00 目录零写入。⑨**写回后复跑抓出的两条自反缺陷**（详见报告 §9）：(a) **D4/D5 在自己的写回上自杀** —— 「本轮组合确不在 tried 里」「候选池预先排着这一组」查的是 live 台账，于是写回成功那一刻选题前置条件被自己判死；修法不是删也不是反向，而是**给判据配写回前快照** `scripts/ledger-before.json`（`git show HEAD:state/state.json`，164KB 随产物入库，复现无需 git），并补 **D4b**（live 比快照恰多一条 tried，证明它就是「紧邻写回前」那一版，不是随手抓的旧账）+ **D5b**（被消费的排队项在 live 已消失、候选池反而净增 3 条 → 台账是活的、不是只进不出）。(b) **差点写错一条归因**：首跑 `H2 mismatched=3`，我按「本轮 3 个风格名还没进 used_styles」解释，听起来完全合理；写回后 used_styles=66、本轮三名全在，**H2 却依然 3** —— 真凶是 `tried[2]`（2026-09-25 16:00 轮）把风格名写成 `暖纸数据新闻 editorial / 冷灰对账单 statement / 暗色霓虹 cyber`，而 used_styles 记的是无英文后缀的中文名，**同一次写回里两个字段对同一件事用两套名字**，与本轮毫无关系。两条合成一句口径：**凡「相对整本台账」的断言必须先声明基准集是写回前还是写回后；blocker 读数相同 ≠ 归因相同**（本实验室第三次遇到同类：12:00 轮 I8/I10、08:00 轮双时钟）。⑩判据总数 192（node 115 / mutate 36 / clean 13 / browser 28），其中约 50 条为本轮的宽度模型而设，4 条为写回自反而设。",
-      "artifacts": "artifacts/20260926-15-ascii-project-dashboard-progress-board/",
-      "report": "reports/20260926-15-ascii-project-dashboard-progress-board.md"
     }
   ],
   "skills_seen": [
@@ -403,9 +389,9 @@
     },
     {
       "name": "ascii-project-dashboard",
-      "source": "用户 2026-09-25 17:36 装入 ~/.qoder-cn/skills/ascii-project-dashboard（仅一个 7,810B 的 SKILL.md，无脚本无资产；15:00 轮起仓库内只读快照 skills/ascii-project-dashboard/，MANIFEST 记 sha1 前 12 位 724710bb0c61）",
+      "source": "用户 2026-09-25 17:36 装入 ~/.qoder-cn/skills/ascii-project-dashboard（仅一个 7,810B 的 SKILL.md，无脚本无资产）",
       "path": "/Users/apple/.qoder-cn/skills/ascii-project-dashboard/SKILL.md",
-      "status": "排除，不占用轮次（23:00 轮开工前读毕全文）：applyTo 为 **/*plan*,**/*roadmap*,**/*tracker*,**/*dashboard*，全文只规定 ▓░ 十格进度条 / Markdown 表格 / ●──○ 时间线 / emoji 状态位，卖点恰是「no rendering, works in any editor, terminal, email, Slack」，不产出可双击打开的页面，与实验室「artifacts 只留可直接打开预览的页面产物」硬约束冲突。两个可移植点已被本轮吸收：「不得硬编码派生值，必须从计数算出」→ 转成 E 组 pixel-gauge-math 断言；emoji 状态位在暗底页面上不可控，实验室仍用 CSS/SVG 表达状态｜**15:00 轮改判：已用满 1 轮并留用**。当年的排除理由（「不产出可双击打开的页面产物」）被证明是可解的：技能原生载体是 .md（GitHub/终端里就是它的一线形态），实验室的可双击约束由一层零外链 HTML `<pre><code>` 包装满足，两载体同源自同一份 facts.json。排除决策本身仍然成立 —— 它当时防的是「为凑页面产物给纯文本技能硬编视觉」，本轮的对策是把工作量放在**排版正确性**（宽度模型、按类校正、十格量化）而不是装饰上。三条必纠偏见 15:00 轮 tried 结论：round(pct/10) 在 95~99% 谎报满格、十格量化死区、`monospace (10 chars = 10 chars)` 只对条字母表成立（浏览器实测 CJK=1.661 格、14 个字族无一接近 2）"
+      "status": "排除，不占用轮次（23:00 轮开工前读毕全文）：applyTo 为 **/*plan*,**/*roadmap*,**/*tracker*,**/*dashboard*，全文只规定 ▓░ 十格进度条 / Markdown 表格 / ●──○ 时间线 / emoji 状态位，卖点恰是「no rendering, works in any editor, terminal, email, Slack」，不产出可双击打开的页面，与实验室「artifacts 只留可直接打开预览的页面产物」硬约束冲突。两个可移植点已被本轮吸收：「不得硬编码派生值，必须从计数算出」→ 转成 E 组 pixel-gauge-math 断言；emoji 状态位在暗底页面上不可控，实验室仍用 CSS/SVG 表达状态"
     },
     {
       "name": "graphic-gif",
@@ -622,16 +608,6 @@
       "artifact_size": "2.18MB / 2,285,809B / 76 个文件（清理后现算，上限 50MB，口径同 check-clean C5——C5 现在无条件打印实测体积，绿了也打印，因为它就是本字段的取数处；构建期同一目录还压着 119MB node_modules + 五套 dist ~1.5MB，所以这个数字只在清理后成立）。逐项：preview 1,865,748B / 7 件（3 交付页 311,053 / 311,051 / 311,045 + 3 消融臂宿主 310,756 / 310,756 / 310,738 + 1 证据构建宿主 349）、scripts 201,418B / 16 件（13 个 .mjs + verify.sh + ledger-snapshot.json 与 build-inline-meta.json 两份证据 JSON）、src 103,596B / 44 件、根配置 110,616B（package-lock 83,204 + styles.html 21,567 + 三份 vite 配置与 tsconfig/package.json/.npmrc）、server/mock-api.mjs 4,431B。字节不硬抄：本文件自己也参与统计，改这行文案就会同时改掉目录读数，最后一次 C5 读数写在报告 §13，两处之差即自指证据",
       "cleanup": "已执行：删 node_modules 119MB + 五套构建产物 dist / dist-nomemo / dist-novirtual / dist-unstablekey / dist-split（各 ~304KB）+ .tmp-check 76KB（299 条断言读数已经 scripts/make-styles.mjs 转写进 styles.html 与报告）+ .npm-install.log + .smoke.mjs 与 scripts/.facts{,-entry}.mjs（esbuild 桥临时件，probe-corpus.mjs 与 tmp-diag.mjs 两个探针全文转写进报告 §10）。目录 123MB → 2.18MB，三页与三臂宿主保持双击即开；技能目录与 前端skill实验室 之外零写入；LAB/.tmp（known_hosts）随推送收尾删除",
       "push": "已提交并推送 git@github.com:sunc-Q/frontend-skill.git @ main。写回 62070f4..8ba7a5b（主体 8ba7a5ba936613c72e2299266e1961cb00b58990，81 文件 9,511 插入 = 产物目录 76 件 + 报告 + state.json + work-log 末行 + skills 清单再生）→ 补记 8ba7a5b..80e23dd（ledger-refill 回填 artifact_size/cleanup/push）→ 区间定稿 80e23dd..HEAD：即写下本行并把它推上去的那一次提交，总区间 62070f4..HEAD。自指区间只能由后一次提交写出，所以本行故意不写死最后一个哈希——`git log --oneline 62070f4..` 一跑即见全序列，这正是本轮补记卡（refill 可重跑、幂等）存在的理由。全程 SSH：本机 github.com HTTPS 被 TLS 层重置，known_hosts 写入 gitignored 的 LAB/.tmp 并随收尾整体删除；命令与文件内无任何 token，提交身份用内联 -c user.name/user.email，全局 git 配置未改动"
-    },
-    {
-      "time": "2026-09-26T15:00+08:00",
-      "skill": "ascii-project-dashboard（第 1 次，项目进度看板 / 自指场景：看板内容即本实验室台账与磁盘形态）",
-      "scenario": "项目进度看板（6 泳道 109 项任务，三风格共用一份 facts.json，泳道数字必须同构）",
-      "result": "success",
-      "assertions": "192 条全绿：check-node 115（A 九组条款逐风格落地 / B 自包含与不变式 / B7 系列 span 配对 / B11–B13 校正层一致性 / B14 围栏 / C 同构与交叉回读 / D 事实同源 + D4b/D5b 写回前快照基准 / E 反手抄）+ check-mutate 36（M1a–e 值变异与十格死区、M2c 结构、M3 字母表互斥、M5a/b/c 公式越界、M9 手抄注入、M10 五臂校正层结构变异 + M10a 正对照、M11a/b/c 宽度目标值变异）+ check-clean 13 + check-browser 28（本机 Chrome 无头：逐类步进、同列离散度 raw vs fixed、条宽惰性、行数、滚动、探针不外泄、BB11 14 字族扫描 + BB11a 装置灵敏度自检）；preview/styles.html 首页的四张卡读数与字体实测表由脚本转写自 .tmp-check/*.json，无人手抄",
-      "artifact_size": "（清理后现算，见 artifact_size 字段回填）",
-      "cleanup": "已执行：删仓库外一次性探针 /tmp/font-probe.mjs 与 /tmp/dbg-chrome.mjs（两者的结论已固化进 scripts/check-browser.mjs 并由 BB3/BB3b/BB11/BB11a 长期守住）+ Chrome 临时 profile（os.tmpdir 下按 PID 命名、退出即删）。本轮**没有中间产物可删**：零 node_modules、零 dist、零构建日志；.tmp-check/（四张卡读数 + 6 份探针副本 + browser-meta.json）经 CL9/CL9b 判定保留 —— 它可被 verify.sh 一条命令整体再生，且 index-page 的字体实测表要读它，删了反而让首页变成无源数字。校验脚本九件全部随产物入库，无「删脚本抄全文」义务触发（报告 §12 记明条件未成立）。技能目录与 前端skill实验室 之外零写入；LAB/.tmp（known_hosts + 本次写回脚本）随推送收尾删除",
-      "push": "（提交与推送后回填）"
     }
   ],
   "next_candidates": [
@@ -647,6 +623,7 @@
     "build-game × 第一人称/FPS 或载具（技能菜单里未试的 genre：相机相对移动式子（D1/D2/D3）在 FPS 下应退化为直接朝向，可用来检验该组断言的普适性）",
     "★ 把网页版曝光口径（p99.5-p0.5≥100 && σ≥18 + 主题兑现）移植回 graphic-gif 与 ppt-generator 轮横检：它们同样是平色块主导媒介，游戏版 mid% 口径此前可能一直在假失败或假通过",
     "★ 用「目录索引禁用探针+零根绝对路径」式子复查 23:00 个人主页与 14:00 落地页历史产物（低成本回归）",
+    "ascii-project-dashboard × 项目进度看板（唯一未试装的本地页面类技能，纯 ASCII 看板，与 work-log 真实形态自指）",
     "sites:sites-building × 活动报名页（与 20:00 React 轮同场景零框架对照，排队中）",
     "★ 把 H/contrast（帧 σ>30 且 mid%>10）+ H/exposureEnds（clipped/dark<10）两条式子移植回 graphic-gif 与 ppt-generator 轮做横检：本轮极冠首版 meanLuma 216.8/σ23 整屏泛白只有这条式子抓得到，历轮 GIF/PPT 同样有「亮但糊」的风险",
     "★ build-game × 性能预算档（本轮只记 draw call/triangles，未做帧率与 GC 断言；SSAO 已被证明「1.59× 三角面换 0 像素变化」，正好用来测技能自带的性能条款是否允许直接删 pass）",
@@ -671,6 +648,7 @@
     "（需用户授权）市场技能 ui-ux-pro-max × 数据报表",
     "drafter × 单张长链流程图/时序图（技能主场未测点：连接线在 12+ 节点、直角折线与跨行虚线下的可读性与塌陷风险；产物仍应 15-20KB）",
     "drafter + 规范型技能叠加 × 数据看板（测「主张型定形 + 规范型定码」配方在纯静态图纸上是否仍互补，且能否把 C 组视觉断言与 bundle 断言并成一套）",
+    "ascii-project-dashboard × 项目进度看板（~/.qoder-cn/skills/，用户 17:36 装入；纯 ASCII 看板，可顺带对照本实验室 work-log 的真实形态）",
     "★ vercel-react-best-practices × 「部分依赖扇出」数据形态（列表返回 ids 后逐项取详情）：async-dependencies（better-all）是唯一还没落地的 async 条款，别为它凑题，等自然场景",
     "drafter × 单张长链流程图/时序图（12+ 节点下连接线可读性与塌陷风险；产物仍应 15-20KB）",
     "drafter + 规范型技能叠加 × 数据看板（测「主张型定形 + 规范型定码」在纯静态图纸上是否仍互补，能否把视觉断言与 bundle 断言并成一套）",
@@ -684,12 +662,7 @@
     "★ 消融实验要按「功能失效 / 性能退化」分档：本轮四臂里只有 unstablekey 从未画出一行（89 次读、真 HTTP 16:1），另两臂只是变慢；把这条分档口径回打 07:00 轮 ?control=early（位移 1.7×）与 08:00 轮 __FD_MEMO__（30 击 7 vs 210）两组旧数据，重述它们的结论档次——技能原文把三句话写成同等语气，实测价值量级不同",
     "虚拟滚动条款的另一半：本轮只有「等高行 + 视口窗口」，未测行高不定（富文本摘要折行数不同、图片延迟加载）时该技能是否给出任何可判的写法；配一个不定行高场景，测条款是否会退化成「按平均高度估算」并因此产生可量的位移",
     "★ 把 M4b 的「有界消毒」口径（5,000 项敌意星单截到 60 条、落盘 1,097B）移植回 06:00 活动页 prefs 与 20:00 报名页票根：历轮只验过非法 JSON 与非法枚举，从未验过「形状合法但规模超大」的输入，而那正是把浏览器渲染卡死的量级",
-    "三皮肤行高（66/78/72px）会让同一视口下的窗口行数与「本页共 N 篇」的读数口径随皮肤变化——把这个「同一份数据在三种皮肤下读出不同统计口径」的判断题交给 vercel-react-best-practices × 表单向导轮（候选 46）交叉复核，看另一个技能是否自带裁决",
-    "★ 把「宽度口径只能有一个、校正目标必须由它反推」移植回所有含 CJK 的等宽排版产物：ppt-generator 的 SVG <text>（22:00/00:00/01:00 三轮）与 drafter 图纸（14:00/21:00）都按「字符数×估算宽」排过版，从未按字符类量过真实步进 —— 1.661 这个数在 SVG textLength 下同样成立的话，那些轮的表格列全是假对齐",
-    "★ 把「断言缺陷存在性」这一判据形式（本轮 A4/M1e：技能原公式确实会过度声明、十格死区确实存在）移植回历轮记为「技能条款只被用到、未被定价」的主张：07:00 后台轮与 08:00 向导轮的懒加载/骨架条款只有正向断言，缺一条「不纠偏就会错」的反向证据",
-    "★ 台账卫生一次性补记（**需人工判断、非本技能产物**）：tried[9]/[10]/[11] 缺 report/artifacts 字段、tried[13]（build-game 3D 塔防轮）完全没有 time、reports/20260926-04-sites-building-multipage-site 是目录（内含 build.mjs/check.mjs/visual.mjs 与 4 张 png，是 04:00 轮未清理的中间件）——H9/H10/H13/H12 四条判据已在 15:00 轮产物里，补完应自动转绿",
-    "★ ascii-project-dashboard × 值班表 / 工单看板（技能 §Integration Points 声明可与 planning 文档、release notes 互喂，本轮只验了「进度看板」这一种输入形态；release-notes 形态的「已发布事实」与看板的「进行中事实」混排时，pct 语义会互相污染，值得单独一轮）",
-    "真实终端（locale=zh_CN.UTF-8 的 iTerm2/Terminal.app）里歧义宽度字符（盒线、块字符、盲文，本轮三份 .md 共 294 个）按 1 列还是 2 列计 —— 未测；若为 2，.md 原生载体的对齐口径要按 locale 分流，这是 15:00 轮报告 §14 明确留下的未验证项"
+    "三皮肤行高（66/78/72px）会让同一视口下的窗口行数与「本页共 N 篇」的读数口径随皮肤变化——把这个「同一份数据在三种皮肤下读出不同统计口径」的判断题交给 vercel-react-best-practices × 表单向导轮（候选 46）交叉复核，看另一个技能是否自带裁决"
   ],
   "used_styles": [
     "瑞士极简",
@@ -754,10 +727,7 @@
     "七十年代放克 seventies-funk",
     "等高线战术图 topo-tactical",
     "黏土定格动画 clay-stop",
-    "黑胶唱片架 vinyl-crate",
-    "泳道矩阵 lane-matrix",
-    "盲文密排 braille-dense",
-    "电传稿 teletype-ascii"
+    "黑胶唱片架 vinyl-crate"
   ],
   "environment_notes": [
     "本机无法直连 GitHub raw 与 skills.sh（curl exit 35 / WebFetch fetch failed），外部落地技能持续不可用",
@@ -904,10 +874,6 @@
     "校验脚本自己也会撒谎：A1b/B2/N10 三条把 String.length 当字节数打上「B」，而同一份产物里有中文文案——载荷 307,155 字符实为 310,329 字节（B4 用 Buffer.byteLength 算的才是字节）。凡是断言里出现单位，单位必须由计算方式给出（byteLength/length 二选一写死在 id 文案里），否则报告与页面会把字符数当体积引用",
     "写回之后才复跑的 I 组暴露了两条只有「第二次运行」才能抓到的自反错误。① I8「work-log 行数 = 快照 + 1」被并行任务打败：仓库结构调整在快照之后追加了一行非轮次记录，32→34，而台账契约其实是 append-only + 本轮一行，不是「除了我没人能写日志」——改成 I8a（快照前缀 sha1 逐字节不变）+ I8b（快照之后以 WORK_LOG_LINE 行首「时间 | 技能」为键的自有行恰好 1 个且位于末行）；识别自有行不能 substring 匹配产物目录，那条 14:15 的行里也写了 artifacts/20260926-12-…，最初版本因此把 1 行判成 2 行。verify-ledger 的 V7/V8 同一条 +1 假设一起改，且 V8 拿「自有行」而不是「末行」比字节，否则并行任务在本轮收尾之后再插一行就会把正确的写回判成失败。② I10「三风格与全台账零字面撞车」在写回成功的瞬间变成自撞——state.used_styles 已经含本轮那 3 项，基准集要显式 filter 掉自己，顺手断言过滤条数 == 3 等于复跑一次 I5。教训：凡「相对整本台账」的去重/幂等断言，都必须先声明基准集是「写回前」还是「写回后」，只在一种状态下跑过的断言不算被验证过",
     "行数计数的口径也要写进断言 id：`content.split()` 按裸换行切分会在每个文件末尾多算一个空串行，J1 于是报 2,692 而读者用 wc -l 复核得到 2,648（44 个文件各差 1）。改成先 replace 掉行尾换行再计数，并把「与 wc -l 同口径」写进 id——和字符数当字节数同源，任何计数都得说清怎么数的",
-    "清理会废掉自己的复跑能力：dump-facts 的 esbuild 桥依赖 node_modules，删完 node_modules 之后 check-node / check-dom / check-browser 三张卡都跑不动了（ERR_MODULE_NOT_FOUND），只剩 check-clean / verify-ledger / ledger-refill 三张只读卡。所以「写回后复跑 I 组」必须排在清理之前，写回后的新读数（299 条）要先经 make-styles 转写进 styles.html 与报告再删 .tmp-check；verify.sh 里两组卡的排序注释就是为这件事写的",
-    "**等宽前提的实测口径（可移植到任何含 CJK 的等宽排版任务）**：macOS Chrome 里 `font-family:monospace; font-size:12.5px` 下 mono/盒线/块字符/#/./空格=7.526px（1.000 格），CJK 汉字=12.5px（**1.661 格，恰为 1 个 em**，即回退到 PingFang 的比例 em），emoji ✅=16px（2.126 格），盲文 U+28BF=8.545px（1.135 格）。扫 14 个字族（Menlo/Monaco/SFMono/Courier New/PingFang/Heiti/Songti/STSong/Kaiti/Noto Sans Mono CJK SC/Source Han Mono/Sarasa Mono/YaHei Mono…）**CJK:ASCII 比值最高 1.666、没有一个接近 2**，号称 CJK 等宽的三款全测出 1.134（=本机未解析到，走默认回退）。结论：想让中文列在浏览器里对齐，只能预览层自己按类补 letter-spacing，且**校正目标必须从唯一宽度函数反推**，否则会出现两套口径互相圆谎",
-    "**测量装置自身必须有灵敏度对照（本轮最险的一次假绿）**：字族扫描第一版写成 `adv('M', fs, 40)`，而签名是 `adv(ch, cls, n, fam)` —— 家族名被当成 CSS class 传进去了，14 个字族测出**完全相同**的步进，数字漂亮、BB11 照样 PASS。修成 `adv('M', null, 40, fs)` 后各族比值才散开（1.088~1.666）。补的 BB11a 要求「各字族 ASCII 步进去重后 ≥3 个值」，专抓这类参数错位导致的空转。口径：**凡「换一批输入却读数完全相同」的扫描，都要配一条灵敏度判据证明它真的换了输入**",
-    "**技能算术公式要用非本轮数据做变异（否则纠偏会退化成过拟合）**：`round(pct/10)` 的满格谎报若只拿本轮 22/23 断言，改回原公式也可能绿；M5a/b/c 补 199/200、9/10、0/5、1/1 等构造组合（钳位后 199/200→9 格、原公式 naive=10），再加 A4 这种「**断言缺陷存在性**」的反向判据（技能原公式在真实数据上必须确实会过度声明），两边一起夹住才叫定价。同类：十格死区由 M1e 断言「改坏一项后条不动」为真 —— 记录缺陷而不是掩盖缺陷，是变异臂的第二种用法",
-    "**自指产物的写回顺序（第三次遇到，口径固化）**：facts.json 同时嵌入 state/work-log 的 sha1、reports/ 的文件数与每份报告字节数、artifacts 目录体积，所以「写台账 → 跑校验 → 报告里写数字」必然形成回路。本轮次序：①state/work-log 先定稿（其中 artifact_size/push 两格按先例留待补记）；②报告先写全文（它自己的字节数会进看板的 TRACE 泳道，故报告数字与产物体积要迭代至稳定）；③最后跑 verify.sh，让页脚水印 f:/w: 与事实一致；④补记卡（refill）再跑一次 verify，接受「最后一次提交本身落在产物之外」这一自指残余并在报告与 work-log 里写明，不假装收敛"
+    "清理会废掉自己的复跑能力：dump-facts 的 esbuild 桥依赖 node_modules，删完 node_modules 之后 check-node / check-dom / check-browser 三张卡都跑不动了（ERR_MODULE_NOT_FOUND），只剩 check-clean / verify-ledger / ledger-refill 三张只读卡。所以「写回后复跑 I 组」必须排在清理之前，写回后的新读数（299 条）要先经 make-styles 转写进 styles.html 与报告再删 .tmp-check；verify.sh 里两组卡的排序注释就是为这件事写的"
   ]
 }

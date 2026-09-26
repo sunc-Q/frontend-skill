@@ -1,0 +1,1107 @@
+{
+ "generated_at": "2026-09-26T10:00:12.292Z",
+ "round": {
+  "id": "20260926-15-ascii-project-dashboard-progress-board",
+  "time": "2026-09-26T15:00+08:00",
+  "boundary": "2026-09-26T14:00+08:00"
+ },
+ "ledger": {
+  "state_sha1": "fba586c11379",
+  "worklog_sha1": "f8b80cc790e6",
+  "updated": "2026-09-26T15:00+08:00",
+  "tried_len": 22,
+  "runs_len": 22,
+  "styles_len": 66,
+  "notes_len": 149,
+  "candidates_len": 55,
+  "candidates_star": 28,
+  "skills_seen_len": 19
+ },
+ "disk": {
+  "artifact_dirs": 23,
+  "orphans": [
+   "20260926-14-drafter-flowchart"
+  ],
+  "artifacts_bytes": 39789313,
+  "reports": 23
+ },
+ "git": {
+  "head": "3531814",
+  "branch": "main",
+  "untracked_dirs": [
+   "artifacts/20260926-14-drafter-flowchart/",
+   "artifacts/20260926-15-ascii-project-dashboard-progress-board/",
+   "reports/20260926-15-ascii-project-dashboard-progress-board.md",
+   "skills/ascii-project-dashboard/"
+  ]
+ },
+ "sprint": {
+  "version": "20260926-1",
+  "title": "每小时 Skill 验证 · 本轮规程",
+  "groups": [
+   {
+    "title": "Spec steps",
+    "items": [
+     {
+      "text": "读取工作记录与台账",
+      "text_ascii": "READ work-log and state.json",
+      "done": true,
+      "note": "两本账读完才选题",
+      "note_ascii": "read both ledgers before picking"
+     },
+     {
+      "text": "选题未试组合",
+      "text_ascii": "PICK an untried skill and scenario",
+      "done": true,
+      "note": "tried 里没有这一组",
+      "note_ascii": "not present in tried"
+     },
+     {
+      "text": "按技能流程产出三风格",
+      "text_ascii": "BUILD three distinct styles",
+      "done": false,
+      "note": "渲染层见 src/render.mjs",
+      "note_ascii": "renderer: src/render.mjs"
+     },
+     {
+      "text": "断言与变异复核",
+      "text_ascii": "ASSERT plus mutation arms",
+      "done": false,
+      "note": "node/mutate/browser 三张卡",
+      "note_ascii": "cards: node, mutate, browser"
+     },
+     {
+      "text": "清理中间产物",
+      "text_ascii": "CLEAN intermediate files",
+      "done": false,
+      "note": "本轮零 node_modules",
+      "note_ascii": "no node_modules this round"
+     },
+     {
+      "text": "写复现文档到 reports",
+      "text_ascii": "WRITE the reproduction report",
+      "done": false,
+      "note": "与产物同名片段",
+      "note_ascii": "same slug as artifacts dir"
+     },
+     {
+      "text": "写回台账与工作日志",
+      "text_ascii": "WRITE BACK ledger and work-log",
+      "done": false,
+      "note": "tried/runs/notes 全部追加",
+      "note_ascii": "append-only to tried, runs, notes"
+     },
+     {
+      "text": "提交并推送到 origin",
+      "text_ascii": "PUSH to origin main over SSH",
+      "done": false,
+      "note": "HTTPS 被重置故走 SSH",
+      "note_ascii": "HTTPS reset by TLS, so SSH"
+     }
+    ]
+   }
+  ]
+ },
+ "milestones": [
+  {
+   "tag": "01:00",
+   "date": "09-26",
+   "label": "20260926-01-ppt-generator-proposal",
+   "status": "done"
+  },
+  {
+   "tag": "02:00",
+   "date": "09-26",
+   "label": "20260926-02-graphic-gif-banner",
+   "status": "done"
+  },
+  {
+   "tag": "03:00",
+   "date": "09-26",
+   "label": "20260926-03-build-game-tower-defense",
+   "status": "done"
+  },
+  {
+   "tag": "04:00",
+   "date": "09-26",
+   "label": "20260926-04-sites-building-multipage-site",
+   "status": "done"
+  },
+  {
+   "tag": "05:00",
+   "date": "09-26",
+   "label": "20260926-05-build-game-reference-driven",
+   "status": "done"
+  },
+  {
+   "tag": "06:00",
+   "date": "09-26",
+   "label": "20260926-06-sites-building-activity",
+   "status": "done"
+  },
+  {
+   "tag": "07:00",
+   "date": "09-26",
+   "label": "20260926-07-frontend-development-admin",
+   "status": "done"
+  },
+  {
+   "tag": "08:00",
+   "date": "09-26",
+   "label": "20260926-08-frontend-development-wizard",
+   "status": "done"
+  },
+  {
+   "tag": "11:00",
+   "date": "09-26",
+   "label": "20260926-11-sites-building-newsletter",
+   "status": "done"
+  },
+  {
+   "tag": "12:00",
+   "date": "09-26",
+   "label": "20260926-12-frontend-development-blog-portal",
+   "status": "done"
+  },
+  {
+   "tag": "15:00",
+   "date": "09-26",
+   "label": "20260926-15-ascii-project-dashboard-progress-board",
+   "status": "target"
+  }
+ ],
+ "lanes": [
+  {
+   "key": "trace",
+   "name": "留痕 TRACE",
+   "name_ascii": "TRACE",
+   "subtitle": "每轮产物目录 + 复现报告是否都在盘上",
+   "subtitle_ascii": "artifact dir + report on disk",
+   "emoji": "🧱",
+   "tasks": [
+    {
+     "id": "T1",
+     "label": "-14-sites-building-landing-page · 报告 9567B",
+     "label_ascii": "20260925-14-sites-building-landing-page",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "T2",
+     "label": "-15-sites-building-dashboard · 报告 10925B",
+     "label_ascii": "20260925-15-sites-building-dashboard",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "T3",
+     "label": "-16-frontend-development-report · 报告 16016B",
+     "label_ascii": "20260925-16-frontend-development-report",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "T4",
+     "label": "-17-vercel-react-best-practices-admin · 报告 9990B",
+     "label_ascii": "20260925-17-vercel-react-best-practices-admin",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "T5",
+     "label": "-18-vercel-react-best-practices-landing · 报告 25406B",
+     "label_ascii": "20260925-18-vercel-react-best-practices-landing",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "T6",
+     "label": "-19-sites-react-pricing · 报告 23867B",
+     "label_ascii": "20260925-19-sites-react-pricing",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "T7",
+     "label": "-20-vercel-react-activity · 报告 13935B",
+     "label_ascii": "20260925-20-vercel-react-activity",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "T8",
+     "label": "-21-drafter-architecture · 报告 14293B",
+     "label_ascii": "20260925-21-drafter-architecture",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "T9",
+     "label": "-22-ppt-generator-deck · 报告 23474B",
+     "label_ascii": "20260925-22-ppt-generator-deck",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "T10",
+     "label": "-23-sites-building-personal-homepage · 报告 20540B",
+     "label_ascii": "20260925-23-sites-building-personal-homepage",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "T11",
+     "label": "-00-ppt-generator-charts · 报告 18457B",
+     "label_ascii": "20260926-00-ppt-generator-charts",
+     "status": "done",
+     "note": "台账缺 report 字段",
+     "note_ascii": "report field absent"
+    },
+    {
+     "id": "T12",
+     "label": "-01-ppt-generator-proposal · 报告 12490B",
+     "label_ascii": "20260926-01-ppt-generator-proposal",
+     "status": "done",
+     "note": "台账缺 report 字段",
+     "note_ascii": "report field absent"
+    },
+    {
+     "id": "T13",
+     "label": "-02-graphic-gif-banner · 报告 12602B",
+     "label_ascii": "20260926-02-graphic-gif-banner",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "T14",
+     "label": "-03-build-game-tower-defense · 报告 32976B",
+     "label_ascii": "20260926-03-build-game-tower-defense",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "T15",
+     "label": "-04-sites-building-multipage-site · 报告 8832B",
+     "label_ascii": "20260926-04-sites-building-multipage-site",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "T16",
+     "label": "-05-build-game-reference-driven · 报告 16187B",
+     "label_ascii": "20260926-05-build-game-reference-driven",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "T17",
+     "label": "-06-sites-building-activity · 报告 13891B",
+     "label_ascii": "20260926-06-sites-building-activity",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "T18",
+     "label": "-07-frontend-development-admin · 报告 44373B",
+     "label_ascii": "20260926-07-frontend-development-admin",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "T19",
+     "label": "-08-frontend-development-wizard · 报告 40478B",
+     "label_ascii": "20260926-08-frontend-development-wizard",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "T20",
+     "label": "-11-sites-building-newsletter · 报告 9806B",
+     "label_ascii": "20260926-11-sites-building-newsletter",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "T21",
+     "label": "-12-frontend-development-blog-portal · 报告 32633B",
+     "label_ascii": "20260926-12-frontend-development-blog-portal",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    }
+   ]
+  },
+  {
+   "key": "clean",
+   "name": "收尾 CLEAN",
+   "name_ascii": "CLEAN",
+   "subtitle": "单场景 <50MB、无残留、可双击",
+   "subtitle_ascii": "under 50MB, no build residue, openable page",
+   "emoji": "🧹",
+   "tasks": [
+    {
+     "id": "K20260925-1",
+     "label": "-14-sites-building-landing-page · 65KB · 残留0 · 4 页",
+     "label_ascii": "20260925-14-sites-building-landing-page",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260925-1",
+     "label": "-15-sites-building-dashboard · 93KB · 残留0 · 4 页",
+     "label_ascii": "20260925-15-sites-building-dashboard",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260925-1",
+     "label": "-16-frontend-development-report · 464KB · 残留0 · 7 页",
+     "label_ascii": "20260925-16-frontend-development-report",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260925-1",
+     "label": "-17-vercel-react-best-practices-admin · 906KB · 残留0 · 4 页",
+     "label_ascii": "20260925-17-vercel-react-best-practices-admin",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260925-1",
+     "label": "-18-vercel-react-best-practices-landing · 968KB · 残留0 · 4 页",
+     "label_ascii": "20260925-18-vercel-react-best-practices-landing",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260925-1",
+     "label": "-19-sites-react-pricing · 1033KB · 残留0 · 5 页",
+     "label_ascii": "20260925-19-sites-react-pricing",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260925-2",
+     "label": "-20-vercel-react-activity · 987KB · 残留0 · 5 页",
+     "label_ascii": "20260925-20-vercel-react-activity",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260925-2",
+     "label": "-21-drafter-architecture · 64KB · 残留0 · 4 页",
+     "label_ascii": "20260925-21-drafter-architecture",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260925-2",
+     "label": "-22-ppt-generator-deck · 445KB · 残留0 · 4 页",
+     "label_ascii": "20260925-22-ppt-generator-deck",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260925-2",
+     "label": "-23-sites-building-personal-homepage · 67KB · 残留0 · 4 页",
+     "label_ascii": "20260925-23-sites-building-personal-homepage",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260926-0",
+     "label": "-00-ppt-generator-charts · 480KB · 残留0 · 4 页",
+     "label_ascii": "20260926-00-ppt-generator-charts",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260926-0",
+     "label": "-01-ppt-generator-proposal · 451KB · 残留0 · 4 页",
+     "label_ascii": "20260926-01-ppt-generator-proposal",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260926-0",
+     "label": "-02-graphic-gif-banner · 3123KB · 残留0 · 4 页",
+     "label_ascii": "20260926-02-graphic-gif-banner",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260926-0",
+     "label": "-03-build-game-tower-defense · 8019KB · 残留0 · 8 页",
+     "label_ascii": "20260926-03-build-game-tower-defense",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260926-0",
+     "label": "-04-sites-building-multipage-site · 79KB · 残留0 · 12 页",
+     "label_ascii": "20260926-04-sites-building-multipage-site",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260926-0",
+     "label": "-05-build-game-reference-driven · 13271KB · 残留0 · 7 页",
+     "label_ascii": "20260926-05-build-game-reference-driven",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260926-0",
+     "label": "-06-sites-building-activity · 268KB · 残留0 · 5 页",
+     "label_ascii": "20260926-06-sites-building-activity",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260926-0",
+     "label": "-07-frontend-development-admin · 2450KB · 残留0 · 4 页",
+     "label_ascii": "20260926-07-frontend-development-admin",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260926-0",
+     "label": "-08-frontend-development-wizard · 2366KB · 残留0 · 4 页",
+     "label_ascii": "20260926-08-frontend-development-wizard",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260926-1",
+     "label": "-11-sites-building-newsletter · 89KB · 残留0 · 5 页",
+     "label_ascii": "20260926-11-sites-building-newsletter",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260926-1",
+     "label": "-12-frontend-development-blog-portal · 2233KB · 残留0 · 8 页",
+     "label_ascii": "20260926-12-frontend-development-blog-portal",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260926-1",
+     "label": "-14-drafter-flowchart · 301KB · 残留0 · 4 页",
+     "label_ascii": "20260926-14-drafter-flowchart",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "K20260926-1",
+     "label": "-15-ascii-project-dashboard-progress-board · 636KB · 残留12 · 10 页",
+     "label_ascii": "20260926-15-ascii-project-dashboard-progress-board",
+     "status": "doing",
+     "note": "bytes=650767 residue=12 html=10",
+     "note_ascii": "bytes=650767 residue=12 html=10"
+    }
+   ]
+  },
+  {
+   "key": "source",
+   "name": "快照 SOURCE",
+   "name_ascii": "SOURCE",
+   "subtitle": "技能原文随仓库可核对",
+   "subtitle_ascii": "used skill sources vendored + listed",
+   "emoji": "📚",
+   "tasks": [
+    {
+     "id": "S1",
+     "label": "sites-building · 快照在 · 清单收",
+     "label_ascii": "sites-building",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "S2",
+     "label": "vercel-react-best-practices · 快照在 · 清单收",
+     "label_ascii": "vercel-react-best-practices",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "S3",
+     "label": "frontend-development · 快照在 · 清单收",
+     "label_ascii": "frontend-development",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "S4",
+     "label": "drafter · 快照在 · 清单收",
+     "label_ascii": "drafter",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "S5",
+     "label": "ppt-generator · 快照在 · 清单收",
+     "label_ascii": "ppt-generator",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "S6",
+     "label": "graphic-gif · 快照在 · 清单收",
+     "label_ascii": "graphic-gif",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "S7",
+     "label": "build-game · 快照在 · 清单收",
+     "label_ascii": "build-game",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "S8",
+     "label": "ascii-project-dashboard · 快照在 · 清单收",
+     "label_ascii": "ascii-project-dashboard",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    }
+   ]
+  },
+  {
+   "key": "dedup",
+   "name": "去重 DEDUP",
+   "name_ascii": "DEDUP",
+   "subtitle": "同风格不复用；每轮三风格均已登记",
+   "subtitle_ascii": "no style reused; all three registered",
+   "emoji": "🎨",
+   "tasks": [
+    {
+     "id": "D1",
+     "label": "-14-sites-building-landing-page · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260925-14-sites-building-landing-page",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D2",
+     "label": "-15-sites-building-dashboard · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260925-15-sites-building-dashboard",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D3",
+     "label": "-16-frontend-development-report · 3 风格 · 撞车0 · 未登记3",
+     "label_ascii": "20260925-16-frontend-development-report",
+     "status": "blocked",
+     "note": "未登记：暖纸数据新闻 editorial/冷灰对账单 statement/暗色霓虹 cyber",
+     "note_ascii": "styles missing from used_styles: 3"
+    },
+    {
+     "id": "D4",
+     "label": "-17-vercel-react-best-practices-admin · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260925-17-vercel-react-best-practices-admin",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D5",
+     "label": "-18-vercel-react-best-practices-landing · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260925-18-vercel-react-best-practices-landing",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D6",
+     "label": "-19-sites-react-pricing · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260925-19-sites-react-pricing",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D7",
+     "label": "-20-vercel-react-activity · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260925-20-vercel-react-activity",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D8",
+     "label": "-21-drafter-architecture · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260925-21-drafter-architecture",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D9",
+     "label": "-22-ppt-generator-deck · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260925-22-ppt-generator-deck",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D10",
+     "label": "-23-sites-building-personal-homepage · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260925-23-sites-building-personal-homepage",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D11",
+     "label": "-00-ppt-generator-charts · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260926-00-ppt-generator-charts",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D12",
+     "label": "-01-ppt-generator-proposal · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260926-01-ppt-generator-proposal",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D13",
+     "label": "-02-graphic-gif-banner · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260926-02-graphic-gif-banner",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D14",
+     "label": "-03-build-game-tower-defense · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260926-03-build-game-tower-defense",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D15",
+     "label": "-04-sites-building-multipage-site · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260926-04-sites-building-multipage-site",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D16",
+     "label": "-05-build-game-reference-driven · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260926-05-build-game-reference-driven",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D17",
+     "label": "-06-sites-building-activity · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260926-06-sites-building-activity",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D18",
+     "label": "-07-frontend-development-admin · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260926-07-frontend-development-admin",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D19",
+     "label": "-08-frontend-development-wizard · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260926-08-frontend-development-wizard",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D20",
+     "label": "-11-sites-building-newsletter · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260926-11-sites-building-newsletter",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "D21",
+     "label": "-12-frontend-development-blog-portal · 3 风格 · 撞车0 · 未登记0",
+     "label_ascii": "20260926-12-frontend-development-blog-portal",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    }
+   ]
+  },
+  {
+   "key": "push",
+   "name": "推送 PUSH",
+   "name_ascii": "PUSH",
+   "subtitle": "产物进过 origin/main 且台账有声明",
+   "subtitle_ascii": "on origin/main and declared in ledger",
+   "emoji": "🚀",
+   "tasks": [
+    {
+     "id": "P20260925-1",
+     "label": "-14-sites-building-landing-page · 提交 1 次",
+     "label_ascii": "20260925-14-sites-building-landing-page",
+     "status": "blocked",
+     "note": "runs 缺 push 字段（早期轮未记）",
+     "note_ascii": "runs entry has no push field (early round)"
+    },
+    {
+     "id": "P20260925-1",
+     "label": "-15-sites-building-dashboard · 提交 1 次",
+     "label_ascii": "20260925-15-sites-building-dashboard",
+     "status": "blocked",
+     "note": "runs 缺 push 字段（早期轮未记）",
+     "note_ascii": "runs entry has no push field (early round)"
+    },
+    {
+     "id": "P20260925-1",
+     "label": "-16-frontend-development-report · 提交 1 次 · 台账已声明",
+     "label_ascii": "20260925-16-frontend-development-report",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260925-1",
+     "label": "-17-vercel-react-best-practices-admin · 提交 1 次 · 台账已声明",
+     "label_ascii": "20260925-17-vercel-react-best-practices-admin",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260925-1",
+     "label": "-18-vercel-react-best-practices-landing · 提交 1 次 · 台账已声明",
+     "label_ascii": "20260925-18-vercel-react-best-practices-landing",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260925-1",
+     "label": "-19-sites-react-pricing · 提交 1 次 · 台账已声明",
+     "label_ascii": "20260925-19-sites-react-pricing",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260925-2",
+     "label": "-20-vercel-react-activity · 提交 1 次 · 台账已声明",
+     "label_ascii": "20260925-20-vercel-react-activity",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260925-2",
+     "label": "-21-drafter-architecture · 提交 1 次 · 台账已声明",
+     "label_ascii": "20260925-21-drafter-architecture",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260925-2",
+     "label": "-22-ppt-generator-deck · 提交 1 次 · 台账已声明",
+     "label_ascii": "20260925-22-ppt-generator-deck",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260925-2",
+     "label": "-23-sites-building-personal-homepage · 提交 1 次 · 台账已声明",
+     "label_ascii": "20260925-23-sites-building-personal-homepage",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260926-0",
+     "label": "-00-ppt-generator-charts · 提交 1 次 · 台账已声明",
+     "label_ascii": "20260926-00-ppt-generator-charts",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260926-0",
+     "label": "-01-ppt-generator-proposal · 提交 1 次 · 台账已声明",
+     "label_ascii": "20260926-01-ppt-generator-proposal",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260926-0",
+     "label": "-02-graphic-gif-banner · 提交 1 次 · 台账已声明",
+     "label_ascii": "20260926-02-graphic-gif-banner",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260926-0",
+     "label": "-03-build-game-tower-defense · 提交 1 次 · 台账已声明",
+     "label_ascii": "20260926-03-build-game-tower-defense",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260926-0",
+     "label": "-04-sites-building-multipage-site · 提交 1 次 · 台账已声明",
+     "label_ascii": "20260926-04-sites-building-multipage-site",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260926-0",
+     "label": "-05-build-game-reference-driven · 提交 1 次 · 台账已声明",
+     "label_ascii": "20260926-05-build-game-reference-driven",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260926-0",
+     "label": "-06-sites-building-activity · 提交 1 次 · 台账已声明",
+     "label_ascii": "20260926-06-sites-building-activity",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260926-0",
+     "label": "-07-frontend-development-admin · 提交 2 次 · 台账已声明",
+     "label_ascii": "20260926-07-frontend-development-admin",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260926-0",
+     "label": "-08-frontend-development-wizard · 提交 2 次 · 台账已声明",
+     "label_ascii": "20260926-08-frontend-development-wizard",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260926-1",
+     "label": "-11-sites-building-newsletter · 提交 3 次 · 台账已声明",
+     "label_ascii": "20260926-11-sites-building-newsletter",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260926-1",
+     "label": "-12-frontend-development-blog-portal · 提交 3 次 · 台账已声明",
+     "label_ascii": "20260926-12-frontend-development-blog-portal",
+     "status": "done",
+     "note": "",
+     "note_ascii": ""
+    },
+    {
+     "id": "P20260926-1",
+     "label": "-14-drafter-flowchart · 提交 0 次",
+     "label_ascii": "20260926-14-drafter-flowchart",
+     "status": "blocked",
+     "note": "未跟踪（在制品或未推送）",
+     "note_ascii": "untracked: in-flight or unpushed"
+    },
+    {
+     "id": "P20260926-1",
+     "label": "-15-ascii-project-dashboard-progress-board · 提交 0 次",
+     "label_ascii": "20260926-15-ascii-project-dashboard-progress-board",
+     "status": "doing",
+     "note": "未跟踪（在制品或未推送）",
+     "note_ascii": "untracked: in-flight or unpushed"
+    }
+   ]
+  },
+  {
+   "key": "health",
+   "name": "自检 HEALTH",
+   "name_ascii": "HEALTH",
+   "subtitle": "台账自身的一致性判据",
+   "subtitle_ascii": "ledger invariants, count computed",
+   "emoji": "🩺",
+   "tasks": [
+    {
+     "id": "H1",
+     "label": "tried 与 runs 等长 · tried=22 runs=22",
+     "label_ascii": "H1 tried and runs same length",
+     "status": "done",
+     "note": "tried=22 runs=22",
+     "note_ascii": "tried=22 runs=22"
+    },
+    {
+     "id": "H2",
+     "label": "每轮风格均已登记进 used_styles · mismatched=3",
+     "label_ascii": "H2 every round style is in used_styles",
+     "status": "blocked",
+     "note": "mismatched=3",
+     "note_ascii": "mismatched=3"
+    },
+    {
+     "id": "H3",
+     "label": "used_styles 长度 == tried 展开长度 · used=66 flat=66",
+     "label_ascii": "H3 used_styles length equals expanded length",
+     "status": "done",
+     "note": "used=66 flat=66",
+     "note_ascii": "used=66 flat=66"
+    },
+    {
+     "id": "H4",
+     "label": "每轮产物目录在盘 · dirs=23",
+     "label_ascii": "H4 every round has an artifact dir",
+     "status": "done",
+     "note": "dirs=23",
+     "note_ascii": "dirs=23"
+    },
+    {
+     "id": "H5",
+     "label": "work-log 轮次行数 >= tried 数 · log=23 tried=22",
+     "label_ascii": "H5 work-log round lines at least tried count",
+     "status": "done",
+     "note": "log=23 tried=22",
+     "note_ascii": "log=23 tried=22"
+    },
+    {
+     "id": "H6",
+     "label": "state.updated 不早于末轮 time · updated=2026-09-26T15:00+08:00 last=2026-09-26T12:00+08:00",
+     "label_ascii": "H6 state.updated not older than the last round",
+     "status": "done",
+     "note": "updated=2026-09-26T15:00+08:00 last=2026-09-26T12:00+08:00",
+     "note_ascii": "updated=2026-09-26T15:00+08:00 last=2026-09-26T12:00+08:00"
+    },
+    {
+     "id": "H7",
+     "label": "每个技能族都出现在 skills_seen · seen=19",
+     "label_ascii": "H7 every used family appears in skills_seen",
+     "status": "done",
+     "note": "seen=19",
+     "note_ascii": "seen=19"
+    },
+    {
+     "id": "H8",
+     "label": "无孤儿产物目录 · orphans=1",
+     "label_ascii": "H8 no artifact dir outside tried",
+     "status": "blocked",
+     "note": "orphans=1",
+     "note_ascii": "orphans=1"
+    },
+    {
+     "id": "H9",
+     "label": "每条 tried 都有字符串 report 字段 · missing=2",
+     "label_ascii": "H9 every tried entry has a report string",
+     "status": "blocked",
+     "note": "missing=2",
+     "note_ascii": "missing=2"
+    },
+    {
+     "id": "H10",
+     "label": "tried[].artifacts 全为字符串 · nonstring=2",
+     "label_ascii": "H10 every artifacts field is a string",
+     "status": "blocked",
+     "note": "nonstring=2",
+     "note_ascii": "nonstring=2"
+    },
+    {
+     "id": "H11",
+     "label": "runs[i] 与 tried[i] 同轮 · pairs=22",
+     "label_ascii": "H11 runs[i] and tried[i] share a timestamp",
+     "status": "done",
+     "note": "pairs=22",
+     "note_ascii": "pairs=22"
+    },
+    {
+     "id": "H12",
+     "label": "reports/ 下无与产物目录同名的子目录 · nonmd_in_reports=1",
+     "label_ascii": "H12 reports/ holds no dir shadowing artifacts/",
+     "status": "blocked",
+     "note": "nonmd_in_reports=1",
+     "note_ascii": "nonmd_in_reports=1"
+    },
+    {
+     "id": "H13",
+     "label": "每条 tried 自带 time（无需 runs 回填） · missing=1",
+     "label_ascii": "H13 every tried entry carries its own time",
+     "status": "blocked",
+     "note": "missing=1",
+     "note_ascii": "missing=1"
+    }
+   ]
+  }
+ ]
+}

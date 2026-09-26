@@ -1,0 +1,236 @@
+{
+ "styles": {
+  "matrix": {
+   "file": "dashboard-lane-matrix.md",
+   "md_bytes": 13758,
+   "html_bytes": 31765,
+   "lines": 204,
+   "art_max_cells": 116,
+   "table_max_cells": 165,
+   "art_lines": 63,
+   "width_budget": 118,
+   "ambiguous": 63,
+   "emoji": 141,
+   "blocks": {
+    "full": 0,
+    "heavy": 134,
+    "hash": 40,
+    "braille": 0,
+    "box": 44
+   },
+   "cjk": 1077,
+   "maxCodePoint": 129658,
+   "lanes": [
+    {
+     "key": "trace",
+     "total": 21,
+     "done": 21,
+     "doing": 0,
+     "blocked": 0,
+     "todo": 0,
+     "pct": 100
+    },
+    {
+     "key": "clean",
+     "total": 23,
+     "done": 22,
+     "doing": 1,
+     "blocked": 0,
+     "todo": 0,
+     "pct": 96
+    },
+    {
+     "key": "source",
+     "total": 8,
+     "done": 8,
+     "doing": 0,
+     "blocked": 0,
+     "todo": 0,
+     "pct": 100
+    },
+    {
+     "key": "dedup",
+     "total": 21,
+     "done": 20,
+     "doing": 0,
+     "blocked": 1,
+     "todo": 0,
+     "pct": 95
+    },
+    {
+     "key": "push",
+     "total": 23,
+     "done": 19,
+     "doing": 1,
+     "blocked": 3,
+     "todo": 0,
+     "pct": 83
+    },
+    {
+     "key": "health",
+     "total": 13,
+     "done": 7,
+     "doing": 0,
+     "blocked": 6,
+     "todo": 0,
+     "pct": 54
+    }
+   ]
+  },
+  "dense": {
+   "file": "dashboard-braille-dense.md",
+   "md_bytes": 14044,
+   "html_bytes": 31223,
+   "lines": 210,
+   "art_max_cells": 77,
+   "table_max_cells": 167,
+   "art_lines": 69,
+   "width_budget": 78,
+   "ambiguous": 231,
+   "emoji": 0,
+   "blocks": {
+    "full": 112,
+    "heavy": 0,
+    "hash": 40,
+    "braille": 24,
+    "box": 196
+   },
+   "cjk": 1289,
+   "maxCodePoint": 65372,
+   "lanes": [
+    {
+     "key": "trace",
+     "total": 21,
+     "done": 21,
+     "doing": 0,
+     "blocked": 0,
+     "todo": 0,
+     "pct": 100
+    },
+    {
+     "key": "clean",
+     "total": 23,
+     "done": 22,
+     "doing": 1,
+     "blocked": 0,
+     "todo": 0,
+     "pct": 96
+    },
+    {
+     "key": "source",
+     "total": 8,
+     "done": 8,
+     "doing": 0,
+     "blocked": 0,
+     "todo": 0,
+     "pct": 100
+    },
+    {
+     "key": "dedup",
+     "total": 21,
+     "done": 20,
+     "doing": 0,
+     "blocked": 1,
+     "todo": 0,
+     "pct": 95
+    },
+    {
+     "key": "push",
+     "total": 23,
+     "done": 19,
+     "doing": 1,
+     "blocked": 3,
+     "todo": 0,
+     "pct": 83
+    },
+    {
+     "key": "health",
+     "total": 13,
+     "done": 7,
+     "doing": 0,
+     "blocked": 6,
+     "todo": 0,
+     "pct": 54
+    }
+   ]
+  },
+  "teletype": {
+   "file": "dashboard-teletype-ascii.md",
+   "md_bytes": 10522,
+   "html_bytes": 12516,
+   "lines": 206,
+   "art_max_cells": 78,
+   "table_max_cells": 122,
+   "art_lines": 67,
+   "width_budget": 80,
+   "ambiguous": 0,
+   "emoji": 0,
+   "blocks": {
+    "full": 0,
+    "heavy": 0,
+    "hash": 153,
+    "braille": 0,
+    "box": 0
+   },
+   "cjk": 0,
+   "maxCodePoint": 124,
+   "lanes": [
+    {
+     "key": "trace",
+     "total": 21,
+     "done": 21,
+     "doing": 0,
+     "blocked": 0,
+     "todo": 0,
+     "pct": 100
+    },
+    {
+     "key": "clean",
+     "total": 23,
+     "done": 22,
+     "doing": 1,
+     "blocked": 0,
+     "todo": 0,
+     "pct": 96
+    },
+    {
+     "key": "source",
+     "total": 8,
+     "done": 8,
+     "doing": 0,
+     "blocked": 0,
+     "todo": 0,
+     "pct": 100
+    },
+    {
+     "key": "dedup",
+     "total": 21,
+     "done": 20,
+     "doing": 0,
+     "blocked": 1,
+     "todo": 0,
+     "pct": 95
+    },
+    {
+     "key": "push",
+     "total": 23,
+     "done": 19,
+     "doing": 1,
+     "blocked": 3,
+     "todo": 0,
+     "pct": 83
+    },
+    {
+     "key": "health",
+     "total": 13,
+     "done": 7,
+     "doing": 0,
+     "blocked": 6,
+     "todo": 0,
+     "pct": 54
+    }
+   ]
+  }
+ },
+ "facts_sha": "fba586c11379"
+}

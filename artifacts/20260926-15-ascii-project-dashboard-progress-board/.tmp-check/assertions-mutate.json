@@ -1,0 +1,222 @@
+{
+ "card": "mutate",
+ "rows": [
+  {
+   "id": "M1a",
+   "desc": "改一个任务的状态 → 该泳道 pct 现算下降",
+   "pass": true,
+   "detail": "54% -> 46%"
+  },
+  {
+   "id": "M1b",
+   "desc": "数字变了就必须可见：matrix 十格条若被量化吞掉，dense 八分度条要动",
+   "pass": true,
+   "detail": "matrix ▓▓▓▓▓░░░░░ -> ▓▓▓▓▓░░░░░"
+  },
+  {
+   "id": "M1e",
+   "desc": "记录十格条的分辨率死区（本轮真实存在：pct 变 8 点而条不动）",
+   "pass": true,
+   "detail": "54% 与 46% 都画成 ▓▓▓▓▓░░░░░"
+  },
+  {
+   "id": "M1c",
+   "desc": "合计行跟着动（顶层不是手抄）",
+   "pass": true,
+   "detail": "▓▓▓▓▓▓▓▓▓░ 89% | -> ▓▓▓▓▓▓▓▓▓░ 88% |"
+  },
+  {
+   "id": "M1d",
+   "desc": "变异波及面 = 被改泳道 + 合计行（其余泳道的行与区块逐字节不动）",
+   "pass": true,
+   "detail": "留痕=ok 收尾=ok 快照=ok 去重=ok 推送=ok"
+  },
+  {
+   "id": "M2a",
+   "desc": "任务表多出一行且新 id 可见",
+   "pass": true,
+   "detail": "T99 出现 1 行"
+  },
+  {
+   "id": "M2b",
+   "desc": "TRACE 行 total +1、pct 重算",
+   "pass": true,
+   "detail": "21/100% -> 22/95%"
+  },
+  {
+   "id": "M2c-matrix",
+   "desc": "matrix 结构变异后汇总表仍每条 10 列（不变量不依赖本轮数据形状）",
+   "pass": true,
+   "detail": "7 条，宽度集合 10"
+  },
+  {
+   "id": "M2c-dense",
+   "desc": "dense 结构变异后汇总表仍每条 10 列（不变量不依赖本轮数据形状）",
+   "pass": true,
+   "detail": "7 条，宽度集合 10"
+  },
+  {
+   "id": "M2c-teletype",
+   "desc": "teletype 结构变异后汇总表仍每条 10 列（不变量不依赖本轮数据形状）",
+   "pass": true,
+   "detail": "7 条，宽度集合 10"
+  },
+  {
+   "id": "M3a",
+   "desc": "dense 自己的条 100% 落在 dense 字母表内（封闭判据在真数据上成立）",
+   "pass": true,
+   "detail": "15 处条"
+  },
+  {
+   "id": "M3b",
+   "desc": "另两风格的条按 dense 字母表判为异类（换风格渲染会被 B2 型判据抓住）",
+   "pass": true,
+   "detail": "外来条 33 处，例 ▓▓▓▓▓▓▓▓▓▓"
+  },
+  {
+   "id": "M3c",
+   "desc": "三套条字母表两两不相交（互斥判据不会因写法漂移而自洽）",
+   "pass": true,
+   "detail": "▓░ | █▏▎▍▌▋▊▉▒ | #."
+  },
+  {
+   "id": "M4a",
+   "desc": "新鲜读数：facts 记录的 sha1 == 现读字节 sha1",
+   "pass": true,
+   "detail": "fba586c11379"
+  },
+  {
+   "id": "M4b",
+   "desc": "台账多一条时 sha1 立刻对不上（陈旧看板会被 D6 拦下）",
+   "pass": true,
+   "detail": "285b1c1eaae8"
+  },
+  {
+   "id": "M5a",
+   "desc": "任何 done<total 的组合都不会画满格（技能原公式在 199/200 会给 100%→满）",
+   "pass": true,
+   "detail": "100/100→10格 199/200→9格 9/10→9格 22/23→9格 1/1→10格 0/5→0格"
+  },
+  {
+   "id": "M5b",
+   "desc": "原公式在 199/200 上确实过度声明（证明这不是本轮数据的特例修补）",
+   "pass": true,
+   "detail": "naive=10 clamped=9"
+  },
+  {
+   "id": "M5c",
+   "desc": "dense 八分度同理钳到 79/80",
+   "pass": true,
+   "detail": "e(199/200)=79 e(200/200)=80"
+  },
+  {
+   "id": "M6a",
+   "desc": "超预算文案触发 truncations（B4 的零截断断言因此有约束力）",
+   "pass": true,
+   "detail": "truncations=1 {\"where\":\"matrix:subtitle\",\"cells\":240,\"w\":36,\"text\":\"非常非常长的"
+  },
+  {
+   "id": "M6b",
+   "desc": "干净数据回到零截断（变异已撤销）",
+   "pass": true,
+   "detail": "= 0"
+  },
+  {
+   "id": "M7-matrix",
+   "desc": "matrix 在空泳道下不出现 NaN/undefined/Infinity",
+   "pass": true,
+   "detail": "0% pct={\"total\":0,\"done\":0,\"doing\":0,\"blocked\":0,\"todo\":0,\"pct\":0}"
+  },
+  {
+   "id": "M7-dense",
+   "desc": "dense 在空泳道下不出现 NaN/undefined/Infinity",
+   "pass": true,
+   "detail": "0% pct={\"total\":0,\"done\":0,\"doing\":0,\"blocked\":0,\"todo\":0,\"pct\":0}"
+  },
+  {
+   "id": "M7-teletype",
+   "desc": "teletype 在空泳道下不出现 NaN/undefined/Infinity",
+   "pass": true,
+   "detail": "0% pct={\"total\":0,\"done\":0,\"doing\":0,\"blocked\":0,\"todo\":0,\"pct\":0}"
+  },
+  {
+   "id": "M8a",
+   "desc": "注入坏时间后，产物里会出现可辨识的破绽（生成器不掩盖 undefined）",
+   "pass": true,
+   "detail": "  ●────●────●────●────●────●────●────●──"
+  },
+  {
+   "id": "M8b",
+   "desc": "真实 facts 的时间线没有这类破绽（timeOf 回填生效）",
+   "pass": true,
+   "detail": "  01:0002:0003:0004:0005:0006:0007:0008:0011:0012:0015:00"
+  },
+  {
+   "id": "M9a",
+   "desc": "E1 型扫描对注入的手抄百分比有反应",
+   "pass": true,
+   "detail": "62% 89%"
+  },
+  {
+   "id": "M9b",
+   "desc": "真实源码里扫描结果为 0",
+   "pass": true,
+   "detail": "= 0"
+  },
+  {
+   "id": "M10a",
+   "desc": "真实产物四项判据全过（正对照：校验器没把合法产物判死）",
+   "pass": true,
+   "detail": "spans=514 脚本=true"
+  },
+  {
+   "id": "M10b·拆掉校正脚本",
+   "desc": "变异「拆掉校正脚本」被判据抓到（b13 报红）",
+   "pass": true,
+   "detail": "报红：b13"
+  },
+  {
+   "id": "M10b·把一段 CJK 贴成 emoji 标签",
+   "desc": "变异「把一段 CJK 贴成 emoji 标签」被判据抓到（b7b 报红）",
+   "pass": true,
+   "detail": "报红：b7b"
+  },
+  {
+   "id": "M10b·让 span 越界吃掉条形字符",
+   "desc": "变异「让 span 越界吃掉条形字符」被判据抓到（b7b/b7c 报红）",
+   "pass": true,
+   "detail": "报红：b7b"
+  },
+  {
+   "id": "M10b·把 CJK 挪出 span（等价于漏包）",
+   "desc": "变异「把 CJK 挪出 span（等价于漏包）」被判据抓到（b7c 报红）",
+   "pass": true,
+   "detail": "报红：b7c"
+  },
+  {
+   "id": "M10b·给纯 ASCII 的 teletype 也注脚本",
+   "desc": "变异「给纯 ASCII 的 teletype 也注脚本」被判据抓到（b13 报红）",
+   "pass": true,
+   "detail": "报红：b13"
+  },
+  {
+   "id": "M11a",
+   "desc": "真实 WIDE_FIX 与 cells() 逐项一致（正对照）",
+   "pass": true,
+   "detail": "{\"cjk\":2,\"emoji\":2,\"braille\":1,\"shape\":1}"
+  },
+  {
+   "id": "M11b",
+   "desc": "把 cjk 目标改成 1 列即被抓住（预览层与宽度模型不许各说各话）",
+   "pass": true,
+   "detail": "cjk:1 → cells(项)=2 矛盾"
+  },
+  {
+   "id": "M11c",
+   "desc": "新增一个不存在的类（gap）同样被抓住（校正表不能随手扩）",
+   "pass": true,
+   "detail": "gap 无对应 charClass 探针"
+  }
+ ],
+ "printed_at": "2026-09-26T10:00:12.803Z"
+}
