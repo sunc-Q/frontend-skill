@@ -8,3 +8,4 @@ __pycache__/
 .skills/
 *.db-shm
 *.db-wal
+!demos/**/protocol-transcript.log

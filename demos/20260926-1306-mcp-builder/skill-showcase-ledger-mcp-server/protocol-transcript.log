@@ -1,0 +1,22 @@
+--> initialize (raw JSON-RPC, no SDK client)
+<-- {
+  "id": 1,
+  "result": {
+    "protocolVersion": "2025-06-18",
+    "serverInfo": {
+      "name": "skill-showcase-ledger-mcp-server",
+      "version": "1.0.0"
+    },
+    "capabilities": [
+      "tools"
+    ]
+  }
+}
+--> tools/list
+    ledger_get_summary  readOnly=True  input=[]  output=10 fields
+    ledger_list_runs  readOnly=True  input=['limit', 'offset', 'response_format']  output=8 fields
+    ledger_get_run  readOnly=True  input=['skill']  output=8 fields
+    ledger_search_skills  readOnly=True  input=['limit', 'offset', 'response_format', 'query', 'kept_only']  output=7 fields
+--> tools/call ledger_get_run {"skill":"mcp-builder"}
+<-- isError=True
+Error: No run found for skill 'mcp-builder'. Known skills: drafter, ascii-project-dashboard, algorithmic-art, SQLite-Database-Expert, ppt-generator. Call 'ledger_list_runs' with response_format='json' to see the full list.
