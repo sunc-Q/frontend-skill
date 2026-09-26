@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T23:59+08:00",
+  "updated": "2026-09-26T09:52+08:00",
   "tried": [
     {
       "skill": "drafter",
@@ -87,6 +87,17 @@
       "installed_by_this_task": [
         "build-game → ~/.qoder-cn/skills/build-game/（mcp__extension-market__install_extension，Full Access 未弹确认）"
       ]
+    },
+    {
+      "skill": "sec-audit-cn",
+      "source": "来源③本机已装：~/.qoder-cn/skills/sec-audit-cn/SKILL.md（v1.0.0，420 行，find 实测包内仅 SKILL.md+skill.json+_meta.json，零脚本零网络）",
+      "skill_path": "/Users/apple/.qoder-cn/skills/sec-audit-cn/SKILL.md",
+      "task": "把第 1–7 轮本流水线自己的全部交付物当被审计代码：38 个源文件/2.10MB（含 2 个 750KB+ 单文件 HTML）+ 36 个第三方 SKILL.md 供应链面 → 13 条静态规则 + 3 组黑盒 PoC → 按它的分级格式出审计报告并交付已验证的修复件",
+      "verdict": "留用。8 轮里唯一「产物=结论而非文件形态」的技能，纯清单/方法论零依赖零联网，安全闸门秒过，格式（严重/高/中/低+[A0x]+文件+修复+风险）可直接落成文档；审出两条靠看效果永远发现不了的缺陷（FTS5 查询语法注入、内联第三方库无可机检来源）。局限：它不带扫描器，命中全靠自写规则——本轮 31 命中里 18 条误报（58%），必须自补「分级前先证伪」这一步，否则报告就是误报堆。",
+      "time": "2026-09-26T00:00+08:00",
+      "artifact": "demos/20260926-0000-sec-audit-cn/SECURITY-AUDIT.md",
+      "report": "reports/20260926-0000-sec-audit-cn.md",
+      "installed_by_this_task": []
     }
   ],
   "skills_seen": [
@@ -151,7 +162,7 @@
       "source": "~/.qoder-cn/skills/",
       "url": "",
       "status": "candidate(部分已用)",
-      "note": "已试：SQLite-Database-Expert(第4轮,留用) / drafter 等市场件。剩余：sec-audit-cn / golang-testing / golang-gin-api / nodejs-best-practices / express-nodejs-expert / Golang-Backend-Development / golangci-lint-strict / vercel-react-best-practices / skill-push / frontend-development —— 产物类型偏「命令输出/审计报告」"
+      "note": "已试：SQLite-Database-Expert(第4轮) / sec-audit-cn(第8轮)。剩余：golang-testing / golang-gin-api / golangci-lint-strict / Golang-Backend-Development / nodejs-best-practices / express-nodejs-expert / frontend-development / vercel-react-best-practices / skill-push / qmind / canvas / qoder-context"
     },
     {
       "name": "skills.sh / GitHub awesome-skills 外部仓库",
@@ -329,17 +340,24 @@
       "source": "demos/20260925-2332-build-game/game.src.html",
       "status": "candidate",
       "note": "SKILL Phase 0/2B 主打「持续迭代」：加背包/合成/昼夜/天气/回合制战斗。若要验证迭代路径，下轮可指定「给冰原拾光加 X 系统」而不是新做一个游戏。"
+    },
+    {
+      "name": "sec-audit-cn",
+      "source": "本机已装",
+      "url": "",
+      "status": "installed_used — 本轮已用并留用，勿再选",
+      "note": "包内只有 SKILL.md，无 scripts/ 无 references/（对它来说不需要）；triggers 覆盖 security/OWASP/XSS/CORS/CSP/密钥/审计"
     }
   ],
   "in_progress": [],
   "next_candidates": [
-    "★sec-audit-cn（本机已装，零安装零联网）× 审计本 LAB 的 demos/**/*.mjs + .tmp/pylibs 依赖路线 + 本轮 inline-jsm.mjs 正则转换器，产物=分级安全审计报告 .md，换「安全审计」类（用户主业是后端安全，贴合）",
-    "★excel-spreadsheet-handler(tjade273) × 把 7 轮台账做成带真公式与图表的 .xlsx（openpyxl：python3 -m pip install --target LAB/.tmp/pylibs --index-url 清华源），换「电子表格」类",
+    "★excel-spreadsheet-handler(tjade273) × 把 8 轮台账做成带真公式与图表的 .xlsx（openpyxl：python3 -m pip install --target LAB/.tmp/pylibs --index-url 清华/aliyun 源，两轮已验证），换「电子表格」类",
     "golang-testing（本机已装）× 表驱动测试最小 Go 包（go 在 PATH，GOPROXY=goproxy.cn），产物=`go test -v` 日志，换「Go 后端/测试」类",
-    "diegosouzapw-2000s-visualization-expert（official_koPDvcdI，WebGL+Web Audio FFT 音乐可视化）——本轮已证 three/WebGL 走 swiftshader + toDataURL 回读像素可验，音频可用 OffscreenCanvas/AnalyserNode 自造 WAV，风险大降，值得单占一轮",
-    "webapp-testing（已在 LAB/.skills/anthropic-skills/skills/）× 给本轮游戏写端到端回归——playwright-core + 系统 Chrome 路线已两轮验证，顾虑全消",
-    "anthropics/skills 未试：canvas-design / slack-gif-creator（Pillow 路线已通）、docx、theme-factory、brand-guidelines、mcp-builder —— 零 clone 成本，产物分别 PNG/海报、GIF（与第 6 轮同类，靠后）、.docx、主题化改造",
-    "市场 query 'spreadsheet'/'audio'/'game' 之外未探词汇：'shader'、'terrain'、'physics'、'pixel-art'、'chart'、'geo'、'regex'（本轮起 search_extensions 用单个英文词根仍有效）"
+    "webapp-testing（已在 LAB/.skills/anthropic-skills/skills/）× 给 frostlight-gather.html 写端到端回归——playwright-core+系统 Chrome 路线已三轮验证，顾虑全消",
+    "anthropics/skills 未试：canvas-design / docx / theme-factory / brand-guidelines / mcp-builder（Pillow 路线已通，零 clone 成本）",
+    "diegosouzapw-2000s-visualization-expert（official_koPDvcdI，WebGL+Web Audio FFT 音乐可视化）——three/WebGL 走 swiftshader+toDataURL 已可验，音频可用自造 WAV，值得单占一轮",
+    "市场未探词根：'shader'、'terrain'、'physics'、'pixel-art'、'geo'、'regex'、'audio-synth'（search_extensions 用单个英文词根才有效，参数名是 query）",
+    "★sec-audit-cn 的迭代用法：对它本轮报告的 5 条修复建议逐条落地（去掉发布产物的调试钩子 / 给 build.mjs 加 dep 摘要注释 / 起 Chrome 去掉 --no-sandbox / state.json 加锁与原子替换 / 日志与产物做 ~ 路径脱敏），而不是每轮换技能——同类「审计→修复→复审」轮次最多再占 1 轮，避免与「每轮 1 个新 skill」的选题标准冲突"
   ],
   "used_artifact_kinds": [
     "单文件自包含 HTML 图表（工程图纸）×1",
@@ -348,7 +366,8 @@
     "SQLite 数据库文件 .db（FTS5 全文检索库）+ 可执行检索 CLI + 14 条断言日志 ×1",
     "原生可编辑办公文档 .pptx（SVG→DrawingML，211 shape / 0 图片，49KB）+ 5 页 1280×720 矢量幻灯片 ×1",
     "动画 GIF .gif（800x800 / 48 帧 / 无限循环 / 47KB，GIF89a 结构+NETSCAPE 循环计数+差分子矩形帧全部经手写二进制解析器核对）+ 其 CSS 动画源 animation.html ×1",
-    "可交互 3D 网页游戏单文件 HTML（.html 750KB：three r160 + 5 pass 后处理链全内联，零外链零网络请求，file:// 双击即玩；23 条断言含「实测滞空 0.633s vs 理论 2v/g 0.662s」「改 vignette→像素 −26%」两级物理/渲染反证）×1"
+    "可交互 3D 网页游戏单文件 HTML（.html 750KB：three r160 + 5 pass 后处理链全内联，零外链零网络请求，file:// 双击即玩；23 条断言含「实测滞空 0.633s vs 理论 2v/g 0.662s」「改 vignette→像素 −26%」两级物理/渲染反证）×1",
+    "分级安全审计报告 .md（OWASP 对齐，13 条有效发现/18 条误报分诊）+ findings.json 规则命中 + 3 组黑盒 PoC 前后对照 output.log + integrity-manifest.json（sha256 自证）+ 已回归的修复件 query.fixed.mjs ×1"
   ],
   "environment_notes": [
     "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
@@ -396,7 +415,16 @@
     "无人值守验证 3D/动画产物的两条硬招（沿用）：(1) 让产物自带文本调试钩子（build-game 的 render_game_to_text/advanceTime 是范本），断言状态机而不是像素；(2) 像素侧用「改一个 uniform 必须改变像素」证明渲染链路活着，比读 passes 数组的名字强。",
     "playwright-core 复用配方（第 6/7 轮两次跑通）：npm i playwright-core --registry=https://registry.npmmirror.com 到 LAB/.tmp/pw/，chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'}) + args 里加 --use-gl=swiftshader --enable-unsafe-swiftshader（否则 headless WebGL 可能无 GPU）；toDataURL 回读 WebGL 帧要在同一个 JS task 里紧跟 render()（preserveDrawingBuffer=false）。",
     "判据错 vs 产物错要分清：本轮 2 条 FAIL 全是我的断言窗口/阈值拍脑袋（跳跃采样时 keys[' '] 未清导致连续起跳；亮度阈值 100 过严且用全局均值看只作用在角落的 vignette）。改法是**把断言换成理论值对比**（滞空 2v/g、峰高 v²/2g、角落局部采样），而不是放宽。",
-    "磁盘开工水位：可用 19742420 KB ≈ 18.8 GiB（>1.5 GiB 阈值）。本轮 demos 1.0MB（限 5MB），收尾已删 .tmp/three(9.4MB) 与 .tmp/pw/node_modules。"
+    "磁盘开工水位：可用 19742420 KB ≈ 18.8 GiB（>1.5 GiB 阈值）。本轮 demos 1.0MB（限 5MB），收尾已删 .tmp/three(9.4MB) 与 .tmp/pw/node_modules。",
+    "★参数化 ≠ 安全：`MATCH ?` / NoSQL / LDAP / 正则都是「带语法的字符串参数」，绑定只挡宿主语言解析，不挡子语法。实测 query.mjs 用 `\"${term}\"` 包串，输入含 `\" OR \"` 即改写检索语义（0 命中 → 4 条真实路径+行内容），含未闭合括号则未捕获异常并把 percent-encoded 源码绝对路径打到 stderr。审计任何检索入口都要单独跑这一类对抗输入。",
+    "★静态 grep 审计在本仓库 FP 率 58%（31 命中 / 13 有效）：CSS `grid-template-columns` 撞 `$\\{` 与 `template` 规则、`.stack{width}` 撞 `err.stack`、产物里「拒绝 curl|bash」的文案撞管道规则。规则要为文档/CSS 留豁免，且分级前必须逐条人工分诊或跑 PoC 证伪。",
+    "★无人值守特有的坑：安全相关的启动参数会沿「抄上一轮脚本」这条路自我繁殖——`--no-sandbox` 从第 6 轮 capture.mjs:23 → 第 7 轮 verify.mjs:29 → 本轮 poc-game.mjs:11，同一轮内就复制到第 4 处。复用旧脚本时，args/权限/网络相关行要逐条重判。",
+    "★断言攻击链要先找合法触发路径：第 7 轮产物里 `__game.state.score=99999` + `advanceTime()` 不足以写盘，因为 `update()` 只在 `mode==='playing'` 计时、`endGame()/saveBest()` 挂在结算上；补一次 canvas `pointerdown`（game.src.html:666 的真实入口）才闭环。钩子存在 ≠ 任意状态可直接落盘。",
+    "密钥扫描必须扫 `git log --all -p`（本轮 10,326 行新增）：.gitignore 只挡未来提交，挡不住历史。宽词（ghp_|AKIA|BEGIN…PRIVATE）在 .skills 文档里全是示例误报，要收紧到凭据形状（ghp_[A-Za-z0-9]{36} / AKIA[0-9A-Z]{16} / sk-[A-Za-z0-9]{32,}）再看是否被 git 跟踪。",
+    "交付物里 89–98% 字节可能是单行内联第三方库（>400 字符行 = 人和 grep 都读不了）。度量法：按行长分桶算 opaqueBytes/opaqueShare 写进 findings.json，比逐文件人眼扫快且可复现。three.min.js 压掉了版本横幅，产物内无可机检来源 → 只能靠 sha256 清单自证。",
+    "对照组的异常率是判据健康度探针：本轮 TARGET 默认路径写错后出现「9 例中 9 例崩溃」，SyntaxError / Cannot find module 都会伪装成漏洞。任何「全部失败」先 `node <target>` 空跑一次确认被测件本身能起。",
+    "宿主时钟会在两次 30 分钟调度之间跳 9.5 小时（本轮 00:00 开工 → 09:50 收尾，文件 mtime 与目录名时刻不一致）：轮次标识沿用开工时刻，耗时预算不可用墙钟核对，改按「产物是否完成」判断。",
+    "本轮磁盘开工可用 19849992 KB ≈ 18.9 GiB（>1.5 GiB 阈值）；收尾 demos 本轮 440KB（限 5MB），LAB 21MB。清理：.tmp/pw2（playwright-core 13MB）已删、lab.db-shm/-wal 已删、demos 里指向 .tmp 的 node_modules 软链已删（该链不入 git 且指向必删目录）。全局缓存未动。"
   ],
   "runs": [
     {
@@ -488,6 +516,16 @@
       "cleanup": "已删 demos 内中间件 part1.js/part2.js、LAB/.tmp/three（9.4MB tgz+解包）、.tmp/pw/node_modules（playwright-core）；无本轮起的服务/监听进程（未起 server，产物 file:// 直开）；全局缓存与 ~/.qoder-cn/skills 未动",
       "push": "已推送：git push origin skill-showcase 成功（600f5c9..8873a67，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 600f5c9 是本地 HEAD 祖先故无需 rebase；main / go-gin_react 未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
       "notes": "来源①官方市场第一个候选即中（search_extensions query \"build-game\" → install_extension，installRef 现搜现装）。安全闸门：读全文 SKILL.md+serve.sh+抽查 references 后放行；拒绝 Phase 5 的 here.now 上传（本地内容外发）；serve.sh PID 写死 /tmp 之外故未使用，改 file:// 直开。最大工程点=three r160 离线化：classic 构建内联 + examples/jsm ESM→IIFE 命名空间转换（11 模块 39.8KB），把 SKILL 强制的 bloom/调色/FXAA/OutputPass 链真的装上（SSAO 放弃并已记录）。两条 FAIL 均为我方判据错（跳跃采样窗口、亮度阈值与 vignette 采样位置），已换成理论值对比与局部像素探针。 | 收尾核查：git status 干净（仅本轮 4 项变更已提交）、远端 skill-showcase=8873a67、LAB 21MB（含 .skills 16MB gitignored）、磁盘可用 19853944 KB ≈ 18.9 GiB、lsof 无本轮残留监听（未起任何 server）、全局技能库新增 1 项 build-game（见 installed_by_this_task）。"
+    },
+    {
+      "time": "2026-09-26T00:00+08:00",
+      "skill": "sec-audit-cn",
+      "result": "成功（留用）。产物 demos/20260926-0000-sec-audit-cn/SECURITY-AUDIT.md 11,225B 分级审计报告；严重 0 / 高 2 / 中 5 / 低 2 + 正面清单 5 条；静态扫描 31 命中分诊为 13 有效 / 18 误报；3 组黑盒 PoC 全部真跑（PoC-A 修复前后 3 崩溃→0、PoC-B 篡改链闭环含 reload 持久化与对照组、PoC-C 凭据形状 0 命中 + opaque 度量 + 36 个 SKILL.md 指令面 44%）",
+      "seconds": null,
+      "artifact_size": "440KB（本轮 demos 目录，含 79KB output.log 与 299KB 只读 lab.db 副本）",
+      "cleanup": "已删 .tmp/pw2(13MB playwright-core)、lab.db-shm/-wal、demos 内 node_modules 软链；零本轮残留进程与监听（lsof LISTEN 10 条全属既有进程）",
+      "push": "待推送（见下一条 commit）",
+      "notes": "唯一不产「可见新文件形态」的一轮：产物是对前 7 轮的审计结论 + 修复件。安全闸门：技能零脚本零网络；PoC 全部本机 file:// 或本地 CLI，无外发、无凭据读取、无 sudo。"
     }
   ]
 }

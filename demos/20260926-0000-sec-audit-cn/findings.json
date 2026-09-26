@@ -1,0 +1,592 @@
+{
+ "scannedFiles": 46,
+ "scannedBytes": 2117568,
+ "rules": [
+  {
+   "id": "R01",
+   "owasp": "A03 注入",
+   "sev": "高",
+   "why": "命令名/参数由模板字符串插值 → 参数注入面",
+   "hits": 0
+  },
+  {
+   "id": "R02",
+   "owasp": "A03 注入",
+   "sev": "高",
+   "why": "SQL 文本中插值外部变量",
+   "hits": 4
+  },
+  {
+   "id": "R03",
+   "owasp": "A03 注入",
+   "sev": "严重",
+   "why": "动态代码执行",
+   "hits": 0
+  },
+  {
+   "id": "R04",
+   "owasp": "A03 XSS",
+   "sev": "高",
+   "why": "HTML 汇点，数据注入即脚本执行",
+   "hits": 0
+  },
+  {
+   "id": "R05",
+   "owasp": "A02/A05 密钥",
+   "sev": "严重",
+   "why": "硬编码凭据 / 私钥",
+   "hits": 0
+  },
+  {
+   "id": "R06",
+   "owasp": "A08 完整性",
+   "sev": "高",
+   "why": "未校验远程脚本直接执行",
+   "hits": 1
+  },
+  {
+   "id": "R07",
+   "owasp": "A05 配置",
+   "sev": "中",
+   "why": "关闭浏览器/TLS 安全默认",
+   "hits": 3
+  },
+  {
+   "id": "R08",
+   "owasp": "A01/A05 调试面",
+   "sev": "中",
+   "why": "发布产物中保留可改内部状态的全局调试钩子",
+   "hits": 13
+  },
+  {
+   "id": "R09",
+   "owasp": "A01 访问控制",
+   "sev": "中",
+   "why": "分数/资格由客户端裁定并持久化",
+   "hits": 2
+  },
+  {
+   "id": "R10",
+   "owasp": "A06 依赖",
+   "sev": "中",
+   "why": "运行期从外链加载代码（本沙箱 TLS 还会被重置）",
+   "hits": 0
+  },
+  {
+   "id": "R11",
+   "owasp": "A03/A08 查询语法",
+   "sev": "中",
+   "why": "全文检索查询串若含用户输入未转义 → 检索语法注入",
+   "hits": 8
+  },
+  {
+   "id": "R12",
+   "owasp": "A05 信息泄露",
+   "sev": "低",
+   "why": "原始异常/栈直接落盘或回显",
+   "hits": 0
+  },
+  {
+   "id": "R13",
+   "owasp": "A08 完整性",
+   "sev": "低",
+   "why": "字符串型替换值里的 $& / $' 会二次展开被插入内容",
+   "hits": 0
+  }
+ ],
+ "findings": [
+  {
+   "rule": "R06",
+   "owasp": "A08 完整性",
+   "sev": "高",
+   "file": "demos/20260925-1723-drafter/skill-lab-pipeline-blueprint.html",
+   "line": 450,
+   "why": "未校验远程脚本直接执行",
+   "snip": "<li data-i=\"X2\" class=\"deny\">拒绝把本地内容 POST 到外部地址、拒绝 curl|bash 类无审查管道</li>"
+  },
+  {
+   "rule": "R11",
+   "owasp": "A03/A08 查询语法",
+   "sev": "中",
+   "file": "demos/20260925-1845-sqlite-database-expert/query.mjs",
+   "line": 14,
+   "why": "全文检索查询串若含用户输入未转义 → 检索语法注入",
+   "snip": "WHERE notes_tri MATCH ? ORDER BY rank LIMIT ?`"
+  },
+  {
+   "rule": "R02",
+   "owasp": "A03 注入",
+   "sev": "高",
+   "file": "demos/20260925-1845-sqlite-database-expert/verify.mjs",
+   "line": 30,
+   "why": "SQL 文本中插值外部变量",
+   "snip": "const planLike = rows('EXPLAIN QUERY PLAN SELECT id FROM notes WHERE body LIKE ?', [`%${Q[0]}%`])"
+  },
+  {
+   "rule": "R11",
+   "owasp": "A03/A08 查询语法",
+   "sev": "中",
+   "file": "demos/20260925-1845-sqlite-database-expert/verify.mjs",
+   "line": 32,
+   "why": "全文检索查询串若含用户输入未转义 → 检索语法注入",
+   "snip": "const planFts = rows('EXPLAIN QUERY PLAN SELECT rowid FROM notes_tri WHERE notes_tri MATCH ?', [Q[0]])"
+  },
+  {
+   "rule": "R02",
+   "owasp": "A03 注入",
+   "sev": "高",
+   "file": "demos/20260925-1845-sqlite-database-expert/verify.mjs",
+   "line": 35,
+   "why": "SQL 文本中插值外部变量",
+   "snip": "const L = rows('SELECT id FROM notes WHERE body LIKE ?', [`%${term}%`]).map((r) => r.id);"
+  },
+  {
+   "rule": "R11",
+   "owasp": "A03/A08 查询语法",
+   "sev": "中",
+   "file": "demos/20260925-1845-sqlite-database-expert/verify.mjs",
+   "line": 36,
+   "why": "全文检索查询串若含用户输入未转义 → 检索语法注入",
+   "snip": "const M = rows('SELECT rowid id FROM notes_u61 WHERE notes_u61 MATCH ?', [term]).map((r) => r.id);"
+  },
+  {
+   "rule": "R02",
+   "owasp": "A03 注入",
+   "sev": "高",
+   "file": "demos/20260925-1845-sqlite-database-expert/verify.mjs",
+   "line": 44,
+   "why": "SQL 文本中插值外部变量",
+   "snip": "const like = one('SELECT count(*) c FROM notes WHERE body LIKE ?', [`%${q}%`]).c;"
+  },
+  {
+   "rule": "R11",
+   "owasp": "A03/A08 查询语法",
+   "sev": "中",
+   "file": "demos/20260925-1845-sqlite-database-expert/verify.mjs",
+   "line": 46,
+   "why": "全文检索查询串若含用户输入未转义 → 检索语法注入",
+   "snip": "try { u = one('SELECT count(*) c FROM notes_u61 WHERE notes_u61 MATCH ?', [q]).c; } catch (e) { u = 'ERR:' + e.message.slice(0, 24); }"
+  },
+  {
+   "rule": "R11",
+   "owasp": "A03/A08 查询语法",
+   "sev": "中",
+   "file": "demos/20260925-1845-sqlite-database-expert/verify.mjs",
+   "line": 47,
+   "why": "全文检索查询串若含用户输入未转义 → 检索语法注入",
+   "snip": "try { t = one('SELECT count(*) c FROM notes_tri WHERE notes_tri MATCH ?', [q]).c; } catch (e) { t = 'ERR:' + e.message.slice(0, 24); }"
+  },
+  {
+   "rule": "R11",
+   "owasp": "A03/A08 查询语法",
+   "sev": "中",
+   "file": "demos/20260925-1845-sqlite-database-expert/verify.mjs",
+   "line": 70,
+   "why": "全文检索查询串若含用户输入未转义 → 检索语法注入",
+   "snip": "const before = c.prepare('SELECT count(*) n FROM notes_tri WHERE notes_tri MATCH ?').get('无肌肉脚本').n;"
+  },
+  {
+   "rule": "R11",
+   "owasp": "A03/A08 查询语法",
+   "sev": "中",
+   "file": "demos/20260925-1845-sqlite-database-expert/verify.mjs",
+   "line": 73,
+   "why": "全文检索查询串若含用户输入未转义 → 检索语法注入",
+   "snip": "const afterDel = c.prepare('SELECT count(*) n FROM notes_tri WHERE notes_tri MATCH ?').get('无肌肉脚本').n;"
+  },
+  {
+   "rule": "R11",
+   "owasp": "A03/A08 查询语法",
+   "sev": "中",
+   "file": "demos/20260925-1845-sqlite-database-expert/verify.mjs",
+   "line": 76,
+   "why": "全文检索查询串若含用户输入未转义 → 检索语法注入",
+   "snip": "const rebuilt = c.prepare('SELECT count(*) n FROM notes_tri WHERE notes_tri MATCH ?').get('无肌肉脚本').n;"
+  },
+  {
+   "rule": "R02",
+   "owasp": "A03 注入",
+   "sev": "高",
+   "file": "demos/20260925-1845-sqlite-database-expert/verify.mjs",
+   "line": 93,
+   "why": "SQL 文本中插值外部变量",
+   "snip": "v.exec(`SELECT id FROM runs WHERE skill = '${MAL}'`); // the §4.2 INCORRECT pattern, on a sandbox copy"
+  },
+  {
+   "rule": "R07",
+   "owasp": "A05 配置",
+   "sev": "中",
+   "file": "demos/20260925-1950-graphic-gif/capture.mjs",
+   "line": 23,
+   "why": "关闭浏览器/TLS 安全默认",
+   "snip": "args: ['--no-sandbox', '--disable-gpu', '--hide-scrollbars',"
+  },
+  {
+   "rule": "R09",
+   "owasp": "A01 访问控制",
+   "sev": "中",
+   "file": "demos/20260925-2332-build-game/frostlight-gather.html",
+   "line": 1767,
+   "why": "分数/资格由客户端裁定并持久化",
+   "snip": "function saveBest(){ try{ localStorage.setItem(SAVE_KEY, String(state.best)); }catch(e){} }"
+  },
+  {
+   "rule": "R08",
+   "owasp": "A01/A05 调试面",
+   "sev": "中",
+   "file": "demos/20260925-2332-build-game/frostlight-gather.html",
+   "line": 2317,
+   "why": "发布产物中保留可改内部状态的全局调试钩子",
+   "snip": "window.advanceTime = function(ms){"
+  },
+  {
+   "rule": "R08",
+   "owasp": "A01/A05 调试面",
+   "sev": "中",
+   "file": "demos/20260925-2332-build-game/frostlight-gather.html",
+   "line": 2323,
+   "why": "发布产物中保留可改内部状态的全局调试钩子",
+   "snip": "window.render_game_to_text = function(){"
+  },
+  {
+   "rule": "R08",
+   "owasp": "A01/A05 调试面",
+   "sev": "中",
+   "file": "demos/20260925-2332-build-game/frostlight-gather.html",
+   "line": 2348,
+   "why": "发布产物中保留可改内部状态的全局调试钩子",
+   "snip": "window.__game = { state, CONSTANTS, crystals, wraiths, lights, scene, camera, renderer, fox, composer, bloomPass, gradePass, fxaaPass,"
+  },
+  {
+   "rule": "R09",
+   "owasp": "A01 访问控制",
+   "sev": "中",
+   "file": "demos/20260925-2332-build-game/game.src.html",
+   "line": 136,
+   "why": "分数/资格由客户端裁定并持久化",
+   "snip": "function saveBest(){ try{ localStorage.setItem(SAVE_KEY, String(state.best)); }catch(e){} }"
+  },
+  {
+   "rule": "R08",
+   "owasp": "A01/A05 调试面",
+   "sev": "中",
+   "file": "demos/20260925-2332-build-game/game.src.html",
+   "line": 686,
+   "why": "发布产物中保留可改内部状态的全局调试钩子",
+   "snip": "window.advanceTime = function(ms){"
+  },
+  {
+   "rule": "R08",
+   "owasp": "A01/A05 调试面",
+   "sev": "中",
+   "file": "demos/20260925-2332-build-game/game.src.html",
+   "line": 692,
+   "why": "发布产物中保留可改内部状态的全局调试钩子",
+   "snip": "window.render_game_to_text = function(){"
+  },
+  {
+   "rule": "R08",
+   "owasp": "A01/A05 调试面",
+   "sev": "中",
+   "file": "demos/20260925-2332-build-game/game.src.html",
+   "line": 717,
+   "why": "发布产物中保留可改内部状态的全局调试钩子",
+   "snip": "window.__game = { state, CONSTANTS, crystals, wraiths, lights, scene, camera, renderer, fox, composer, bloomPass, gradePass, fxaaPass,"
+  },
+  {
+   "rule": "R07",
+   "owasp": "A05 配置",
+   "sev": "中",
+   "file": "demos/20260925-2332-build-game/verify.mjs",
+   "line": 29,
+   "why": "关闭浏览器/TLS 安全默认",
+   "snip": "args: ['--no-sandbox', '--disable-gpu', '--hide-scrollbars', '--force-color-profile=srgb', '--mute-audio',"
+  },
+  {
+   "rule": "R08",
+   "owasp": "A01/A05 调试面",
+   "sev": "中",
+   "file": "demos/20260925-2332-build-game/verify.mjs",
+   "line": 65,
+   "why": "发布产物中保留可改内部状态的全局调试钩子",
+   "snip": "window.advanceTime(600);"
+  },
+  {
+   "rule": "R08",
+   "owasp": "A01/A05 调试面",
+   "sev": "中",
+   "file": "demos/20260925-2332-build-game/verify.mjs",
+   "line": 92,
+   "why": "发布产物中保留可改内部状态的全局调试钩子",
+   "snip": "window.advanceTime(16.667); airSteps++;"
+  },
+  {
+   "rule": "R08",
+   "owasp": "A01/A05 调试面",
+   "sev": "中",
+   "file": "demos/20260925-2332-build-game/verify.mjs",
+   "line": 122,
+   "why": "发布产物中保留可改内部状态的全局调试钩子",
+   "snip": "window.advanceTime(120);"
+  },
+  {
+   "rule": "R08",
+   "owasp": "A01/A05 调试面",
+   "sev": "中",
+   "file": "demos/20260925-2332-build-game/verify.mjs",
+   "line": 139,
+   "why": "发布产物中保留可改内部状态的全局调试钩子",
+   "snip": "window.advanceTime(200);"
+  },
+  {
+   "rule": "R08",
+   "owasp": "A01/A05 调试面",
+   "sev": "中",
+   "file": "demos/20260925-2332-build-game/verify.mjs",
+   "line": 163,
+   "why": "发布产物中保留可改内部状态的全局调试钩子",
+   "snip": "window.advanceTime(63000);"
+  },
+  {
+   "rule": "R08",
+   "owasp": "A01/A05 调试面",
+   "sev": "中",
+   "file": "demos/20260925-2332-build-game/verify.mjs",
+   "line": 218,
+   "why": "发布产物中保留可改内部状态的全局调试钩子",
+   "snip": "window.advanceTime(700);"
+  },
+  {
+   "rule": "R08",
+   "owasp": "A01/A05 调试面",
+   "sev": "中",
+   "file": "demos/20260925-2332-build-game/verify.mjs",
+   "line": 281,
+   "why": "发布产物中保留可改内部状态的全局调试钩子",
+   "snip": "window.__game.scene.traverse(o => {"
+  },
+  {
+   "rule": "R07",
+   "owasp": "A05 配置",
+   "sev": "中",
+   "file": ".tmp/pw/probe.mjs",
+   "line": 5,
+   "why": "关闭浏览器/TLS 安全默认",
+   "snip": "const b = await chromium.launch({ executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', args:['--no-sandbox','--disable-gpu',"
+  }
+ ],
+ "opaque": [
+  {
+   "file": "demos/20260925-1810-algorithmic-art/art-index.html",
+   "bytes": 998549,
+   "lines": 620,
+   "opaqueLines": 1,
+   "opaqueBytes": 977030,
+   "opaqueShare": 0.978
+  },
+  {
+   "file": "demos/20260925-2332-build-game/frostlight-gather.html",
+   "bytes": 750620,
+   "lines": 2357,
+   "opaqueLines": 1,
+   "opaqueBytes": 669555,
+   "opaqueShare": 0.892
+  },
+  {
+   "file": "records/work-log.md",
+   "bytes": 26646,
+   "lines": 31,
+   "opaqueLines": 8,
+   "opaqueBytes": 25183,
+   "opaqueShare": 0.945
+  },
+  {
+   "file": "state/state.json",
+   "bytes": 56348,
+   "lines": 493,
+   "opaqueLines": 5,
+   "opaqueBytes": 4956,
+   "opaqueShare": 0.088
+  },
+  {
+   "file": ".tmp/merge_r4.py",
+   "bytes": 8604,
+   "lines": 75,
+   "opaqueLines": 2,
+   "opaqueBytes": 1963,
+   "opaqueShare": 0.228
+  },
+  {
+   "file": ".tmp/merge_r7.py",
+   "bytes": 9920,
+   "lines": 84,
+   "opaqueLines": 1,
+   "opaqueBytes": 723,
+   "opaqueShare": 0.073
+  }
+ ],
+ "thirdPartySkillPackages": 36,
+ "skillFindings": [
+  {
+   "rule": "S04",
+   "file": "GLOBAL build-game/SKILL.md",
+   "line": 341,
+   "why": "把本地内容外发到远端",
+   "snip": "This uploads the game and returns a live URL like `https://bright-canvas-a7k2.here.now/`. The link lasts 24 hours (anonymous) or permanently (with `HERENOW_API_"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL express-nodejs-expert/SKILL.md",
+   "line": 123,
+   "why": "把本地内容外发到远端",
+   "snip": "app.post('/api/data', (req, res) => {"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL express-nodejs-expert/SKILL.md",
+   "line": 231,
+   "why": "把本地内容外发到远端",
+   "snip": "app.post('/api/users', (req, res) => {/* ... */});"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL express-nodejs-expert/SKILL.md",
+   "line": 465,
+   "why": "把本地内容外发到远端",
+   "snip": "app.post('/api/data', (req, res) => {"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL express-nodejs-expert/SKILL.md",
+   "line": 592,
+   "why": "把本地内容外发到远端",
+   "snip": "app.post('/api/proxy', async (req, res) => {"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL express-nodejs-expert/SKILL.md",
+   "line": 614,
+   "why": "把本地内容外发到远端",
+   "snip": "app.post('/api/proxy', async (req, res) => {"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL express-nodejs-expert/SKILL.md",
+   "line": 666,
+   "why": "把本地内容外发到远端",
+   "snip": "app.post('/api/proxy', async (req, res) => {"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL express-nodejs-expert/SKILL.md",
+   "line": 700,
+   "why": "把本地内容外发到远端",
+   "snip": "app.post('/api/search', async (req, res) => {"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL express-nodejs-expert/SKILL.md",
+   "line": 812,
+   "why": "把本地内容外发到远端",
+   "snip": "app.post('/api/login', strictLimiter, (req, res) => {"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL express-nodejs-expert/SKILL.md",
+   "line": 822,
+   "why": "把本地内容外发到远端",
+   "snip": "app.post('/api/users',"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL express-nodejs-expert/SKILL.md",
+   "line": 1086,
+   "why": "把本地内容外发到远端",
+   "snip": "describe('POST /api/users', () => {"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL express-nodejs-expert/SKILL.md",
+   "line": 1091,
+   "why": "把本地内容外发到远端",
+   "snip": ".post('/api/users')"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL express-nodejs-expert/SKILL.md",
+   "line": 1101,
+   "why": "把本地内容外发到远端",
+   "snip": ".post('/api/users')"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL express-nodejs-expert/SKILL.md",
+   "line": 1115,
+   "why": "把本地内容外发到远端",
+   "snip": "describe('POST /api/proxy', () => {"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL express-nodejs-expert/SKILL.md",
+   "line": 1121,
+   "why": "把本地内容外发到远端",
+   "snip": ".post('/api/proxy')"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL express-nodejs-expert/SKILL.md",
+   "line": 1137,
+   "why": "把本地内容外发到远端",
+   "snip": ".post('/api/proxy')"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL express-nodejs-expert/SKILL.md",
+   "line": 1248,
+   "why": "把本地内容外发到远端",
+   "snip": "app.post('/api/data', (req, res) => {"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL express-nodejs-expert/SKILL.md",
+   "line": 1258,
+   "why": "把本地内容外发到远端",
+   "snip": "app.post('/api/data', (req, res) => {"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL graphic-gif/SKILL.md",
+   "line": 85,
+   "why": "把本地内容外发到远端",
+   "snip": "3. Call Kling API: `POST https://api.klingai.com/v1/videos/image2video` with `image_url` and `prompt` describing the motion"
+  },
+  {
+   "rule": "S04",
+   "file": "GLOBAL graphic-gif/SKILL.md",
+   "line": 293,
+   "why": "把本地内容外发到远端",
+   "snip": "3. Upload to Kling image-to-video endpoint"
+  },
+  {
+   "rule": "S01",
+   "file": "GLOBAL sec-audit-cn/SKILL.md",
+   "line": 191,
+   "why": "要求代理执行未校验远程脚本",
+   "snip": "- [ ] 更新包、CI 制品与镜像校验签名或摘要；禁止未校验的远程脚本 `curl | bash`。"
+  },
+  {
+   "rule": "S06",
+   "file": "GLOBAL sec-audit-cn/SKILL.md",
+   "line": 352,
+   "why": "包内含疑似凭据",
+   "snip": "const API_KEY = 'sk-1234567890abcdef'"
+  },
+  {
+   "rule": "S02",
+   "file": "GLOBAL skill-push/SKILL.md",
+   "line": 100,
+   "why": "rm -rf 且目标不在常见构建产物白名单内",
+   "snip": "> T=/tmp/partial && rm -rf $T && mkdir -p $T/scripts $T/config"
+  }
+ ]
+}

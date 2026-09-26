@@ -1,0 +1,32 @@
+[
+ {
+  "file": "demos/20260925-1810-algorithmic-art/art-index.html",
+  "lib": "p5",
+  "bytes": 998549,
+  "sha256": "a6220755c0cc6c3f77a15a5bfb1f7775619d2e7fc58f7981725c12cf37ae8b1e",
+  "version_banner": "/*! p5.js v1.7.0 July 10, 2023 */",
+  "sri_or_hash_in_repo_before_this_run": false,
+  "dependency_lockfile": false
+ },
+ {
+  "file": "demos/20260925-2332-build-game/frostlight-gather.html",
+  "lib": "three",
+  "bytes": 750620,
+  "sha256": "ac07ae3246f654ea140d224aab7a1e8d7d3df280c0ad8914aef356016c07053e",
+  "version_banner": null,
+  "sri_or_hash_in_repo_before_this_run": false,
+  "dependency_lockfile": false
+ },
+ {
+  "file": "demos/20260925-2332-build-game/postfx.bundle.js",
+  "lib": "three-addons",
+  "bytes": 39825,
+  "sha256": "e8a1e205f5858b452899eae6b57dc7309fb74cfb640f201c3d0ebd1c3880cc67",
+  "version_banner": null,
+  "sri_or_hash_in_repo_before_this_run": false,
+  "dependency_lockfile": false
+ },
+ {
+  "note": "本清单本身即修复件：只登记「可复现取证」的三项——文件路径/字节数/sha256。第三方 tarball 的 p5 版来自其横幅注释(v1.7.0)，three 版来自 game.src.html:78 的人工注释(r160)，产物内无可机检来源；npmmirror 的 tgz 不提供上游签名，故摘要只能对本地产物求。下次重建时须把 tarball 的 sha256 一并记进本文件（见 report 的修复清单 F-6）。"
+ }
+]
