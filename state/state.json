@@ -424,7 +424,7 @@
     "交付物里 89–98% 字节可能是单行内联第三方库（>400 字符行 = 人和 grep 都读不了）。度量法：按行长分桶算 opaqueBytes/opaqueShare 写进 findings.json，比逐文件人眼扫快且可复现。three.min.js 压掉了版本横幅，产物内无可机检来源 → 只能靠 sha256 清单自证。",
     "对照组的异常率是判据健康度探针：本轮 TARGET 默认路径写错后出现「9 例中 9 例崩溃」，SyntaxError / Cannot find module 都会伪装成漏洞。任何「全部失败」先 `node <target>` 空跑一次确认被测件本身能起。",
     "宿主时钟会在两次 30 分钟调度之间跳 9.5 小时（本轮 00:00 开工 → 09:50 收尾，文件 mtime 与目录名时刻不一致）：轮次标识沿用开工时刻，耗时预算不可用墙钟核对，改按「产物是否完成」判断。",
-    "本轮磁盘开工可用 19849992 KB ≈ 18.9 GiB（>1.5 GiB 阈值）；收尾 demos 本轮 440KB（限 5MB），LAB 21MB。清理：.tmp/pw2（playwright-core 13MB）已删、lab.db-shm/-wal 已删、demos 里指向 .tmp 的 node_modules 软链已删（该链不入 git 且指向必删目录）。全局缓存未动。"
+    "本轮磁盘开工可用 19849992 KB ≈ 18.9 GiB（>1.5 GiB 阈值）；收尾磁盘 18042944KB ≈ 17.2 GiB（比开工少 1.7 GiB，兄弟实验室同期在写）；demos 本轮 440KB（限 5MB），LAB 21MB。清理：.tmp/pw2（playwright-core 13MB）已删、lab.db-shm/-wal 已删、demos 里指向 .tmp 的 node_modules 软链已删（该链不入 git 且指向必删目录）。全局缓存未动。"
   ],
   "runs": [
     {
@@ -524,8 +524,8 @@
       "seconds": null,
       "artifact_size": "440KB（本轮 demos 目录，含 79KB output.log 与 299KB 只读 lab.db 副本）",
       "cleanup": "已删 .tmp/pw2(13MB playwright-core)、lab.db-shm/-wal、demos 内 node_modules 软链；零本轮残留进程与监听（lsof LISTEN 10 条全属既有进程）",
-      "push": "待推送（见下一条 commit）",
-      "notes": "唯一不产「可见新文件形态」的一轮：产物是对前 7 轮的审计结论 + 修复件。安全闸门：技能零脚本零网络；PoC 全部本机 file:// 或本地 CLI，无外发、无凭据读取、无 sudo。"
+      "push": "已推送：git push origin skill-showcase 成功（64b4386..0b9b385，两个 commit：第8轮验证 + 清理 SQLite sidecar 临时件；普通推送，无 --force / 无 --no-verify）；fetch 确认远端 64b4386 是本地 HEAD 祖先 → 无需 rebase；main / go-gin_react / crypto-forecast 分支未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token",
+      "notes": "唯一不产「可见新文件形态」的一轮：产物是对前 7 轮的审计结论 + 修复件。安全闸门：技能零脚本零网络；PoC 全部本机 file:// 或本地 CLI，无外发、无凭据读取、无 sudo。。收尾核查：git status 干净（0 项未提交）、demos 本轮 440KB、LAB 21MB、磁盘可用 18042944KB ≈ 17.2 GiB（开工 18.9 GiB，兄弟实验室同时在写）、lsof LISTEN 10 条（全属既有进程，零本轮残留）、ffmpeg/headless Chrome 进程 0。全局副作用 = 无（本轮未安装任何技能，只用本机已装的 sec-audit-cn）。"
     }
   ]
 }
