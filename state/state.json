@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T14:22+08:00",
+  "updated": "2026-09-26T14:30+08:00",
   "tried": [
     {
       "skill": "drafter",
@@ -1051,10 +1051,10 @@
       ],
       "notes": "来源①第一个候选即中。历轮第一个真自动布局引擎产物（矢量 SVG 图），打破 drafter『不含数据→图形映射』的局限。三条真实报错全走技能自己的 Pattern 8 回路修复：①SKILL.md 参数表的 -w 在 v12 不存在（真名 --size）；②timeline 周期文本含冒号必 parse error（冒号是分隔符）；③stateDiagram 状态 ID 混排中文+连字符 INVALID（改 ASCII ID + 描述行）。SKILL『禁止自动安装 mmdc』条款与无人值守冲突，按『不写全局』本意改道 LAB 本地安装（run.sh 已复现）。",
       "final_check": {
-        "git_status": "回填后二次提交再推",
+        "git_status": "clean (0 项，回填提交 5dca3ba 已推)",
         "pushed": "1afb9d9",
         "demos_this_round_kb": 512,
-        "lab_kb": null
+        "lab_kb": 76552
       }
     }
   ],
