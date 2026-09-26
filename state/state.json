@@ -774,10 +774,10 @@
       "template_created": false,
       "disk": {
         "df_k_avail_before": 15150064,
-        "df_k_avail_after": 15145244,
+        "df_k_avail_after": 15117184,
         "lab_total_bytes_human": "114M（其中 .git 18M；sites/recruitment-ats-pipeline 65M 是别的会话产物未动）",
         "scenario_dir_human": "3.0M / 75 文件（上限 5MB）：backend 232K + web(含 dist 308K) 496K + preview 912K + scripts 88K + evidence 1.3M（三张整页截图）",
-        "note": "开工 df 可用 15,150,064KB≈14.4GiB（85% 已用），高于 1.5GiB 熔断线；收工 15,145,244KB≈14.4GiB。删除：web/node_modules、/tmp 下本轮全部临时目录（etk-* 二进制/库三件套/日志/探针 JSON/截图）与 evidence/chrome-profile。共享缓存（~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache）未动，全程无 go clean -cache/-testcache。本轮端口 :18901-:18904/:18907/:18908 + CDP :19833-:19862，逐个 lsof→PID→ps -o command= 核对命令行后 kill，收工 lsof 复核监听数 0（无残留 headless Chrome）",
+        "note": "开工 df 可用 15,150,064KB≈14.4GiB（85% 已用），高于 1.5GiB 熔断线；收工 15,145,244KB≈14.4GiB。删除：web/node_modules、/tmp 下本轮全部临时目录（etk-* 二进制/库三件套/日志/探针 JSON/截图）与 evidence/chrome-profile。共享缓存（~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache）未动，全程无 go clean -cache/-testcache。本轮端口 :18901-:18904/:18907/:18908 + CDP :19833-:19862，逐个 lsof→PID→ps -o command= 核对命令行后 kill，收工 lsof 复核监听数 0（无残留 headless Chrome）（第 14 轮共 5 笔提交，最后一笔后 df 复测 15,117,184KB≈14.4GiB）",
         "df_k_avail_final": 15130260
       },
       "volume": {
@@ -816,7 +816,7 @@
       ],
       "push": {
         "branch": "go-gin_react",
-        "result": "成功：远端 go-gin_react bafb21d..4712556..8812eef..dbb1995（3 笔，均已推送并同步）",
+        "result": "成功：远端 go-gin_react bafb21d..4712556..8812eef..dbb1995..6614553..485b27b（5 笔，全部同步）",
         "commit": "4712556（场景 78 文件 / +25,512 行）+ 8812eef（收工审计）+ dbb1995（README 说明补充）",
         "note": "git fetch origin go-gin_react → git rebase FETCH_HEAD → 普通 git push origin go-gin_react；未 --force、未 --no-verify、未碰 main、未改任何全局 git 配置，身份只用命令行内联 -c user.name=sunc-Q -c user.email=sunc-Q@users.noreply.github.com；全程走 SSH 键，命令行与文件里无 token/密钥（ADMIN_TOKEN 由 openssl rand 现场生成、只经环境变量注入，README/evidence 里只有占位符）；只 git add 本任务自己的路径，三个不属于本任务的未跟踪目录（clinic-appointment-desk / charity-donation-progress / recruitment-ats-pipeline）不提交不删除"
       }
