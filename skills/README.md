@@ -18,7 +18,7 @@
 | `frontend-development/` | — | 2 / 32KB | 4 | ~/.qoder-cn/skills/frontend-development |
 | `ppt-generator/` | 1.0.0 | 195 / 1671KB | 3 | ~/.qoder-cn/skills/ppt-generator |
 | `ascii-project-dashboard/` | — | 1 / 8KB | 1 | ~/.qoder-cn/skills/ascii-project-dashboard |
-| `shader/` | 1.0.0 | 23 / 44KB | 1 | ~/.qoder-cn/skills/shader |
+| `shader/` | 1.0.0 | 23 / 44KB | 3 | ~/.qoder-cn/skills/shader |
 
 ## 重新同步某个技能
 

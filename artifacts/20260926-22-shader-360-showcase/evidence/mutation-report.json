@@ -1,0 +1,127 @@
+{
+  "arms": 8,
+  "caught": 6,
+  "gaps": 2,
+  "blindArms": [
+    {
+      "id": "M-shading-frozen",
+      "gap": "分区常亮（不随视角转）",
+      "caught": false
+    },
+    {
+      "id": "M-facing-half-turn",
+      "gap": "朝向相位反 180°（镀色面长在背面）",
+      "caught": false
+    }
+  ],
+  "results": [
+    {
+      "id": "M-hardcoded-number",
+      "suite": "check-node",
+      "expect": "DOM文本节点零数字",
+      "note": "把数字写进 DOM 骨架 → 单一事实源断言必须红",
+      "blind": null,
+      "caught": true,
+      "exitStatus": 1,
+      "failedCount": 3,
+      "firstFails": [
+        "B/vitrine-DOM文本节点零数字",
+        "B/plaque-DOM文本节点零数字",
+        "B/industrial-DOM文本节点零数字"
+      ]
+    },
+    {
+      "id": "M-face-shift",
+      "suite": "check-node",
+      "expect": "G/G-GLSL每个标量常量都在JSON里",
+      "note": "分区阈值挪到 JSON 之外 → 镜像断言必须红",
+      "blind": null,
+      "caught": true,
+      "exitStatus": 1,
+      "failedCount": 2,
+      "firstFails": [
+        "G/G-GLSL每个标量常量都在JSON里",
+        "G/G-shading阈值按名双向镜像"
+      ]
+    },
+    {
+      "id": "M-shared-geometry",
+      "suite": "check-node",
+      "expect": "C-geometry三页相同",
+      "note": "偷偷改一皮肤的几何 → 逐字节共用断言必须红",
+      "blind": null,
+      "caught": true,
+      "exitStatus": 1,
+      "failedCount": 2,
+      "firstFails": [
+        "C/C-geometry三页相同",
+        "C/C-fragShared三页相同"
+      ]
+    },
+    {
+      "id": "M-time-leak",
+      "suite": "check-node",
+      "expect": "H-几何段零uTime",
+      "note": "让动画相位污染求交 → 冻结时钟断言必须红",
+      "blind": null,
+      "caught": true,
+      "exitStatus": 1,
+      "failedCount": 3,
+      "firstFails": [
+        "C/C-geometry三页相同",
+        "C/C-fragShared三页相同",
+        "H/H-几何段零uTime"
+      ]
+    },
+    {
+      "id": "M-shading-frozen",
+      "suite": "check-browser",
+      "expect": "分区色心跟随壶嘴面",
+      "note": "把朝向门控整个去掉：着色不再随方位变化。色心/色和判据全绿 = 只测了「分了区」，没测「分区在转」。",
+      "blind": "分区常亮（不随视角转）",
+      "caught": false,
+      "exitStatus": 0,
+      "failedCount": 0,
+      "firstFails": []
+    },
+    {
+      "id": "M-facing-half-turn",
+      "suite": "check-browser",
+      "expect": "分区色心跟随壶嘴面",
+      "note": "剪影/几何一个像素都不动，只有着色翻到背面。全绿即证明 alpha 类判据看不见着色手性。",
+      "blind": "朝向相位反 180°（镀色面长在背面）",
+      "caught": false,
+      "exitStatus": 0,
+      "failedCount": 0,
+      "firstFails": []
+    },
+    {
+      "id": "M-plaque-shimmers",
+      "suite": "check-browser",
+      "expect": "uTime 完全无影响",
+      "note": "哑光石膏皮肤偷偷长出呼吸高光 → 冻结时钟下换 uTime 像素必须不动，这条浏览器判据必须红（证明着色像素确实在被看）",
+      "blind": null,
+      "caught": true,
+      "exitStatus": 1,
+      "failedCount": 1,
+      "firstFails": [
+        "time.plaque/plaque：uTime 完全无影响"
+      ]
+    },
+    {
+      "id": "M-fake360",
+      "suite": "check-browser",
+      "expect": "实测锚点=声明锚点",
+      "note": "假 360°：读数在动、像素不动 → 三向核对必须红",
+      "blind": null,
+      "caught": true,
+      "exitStatus": 1,
+      "failedCount": 18,
+      "firstFails": [
+        "sweep.vitrine/镜像恒等 bandCx(θ)+bandCx(180−θ)=W−1 且面积/包围盒互换",
+        "sweep.vitrine/转 180° 顶带换边",
+        "sweep.vitrine/分区色心跟随壶嘴面（含镜像）"
+      ]
+    }
+  ]
+}

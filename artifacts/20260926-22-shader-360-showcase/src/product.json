@@ -1,0 +1,291 @@
+{
+  "$comment": "本页唯一事实源。页面上的每一个数字都必须能由这份 JSON 现推；build.mjs 只代入，check-node.mjs 独立复算。",
+  "product": {
+    "brand": "墨准 MOZHUN",
+    "model": "MZ-3",
+    "name": "手冲壶",
+    "nameEn": "Gooseneck Kettle",
+    "volumeMl": 700,
+    "bodyMaterial": "304 不锈钢",
+    "coatingOptions": [
+      "哑光陶瓷釉",
+      "拉丝原色",
+      "安全黄喷涂"
+    ],
+    "launchDate": "2026-11-03",
+    "priceCny": 689,
+    "demoDisclaimer": "本页为技能验证用的虚构商品示例，不构成售卖；下单、库存与客服均为占位文案。"
+  },
+  "geometry": {
+    "$comment": "单位=米，与着色器里的 SDF 常量一一对应；world x 正方向=壶嘴侧。spoutTip 是最高特征点，用于推导 topband 判据的期望值。",
+    "body": {
+      "halfHeight": 0.3,
+      "radius": 0.58,
+      "fillet": 0.16
+    },
+    "base": {
+      "yCenter": -0.42,
+      "halfHeight": 0.06,
+      "radius": 0.46
+    },
+    "lid": {
+      "yCenter": 0.4,
+      "halfHeight": 0.05,
+      "radius": 0.3,
+      "fillet": 0.05
+    },
+    "knob": {
+      "center": [
+        0,
+        0.52,
+        0
+      ],
+      "radius": 0.065
+    },
+    "spout": {
+      "segments": [
+        {
+          "a": [
+            0.42,
+            -0.12,
+            0
+          ],
+          "b": [
+            0.7,
+            0.1,
+            0
+          ],
+          "r": 0.075
+        },
+        {
+          "a": [
+            0.7,
+            0.1,
+            0
+          ],
+          "b": [
+            0.8,
+            0.4,
+            0
+          ],
+          "r": 0.062
+        },
+        {
+          "a": [
+            0.8,
+            0.4,
+            0
+          ],
+          "b": [
+            0.72,
+            0.62,
+            0
+          ],
+          "r": 0.05
+        },
+        {
+          "a": [
+            0.72,
+            0.62,
+            0
+          ],
+          "b": [
+            0.6,
+            0.7,
+            0
+          ],
+          "r": 0.04
+        }
+      ],
+      "tip": [
+        0.6,
+        0.7,
+        0
+      ],
+      "maxX": 0.8,
+      "minVisibleYAbove": 0.62
+    },
+    "handle": {
+      "center": [
+        -0.52,
+        0.12,
+        0
+      ],
+      "ringRadius": 0.3,
+      "tubeRadius": 0.05,
+      "cutX": -0.06,
+      "topY": 0.414,
+      "minX": -0.82
+    },
+    "bounds": {
+      "$comment": "求交前视线先与这个包围球求交（sphereBounds）；球半径必须装得下全部特征，否则商品会被切掉。check-node 用其它几何字段现算需求半径并比对。",
+      "sphereRadius": 1.12
+    }
+  },
+  "camera": {
+    "distance": 3.2,
+    "targetY": 0.05,
+    "fovDeg": 34,
+    "elevationClampDeg": [
+      4,
+      35
+    ],
+    "azimuthUnit": "radian",
+    "azimuthWrap": "tau",
+    "degPerRadian": 57.29577951308232
+  },
+  "shading": {
+    "marchSteps": 96,
+    "marchEps": 0.0009,
+    "marchMinStep": 0.0035,
+    "normalEpsilon": 0.0012,
+    "aoRings": 4,
+    "aoStep": 0.016,
+    "aoFalloff": 0.72,
+    "aoGain": 2.2,
+    "zoneSpoutX": 0.6,
+    "zoneBrassY": 0.47,
+    "zoneLidR": 0.32,
+    "bandYLow": 0.02,
+    "bandYHigh": 0.16
+  },
+  "controls": {
+    "dragSensitivityDegPerPx": 0.55,
+    "elevationSensitivityDegPerPx": 0.12,
+    "keyboardStepDeg": 15,
+    "spinDegPerSec": 30,
+    "maxDevicePixelRatio": 2,
+    "backingStorePx": 420
+  },
+  "presets": [
+    {
+      "id": "spout-right",
+      "label": "壶嘴在右",
+      "azDeg": 0,
+      "elDeg": 8,
+      "expectTopband": "right"
+    },
+    {
+      "id": "spout-near",
+      "label": "壶嘴朝向观众",
+      "azDeg": 90,
+      "elDeg": 8,
+      "expectTopband": "center"
+    },
+    {
+      "id": "spout-left",
+      "label": "壶嘴在左",
+      "azDeg": 180,
+      "elDeg": 8,
+      "expectTopband": "left"
+    },
+    {
+      "id": "spout-far",
+      "label": "壶嘴背向观众",
+      "azDeg": 270,
+      "elDeg": 8,
+      "expectTopband": "center"
+    },
+    {
+      "id": "top-down",
+      "label": "俯视壶盖",
+      "azDeg": 0,
+      "elDeg": 35,
+      "expectTopband": "right"
+    }
+  ],
+  "specTable": [
+    {
+      "k": "容量",
+      "v": "700 ml"
+    },
+    {
+      "k": "壶口内径",
+      "v": "82 mm"
+    },
+    {
+      "k": "空壶重",
+      "v": "710 g",
+      "note": "等于 parts[] 六件质量之和（check-node E 组现算比对）"
+    },
+    {
+      "k": "壶嘴内径",
+      "v": "6.5 mm"
+    },
+    {
+      "k": "热源",
+      "v": "电磁/燃气通用"
+    },
+    {
+      "k": "保修",
+      "v": "24 个月"
+    }
+  ],
+  "parts": [
+    {
+      "no": "MZ3-BODY",
+      "name": "壶身",
+      "material": "304 不锈钢 0.6 mm",
+      "massG": 402,
+      "note": "一体拉伸"
+    },
+    {
+      "no": "MZ3-SPNT",
+      "name": "鹅颈壶嘴",
+      "material": "304 无缝管",
+      "massG": 74,
+      "note": "四段拟合轴线"
+    },
+    {
+      "no": "MZ3-HNDL",
+      "name": "侧把手",
+      "material": "酚醛树脂",
+      "massG": 58,
+      "note": "半环，切口朝壶身"
+    },
+    {
+      "no": "MZ3-LID",
+      "name": "壶盖",
+      "material": "304 + 硅胶圈",
+      "massG": 46,
+      "note": "含密封圈"
+    },
+    {
+      "no": "MZ3-KNOB",
+      "name": "盖钮",
+      "material": "黄铜镀镍",
+      "massG": 12,
+      "note": "回转体，视角不变量"
+    },
+    {
+      "no": "MZ3-BASE",
+      "name": "底座",
+      "material": "锌合金",
+      "massG": 118,
+      "note": "配重"
+    }
+  ],
+  "styles": [
+    {
+      "id": "vitrine",
+      "name": "射灯橱窗",
+      "shade": "glossy-ceramic",
+      "mood": "dark-theatre",
+      "claim": "暗场射灯＋描边铜线：把展台当成夜里的一件橱窗，商品靠自身高光从黑色里浮出来。"
+    },
+    {
+      "id": "plaque",
+      "name": "展签美术馆",
+      "shade": "matte-plaster",
+      "mood": "neutral-museum",
+      "claim": "展签压画框：米灰墙面＋柔和扩散投影，商品当成挂在墙上的实物，页面不抢话。"
+    },
+    {
+      "id": "industrial",
+      "name": "工业配置器",
+      "shade": "brushed-safety",
+      "mood": "high-key-shop",
+      "claim": "配置单口径：硬投影＋等宽数字＋大写标签，把商品当成一件可选型的设备。"
+    }
+  ]
+}

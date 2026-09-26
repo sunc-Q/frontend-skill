@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>墨准 MOZHUN MZ-3 · 手冲壶 360° 展台 · 展签美术馆</title>
+<!--@STYLE:BEGIN-->
+<style>
+/* ============================================================
+   SKIN plaque · 展签美术馆（米灰展墙 / 无框悬浮 / 白卡展签）
+   指纹：零描边 + 软扩散投影塑形 + radius 18px + 原大小写标题 + 几何无衬线
+   与 vitrine 的分隔手法互斥（那边靠 0.5px 铜线描边、零投影），与 industrial 互斥（那边 2px 硬描边 + 零模糊硬投影）。
+   ============================================================ */
+:root {
+  --p-wall: #e9e6df;
+  --p-card: #f7f6f3;
+  --p-body: #d9d3c8;
+  --p-patch: #8d9a86;
+  --p-ambient: #cdd4c9;
+  --p-ink: #23252a;
+  --p-muted: #5f645d;
+  --p-line: #b9bdb2;
+  --p-accent: #4d6b57;
+  --p-shadow: rgba(35, 37, 42, 0.3);
+  --font-display: "Avenir Next", "PingFang SC", "Segoe UI", "Noto Sans CJK SC", sans-serif;
+  --font-body: "Avenir Next", "PingFang SC", "Segoe UI", "Noto Sans CJK SC", sans-serif;
+  --font-num: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+  --radius: 18px;
+  --gap: clamp(16px, 2.6vw, 30px);
+  --rule: 0px;
+}
+* { box-sizing: border-box; }
+html { background: var(--p-wall); }
+body {
+  margin: 0 auto;
+  padding: clamp(20px, 4vw, 56px) clamp(16px, 5vw, 60px) 44px;
+  background: var(--p-wall);
+  color: var(--p-ink);
+  font-family: var(--font-body);
+  font-size: 16.5px;
+  line-height: 1.8;
+  max-width: 1120px;
+}
+.skip { position: absolute; left: -9999px; top: 0; }
+.skip:focus {
+  left: 8px; top: 8px; padding: 8px 14px;
+  background: var(--p-card); color: var(--p-ink);
+  box-shadow: 0 10px 26px -12px var(--p-shadow); z-index: 9;
+}
+.mast { margin-bottom: calc(var(--gap) * 1.6); }
+.mast-kicker {
+  margin: 0 0 8px;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--p-accent);
+}
+h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--p-ink);
+}
+.h1-en { display: block; font-size: 0.3em; font-weight: 400; letter-spacing: 0.06em; color: var(--p-muted); margin-top: 8px; }
+.mast-tag { margin: 14px 0 0; font-size: 16px; color: var(--p-muted); max-width: 46ch; }
+.sec-title {
+  margin: 0 0 14px;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--p-ink);
+}
+section { margin-bottom: calc(var(--gap) * 2.2); }
+.stage-col { min-width: 0; }
+.stage-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--gap); }
+.stage {
+  position: relative;
+  margin: 0;
+  padding: clamp(10px, 2vw, 26px);
+  background: linear-gradient(180deg, var(--p-card) 0%, var(--p-wall) 100%);
+  border: var(--rule) solid transparent;
+  border-radius: var(--radius);
+  box-shadow: 0 26px 54px -26px var(--p-shadow);
+  overflow: hidden;
+}
+.stage-plinth {
+  position: absolute;
+  left: 22%; right: 22%; bottom: 12%; height: 7%;
+  border-radius: 50%;
+  background: radial-gradient(58% 100% at 50% 50%, var(--p-line) 0%, transparent 70%);
+  opacity: 0.75;
+}
+#gl {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  aspect-ratio: 1 / 1;
+  touch-action: none;
+  cursor: grab;
+  outline: none;
+}
+#gl:focus-visible { box-shadow: 0 0 0 3px var(--p-accent); border-radius: 12px; }
+#gl:active { cursor: grabbing; }
+.stage-light { display: none; }
+.stage-cap {
+  margin-top: 6px;
+  text-align: center;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: var(--p-muted);
+  position: relative;
+}
+.drag-hint { margin: 12px 0 0; font-size: 13.5px; color: var(--p-muted); text-align: center; }
+.viewer-meta {
+  background: var(--p-card);
+  border-radius: var(--radius);
+  padding: clamp(14px, 2vw, 24px);
+  box-shadow: 0 18px 34px -22px var(--p-shadow);
+}
+.readout {
+  margin: 0 0 14px;
+  font-family: var(--font-num);
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  color: var(--p-ink);
+}
+.presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+button, select, option {
+  font: inherit;
+  font-size: 14px;
+  color: var(--p-ink);
+  background: var(--p-wall);
+  border: 0 solid transparent;
+  border-radius: 999px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+button:hover { background: var(--p-ambient); }
+button[aria-pressed="true"] { background: var(--p-accent); color: var(--p-card); }
+button:focus-visible, select:focus-visible, a:focus-visible { outline: 3px solid var(--p-accent); outline-offset: 2px; }
+.viewer-actions { display: flex; gap: 8px; margin-bottom: 16px; }
+.coatings-label { margin: 18px 0 6px; font-size: 13px; color: var(--p-accent); }
+.coatings { margin: 0 0 18px; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 14.5px; color: var(--p-muted); }
+.coatings li::before { content: "· "; color: var(--p-accent); }
+.table { width: 100%; border-collapse: collapse; font-size: 14.5px; margin: 0 0 10px; }
+.table caption {
+  text-align: left; padding-bottom: 8px;
+  font-size: 13px; letter-spacing: 0.02em; color: var(--p-accent);
+}
+.table th, .table td {
+  padding: 8px 10px 8px 0;
+  border-bottom: 1px solid var(--p-line);
+  text-align: left;
+  font-weight: 400;
+}
+.table thead th { font-size: 12.5px; color: var(--p-muted); border-bottom-width: 1px; }
+.table tbody tr[data-active="1"] td, .table tbody tr[data-active="1"] th { color: var(--p-ink); font-weight: 500; }
+.table td, #partsTotalCell, .readout { font-variant-numeric: tabular-nums; }
+.table tfoot th { font-size: 13px; color: var(--p-muted); border-bottom: 0; }
+#partsTotalCell { color: var(--p-ink); font-weight: 600; }
+.note { margin: 0 0 8px; font-size: 12.5px; line-height: 1.65; color: var(--p-muted); }
+.spec-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: var(--gap); }
+.notes { margin: 0; padding-left: 20px; display: grid; gap: 10px; font-size: 15px; color: var(--p-muted); }
+.notes li::marker { color: var(--p-accent); }
+.gl-badges {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px 16px;
+  font-family: var(--font-num);
+  font-size: 12px;
+  color: var(--p-muted);
+}
+.gl-badges b { font-weight: 500; color: var(--p-ink); }
+.foot {
+  margin-top: 30px; padding-top: var(--gap);
+  border-top: 1px solid var(--p-line);
+  font-size: 13px; color: var(--p-muted);
+}
+.foot-demo { color: var(--p-ink); }
+.foot-build { font-family: var(--font-num); font-size: 11.5px; }
+@media (min-width: 900px) {
+  .stage-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: start; }
+}
+@media (max-width: 620px) {
+  .spec-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #gl { cursor: default; }
+}
+</style>
+<!--@STYLE:END-->
+</head>
+<body data-skin="plaque">
+<a class="skip" href="#stage">跳到展台</a>
+<header class="mast">
+  <p class="mast-kicker"><span data-fact="product.brand"></span> · <span data-fact="product.model"></span></p>
+  <h1><span data-fact="product.name"></span><span class="h1-en"> <span data-fact="product.nameEn"></span></span></h1>
+  <p class="mast-tag" data-fact="product.volumeMl" data-fact-render="volume"></p>
+</header>
+<main>
+  <section id="stage" aria-labelledby="t-stage">
+    <h2 class="sec-title" id="t-stage" data-i18n="stageTitle"></h2>
+    <div class="stage-grid">
+      <div class="stage-col">
+        <figure class="stage">
+          <div class="stage-plinth"></div>
+          <canvas id="gl" role="img" aria-label="三维展台加载中"></canvas>
+          <div class="stage-light"></div>
+          <figcaption class="stage-cap" data-i18n="stageCaption"></figcaption>
+        </figure>
+        <p class="drag-hint" data-i18n="dragHint"></p>
+      </div>
+      <aside class="viewer-meta">
+        <p id="readout" class="readout" role="status" aria-live="polite" data-i18n="readoutPending"></p>
+        <div id="presetBar" class="presets" role="group" aria-label="预设视角"></div>
+        <div class="viewer-actions">
+          <button type="button" id="spinBtn" aria-pressed="false" data-i18n="btnSpin"></button>
+          <button type="button" id="resetBtn" data-i18n="btnReset"></button>
+        </div>
+        <p class="coatings-label" data-i18n="coatingLabel"></p>
+        <ul class="coatings" id="coatingList"></ul>
+        <p class="note" data-i18n="coatingNote"></p>
+        <table class="table" id="angleTable" aria-describedby="angleNote">
+          <caption data-i18n="angleCaption"></caption>
+          <thead><tr><th scope="col" data-i18n="colPreset"></th><th scope="col" data-i18n="colAz"></th><th scope="col" data-i18n="colEl"></th><th scope="col" data-i18n="colAnchor"></th><th scope="col" data-i18n="colMeasured"></th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <p id="angleNote" class="note" data-i18n="angleNote"></p>
+      </aside>
+    </div>
+  </section>
+
+  <section aria-labelledby="t-spec">
+    <h2 class="sec-title" id="t-spec" data-i18n="specTitle"></h2>
+    <div class="spec-grid">
+      <table class="table" id="specTable">
+        <caption data-i18n="specCaption"></caption>
+        <tbody></tbody>
+      </table>
+      <table class="table" id="partsTable">
+        <caption data-i18n="partsCaption"></caption>
+        <thead><tr><th scope="col" data-i18n="colNo"></th><th scope="col" data-i18n="colPart"></th><th scope="col" data-i18n="colMat"></th><th scope="col" data-i18n="colMass"></th></tr></thead>
+        <tbody></tbody>
+        <tfoot><tr><th scope="row" colspan="3" data-i18n="partsTotal"></th><td id="partsTotalCell"></td></tr></tfoot>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="t-notes">
+    <h2 class="sec-title" id="t-notes" data-i18n="notesTitle"></h2>
+    <ul class="notes">
+      <li data-i18n="noteOne"></li>
+      <li data-i18n="noteTwo"></li>
+      <li data-i18n="noteThree"></li>
+      <li data-i18n="noteFour"></li>
+    </ul>
+    <div class="gl-badges" id="glBadges" aria-live="off"></div>
+  </section>
+</main>
+<footer class="foot">
+  <p data-fact="product.launchDate" data-fact-render="date"></p>
+  <p class="foot-demo" data-fact="product.demoDisclaimer"></p>
+  <p class="foot-build" id="buildStamp"></p>
+</footer>
+<script id="facts" type="application/json">{"$comment":"本页唯一事实源。页面上的每一个数字都必须能由这份 JSON 现推；build.mjs 只代入，check-node.mjs 独立复算。","product":{"brand":"墨准 MOZHUN","model":"MZ-3","name":"手冲壶","nameEn":"Gooseneck Kettle","volumeMl":700,"bodyMaterial":"304 不锈钢","coatingOptions":["哑光陶瓷釉","拉丝原色","安全黄喷涂"],"launchDate":"2026-11-03","priceCny":689,"demoDisclaimer":"本页为技能验证用的虚构商品示例，不构成售卖；下单、库存与客服均为占位文案。"},"geometry":{"$comment":"单位=米，与着色器里的 SDF 常量一一对应；world x 正方向=壶嘴侧。spoutTip 是最高特征点，用于推导 topband 判据的期望值。","body":{"halfHeight":0.3,"radius":0.58,"fillet":0.16},"base":{"yCenter":-0.42,"halfHeight":0.06,"radius":0.46},"lid":{"yCenter":0.4,"halfHeight":0.05,"radius":0.3,"fillet":0.05},"knob":{"center":[0,0.52,0],"radius":0.065},"spout":{"segments":[{"a":[0.42,-0.12,0],"b":[0.7,0.1,0],"r":0.075},{"a":[0.7,0.1,0],"b":[0.8,0.4,0],"r":0.062},{"a":[0.8,0.4,0],"b":[0.72,0.62,0],"r":0.05},{"a":[0.72,0.62,0],"b":[0.6,0.7,0],"r":0.04}],"tip":[0.6,0.7,0],"maxX":0.8,"minVisibleYAbove":0.62},"handle":{"center":[-0.52,0.12,0],"ringRadius":0.3,"tubeRadius":0.05,"cutX":-0.06,"topY":0.414,"minX":-0.82},"bounds":{"$comment":"求交前视线先与这个包围球求交（sphereBounds）；球半径必须装得下全部特征，否则商品会被切掉。check-node 用其它几何字段现算需求半径并比对。","sphereRadius":1.12}},"camera":{"distance":3.2,"targetY":0.05,"fovDeg":34,"elevationClampDeg":[4,35],"azimuthUnit":"radian","azimuthWrap":"tau","degPerRadian":57.29577951308232,"fovTan":0.305731},"shading":{"marchSteps":96,"marchEps":0.0009,"marchMinStep":0.0035,"normalEpsilon":0.0012,"aoRings":4,"aoStep":0.016,"aoFalloff":0.72,"aoGain":2.2,"zoneSpoutX":0.6,"zoneBrassY":0.47,"zoneLidR":0.32,"bandYLow":0.02,"bandYHigh":0.16},"controls":{"dragSensitivityDegPerPx":0.55,"elevationSensitivityDegPerPx":0.12,"keyboardStepDeg":15,"spinDegPerSec":30,"maxDevicePixelRatio":2,"backingStorePx":420},"presets":[{"id":"spout-right","label":"壶嘴在右","azDeg":0,"elDeg":8,"expectTopband":"right"},{"id":"spout-near","label":"壶嘴朝向观众","azDeg":90,"elDeg":8,"expectTopband":"center"},{"id":"spout-left","label":"壶嘴在左","azDeg":180,"elDeg":8,"expectTopband":"left"},{"id":"spout-far","label":"壶嘴背向观众","azDeg":270,"elDeg":8,"expectTopband":"center"},{"id":"top-down","label":"俯视壶盖","azDeg":0,"elDeg":35,"expectTopband":"right"}],"specTable":[{"k":"容量","v":"700 ml"},{"k":"壶口内径","v":"82 mm"},{"k":"空壶重","v":"710 g","note":"等于 parts[] 六件质量之和（check-node E 组现算比对）"},{"k":"壶嘴内径","v":"6.5 mm"},{"k":"热源","v":"电磁/燃气通用"},{"k":"保修","v":"24 个月"}],"parts":[{"no":"MZ3-BODY","name":"壶身","material":"304 不锈钢 0.6 mm","massG":402,"note":"一体拉伸"},{"no":"MZ3-SPNT","name":"鹅颈壶嘴","material":"304 无缝管","massG":74,"note":"四段拟合轴线"},{"no":"MZ3-HNDL","name":"侧把手","material":"酚醛树脂","massG":58,"note":"半环，切口朝壶身"},{"no":"MZ3-LID","name":"壶盖","material":"304 + 硅胶圈","massG":46,"note":"含密封圈"},{"no":"MZ3-KNOB","name":"盖钮","material":"黄铜镀镍","massG":12,"note":"回转体，视角不变量"},{"no":"MZ3-BASE","name":"底座","material":"锌合金","massG":118,"note":"配重"}],"styles":[{"id":"vitrine","name":"射灯橱窗","shade":"glossy-ceramic","mood":"dark-theatre","claim":"暗场射灯＋描边铜线：把展台当成夜里的一件橱窗，商品靠自身高光从黑色里浮出来。"},{"id":"plaque","name":"展签美术馆","shade":"matte-plaster","mood":"neutral-museum","claim":"展签压画框：米灰墙面＋柔和扩散投影，商品当成挂在墙上的实物，页面不抢话。"},{"id":"industrial","name":"工业配置器","shade":"brushed-safety","mood":"high-key-shop","claim":"配置单口径：硬投影＋等宽数字＋大写标签，把商品当成一件可选型的设备。"}],"build":{"geometrySha1":"11277395443f","headSha1":"579463c0d3c8","mainSha1":"4553419fb500","hostSha1":"44bb3fb394aa","id":"20260926-22"}}</script>
+<script id="labels" type="application/json">{"$comment":"页面全部文案的唯一来源；host.js 按 data-i18n / data-fact 渲染。check-node 断言：body.html 里每个键都在本表或 product.json 里，且本表无未被引用的键。","stageTitle":"展台 · 单一几何体，视角是唯一变量","stageCaption":"实时着色 · 无位图 · 无预渲染序列帧","dragHint":"在展品上横向拖拽改变方位角，纵向拖拽改变仰角；方向键步进，Home 复位。","readoutPending":"读取中","readout":"方位 {az}° · 仰角 {el}° · 壶嘴 {anchor}","readoutAria":"当前视角：方位 {az} 度，仰角 {el} 度，壶嘴{anchor}。","btnSpin":"自动旋转","btnSpinOn":"停止旋转","btnReset":"回到壶嘴在右","coatingLabel":"可选涂层","angleCaption":"预设视角与分区锚点","colPreset":"名称","colAz":"方位","colEl":"仰角","colAnchor":"壶嘴朝向","colMeasured":"实测","angleNote":"「壶嘴朝向」是 product.json 里的声明，「实测」取自 canvas 的 alpha 剪影：顶部 16% 条带的形心 x 与画布中线比较。两者同在这一行才算数，任一列被硬编码都会在下一列露馅。","specTitle":"规格","specCaption":"整机参数","partsCaption":"部件清单","partsTotal":"合计","colNo":"编号","colPart":"部件","colMat":"材质","colMass":"质量","notesTitle":"这一页在验什么","noteOne":"三套皮肤共用同一份几何源码：着色器里 GEOMETRY 段与 HEAD/MAIN 段逐字节相同，只有 SHADE 段不同，所以「同一件商品」在源码层是恒等式。","noteTwo":"GLSL ES 1.00 没有数组下标的非常量读写，鹅颈壶嘴因此摊平成四段显式胶囊；facing 类工具必须写在 mapObj 之前——这类约束是本轮独有的踩坑面。","noteThree":"uTime 只进高光呼吸项，绝不进几何与求交，因此换角度的像素判据不被动画相位污染；无交互时不重绘。","noteFour":"度只在界面出现一次，弧度只在着色器出现一次，换算集中在唯一一处；写进 uniform 前一律 wrap 到 2π。","glReady":"编译","glRenderer":"渲染器","glAnchor":"分区锚点","glUniform":"uniform 弧度","glDraws":"重绘次数","glArea":"剪影面积","anchorRight":"偏右","anchorLeft":"偏左","anchorCenter":"正对/背对","volume":"{v} ml · {price} 元 · {material}","date":"示例发布日 {date}","buildStamp":"构建 {id} · 几何块 sha1 {sha}","coatingNote":"涂层为示例文案，不改变几何。","glHint":"WebGL1 上下文不可用，本展台无法渲染。","presetAria":"切换到{label}视角"}</script>
+<!--@VERT:BEGIN-->
+<script id="vert" type="x-shader/x-vertex">attribute vec2 aPos;
+void main() { gl_Position = vec4(aPos, 0.0, 1.0); }</script>
+<!--@VERT:END-->
+<!--@FRAG:BEGIN-->
+<script id="frag" type="x-shader/x-fragment">
+precision highp float;
+// ============================================================
+// HEAD-BEGIN  （三套着色器共用，逐字节相同）
+// 视角轴只有两个 uniform：uAzimuth / uElevation，一律弧度。
+// 宿主写入前必须 wrapAzimuth()，见 src/host.js 的 writeView()。
+// uTime 只进高光呼吸项，绝不进 mapObj()/rayMarch() —— 于是「换角度」
+// 的像素判据不会被动画相位污染（18:00 轮的冻结时钟式子在此是结构性免除）。
+// ============================================================
+uniform vec2 uResolution;
+uniform float uTime;
+uniform float uAzimuth;
+uniform float uElevation;
+
+const float CAM_DIST = 3.200000;
+const float TARGET_Y = 0.050000;
+const float FOV_TAN = 0.305731;
+const vec3 KEY_DIR = vec3(0.349128, 0.847883, 0.399004);
+// HEAD-END
+
+// ============================================================
+// GEOMETRY-BEGIN  （三套着色器共用的几何块，构建时逐字节注入，禁止手改任一份）
+// 数值来源：src/product.json 的 geometry 段，由 build.mjs 现读代入。
+// 单位=米；world +x = 壶嘴侧；壶盖钮是唯一的回转体特征。
+// ============================================================
+const float BODY_H = 0.300000;
+const float BODY_R = 0.580000;
+const float BODY_F = 0.160000;
+const float BASE_Y = -0.420000;
+const float BASE_H = 0.060000;
+const float BASE_R = 0.460000;
+const float LID_Y = 0.400000;
+const float LID_H = 0.050000;
+const float LID_R = 0.300000;
+const float LID_F = 0.050000;
+const vec3 KNOB_C = vec3(0.000000, 0.520000, 0.000000);
+const float KNOB_R = 0.065000;
+const vec3 SPOUT_A0 = vec3(0.420000, -0.120000, 0.000000);
+const vec3 SPOUT_B0 = vec3(0.700000, 0.100000, 0.000000);
+const float SPOUT_R0 = 0.075000;
+const vec3 SPOUT_A1 = vec3(0.700000, 0.100000, 0.000000);
+const vec3 SPOUT_B1 = vec3(0.800000, 0.400000, 0.000000);
+const float SPOUT_R1 = 0.062000;
+const vec3 SPOUT_A2 = vec3(0.800000, 0.400000, 0.000000);
+const vec3 SPOUT_B2 = vec3(0.720000, 0.620000, 0.000000);
+const float SPOUT_R2 = 0.050000;
+const vec3 SPOUT_A3 = vec3(0.720000, 0.620000, 0.000000);
+const vec3 SPOUT_B3 = vec3(0.600000, 0.700000, 0.000000);
+const float SPOUT_R3 = 0.040000;
+const vec3 HANDLE_C = vec3(-0.520000, 0.120000, 0.000000);
+const float HANDLE_R = 0.300000;
+const float HANDLE_T = 0.050000;
+const float HANDLE_CUT = -0.060000;
+const float SPHERE_R = 1.120000;
+// 分区阈值：壶嘴/黄铜件在物体空间里的归属面。阈值都在 Z=0 平面上取值，
+// 而本模型对 z→-z 严格对称，于是「分区面可见 ⟺ 该特征朝向观众」成为可断言的等价式。
+const float ZONE_SPOUT_X = 0.600000;
+const float ZONE_BRASS_Y = 0.470000;
+const float ZONE_LID_R = 0.320000;
+const float BAND_Y_LOW = 0.020000;
+const float BAND_Y_HIGH = 0.160000;
+// 求交与遮蔽预算：三套皮肤共用，像素差异因此只可能来自着色手法。
+// 以下每个常量的数字面在 src/product.json 的 shading 段各出现一次，由 check-node G 组双向核对。
+const int MARCH_STEPS = 96;
+const float MARCH_EPS = 0.0009;
+const float MARCH_MIN_STEP = 0.0035;
+const float NORMAL_E = 0.0012;
+const int AO_RINGS = 4;
+const float AO_STEP = 0.016;
+const float AO_FALL = 0.72;
+const float AO_GAIN = 2.2;
+
+float sdSphereG(vec3 p, float r) { return length(p) - r; }
+
+float sdCapsuleG(vec3 p, vec3 a, vec3 b, float r) {
+  vec3 pa = p - a, ba = b - a;
+  float h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0);
+  return length(pa - ba * h) - r;
+}
+
+float sdCylY(vec3 p, float h, float r) {
+  vec2 d = abs(vec2(length(p.xz), p.y)) - vec2(r, h);
+  return min(max(d.x, d.y), 0.0) + length(max(d, vec2(0.0)));
+}
+
+// 圆角竖圆柱：q.x 是到轴心的水平距离，q.y 是到中线的竖直距离
+float sdRoundCylY(vec3 p, float h, float r, float f) {
+  vec2 q = vec2(length(p.xz) - (r - f), abs(p.y) - h);
+  return length(max(q, vec2(0.0))) + min(max(q.x, q.y), 0.0) - f;
+}
+
+// 轴为 z 的圆环
+float sdTorusZ(vec3 p, float bigR, float tube) {
+  vec2 d = vec2(length(p.xy) - bigR, p.z);
+  return length(d) - tube;
+}
+
+float sminG(float a, float b, float k) {
+  float h = clamp(0.5 + 0.5 * (b - a) / k, 0.0, 1.0);
+  return mix(b, a, h) - k * h * (1.0 - h);
+}
+
+float mapBody(vec3 p) {
+  float body = sdRoundCylY(p, BODY_H, BODY_R, BODY_F);
+  float base = sdCylY(p - vec3(0.0, BASE_Y, 0.0), BASE_H, BASE_R);
+  float lid = sdRoundCylY(p - vec3(0.0, LID_Y, 0.0), LID_H, LID_R, LID_F);
+  float d = sminG(body, base, 0.045);
+  d = sminG(d, lid, 0.028);
+  return d;
+}
+
+float mapObj(vec3 p) {
+  float d = mapBody(p);
+  d = sminG(d, sdCapsuleG(p, SPOUT_A0, SPOUT_B0, SPOUT_R0), 0.045);
+  d = sminG(d, sdCapsuleG(p, SPOUT_A1, SPOUT_B1, SPOUT_R1), 0.040);
+  d = sminG(d, sdCapsuleG(p, SPOUT_A2, SPOUT_B2, SPOUT_R2), 0.036);
+  d = min(d, sdCapsuleG(p, SPOUT_A3, SPOUT_B3, SPOUT_R3));
+  vec3 hp = p - HANDLE_C;
+  float ring = sdTorusZ(hp, HANDLE_R, HANDLE_T);
+  d = min(d, max(ring, -(hp.x - HANDLE_CUT)));
+  d = min(d, sdSphereG(p - KNOB_C, KNOB_R));
+  return d;
+}
+
+vec3 calcNormal(vec3 p) {
+  vec2 h = vec2(1.0, -1.0) * 0.5773 * NORMAL_E;
+  return normalize(h.xyy * mapObj(p + h.xyy) + h.yyx * mapObj(p + h.yyx) +
+                   h.yxy * mapObj(p + h.yxy) + h.xxx * mapObj(p + h.xxx));
+}
+
+// 环境光遮蔽：沿法线采样几层，把手与壶身接缝处自然变暗
+float calcAO(vec3 p, vec3 n) {
+  float occ = 0.0, sca = 1.0;
+  for (int i = 1; i <= AO_RINGS; i++) {
+    float hr = AO_STEP * float(i * i);
+    float dd = mapObj(p + n * hr);
+    occ += -(dd - hr) * sca;
+    sca *= AO_FALL;
+  }
+  return clamp(1.0 - AO_GAIN * occ, 0.0, 1.0);
+}
+
+// 视线先与包围球求交，把步进锁在球内；96 步与 eps 三套着色器共用，
+// 于是「同一件商品」在像素层是可比的：剪影差异只可能来自几何，不来自求交预算。
+vec2 sphereBounds(vec3 ro, vec3 rd) {
+  float b = dot(ro, rd);
+  float c = dot(ro, ro) - SPHERE_R * SPHERE_R;
+  float d = b * b - c;
+  if (d < 0.0) return vec2(-1.0, -2.0);
+  d = sqrt(d);
+  return vec2(-b - d, -b + d);
+}
+
+vec2 rayMarch(vec3 ro, vec3 rd) {
+  vec2 sb = sphereBounds(ro, rd);
+  float t = max(sb.x, 0.0);
+  float tmax = sb.y;
+  float hit = 0.0;
+  if (t > tmax) return vec2(0.0, 0.0);
+  for (int i = 0; i < MARCH_STEPS; i++) {
+    vec3 p = ro + rd * t;
+    float d = mapObj(p);
+    if (d < MARCH_EPS) { hit = 1.0; break; }
+    t += max(d, MARCH_MIN_STEP);
+    if (t > tmax) break;
+  }
+  return vec2(t, hit);
+}
+
+// 朝向判据：相机在物体空间的水平方位 = uAzimuth，故某条母线（pos.x/pos.z 决定）
+// 是否朝向观众 = 把它旋到相机空间取 z 分量。三套着色器共用这一份实现，
+// 于是「同角度看同一件商品」在源码层是恒等式，而不是两边各抄一遍常数。
+vec3 toCam(vec3 v) {
+  float ca = cos(uAzimuth), sa = sin(uAzimuth);
+  return vec3(v.x * ca - v.z * sa, v.y, v.x * sa + v.z * ca);
+}
+
+float facingViewer(vec3 pos) { return toCam(vec3(pos.x, 0.0, pos.z)).z; }
+
+// 1=该分区完全迎向观众，0=完全转走（0.5 是侧向 90°）
+float zoneFace(vec3 pos) { return clamp(0.5 + 3.2 * facingViewer(pos), 0.0, 1.0); }
+// 壶嘴面：只认 x >= ZONE_SPOUT_X 的那段外壳
+float spoutFace(vec3 pos) { return zoneFace(pos) * step(ZONE_SPOUT_X, pos.x); }
+// GEOMETRY-END
+
+// ============================================================
+// SHADE-BEGIN plaque · matte-plaster（展签美术馆：哑光石膏 + 软遮蔽）
+// 分区主张：与 vitrine 用同一个 spoutFace() 判据，只是把「镀黄铜」换成「深色修复补块」——
+// 于是两套皮肤在同一角度上的剪影、分区边界必须完全相同，只有反照率不同。
+// 高光是零：皮肤主张「无反射」，所以 uTime 在本块一次都不出现（这是可机检的）。
+// ============================================================
+const vec3 P_BODY = vec3(0.850980, 0.827451, 0.784314);
+const vec3 P_PATCH = vec3(0.552941, 0.603922, 0.525490);
+const vec3 P_AMBIENT = vec3(0.803922, 0.831373, 0.788235);
+
+vec3 shadeSurface(vec3 pos, vec3 n, vec3 rd) {
+  float ndl = max(dot(n, KEY_DIR), 0.0);
+  float ao = calcAO(pos, n);
+  float up = 0.5 + 0.5 * n.y;
+  float patch = max(spoutFace(pos) * step(pos.y, LID_Y),
+                    step(ZONE_BRASS_Y, pos.y) * step(length(pos.xz), ZONE_LID_R));
+  vec3 base = mix(P_BODY, P_PATCH, patch);
+  vec3 col = base * (0.34 + 0.52 * ndl + 0.14 * up) * ao;
+  col += P_AMBIENT * (0.10 + 0.06 * up);
+  return clamp(col, 0.0, 1.0);
+}
+// SHADE-END
+
+// ============================================================
+// MAIN-BEGIN  （三套着色器共用，逐字节相同）
+// 唯一的 gl_FragColor 出口：命中=不透明着色，未命中=全透明，
+// 于是页面底色从 canvas 后面透上来，剪影可以直接由 alpha 通道量出来。
+// ============================================================
+void main() {
+  // uv ∈ [-1,1]（竖直方向），于是 FOV_TAN 就是「半视角正切」，与 facts.camera.fovDeg
+  // 及宿主 projectTip() 的 NDC 式子同一口径。曾用 / uResolution.y 让 uv 只到 ±0.5，
+  // 视野被腰斩、商品溢出整幅画布（alpha 剪影铺满 176400/176400），三向核对当场抓不到
+  // ——因为解析投影是对的、着色器是错的，两者本来就差一个 2。
+  vec2 uv = (gl_FragCoord.xy - 0.5 * uResolution) / (0.5 * uResolution.y);
+  float ce = cos(uElevation), se = sin(uElevation);
+  vec3 tgt = vec3(0.0, TARGET_Y, 0.0);
+  vec3 eye = tgt + vec3(ce * sin(uAzimuth), se, ce * cos(uAzimuth)) * CAM_DIST;
+  vec3 fw = normalize(tgt - eye);
+  vec3 rt = normalize(cross(fw, vec3(0.0, 1.0, 0.0)));
+  vec3 up = cross(rt, fw);
+  vec3 rd = normalize(fw + rt * (uv.x * FOV_TAN) + up * (uv.y * FOV_TAN));
+  vec2 m = rayMarch(eye, rd);
+  if (m.y < 0.5) {
+    gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
+    return;
+  }
+  vec3 pos = eye + rd * m.x;
+  vec3 nor = calcNormal(pos);
+  gl_FragColor = vec4(shadeSurface(pos, nor, rd), 1.0);
+}
+// MAIN-END
+</script>
+<!--@FRAG:END-->
+<!--@HOST:BEGIN-->
+<script>
+/* HOST-COMMON-BEGIN
+ * 展台宿主：三套页面共用同一份字节（构建时逐份注入，check-node 比对）。
+ * 单位纪律：界面只说「度」，着色器只收「弧度」，换算只发生在 deg2rad 这一处；
+ * 写进 uniform 前一律 wrapTau。uTime 只喂给着色的呼吸项，不进几何与求交。
+ * HOST-COMMON-END */
+(function () {
+  "use strict";
+  const FACTS = JSON.parse(document.getElementById("facts").textContent);
+  const LBL = JSON.parse(document.getElementById("labels").textContent);
+  const TAU = Math.PI * 2;
+  const G = FACTS.geometry, CAM = FACTS.camera, CTL = FACTS.controls;
+
+  const deg2rad = (d) => (d * TAU) / 360;
+  const rad2deg = (r) => (r * 360) / TAU;
+  const wrapTau = (r) => ((r % TAU) + TAU) % TAU;
+  const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+
+  /* ---- 界面文案与事实渲染（页面里没有一个手写数字） ---- */
+  const pick = (obj, dotted) => dotted.split(".").reduce((o, k) => (o == null ? o : o[k]), obj);
+  const fill = (tpl, map) => String(tpl).replace(/\{(\w+)\}/g, (_, k) => (map[k] == null ? "" : String(map[k])));
+  function renderStatic() {
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+      const key = el.getAttribute("data-i18n");
+      const v = LBL[key];
+      if (v == null) { throw new Error("label key missing: " + key); }
+      el.textContent = v;
+    });
+    document.querySelectorAll("[data-fact]").forEach((el) => {
+      const raw = pick(FACTS, el.getAttribute("data-fact"));
+      const mode = el.getAttribute("data-fact-render");
+      if (mode === "volume") el.textContent = fill(LBL.volume, { v: raw, price: FACTS.product.priceCny, material: FACTS.product.bodyMaterial });
+      else if (mode === "date") el.textContent = fill(LBL.date, { date: raw });
+      else el.textContent = String(raw);
+    });
+    const ul = document.getElementById("coatingList");
+    ul.textContent = "";
+    FACTS.product.coatingOptions.forEach((c) => {
+      const li = document.createElement("li");
+      li.textContent = c;
+      ul.appendChild(li);
+    });
+    const spec = document.querySelector("#specTable tbody");
+    spec.textContent = "";
+    FACTS.specTable.forEach((row) => {
+      const tr = document.createElement("tr");
+      const th = document.createElement("th");
+      th.scope = "row";
+      th.textContent = row.k;
+      const td = document.createElement("td");
+      td.textContent = row.v + (row.note ? " " + row.note : "");
+      tr.append(th, td);
+      spec.appendChild(tr);
+    });
+    const parts = document.querySelector("#partsTable tbody");
+    parts.textContent = "";
+    let total = 0;
+    FACTS.parts.forEach((p) => {
+      total += p.massG;
+      const tr = document.createElement("tr");
+      tr.append(td(p.no), td(p.name), td(p.material), td(p.massG + " g"));
+      parts.appendChild(tr);
+    });
+    document.getElementById("partsTotalCell").textContent = total + " g";
+    const bar = document.getElementById("presetBar");
+    bar.textContent = "";
+    const atbody = document.querySelector("#angleTable tbody");
+    atbody.textContent = "";
+    FACTS.presets.forEach((p) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = p.label;
+      b.setAttribute("data-az-deg", String(p.azDeg));
+      b.setAttribute("data-el-deg", String(p.elDeg));
+      b.setAttribute("data-preset", p.id);
+      b.setAttribute("aria-label", fill(LBL.presetAria, { label: p.label }));
+      b.addEventListener("click", () => applyPreset(p, b));
+      bar.appendChild(b);
+      const tr = document.createElement("tr");
+      tr.setAttribute("data-row", p.id);
+      tr.append(td(p.label), td(p.azDeg + "°"), td(p.elDeg + "°"), td(anchorWord(p.expectTopband)), td("—", "measured"));
+      atbody.appendChild(tr);
+    });
+  }
+  const td = (txt, cls) => {
+    const c = document.createElement("td");
+    c.textContent = txt;
+    if (cls) c.setAttribute("data-cell", cls);
+    return c;
+  };
+  const anchorWord = (a) => (a === "right" ? LBL.anchorRight : a === "left" ? LBL.anchorLeft : LBL.anchorCenter);
+
+  /* ---- WebGL ---- */
+  const canvas = document.getElementById("gl");
+  const state = {
+    azRad: deg2rad(FACTS.presets[0].azDeg),
+    elRad: deg2rad(clampEl(FACTS.presets[0].elDeg)),
+    dirty: true,
+    spinning: false,
+    draws: 0,
+    lastUniforms: { uAzimuth: null, uElevation: null, uTime: null },
+    freezeTime: null,
+    // live=true 才有 readPixels 实测：读数与「实测」列在正常浏览路径上就是活的，
+    // 探针可以关掉它来单测像素判据。代价只在 dirty 帧上发生（无交互不重绘，也就不实测）。
+    live: true,
+  };
+  function clampEl(d) { return clamp(d, CAM.elevationClampDeg[0], CAM.elevationClampDeg[1]); }
+  let gl = null, prog = null, loc = null;
+  const info = { webgl: false, renderer: "", compile: "", programOk: false, glErrorAfterDraw: 0 };
+
+  function shader(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+      throw new Error(gl.getShaderInfoLog(s) || "compile failed");
+    }
+    return s;
+  }
+  function initGL() {
+    gl = canvas.getContext("webgl", { alpha: true, premultipliedAlpha: true, antialias: false, preserveDrawingBuffer: false });
+    if (!gl) { info.compile = "no-webgl"; return false; }
+    const dbg = gl.getExtension("WEBGL_debug_renderer_info");
+    info.renderer = dbg ? String(gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL)) : String(gl.getParameter(gl.RENDERER));
+    info.webgl = true;
+    try {
+      const vs = shader(gl.VERTEX_SHADER, document.getElementById("vert").textContent);
+      const fs = shader(gl.FRAGMENT_SHADER, document.getElementById("frag").textContent);
+      prog = gl.createProgram();
+      gl.attachShader(prog, vs);
+      gl.attachShader(prog, fs);
+      gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog) || "link failed");
+      info.programOk = true;
+      info.compile = "ok";
+      gl.useProgram(prog);
+      loc = {
+        uResolution: gl.getUniformLocation(prog, "uResolution"),
+        uTime: gl.getUniformLocation(prog, "uTime"),
+        uAzimuth: gl.getUniformLocation(prog, "uAzimuth"),
+        uElevation: gl.getUniformLocation(prog, "uElevation"),
+        aPos: gl.getAttribLocation(prog, "aPos"),
+      };
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+      gl.enableVertexAttribArray(loc.aPos);
+      gl.vertexAttribPointer(loc.aPos, 2, gl.FLOAT, false, 0, 0);
+      gl.clearColor(0, 0, 0, 0);
+      gl.disable(gl.DEPTH_TEST);
+    } catch (e) {
+      info.compile = String(e.message).slice(0, 400);
+      return false;
+    }
+    return true;
+  }
+
+  function resize() {
+    const px = CTL.backingStorePx;
+    if (canvas.width !== px || canvas.height !== px) { canvas.width = px; canvas.height = px; }
+    if (gl) gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+
+  /* 唯一的 uniform 写入点：任何绕过这里直接 gl.uniform* 的写法都会在 I 组探针里露出来 */
+  function writeView(tSec) {
+    state.lastUniforms.uAzimuth = wrapTau(state.azRad);
+    state.lastUniforms.uElevation = state.elRad;
+    state.lastUniforms.uTime = tSec;
+    gl.uniform1f(loc.uAzimuth, state.lastUniforms.uAzimuth);
+    gl.uniform1f(loc.uElevation, state.lastUniforms.uElevation);
+    gl.uniform1f(loc.uTime, tSec);
+  }
+  function draw(tSec) {
+    resize();
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.uniform2f(loc.uResolution, canvas.width, canvas.height);
+    writeView(tSec);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    state.draws += 1;
+    info.glErrorAfterDraw = gl.getError();
+  }
+
+  /* ---- 剪影与分区锚点测量（alpha 通道即剪影，无需第二遍渲染） ---- */
+  const readBuf = { u8: null, size: 0 };
+  function readPixels() {
+    const n = canvas.width * canvas.height * 4;
+    if (!readBuf.u8 || readBuf.size !== n) { readBuf.u8 = new Uint8Array(n); readBuf.size = n; }
+    gl.readPixels(0, 0, canvas.width, canvas.height, gl.RGBA, gl.UNSIGNED_BYTE, readBuf.u8);
+    return readBuf.u8;
+  }
+  function measure() {
+    const W = canvas.width, H = canvas.height, px = readPixels();
+    let area = 0, sx = 0, top = H, bottom = -1, minX = W, maxX = -1;
+    for (let y = 0; y < H; y++) {
+      const rowTop = H - 1 - y;  // GL 自下往上 → 转成屏幕行号
+      for (let x = 0; x < W; x++) {
+        const i = (rowTop * W + x) * 4;
+        if (px[i + 3] > 127) { area++; sx += x; if (y < top) top = y; if (y > bottom) bottom = y; if (x < minX) minX = x; if (x > maxX) maxX = x; }
+      }
+    }
+    if (!area) return { area: 0 };
+    const bandHi = top + Math.max(1, Math.round((bottom - top) * 0.16));
+    let bArea = 0, bsx = 0, bMinX = W, bMaxX = -1;
+    for (let y = top; y <= bandHi; y++) {
+      const rowTop = H - 1 - y;
+      for (let x = minX; x <= maxX; x++) {
+        const i = (rowTop * W + x) * 4;
+        if (px[i + 3] > 127) { bArea++; bsx += x; if (x < bMinX) bMinX = x; if (x > bMaxX) bMaxX = x; }
+      }
+    }
+    return {
+      area,
+      cx: +(sx / area).toFixed(2),
+      bbox: { top, bottom, minX, maxX, w: maxX - minX + 1, h: bottom - top + 1 },
+      band: { area: bArea, hi: bandHi, cx: bArea ? +(bsx / bArea).toFixed(2) : null, minX: bMinX, maxX: bMaxX },
+      W, H,
+    };
+  }
+  /* 壶嘴尖端的解析投影：与着色器里的相机式子独立实现一遍，两条式子必须落在同一个像素上 */
+  function projectTip() {
+    const el = state.elRad, az = wrapTau(state.azRad);
+    const ce = Math.cos(el), se = Math.sin(el);
+    const tgt = [0, CAM.targetY, 0];
+    const eye = [tgt[0] + ce * Math.sin(az) * CAM.distance, tgt[1] + se * CAM.distance, tgt[2] + ce * Math.cos(az) * CAM.distance];
+    const f = [tgt[0] - eye[0], tgt[1] - eye[1], tgt[2] - eye[2]];
+    const fl = Math.hypot(f[0], f[1], f[2]);
+    const fw = [f[0] / fl, f[1] / fl, f[2] / fl];
+    const cr = [fw[1] * 0 - fw[2] * 1, fw[2] * 0 - fw[0] * 0, fw[0] * 1 - fw[1] * 0];
+    const cl = Math.hypot(cr[0], cr[1], cr[2]);
+    const rt = [cr[0] / cl, cr[1] / cl, cr[2] / cl];
+    const up = [rt[1] * fw[2] - rt[2] * fw[1], rt[2] * fw[0] - rt[0] * fw[2], rt[0] * fw[1] - rt[1] * fw[0]];
+    const tip = G.spout.tip;
+    const d = [tip[0] - eye[0], tip[1] - eye[1], tip[2] - eye[2]];
+    const zc = d[0] * fw[0] + d[1] * fw[1] + d[2] * fw[2];
+    if (zc <= 0) return null;
+    const xc = d[0] * rt[0] + d[1] * rt[1] + d[2] * rt[2];
+    const yc = d[0] * up[0] + d[1] * up[1] + d[2] * up[2];
+    const fovScale = CAM.fovTan;
+    const ndcX = (xc / zc) / fovScale, ndcY = (yc / zc) / fovScale;
+    const W = canvas.width, H = canvas.height;
+    return { x: +((ndcX * 0.5 + 0.5) * W - 0.5).toFixed(2), y: +((1 - (ndcY * 0.5 + 0.5)) * H - 0.5).toFixed(2),
+      facing: +(tip[0] * Math.sin(az) + tip[2] * Math.cos(az)).toFixed(4) };
+  }
+  /* 同一份朝向式子在 JS 里的第二实现：>0 即壶嘴面此刻朝向观众 */
+  const facingNow = () => {
+    const az = wrapTau(state.azRad);
+    return G.spout.tip[0] * Math.sin(az) + G.spout.tip[2] * Math.cos(az);
+  };
+
+  function anchorFromMeasure(m) {
+    if (!m || !m.band || m.band.cx == null) return "center";
+    const off = (m.band.cx - m.W / 2) / (m.W / 2);
+    return off > 0.06 ? "right" : off < -0.06 ? "left" : "center";
+  }
+
+  /* ---- 读数与无障碍 ---- */
+  function updateReadout(m) {
+    const azDeg = Math.round(rad2deg(wrapTau(state.azRad)));
+    const elDeg = Math.round(rad2deg(state.elRad));
+    const anchor = anchorWord(anchorFromMeasure(m || { band: null }));
+    const p = document.getElementById("readout");
+    if (p) p.textContent = fill(LBL.readout, { az: String(azDeg).padStart(3, "0"), el: String(elDeg).padStart(2, "0"), anchor });
+    if (canvas) {
+      canvas.setAttribute("aria-label", fill(LBL.readoutAria, { az: azDeg, el: elDeg, anchor }));
+      canvas.setAttribute("data-az-deg", String(azDeg));
+    }
+    const badges = document.getElementById("glBadges");
+    if (badges) {
+      badges.textContent = "";
+      const add = (k, v) => { const s = document.createElement("span"); const b = document.createElement("b"); b.textContent = v; s.append(k + " ", b); badges.appendChild(s); };
+      add(LBL.glReady, info.compile);
+      add(LBL.glRenderer, info.renderer.slice(0, 26));
+      add(LBL.glUniform, state.lastUniforms.uAzimuth == null ? "—" : state.lastUniforms.uAzimuth.toFixed(4));
+      add(LBL.glDraws, String(state.draws));
+      if (m && m.area) add(LBL.glArea, String(m.area));
+      if (m && m.band && m.band.cx != null) add(LBL.glAnchor, (m.band.cx - m.W / 2).toFixed(1) + "px");
+    }
+    document.querySelectorAll("#angleTable tbody tr").forEach((tr) => {
+      const p2 = FACTS.presets.find((x) => x.id === tr.getAttribute("data-row"));
+      const on = p2 && Math.abs(wrapTau(deg2rad(p2.azDeg)) - wrapTau(state.azRad)) < deg2rad(0.5) && Math.abs(p2.elDeg - rad2deg(state.elRad)) < 0.5;
+      tr.setAttribute("data-active", on ? "1" : "0");
+      if (on && state.live && m && m.band && m.band.cx != null) {
+        tr.querySelector('[data-cell="measured"]').textContent = anchorWord(anchorFromMeasure(m));
+      }
+    });
+  }
+
+  /* ---- 帧循环：无交互不重绘 ---- */
+  let rafId = 0, lastT = 0;
+  function loop(now) {
+    rafId = 0;
+    const t = state.freezeTime != null ? state.freezeTime : now / 1000;
+    if (state.spinning) {
+      const dt = lastT ? (now - lastT) / 1000 : 0;
+      state.azRad += deg2rad(CTL.spinDegPerSec * dt);
+      state.dirty = true;
+    }
+    lastT = now;
+    if (state.dirty) {
+      state.dirty = false;
+      draw(t);
+      updateReadout(state.live ? measure() : null);
+    }
+    if (state.spinning) schedule();
+  }
+  function schedule() { if (!rafId) rafId = requestAnimationFrame(loop); }
+
+  function applyPreset(p, btn) {
+    state.azRad = deg2rad(p.azDeg);
+    state.elRad = deg2rad(clampEl(p.elDeg));
+    state.spinning = false;
+    const sp = document.getElementById("spinBtn");
+    if (sp) { sp.setAttribute("aria-pressed", "false"); sp.textContent = LBL.btnSpin; }
+    document.querySelectorAll("#presetBar button").forEach((b) => b.removeAttribute("data-on"));
+    if (btn) btn.setAttribute("data-on", "1");
+    state.dirty = true;
+    schedule();
+  }
+
+  /* ---- 交互 ---- */
+  function bindControls() {
+    let drag = null;
+    canvas.addEventListener("pointerdown", (e) => {
+      drag = { x: e.clientX, y: e.clientY, moved: 0 };
+      if (canvas.setPointerCapture) canvas.setPointerCapture(e.pointerId);
+      state.spinning = false;
+      const sp = document.getElementById("spinBtn");
+      if (sp) { sp.setAttribute("aria-pressed", "false"); sp.textContent = LBL.btnSpin; }
+    });
+    canvas.addEventListener("pointermove", (e) => {
+      if (!drag) return;
+      const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      drag.x = e.clientX; drag.y = e.clientY;
+      drag.moved += Math.abs(dx) + Math.abs(dy);
+      state.azRad += deg2rad(dx * CTL.dragSensitivityDegPerPx);
+      state.elRad = deg2rad(clampEl(rad2deg(state.elRad) - dy * CTL.elevationSensitivityDegPerPx));
+      state.dirty = true;
+      schedule();
+    });
+    const end = () => { drag = null; };
+    canvas.addEventListener("pointerup", end);
+    canvas.addEventListener("pointercancel", end);
+    canvas.addEventListener("keydown", (e) => {
+      const step = CTL.keyboardStepDeg;
+      let used = true;
+      if (e.key === "ArrowRight") state.azRad += deg2rad(step);
+      else if (e.key === "ArrowLeft") state.azRad -= deg2rad(step);
+      else if (e.key === "ArrowUp") state.elRad = deg2rad(clampEl(rad2deg(state.elRad) + step));
+      else if (e.key === "ArrowDown") state.elRad = deg2rad(clampEl(rad2deg(state.elRad) - step));
+      else if (e.key === "Home") applyPreset(FACTS.presets[0], document.querySelector('#presetBar button[data-preset="' + FACTS.presets[0].id + '"]'));
+      else used = false;
+      if (used) { e.preventDefault(); state.dirty = true; schedule(); }
+    });
+    const spin = document.getElementById("spinBtn");
+    spin.textContent = LBL.btnSpin;
+    spin.addEventListener("click", () => {
+      state.spinning = !state.spinning;
+      spin.setAttribute("aria-pressed", state.spinning ? "true" : "false");
+      spin.textContent = state.spinning ? LBL.btnSpinOn : LBL.btnSpin;
+      lastT = 0;
+      if (state.spinning) schedule();
+    });
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      applyPreset(FACTS.presets[0], document.querySelector('#presetBar button[data-preset="' + FACTS.presets[0].id + '"]'));
+    });
+    canvas.setAttribute("tabindex", "0");
+  }
+
+  /* ---- 探针 ---- */
+  function buildProbe() {
+    window.__mz = {
+      info,
+      get view() { return { azRad: state.azRad, elRad: state.elRad, azDeg: +rad2deg(wrapTau(state.azRad)).toFixed(3), elDeg: +rad2deg(state.elRad).toFixed(3), draws: state.draws, spinning: state.spinning }; },
+      get uniforms() { return Object.assign({}, state.lastUniforms); },
+      setView(azDeg, elDeg) {
+        state.azRad = deg2rad(azDeg);
+        state.elRad = deg2rad(clampEl(elDeg == null ? rad2deg(state.elRad) : elDeg));
+        state.dirty = true;
+        schedule();
+      },
+      setFrozenTime(t) { state.freezeTime = t; },
+      setLive(v) { state.live = !!v; },
+      renderNow(t) { draw(t == null ? (state.freezeTime == null ? 0 : state.freezeTime) : t); },
+      measureNow() { return measure(); },
+      /* 分区色心：顶带内以「离主色桶最远」的偏差加权求重心。主色桶 = 像素数最多的 5bit 色桶（器身）。
+       * 不认具体色值，因此三套皮肤同一口径；它只能证明「着色确实分了区」，
+       * 证不了分区的朝向手性——壶嘴在任意方位都探出器身，色心始终跟着剪影走，
+       * 这个盲区是变异测试（把 toCam 的朝向相位反 180°）打出来的，见报告。 */
+      zoneCentroid() {
+        const m = measure();
+        if (!m.band) return { cx: null };
+        const px = readPixels();
+        const W = canvas.width;
+        const at = (x, y) => ((W - 1 - y) * W + x) * 4;
+        const hist = new Map();
+        for (let y = m.bbox.top; y <= m.band.hi; y++) {
+          for (let x = m.bbox.minX; x <= m.bbox.maxX; x++) {
+            const i = at(x, y);
+            if (px[i + 3] <= 127) continue;
+            const k = ((px[i] >> 3) << 9) | ((px[i + 1] >> 3) << 6) | ((px[i + 2] >> 3) << 3);
+            hist.set(k, (hist.get(k) || 0) + 1);
+          }
+        }
+        let base = [0, 0, 0], best = -1;
+        for (const [k, n] of hist) if (n > best) { best = n; base = [((k >> 9) & 31) * 8 + 4, ((k >> 6) & 31) * 8 + 4, ((k >> 3) & 31) * 8 + 4]; }
+        let dev = 0, sx = 0;
+        for (let y = m.bbox.top; y <= m.band.hi; y++) {
+          for (let x = m.bbox.minX; x <= m.bbox.maxX; x++) {
+            const i = at(x, y);
+            if (px[i + 3] <= 127) continue;
+            const d = Math.abs(px[i] - base[0]) + Math.abs(px[i + 1] - base[1]) + Math.abs(px[i + 2] - base[2]);
+            dev += d; sx += d * x;
+          }
+        }
+        return { cx: dev ? +(sx / dev).toFixed(2) : null, base, dev, hi: m.band.hi };
+      },
+      // 像素指纹：alpha 用于比剪影（几何），rgba 用于比着色（皮肤）。FNV-1a 足够做等值判定。
+      pixHash(mode) {
+        const px = readPixels();
+        let h = 0x811c9dc5 >>> 0;
+        const step = mode === "alpha" ? 4 : 1;
+        for (let i = mode === "alpha" ? 3 : 0; i < px.length * 4; i += step) {
+          h = (h ^ px[i]) >>> 0;
+          h = Math.imul(h, 0x01000193) >>> 0;
+        }
+        return h >>> 0;
+      },
+      projectTipNow() { return projectTip(); },
+      facingNow() { return facingNow(); },
+      presetIds: FACTS.presets.map((p) => p.id),
+      skin: document.body.getAttribute("data-skin"),
+    };
+  }
+
+  function boot() {
+    renderStatic();
+    const ok = initGL();
+    buildProbe();
+    if (!ok) {
+      const p = document.createElement("p");
+      p.className = "gl-fatal";
+      p.setAttribute("role", "alert");
+      p.textContent = LBL.glHint;
+      document.querySelector(".stage").prepend(p);
+      window.__mz.bootError = info.compile;
+      return;
+    }
+    bindControls();
+    applyPreset(FACTS.presets[0], document.querySelector('#presetBar button[data-preset="' + FACTS.presets[0].id + '"]'));
+    document.getElementById("buildStamp").textContent = fill(LBL.buildStamp, { id: FACTS.build.id, sha: FACTS.build.geometrySha1 });
+    window.__mz.ready = true;
+  }
+  boot();
+})();
+</script>
+<!--@HOST:END-->
+</body>
+</html>

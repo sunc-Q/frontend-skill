@@ -1,0 +1,1292 @@
+{
+  "total": 257,
+  "pass": 257,
+  "fail": 0,
+  "results": [
+    {
+      "id": "A/vitrine-存在",
+      "pass": true,
+      "detail": "/Users/apple/Documents/workProject/试验/前端skill实验室/artifacts/20260926-22-shader-360-showcase/preview/showcase-vitrine.html"
+    },
+    {
+      "id": "A/vitrine-doctype",
+      "pass": true,
+      "detail": "实际 <!doctype html> / 期望 <!doctype html>"
+    },
+    {
+      "id": "A/vitrine-style标签数",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "A/vitrine-script标签数",
+      "pass": true,
+      "detail": "实际 5 / 期望 5"
+    },
+    {
+      "id": "A/vitrine-canvas数",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "A/vitrine-外链属性",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "A/vitrine-零http",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "A/vitrine-无module",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "A/vitrine-无网络与持久化API",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "A/vitrine-CSS无url()",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "A/vitrine-无位图无字体外链",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "A/vitrine-体积合理",
+      "pass": true,
+      "detail": "49431B"
+    },
+    {
+      "id": "A/plaque-存在",
+      "pass": true,
+      "detail": "/Users/apple/Documents/workProject/试验/前端skill实验室/artifacts/20260926-22-shader-360-showcase/preview/showcase-plaque.html"
+    },
+    {
+      "id": "A/plaque-doctype",
+      "pass": true,
+      "detail": "实际 <!doctype html> / 期望 <!doctype html>"
+    },
+    {
+      "id": "A/plaque-style标签数",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "A/plaque-script标签数",
+      "pass": true,
+      "detail": "实际 5 / 期望 5"
+    },
+    {
+      "id": "A/plaque-canvas数",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "A/plaque-外链属性",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "A/plaque-零http",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "A/plaque-无module",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "A/plaque-无网络与持久化API",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "A/plaque-CSS无url()",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "A/plaque-无位图无字体外链",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "A/plaque-体积合理",
+      "pass": true,
+      "detail": "48192B"
+    },
+    {
+      "id": "A/industrial-存在",
+      "pass": true,
+      "detail": "/Users/apple/Documents/workProject/试验/前端skill实验室/artifacts/20260926-22-shader-360-showcase/preview/showcase-industrial.html"
+    },
+    {
+      "id": "A/industrial-doctype",
+      "pass": true,
+      "detail": "实际 <!doctype html> / 期望 <!doctype html>"
+    },
+    {
+      "id": "A/industrial-style标签数",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "A/industrial-script标签数",
+      "pass": true,
+      "detail": "实际 5 / 期望 5"
+    },
+    {
+      "id": "A/industrial-canvas数",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "A/industrial-外链属性",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "A/industrial-零http",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "A/industrial-无module",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "A/industrial-无网络与持久化API",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "A/industrial-CSS无url()",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "A/industrial-无位图无字体外链",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "A/industrial-体积合理",
+      "pass": true,
+      "detail": "50128B"
+    },
+    {
+      "id": "A/A-预览总大小<400KB",
+      "pass": true,
+      "detail": "实际 true / 期望 true"
+    },
+    {
+      "id": "B/vitrine-DOM文本节点零数字",
+      "pass": true,
+      "detail": "实际 0 / 期望 0 ·  ← 跳到展台  · "
+    },
+    {
+      "id": "B/plaque-DOM文本节点零数字",
+      "pass": true,
+      "detail": "实际 0 / 期望 0 ·  ← 跳到展台  · "
+    },
+    {
+      "id": "B/industrial-DOM文本节点零数字",
+      "pass": true,
+      "detail": "实际 0 / 期望 0 ·  ← 跳到展台  · "
+    },
+    {
+      "id": "B/B-i18n键都在labels里",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "B/B-labels无孤儿键",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "B/B-运行时键都可用",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "B/B-data-fact全部可解析",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "B/B-host.js字符串无中文文案",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "B/B-页面facts只比src多派生字段",
+      "pass": true,
+      "detail": "实际 {\"$comment\":\"本页唯一事实源。页面上的每一个数字都必须能由这份 JSON 现推；build.mjs 只代入，check-node.mjs 独立复算。\",\"product\":{\"brand\":\"墨准 MOZHUN\",\"model\":\"MZ-3\",\"name\":\"手冲壶\",\"nameEn\":\"Gooseneck Kettle\",\"volumeMl\":700,\"bodyMaterial\":\"304 不锈钢\",\"coatingOptions\":[\"哑光陶瓷釉\",\"拉丝原色\",\"安全黄喷涂\"],\"launchDate\":\"2026-11-03\",\"priceCny\":689,\"demoDisclaimer\":\"本页为技能验证用的虚构商品示例，不构成售卖；下单、库存与客服均为占位文案。\"},\"geometry\":{\"$comment\":\"单位=米，与着色器里的 SDF 常量一一对应；world x 正方向=壶嘴侧。spoutTip 是最高特征点，用于推导 topband 判据的期望值。\",\"body\":{\"halfHeight\":0.3,\"radius\":0.58,\"fillet\":0.16},\"base\":{\"yCenter\":-0.42,\"halfHeight\":0.06,\"radius\":0.46},\"lid\":{\"yCenter\":0.4,\"halfHeight\":0.05,\"radius\":0.3,\"fillet\":0.05},\"knob\":{\"center\":[0,0.52,0],\"radius\":0.065},\"spout\":{\"segments\":[{\"a\":[0.42,-0.12,0],\"b\":[0.7,0.1,0],\"r\":0.075},{\"a\":[0.7,0.1,0],\"b\":[0.8,0.4,0],\"r\":0.062},{\"a\":[0.8,0.4,0],\"b\":[0.72,0.62,0],\"r\":0.05},{\"a\":[0.72,0.62,0],\"b\":[0.6,0.7,0],\"r\":0.04}],\"tip\":[0.6,0.7,0],\"maxX\":0.8,\"minVisibleYAbove\":0.62},\"handle\":{\"center\":[-0.52,0.12,0],\"ringRadius\":0.3,\"tubeRadius\":0.05,\"cutX\":-0.06,\"topY\":0.414,\"minX\":-0.82},\"bounds\":{\"$comment\":\"求交前视线先与这个包围球求交（sphereBounds）；球半径必须装得下全部特征，否则商品会被切掉。check-node 用其它几何字段现算需求半径并比对。\",\"sphereRadius\":1.12}},\"camera\":{\"distance\":3.2,\"targetY\":0.05,\"fovDeg\":34,\"elevationClampDeg\":[4,35],\"azimuthUnit\":\"radian\",\"azimuthWrap\":\"tau\",\"degPerRadian\":57.29577951308232},\"shading\":{\"marchSteps\":96,\"marchEps\":0.0009,\"marchMinStep\":0.0035,\"normalEpsilon\":0.0012,\"aoRings\":4,\"aoStep\":0.016,\"aoFalloff\":0.72,\"aoGain\":2.2,\"zoneSpoutX\":0.6,\"zoneBrassY\":0.47,\"zoneLidR\":0.32,\"bandYLow\":0.02,\"bandYHigh\":0.16},\"controls\":{\"dragSensitivityDegPerPx\":0.55,\"elevationSensitivityDegPerPx\":0.12,\"keyboardStepDeg\":15,\"spinDegPerSec\":30,\"maxDevicePixelRatio\":2,\"backingStorePx\":420},\"presets\":[{\"id\":\"spout-right\",\"label\":\"壶嘴在右\",\"azDeg\":0,\"elDeg\":8,\"expectTopband\":\"right\"},{\"id\":\"spout-near\",\"label\":\"壶嘴朝向观众\",\"azDeg\":90,\"elDeg\":8,\"expectTopband\":\"center\"},{\"id\":\"spout-left\",\"label\":\"壶嘴在左\",\"azDeg\":180,\"elDeg\":8,\"expectTopband\":\"left\"},{\"id\":\"spout-far\",\"label\":\"壶嘴背向观众\",\"azDeg\":270,\"elDeg\":8,\"expectTopband\":\"center\"},{\"id\":\"top-down\",\"label\":\"俯视壶盖\",\"azDeg\":0,\"elDeg\":35,\"expectTopband\":\"right\"}],\"specTable\":[{\"k\":\"容量\",\"v\":\"700 ml\"},{\"k\":\"壶口内径\",\"v\":\"82 mm\"},{\"k\":\"空壶重\",\"v\":\"710 g\",\"note\":\"等于 parts[] 六件质量之和（check-node E 组现算比对）\"},{\"k\":\"壶嘴内径\",\"v\":\"6.5 mm\"},{\"k\":\"热源\",\"v\":\"电磁/燃气通用\"},{\"k\":\"保修\",\"v\":\"24 个月\"}],\"parts\":[{\"no\":\"MZ3-BODY\",\"name\":\"壶身\",\"material\":\"304 不锈钢 0.6 mm\",\"massG\":402,\"note\":\"一体拉伸\"},{\"no\":\"MZ3-SPNT\",\"name\":\"鹅颈壶嘴\",\"material\":\"304 无缝管\",\"massG\":74,\"note\":\"四段拟合轴线\"},{\"no\":\"MZ3-HNDL\",\"name\":\"侧把手\",\"material\":\"酚醛树脂\",\"massG\":58,\"note\":\"半环，切口朝壶身\"},{\"no\":\"MZ3-LID\",\"name\":\"壶盖\",\"material\":\"304 + 硅胶圈\",\"massG\":46,\"note\":\"含密封圈\"},{\"no\":\"MZ3-KNOB\",\"name\":\"盖钮\",\"material\":\"黄铜镀镍\",\"massG\":12,\"note\":\"回转体，视角不变量\"},{\"no\":\"MZ3-BASE\",\"name\":\"底座\",\"material\":\"锌合金\",\"massG\":118,\"note\":\"配重\"}],\"styles\":[{\"id\":\"vitrine\",\"name\":\"射灯橱窗\",\"shade\":\"glossy-ceramic\",\"mood\":\"dark-theatre\",\"claim\":\"暗场射灯＋描边铜线：把展台当成夜里的一件橱窗，商品靠自身高光从黑色里浮出来。\"},{\"id\":\"plaque\",\"name\":\"展签美术馆\",\"shade\":\"matte-plaster\",\"mood\":\"neutral-museum\",\"claim\":\"展签压画框：米灰墙面＋柔和扩散投影，商品当成挂在墙上的实物，页面不抢话。\"},{\"id\":\"industrial\",\"name\":\"工业配置器\",\"shade\":\"brushed-safety\",\"mood\":\"high-key-shop\",\"claim\":\"配置单口径：硬投影＋等宽数字＋大写标签，把商品当成一件可选型的设备。\"}]} / 期望 {\"$comment\":\"本页唯一事实源。页面上的每一个数字都必须能由这份 JSON 现推；build.mjs 只代入，check-node.mjs 独立复算。\",\"product\":{\"brand\":\"墨准 MOZHUN\",\"model\":\"MZ-3\",\"name\":\"手冲壶\",\"nameEn\":\"Gooseneck Kettle\",\"volumeMl\":700,\"bodyMaterial\":\"304 不锈钢\",\"coatingOptions\":[\"哑光陶瓷釉\",\"拉丝原色\",\"安全黄喷涂\"],\"launchDate\":\"2026-11-03\",\"priceCny\":689,\"demoDisclaimer\":\"本页为技能验证用的虚构商品示例，不构成售卖；下单、库存与客服均为占位文案。\"},\"geometry\":{\"$comment\":\"单位=米，与着色器里的 SDF 常量一一对应；world x 正方向=壶嘴侧。spoutTip 是最高特征点，用于推导 topband 判据的期望值。\",\"body\":{\"halfHeight\":0.3,\"radius\":0.58,\"fillet\":0.16},\"base\":{\"yCenter\":-0.42,\"halfHeight\":0.06,\"radius\":0.46},\"lid\":{\"yCenter\":0.4,\"halfHeight\":0.05,\"radius\":0.3,\"fillet\":0.05},\"knob\":{\"center\":[0,0.52,0],\"radius\":0.065},\"spout\":{\"segments\":[{\"a\":[0.42,-0.12,0],\"b\":[0.7,0.1,0],\"r\":0.075},{\"a\":[0.7,0.1,0],\"b\":[0.8,0.4,0],\"r\":0.062},{\"a\":[0.8,0.4,0],\"b\":[0.72,0.62,0],\"r\":0.05},{\"a\":[0.72,0.62,0],\"b\":[0.6,0.7,0],\"r\":0.04}],\"tip\":[0.6,0.7,0],\"maxX\":0.8,\"minVisibleYAbove\":0.62},\"handle\":{\"center\":[-0.52,0.12,0],\"ringRadius\":0.3,\"tubeRadius\":0.05,\"cutX\":-0.06,\"topY\":0.414,\"minX\":-0.82},\"bounds\":{\"$comment\":\"求交前视线先与这个包围球求交（sphereBounds）；球半径必须装得下全部特征，否则商品会被切掉。check-node 用其它几何字段现算需求半径并比对。\",\"sphereRadius\":1.12}},\"camera\":{\"distance\":3.2,\"targetY\":0.05,\"fovDeg\":34,\"elevationClampDeg\":[4,35],\"azimuthUnit\":\"radian\",\"azimuthWrap\":\"tau\",\"degPerRadian\":57.29577951308232},\"shading\":{\"marchSteps\":96,\"marchEps\":0.0009,\"marchMinStep\":0.0035,\"normalEpsilon\":0.0012,\"aoRings\":4,\"aoStep\":0.016,\"aoFalloff\":0.72,\"aoGain\":2.2,\"zoneSpoutX\":0.6,\"zoneBrassY\":0.47,\"zoneLidR\":0.32,\"bandYLow\":0.02,\"bandYHigh\":0.16},\"controls\":{\"dragSensitivityDegPerPx\":0.55,\"elevationSensitivityDegPerPx\":0.12,\"keyboardStepDeg\":15,\"spinDegPerSec\":30,\"maxDevicePixelRatio\":2,\"backingStorePx\":420},\"presets\":[{\"id\":\"spout-right\",\"label\":\"壶嘴在右\",\"azDeg\":0,\"elDeg\":8,\"expectTopband\":\"right\"},{\"id\":\"spout-near\",\"label\":\"壶嘴朝向观众\",\"azDeg\":90,\"elDeg\":8,\"expectTopband\":\"center\"},{\"id\":\"spout-left\",\"label\":\"壶嘴在左\",\"azDeg\":180,\"elDeg\":8,\"expectTopband\":\"left\"},{\"id\":\"spout-far\",\"label\":\"壶嘴背向观众\",\"azDeg\":270,\"elDeg\":8,\"expectTopband\":\"center\"},{\"id\":\"top-down\",\"label\":\"俯视壶盖\",\"azDeg\":0,\"elDeg\":35,\"expectTopband\":\"right\"}],\"specTable\":[{\"k\":\"容量\",\"v\":\"700 ml\"},{\"k\":\"壶口内径\",\"v\":\"82 mm\"},{\"k\":\"空壶重\",\"v\":\"710 g\",\"note\":\"等于 parts[] 六件质量之和（check-node E 组现算比对）\"},{\"k\":\"壶嘴内径\",\"v\":\"6.5 mm\"},{\"k\":\"热源\",\"v\":\"电磁/燃气通用\"},{\"k\":\"保修\",\"v\":\"24 个月\"}],\"parts\":[{\"no\":\"MZ3-BODY\",\"name\":\"壶身\",\"material\":\"304 不锈钢 0.6 mm\",\"massG\":402,\"note\":\"一体拉伸\"},{\"no\":\"MZ3-SPNT\",\"name\":\"鹅颈壶嘴\",\"material\":\"304 无缝管\",\"massG\":74,\"note\":\"四段拟合轴线\"},{\"no\":\"MZ3-HNDL\",\"name\":\"侧把手\",\"material\":\"酚醛树脂\",\"massG\":58,\"note\":\"半环，切口朝壶身\"},{\"no\":\"MZ3-LID\",\"name\":\"壶盖\",\"material\":\"304 + 硅胶圈\",\"massG\":46,\"note\":\"含密封圈\"},{\"no\":\"MZ3-KNOB\",\"name\":\"盖钮\",\"material\":\"黄铜镀镍\",\"massG\":12,\"note\":\"回转体，视角不变量\"},{\"no\":\"MZ3-BASE\",\"name\":\"底座\",\"material\":\"锌合金\",\"massG\":118,\"note\":\"配重\"}],\"styles\":[{\"id\":\"vitrine\",\"name\":\"射灯橱窗\",\"shade\":\"glossy-ceramic\",\"mood\":\"dark-theatre\",\"claim\":\"暗场射灯＋描边铜线：把展台当成夜里的一件橱窗，商品靠自身高光从黑色里浮出来。\"},{\"id\":\"plaque\",\"name\":\"展签美术馆\",\"shade\":\"matte-plaster\",\"mood\":\"neutral-museum\",\"claim\":\"展签压画框：米灰墙面＋柔和扩散投影，商品当成挂在墙上的实物，页面不抢话。\"},{\"id\":\"industrial\",\"name\":\"工业配置器\",\"shade\":\"brushed-safety\",\"mood\":\"high-key-shop\",\"claim\":\"配置单口径：硬投影＋等宽数字＋大写标签，把商品当成一件可选型的设备。\"}]}"
+    },
+    {
+      "id": "B/B-构建号写进facts",
+      "pass": true,
+      "detail": "20260926-22"
+    },
+    {
+      "id": "B/B-三页facts与labels段逐字节相同",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "B/B-部件合计与几何口径自洽",
+      "pass": true,
+      "detail": "710g"
+    },
+    {
+      "id": "B/B-合计行由parts现算(host里无手打总数)",
+      "pass": true,
+      "detail": "实际 true / 期望 true"
+    },
+    {
+      "id": "C/C-vert三页相同",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "C/C-host三页相同",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "C/C-dom三页相同",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "C/C-head三页相同",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "C/C-geometry三页相同",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "C/C-main三页相同",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "C/C-fragShared三页相同",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "C/C-css三页互异",
+      "pass": true,
+      "detail": "实际 3 / 期望 3"
+    },
+    {
+      "id": "C/C-shade三页互异",
+      "pass": true,
+      "detail": "实际 3 / 期望 3"
+    },
+    {
+      "id": "C/C-产物DOM含src骨架",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "C/C-几何块sha1写进页面facts",
+      "pass": true,
+      "detail": "实际 11277395443f / 期望 11277395443f"
+    },
+    {
+      "id": "C/C-三页报告的几何sha1同一个值",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "C/C-报告sha1=源码现算sha1",
+      "pass": true,
+      "detail": "实际 11277395443fa13ef6441fb9d1f4e472273c7b6c / 期望 11277395443fa13ef6441fb9d1f4e472273c7b6c"
+    },
+    {
+      "id": "C/C-页面戳的宿主sha1=源码现算",
+      "pass": true,
+      "detail": "实际 44bb3fb394aa / 期望 44bb3fb394aa"
+    },
+    {
+      "id": "D/D-vitrine-有令牌被解析",
+      "pass": true,
+      "detail": "5"
+    },
+    {
+      "id": "D/D-vitrine---v-shell取自:root",
+      "pass": true,
+      "detail": "实际 #2e2a26 / 期望 #2e2a26"
+    },
+    {
+      "id": "D/D-vitrine---v-shell写进GLSL",
+      "pass": true,
+      "detail": "vec3(0.180392, 0.164706, 0.149020)"
+    },
+    {
+      "id": "D/D-vitrine---v-shell-deep取自:root",
+      "pass": true,
+      "detail": "实际 #171513 / 期望 #171513"
+    },
+    {
+      "id": "D/D-vitrine---v-shell-deep写进GLSL",
+      "pass": true,
+      "detail": "vec3(0.090196, 0.082353, 0.074510)"
+    },
+    {
+      "id": "D/D-vitrine---v-brass取自:root",
+      "pass": true,
+      "detail": "实际 #b58a3c / 期望 #b58a3c"
+    },
+    {
+      "id": "D/D-vitrine---v-brass写进GLSL",
+      "pass": true,
+      "detail": "vec3(0.709804, 0.541176, 0.235294)"
+    },
+    {
+      "id": "D/D-vitrine---v-rim取自:root",
+      "pass": true,
+      "detail": "实际 #6f86a8 / 期望 #6f86a8"
+    },
+    {
+      "id": "D/D-vitrine---v-rim写进GLSL",
+      "pass": true,
+      "detail": "vec3(0.435294, 0.525490, 0.658824)"
+    },
+    {
+      "id": "D/D-vitrine---v-spec取自:root",
+      "pass": true,
+      "detail": "实际 #fff6e2 / 期望 #fff6e2"
+    },
+    {
+      "id": "D/D-vitrine---v-spec写进GLSL",
+      "pass": true,
+      "detail": "vec3(1.000000, 0.964706, 0.886275)"
+    },
+    {
+      "id": "D/D-vitrine-shade代码无十六进制",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "D/D-vitrine-占位符已全部替换",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "D/D-plaque-有令牌被解析",
+      "pass": true,
+      "detail": "3"
+    },
+    {
+      "id": "D/D-plaque---p-body取自:root",
+      "pass": true,
+      "detail": "实际 #d9d3c8 / 期望 #d9d3c8"
+    },
+    {
+      "id": "D/D-plaque---p-body写进GLSL",
+      "pass": true,
+      "detail": "vec3(0.850980, 0.827451, 0.784314)"
+    },
+    {
+      "id": "D/D-plaque---p-patch取自:root",
+      "pass": true,
+      "detail": "实际 #8d9a86 / 期望 #8d9a86"
+    },
+    {
+      "id": "D/D-plaque---p-patch写进GLSL",
+      "pass": true,
+      "detail": "vec3(0.552941, 0.603922, 0.525490)"
+    },
+    {
+      "id": "D/D-plaque---p-ambient取自:root",
+      "pass": true,
+      "detail": "实际 #cdd4c9 / 期望 #cdd4c9"
+    },
+    {
+      "id": "D/D-plaque---p-ambient写进GLSL",
+      "pass": true,
+      "detail": "vec3(0.803922, 0.831373, 0.788235)"
+    },
+    {
+      "id": "D/D-plaque-shade代码无十六进制",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "D/D-plaque-占位符已全部替换",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "D/D-industrial-有令牌被解析",
+      "pass": true,
+      "detail": "3"
+    },
+    {
+      "id": "D/D-industrial---i-steel取自:root",
+      "pass": true,
+      "detail": "实际 #9aa3ad / 期望 #9aa3ad"
+    },
+    {
+      "id": "D/D-industrial---i-steel写进GLSL",
+      "pass": true,
+      "detail": "vec3(0.603922, 0.639216, 0.678431)"
+    },
+    {
+      "id": "D/D-industrial---i-paint取自:root",
+      "pass": true,
+      "detail": "实际 #ffd21e / 期望 #ffd21e"
+    },
+    {
+      "id": "D/D-industrial---i-paint写进GLSL",
+      "pass": true,
+      "detail": "vec3(1.000000, 0.823529, 0.117647)"
+    },
+    {
+      "id": "D/D-industrial---i-dark取自:root",
+      "pass": true,
+      "detail": "实际 #23282e / 期望 #23282e"
+    },
+    {
+      "id": "D/D-industrial---i-dark写进GLSL",
+      "pass": true,
+      "detail": "vec3(0.137255, 0.156863, 0.180392)"
+    },
+    {
+      "id": "D/D-industrial-shade代码无十六进制",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "D/D-industrial-占位符已全部替换",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "D/D-vitrine×plaque-着色色板零交集",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "D/D-vitrine×industrial-着色色板零交集",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "D/D-plaque×industrial-着色色板零交集",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "E/E-rule三值互异",
+      "pass": true,
+      "detail": "实际 3 / 期望 3 · 0.5px / 0px / 2px"
+    },
+    {
+      "id": "E/E-radius三值互异",
+      "pass": true,
+      "detail": "实际 3 / 期望 3 · 2px / 18px / 0px"
+    },
+    {
+      "id": "E/E-bodyMax三值互异",
+      "pass": true,
+      "detail": "实际 3 / 期望 3 · 1240 / 1120 / 1320"
+    },
+    {
+      "id": "E/E-base三值互异",
+      "pass": true,
+      "detail": "实际 3 / 期望 3 · 16 / 16.5 / 15.5"
+    },
+    {
+      "id": "E/E-vitrine靠描边不靠投影",
+      "pass": true,
+      "detail": "实际 none / 期望 none"
+    },
+    {
+      "id": "E/E-plaque投影是软扩散(负Y偏移/正模糊/负扩散)",
+      "pass": true,
+      "detail": "[0,26,54,-26]"
+    },
+    {
+      "id": "E/E-industrial硬投影零模糊",
+      "pass": true,
+      "detail": "[6,6,0]"
+    },
+    {
+      "id": "E/E-vitrine标题通用衬线字族",
+      "pass": true,
+      "detail": "serif"
+    },
+    {
+      "id": "E/E-plaque标题通用无衬线字族",
+      "pass": true,
+      "detail": "sans-serif"
+    },
+    {
+      "id": "E/E-plaque零大写化",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "E/E-industrial大写化最多",
+      "pass": true,
+      "detail": "13"
+    },
+    {
+      "id": "E/E-industrial零渐变到描边体系之外",
+      "pass": true,
+      "detail": "i3/v3"
+    },
+    {
+      "id": "E/E-industrial用var(--rule)统一描边",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "E/E-vitrine×plaque-整张色板零交集",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "E/E-vitrine×industrial-整张色板零交集",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "E/E-plaque×industrial-整张色板零交集",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "E/E-vitrine-每个class都有规则(27)",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "E/E-plaque-每个class都有规则(27)",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "E/E-industrial-每个class都有规则(27)",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "F/vitrine-单个h1",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "F/vitrine-lang与charset",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/vitrine-skip链接是最先的可聚焦节点",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/vitrine-每个表格有caption",
+      "pass": true,
+      "detail": "实际 3 / 期望 3"
+    },
+    {
+      "id": "F/vitrine-列头都有scope=col",
+      "pass": true,
+      "detail": "实际 9 / 期望 9"
+    },
+    {
+      "id": "F/vitrine-readout是live区域",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/vitrine-canvas有role与初始aria-label",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/vitrine-自转按钮有aria-pressed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/vitrine-预设组有role与标签",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/vitrine-reduced-motion块",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/vitrine-响应式断点",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/vitrine-焦点可见样式",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/vitrine-canvas有min-width防溢出",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/vitrine-标题里有本页风格名",
+      "pass": true,
+      "detail": "射灯橱窗"
+    },
+    {
+      "id": "F/plaque-单个h1",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "F/plaque-lang与charset",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/plaque-skip链接是最先的可聚焦节点",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/plaque-每个表格有caption",
+      "pass": true,
+      "detail": "实际 3 / 期望 3"
+    },
+    {
+      "id": "F/plaque-列头都有scope=col",
+      "pass": true,
+      "detail": "实际 9 / 期望 9"
+    },
+    {
+      "id": "F/plaque-readout是live区域",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/plaque-canvas有role与初始aria-label",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/plaque-自转按钮有aria-pressed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/plaque-预设组有role与标签",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/plaque-reduced-motion块",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/plaque-响应式断点",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/plaque-焦点可见样式",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/plaque-canvas有min-width防溢出",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/plaque-标题里有本页风格名",
+      "pass": true,
+      "detail": "展签美术馆"
+    },
+    {
+      "id": "F/industrial-单个h1",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "F/industrial-lang与charset",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/industrial-skip链接是最先的可聚焦节点",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/industrial-每个表格有caption",
+      "pass": true,
+      "detail": "实际 3 / 期望 3"
+    },
+    {
+      "id": "F/industrial-列头都有scope=col",
+      "pass": true,
+      "detail": "实际 9 / 期望 9"
+    },
+    {
+      "id": "F/industrial-readout是live区域",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/industrial-canvas有role与初始aria-label",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/industrial-自转按钮有aria-pressed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/industrial-预设组有role与标签",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/industrial-reduced-motion块",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/industrial-响应式断点",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/industrial-焦点可见样式",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/industrial-canvas有min-width防溢出",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/industrial-标题里有本页风格名",
+      "pass": true,
+      "detail": "工业配置器"
+    },
+    {
+      "id": "F/F-角度表每行5格=表头5列",
+      "pass": true,
+      "detail": "实际 5 / 期望 5"
+    },
+    {
+      "id": "F/F-实测列有指针",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/F-实测列初值不是结论",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/F-像素实测默认开启",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "F/F-实测单元格只写测得的锚点",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "G/G-GLSL每个标量常量都在JSON里",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "G/G-GLSL每个向量常量分量都在JSON里",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "G/G-shading阈值按名双向镜像",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "G/G-shading无未镜像字段",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "G/G-CAM_DIST与JSON一致",
+      "pass": true,
+      "detail": "实际 3.2 / 期望 3.2"
+    },
+    {
+      "id": "G/G-TARGET_Y与JSON一致",
+      "pass": true,
+      "detail": "实际 0.05 / 期望 0.05"
+    },
+    {
+      "id": "G/G-FOV_TAN与JSON一致",
+      "pass": true,
+      "detail": "实际 0.305731 / 期望 0.305731"
+    },
+    {
+      "id": "G/G-FOV_TAN=tan(fovDeg/2)",
+      "pass": true,
+      "detail": "实际 0.305731 / 期望 0.305731"
+    },
+    {
+      "id": "G/G-关键半径双向镜像",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "G/G-鹅颈四段显式胶囊",
+      "pass": true,
+      "detail": "实际 4 / 期望 4"
+    },
+    {
+      "id": "G/G-壶嘴尖端事实与几何一致",
+      "pass": true,
+      "detail": "实际 [0.6,0.7,0] / 期望 [0.6,0.7,0]"
+    },
+    {
+      "id": "G/G-包围球半径写在JSON里",
+      "pass": true,
+      "detail": "实际 1.12 / 期望 1.12"
+    },
+    {
+      "id": "G/G-包围球装得下最远特征",
+      "pass": true,
+      "detail": "球 1.12 ≥ 需求 1.000m"
+    },
+    {
+      "id": "G/G-包围球不过肥(浪费96步)",
+      "pass": true,
+      "detail": "球 1.12 ≤ 需求 1.000 + 0.15"
+    },
+    {
+      "id": "G/G-相机在包围球外",
+      "pass": true,
+      "detail": "3.2 > 1.12"
+    },
+    {
+      "id": "H/H-无#version",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "H/H-无GLSL3存储关键字",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "H/H-vert用attribute",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "H/H-gl_FragColor赋值恰好两处(命中/未命中)",
+      "pass": true,
+      "detail": "实际 2 / 期望 2"
+    },
+    {
+      "id": "H/H-两处出口都在MAIN段",
+      "pass": true,
+      "detail": "实际 2 / 期望 2"
+    },
+    {
+      "id": "H/H-MISS分支输出全透明",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "H/H-无ShaderToy残留名",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "H/H-无非常量数组下标",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "H/H-循环是规范式 i=常量; i<常量; i++",
+      "pass": true,
+      "detail": "实际 2 / 期望 2"
+    },
+    {
+      "id": "H/H-循环上限是字面量或具名const int",
+      "pass": true,
+      "detail": "AO_RINGS,MARCH_STEPS"
+    },
+    {
+      "id": "H/H-求交循环只在GEOMETRY里出现一次",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "H/H-shade段零循环",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "H/H-highp精度显式声明且在最前",
+      "pass": true,
+      "detail": "precision highp float;\n/"
+    },
+    {
+      "id": "H/H-vitrine高光呼吸用uTime",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "id": "H/H-plaque零uTime（皮肤主张无反射）",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "H/H-industrial零uTime",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "H/H-几何段零uTime",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "H/H-出口段零uTime",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "H/H-head里uTime只剩声明",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "H/H-朝向判据声明链有序",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "H/H-分区判据在mapObj之后",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "H/H-三套皮肤都调用spoutFace",
+      "pass": true,
+      "detail": "实际 3 / 期望 3"
+    },
+    {
+      "id": "H/H-只有industrial用识别带阈值",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "H/H-三套皮肤各自定义shadeSurface一次",
+      "pass": true,
+      "detail": "实际 3 / 期望 3"
+    },
+    {
+      "id": "I/I-vitrine --v-ink/--v-stage≥4.5",
+      "pass": true,
+      "detail": "14.49 （正文 .coatings/.notes）"
+    },
+    {
+      "id": "I/I-vitrine --v-spec/--v-void≥3",
+      "pass": true,
+      "detail": "18.4 （大标题 h1（≥24px 大字用 3.0））"
+    },
+    {
+      "id": "I/I-vitrine --v-brass/--v-stage≥4.5",
+      "pass": true,
+      "detail": "5.93 （小节标题 .sec-title）"
+    },
+    {
+      "id": "I/I-vitrine --v-muted/--v-stage≥4.5",
+      "pass": true,
+      "detail": "6.08 （次要文字 .stage-cap）"
+    },
+    {
+      "id": "I/I-vitrine --v-muted/--v-void≥4.5",
+      "pass": true,
+      "detail": "6.44 （.drag-hint 落在页面底色）"
+    },
+    {
+      "id": "I/I-plaque --p-ink/--p-card≥4.5",
+      "pass": true,
+      "detail": "14.19 （正文/读数）"
+    },
+    {
+      "id": "I/I-plaque --p-ink/--p-wall≥4.5",
+      "pass": true,
+      "detail": "12.3 （h1 落在展墙）"
+    },
+    {
+      "id": "I/I-plaque --p-muted/--p-wall≥4.5",
+      "pass": true,
+      "detail": "4.86 （.mast-tag/.notes）"
+    },
+    {
+      "id": "I/I-plaque --p-muted/--p-card≥4.5",
+      "pass": true,
+      "detail": "5.6 （表头 .table thead th）"
+    },
+    {
+      "id": "I/I-plaque --p-accent/--p-wall≥4.5",
+      "pass": true,
+      "detail": "4.74 （.mast-kicker）"
+    },
+    {
+      "id": "I/I-plaque --p-card/--p-accent≥4.5",
+      "pass": true,
+      "detail": "5.46 （选中按钮文字）"
+    },
+    {
+      "id": "I/I-industrial --i-ink/--i-panel≥4.5",
+      "pass": true,
+      "detail": "14.5 （正文）"
+    },
+    {
+      "id": "I/I-industrial --i-ink/--i-floor≥4.5",
+      "pass": true,
+      "detail": "11.67 （.notes 落在地板）"
+    },
+    {
+      "id": "I/I-industrial --i-muted/--i-floor≥4.5",
+      "pass": true,
+      "detail": "4.93 （.stage-cap/.gl-badges）"
+    },
+    {
+      "id": "I/I-industrial --i-muted/--i-panel≥4.5",
+      "pass": true,
+      "detail": "6.12 （.mast-kicker）"
+    },
+    {
+      "id": "I/I-industrial --i-panel/--i-dark≥4.5",
+      "pass": true,
+      "detail": "13 （表头反白）"
+    },
+    {
+      "id": "I/I-industrial --i-ink/--i-paint≥4.5",
+      "pass": true,
+      "detail": "11.43 （黄底黑字标签/选中态）"
+    },
+    {
+      "id": "I/I-industrial --i-warn/--i-floor≥4.5",
+      "pass": true,
+      "detail": "5.09 （.sec-title 警示红）"
+    },
+    {
+      "id": "J/J-uniform命名宿主友好",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "J/J-不假定WebGL2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "J/J-编译失败有可读信息",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "J/J-链接失败有可读信息",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "J/J-上下文不可用不抛异常",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "J/J-视角uniform都有位置查询",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "J/J-无交互不重绘",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "J/J-剪影用alpha通道判定",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "J/J-变体轴由SKILL要求的host胶水承载",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "K/K-deg2rad只定义一处",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "K/K-rad2deg只定义一处",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "K/K-wrapTau只定义一处",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "K/K-wrap用在读取与写入两侧",
+      "pass": true,
+      "detail": "7"
+    },
+    {
+      "id": "K/K-uniform写入前wrap",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "K/K-界面角度取整后才拼文案",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "K/K-GLSL代码里没有度数词根",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "K/K-DOM模板不含度数符号",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "K/K-换算常数只出现在两个换算函数里",
+      "pass": true,
+      "detail": "实际 2 / 期望 2 · const deg2rad = (d) => (d * TAU) / 360; | const rad2deg = (r) => (r * 360) / TAU;"
+    },
+    {
+      "id": "K/K-两处都是换算定义",
+      "pass": true,
+      "detail": "const deg2rad = (d) => (d * TAU) / 360; | const rad2deg = (r) => (r * 360) / TAU;"
+    },
+    {
+      "id": "K/K-宿主没有绕开换算函数的度数常数",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "L/L-预设数量",
+      "pass": true,
+      "detail": "实际 5 / 期望 5"
+    },
+    {
+      "id": "L/L-预设方位角唯一",
+      "pass": true,
+      "detail": "0,90,180,270,0"
+    },
+    {
+      "id": "L/L-预设覆盖四个正交方向",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "L/L-expectTopband只有三种取值",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "L/L-每个仰角都在钳制区间内",
+      "pass": true,
+      "detail": "8,8,8,8,35"
+    },
+    {
+      "id": "L/L-夹持区间下界小于上界",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "L/L-控件灵敏度以度为单位声明",
+      "pass": true,
+      "detail": "实际 true / 期望 true"
+    },
+    {
+      "id": "L/L-方位单位声明为弧度",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "L/L-每弧度度数常数",
+      "pass": true,
+      "detail": "实际 57.29577951308232 / 期望 57.29577951308232"
+    },
+    {
+      "id": "N/N-对照页有数字指针",
+      "pass": true,
+      "detail": "133"
+    },
+    {
+      "id": "N/N-对照页每个数字都现算得出",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "N/N-对照页有25个以上不同指针",
+      "pass": true,
+      "detail": "92"
+    },
+    {
+      "id": "N/N-对照页零外链",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "N/N-对照页零脚本",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "N/N-对照页三种风格都在",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "N/N-对照页嵌了三张剪影图",
+      "pass": true,
+      "detail": "3"
+    }
+  ]
+}

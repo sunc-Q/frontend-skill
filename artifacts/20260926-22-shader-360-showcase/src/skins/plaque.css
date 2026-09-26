@@ -1,0 +1,187 @@
+/* ============================================================
+   SKIN plaque · 展签美术馆（米灰展墙 / 无框悬浮 / 白卡展签）
+   指纹：零描边 + 软扩散投影塑形 + radius 18px + 原大小写标题 + 几何无衬线
+   与 vitrine 的分隔手法互斥（那边靠 0.5px 铜线描边、零投影），与 industrial 互斥（那边 2px 硬描边 + 零模糊硬投影）。
+   ============================================================ */
+:root {
+  --p-wall: #e9e6df;
+  --p-card: #f7f6f3;
+  --p-body: #d9d3c8;
+  --p-patch: #8d9a86;
+  --p-ambient: #cdd4c9;
+  --p-ink: #23252a;
+  --p-muted: #5f645d;
+  --p-line: #b9bdb2;
+  --p-accent: #4d6b57;
+  --p-shadow: rgba(35, 37, 42, 0.3);
+  --font-display: "Avenir Next", "PingFang SC", "Segoe UI", "Noto Sans CJK SC", sans-serif;
+  --font-body: "Avenir Next", "PingFang SC", "Segoe UI", "Noto Sans CJK SC", sans-serif;
+  --font-num: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+  --radius: 18px;
+  --gap: clamp(16px, 2.6vw, 30px);
+  --rule: 0px;
+}
+* { box-sizing: border-box; }
+html { background: var(--p-wall); }
+body {
+  margin: 0 auto;
+  padding: clamp(20px, 4vw, 56px) clamp(16px, 5vw, 60px) 44px;
+  background: var(--p-wall);
+  color: var(--p-ink);
+  font-family: var(--font-body);
+  font-size: 16.5px;
+  line-height: 1.8;
+  max-width: 1120px;
+}
+.skip { position: absolute; left: -9999px; top: 0; }
+.skip:focus {
+  left: 8px; top: 8px; padding: 8px 14px;
+  background: var(--p-card); color: var(--p-ink);
+  box-shadow: 0 10px 26px -12px var(--p-shadow); z-index: 9;
+}
+.mast { margin-bottom: calc(var(--gap) * 1.6); }
+.mast-kicker {
+  margin: 0 0 8px;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--p-accent);
+}
+h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--p-ink);
+}
+.h1-en { display: block; font-size: 0.3em; font-weight: 400; letter-spacing: 0.06em; color: var(--p-muted); margin-top: 8px; }
+.mast-tag { margin: 14px 0 0; font-size: 16px; color: var(--p-muted); max-width: 46ch; }
+.sec-title {
+  margin: 0 0 14px;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--p-ink);
+}
+section { margin-bottom: calc(var(--gap) * 2.2); }
+.stage-col { min-width: 0; }
+.stage-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--gap); }
+.stage {
+  position: relative;
+  margin: 0;
+  padding: clamp(10px, 2vw, 26px);
+  background: linear-gradient(180deg, var(--p-card) 0%, var(--p-wall) 100%);
+  border: var(--rule) solid transparent;
+  border-radius: var(--radius);
+  box-shadow: 0 26px 54px -26px var(--p-shadow);
+  overflow: hidden;
+}
+.stage-plinth {
+  position: absolute;
+  left: 22%; right: 22%; bottom: 12%; height: 7%;
+  border-radius: 50%;
+  background: radial-gradient(58% 100% at 50% 50%, var(--p-line) 0%, transparent 70%);
+  opacity: 0.75;
+}
+#gl {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  aspect-ratio: 1 / 1;
+  touch-action: none;
+  cursor: grab;
+  outline: none;
+}
+#gl:focus-visible { box-shadow: 0 0 0 3px var(--p-accent); border-radius: 12px; }
+#gl:active { cursor: grabbing; }
+.stage-light { display: none; }
+.stage-cap {
+  margin-top: 6px;
+  text-align: center;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: var(--p-muted);
+  position: relative;
+}
+.drag-hint { margin: 12px 0 0; font-size: 13.5px; color: var(--p-muted); text-align: center; }
+.viewer-meta {
+  background: var(--p-card);
+  border-radius: var(--radius);
+  padding: clamp(14px, 2vw, 24px);
+  box-shadow: 0 18px 34px -22px var(--p-shadow);
+}
+.readout {
+  margin: 0 0 14px;
+  font-family: var(--font-num);
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  color: var(--p-ink);
+}
+.presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+button, select, option {
+  font: inherit;
+  font-size: 14px;
+  color: var(--p-ink);
+  background: var(--p-wall);
+  border: 0 solid transparent;
+  border-radius: 999px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+button:hover { background: var(--p-ambient); }
+button[aria-pressed="true"] { background: var(--p-accent); color: var(--p-card); }
+button:focus-visible, select:focus-visible, a:focus-visible { outline: 3px solid var(--p-accent); outline-offset: 2px; }
+.viewer-actions { display: flex; gap: 8px; margin-bottom: 16px; }
+.coatings-label { margin: 18px 0 6px; font-size: 13px; color: var(--p-accent); }
+.coatings { margin: 0 0 18px; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 14.5px; color: var(--p-muted); }
+.coatings li::before { content: "· "; color: var(--p-accent); }
+.table { width: 100%; border-collapse: collapse; font-size: 14.5px; margin: 0 0 10px; }
+.table caption {
+  text-align: left; padding-bottom: 8px;
+  font-size: 13px; letter-spacing: 0.02em; color: var(--p-accent);
+}
+.table th, .table td {
+  padding: 8px 10px 8px 0;
+  border-bottom: 1px solid var(--p-line);
+  text-align: left;
+  font-weight: 400;
+}
+.table thead th { font-size: 12.5px; color: var(--p-muted); border-bottom-width: 1px; }
+.table tbody tr[data-active="1"] td, .table tbody tr[data-active="1"] th { color: var(--p-ink); font-weight: 500; }
+.table td, #partsTotalCell, .readout { font-variant-numeric: tabular-nums; }
+.table tfoot th { font-size: 13px; color: var(--p-muted); border-bottom: 0; }
+#partsTotalCell { color: var(--p-ink); font-weight: 600; }
+.note { margin: 0 0 8px; font-size: 12.5px; line-height: 1.65; color: var(--p-muted); }
+.spec-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: var(--gap); }
+.notes { margin: 0; padding-left: 20px; display: grid; gap: 10px; font-size: 15px; color: var(--p-muted); }
+.notes li::marker { color: var(--p-accent); }
+.gl-badges {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px 16px;
+  font-family: var(--font-num);
+  font-size: 12px;
+  color: var(--p-muted);
+}
+.gl-badges b { font-weight: 500; color: var(--p-ink); }
+.foot {
+  margin-top: 30px; padding-top: var(--gap);
+  border-top: 1px solid var(--p-line);
+  font-size: 13px; color: var(--p-muted);
+}
+.foot-demo { color: var(--p-ink); }
+.foot-build { font-family: var(--font-num); font-size: 11.5px; }
+@media (min-width: 900px) {
+  .stage-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: start; }
+}
+@media (max-width: 620px) {
+  .spec-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #gl { cursor: default; }
+}

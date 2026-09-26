@@ -1,0 +1,71 @@
+<a class="skip" href="#stage">跳到展台</a>
+<header class="mast">
+  <p class="mast-kicker"><span data-fact="product.brand"></span> · <span data-fact="product.model"></span></p>
+  <h1><span data-fact="product.name"></span><span class="h1-en"> <span data-fact="product.nameEn"></span></span></h1>
+  <p class="mast-tag" data-fact="product.volumeMl" data-fact-render="volume"></p>
+</header>
+<main>
+  <section id="stage" aria-labelledby="t-stage">
+    <h2 class="sec-title" id="t-stage" data-i18n="stageTitle"></h2>
+    <div class="stage-grid">
+      <div class="stage-col">
+        <figure class="stage">
+          <div class="stage-plinth"></div>
+          <canvas id="gl" role="img" aria-label="三维展台加载中"></canvas>
+          <div class="stage-light"></div>
+          <figcaption class="stage-cap" data-i18n="stageCaption"></figcaption>
+        </figure>
+        <p class="drag-hint" data-i18n="dragHint"></p>
+      </div>
+      <aside class="viewer-meta">
+        <p id="readout" class="readout" role="status" aria-live="polite" data-i18n="readoutPending"></p>
+        <div id="presetBar" class="presets" role="group" aria-label="预设视角"></div>
+        <div class="viewer-actions">
+          <button type="button" id="spinBtn" aria-pressed="false" data-i18n="btnSpin"></button>
+          <button type="button" id="resetBtn" data-i18n="btnReset"></button>
+        </div>
+        <p class="coatings-label" data-i18n="coatingLabel"></p>
+        <ul class="coatings" id="coatingList"></ul>
+        <p class="note" data-i18n="coatingNote"></p>
+        <table class="table" id="angleTable" aria-describedby="angleNote">
+          <caption data-i18n="angleCaption"></caption>
+          <thead><tr><th scope="col" data-i18n="colPreset"></th><th scope="col" data-i18n="colAz"></th><th scope="col" data-i18n="colEl"></th><th scope="col" data-i18n="colAnchor"></th><th scope="col" data-i18n="colMeasured"></th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <p id="angleNote" class="note" data-i18n="angleNote"></p>
+      </aside>
+    </div>
+  </section>
+
+  <section aria-labelledby="t-spec">
+    <h2 class="sec-title" id="t-spec" data-i18n="specTitle"></h2>
+    <div class="spec-grid">
+      <table class="table" id="specTable">
+        <caption data-i18n="specCaption"></caption>
+        <tbody></tbody>
+      </table>
+      <table class="table" id="partsTable">
+        <caption data-i18n="partsCaption"></caption>
+        <thead><tr><th scope="col" data-i18n="colNo"></th><th scope="col" data-i18n="colPart"></th><th scope="col" data-i18n="colMat"></th><th scope="col" data-i18n="colMass"></th></tr></thead>
+        <tbody></tbody>
+        <tfoot><tr><th scope="row" colspan="3" data-i18n="partsTotal"></th><td id="partsTotalCell"></td></tr></tfoot>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="t-notes">
+    <h2 class="sec-title" id="t-notes" data-i18n="notesTitle"></h2>
+    <ul class="notes">
+      <li data-i18n="noteOne"></li>
+      <li data-i18n="noteTwo"></li>
+      <li data-i18n="noteThree"></li>
+      <li data-i18n="noteFour"></li>
+    </ul>
+    <div class="gl-badges" id="glBadges" aria-live="off"></div>
+  </section>
+</main>
+<footer class="foot">
+  <p data-fact="product.launchDate" data-fact-render="date"></p>
+  <p class="foot-demo" data-fact="product.demoDisclaimer"></p>
+  <p class="foot-build" id="buildStamp"></p>
+</footer>

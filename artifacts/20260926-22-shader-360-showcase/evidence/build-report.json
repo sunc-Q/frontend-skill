@@ -1,0 +1,107 @@
+{
+  "built": [
+    {
+      "style": "vitrine",
+      "file": "preview/showcase-vitrine.html",
+      "bytes": 49431,
+      "fragBytes": 10279,
+      "shadeBytes": 1517,
+      "cssBytes": 7515,
+      "geometrySha1": "11277395443fa13ef6441fb9d1f4e472273c7b6c",
+      "fragSha1": "f73c2a1b30022049b7da6e791e0ce3f098670a26"
+    },
+    {
+      "style": "plaque",
+      "file": "preview/showcase-plaque.html",
+      "bytes": 48192,
+      "fragBytes": 9975,
+      "shadeBytes": 1213,
+      "cssBytes": 6578,
+      "geometrySha1": "11277395443fa13ef6441fb9d1f4e472273c7b6c",
+      "fragSha1": "442d15d3d37d2ad272267a0e7fecc9d827d955d1"
+    },
+    {
+      "style": "industrial",
+      "file": "preview/showcase-industrial.html",
+      "bytes": 50128,
+      "fragBytes": 10376,
+      "shadeBytes": 1614,
+      "cssBytes": 8109,
+      "geometrySha1": "11277395443fa13ef6441fb9d1f4e472273c7b6c",
+      "fragSha1": "45d9812beb37dd4c6ded235bdb07c3eec5edc184"
+    }
+  ],
+  "tokens": [
+    {
+      "style": "vitrine",
+      "used": [
+        {
+          "token": "--v-shell",
+          "hex": "#2e2a26",
+          "vec3": "vec3(0.180392, 0.164706, 0.149020)"
+        },
+        {
+          "token": "--v-shell-deep",
+          "hex": "#171513",
+          "vec3": "vec3(0.090196, 0.082353, 0.074510)"
+        },
+        {
+          "token": "--v-brass",
+          "hex": "#b58a3c",
+          "vec3": "vec3(0.709804, 0.541176, 0.235294)"
+        },
+        {
+          "token": "--v-rim",
+          "hex": "#6f86a8",
+          "vec3": "vec3(0.435294, 0.525490, 0.658824)"
+        },
+        {
+          "token": "--v-spec",
+          "hex": "#fff6e2",
+          "vec3": "vec3(1.000000, 0.964706, 0.886275)"
+        }
+      ]
+    },
+    {
+      "style": "plaque",
+      "used": [
+        {
+          "token": "--p-body",
+          "hex": "#d9d3c8",
+          "vec3": "vec3(0.850980, 0.827451, 0.784314)"
+        },
+        {
+          "token": "--p-patch",
+          "hex": "#8d9a86",
+          "vec3": "vec3(0.552941, 0.603922, 0.525490)"
+        },
+        {
+          "token": "--p-ambient",
+          "hex": "#cdd4c9",
+          "vec3": "vec3(0.803922, 0.831373, 0.788235)"
+        }
+      ]
+    },
+    {
+      "style": "industrial",
+      "used": [
+        {
+          "token": "--i-steel",
+          "hex": "#9aa3ad",
+          "vec3": "vec3(0.603922, 0.639216, 0.678431)"
+        },
+        {
+          "token": "--i-paint",
+          "hex": "#ffd21e",
+          "vec3": "vec3(1.000000, 0.823529, 0.117647)"
+        },
+        {
+          "token": "--i-dark",
+          "hex": "#23282e",
+          "vec3": "vec3(0.137255, 0.156863, 0.180392)"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

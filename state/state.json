@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T18:00+08:00",
+  "updated": "2026-09-27T00:20+08:00",
   "tried": [
     {
       "skill": "sites:sites-building",
@@ -329,6 +329,34 @@
       "conclusion": "**留用·核心（像素型判据的唯一来源）**。12/12 例变异全部被抓且点名（值 4/结构 7/语义 1）。① 技能 SKILL.md 的 14 条示例命令真跑通（读数在 evidence/cli-probe.json），6 段 snippet 全部真编译且在纯屏片元里改像素、3 段逐字复用到产物，但 4 处可机检缺陷（pixelate 在 effects 无别名 / scaffold 三组合回落默认 / snippet 名单与 assets 有 1 处不符 / intake 对描述性输入 0 命中）；② **gl_FragCoord 是画布坐标**：一屏多视口必须自带 uOrigin + 每带分辨率，否则三带只是同一张图的三个裁片，由 K/samevariant-flattens-strip 消融臂把住；③ **均值是坏判据**（软件 GL 三带均值差不到 1/10 而像素在动），改冻结 uTime + 201 采样点逐像素 diff；④ 三份产物互比抓不到「三份一起改」，补 src↔产物漂移闸（M3b/M2b 各验一次）；⑤ 对照页 176 条数字溯源 + 105 个测量区快照，集合判据被自己的转录洗白过一次后改位置绑定。技能完全不管视觉与排版，皮肤差异全部来自自建令牌纪律，故不宜单独承担「多风格设计」。",
       "artifacts": "artifacts/20260926-18-shader-gallery/（444KB、31 文件：preview/ 三份双击即开的单文件页 liquid-chrome 38,341B / crt-plasma 39,017B / silk-aurora 38,180B + styles.html 19,012B 对照入口 + src 8 文件 1106 行 + scripts 六件套 + evidence 六份 + scripts/ledger-snapshot.json，零 node_modules/零 dist/零外链）",
       "report": "reports/20260926-18-shader-immersive-exhibition.md"
+    },
+    {
+      "skill": "shader（第 2 次使用，~/.qoder-cn/skills/shader；技能快照见 LAB/skills/shader/）",
+      "scenario": "音乐/音频可视化（虚构曲目「井中月」16s/120BPM 由 scripts/synth-track.mjs 确定性合成 → WAV 以 data URI 内联；WebAudio AnalyserNode 2048 窗喂 64 个对数带 → uLevel/uBass/uMid/uTreb/uFlux/uBeat 标量 uniform + 64×1 频谱纹理 + 64×128 历史纹理；一个页面两个 canvas：主画面 + 分频三视口（同程序 uVariant 0/1/2/3 + 逐视口 uOrigin））",
+      "styles": [
+        "方格账簿 graph-ledger",
+        "井月水墨 ink-moon",
+        "声纹热像 thermogram"
+      ],
+      "time": "2026-09-26T22:00+08:00",
+      "reason": "state.json.next_candidates[0] ★ 排队首选：技能对「外部数据怎么进着色器」零覆盖，本轮就是补这条口径并把它做成可断言的",
+      "conclusion": "留用（第 2 次通过，音频驱动场景首选）",
+      "report": "reports/20260926-22-shader-audio-visualizer.md",
+      "artifact": "artifacts/20260926-22-shader-audio-visualizer"
+    },
+    {
+      "skill": "shader（第 3 次使用，~/.qoder-cn/skills/shader v1.0.0；只读快照 LAB/skills/shader/，MANIFEST sha1 前 12 位 554b0fd8c482）",
+      "scenario": "商品 360° 展示页（虚构「墨准 MOZHUN MZ-3 手冲壶」详情页：一个 WebGL1 SDF 射线步进壶（包围球裁剪→96 步→eps 0.0009），页面唯一变体轴是水平方位角 uAzimuth，5 预设/拖拽/自转/键盘全只改这一个量；三风格 = 三份 shade 块 + 三套 :root 令牌，而几何/视角/DOM/宿主逐字节相同；alpha 即剪影（未命中写 vec4(0,0,0,0)）所以 readPixels 白送轮廓真值）",
+      "styles": [
+        "射灯橱窗 vitrine",
+        "展签美术馆 plaque",
+        "工业配置器 industrial"
+      ],
+      "time": "2026-09-27T00:20+08:00",
+      "reason": "state.json.next_candidates[0] ★ 排队首选（由 18:00 shader 轮留下）：技能给的只有「一个程序多变体」的静态写法，本轮把变体轴做成视角并让它可硬验证。写回前快照 scripts/ledger-snapshot.json：combo_before=0（该组合从未试过）、styles_before=0（三个风格名与当时已占用的 72 个零碰撞）；技能可用性不重复探测（18:00/22:00 两轮已证在装可用）。",
+      "conclusion": "**留用·推荐（像素判据的第二个承载场景，且量出了判据边界）**。550 条断言全绿 = 静态 257（A 自包含 37 / B DOM 零数字 13 / C 共用区逐字节 14 / D 令牌跨层 34 / E 三风格指纹 19 / F 结构无障碍 47 / G 几何镜像 15 / H GLSL ES 1.00 纪律 24 / I WCAG 18 / J 技能条款 9 / K 单位 11 / L 预设 9 / N 数字溯源 7）+ 真浏览器 284（12 方位 × 3 皮肤 + 三向核对 + 冻结时钟）+ 磁盘纪律 9；8 例变异注入 6 例点名抓住、2 例**记为盲区**（M-shading-frozen 把 spoutFace 改成恒 1、M-facing-half-turn 把 toCam 朝向相位反 180°，两套套件全绿）。① 可复用的硬配方：**镜像恒等式**——模型对 z→−z 对称时配对方位是 θ 与 **180−θ**（不是 θ+180），于是 bandCx(θ)+bandCx(180−θ)=W−1 精确成立、面积相等、包围盒左右互换，这是恒等式不是容差；② **假 360° 抓法**：读数在动而 uniform 被钉死 → M-fake360 让 18 条「实测锚点=声明锚点」当场红；③ 页面自报的 sha1 必须回查磁盘源码（src↔产物漂移闸）。④ **盲区机理（重要，别再用纯观测量抓着色手性）**：壶嘴在任意方位都探出器身，色桶质心永远跟着剪影走；分区面积与平均彩度三套皮肤给出的相关系数符号都不一致（+0.65/−0.17/+0.11 与 −0.74/+0.69/+0.83），因为顶带里恒有「黄铜盖钮」这种视角不变量与 rim/spec 高光在污染统计——曾据此加了 zoneArea/chroma 探针与 product.json 的 probe 阈值，实测无牙后**全部回滚**。要抓它需要「分区门控探针 uniform（uZoneDebug）+ 同方位开/关双帧差分，且差影像素质心落在解析算出的壶嘴扇区内」。⑤ 技能依旧不管建模、不管视觉、不给任何验证方法，三风格差异与全部纪律都是自建的。",
+      "artifacts": "artifacts/20260926-22-shader-360-showcase/（1.19MB、40 文件：preview 三页 49,431/48,192/50,128B + styles.html 378,239B/133 个数字指针 + src 13 文件 1,512 行 + scripts 九件套（含 verify.sh 一条命令全链路）+ evidence 七份 + shots 六张，零 node_modules/零外链）",
+      "report": "reports/20260926-22-shader-360-showcase.md"
     }
   ],
   "skills_seen": [
@@ -438,6 +466,13 @@
       "source": "Qoder 内置插件 qoder.sites",
       "path": "/Applications/Qoder CN.app/Contents/Resources/extensions/qoder.sites/cli/sites/skills/sites-building/SKILL.md",
       "status": "已用于 14:00 落地页、15:00 仪表盘、19:00 定价页（与 vercel 叠加）、23:00 个人主页、04:00 多页站点、06:00 活动报名页、11:00 邮件型订阅落地页（表单本体），七轮全通过 → **实验室默认页面基座**。Simple site 路径零依赖零构建、单文件 52KB 级、双击即开、收尾成本近零；已证可承载乐观更新/回滚/延后取数/持久化 schema 级交互（06:00 轮 239 条行为断言）。天花板明确：分段 Suspense、真分包、跨模块 single-flight、useTransition、以及需要进程外服务端的时序证据 —— 这五类要换 React/Vite 路线。文档层面缺口：无「结构层/皮肤层分离」「零外链」条款（实验室自加纪律），且默认不做浏览器 QA（与实验室规范冲突，已定分工：浏览器只跑非事件驱动检查+真像素，交互走 jsdom）｜11:00 轮新增：表单核心场景裁决定式=requested-experience-itself 授权 + 反膨胀条款禁未请求的持久化（会话内闭包+三处演示声明替代）；单页 11-12KB 成本基线（订阅落地页类）"
+    },
+    {
+      "name": "shader",
+      "source": "~/.qoder-cn/skills/shader（上游 github.com/openclaw/skills，owner jvy，v1.0.0；快照 LAB/skills/shader/ 23 文件 44,964B，sha1 554b0fd8c482）",
+      "path": "~/.qoder-cn/skills/shader/SKILL.md",
+      "status": "已用 3 轮（18:00 展览页 / 22:00 音频可视化 / 22 时段商品 360°），留用。可用性与安装都不用再探测：技能已在盘、WebGL1 纪律清单可直接抄成静态断言。仍然不给：建模、视觉方向、任何验证像素的方法。",
+      "seen_at": "2026-09-27T00:20+08:00"
     }
   ],
   "runs": [
@@ -656,16 +691,49 @@
       "artifact_size": "444KB / 31 文件（node 现读目录，上限 50MB；构成见 reports/20260926-18-shader-immersive-exhibition.md §13）",
       "cleanup": "已执行：①删构建现场 LAB/.tmp/shaderbuild（9.0MB：playwright-core@1.49.1 + pngjs@7.0.0 + node_modules + package-lock + 本轮 smoke.mjs 探针）与 LAB/.tmp/shaderprobe（7 个 CLI 输出 txt，内容与 evidence/cli-probe.json 重复）；②删本轮三段 verify 日志（.tmp/verify-18{,b,c}.log）与两个一次性脚本 .tmp/shader-ledger.mjs、.tmp/shader-report.mjs（职责与关键 guard 已转录进报告 §13）；③产物目录内删 .patch1.mjs（补丁结果已进代码）与空目录 src/styles/，仓库零 node_modules/零 dist/零 *.log/零空目录（scripts/check-clean.mjs 7 条现判）；④本轮无自建 http 服务（产物走 file://，浏览器套件自起自关 chromium），故无遗留进程；⑤**顺序教训**：带 check-browser 的 verify.sh 必须跑在删 shaderbuild 之前，删完后只剩 check-node + check-clean 两条静态套件可复跑，复现要先按报告 §12 的 npm i 重装；⑥未动其他会话留下的 .tmp/geo-*.json、probe*.mjs、chrome-profile/、known_hosts。清理后复跑：check-node 282/282、check-clean 7/7。",
       "push": "origin/main 走 SSH（本机 github.com HTTPS 被 TLS 重置，UserKnownHostsFile 指 LAB/.tmp/known_hosts + StrictHostKeyChecking=accept-new，命令与文件里零 token）：第一段 400f33a..2cfad05 = 本轮主体 60 文件（产物 31 件 + 复现报告 + work-log/state 两份台账 + skills/shader 只读快照 23 件 + MANIFEST/skills-README 登记 + scripts/gen-skills-manifest.mjs 源路径）；第二段 2cfad05..HEAD = 本次台账回填（cleanup/push 两格 + 报告 §15 段号）；第三段 = 区间定稿。"
+    },
+    {
+      "time": "2026-09-26T22:00+08:00",
+      "skill": "shader（第 2 次使用，~/.qoder-cn/skills/shader） × 音乐/音频可视化",
+      "scenario": "音乐/音频可视化（虚构曲目「井中月」16s/120BPM 由 scripts/synth-track.mjs 确定性合成 → WAV 以 data URI 内联；WebAudio AnalyserNode 2048 窗喂 64 个对数带 → uLevel/uBass/uMid/uTreb/uFlux/uBeat 标量 uniform + 64×1 频谱纹理 + 64×128 历史纹理；一个页面两个 canvas：主画面 + 分频三视口（同程序 uVariant 0/1/2/3 + 逐视口 uOrigin））",
+      "result": "success",
+      "assertions": "静态 146/146 + 真浏览器 120/120 + 变异 16/16 例全部被抓且点名，还原后复跑全绿 + 收尾 10/10 = 276 条全绿（明细见 report）",
+      "artifact": "前端skill实验室/artifacts/20260926-22-shader-audio-visualizer",
+      "report": "reports/20260926-22-shader-audio-visualizer.md",
+      "styles": [
+        "方格账簿 graph-ledger",
+        "井月水墨 ink-moon",
+        "声纹热像 thermogram"
+      ]
+    },
+    {
+      "time": "2026-09-27T00:20+08:00",
+      "skill": "shader（第 3 次使用） × 商品 360° 展示",
+      "scenario": "商品详情页 360°：WebGL1 SDF 射线步进，唯一变体轴 uAzimuth，三风格共几何",
+      "result": "success",
+      "assertions": "静态 257/257 + 真浏览器 284/284 + 磁盘纪律 9/9 = 550 条全绿；变异 8 例：6 例点名被抓 + 2 例记为判据盲区（ledger 对账另 15 条）；明细见 report §6/§7",
+      "artifact_size": "1.19MB / 40 文件（上限 50MB）",
+      "cleanup": "删 scripts/smoke.mjs（一次性方位探针，原文抄进 report §10，判据已被 check-browser sweep 接管）；删 LAB/.tmp/shader360（playwright-core 安装）与 LAB/.tmp/mprobe、.tmp/mutate-*（变异副本）；/tmp 临时探针脚本全清",
+      "artifact": "前端skill实验室/artifacts/20260926-22-shader-360-showcase",
+      "report": "reports/20260926-22-shader-360-showcase.md",
+      "styles": [
+        "射灯橱窗 vitrine",
+        "展签美术馆 plaque",
+        "工业配置器 industrial"
+      ],
+      "push": "origin=git@github.com:sunc-Q/frontend-skill.git main（SSH；本地 HTTPS 到 github.com 被 TLS 重置）"
     }
   ],
   "next_candidates": [
-    "★ shader × 音乐/音频可视化：第一个「外部数据驱动着色器」的场景（AnalyserNode 真实频谱喂 uniform），能把 uAudio 这类自定义 uniform 的传参纪律逼出来，并复用本轮的冻结时钟 + 逐像素 diff 判据",
-    "★ shader × 商品 360° 展示：变体轴 = 视角，「一个程序多变体」做成可旋转的硬判据（本轮 K/samevariant 消融臂是现成起手式）",
-    "把「位置绑定判据」（生成器快照测量区 + checker 逐区比字节）移植回历轮的生成型对照页：20260926-15 自指看板、07/08 React 轮的 styles.html 都只有集合判据，同样会被自己的转录洗白",
-    "把「条件性断言会让总数跳变」这条查一遍历轮产物：凡页脚/报告引用了断言总数，而该组里有 if 才 push 的条目，都是潜在的假话来源",
-    "shader 技能上游回报四条（A 组可当复现脚本）：pixelate 在 effects 无别名、scaffold 三个组合回落默认、snippet 名单与 assets 有 1 处不符、intake 对描述性输入 0 命中；另建议 references/ 补「多视口需自带原点」",
-    "同场景跨 skill 对照：沉浸式/背景类页面至今只有 shader 一轮，可拉 sites-building 或 drafter 做同题零 WebGL 对照（实验室第 4 组三线对照）",
-    "台账卫生既有欠账（他人轮次，本轮只报告未代改）：tried[10]/[11] 缺 report、tried[13] 缺 time，reports/ 下仍有 1 个目录形态条目"
+    "★ shader 续轮：加「分区门控探针 uniform（uZoneDebug）+ 同方位开/关双帧差分」，把 22 时段量出的两条变异盲区（着色手性、分区不随视角转）变成有牙判据；做完记得摘掉 mutate.mjs 里那两条臂的 blind 标签",
+    "把 22 时段的「θ ↔ 180−θ 镜像恒等式」移植给任何带旋转/对称的产物（build-game 轮的相机轨道、18:00 展览页的多视口），恒等式比容差便宜且不会漂移",
+    "★ audio-editing-automation × 有声产物：22:00 轮的音频是自己合成的（无技能参与），下轮让该技能真承担素材处理并接进可视化页，检验技能×技能的接缝",
+    "把本轮的「两个解析器对账」配方移植回数据类轮次：确定性合成输入（seeded）→ data URI 内联 → Node 侧独立解析 → 相关性+事件时刻匹配断言（比 mock 数据硬得多）",
+    "★ audio-editing-automation × 有声产物：本轮音频是自己合成的（无技能参与），下轮可让该技能真承担素材处理并接进可视化页，检验技能×技能的接缝",
+    "probe 叠加法回查历轮：18:00 shader 展览页只有单值 probe，补一对互斥臂（frozen × frozen+noaudio）即可把「画面在动」升级为「谁在让它动」",
+    "把「皮肤 CSS 令牌 == 着色器 vec3 uniform」单一来源法推广到 React 轮（主题 CSS 与 JS 常量双写是 17:00 轮真实缺陷之一）",
+    "台账卫生既有欠账（他人轮次，本轮只报告未代改）：tried[10]/[11] 缺 report、tried[13] 缺 time",
+    "vercel × 真 Next.js 吃 RSC 专属 server-* 仍在排队（至今 0 落地）"
   ],
   "used_styles": [
     "瑞士极简",
@@ -736,7 +804,13 @@
     "电传稿 teletype-ascii",
     "液态铬面 liquid-chrome",
     "栅格磷光 crt-plasma",
-    "丝绸极光 silk-aurora"
+    "丝绸极光 silk-aurora",
+    "方格账簿 graph-ledger",
+    "井月水墨 ink-moon",
+    "声纹热像 thermogram",
+    "射灯橱窗 vitrine",
+    "展签美术馆 plaque",
+    "工业配置器 industrial"
   ],
   "environment_notes": [
     "本机无法直连 GitHub raw 与 skills.sh（curl exit 35 / WebFetch fetch failed），外部落地技能持续不可用",
@@ -894,6 +968,12 @@
     "**被产物引用的断言总数不能由条件性断言组成**：I 组原本只在台账写回后才 push 3 条，总数在写回那一刻 +3，页脚与报告刚抄进去的数字立刻变假话，而 R/N 组都救不了（红的是写回之后那一遍，写回前跑多少遍都绿）。口径：断言恒存在、前置条件不满足时按 pending 通过（R 组对「报告尚未写出」早就是这么做的），总数只随代码组成变化才有不动点。",
     "**变异锚点只能用稳定整数**：写过死实测对比度 >7.30:1< 的那版 M9，下一帧漂成 7.32 就成了「锚点未命中」，看着像判据失效其实是用例过期。选锚点先问「这个数会不会随运行抖」。",
     "**收尾顺序：带浏览器的 verify 必须跑在删构建缓存之前**（本轮 playwright-core 缓存在 LAB/.tmp/shaderbuild，删掉后 check-browser 无法复跑，而 verify 第 3/6 步要它）。清理后还能跑的只剩静态两件套 check-node + check-clean，报告要按这个口径写「复现得先 npm i」。",
-    "**WebGL 轮次的像素判据不能看均值**：软件渲染（SwiftShader）三带均值差不到 1/10 而像素其实在动；冻结 uTime + 每带 201 采样点逐像素 diff 才有判据力，且这类读数每轮都漂，只写「本轮读数」不作跨轮结论。"
+    "**WebGL 轮次的像素判据不能看均值**：软件渲染（SwiftShader）三带均值差不到 1/10 而像素其实在动；冻结 uTime + 每带 201 采样点逐像素 diff 才有判据力，且这类读数每轮都漂，只写「本轮读数」不作跨轮结论。",
+    "dB 窗口是判据力的一部分，不是参数细节：AnalyserNode 默认 min/maxDecibels = -100/-30 会把本曲 groove 低频带 28.5% 的 texel 顶到 1.0、唯一值从 266 掉到 182、17.9% 的帧整段钉满——饱和区里的「画面随音乐变」断言是自我证明的。改 -100/-10 后饱和率 0。方法：把窗口常量放进共享特征层（src/features.js），浏览器与 Node 都从它取，分析器再用同一条公式按 -30 重算一遍作反事实读数印进 evidence。",
+    "消融臂要能叠加才能证互斥：单值 probe 只能各证一半。改成 ?probe=a,b 列表后才有「frozen（拔时钟，画面照变）× frozen,noaudio（拔时钟+拔音频，画面必须一像素都不动）」这一对——前者排除「变化来自 uTime」，后者排除「还有别的东西在驱动」。宿主里凡 probe === 比较都要改成 has()。",
+    "npm install 在 background 跑时，命令尾部任何非零退出（例如 ls 一个不存在的缓存目录）都会把整条报成 failed，而依赖其实装好了；判成败要看 stdout 的 added N packages 与 require 冒烟，别看退出码。Playwright 浏览器缓存在 ~/Library/Caches/ms-playwright/chromium-1148，不是 ~/.cache。",
+    "同一份 sed/node 打补丁脚本改多个源文件时，最后一个扫描值会留在文件里（本轮 DB_CEIL 被留在扫描末尾的 -5，注释还写着「对齐默认值」）。改常量一律用 Edit 并回读，别用循环打补丁。",
+    "同一小时可能有**两个会话**写同一份 state.json（2026-09-26 22 时段：★#1 shader×音频可视化、★#2 shader×商品360°）：改前必现读、只加自己的条目、git add 只加自己的路径，并给 ledger 加「tried/used_styles/runs/environment_notes 只增不减」的并发闸（本轮 scripts/ledger-snapshot.mjs --verify）。",
+    "着色器像素判据的边界（22 时段实测）：alpha 即剪影时，几何/取景/镜像类断言零成本且极硬；但**着色手性与分区是否随视角转，纯观测量抓不到**（分区面积、平均彩度、色桶质心都会被视角不变部件与高光抵消，三套皮肤连相关系数符号都不一致）。要抓得靠同方位双帧差分 + 门控探针 uniform。"
   ]
 }

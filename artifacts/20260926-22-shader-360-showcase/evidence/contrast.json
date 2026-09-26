@@ -1,0 +1,218 @@
+[
+  {
+    "style": "vitrine",
+    "fg": "--v-ink",
+    "bg": "--v-stage",
+    "hexes": [
+      "#e8e2d6",
+      "#141210"
+    ],
+    "ratio": 14.49,
+    "min": 4.5,
+    "where": "正文 .coatings/.notes"
+  },
+  {
+    "style": "vitrine",
+    "fg": "--v-spec",
+    "bg": "--v-void",
+    "hexes": [
+      "#fff6e2",
+      "#0b0a09"
+    ],
+    "ratio": 18.4,
+    "min": 3,
+    "where": "大标题 h1（≥24px 大字用 3.0）"
+  },
+  {
+    "style": "vitrine",
+    "fg": "--v-brass",
+    "bg": "--v-stage",
+    "hexes": [
+      "#b58a3c",
+      "#141210"
+    ],
+    "ratio": 5.93,
+    "min": 4.5,
+    "where": "小节标题 .sec-title"
+  },
+  {
+    "style": "vitrine",
+    "fg": "--v-muted",
+    "bg": "--v-stage",
+    "hexes": [
+      "#9a9287",
+      "#141210"
+    ],
+    "ratio": 6.08,
+    "min": 4.5,
+    "where": "次要文字 .stage-cap"
+  },
+  {
+    "style": "vitrine",
+    "fg": "--v-muted",
+    "bg": "--v-void",
+    "hexes": [
+      "#9a9287",
+      "#0b0a09"
+    ],
+    "ratio": 6.44,
+    "min": 4.5,
+    "where": ".drag-hint 落在页面底色"
+  },
+  {
+    "style": "plaque",
+    "fg": "--p-ink",
+    "bg": "--p-card",
+    "hexes": [
+      "#23252a",
+      "#f7f6f3"
+    ],
+    "ratio": 14.19,
+    "min": 4.5,
+    "where": "正文/读数"
+  },
+  {
+    "style": "plaque",
+    "fg": "--p-ink",
+    "bg": "--p-wall",
+    "hexes": [
+      "#23252a",
+      "#e9e6df"
+    ],
+    "ratio": 12.3,
+    "min": 4.5,
+    "where": "h1 落在展墙"
+  },
+  {
+    "style": "plaque",
+    "fg": "--p-muted",
+    "bg": "--p-wall",
+    "hexes": [
+      "#5f645d",
+      "#e9e6df"
+    ],
+    "ratio": 4.86,
+    "min": 4.5,
+    "where": ".mast-tag/.notes"
+  },
+  {
+    "style": "plaque",
+    "fg": "--p-muted",
+    "bg": "--p-card",
+    "hexes": [
+      "#5f645d",
+      "#f7f6f3"
+    ],
+    "ratio": 5.6,
+    "min": 4.5,
+    "where": "表头 .table thead th"
+  },
+  {
+    "style": "plaque",
+    "fg": "--p-accent",
+    "bg": "--p-wall",
+    "hexes": [
+      "#4d6b57",
+      "#e9e6df"
+    ],
+    "ratio": 4.74,
+    "min": 4.5,
+    "where": ".mast-kicker"
+  },
+  {
+    "style": "plaque",
+    "fg": "--p-card",
+    "bg": "--p-accent",
+    "hexes": [
+      "#f7f6f3",
+      "#4d6b57"
+    ],
+    "ratio": 5.46,
+    "min": 4.5,
+    "where": "选中按钮文字"
+  },
+  {
+    "style": "industrial",
+    "fg": "--i-ink",
+    "bg": "--i-panel",
+    "hexes": [
+      "#1b1f24",
+      "#eef0f2"
+    ],
+    "ratio": 14.5,
+    "min": 4.5,
+    "where": "正文"
+  },
+  {
+    "style": "industrial",
+    "fg": "--i-ink",
+    "bg": "--i-floor",
+    "hexes": [
+      "#1b1f24",
+      "#d5d9dd"
+    ],
+    "ratio": 11.67,
+    "min": 4.5,
+    "where": ".notes 落在地板"
+  },
+  {
+    "style": "industrial",
+    "fg": "--i-muted",
+    "bg": "--i-floor",
+    "hexes": [
+      "#525a63",
+      "#d5d9dd"
+    ],
+    "ratio": 4.93,
+    "min": 4.5,
+    "where": ".stage-cap/.gl-badges"
+  },
+  {
+    "style": "industrial",
+    "fg": "--i-muted",
+    "bg": "--i-panel",
+    "hexes": [
+      "#525a63",
+      "#eef0f2"
+    ],
+    "ratio": 6.12,
+    "min": 4.5,
+    "where": ".mast-kicker"
+  },
+  {
+    "style": "industrial",
+    "fg": "--i-panel",
+    "bg": "--i-dark",
+    "hexes": [
+      "#eef0f2",
+      "#23282e"
+    ],
+    "ratio": 13,
+    "min": 4.5,
+    "where": "表头反白"
+  },
+  {
+    "style": "industrial",
+    "fg": "--i-ink",
+    "bg": "--i-paint",
+    "hexes": [
+      "#1b1f24",
+      "#ffd21e"
+    ],
+    "ratio": 11.43,
+    "min": 4.5,
+    "where": "黄底黑字标签/选中态"
+  },
+  {
+    "style": "industrial",
+    "fg": "--i-warn",
+    "bg": "--i-floor",
+    "hexes": [
+      "#9e3119",
+      "#d5d9dd"
+    ],
+    "ratio": 5.09,
+    "min": 4.5,
+    "where": ".sec-title 警示红"
+  }
+]

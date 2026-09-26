@@ -1,0 +1,100 @@
+{
+  "snapshot": {
+    "taken_at": "2026-09-26T16:08:38.229Z",
+    "combo_before": 0,
+    "styles_before": 0,
+    "tried": 24,
+    "runs": 24,
+    "used_styles": 72,
+    "environment_notes": 160,
+    "skills_seen": 19,
+    "log_round_lines": 22,
+    "my_log_lines": 0,
+    "shader_uses_before": 2,
+    "ledger_debt": [
+      "tried[10]:report",
+      "tried[11]:report",
+      "tried[13]:time"
+    ]
+  },
+  "verified_at": "2026-09-26T16:21:10.669Z",
+  "total": 15,
+  "pass": 15,
+  "results": [
+    {
+      "id": "写回前·本轮组合不在台账",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "写回前·三种风格未被占用",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "写回后·本轮组合入台账恰好 1 条",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "写回后·台账条目带结论与产物路径",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "写回后·三种风格都在 used_styles",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "写回后·工作日志本轮恰好一行",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "写回后·日志行字段齐全且带三种风格名",
+      "pass": true,
+      "detail": "2026-09-27 00:20 | shader（第 3 次使用，~/.qoder-cn/skills/shader v1.0.0，快照 LAB/skills/shader/ s"
+    },
+    {
+      "id": "写回后·报告文件已落盘",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "写回后·产物目录已落盘",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "并发·tried 只增不减",
+      "pass": true,
+      "detail": "24 → 25"
+    },
+    {
+      "id": "并发·used_styles 只增不减",
+      "pass": true,
+      "detail": "72 → 75"
+    },
+    {
+      "id": "并发·runs 只增不减",
+      "pass": true,
+      "detail": "24 → 25"
+    },
+    {
+      "id": "并发·environment_notes 只增不减",
+      "pass": true,
+      "detail": "160 → 162"
+    },
+    {
+      "id": "并发·历史日志行未被动过",
+      "pass": true,
+      "detail": "轮次行 23 / 快照 22（写回后至少多一行）"
+    },
+    {
+      "id": "本轮不新增台账欠账",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    }
+  ]
+}

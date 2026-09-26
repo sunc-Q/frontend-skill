@@ -1,0 +1,2335 @@
+{
+  "total": 284,
+  "pass": 284,
+  "fail": 0,
+  "evidence": {
+    "sweep": {
+      "vitrine": [
+        {
+          "az": 0,
+          "area": 62068,
+          "bbox": {
+            "top": 59,
+            "bottom": 353,
+            "minX": 81,
+            "maxX": 399,
+            "w": 319,
+            "h": 295
+          },
+          "bandCx": 331.65,
+          "tipX": 342.04,
+          "zoneCx": 286.07,
+          "zoneDev": 177703,
+          "alpha": 1740715177,
+          "rgba": 2244899466
+        },
+        {
+          "az": 30,
+          "area": 62728,
+          "bbox": {
+            "top": 53,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 399,
+            "w": 318,
+            "h": 301
+          },
+          "bandCx": 341.09,
+          "tipX": 336.4,
+          "zoneCx": 326.32,
+          "zoneDev": 215639,
+          "alpha": 154064043,
+          "rgba": 768536583
+        },
+        {
+          "az": 60,
+          "area": 59078,
+          "bbox": {
+            "top": 48,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 339,
+            "w": 258,
+            "h": 306
+          },
+          "bandCx": 298.32,
+          "tipX": 288.91,
+          "zoneCx": 294.13,
+          "zoneDev": 320304,
+          "alpha": 3476588483,
+          "rgba": 3328772892
+        },
+        {
+          "az": 90,
+          "area": 58010,
+          "bbox": {
+            "top": 46,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 337,
+            "w": 256,
+            "h": 308
+          },
+          "bandCx": 209.5,
+          "tipX": 209.5,
+          "zoneCx": 209.76,
+          "zoneDev": 287317,
+          "alpha": 230411879,
+          "rgba": 1781355117
+        },
+        {
+          "az": 120,
+          "area": 59078,
+          "bbox": {
+            "top": 48,
+            "bottom": 353,
+            "minX": 80,
+            "maxX": 337,
+            "w": 258,
+            "h": 306
+          },
+          "bandCx": 120.68,
+          "tipX": 130.09,
+          "zoneCx": 125.08,
+          "zoneDev": 178736,
+          "alpha": 424475827,
+          "rgba": 738676361
+        },
+        {
+          "az": 150,
+          "area": 62728,
+          "bbox": {
+            "top": 53,
+            "bottom": 353,
+            "minX": 20,
+            "maxX": 337,
+            "w": 318,
+            "h": 301
+          },
+          "bandCx": 77.91,
+          "tipX": 82.6,
+          "zoneCx": 113.45,
+          "zoneDev": 130408,
+          "alpha": 1135470099,
+          "rgba": 607228567
+        },
+        {
+          "az": 180,
+          "area": 62068,
+          "bbox": {
+            "top": 59,
+            "bottom": 353,
+            "minX": 20,
+            "maxX": 338,
+            "w": 319,
+            "h": 295
+          },
+          "bandCx": 87.35,
+          "tipX": 76.96,
+          "zoneCx": 134.62,
+          "zoneDev": 96208,
+          "alpha": 674761881,
+          "rgba": 3790138528
+        },
+        {
+          "az": 210,
+          "area": 59241,
+          "bbox": {
+            "top": 63,
+            "bottom": 353,
+            "minX": 63,
+            "maxX": 337,
+            "w": 275,
+            "h": 291
+          },
+          "bandCx": 123.84,
+          "tipX": 104.73,
+          "zoneCx": 160.49,
+          "zoneDev": 81245,
+          "alpha": 2717533526,
+          "rgba": 748142900
+        },
+        {
+          "az": 240,
+          "area": 57651,
+          "bbox": {
+            "top": 66,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 337,
+            "w": 256,
+            "h": 288
+          },
+          "bandCx": 171.1,
+          "tipX": 152.64,
+          "zoneCx": 196.07,
+          "zoneDev": 131637,
+          "alpha": 3235209062,
+          "rgba": 3381967809
+        },
+        {
+          "az": 270,
+          "area": 57118,
+          "bbox": {
+            "top": 67,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 337,
+            "w": 256,
+            "h": 287
+          },
+          "bandCx": 209.5,
+          "tipX": 209.5,
+          "zoneCx": 210.86,
+          "zoneDev": 175209,
+          "alpha": 1106288323,
+          "rgba": 3023084407
+        },
+        {
+          "az": 300,
+          "area": 57651,
+          "bbox": {
+            "top": 66,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 337,
+            "w": 256,
+            "h": 288
+          },
+          "bandCx": 247.9,
+          "tipX": 266.36,
+          "zoneCx": 225.46,
+          "zoneDev": 160780,
+          "alpha": 513142000,
+          "rgba": 2048873325
+        },
+        {
+          "az": 330,
+          "area": 59241,
+          "bbox": {
+            "top": 63,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 356,
+            "w": 275,
+            "h": 291
+          },
+          "bandCx": 295.16,
+          "tipX": 314.27,
+          "zoneCx": 257.98,
+          "zoneDev": 137959,
+          "alpha": 2799963084,
+          "rgba": 1207580623
+        }
+      ],
+      "plaque": [
+        {
+          "az": 0,
+          "area": 62068,
+          "bbox": {
+            "top": 59,
+            "bottom": 353,
+            "minX": 81,
+            "maxX": 399,
+            "w": 319,
+            "h": 295
+          },
+          "bandCx": 331.65,
+          "tipX": 342.04,
+          "zoneCx": 330.15,
+          "zoneDev": 323580,
+          "alpha": 1740715177,
+          "rgba": 411094730
+        },
+        {
+          "az": 30,
+          "area": 62728,
+          "bbox": {
+            "top": 53,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 399,
+            "w": 318,
+            "h": 301
+          },
+          "bandCx": 341.09,
+          "tipX": 336.4,
+          "zoneCx": 334.26,
+          "zoneDev": 223920,
+          "alpha": 154064043,
+          "rgba": 2602040430
+        },
+        {
+          "az": 60,
+          "area": 59078,
+          "bbox": {
+            "top": 48,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 339,
+            "w": 258,
+            "h": 306
+          },
+          "bandCx": 298.32,
+          "tipX": 288.91,
+          "zoneCx": 293.44,
+          "zoneDev": 132016,
+          "alpha": 3476588483,
+          "rgba": 3709848455
+        },
+        {
+          "az": 90,
+          "area": 58010,
+          "bbox": {
+            "top": 46,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 337,
+            "w": 256,
+            "h": 308
+          },
+          "bandCx": 209.5,
+          "tipX": 209.5,
+          "zoneCx": 213.82,
+          "zoneDev": 115410,
+          "alpha": 230411879,
+          "rgba": 2019715495
+        },
+        {
+          "az": 120,
+          "area": 59078,
+          "bbox": {
+            "top": 48,
+            "bottom": 353,
+            "minX": 80,
+            "maxX": 337,
+            "w": 258,
+            "h": 306
+          },
+          "bandCx": 120.68,
+          "tipX": 130.09,
+          "zoneCx": 121.54,
+          "zoneDev": 332456,
+          "alpha": 424475827,
+          "rgba": 2547835645
+        },
+        {
+          "az": 150,
+          "area": 62728,
+          "bbox": {
+            "top": 53,
+            "bottom": 353,
+            "minX": 20,
+            "maxX": 337,
+            "w": 318,
+            "h": 301
+          },
+          "bandCx": 77.91,
+          "tipX": 82.6,
+          "zoneCx": 78.63,
+          "zoneDev": 414542,
+          "alpha": 1135470099,
+          "rgba": 1322725051
+        },
+        {
+          "az": 180,
+          "area": 62068,
+          "bbox": {
+            "top": 59,
+            "bottom": 353,
+            "minX": 20,
+            "maxX": 338,
+            "w": 319,
+            "h": 295
+          },
+          "bandCx": 87.35,
+          "tipX": 76.96,
+          "zoneCx": 90.97,
+          "zoneDev": 452454,
+          "alpha": 674761881,
+          "rgba": 3086458592
+        },
+        {
+          "az": 210,
+          "area": 59241,
+          "bbox": {
+            "top": 63,
+            "bottom": 353,
+            "minX": 63,
+            "maxX": 337,
+            "w": 275,
+            "h": 291
+          },
+          "bandCx": 123.84,
+          "tipX": 104.73,
+          "zoneCx": 127.74,
+          "zoneDev": 438479,
+          "alpha": 2717533526,
+          "rgba": 1116991892
+        },
+        {
+          "az": 240,
+          "area": 57651,
+          "bbox": {
+            "top": 66,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 337,
+            "w": 256,
+            "h": 288
+          },
+          "bandCx": 171.1,
+          "tipX": 152.64,
+          "zoneCx": 171.95,
+          "zoneDev": 356076,
+          "alpha": 3235209062,
+          "rgba": 2878759612
+        },
+        {
+          "az": 270,
+          "area": 57118,
+          "bbox": {
+            "top": 67,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 337,
+            "w": 256,
+            "h": 287
+          },
+          "bandCx": 209.5,
+          "tipX": 209.5,
+          "zoneCx": 209.18,
+          "zoneDev": 267430,
+          "alpha": 1106288323,
+          "rgba": 1237531353
+        },
+        {
+          "az": 300,
+          "area": 57651,
+          "bbox": {
+            "top": 66,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 337,
+            "w": 256,
+            "h": 288
+          },
+          "bandCx": 247.9,
+          "tipX": 266.36,
+          "zoneCx": 246.92,
+          "zoneDev": 340491,
+          "alpha": 513142000,
+          "rgba": 1684966619
+        },
+        {
+          "az": 330,
+          "area": 59241,
+          "bbox": {
+            "top": 63,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 356,
+            "w": 275,
+            "h": 291
+          },
+          "bandCx": 295.16,
+          "tipX": 314.27,
+          "zoneCx": 292.47,
+          "zoneDev": 318873,
+          "alpha": 2799963084,
+          "rgba": 1405029680
+        }
+      ],
+      "industrial": [
+        {
+          "az": 0,
+          "area": 62068,
+          "bbox": {
+            "top": 59,
+            "bottom": 353,
+            "minX": 81,
+            "maxX": 399,
+            "w": 319,
+            "h": 295
+          },
+          "bandCx": 331.65,
+          "tipX": 342.04,
+          "zoneCx": 327.04,
+          "zoneDev": 515513,
+          "alpha": 1740715177,
+          "rgba": 60559140
+        },
+        {
+          "az": 30,
+          "area": 62728,
+          "bbox": {
+            "top": 53,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 399,
+            "w": 318,
+            "h": 301
+          },
+          "bandCx": 341.09,
+          "tipX": 336.4,
+          "zoneCx": 332.52,
+          "zoneDev": 472383,
+          "alpha": 154064043,
+          "rgba": 3258348892
+        },
+        {
+          "az": 60,
+          "area": 59078,
+          "bbox": {
+            "top": 48,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 339,
+            "w": 258,
+            "h": 306
+          },
+          "bandCx": 298.32,
+          "tipX": 288.91,
+          "zoneCx": 293.63,
+          "zoneDev": 355897,
+          "alpha": 3476588483,
+          "rgba": 1537597318
+        },
+        {
+          "az": 90,
+          "area": 58010,
+          "bbox": {
+            "top": 46,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 337,
+            "w": 256,
+            "h": 308
+          },
+          "bandCx": 209.5,
+          "tipX": 209.5,
+          "zoneCx": 212.65,
+          "zoneDev": 242714,
+          "alpha": 230411879,
+          "rgba": 1646997779
+        },
+        {
+          "az": 120,
+          "area": 59078,
+          "bbox": {
+            "top": 48,
+            "bottom": 353,
+            "minX": 80,
+            "maxX": 337,
+            "w": 258,
+            "h": 306
+          },
+          "bandCx": 120.68,
+          "tipX": 130.09,
+          "zoneCx": 111.24,
+          "zoneDev": 204509,
+          "alpha": 424475827,
+          "rgba": 2709001287
+        },
+        {
+          "az": 150,
+          "area": 62728,
+          "bbox": {
+            "top": 53,
+            "bottom": 353,
+            "minX": 20,
+            "maxX": 337,
+            "w": 318,
+            "h": 301
+          },
+          "bandCx": 77.91,
+          "tipX": 82.6,
+          "zoneCx": 73.33,
+          "zoneDev": 140239,
+          "alpha": 1135470099,
+          "rgba": 1711579688
+        },
+        {
+          "az": 180,
+          "area": 62068,
+          "bbox": {
+            "top": 59,
+            "bottom": 353,
+            "minX": 20,
+            "maxX": 338,
+            "w": 319,
+            "h": 295
+          },
+          "bandCx": 87.35,
+          "tipX": 76.96,
+          "zoneCx": 101.98,
+          "zoneDev": 81950,
+          "alpha": 674761881,
+          "rgba": 1882771322
+        },
+        {
+          "az": 210,
+          "area": 59241,
+          "bbox": {
+            "top": 63,
+            "bottom": 353,
+            "minX": 63,
+            "maxX": 337,
+            "w": 275,
+            "h": 291
+          },
+          "bandCx": 123.84,
+          "tipX": 104.73,
+          "zoneCx": 156.03,
+          "zoneDev": 59955,
+          "alpha": 2717533526,
+          "rgba": 918898952
+        },
+        {
+          "az": 240,
+          "area": 57651,
+          "bbox": {
+            "top": 66,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 337,
+            "w": 256,
+            "h": 288
+          },
+          "bandCx": 171.1,
+          "tipX": 152.64,
+          "zoneCx": 172.42,
+          "zoneDev": 541047,
+          "alpha": 3235209062,
+          "rgba": 353360446
+        },
+        {
+          "az": 270,
+          "area": 57118,
+          "bbox": {
+            "top": 67,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 337,
+            "w": 256,
+            "h": 287
+          },
+          "bandCx": 209.5,
+          "tipX": 209.5,
+          "zoneCx": 213.69,
+          "zoneDev": 89811,
+          "alpha": 1106288323,
+          "rgba": 3911008779
+        },
+        {
+          "az": 300,
+          "area": 57651,
+          "bbox": {
+            "top": 66,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 337,
+            "w": 256,
+            "h": 288
+          },
+          "bandCx": 247.9,
+          "tipX": 266.36,
+          "zoneCx": 245.96,
+          "zoneDev": 525939,
+          "alpha": 513142000,
+          "rgba": 572663618
+        },
+        {
+          "az": 330,
+          "area": 59241,
+          "bbox": {
+            "top": 63,
+            "bottom": 353,
+            "minX": 82,
+            "maxX": 356,
+            "w": 275,
+            "h": 291
+          },
+          "bandCx": 295.16,
+          "tipX": 314.27,
+          "zoneCx": 291.19,
+          "zoneDev": 498882,
+          "alpha": 2799963084,
+          "rgba": 3243756626
+        }
+      ]
+    },
+    "mirror": {
+      "vitrine": {
+        "note": "12 方位全部闭合",
+        "w": 419
+      },
+      "plaque": {
+        "note": "12 方位全部闭合",
+        "w": 419
+      },
+      "industrial": {
+        "note": "12 方位全部闭合",
+        "w": 419
+      }
+    },
+    "presets": {
+      "vitrine": [
+        {
+          "id": "spout-right",
+          "expect": "right",
+          "measured": "偏右",
+          "azDeg": 0
+        },
+        {
+          "id": "spout-near",
+          "expect": "center",
+          "measured": "正对/背对",
+          "azDeg": 90
+        },
+        {
+          "id": "spout-left",
+          "expect": "left",
+          "measured": "偏左",
+          "azDeg": 180
+        },
+        {
+          "id": "spout-far",
+          "expect": "center",
+          "measured": "正对/背对",
+          "azDeg": 270
+        },
+        {
+          "id": "top-down",
+          "expect": "right",
+          "measured": "偏右",
+          "azDeg": 0
+        }
+      ],
+      "plaque": [
+        {
+          "id": "spout-right",
+          "expect": "right",
+          "measured": "偏右",
+          "azDeg": 0
+        },
+        {
+          "id": "spout-near",
+          "expect": "center",
+          "measured": "正对/背对",
+          "azDeg": 90
+        },
+        {
+          "id": "spout-left",
+          "expect": "left",
+          "measured": "偏左",
+          "azDeg": 180
+        },
+        {
+          "id": "spout-far",
+          "expect": "center",
+          "measured": "正对/背对",
+          "azDeg": 270
+        },
+        {
+          "id": "top-down",
+          "expect": "right",
+          "measured": "偏右",
+          "azDeg": 0
+        }
+      ],
+      "industrial": [
+        {
+          "id": "spout-right",
+          "expect": "right",
+          "measured": "偏右",
+          "azDeg": 0
+        },
+        {
+          "id": "spout-near",
+          "expect": "center",
+          "measured": "正对/背对",
+          "azDeg": 90
+        },
+        {
+          "id": "spout-left",
+          "expect": "left",
+          "measured": "偏左",
+          "azDeg": 180
+        },
+        {
+          "id": "spout-far",
+          "expect": "center",
+          "measured": "正对/背对",
+          "azDeg": 270
+        },
+        {
+          "id": "top-down",
+          "expect": "right",
+          "measured": "偏右",
+          "azDeg": 0
+        }
+      ]
+    },
+    "crossSkin": [
+      {
+        "style": "vitrine",
+        "alpha": 88453279,
+        "rgba": 3996242254,
+        "area": 63454,
+        "bbox": {
+          "top": 57,
+          "bottom": 357,
+          "minX": 81,
+          "maxX": 392,
+          "w": 312,
+          "h": 301
+        },
+        "bandCx": 326.39,
+        "facing": 0.3610890138912289,
+        "tip": {
+          "x": 330.88,
+          "y": 67.47,
+          "facing": 0.3611
+        }
+      },
+      {
+        "style": "plaque",
+        "alpha": 88453279,
+        "rgba": 466042388,
+        "area": 63454,
+        "bbox": {
+          "top": 57,
+          "bottom": 357,
+          "minX": 81,
+          "maxX": 392,
+          "w": 312,
+          "h": 301
+        },
+        "bandCx": 326.39,
+        "facing": 0.3610890138912289,
+        "tip": {
+          "x": 330.88,
+          "y": 67.47,
+          "facing": 0.3611
+        }
+      },
+      {
+        "style": "industrial",
+        "alpha": 88453279,
+        "rgba": 4202093491,
+        "area": 63454,
+        "bbox": {
+          "top": 57,
+          "bottom": 357,
+          "minX": 81,
+          "maxX": 392,
+          "w": 312,
+          "h": 301
+        },
+        "bandCx": 326.39,
+        "facing": 0.3610890138912289,
+        "tip": {
+          "x": 330.88,
+          "y": 67.47,
+          "facing": 0.3611
+        }
+      }
+    ],
+    "uniform": {
+      "vitrine": {
+        "big": [
+          0.6981317007977239,
+          0.17453292519943295,
+          0
+        ],
+        "neg": [
+          0,
+          0.17453292519943295,
+          0
+        ],
+        "all": 60
+      },
+      "plaque": {
+        "big": [
+          0.6981317007977239,
+          0.17453292519943295,
+          0
+        ],
+        "neg": [
+          0,
+          0.17453292519943295,
+          0
+        ],
+        "all": 60
+      },
+      "industrial": {
+        "big": [
+          0.6981317007977239,
+          0.17453292519943295,
+          0
+        ],
+        "neg": [
+          0,
+          0.17453292519943295,
+          0
+        ],
+        "all": 60
+      }
+    },
+    "interactions": {
+      "vitrine": {
+        "drag": [
+          0,
+          33
+        ],
+        "spin": [
+          0,
+          6.987
+        ]
+      },
+      "plaque": {
+        "drag": [
+          0,
+          33
+        ],
+        "spin": [
+          0,
+          21.969
+        ]
+      },
+      "industrial": {
+        "drag": [
+          0,
+          33
+        ],
+        "spin": [
+          0,
+          16.974
+        ]
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "source/页面几何 sha1 = 磁盘几何 sha1",
+      "pass": true,
+      "detail": "实际 11277395443f / 期望 11277395443f"
+    },
+    {
+      "id": "source/页面宿主 sha1 = 磁盘宿主 sha1",
+      "pass": true,
+      "detail": "实际 44bb3fb394aa / 期望 44bb3fb394aa"
+    },
+    {
+      "id": "boot.vitrine/编译成功",
+      "pass": true,
+      "detail": "实际 ok / 期望 ok"
+    },
+    {
+      "id": "boot.vitrine/programOk 与 webgl 为真",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "boot.vitrine/拿到真实 renderer",
+      "pass": true,
+      "detail": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+    },
+    {
+      "id": "boot.vitrine/绘制后 gl.getError()==0",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "boot.vitrine/探针皮肤标识",
+      "pass": true,
+      "detail": "实际 vitrine / 期望 vitrine"
+    },
+    {
+      "id": "boot.vitrine/后备缓冲尺寸=事实",
+      "pass": true,
+      "detail": "实际 420x420 / 期望 420x420"
+    },
+    {
+      "id": "boot.vitrine/读数已就位（非占位）",
+      "pass": true,
+      "detail": "方位 000° · 仰角 08° · 壶嘴 偏右"
+    },
+    {
+      "id": "boot.vitrine/构建戳写进页脚",
+      "pass": true,
+      "detail": "构建 20260926-22 · 几何块 sha1 11277395443f"
+    },
+    {
+      "id": "boot.vitrine/无 WebGL 致命提示",
+      "pass": true,
+      "detail": "实际 false / 期望 false"
+    },
+    {
+      "id": "boot.vitrine/徽标含重绘次数与剪影面积",
+      "pass": true,
+      "detail": "编译 ok|渲染器 ANGLE (Google, Vulkan 1.3.|uniform 弧度 0.0000|重绘次数 1|剪影面积 62068|分区锚点 121.6px"
+    },
+    {
+      "id": "boot.vitrine/零异常",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "boot.vitrine/零外部请求",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.vitrine/每个方位都有剪影",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.vitrine/取景不触边(12方位)",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.vitrine/占屏比在合理带内 12%~60%",
+      "pass": true,
+      "detail": "0.324~0.356"
+    },
+    {
+      "id": "sweep.vitrine/镜像恒等 bandCx(θ)+bandCx(180−θ)=W−1 且面积/包围盒互换",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.vitrine/转 180° 顶带换边",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.vitrine/分区色心跟随壶嘴面（含镜像）",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.vitrine/分区色心确实偏离主体色（着色真的分了区）",
+      "pass": true,
+      "detail": "最小偏差 81245"
+    },
+    {
+      "id": "sweep.vitrine/顶带重心贴着壶嘴投影(±9%宽)",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.vitrine/顶带与壶嘴同侧",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "time.vitrine/换 uTime 不改剪影面积",
+      "pass": true,
+      "detail": "实际 63454 / 期望 63454"
+    },
+    {
+      "id": "time.vitrine/换 uTime 不改包围盒",
+      "pass": true,
+      "detail": "实际 {\"top\":57,\"bottom\":357,\"minX\":81,\"maxX\":392,\"w\":312,\"h\":301} / 期望 {\"top\":57,\"bottom\":357,\"minX\":81,\"maxX\":392,\"w\":312,\"h\":301}"
+    },
+    {
+      "id": "time.vitrine/换 uTime 不改 alpha 指纹",
+      "pass": true,
+      "detail": "实际 88453279 / 期望 88453279"
+    },
+    {
+      "id": "time.vitrine/uTime 回到同值则像素还原",
+      "pass": true,
+      "detail": "实际 3996242254 / 期望 3996242254"
+    },
+    {
+      "id": "time.vitrine/vitrine：uTime 只改着色",
+      "pass": true,
+      "detail": "3996242254/173076173"
+    },
+    {
+      "id": "uniform.vitrine/每次绘制恰好三次 uniform1f",
+      "pass": true,
+      "detail": "实际 3 / 期望 3"
+    },
+    {
+      "id": "uniform.vitrine/4000° 写入前 wrap 到 [0,2π)",
+      "pass": true,
+      "detail": "实际 0.6981317007977239 / 期望 0.6981317007977318±0.000001"
+    },
+    {
+      "id": "uniform.vitrine/方位弧度非负且小于 2π",
+      "pass": true,
+      "detail": "0.6981317007977239 / 0"
+    },
+    {
+      "id": "uniform.vitrine/−720° 归一到 0",
+      "pass": true,
+      "detail": "实际 0 / 期望 0±0.000001"
+    },
+    {
+      "id": "uniform.vitrine/探针报告的 uniform 与写入值同轨",
+      "pass": true,
+      "detail": "2.1537362969610037"
+    },
+    {
+      "id": "presets.vitrine/spout-right 表内声明锚点",
+      "pass": true,
+      "detail": "实际 偏右 / 期望 偏右"
+    },
+    {
+      "id": "presets.vitrine/spout-right 实测锚点=声明锚点",
+      "pass": true,
+      "detail": "实际 偏右 / 期望 偏右"
+    },
+    {
+      "id": "presets.vitrine/spout-right 读数含锚点",
+      "pass": true,
+      "detail": "方位 000° · 仰角 08° · 壶嘴 偏右"
+    },
+    {
+      "id": "presets.vitrine/spout-right aria 含锚点",
+      "pass": true,
+      "detail": "当前视角：方位 0 度，仰角 8 度，壶嘴偏右。"
+    },
+    {
+      "id": "presets.vitrine/spout-right 行高亮",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.vitrine/spout-right 按钮选中态",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.vitrine/spout-right 方位到位",
+      "pass": true,
+      "detail": "实际 0 / 期望 0±0.6"
+    },
+    {
+      "id": "presets.vitrine/spout-right 仰角到位",
+      "pass": true,
+      "detail": "实际 8 / 期望 8±0.6"
+    },
+    {
+      "id": "presets.vitrine/spout-right 实测=Node复算",
+      "pass": true,
+      "detail": "实际 偏右 / 期望 偏右"
+    },
+    {
+      "id": "presets.vitrine/spout-near 表内声明锚点",
+      "pass": true,
+      "detail": "实际 正对/背对 / 期望 正对/背对"
+    },
+    {
+      "id": "presets.vitrine/spout-near 实测锚点=声明锚点",
+      "pass": true,
+      "detail": "实际 正对/背对 / 期望 正对/背对"
+    },
+    {
+      "id": "presets.vitrine/spout-near 读数含锚点",
+      "pass": true,
+      "detail": "方位 090° · 仰角 08° · 壶嘴 正对/背对"
+    },
+    {
+      "id": "presets.vitrine/spout-near aria 含锚点",
+      "pass": true,
+      "detail": "当前视角：方位 90 度，仰角 8 度，壶嘴正对/背对。"
+    },
+    {
+      "id": "presets.vitrine/spout-near 行高亮",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.vitrine/spout-near 按钮选中态",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.vitrine/spout-near 方位到位",
+      "pass": true,
+      "detail": "实际 90 / 期望 90±0.6"
+    },
+    {
+      "id": "presets.vitrine/spout-near 仰角到位",
+      "pass": true,
+      "detail": "实际 8 / 期望 8±0.6"
+    },
+    {
+      "id": "presets.vitrine/spout-near 实测=Node复算",
+      "pass": true,
+      "detail": "实际 正对/背对 / 期望 正对/背对"
+    },
+    {
+      "id": "presets.vitrine/spout-left 表内声明锚点",
+      "pass": true,
+      "detail": "实际 偏左 / 期望 偏左"
+    },
+    {
+      "id": "presets.vitrine/spout-left 实测锚点=声明锚点",
+      "pass": true,
+      "detail": "实际 偏左 / 期望 偏左"
+    },
+    {
+      "id": "presets.vitrine/spout-left 读数含锚点",
+      "pass": true,
+      "detail": "方位 180° · 仰角 08° · 壶嘴 偏左"
+    },
+    {
+      "id": "presets.vitrine/spout-left aria 含锚点",
+      "pass": true,
+      "detail": "当前视角：方位 180 度，仰角 8 度，壶嘴偏左。"
+    },
+    {
+      "id": "presets.vitrine/spout-left 行高亮",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.vitrine/spout-left 按钮选中态",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.vitrine/spout-left 方位到位",
+      "pass": true,
+      "detail": "实际 180 / 期望 180±0.6"
+    },
+    {
+      "id": "presets.vitrine/spout-left 仰角到位",
+      "pass": true,
+      "detail": "实际 8 / 期望 8±0.6"
+    },
+    {
+      "id": "presets.vitrine/spout-left 实测=Node复算",
+      "pass": true,
+      "detail": "实际 偏左 / 期望 偏左"
+    },
+    {
+      "id": "presets.vitrine/spout-far 表内声明锚点",
+      "pass": true,
+      "detail": "实际 正对/背对 / 期望 正对/背对"
+    },
+    {
+      "id": "presets.vitrine/spout-far 实测锚点=声明锚点",
+      "pass": true,
+      "detail": "实际 正对/背对 / 期望 正对/背对"
+    },
+    {
+      "id": "presets.vitrine/spout-far 读数含锚点",
+      "pass": true,
+      "detail": "方位 270° · 仰角 08° · 壶嘴 正对/背对"
+    },
+    {
+      "id": "presets.vitrine/spout-far aria 含锚点",
+      "pass": true,
+      "detail": "当前视角：方位 270 度，仰角 8 度，壶嘴正对/背对。"
+    },
+    {
+      "id": "presets.vitrine/spout-far 行高亮",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.vitrine/spout-far 按钮选中态",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.vitrine/spout-far 方位到位",
+      "pass": true,
+      "detail": "实际 270 / 期望 270±0.6"
+    },
+    {
+      "id": "presets.vitrine/spout-far 仰角到位",
+      "pass": true,
+      "detail": "实际 8 / 期望 8±0.6"
+    },
+    {
+      "id": "presets.vitrine/spout-far 实测=Node复算",
+      "pass": true,
+      "detail": "实际 正对/背对 / 期望 正对/背对"
+    },
+    {
+      "id": "presets.vitrine/top-down 表内声明锚点",
+      "pass": true,
+      "detail": "实际 偏右 / 期望 偏右"
+    },
+    {
+      "id": "presets.vitrine/top-down 实测锚点=声明锚点",
+      "pass": true,
+      "detail": "实际 偏右 / 期望 偏右"
+    },
+    {
+      "id": "presets.vitrine/top-down 读数含锚点",
+      "pass": true,
+      "detail": "方位 000° · 仰角 35° · 壶嘴 偏右"
+    },
+    {
+      "id": "presets.vitrine/top-down aria 含锚点",
+      "pass": true,
+      "detail": "当前视角：方位 0 度，仰角 35 度，壶嘴偏右。"
+    },
+    {
+      "id": "presets.vitrine/top-down 行高亮",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.vitrine/top-down 按钮选中态",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.vitrine/top-down 方位到位",
+      "pass": true,
+      "detail": "实际 0 / 期望 0±0.6"
+    },
+    {
+      "id": "presets.vitrine/top-down 仰角到位",
+      "pass": true,
+      "detail": "实际 35 / 期望 35±0.6"
+    },
+    {
+      "id": "ui.vitrine/无交互不重绘（350ms 空转）",
+      "pass": true,
+      "detail": "实际 30 / 期望 30"
+    },
+    {
+      "id": "ui.vitrine/拖 60px → 方位 +33°",
+      "pass": true,
+      "detail": "实际 33 / 期望 33±0.6"
+    },
+    {
+      "id": "ui.vitrine/拖 −25px → 仰角 +3°",
+      "pass": true,
+      "detail": "实际 11 / 期望 11±0.6"
+    },
+    {
+      "id": "ui.vitrine/拖拽触发重绘",
+      "pass": true,
+      "detail": "32→38"
+    },
+    {
+      "id": "ui.vitrine/方向键一步=事实步进",
+      "pass": true,
+      "detail": "实际 48 / 期望 48±0.6"
+    },
+    {
+      "id": "ui.vitrine/Home 回到首预设",
+      "pass": true,
+      "detail": "实际 0 / 期望 0±0.6"
+    },
+    {
+      "id": "ui.vitrine/Home 回到首预设仰角",
+      "pass": true,
+      "detail": "实际 8 / 期望 8±0.6"
+    },
+    {
+      "id": "ui.vitrine/复位按钮回壶嘴在右",
+      "pass": true,
+      "detail": "实际 0 / 期望 0±0.6"
+    },
+    {
+      "id": "ui.vitrine/复位确实重绘",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "ui.vitrine/自转按钮 aria-pressed=true",
+      "pass": true,
+      "detail": "实际 true / 期望 true"
+    },
+    {
+      "id": "ui.vitrine/自转文案切换",
+      "pass": true,
+      "detail": "停止旋转"
+    },
+    {
+      "id": "ui.vitrine/自转推进方位（≈30°/s）",
+      "pass": true,
+      "detail": "Δ6.99° / 600ms"
+    },
+    {
+      "id": "ui.vitrine/停止后 aria-pressed=false",
+      "pass": true,
+      "detail": "实际 false / 期望 false"
+    },
+    {
+      "id": "ui.vitrine/关自转后彻底停笔",
+      "pass": true,
+      "detail": "实际 54 / 期望 54"
+    },
+    {
+      "id": "shot.vitrine/展台截图落盘",
+      "pass": true,
+      "detail": "stage-vitrine.png"
+    },
+    {
+      "id": "shot.vitrine/窄屏无横向溢出",
+      "pass": true,
+      "detail": "{\"overflowX\":false,\"w\":385,\"top\":197}"
+    },
+    {
+      "id": "shot.vitrine/窄屏画布仍可见",
+      "pass": true,
+      "detail": "{\"overflowX\":false,\"w\":385,\"top\":197}"
+    },
+    {
+      "id": "boot.plaque/编译成功",
+      "pass": true,
+      "detail": "实际 ok / 期望 ok"
+    },
+    {
+      "id": "boot.plaque/programOk 与 webgl 为真",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "boot.plaque/拿到真实 renderer",
+      "pass": true,
+      "detail": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+    },
+    {
+      "id": "boot.plaque/绘制后 gl.getError()==0",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "boot.plaque/探针皮肤标识",
+      "pass": true,
+      "detail": "实际 plaque / 期望 plaque"
+    },
+    {
+      "id": "boot.plaque/后备缓冲尺寸=事实",
+      "pass": true,
+      "detail": "实际 420x420 / 期望 420x420"
+    },
+    {
+      "id": "boot.plaque/读数已就位（非占位）",
+      "pass": true,
+      "detail": "方位 000° · 仰角 08° · 壶嘴 偏右"
+    },
+    {
+      "id": "boot.plaque/构建戳写进页脚",
+      "pass": true,
+      "detail": "构建 20260926-22 · 几何块 sha1 11277395443f"
+    },
+    {
+      "id": "boot.plaque/无 WebGL 致命提示",
+      "pass": true,
+      "detail": "实际 false / 期望 false"
+    },
+    {
+      "id": "boot.plaque/徽标含重绘次数与剪影面积",
+      "pass": true,
+      "detail": "编译 ok|渲染器 ANGLE (Google, Vulkan 1.3.|uniform 弧度 0.0000|重绘次数 1|剪影面积 62068|分区锚点 121.6px"
+    },
+    {
+      "id": "boot.plaque/零异常",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "boot.plaque/零外部请求",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.plaque/每个方位都有剪影",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.plaque/取景不触边(12方位)",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.plaque/占屏比在合理带内 12%~60%",
+      "pass": true,
+      "detail": "0.324~0.356"
+    },
+    {
+      "id": "sweep.plaque/镜像恒等 bandCx(θ)+bandCx(180−θ)=W−1 且面积/包围盒互换",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.plaque/转 180° 顶带换边",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.plaque/分区色心跟随壶嘴面（含镜像）",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.plaque/分区色心确实偏离主体色（着色真的分了区）",
+      "pass": true,
+      "detail": "最小偏差 115410"
+    },
+    {
+      "id": "sweep.plaque/顶带重心贴着壶嘴投影(±9%宽)",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.plaque/顶带与壶嘴同侧",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "time.plaque/换 uTime 不改剪影面积",
+      "pass": true,
+      "detail": "实际 63454 / 期望 63454"
+    },
+    {
+      "id": "time.plaque/换 uTime 不改包围盒",
+      "pass": true,
+      "detail": "实际 {\"top\":57,\"bottom\":357,\"minX\":81,\"maxX\":392,\"w\":312,\"h\":301} / 期望 {\"top\":57,\"bottom\":357,\"minX\":81,\"maxX\":392,\"w\":312,\"h\":301}"
+    },
+    {
+      "id": "time.plaque/换 uTime 不改 alpha 指纹",
+      "pass": true,
+      "detail": "实际 88453279 / 期望 88453279"
+    },
+    {
+      "id": "time.plaque/uTime 回到同值则像素还原",
+      "pass": true,
+      "detail": "实际 466042388 / 期望 466042388"
+    },
+    {
+      "id": "time.plaque/plaque：uTime 完全无影响",
+      "pass": true,
+      "detail": "466042388/466042388"
+    },
+    {
+      "id": "uniform.plaque/每次绘制恰好三次 uniform1f",
+      "pass": true,
+      "detail": "实际 3 / 期望 3"
+    },
+    {
+      "id": "uniform.plaque/4000° 写入前 wrap 到 [0,2π)",
+      "pass": true,
+      "detail": "实际 0.6981317007977239 / 期望 0.6981317007977318±0.000001"
+    },
+    {
+      "id": "uniform.plaque/方位弧度非负且小于 2π",
+      "pass": true,
+      "detail": "0.6981317007977239 / 0"
+    },
+    {
+      "id": "uniform.plaque/−720° 归一到 0",
+      "pass": true,
+      "detail": "实际 0 / 期望 0±0.000001"
+    },
+    {
+      "id": "uniform.plaque/探针报告的 uniform 与写入值同轨",
+      "pass": true,
+      "detail": "2.1537362969610037"
+    },
+    {
+      "id": "presets.plaque/spout-right 表内声明锚点",
+      "pass": true,
+      "detail": "实际 偏右 / 期望 偏右"
+    },
+    {
+      "id": "presets.plaque/spout-right 实测锚点=声明锚点",
+      "pass": true,
+      "detail": "实际 偏右 / 期望 偏右"
+    },
+    {
+      "id": "presets.plaque/spout-right 读数含锚点",
+      "pass": true,
+      "detail": "方位 000° · 仰角 08° · 壶嘴 偏右"
+    },
+    {
+      "id": "presets.plaque/spout-right aria 含锚点",
+      "pass": true,
+      "detail": "当前视角：方位 0 度，仰角 8 度，壶嘴偏右。"
+    },
+    {
+      "id": "presets.plaque/spout-right 行高亮",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.plaque/spout-right 按钮选中态",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.plaque/spout-right 方位到位",
+      "pass": true,
+      "detail": "实际 0 / 期望 0±0.6"
+    },
+    {
+      "id": "presets.plaque/spout-right 仰角到位",
+      "pass": true,
+      "detail": "实际 8 / 期望 8±0.6"
+    },
+    {
+      "id": "presets.plaque/spout-right 实测=Node复算",
+      "pass": true,
+      "detail": "实际 偏右 / 期望 偏右"
+    },
+    {
+      "id": "presets.plaque/spout-near 表内声明锚点",
+      "pass": true,
+      "detail": "实际 正对/背对 / 期望 正对/背对"
+    },
+    {
+      "id": "presets.plaque/spout-near 实测锚点=声明锚点",
+      "pass": true,
+      "detail": "实际 正对/背对 / 期望 正对/背对"
+    },
+    {
+      "id": "presets.plaque/spout-near 读数含锚点",
+      "pass": true,
+      "detail": "方位 090° · 仰角 08° · 壶嘴 正对/背对"
+    },
+    {
+      "id": "presets.plaque/spout-near aria 含锚点",
+      "pass": true,
+      "detail": "当前视角：方位 90 度，仰角 8 度，壶嘴正对/背对。"
+    },
+    {
+      "id": "presets.plaque/spout-near 行高亮",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.plaque/spout-near 按钮选中态",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.plaque/spout-near 方位到位",
+      "pass": true,
+      "detail": "实际 90 / 期望 90±0.6"
+    },
+    {
+      "id": "presets.plaque/spout-near 仰角到位",
+      "pass": true,
+      "detail": "实际 8 / 期望 8±0.6"
+    },
+    {
+      "id": "presets.plaque/spout-near 实测=Node复算",
+      "pass": true,
+      "detail": "实际 正对/背对 / 期望 正对/背对"
+    },
+    {
+      "id": "presets.plaque/spout-left 表内声明锚点",
+      "pass": true,
+      "detail": "实际 偏左 / 期望 偏左"
+    },
+    {
+      "id": "presets.plaque/spout-left 实测锚点=声明锚点",
+      "pass": true,
+      "detail": "实际 偏左 / 期望 偏左"
+    },
+    {
+      "id": "presets.plaque/spout-left 读数含锚点",
+      "pass": true,
+      "detail": "方位 180° · 仰角 08° · 壶嘴 偏左"
+    },
+    {
+      "id": "presets.plaque/spout-left aria 含锚点",
+      "pass": true,
+      "detail": "当前视角：方位 180 度，仰角 8 度，壶嘴偏左。"
+    },
+    {
+      "id": "presets.plaque/spout-left 行高亮",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.plaque/spout-left 按钮选中态",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.plaque/spout-left 方位到位",
+      "pass": true,
+      "detail": "实际 180 / 期望 180±0.6"
+    },
+    {
+      "id": "presets.plaque/spout-left 仰角到位",
+      "pass": true,
+      "detail": "实际 8 / 期望 8±0.6"
+    },
+    {
+      "id": "presets.plaque/spout-left 实测=Node复算",
+      "pass": true,
+      "detail": "实际 偏左 / 期望 偏左"
+    },
+    {
+      "id": "presets.plaque/spout-far 表内声明锚点",
+      "pass": true,
+      "detail": "实际 正对/背对 / 期望 正对/背对"
+    },
+    {
+      "id": "presets.plaque/spout-far 实测锚点=声明锚点",
+      "pass": true,
+      "detail": "实际 正对/背对 / 期望 正对/背对"
+    },
+    {
+      "id": "presets.plaque/spout-far 读数含锚点",
+      "pass": true,
+      "detail": "方位 270° · 仰角 08° · 壶嘴 正对/背对"
+    },
+    {
+      "id": "presets.plaque/spout-far aria 含锚点",
+      "pass": true,
+      "detail": "当前视角：方位 270 度，仰角 8 度，壶嘴正对/背对。"
+    },
+    {
+      "id": "presets.plaque/spout-far 行高亮",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.plaque/spout-far 按钮选中态",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.plaque/spout-far 方位到位",
+      "pass": true,
+      "detail": "实际 270 / 期望 270±0.6"
+    },
+    {
+      "id": "presets.plaque/spout-far 仰角到位",
+      "pass": true,
+      "detail": "实际 8 / 期望 8±0.6"
+    },
+    {
+      "id": "presets.plaque/spout-far 实测=Node复算",
+      "pass": true,
+      "detail": "实际 正对/背对 / 期望 正对/背对"
+    },
+    {
+      "id": "presets.plaque/top-down 表内声明锚点",
+      "pass": true,
+      "detail": "实际 偏右 / 期望 偏右"
+    },
+    {
+      "id": "presets.plaque/top-down 实测锚点=声明锚点",
+      "pass": true,
+      "detail": "实际 偏右 / 期望 偏右"
+    },
+    {
+      "id": "presets.plaque/top-down 读数含锚点",
+      "pass": true,
+      "detail": "方位 000° · 仰角 35° · 壶嘴 偏右"
+    },
+    {
+      "id": "presets.plaque/top-down aria 含锚点",
+      "pass": true,
+      "detail": "当前视角：方位 0 度，仰角 35 度，壶嘴偏右。"
+    },
+    {
+      "id": "presets.plaque/top-down 行高亮",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.plaque/top-down 按钮选中态",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.plaque/top-down 方位到位",
+      "pass": true,
+      "detail": "实际 0 / 期望 0±0.6"
+    },
+    {
+      "id": "presets.plaque/top-down 仰角到位",
+      "pass": true,
+      "detail": "实际 35 / 期望 35±0.6"
+    },
+    {
+      "id": "ui.plaque/无交互不重绘（350ms 空转）",
+      "pass": true,
+      "detail": "实际 29 / 期望 29"
+    },
+    {
+      "id": "ui.plaque/拖 60px → 方位 +33°",
+      "pass": true,
+      "detail": "实际 33 / 期望 33±0.6"
+    },
+    {
+      "id": "ui.plaque/拖 −25px → 仰角 +3°",
+      "pass": true,
+      "detail": "实际 11 / 期望 11±0.6"
+    },
+    {
+      "id": "ui.plaque/拖拽触发重绘",
+      "pass": true,
+      "detail": "31→37"
+    },
+    {
+      "id": "ui.plaque/方向键一步=事实步进",
+      "pass": true,
+      "detail": "实际 48 / 期望 48±0.6"
+    },
+    {
+      "id": "ui.plaque/Home 回到首预设",
+      "pass": true,
+      "detail": "实际 0 / 期望 0±0.6"
+    },
+    {
+      "id": "ui.plaque/Home 回到首预设仰角",
+      "pass": true,
+      "detail": "实际 8 / 期望 8±0.6"
+    },
+    {
+      "id": "ui.plaque/复位按钮回壶嘴在右",
+      "pass": true,
+      "detail": "实际 0 / 期望 0±0.6"
+    },
+    {
+      "id": "ui.plaque/复位确实重绘",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "ui.plaque/自转按钮 aria-pressed=true",
+      "pass": true,
+      "detail": "实际 true / 期望 true"
+    },
+    {
+      "id": "ui.plaque/自转文案切换",
+      "pass": true,
+      "detail": "停止旋转"
+    },
+    {
+      "id": "ui.plaque/自转推进方位（≈30°/s）",
+      "pass": true,
+      "detail": "Δ21.97° / 600ms"
+    },
+    {
+      "id": "ui.plaque/停止后 aria-pressed=false",
+      "pass": true,
+      "detail": "实际 false / 期望 false"
+    },
+    {
+      "id": "ui.plaque/关自转后彻底停笔",
+      "pass": true,
+      "detail": "实际 62 / 期望 62"
+    },
+    {
+      "id": "shot.plaque/展台截图落盘",
+      "pass": true,
+      "detail": "stage-plaque.png"
+    },
+    {
+      "id": "shot.plaque/窄屏无横向溢出",
+      "pass": true,
+      "detail": "{\"overflowX\":false,\"w\":367,\"top\":232}"
+    },
+    {
+      "id": "shot.plaque/窄屏画布仍可见",
+      "pass": true,
+      "detail": "{\"overflowX\":false,\"w\":367,\"top\":232}"
+    },
+    {
+      "id": "boot.industrial/编译成功",
+      "pass": true,
+      "detail": "实际 ok / 期望 ok"
+    },
+    {
+      "id": "boot.industrial/programOk 与 webgl 为真",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "boot.industrial/拿到真实 renderer",
+      "pass": true,
+      "detail": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+    },
+    {
+      "id": "boot.industrial/绘制后 gl.getError()==0",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "boot.industrial/探针皮肤标识",
+      "pass": true,
+      "detail": "实际 industrial / 期望 industrial"
+    },
+    {
+      "id": "boot.industrial/后备缓冲尺寸=事实",
+      "pass": true,
+      "detail": "实际 420x420 / 期望 420x420"
+    },
+    {
+      "id": "boot.industrial/读数已就位（非占位）",
+      "pass": true,
+      "detail": "方位 000° · 仰角 08° · 壶嘴 偏右"
+    },
+    {
+      "id": "boot.industrial/构建戳写进页脚",
+      "pass": true,
+      "detail": "构建 20260926-22 · 几何块 sha1 11277395443f"
+    },
+    {
+      "id": "boot.industrial/无 WebGL 致命提示",
+      "pass": true,
+      "detail": "实际 false / 期望 false"
+    },
+    {
+      "id": "boot.industrial/徽标含重绘次数与剪影面积",
+      "pass": true,
+      "detail": "编译 ok|渲染器 ANGLE (Google, Vulkan 1.3.|uniform 弧度 0.0000|重绘次数 1|剪影面积 62068|分区锚点 121.6px"
+    },
+    {
+      "id": "boot.industrial/零异常",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "boot.industrial/零外部请求",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.industrial/每个方位都有剪影",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.industrial/取景不触边(12方位)",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.industrial/占屏比在合理带内 12%~60%",
+      "pass": true,
+      "detail": "0.324~0.356"
+    },
+    {
+      "id": "sweep.industrial/镜像恒等 bandCx(θ)+bandCx(180−θ)=W−1 且面积/包围盒互换",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.industrial/转 180° 顶带换边",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.industrial/分区色心跟随壶嘴面（含镜像）",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.industrial/分区色心确实偏离主体色（着色真的分了区）",
+      "pass": true,
+      "detail": "最小偏差 59955"
+    },
+    {
+      "id": "sweep.industrial/顶带重心贴着壶嘴投影(±9%宽)",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "sweep.industrial/顶带与壶嘴同侧",
+      "pass": true,
+      "detail": "实际 0 / 期望 0"
+    },
+    {
+      "id": "time.industrial/换 uTime 不改剪影面积",
+      "pass": true,
+      "detail": "实际 63454 / 期望 63454"
+    },
+    {
+      "id": "time.industrial/换 uTime 不改包围盒",
+      "pass": true,
+      "detail": "实际 {\"top\":57,\"bottom\":357,\"minX\":81,\"maxX\":392,\"w\":312,\"h\":301} / 期望 {\"top\":57,\"bottom\":357,\"minX\":81,\"maxX\":392,\"w\":312,\"h\":301}"
+    },
+    {
+      "id": "time.industrial/换 uTime 不改 alpha 指纹",
+      "pass": true,
+      "detail": "实际 88453279 / 期望 88453279"
+    },
+    {
+      "id": "time.industrial/uTime 回到同值则像素还原",
+      "pass": true,
+      "detail": "实际 4202093491 / 期望 4202093491"
+    },
+    {
+      "id": "time.industrial/industrial：uTime 完全无影响",
+      "pass": true,
+      "detail": "4202093491/4202093491"
+    },
+    {
+      "id": "uniform.industrial/每次绘制恰好三次 uniform1f",
+      "pass": true,
+      "detail": "实际 3 / 期望 3"
+    },
+    {
+      "id": "uniform.industrial/4000° 写入前 wrap 到 [0,2π)",
+      "pass": true,
+      "detail": "实际 0.6981317007977239 / 期望 0.6981317007977318±0.000001"
+    },
+    {
+      "id": "uniform.industrial/方位弧度非负且小于 2π",
+      "pass": true,
+      "detail": "0.6981317007977239 / 0"
+    },
+    {
+      "id": "uniform.industrial/−720° 归一到 0",
+      "pass": true,
+      "detail": "实际 0 / 期望 0±0.000001"
+    },
+    {
+      "id": "uniform.industrial/探针报告的 uniform 与写入值同轨",
+      "pass": true,
+      "detail": "2.1537362969610037"
+    },
+    {
+      "id": "presets.industrial/spout-right 表内声明锚点",
+      "pass": true,
+      "detail": "实际 偏右 / 期望 偏右"
+    },
+    {
+      "id": "presets.industrial/spout-right 实测锚点=声明锚点",
+      "pass": true,
+      "detail": "实际 偏右 / 期望 偏右"
+    },
+    {
+      "id": "presets.industrial/spout-right 读数含锚点",
+      "pass": true,
+      "detail": "方位 000° · 仰角 08° · 壶嘴 偏右"
+    },
+    {
+      "id": "presets.industrial/spout-right aria 含锚点",
+      "pass": true,
+      "detail": "当前视角：方位 0 度，仰角 8 度，壶嘴偏右。"
+    },
+    {
+      "id": "presets.industrial/spout-right 行高亮",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.industrial/spout-right 按钮选中态",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.industrial/spout-right 方位到位",
+      "pass": true,
+      "detail": "实际 0 / 期望 0±0.6"
+    },
+    {
+      "id": "presets.industrial/spout-right 仰角到位",
+      "pass": true,
+      "detail": "实际 8 / 期望 8±0.6"
+    },
+    {
+      "id": "presets.industrial/spout-right 实测=Node复算",
+      "pass": true,
+      "detail": "实际 偏右 / 期望 偏右"
+    },
+    {
+      "id": "presets.industrial/spout-near 表内声明锚点",
+      "pass": true,
+      "detail": "实际 正对/背对 / 期望 正对/背对"
+    },
+    {
+      "id": "presets.industrial/spout-near 实测锚点=声明锚点",
+      "pass": true,
+      "detail": "实际 正对/背对 / 期望 正对/背对"
+    },
+    {
+      "id": "presets.industrial/spout-near 读数含锚点",
+      "pass": true,
+      "detail": "方位 090° · 仰角 08° · 壶嘴 正对/背对"
+    },
+    {
+      "id": "presets.industrial/spout-near aria 含锚点",
+      "pass": true,
+      "detail": "当前视角：方位 90 度，仰角 8 度，壶嘴正对/背对。"
+    },
+    {
+      "id": "presets.industrial/spout-near 行高亮",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.industrial/spout-near 按钮选中态",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.industrial/spout-near 方位到位",
+      "pass": true,
+      "detail": "实际 90 / 期望 90±0.6"
+    },
+    {
+      "id": "presets.industrial/spout-near 仰角到位",
+      "pass": true,
+      "detail": "实际 8 / 期望 8±0.6"
+    },
+    {
+      "id": "presets.industrial/spout-near 实测=Node复算",
+      "pass": true,
+      "detail": "实际 正对/背对 / 期望 正对/背对"
+    },
+    {
+      "id": "presets.industrial/spout-left 表内声明锚点",
+      "pass": true,
+      "detail": "实际 偏左 / 期望 偏左"
+    },
+    {
+      "id": "presets.industrial/spout-left 实测锚点=声明锚点",
+      "pass": true,
+      "detail": "实际 偏左 / 期望 偏左"
+    },
+    {
+      "id": "presets.industrial/spout-left 读数含锚点",
+      "pass": true,
+      "detail": "方位 180° · 仰角 08° · 壶嘴 偏左"
+    },
+    {
+      "id": "presets.industrial/spout-left aria 含锚点",
+      "pass": true,
+      "detail": "当前视角：方位 180 度，仰角 8 度，壶嘴偏左。"
+    },
+    {
+      "id": "presets.industrial/spout-left 行高亮",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.industrial/spout-left 按钮选中态",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.industrial/spout-left 方位到位",
+      "pass": true,
+      "detail": "实际 180 / 期望 180±0.6"
+    },
+    {
+      "id": "presets.industrial/spout-left 仰角到位",
+      "pass": true,
+      "detail": "实际 8 / 期望 8±0.6"
+    },
+    {
+      "id": "presets.industrial/spout-left 实测=Node复算",
+      "pass": true,
+      "detail": "实际 偏左 / 期望 偏左"
+    },
+    {
+      "id": "presets.industrial/spout-far 表内声明锚点",
+      "pass": true,
+      "detail": "实际 正对/背对 / 期望 正对/背对"
+    },
+    {
+      "id": "presets.industrial/spout-far 实测锚点=声明锚点",
+      "pass": true,
+      "detail": "实际 正对/背对 / 期望 正对/背对"
+    },
+    {
+      "id": "presets.industrial/spout-far 读数含锚点",
+      "pass": true,
+      "detail": "方位 270° · 仰角 08° · 壶嘴 正对/背对"
+    },
+    {
+      "id": "presets.industrial/spout-far aria 含锚点",
+      "pass": true,
+      "detail": "当前视角：方位 270 度，仰角 8 度，壶嘴正对/背对。"
+    },
+    {
+      "id": "presets.industrial/spout-far 行高亮",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.industrial/spout-far 按钮选中态",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.industrial/spout-far 方位到位",
+      "pass": true,
+      "detail": "实际 270 / 期望 270±0.6"
+    },
+    {
+      "id": "presets.industrial/spout-far 仰角到位",
+      "pass": true,
+      "detail": "实际 8 / 期望 8±0.6"
+    },
+    {
+      "id": "presets.industrial/spout-far 实测=Node复算",
+      "pass": true,
+      "detail": "实际 正对/背对 / 期望 正对/背对"
+    },
+    {
+      "id": "presets.industrial/top-down 表内声明锚点",
+      "pass": true,
+      "detail": "实际 偏右 / 期望 偏右"
+    },
+    {
+      "id": "presets.industrial/top-down 实测锚点=声明锚点",
+      "pass": true,
+      "detail": "实际 偏右 / 期望 偏右"
+    },
+    {
+      "id": "presets.industrial/top-down 读数含锚点",
+      "pass": true,
+      "detail": "方位 000° · 仰角 35° · 壶嘴 偏右"
+    },
+    {
+      "id": "presets.industrial/top-down aria 含锚点",
+      "pass": true,
+      "detail": "当前视角：方位 0 度，仰角 35 度，壶嘴偏右。"
+    },
+    {
+      "id": "presets.industrial/top-down 行高亮",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.industrial/top-down 按钮选中态",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "presets.industrial/top-down 方位到位",
+      "pass": true,
+      "detail": "实际 0 / 期望 0±0.6"
+    },
+    {
+      "id": "presets.industrial/top-down 仰角到位",
+      "pass": true,
+      "detail": "实际 35 / 期望 35±0.6"
+    },
+    {
+      "id": "ui.industrial/无交互不重绘（350ms 空转）",
+      "pass": true,
+      "detail": "实际 29 / 期望 29"
+    },
+    {
+      "id": "ui.industrial/拖 60px → 方位 +33°",
+      "pass": true,
+      "detail": "实际 33 / 期望 33±0.6"
+    },
+    {
+      "id": "ui.industrial/拖 −25px → 仰角 +3°",
+      "pass": true,
+      "detail": "实际 11 / 期望 11±0.6"
+    },
+    {
+      "id": "ui.industrial/拖拽触发重绘",
+      "pass": true,
+      "detail": "31→37"
+    },
+    {
+      "id": "ui.industrial/方向键一步=事实步进",
+      "pass": true,
+      "detail": "实际 48 / 期望 48±0.6"
+    },
+    {
+      "id": "ui.industrial/Home 回到首预设",
+      "pass": true,
+      "detail": "实际 0 / 期望 0±0.6"
+    },
+    {
+      "id": "ui.industrial/Home 回到首预设仰角",
+      "pass": true,
+      "detail": "实际 8 / 期望 8±0.6"
+    },
+    {
+      "id": "ui.industrial/复位按钮回壶嘴在右",
+      "pass": true,
+      "detail": "实际 0 / 期望 0±0.6"
+    },
+    {
+      "id": "ui.industrial/复位确实重绘",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "ui.industrial/自转按钮 aria-pressed=true",
+      "pass": true,
+      "detail": "实际 true / 期望 true"
+    },
+    {
+      "id": "ui.industrial/自转文案切换",
+      "pass": true,
+      "detail": "停止旋转"
+    },
+    {
+      "id": "ui.industrial/自转推进方位（≈30°/s）",
+      "pass": true,
+      "detail": "Δ16.97° / 600ms"
+    },
+    {
+      "id": "ui.industrial/停止后 aria-pressed=false",
+      "pass": true,
+      "detail": "实际 false / 期望 false"
+    },
+    {
+      "id": "ui.industrial/关自转后彻底停笔",
+      "pass": true,
+      "detail": "实际 62 / 期望 62"
+    },
+    {
+      "id": "shot.industrial/展台截图落盘",
+      "pass": true,
+      "detail": "stage-industrial.png"
+    },
+    {
+      "id": "shot.industrial/窄屏无横向溢出",
+      "pass": true,
+      "detail": "{\"overflowX\":false,\"w\":392,\"top\":233}"
+    },
+    {
+      "id": "shot.industrial/窄屏画布仍可见",
+      "pass": true,
+      "detail": "{\"overflowX\":false,\"w\":392,\"top\":233}"
+    },
+    {
+      "id": "crossSkin/三皮肤同视角剪影面积相同",
+      "pass": true,
+      "detail": "实际 1 / 期望 1 · 63454,63454,63454"
+    },
+    {
+      "id": "crossSkin/三皮肤同视角包围盒相同",
+      "pass": true,
+      "detail": "实际 1 / 期望 1"
+    },
+    {
+      "id": "crossSkin/三皮肤同视角 alpha 指纹相同",
+      "pass": true,
+      "detail": "实际 1 / 期望 1 · 88453279,88453279,88453279"
+    },
+    {
+      "id": "crossSkin/三皮肤颜色互异",
+      "pass": true,
+      "detail": "实际 3 / 期望 3 · 3996242254,466042388,4202093491"
+    },
+    {
+      "id": "crossSkin/三皮肤顶带锚点同侧",
+      "pass": true,
+      "detail": "实际 1 / 期望 1 · right,right,right"
+    },
+    {
+      "id": "crossSkin/朝向判据与像素同轨",
+      "pass": true,
+      "detail": "facing=0.3610890138912289 bandCx=326.39"
+    }
+  ]
+}
