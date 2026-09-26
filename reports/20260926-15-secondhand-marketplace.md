@@ -47,6 +47,14 @@
 - React 受控输入的无头驱动：native value setter + `dispatchEvent(new Event('input',{bubbles:true}))`，直接赋 `el.value` 不进 state。
 - 三风格靠运行时注 CSS → CSP 的 `style-src` 必须留 `'unsafe-inline'`，`script-src` 收紧到 `'self'` 后 SPA 仍正常，别顺手把 style 也收紧。
 
+## 收工终值与推送
+
+- `git status` 余 **3 项**，全是不属于本任务的未跟踪目录（见文末留痕）；本轮 4 条路径已在 **1d4fc5a**（61 文件 / +18,165 行）。
+- 磁盘：LAB **109M**（`.git` 16M，其中非本任务的 `sites/recruitment-ats-pipeline` 占 65M 且含未清理的 node_modules，本轮未动）；场景目录 **3.6M / 58 文件**；`df -k .` 可用 16,836,236KB≈16.1GiB。
+- 清理：`web/node_modules`（64M）、`/tmp/fleaprobe` 全树（三个库三件套 + 两个 chrome profile + 验证输出）、`/tmp/flealab/api`（38M 编译产物）、`/tmp/dbg.mjs` 全删，`ls /tmp | grep -i flea` 命中 **0**；:18080/:18081/:8080/:18193 四个监听按「端口 → PID → `ps -o command=` 核对命令行」确认后 kill，收工监听数 **0**；另有一个别的会话起的 `--headless=new --no-sandbox --virtual-time-budget=4000` Chrome，识别后未动。共享缓存（`~/Library/Caches/go-build`、`~/go/pkg/mod`、`~/.npm/_cacache`）一律未删，全程无 `go clean -cache/-testcache`。
+- 收工复跑取证：`go build ./...` / `go vet ./...` / `go test -count=1 ./...` 三包全绿（23 Test）；`gofmt -l .` 首跑报 3 个文件（seed.go + 两个 `_test.go` 的手写注释对齐），`gofmt -w` 后重跑测试仍全绿；`style-verify` 在 dist 与 preview 两种托管上各复跑一遍，失败项 0（逐条原文已存 `evidence/style-verify.txt`）。
+- 推送：`git ls-remote` 见远端 `go-gin_react` 已在 7b0c7f0（正是本地父提交）→ `git fetch origin go-gin_react` → `git rebase FETCH_HEAD` 返回 up to date（无改写、无冲突）→ `git push origin go-gin_react`，远端 **7b0c7f0..1d4fc5a**。提交身份用命令行内联 `-c user.name/-c user.email`（未改任何全局 git 配置），无 `--force`、无 `--no-verify`、未碰 `main`；staged diff 正则扫 secret/token 命中 0，`api-smoke.mjs` 用法注释里的示例令牌已改成 `$ADMIN_TOKEN` 占位。
+
 ## 留痕
 
 `sites/` 下另有三个**不属于本任务**的未跟踪目录（`clinic-appointment-desk`、`charity-donation-progress`、`recruitment-ats-pipeline`，像中途停掉的并行实例，风格仍是早期轮次的）。本轮未提交、未删除、未改动，只在本条留痕；提交仅 `git add` 自己的路径，绝不 `git add -A`。

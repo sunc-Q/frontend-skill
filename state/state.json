@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T15:40:00+08:00",
+  "updated": "2026-09-26T15:45:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -696,7 +696,7 @@
       "id": "20260926-15",
       "slug": "secondhand-marketplace",
       "started": "2026-09-26T13:59:00+08:00",
-      "finished": "2026-09-26T15:40:00+08:00",
+      "finished": "2026-09-26T15:45:00+08:00",
       "scenario": "旧货市集挂单与出价撮合台（挂单/出价/拍板三段状态机）",
       "styles": [
         "地铁线路图导视风",
@@ -706,8 +706,8 @@
       "template_created": false,
       "disk": {
         "df_k_avail_before": 16967784,
-        "df_k_avail_after": 16544172,
-        "lab_total_bytes_human": "待审计",
+        "df_k_avail_after": 16836236,
+        "lab_total_bytes_human": "109M（其中 .git 16M；非本任务的 sites/recruitment-ats-pipeline 占 65M，内含未清理 node_modules，本轮未动）",
         "scenario_dir_human": "3.6M / 58 文件（上限 5MB）",
         "note": "开工 df≈16.2GiB（84% 已用），高于 1.5GiB 熔断线。node_modules 64M、/tmp/fleaprobe 全树（39MB 编译产物、三个库三件套、两个 chrome profile）与 /tmp/dbg.mjs 收工删除；:18080/:18081/:8080/:18193 四个监听按端口→PID→ps -o command= 核对命令行后 kill，收工监听数 0；另有一个别的会话的 --headless=new --no-sandbox --virtual-time-budget Chrome，识别后未动。共享缓存（~/Library/Caches/go-build、~/go/pkg/mod、~/.npm/_cacache）未删，全程无 go clean -cache/-testcache"
       },
@@ -738,9 +738,9 @@
       ],
       "push": {
         "branch": "go-gin_react",
-        "result": "待推送后回填",
-        "commit": "",
-        "note": ""
+        "result": "成功",
+        "commit": "1d4fc5a（61 文件 / +18,165 行）+ 本条收工审计提交",
+        "note": "git ls-remote 见远端 go-gin_react 已在 7b0c7f0（第 12 轮补，正是本地 HEAD 的父）→ git fetch origin go-gin_react → git rebase FETCH_HEAD 返回 up to date（无改写、无冲突）→ git push origin go-gin_react，远端 7b0c7f0..1d4fc5a；提交身份用命令行内联 -c user.name/-c user.email（未改任何全局 git 配置）；无 --force、无 --no-verify、未碰 main；只 git add 自己的 4 条路径（绝不 add -A），git status 余 3 项全是不属于本任务的未跟踪目录；令牌只经 argv 注入，staged diff 正则扫 secret/token 命中 0，api-smoke.mjs 用法注释里的示例令牌已改成 $ADMIN_TOKEN 占位"
       }
     }
   ],
