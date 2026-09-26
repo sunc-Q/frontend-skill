@@ -61,5 +61,6 @@ UI 里真实走完的闭环：切主题并核对 DOM 形状不变 → 表头排�
 - 删除：`web/node_modules`（64M）、`/tmp/fco-verify`、`/tmp/fco-smoke`、`/tmp/fco-count`、`/tmp/fco-style`、`/tmp/fco-pw`、`/tmp/fco-ev` 及全部临时 db/png/json/log；`go build` 的 38MB 二进制只落在 /tmp，场景目录内无编译产物。保留：源码 + `web/dist/` + `preview/` + `scripts/` + `evidence/` + `README.md`。共享缓存（`~/Library/Caches/go-build`、`~/go/pkg/mod`、`~/.npm/_cacache`）未动，无 `go clean -cache/-testcache`。
 - 进程：:18501 / :18502 / :18509 / :18512 与收工时新发现的 :18099（`/tmp/fco-api -db /tmp/fco-seed/app.db`，一个已被删库的孤儿实例）逐个按 `lsof -t` → `ps -o command=` 核对命令行，确认都是本轮自己起的才 kill；kill 后 `lsof` 监听数 0。**未碰任何不属于本任务的进程。**
 - 令牌：`ADMIN_TOKEN` 全程只由 `openssl rand -hex 8` 生成后经环境变量注入（`env -u ADMIN_TOKEN` 显式摘掉来测 fail-closed 的 503），命令行历史、仓库文件、evidence 日志里均 0 命中。
-- 磁盘：收工 `df -k .` 可用 17,809,256KB≈17.0GiB；LAB 35M（`.git` 11M）、场景 2.8M / 62 文件。
+- 磁盘：收工 `df -k .` 可用 17,697,488KB≈16.9GiB（83% 已用）；LAB 38M（`.git` 13M）、场景 2.8M / 62 文件（最大单文件 preview 355,309B）。
+- 推送：`git ls-remote` 见远端 `go-gin_react` 已在 `b8fe3fd`（第 11 轮收工审计，恰为本地 merge-base）→ `git fetch origin go-gin_react`（无新内容，未 rebase、未改写历史）→ `git push origin go-gin_react`，远端 **b8fe3fd..06aecf9**（场景+记录 65 文件 / 35,424 行，另加本审计提交）。提交身份用命令行内联 `-c user.name/-c user.email`（不改任何全局 git 配置），无 `--force`、无 `--no-verify`、未碰 `main`。
 - 一句话教训：**别只让恒等式在正常输入上成立**——本轮的 0 元结算满足了全部三条对账式，Go 测试甚至把它写成了期望。真正兜住它的是「同一分钟内开充立刻结算」这条从业务直觉出发的边界用例，以及「UI 套件必须在脏实例上重跑一遍」的规矩。

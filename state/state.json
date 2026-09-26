@@ -639,10 +639,10 @@
       "template_created": false,
       "disk": {
         "df_k_avail_before": 17809256,
-        "df_k_avail_after": 17809256,
-        "lab_total_bytes_human": "35M（其中 .git 11M）",
+        "df_k_avail_after": 17697488,
+        "lab_total_bytes_human": "38M（其中 .git 13M）",
         "scenario_dir_human": "2.8M / 62 文件（上限 5MB）",
-        "note": "开工 df≈17.8GiB（82% 已用），远高于 1.5GiB 熔断线；收工 node_modules 64M 与 /tmp/fco-* 六处临时目录（含 38MB 二进制、13MB playwright-core）全删，:18099/:18501/:18502/:18509/:18512/:18601/:18602/:18603 监听数 0"
+        "note": "开工 df≈17.8GiB（82% 已用），远高于 1.5GiB 熔断线；收工 17,697,488KB≈16.9GiB。node_modules 64M 与 /tmp/fco-* 七处临时目录（含 38MB 二进制、13MB playwright-core）全删；:18099/:18501/:18502/:18509/:18512/:18601/:18602/:18603 收工监听数 0"
       },
       "volume": {
         "go_files": 19,
@@ -670,9 +670,9 @@
       ],
       "push": {
         "branch": "go-gin_react",
-        "result": "待推送后回填",
-        "commit": "",
-        "note": ""
+        "result": "成功",
+        "commit": "06aecf9（场景 + 记录，65 文件 / 35,424 行）+ 本条审计提交",
+        "note": "git ls-remote 见远端已在 b8fe3fd（第 11 轮收工审计，正是本地 merge-base）→ git fetch origin go-gin_react → rebase 无需进行（up-to-date，无改写）→ git push origin go-gin_react，远端 b8fe3fd..06aecf9；提交身份用命令行内联 -c user.name/-c user.email（不改任何全局 git 配置）；未 --force、未跳 hook、未碰 main；命令行与文件里均无令牌（令牌由 openssl rand -hex 8 现场生成、只经环境变量注入，grep evidence/ 命中 0）"
       }
     }
   ],
