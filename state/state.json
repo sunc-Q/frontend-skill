@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T14:45+08:00",
+  "updated": "2026-09-26T14:47+08:00",
   "tried": [
     {
       "skill": "drafter",
@@ -1120,7 +1120,7 @@
       "seconds": 600,
       "artifact_size": "本轮 demos 64KB / 9 文件（.mid 460B + piano-roll.svg 18.6KB + 3 脚本 + 2 JSON + gm-programs.json + output.log 3.6KB），远低于 5MB 上限",
       "cleanup": "删 .tmp/mlib（midiutil）与 .skills/midi-agent-skill/output/*.mid；LAB 75M（含 .skills 19M 未入库）；未起任何服务，监听表无本轮条目；全局缓存未动",
-      "push": "pending",
+      "push": "成功：f8398ae..55ce64d skill-showcase -> skill-showcase（fetch+rebase 显示 up to date，普通推送，无 --force）",
       "notes": "市场镜像第 N 次丢 scripts，靠 metadata.json.repo + SSH 克隆救回（详见 environment_notes）；旋律音区第一版与弦乐五音只差 2 半音被 A12 抓红，整体抬八度后 14 半音——自动音区必须断言。"
     }
   ],
@@ -1134,5 +1134,15 @@
     "artifact_kinds": 15,
     "first_run_time": "2026-09-25T17:23+08:00",
     "last_run_time": "2026-09-26T13:05+08:00"
+  },
+  "final_check": {
+    "time": "2026-09-26T14:47+08:00",
+    "git_status": "本轮文件已提交（收尾回填 commit 稍后另发）",
+    "lab_du": "75M（.skills 19M 与 .tmp 未入库）",
+    "round_demos_du": "64KB / 9 文件",
+    "disk_available_kb": 16806940,
+    "listeners": "lsof 15 行全部为本机既有监听，本轮未起任何服务",
+    "pushed": "f8398ae..55ce64d",
+    "leftover": "已删 .tmp/mlib(midiutil) 与 .skills/midi-agent-skill/output/*.mid；无 node 子进程"
   }
 }
