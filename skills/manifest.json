@@ -1,0 +1,120 @@
+{
+  "generated_by": "scripts/gen-skills-manifest.py",
+  "generated_from": "skills/ as found on disk",
+  "snapshots": [
+    {
+      "skill": "qrcode-skills",
+      "files": 16,
+      "total_bytes": 69080,
+      "read_only": true,
+      "manifest": [
+        {
+          "path": ".gitignore",
+          "bytes": 36,
+          "sha256": "8595c42f121efbc8"
+        },
+        {
+          "path": "README.md",
+          "bytes": 5669,
+          "sha256": "c4e128329135184b"
+        },
+        {
+          "path": "README.zh-cn.md",
+          "bytes": 5556,
+          "sha256": "c4d8b7f8f5a13b4c"
+        },
+        {
+          "path": "SKILL.md",
+          "bytes": 10592,
+          "sha256": "a0a37319f419ef8e"
+        },
+        {
+          "path": "_meta.json",
+          "bytes": 450,
+          "sha256": "1154df327d77f852"
+        },
+        {
+          "path": "package.json",
+          "bytes": 292,
+          "sha256": "b10a98a2308e7868"
+        },
+        {
+          "path": "reference.md",
+          "bytes": 2386,
+          "sha256": "5e4d87fab2436182"
+        },
+        {
+          "path": "requirements.txt",
+          "bytes": 36,
+          "sha256": "d01eed0bb2edf8f9"
+        },
+        {
+          "path": "scripts/batch_decode.js",
+          "bytes": 9015,
+          "sha256": "620d592f2bd8aa02"
+        },
+        {
+          "path": "scripts/batch_decode.py",
+          "bytes": 9165,
+          "sha256": "79fecc3ab8cff046"
+        },
+        {
+          "path": "scripts/batch_generate.js",
+          "bytes": 7578,
+          "sha256": "f70985b26b8bfe1a"
+        },
+        {
+          "path": "scripts/batch_generate.py",
+          "bytes": 7857,
+          "sha256": "363cba39ae405c6c"
+        },
+        {
+          "path": "scripts/decode.js",
+          "bytes": 3172,
+          "sha256": "9b7e3db05a39c4ae"
+        },
+        {
+          "path": "scripts/decode.py",
+          "bytes": 2957,
+          "sha256": "173b490744fed745"
+        },
+        {
+          "path": "scripts/generate.js",
+          "bytes": 1994,
+          "sha256": "4a79e3bb7c7ad8d5"
+        },
+        {
+          "path": "scripts/generate.py",
+          "bytes": 2325,
+          "sha256": "9d4701e3deb8e928"
+        }
+      ]
+    }
+  ],
+  "rounds_recorded": 20,
+  "skills_with_snapshot": [
+    "qrcode-skills"
+  ],
+  "rounds_missing_snapshot": [
+    "SQLite-Database-Expert",
+    "algorithmic-art",
+    "ascii-project-dashboard",
+    "build-game",
+    "canvas-design",
+    "docx",
+    "drafter",
+    "golang-gin-api",
+    "golang-testing",
+    "graphic-gif",
+    "mcp-builder",
+    "mermaid-cli",
+    "midi-generation",
+    "pdf",
+    "ppt-generator",
+    "sec-audit-cn",
+    "shader",
+    "webapp-testing",
+    "xlsx"
+  ],
+  "note": "第 1–19 轮的技能包落在 LAB/.skills/（被 .gitignore 排除），只有第 20 轮起把所用技能快照放进 skills/ 入仓；缺失项列在 rounds_missing_snapshot，不做补抄，需要时按 reports/*.md 里的确切命令重新获取。"
+}

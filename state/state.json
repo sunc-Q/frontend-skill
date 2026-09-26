@@ -908,7 +908,8 @@
     "★qrcode 全家桶本机配方（7.8 秒）：python3 -m pip install --target LAB/.tmp/pylibs --no-cache-dir --index-url https://mirrors.aliyun.com/pypi/simple qrcode Pillow zxing-cpp openpyxl → Python 3.14.7 有 zxing-cpp/Pillow 的 C 扩展 wheel，零编译。再次确认「pypi aliyun 能装 C 扩展」。",
     "★第二套独立解码器最小配方（1.1 秒，纯 JS 无原生）：npm i --registry=https://registry.npmmirror.com jsqr pngjs；pngjs 解出 RGBA → jsQR(new Uint8ClampedArray(png.data.buffer), w, h)。做「生成↔解码」交叉验证时用它，别只复用生成方库。",
     "★二维码可扫性的物理约束（可复用于任何排版任务）：400→200px 缩放后 zxing 仍可扫；但**同样 105×105 的遮挡，盖住任一 finder 立即失效，盖在数据区 ECC-H 照样读出**。给二维码贴 logo/角标只能放静默区外或数据区中心。",
-    "qrcode 库 ECC_MAP 是 {L:1,M:0,Q:3,H:2}（不是字母序）；复算模块网格时错一位就整组断言假红（本轮 G 组第一版算出 53 vs 实际 49）。"
+    "qrcode 库 ECC_MAP 是 {L:1,M:0,Q:3,H:2}（不是字母序）；复算模块网格时错一位就整组断言假红（本轮 G 组第一版算出 53 vs 实际 49）。",
+    "★LAB 约定变更（第20轮起）：所用技能包的只读快照放 `LAB/skills/<name>/`（**入仓**，区别于 gitignore 的 `.skills/`），清单 `LAB/skills/manifest.json` 一律由 `python3 LAB/scripts/gen-skills-manifest.py` 现读磁盘生成；后续每轮收工前跑一次并把它连同新快照一起提交。"
   ],
   "runs": [
     {
@@ -1178,7 +1179,7 @@
       "artifact_size": "demos 本轮 388KB（19 码 76KB + zip 27KB + sheet 45KB + 6 取证 PNG + 3 脚本 + 4 输入/证据件），限 5MB 内",
       "cleanup": "删 qr-names/（19 张取证用技能名小码）+ 旧版 ecc-*.png 5 张 + _blank/_noise/_mutant/_c1/_cN/_svg-raster 临时图 + LAB/.tmp/svg-{200,600}.svg；删 LAB/.tmp/pylibs（qrcode/Pillow/zxing-cpp/openpyxl）与 LAB/.tmp/qrnode（jsqr/pngjs）；零本轮常驻进程与监听（无服务，Chrome 用 --headless 单次退出）；全局技能库新增 1 项 qrcode-skills（有意安装，已登记 installed_by_this_task）；全局 pip/npm 缓存未动",
       "push": "已推送：git push origin skill-showcase 成功（56defe4..ae8a60a，普通推送、无 --force / 无 --no-verify）。fetch 确认远端 56defe4 是本地 HEAD 祖先 → 无需 rebase；ls-remote 复核 skill-showcase=ae8a60a0f77e05cc0f6f5ca935eceb1623820afc，main=3531814 / go-gin_react=7b0c7f0 为兄弟任务所写、本任务未触碰。走 git@github.com SSH + LAB/.tmp/known_hosts；staged diff 凭据形状扫描抓到一次性 installRef 全文，已在提交前脱敏为 ext_70675d0d…（重扫 0 命中）",
-      "notes": "来源①命中：短词 QR 一次装成（长词组 0 命中，见 environment_notes）。安全闸门通过：全程只走 --file/本地路径，未触发唯一网络分支 decode --url；★发现真实危险默认=batch_decode 不带 --output-txt 时会把解码列回写进输入文件本身（open(input,'w')，非原子无备份）。本轮最大增量=「遮挡位置 ≠ 遮挡面积」：同尺寸黑块盖 ECC-H 码的 finder 立刻不可读、盖数据区照样读出——这是首版 sheet 把 18px 小码贴在卡片左下角导致 H3 失败后差分定位出来的，修法是贴纸移到标题条"
+      "notes": "来源①命中：短词 QR 一次装成（长词组 0 命中，见 environment_notes）。安全闸门通过：全程只走 --file/本地路径，未触发唯一网络分支 decode --url；★发现真实危险默认=batch_decode 不带 --output-txt 时会把解码列回写进输入文件本身（open(input,'w')，非原子无备份）。本轮最大增量=「遮挡位置 ≠ 遮挡面积」：同尺寸黑块盖 ECC-H 码的 finder 立刻不可读、盖数据区照样读出——这是首版 sheet 把 18px 小码贴在卡片左下角导致 H3 失败后差分定位出来的，修法是贴纸移到标题条。★本轮起新增做法：所用技能包**只读快照入仓** `skills/qrcode-skills/`（16 文件/69,080B，chmod -R a-w）+ `skills/manifest.json`（由 scripts/gen-skills-manifest.py 现读磁盘生成：逐文件 sha256/字节数/read_only 由 os.access 实测，不手抄），并列出 rounds_missing_snapshot=19（第 1–19 轮在 .skills/ 被 gitignore，未回填，需要时按各轮报告的确切命令重取）。快照还暴露一处不一致：市场版本 1.0.1 与 package.json 2.0.0 不符，_meta.json 指向上游 openclaw/skills@1ae3cd1e。"
     }
   ],
   "evaluation_snapshot": {

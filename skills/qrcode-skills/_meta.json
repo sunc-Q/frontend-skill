@@ -1,0 +1,17 @@
+{
+  "owner": "hinisal",
+  "slug": "qrcode-skills",
+  "displayName": "qrcode",
+  "latest": {
+    "version": "1.0.1",
+    "publishedAt": 1773296571701,
+    "commit": "https://github.com/openclaw/skills/commit/1ae3cd1efe2e03f40d89fe580156687f950ff19e"
+  },
+  "history": [
+    {
+      "version": "1.0.0",
+      "publishedAt": 1773191922202,
+      "commit": "https://github.com/openclaw/skills/commit/484924fdd3cd602b33ef73486283e12c02bfdb7a"
+    }
+  ]
+}
