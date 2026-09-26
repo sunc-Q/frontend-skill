@@ -1177,7 +1177,7 @@
       "seconds": 1740,
       "artifact_size": "demos 本轮 388KB（19 码 76KB + zip 27KB + sheet 45KB + 6 取证 PNG + 3 脚本 + 4 输入/证据件），限 5MB 内",
       "cleanup": "删 qr-names/（19 张取证用技能名小码）+ 旧版 ecc-*.png 5 张 + _blank/_noise/_mutant/_c1/_cN/_svg-raster 临时图 + LAB/.tmp/svg-{200,600}.svg；删 LAB/.tmp/pylibs（qrcode/Pillow/zxing-cpp/openpyxl）与 LAB/.tmp/qrnode（jsqr/pngjs）；零本轮常驻进程与监听（无服务，Chrome 用 --headless 单次退出）；全局技能库新增 1 项 qrcode-skills（有意安装，已登记 installed_by_this_task）；全局 pip/npm 缓存未动",
-      "push": "待补",
+      "push": "已推送：git push origin skill-showcase 成功（56defe4..ae8a60a，普通推送、无 --force / 无 --no-verify）。fetch 确认远端 56defe4 是本地 HEAD 祖先 → 无需 rebase；ls-remote 复核 skill-showcase=ae8a60a0f77e05cc0f6f5ca935eceb1623820afc，main=3531814 / go-gin_react=7b0c7f0 为兄弟任务所写、本任务未触碰。走 git@github.com SSH + LAB/.tmp/known_hosts；staged diff 凭据形状扫描抓到一次性 installRef 全文，已在提交前脱敏为 ext_70675d0d…（重扫 0 命中）",
       "notes": "来源①命中：短词 QR 一次装成（长词组 0 命中，见 environment_notes）。安全闸门通过：全程只走 --file/本地路径，未触发唯一网络分支 decode --url；★发现真实危险默认=batch_decode 不带 --output-txt 时会把解码列回写进输入文件本身（open(input,'w')，非原子无备份）。本轮最大增量=「遮挡位置 ≠ 遮挡面积」：同尺寸黑块盖 ECC-H 码的 finder 立刻不可读、盖数据区照样读出——这是首版 sheet 把 18px 小码贴在卡片左下角导致 H3 失败后差分定位出来的，修法是贴纸移到标题条"
     }
   ],
@@ -1193,13 +1193,12 @@
     "last_run_time": "2026-09-26T13:05+08:00"
   },
   "final_check": {
-    "time": "2026-09-26T14:47+08:00",
-    "git_status": "本轮文件已提交（收尾回填 commit 稍后另发）",
-    "lab_du": "75M（.skills 19M 与 .tmp 未入库）",
-    "round_demos_du": "64KB / 9 文件",
-    "disk_available_kb": 16806940,
-    "listeners": "lsof 15 行全部为本机既有监听，本轮未起任何服务",
-    "pushed": "f8398ae..55ce64d",
-    "leftover": "已删 .tmp/mlib(midiutil) 与 .skills/midi-agent-skill/output/*.mid；无 node 子进程"
+    "time": "2026-09-26T15:25+08:00",
+    "git_status": "clean（回填提交后）",
+    "lab_size": "76M",
+    "du_this_round": "292KB",
+    "disk_avail_kb": 16666740,
+    "listeners_this_round": 0,
+    "remote_head": "ae8a60a"
   }
 }
