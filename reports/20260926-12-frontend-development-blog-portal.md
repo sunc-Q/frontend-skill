@@ -408,21 +408,24 @@ TLS 层重置，只走 SSH；`known_hosts` 写入 gitignored 的 `LAB/.tmp`（`S
 并让 `check-clean` 的 C5 在**通过时也无条件打印**实测体积——台账的 `artifact_size` 说「取数于 C5」，
 一张只在失败时开口的卡不能当数据源。
 
-清理实读（两次连跑，第二次只因我改了 `round-facts` 里描述体积的那行文案而变动，正是该文件自己警告的自指）：
+清理实读（同一目录连跑数次，每一次都比上一次大——变动的正是 `round-facts` 与 checker 自己的文案，这就是该文件警告过的自指）：
 
 ```
-C5 实测体积：2,285,809B / 2.18MB / 76 个文件   ← 写下 artifact_size 那一次
-C5 实测体积：2,286,020B / 2.18MB / 76 个文件   ← 改完该文案之后（+211B，目录 123MB → 2.18MB）
-check-clean: 30/30 assertions passed
+C5 实测体积：2,281,588B / 2.18MB / 76 个文件   ← 刚清完（补记 ENV_NOTES 三条之前）
+C5 实测体积：2,285,809B / 2.18MB / 76 个文件   ← 写下 artifact_size 那一次（= 台账里的数）
+C5 实测体积：2,286,763B / 2.18MB / 76 个文件   ← 补记与定稿文案改完之后（比台账多 954B，就是那行字自己）
+check-clean: 30/30 assertions passed（目录 123MB → 2.18MB）
 ```
 
 - 写回区间：`62070f4..8ba7a5b`（主体 commit `8ba7a5b`：产物目录 76 件 + 本报告 + `state.json` +
   work-log 末行 + `skills/MANIFEST.json`、`skills/README.md` 经 `node scripts/gen-skills-manifest.mjs`
   再生——本轮 `frontend-development` 的 `used_in_rounds` 追加 `2026-09-26 12:00`，`台账_tried_total`
   20→21；数字全部脚本现读，未手抄）
-- 补记区间：`8ba7a5b..PLACEHOLDER_PUSH_REFILL`（补记 commit 由 `scripts/ledger-refill.mjs` 触发，
-  回填 `artifact_size` / `cleanup` / `push` 三格 + 3 条清理期踩坑 + 6 条下一轮候选；它的哈希只能由
-  第三次「区间定稿」提交写出，这也是本轮留下该机制的自证：**任何指向自身的读数都必须晚于自身产生**）
+- 补记区间：`8ba7a5b..80e23dd`（补记 commit 由 `scripts/ledger-refill.mjs` 触发，
+  回填 `artifact_size` / `cleanup` / `push` 三格 + 3 条清理期踩坑 + 6 条下一轮候选，
+  `verify-ledger` V1–V12 全绿）；第三次「区间定稿」提交写下本行，因此台账 `RUN.push` 里那条
+  区间故意停在 `80e23dd..HEAD`：**任何指向自身的读数都必须晚于自身产生**，`git log --oneline 62070f4..`
+  一跑即见全序列，这也正是 refill 卡做成可重跑、幂等的原因
 
 ## 14. 下一轮候选（已排入台账）
 

@@ -28,7 +28,7 @@ export const TRIED = {
 
 /** Filled with the write-back-time value; the 补记 commit rewrites it from disk. */
 export const PUSH_TEXT =
-  '已提交并推送 git@github.com:sunc-Q/frontend-skill.git @ main：写回区间 62070f4..8ba7a5b（主体 commit 8ba7a5ba936613c72e2299266e1961cb00b58990，81 文件 9,511 插入 = 产物目录 76 件 + 报告 + state.json + work-log 末行 + skills/MANIFEST.json 与 skills/README.md 再生；补记 commit 紧随其后回填本字段与报告 §13 的完整区间，同样走 SSH——本机 github.com HTTPS 被 TLS 层重置，known_hosts 写入 gitignored 的 LAB/.tmp 并随收尾整体删除；命令与文件内无任何 token，提交身份用内联 -c user.name/user.email，全局 git 配置未改动）';
+  '已提交并推送 git@github.com:sunc-Q/frontend-skill.git @ main。写回 62070f4..8ba7a5b（主体 8ba7a5ba936613c72e2299266e1961cb00b58990，81 文件 9,511 插入 = 产物目录 76 件 + 报告 + state.json + work-log 末行 + skills 清单再生）→ 补记 8ba7a5b..80e23dd（ledger-refill 回填 artifact_size/cleanup/push）→ 区间定稿 80e23dd..HEAD：即写下本行并把它推上去的那一次提交，总区间 62070f4..HEAD。自指区间只能由后一次提交写出，所以本行故意不写死最后一个哈希——`git log --oneline 62070f4..` 一跑即见全序列，这正是本轮补记卡（refill 可重跑、幂等）存在的理由。全程 SSH：本机 github.com HTTPS 被 TLS 层重置，known_hosts 写入 gitignored 的 LAB/.tmp 并随收尾整体删除；命令与文件内无任何 token，提交身份用内联 -c user.name/user.email，全局 git 配置未改动';
 
 export const RUN = {
   time: TRIED.time,
