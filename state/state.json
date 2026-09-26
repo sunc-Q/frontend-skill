@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T13:16+08:00",
+  "updated": "2026-09-26T13:22+08:00",
   "tried": [
     {
       "skill": "drafter",
@@ -919,11 +919,19 @@
       "time": "2026-09-26T13:06+08:00",
       "skill": "mcp-builder",
       "result": "成功（留用·推荐）。verify.mjs 32 PASS / 0 FAIL（golden）+ 3 个变异体各只红 1 条（M1→B5 annotations、M2→D1 分页 offset、M3→D8 空结果缺 structuredContent）；10/10 evaluation 题目仅靠 MCP 工具解出且与 Python 独立算出的答案逐字相符；裸 JSON-RPC 握手 protocolVersion=2025-06-18 / capabilities={tools}",
-      "seconds": 840,
+      "seconds": 900,
       "artifact_size": "本轮 demos 68KB（上限 5MB）：index.mjs 14,115B + verify.mjs 12,392B + output.log 5,457B + gen_eval.py 2,989B + evaluation.xml 1,620B + protocol-transcript.log 930B + README/mutants.sh/package.json×2；node_modules(26MB) 与 package-lock 收尾已删",
-      "cleanup": "删 node_modules + package-lock.json + .mut/ 三个变异体 + .fat-state.json（verify 内已 unlinkSync）+ raw-frames.out；MCP stdio 为子进程管道不占端口，lsof 复核本轮零监听、无遗留 node 进程；全局 ~/.qoder-cn/skills 未新增任何东西；全局缓存未动",
-      "push": "待本轮末尾填写",
-      "notes": "产物类型换到『协议/后端能力』类（历轮首个 MCP 服务器）。最大收获是 wire 层契约：outputSchema 一旦声明，空结果分支漏 structuredContent 会被 SDK 判 -32602 并吞掉友好提示——前 15 轮的 file:///像素/静态审读/文档解析四种取证面全都覆盖不到这类缺陷，已用变异体 M3 复现并锁死为断言 D8。第二条方法学：Phase 4.3『答案须长期稳定』与 append-only 台账冲突，凡问『一共多少』的题在写回 state 那刻失效，10 题全部改锚不可变历史；同时把本轮断言所依据的台账数字冻结成 evaluation_snapshot，免得后续运行拿新数字对旧断言。代价照实记：guide 推荐 TypeScript+build，本轮为守 15 分钟预算用 ESM JS（丢静态类型，用运行期 schema 断言补）；它自带的 inspector 与 evaluation.py 两条官方回路本机都跑不了（npx 不可达 / 需 ANTHROPIC_API_KEY），已按闸门放弃而非硬闯。"
+      "cleanup": "删 node_modules + package-lock.json + .mut/ 三个变异体 + .fat-state.json（verify 内已 unlinkSync）+ raw-frames.out；MCP stdio 为子进程管道不占端口，lsof 复核本轮零监听、无遗留 node 进程；全局 ~/.qoder-cn/skills 未新增任何东西；全局缓存未动；推送后 git status 干净、无 node 监听（lsof -iTCP 计 0）",
+      "push": "已推送：git push origin skill-showcase 成功（077a78e..76e37ee，普通推送，无 --force / 无 --no-verify / 未碰 main 与 go-gin_react）；远端新增 2 个 commit（第16轮产物 + 把 protocol-transcript.log 纳入版本）",
+      "notes": "产物类型换到『协议/后端能力』类（历轮首个 MCP 服务器）。最大收获是 wire 层契约：outputSchema 一旦声明，空结果分支漏 structuredContent 会被 SDK 判 -32602 并吞掉友好提示——前 15 轮的 file:///像素/静态审读/文档解析四种取证面全都覆盖不到这类缺陷，已用变异体 M3 复现并锁死为断言 D8。第二条方法学：Phase 4.3『答案须长期稳定』与 append-only 台账冲突，凡问『一共多少』的题在写回 state 那刻失效，10 题全部改锚不可变历史；同时把本轮断言所依据的台账数字冻结成 evaluation_snapshot，免得后续运行拿新数字对旧断言。代价照实记：guide 推荐 TypeScript+build，本轮为守 15 分钟预算用 ESM JS（丢静态类型，用运行期 schema 断言补）；它自带的 inspector 与 evaluation.py 两条官方回路本机都跑不了（npx 不可达 / 需 ANTHROPIC_API_KEY），已按闸门放弃而非硬闯。",
+      "final_check": {
+        "git_status": "clean(0 modified/untracked)",
+        "lab_size_du": "39M",
+        "disk_avail_kb": 17429516,
+        "listeners_this_round": 0,
+        "demos_size_kb": 68,
+        "pushed": "077a78e..76e37ee"
+      }
     }
   ],
   "evaluation_snapshot": {
