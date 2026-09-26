@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T14:30+08:00",
+  "updated": "2026-09-26T14:45+08:00",
   "tried": [
     {
       "skill": "drafter",
@@ -213,6 +213,19 @@
       "report": "reports/20260926-1416-mermaid-cli.md",
       "installed_by_this_task": [
         "mermaid-cli (official_1QyH2lCy) -> ~/.qoder-cn/skills/mermaid-cli/ 经 install_extension；npm @mermaid-js/mermaid-cli 12.0.0 本地装 LAB/.tmp/mmdc-r18 收尾已删（PUPPETEER_SKIP_DOWNLOAD=true + 系统 Chrome executablePath，未下载任何浏览器）"
+      ]
+    },
+    {
+      "skill": "midi-generation",
+      "source": "Qoder 官方市场 official_BatU2lbS (publisher majiayu000, origin:modelscope) → 上游仓库 github.com/tubone24/midi-agent-skill",
+      "skill_path": "~/.qoder-cn/skills/midi-generation (残缺) + LAB/.skills/midi-agent-skill (完整)",
+      "task": "把 18 轮 runs[].seconds 谱成 11.25s 的 C 宫五声 MIDI（celesta 旋律 + 弦乐根/五音 + 贝斯）",
+      "verdict": "留用（推荐）：本机零网络 3 秒出 .mid，自带可量化执行的音乐理论约束，产物 460B 信息完整；坑=市场丢脚本/单声部轨/越界八度静默钳位",
+      "time": "2026-09-26T14:45+08:00",
+      "artifact": "demos/20260926-1445-midi-generation/skill-showcase-run-ledger-sonified.mid + piano-roll.svg",
+      "report": "reports/20260926-1445-midi-generation.md",
+      "installed_by_this_task": [
+        "midi-generation (install_extension ext_b72cf6b9 → ~/.qoder-cn/skills/midi-generation)"
       ]
     }
   ],
@@ -667,15 +680,53 @@
       "url": "",
       "status": "candidate(低优先)",
       "note": "核心渲染能力已由 dashed-mermaid-cli 覆盖（mmdc 本体）；mermaid-studio 主打 C4/AWS 图标包——iconPacks 要联网 unpkg，本机不可达"
+    },
+    {
+      "name": "midi-generation",
+      "source": "Qoder 官方市场",
+      "url": "git@github.com:tubone24/midi-agent-skill.git",
+      "status": "installed_used — 第19轮已用并留用，勿再选",
+      "note": "市场包丢 scripts，靠 metadata.json 的 repo 字段 SSH 克隆补齐"
+    },
+    {
+      "name": "laolei-llm-midi / giggle-generation-music / aiml-music-generator / mm-music-expert / ai-music-muse",
+      "source": "Qoder 官方市场 (查询词 midi/music)",
+      "url": "",
+      "status": "blocked",
+      "note": "全部走云端 AI 生成（Suno/Udio/MiniMax/Neta 等）→ 需付费 key + 把提示词/文件 POST 到外部，触安全闸门；MIDI 需求已由 midi-generation 本地满足"
+    },
+    {
+      "name": "convert_to_wav (midi-agent-skill 自带)",
+      "source": "上游仓库",
+      "url": "git@github.com:tubone24/midi-agent-skill.git",
+      "status": "blocked",
+      "note": "需 brew fluidsynth + 外网 A320U.sf2 音色库；本机无 fluidsynth、HTTPS 被 TLS 重置 → 只出 .mid 不出 WAV"
+    },
+    {
+      "name": "data-visualization-studio / data-visualization-cloud / antvis-narrative-text-visualization / prd-visualization-skill / excel-bar-chart-visualization",
+      "source": "Qoder 官方市场 (查询词 visualization)",
+      "url": "",
+      "status": "candidate",
+      "note": "下轮候选：T8 叙述文本可视化(antvis) 与 D3 层级多视图(prd) 产物类型最新；matplotlib 科学绘图类(k-dense/jackspace) 与已有 PNG 图版同类，低优先"
+    },
+    {
+      "name": "music-identify / free-transcription / music-to-youtube / skywork-music-maker",
+      "source": "Qoder 官方市场 (查询词 music/音频)",
+      "url": "",
+      "status": "blocked",
+      "note": "需 AudD/Whisper/YouTube 凭据或上传本地内容到云端 → 闸门排除"
     }
   ],
-  "in_progress": null,
+  "in_progress": {
+    "skill": "midi-generation",
+    "status": "done"
+  },
   "next_candidates": [
-    "anthropics/skills 盘上未试（零下载）：theme-factory（10 套主题换皮）、brand-guidelines、slack-gif-creator、doc-coauthoring、frontend-design、web-artifacts-builder、internal-comms、skill-creator、claude-api、academy-guide、discernment-nudge",
-    "来源③本机已装未试：golangci-lint-strict（上游 config 走 raw.githubusercontent 被 TLS 重置，需先想替代取法）、Golang-Backend-Development、nodejs-best-practices、express-nodejs-expert、frontend-development、qmind、canvas(.canvas.tsx)",
-    "gin websocket/rate-limiting 子路线补验（技能包在盘上，需 goproxy.cn 拉 gorilla/websocket 或 x/time/rate）",
-    "mermaid 家族进阶：用第18轮装过的 mmdc 渲染前几轮任一产物台账（如 xlsx 98 公式结构 classDiagram）——但同技能勿再占轮，仅当他轮顺带",
-    "（产物类提醒）SVG 矢量图类本轮已开 1 次；下轮避开办公文档/单文件 HTML；候选：音频(macOS say 合成?未验)、gitGraph 已是 timeline 同类、数据库 erDiagram 可与 SQLite 类技能错开"
+    "第20轮候选（产物类型轮换：19 轮里 HTML/SVG/PNG/办公文档/DB/服务都有了，音频=.mid 刚开 1 次）：antvis narrative-text-visualization（T8 叙述文本高亮，产物=带语义标注的文本报告，全新类型）",
+    "prd-visualization-skill（D3 力导向/径向层级图，把 18 轮台账画成层级图，注意需 d3 走 npmmirror）",
+    "本机已装未试：theme-factory（anthropics/skills，盘上已有则零下载）、brand-guidelines、slack-gif-creator（GIF 类仅 1 次可再做）、doc-coauthoring、frontend-design、web-artifacts-builder、internal-comms、academy-guide、discernment-nudge",
+    "本机已装未试（源③）：golangci-lint-strict（上游 config 走 raw.githubusercontent 被 TLS 重置，先想替代取法）、Golang-Backend-Development、nodejs-best-practices、express-nodejs-expert、frontend-development、qmind、canvas(.canvas.tsx)",
+    "midi-generation 复用路线（不占轮）：把行情/构建数据再谱曲；或试 normalize_composition 的脏输入归一化 + refine_composition 的 min_notes 扩展"
   ],
   "used_artifact_kinds": [
     "单文件自包含 HTML 图表（工程图纸）×1",
@@ -695,7 +746,8 @@
     "原创视觉艺术 PNG 图版（1650×2340 / 485,901B，Pillow 纯绘制：15万点纤维噪声+工程网格+高斯暗角+24h表盘13条时长弧+分钟格账本）+ 设计宣言 .md；16 条像素断言（分钟格逐格数回台账、朱红弧实测307.8°、出血位零墨、脚注恰8词隙）+ 变异负对照（改 1080s→600s 使 B2/B3 变红）×1",
     "只读 stdio MCP 服务器（4 工具 / Zod 双向 schema / annotations / 分页 / 截断 / 可执行错误）+ 裸 JSON-RPC 帧转录 + 10 题 evaluation.xml + 32 条真协议会话断言日志（含 3 个变异体各红 1 条）×1",
     "运行中的 Gin HTTP 服务（127.0.0.1，端口收尾已释放）+ 19 条真实 curl 断言转录 output.log（201/400字段级/409/404/401/204/503/500 全覆盖 + slog 服务端 JSON 日志 + SIGTERM→Shutdown→exit 0 + 2 个变异体各只红 1 条）×1",
-    "自动布局矢量图表 SVG ×4（flowchart 13 节点/timeline 17 事件/stateDiagram 10 中文态/pie 16 切片，数据与 .mmd 现场重算对账 23 断言）+ 位图 PNG 1 张（523×1600）+ 语法负对照与语义变异对照件 ×1"
+    "自动布局矢量图表 SVG ×4（flowchart 13 节点/timeline 17 事件/stateDiagram 10 中文态/pie 16 切片，数据与 .mmd 现场重算对账 23 断言）+ 位图 PNG 1 张（523×1600）+ 语法负对照与语义变异对照件 ×1",
+    "标准 MIDI 文件 .mid（460B，SMF format1 / 5 track / division960 / 96BPM / 18 拍 11.25s：18 轮时长→C 宫五声旋律 + I-vi-IV-V-I 和声床）+ 1180×1870 钢琴卷帘 SVG（33 音块，逐拍标 #轮次:秒数）+ composition.json/mapping.json 数据→音高完整对照 + 19 条手搓 SMF 解析器断言（含技能 3 条不协和规则的量化核验）+ 3 个变异对照（改音高/加半音/改 BPM 各红 1 条）+ R1 复现逐字节相同 ×1"
   ],
   "environment_notes": [
     "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
@@ -805,7 +857,11 @@
     "`go build -o ../../.tmp/xxx` 的相对路径按 cwd 解析：在 `src/` 下 `../..` 已是 `demos/`，产物静默写到 demos/.tmp，导致后续两轮跑的是**旧二进制**，表现为「改了代码断言仍红」的假故障（本轮连踩两次，另一次是子 shell 里用 $PWD 拼接）。一律用字面绝对路径。",
     "技能示例代码自身有缺陷：List handler 直接回显绑定值 `q.Page/q.Limit`，而默认值只在 service 内补 → 不带参数的 GET /users 回显 `\"page\":0`。本轮在 handler 归一化并补断言 A19。启示：照抄规范型技能的示例时，把「未填充零值会不会外显」列进断言清单。",
     "市场安装 dlazy 系技能=付费 SaaS 客户端（key+全局 npm i -g+本地文件外发），一律读 SKILL.md 后即弃；它的 tags 为空（历轮『tags 空即可靠』指的是安装格式可靠，不代表内容安全）。",
-    "第18轮：mmdc 12.0.0 三条与文档的漂移/语法地雷：-w/-H 已不存在（--size 顶替）；timeline 周期含 ':' 必炸（它是分隔符）；stateDiagram ID 不能『中文+连字符』混排（用 ASCII ID + 'ID : 中文' 描述行）。mermaid-cli 本地装 451MB（npm 194 包 20s），PUPPETEER_SKIP_DOWNLOAD=true 后 -p {executablePath: 系统 Chrome} 直驱、macOS 无需 --no-sandbox；渲染即验证的负对照可当任意 .mmd 的 lint 闸门用。pie showData 的标题是生成期文本、图例 [值] 才随数据走——语义断言锚图例。"
+    "第18轮：mmdc 12.0.0 三条与文档的漂移/语法地雷：-w/-H 已不存在（--size 顶替）；timeline 周期含 ':' 必炸（它是分隔符）；stateDiagram ID 不能『中文+连字符』混排（用 ASCII ID + 'ID : 中文' 描述行）。mermaid-cli 本地装 451MB（npm 194 包 20s），PUPPETEER_SKIP_DOWNLOAD=true 后 -p {executablePath: 系统 Chrome} 直驱、macOS 无需 --no-sandbox；渲染即验证的负对照可当任意 .mmd 的 lint 闸门用。pie showData 的标题是生成期文本、图例 [值] 才随数据走——语义断言锚图例。",
+    "市场包残缺时的正确解法：读 ~/.qoder-cn/skills/<name>/metadata.json，里面有 repo 字段（本轮 tubone24/midi-agent-skill），照它 `git clone --depth 1 git@github.com:<repo>.git` 到 LAB/.skills 即补齐 scripts/resources——别一看到只有 SKILL.md 就判 blocked。",
+    "midiutil 1.2.1（pip --target .tmp/mlib + aliyun 镜像，3 秒，纯 Python）会在 tracks 前额外插一条「纯 tempo 轨」：MIDIFile(4) 出来的文件 ntracks=5。任何按轨道索引的断言要先 tracks.filter(t=>t.notes.length)，否则变异断言会因取到空轨而假红。",
+    "midi-agent-skill 的 generate_midi.py 每条轨是单声部串行累加 time（同轨不能同时发两音），且无休止符概念（跳音会让后续音整体前移）、parse_pitch 对越界八度静默钳位到 0..127（C20→127）。做和声必须一轨一声；数据缺口要显式换成挂音并标注。",
+    "本机无 fluidsynth/sox → MIDI 无法本地转 WAV（技能自带 convert_to_wav.py 需 brew fluidsynth + 外网 A320U.sf2，HTTPS 被 TLS 重置）。MIDI 产物的「肉眼可见」替代方案：自己从 .mid 反解析画 piano-roll.svg，再用 browser-use 打开做 getComputedStyle/元素计数断言（evaluate_script 返回值必须短，长 JSON 会 15s 超时——拆成 2 次小返回）。"
   ],
   "runs": [
     {
@@ -1056,6 +1112,16 @@
         "demos_this_round_kb": 512,
         "lab_kb": 76552
       }
+    },
+    {
+      "time": "2026-09-26T14:45+08:00",
+      "skill": "midi-generation",
+      "result": "成功（留用·推荐）。verify.mjs 19 PASS / 0 FAIL；变异 M1(第10轮→A5)只改旋律 idx9、M2(贝斯→C#3)半音探针 0→1、M3(bpm96→90)tempo meta 625000→666666，R1 复原逐字节相同；技能 3 条不协和规则全部量化通过（0 组半音同时、贝斯全为根/五音、旋律距伴奏最近 14 半音）",
+      "seconds": 600,
+      "artifact_size": "本轮 demos 64KB / 9 文件（.mid 460B + piano-roll.svg 18.6KB + 3 脚本 + 2 JSON + gm-programs.json + output.log 3.6KB），远低于 5MB 上限",
+      "cleanup": "删 .tmp/mlib（midiutil）与 .skills/midi-agent-skill/output/*.mid；LAB 75M（含 .skills 19M 未入库）；未起任何服务，监听表无本轮条目；全局缓存未动",
+      "push": "pending",
+      "notes": "市场镜像第 N 次丢 scripts，靠 metadata.json.repo + SSH 克隆救回（详见 environment_notes）；旋律音区第一版与弦乐五音只差 2 半音被 A12 抓红，整体抬八度后 14 半音——自动音区必须断言。"
     }
   ],
   "evaluation_snapshot": {

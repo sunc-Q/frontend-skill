@@ -1,0 +1,182 @@
+{
+  "lo": 360,
+  "hi": 1500,
+  "steps": [
+    "C5",
+    "D5",
+    "E5",
+    "G5",
+    "A5",
+    "C6",
+    "D6",
+    "E6",
+    "G6",
+    "A6"
+  ],
+  "gapNote": "C5",
+  "groups": [
+    {
+      "no": 1,
+      "rounds": "1-4",
+      "root": "C3",
+      "fifth": "G3",
+      "bass": "C2"
+    },
+    {
+      "no": 2,
+      "rounds": "5-8",
+      "root": "A2",
+      "fifth": "E3",
+      "bass": "A2"
+    },
+    {
+      "no": 3,
+      "rounds": "9-12",
+      "root": "F3",
+      "fifth": "C4",
+      "bass": "F2"
+    },
+    {
+      "no": 4,
+      "rounds": "13-16",
+      "root": "G3",
+      "fifth": "D4",
+      "bass": "G2"
+    },
+    {
+      "no": 5,
+      "rounds": "17-18",
+      "root": "C3",
+      "fifth": "G3",
+      "bass": "C2"
+    }
+  ],
+  "rounds": [
+    {
+      "no": 1,
+      "skill": "drafter",
+      "seconds": 420,
+      "pitch": "C5",
+      "gap": false
+    },
+    {
+      "no": 2,
+      "skill": "ascii-project-dashboard",
+      "seconds": 600,
+      "pitch": "E5",
+      "gap": false
+    },
+    {
+      "no": 3,
+      "skill": "algorithmic-art",
+      "seconds": 1140,
+      "pitch": "D6",
+      "gap": false
+    },
+    {
+      "no": 4,
+      "skill": "SQLite-Database-Expert",
+      "seconds": 780,
+      "pitch": "G5",
+      "gap": false
+    },
+    {
+      "no": 5,
+      "skill": "ppt-generator",
+      "seconds": 600,
+      "pitch": "E5",
+      "gap": false
+    },
+    {
+      "no": 6,
+      "skill": "graphic-gif",
+      "seconds": 900,
+      "pitch": "A5",
+      "gap": false
+    },
+    {
+      "no": 7,
+      "skill": "build-game",
+      "seconds": 1440,
+      "pitch": "A6",
+      "gap": false
+    },
+    {
+      "no": 8,
+      "skill": "sec-audit-cn",
+      "seconds": null,
+      "pitch": "C5",
+      "gap": true
+    },
+    {
+      "no": 9,
+      "skill": "xlsx",
+      "seconds": 720,
+      "pitch": "G5",
+      "gap": false
+    },
+    {
+      "no": 10,
+      "skill": "golang-testing",
+      "seconds": 540,
+      "pitch": "D5",
+      "gap": false
+    },
+    {
+      "no": 11,
+      "skill": "webapp-testing",
+      "seconds": 780,
+      "pitch": "G5",
+      "gap": false
+    },
+    {
+      "no": 12,
+      "skill": "docx",
+      "seconds": 1260,
+      "pitch": "E6",
+      "gap": false
+    },
+    {
+      "no": 13,
+      "skill": "pdf",
+      "seconds": 900,
+      "pitch": "A5",
+      "gap": false
+    },
+    {
+      "no": 14,
+      "skill": "shader",
+      "seconds": 1080,
+      "pitch": "D6",
+      "gap": false
+    },
+    {
+      "no": 15,
+      "skill": "canvas-design",
+      "seconds": 1500,
+      "pitch": "A6",
+      "gap": false
+    },
+    {
+      "no": 16,
+      "skill": "mcp-builder",
+      "seconds": 900,
+      "pitch": "A5",
+      "gap": false
+    },
+    {
+      "no": 17,
+      "skill": "golang-gin-api",
+      "seconds": 1080,
+      "pitch": "D6",
+      "gap": false
+    },
+    {
+      "no": 18,
+      "skill": "mermaid-cli",
+      "seconds": 360,
+      "pitch": "C5",
+      "gap": false
+    }
+  ]
+}

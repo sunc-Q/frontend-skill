@@ -1,0 +1,66 @@
+midi-generation verification — 2026-09-26
+input composition.json (4 tracks / 33 notes, 96 BPM) -> skill scripts skills/{normalize,refine,generate}_*.py -> skill-showcase-run-ledger-sonified.mid 460B
+
+PASS A1   SMF header parsed by hand: format=1 ntracks=5 division=960 bytes=460
+PASS A2   track names carried the instrument ids: celesta | string-ensemble-1 | string-ensemble-1 | acoustic-bass
+PASS A3   channels 0,1,2,3 all distinct and none is 9 (GM drums)
+PASS A4   GM program changes 8,48,48,32 == skill resolver output 8,48,48,32
+PASS A5   melody: 18 notes == 18 lab rounds, each pitch/start/length matches mapping.json (pentatonic ladder 360s..1500s -> C5..A6)
+PASS A6   the one round with no recorded seconds (#8 sec-audit-cn) sits on the gap note C5 = MIDI 72, velocity 100
+PASS A7   3 accompaniment tracks x 5 chord-group notes, beat lengths 4/4/4/4/2
+PASS A8   tempo meta=625000 us/beat = 96 BPM, piece 18 beats = 11.25s
+PASS A9   skill rule 1 (never 1 semitone apart): 0 simultaneous semitone pairs across 4 tracks / 33 notes
+PASS A10  skill rule 2 (bass = root or fifth): bass C2,A2,F2,G2,C2 over chords C3+G3 / A2+E3 / F3+C4 / G3+D4 / C3+G3
+PASS A11  each chord bed is an exact root+fifth dyad (intervals 7,7,7,7,7)
+PASS A12  skill rule 3 (spread voices): 54 simultaneous melody/accompaniment pairs, closest = 14 semitones (C4 under D5); melody register C5-A6 vs accompaniment C2-D4
+PASS A13  piano-roll.svg: 33 note rects (== 33 parsed notes), range C2..A6, 1180x1870
+PASS A14  pitch order sanity: longest round #15 (1500s, canvas-design) = A6 1760.00Hz > shortest #18 (360s, mermaid-cli) = C5 523.25Hz
+PASS M1   mutation "round #10 pitch -> A5": bytes 460 (golden 460), sha de655aa9ac11aa4e, differs at melody idx [9] and nowhere else; A5 catches it
+PASS M2   mutation "bass of chord group 1 -> C#3" (a semitone under the strings root C3): detector now reports 1 ([["C3","C#3",2]]) so A9 is falsifiable
+PASS M3   mutation "bpm 96 -> 90": parsed tempo meta 666666 us (golden 625000) so A8 is falsifiable
+PASS R1   regenerated golden reproduces byte-identical file: sha 38b383926f2ba5aa == 38b383926f2ba5aa
+PASS A15  artifact archived into demos/: skill-showcase-run-ledger-sonified.mid 460B sha256:38b383926f2ba5aa
+
+19/19 PASS, 0 FAIL
+
+=== appendix 1: skills/normalize_composition.py own __main__ (messy input handling) ===
+{
+  "title": "123",
+  "bpm": 120,
+  "tracks": [
+    {
+      "instrument": "piano",
+      "notes": [
+        {
+          "pitch": "C4",
+          "duration": "4"
+        },
+        {
+          "pitch": "G4",
+          "duration": "4"
+        }
+      ]
+    }
+  ]
+}
+
+=== appendix 2: invalid pitch strings go through the skill's own error path ===
+Warning: Skipping note H4 4: Invalid pitch format: H4
+generated /Users/apple/Documents/workProject/试验/skill演示场/.skills/midi-agent-skill/output/nc-bad-pitch.mid | melody notes fed = 18 | bytes = 451
+golden bytes = 460
+=== appendix 3: octave out of range is clamped, not rejected ===
+C4 -> 60
+A4 -> 69
+F#5 -> 78
+Bb3 -> 58
+C9 -> 120
+C20 -> 127
+B20 -> 127
+A-1 -> 9
+
+=== appendix 4: browser render assertion (Chrome via browser-use, file:// SVG) ===
+navigate file://.../piano-roll.svg -> OK
+evaluate: document.querySelectorAll('rect[rx="5"]').length = 33   (== 33 notes parsed from the .mid)
+evaluate: document.querySelectorAll('text').length = 82            (2 title/sub + 58 keyboard row labels + 18 round ticks + 4 legend = 82)
+getComputedStyle(svg).getScreenCTM() = truthy ; getBoundingClientRect() = 1180 x 1870
+computed fills by track: rgb(201,70,61)=18 celesta | rgb(47,93,138)=5 strings root | rgb(91,139,176)=5 strings fifth | rgb(27,27,29)=5 bass

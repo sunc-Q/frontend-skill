@@ -1,0 +1,158 @@
+{
+  "title": "skill-showcase-run-ledger-sonified",
+  "bpm": 96,
+  "tracks": [
+    {
+      "instrument": "celesta",
+      "notes": [
+        {
+          "pitch": "C5",
+          "duration": "4"
+        },
+        {
+          "pitch": "E5",
+          "duration": "4"
+        },
+        {
+          "pitch": "D6",
+          "duration": "4"
+        },
+        {
+          "pitch": "G5",
+          "duration": "4"
+        },
+        {
+          "pitch": "E5",
+          "duration": "4"
+        },
+        {
+          "pitch": "A5",
+          "duration": "4"
+        },
+        {
+          "pitch": "A6",
+          "duration": "4"
+        },
+        {
+          "pitch": "C5",
+          "duration": "4"
+        },
+        {
+          "pitch": "G5",
+          "duration": "4"
+        },
+        {
+          "pitch": "D5",
+          "duration": "4"
+        },
+        {
+          "pitch": "G5",
+          "duration": "4"
+        },
+        {
+          "pitch": "E6",
+          "duration": "4"
+        },
+        {
+          "pitch": "A5",
+          "duration": "4"
+        },
+        {
+          "pitch": "D6",
+          "duration": "4"
+        },
+        {
+          "pitch": "A6",
+          "duration": "4"
+        },
+        {
+          "pitch": "A5",
+          "duration": "4"
+        },
+        {
+          "pitch": "D6",
+          "duration": "4"
+        },
+        {
+          "pitch": "C5",
+          "duration": "4"
+        }
+      ]
+    },
+    {
+      "instrument": "string-ensemble-1",
+      "notes": [
+        {
+          "pitch": "C3",
+          "duration": "1"
+        },
+        {
+          "pitch": "A2",
+          "duration": "1"
+        },
+        {
+          "pitch": "F3",
+          "duration": "1"
+        },
+        {
+          "pitch": "G3",
+          "duration": "1"
+        },
+        {
+          "pitch": "C3",
+          "duration": "2"
+        }
+      ]
+    },
+    {
+      "instrument": "string-ensemble-1",
+      "notes": [
+        {
+          "pitch": "G3",
+          "duration": "1"
+        },
+        {
+          "pitch": "E3",
+          "duration": "1"
+        },
+        {
+          "pitch": "C4",
+          "duration": "1"
+        },
+        {
+          "pitch": "D4",
+          "duration": "1"
+        },
+        {
+          "pitch": "G3",
+          "duration": "2"
+        }
+      ]
+    },
+    {
+      "instrument": "acoustic-bass",
+      "notes": [
+        {
+          "pitch": "C2",
+          "duration": "1"
+        },
+        {
+          "pitch": "A2",
+          "duration": "1"
+        },
+        {
+          "pitch": "F2",
+          "duration": "1"
+        },
+        {
+          "pitch": "G2",
+          "duration": "1"
+        },
+        {
+          "pitch": "C2",
+          "duration": "2"
+        }
+      ]
+    }
+  ]
+}
