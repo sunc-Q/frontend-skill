@@ -1,0 +1,112 @@
+{
+  "generated_at": "2026-09-26T06:10:48.042Z",
+  "generated_by": "scripts/gen-skills-manifest.mjs（数字由脚本现读，禁止手抄）",
+  "purpose": "skills/ 是每小时前端 Skill 验证实验室所用技能的本机只读快照，让零上下文的后续运行与仓库读者能核对产物当时依据的技能条款。",
+  "sync_recipe": "rsync -a --exclude '__pycache__' --exclude '*.pyc' --exclude '.DS_Store' <source_path>/ skills/<name>/ && node scripts/gen-skills-manifest.mjs",
+  "skills": [
+    {
+      "name": "sites-building",
+      "source_path": "/Applications/Qoder CN.app/Contents/Resources/extensions/qoder.sites/cli/sites/skills/sites-building",
+      "version_in_skillmd": null,
+      "version_in_meta": null,
+      "skill_sha1": "d0d9dd83a13c",
+      "files": 111,
+      "bytes": 515640,
+      "used_in_rounds": [
+        "2026-09-25 14:00",
+        "2026-09-25 15:00",
+        "2026-09-25 19:00",
+        "2026-09-25 23:00",
+        "2026-09-26 04:00",
+        "2026-09-26 06:00",
+        "2026-09-26 11:00"
+      ]
+    },
+    {
+      "name": "build-game",
+      "source_path": "~/.qoder-cn/skills/build-game",
+      "version_in_skillmd": null,
+      "version_in_meta": "1.2.0",
+      "skill_sha1": "2f13b3dfedbe",
+      "files": 9,
+      "bytes": 197801,
+      "used_in_rounds": [
+        "2026-09-26 05:00",
+        "tried[20260926-03-build-game-tower-defense]"
+      ]
+    },
+    {
+      "name": "drafter",
+      "source_path": "~/.qoder-cn/skills/drafter",
+      "version_in_skillmd": "1.0.0",
+      "version_in_meta": null,
+      "skill_sha1": "d93942a93dd5",
+      "files": 2,
+      "bytes": 6216,
+      "used_in_rounds": [
+        "2026-09-25 21:00"
+      ]
+    },
+    {
+      "name": "graphic-gif",
+      "source_path": "~/.qoder-cn/skills/graphic-gif",
+      "version_in_skillmd": "1.0.0",
+      "version_in_meta": null,
+      "skill_sha1": "61fdb6c25262",
+      "files": 1,
+      "bytes": 12225,
+      "used_in_rounds": [
+        "2026-09-26 02:00"
+      ]
+    },
+    {
+      "name": "vercel-react-best-practices",
+      "source_path": "~/.qoder-cn/skills/vercel-react-best-practices",
+      "version_in_skillmd": null,
+      "version_in_meta": null,
+      "skill_sha1": "d000dc79b8e4",
+      "files": 1,
+      "bytes": 6165,
+      "used_in_rounds": [
+        "2026-09-25 17:00",
+        "2026-09-25 18:00",
+        "2026-09-25 19:00",
+        "2026-09-25 20:00"
+      ]
+    },
+    {
+      "name": "frontend-development",
+      "source_path": "~/.qoder-cn/skills/frontend-development",
+      "version_in_skillmd": null,
+      "version_in_meta": null,
+      "skill_sha1": "e4663c705d01",
+      "files": 2,
+      "bytes": 32868,
+      "used_in_rounds": [
+        "2026-09-25 16:00",
+        "2026-09-26 07:00",
+        "2026-09-26 08:00"
+      ]
+    },
+    {
+      "name": "ppt-generator",
+      "source_path": "~/.qoder-cn/skills/ppt-generator",
+      "version_in_skillmd": null,
+      "version_in_meta": "1.0.0",
+      "skill_sha1": "a7acd669a321",
+      "files": 195,
+      "bytes": 1711342,
+      "used_in_rounds": [
+        "2026-09-25 22:00",
+        "2026-09-26 00:00",
+        "2026-09-26 01:00"
+      ]
+    }
+  ],
+  "台账_tried_total": 20,
+  "unattributed_tried": [],
+  "secret_scan": {
+    "pattern": "sk-[A-Za-z0-9]{16,}|ghp_[A-Za-z0-9]{20,}|gho_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|BEGIN (?:RSA|EC|DSA|OPENSSH) PRIVATE KEY|xox[baprs]-[A-Za-z0-9-]{10,}",
+    "hits": []
+  }
+}
