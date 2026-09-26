@@ -1,0 +1,207 @@
+/* ============================================================
+   风格二：指南烫金卡风（gilded guide card）
+   主张：一页红色美食指南的封面被压进屏幕——深宝石绿卡底、
+   四周烫金双线卡框、米金衬线大字距小字母排版，
+   数字像鎏金钢印一样又高又细，分隔线永远是不到 1px 视重的金线。
+   ============================================================ */
+:root {
+  color-scheme: dark;
+
+  --font-body: 'Optima', 'Palatino', 'Songti SC', 'STSong', 'PingFang SC', serif;
+  --font-head: 'Didot', 'Palatino Linotype', 'Songti SC', 'Times New Roman', serif;
+  --font-mono: 'SFMono-Regular', Menlo, 'Courier New', monospace;
+
+  --bg: #08201a;
+  --bg-texture:
+    radial-gradient(circle at 50% -10%, rgba(217, 180, 96, 0.16), transparent 55%),
+    repeating-linear-gradient(90deg, rgba(217, 180, 96, 0.035) 0 1px, transparent 1px 34px);
+  --bg-panel: #0d2a22;
+  --bg-alt: #103027;
+  --bg-input: #0a241d;
+  --bg-head: #061a15;
+
+  --ink: #f2ead7;
+  --ink-soft: #cfc6ad;
+  --ink-faint: #96a08e;
+  --head-ink: #e8c972;
+
+  --accent: #d9b460;
+  --accent-2: #b8d3c1;
+  --accent-ink: #08201a;
+
+  --line: #2f5145;
+  --line-strong: #d9b460;
+  --border: 1px solid #7f6529;
+  --border-hair: 1px solid rgba(217, 180, 96, 0.42);
+  --border-dotted: 1px dotted rgba(217, 180, 96, 0.55);
+  --border-bottom-strong: 1px solid #d9b460;
+  --edge-w: 1px;
+  --edge-w-lg: 2px;
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.42);
+  --btn-shadow: none;
+
+  --zebra: rgba(217, 180, 96, 0.05);
+  --hover: rgba(217, 180, 96, 0.14);
+  --sel-bg: #1c3f33;
+  --sel-ink: #f7ecd2;
+  --track: #0a241d;
+  --idle: #8f9c90;
+
+  --ok: #9fd8a8;
+  --ok-bg: #123527;
+  --warn: #f0cd7d;
+  --warn-bg: #33270f;
+  --bad: #ef9c8f;
+  --bad-bg: #3a1a18;
+
+  --radius: 0;
+  --radius-sm: 0;
+  --chip-radius: 0;
+
+  --fs-base: 15.5px;
+  --fs-small: 13.5px;
+  --fs-tiny: 11px;
+  --fs-label: 10.5px;
+  --fs-title: 25px;
+  --fs-brand: 30px;
+  --fs-kpi: 42px;
+  --fs-bill: 34px;
+  --lh: 1.62;
+
+  --fw-bold: 600;
+  --fw-normal: 400;
+  --fw-kpi: 500;
+
+  --head-tracking: 0.16em;
+  --head-transform: uppercase;
+  --label-tracking: 0.3em;
+  --label-transform: uppercase;
+  --label-style: normal;
+  --mono-tracking: 0.16em;
+
+  --maxw: 1180px;
+  --side-w: 330px;
+  --gap: 30px;
+  --gap-sm: 18px;
+  --pad: 18px;
+  --pad-sm: 12px;
+  --pad-xs: 6px;
+  --cell-pad: 11px 12px;
+  --field-min: 150px;
+  --kpi-min: 206px;
+  --form-min: 360px;
+  --fact-min: 190px;
+  --lede-w: 58ch;
+  --mark-size: 30px;
+  --icon-size: 15px;
+  --check-size: 14px;
+  --pager-w: 44px;
+  --bar-h: 5px;
+  --bar-h-sm: 5px;
+  --spark-w: 72px;
+  --focus-w: 2px;
+  --sticky-z: 3;
+  --t: 220ms ease;
+  --topbar-align: center;
+  --stamp-align: right;
+  --tilt-brand: none;
+  --tilt-title: none;
+  --tilt-kpi: none;
+
+  --bill-label-w: 11ch;
+  --bill-val-w: 13ch;
+  --dot-size: 7px;
+  --dot-radius: 50%;
+  --dot-ring: 0 0 0 3px rgba(217, 180, 96, 0.28);
+  --dot-pop: scale(1.5);
+  --rail-w: 24px;
+  --rail-w-line: 1px;
+  --rail-dash: linear-gradient(180deg, rgba(217, 180, 96, 0.6) 0 45%, transparent 45% 100%);
+  --identity-bullet: none;
+  --off-strike: none;
+}
+
+/* 气质补丁：烫金卡框——每张面板内嵌一道金线，页头与表单再来一道外偏移线，
+   形成「双线鎏金边框」；标题全大写宽字距，数字用细衬线高字。 */
+
+.kpi,
+.topbar,
+.panel-form,
+.statusline,
+.detail {
+  box-shadow: var(--shadow), inset 0 0 0 1px var(--bg-panel), inset 0 0 0 2px rgba(217, 180, 96, 0.5);
+  border-color: rgba(217, 180, 96, 0.55);
+}
+
+.section-head {
+  border-bottom: 1px solid rgba(217, 180, 96, 0.5);
+}
+
+.section-title,
+.form-title,
+.brand-name,
+.kpi-value,
+.bill-total-val {
+  font-family: var(--font-head);
+  font-weight: 500;
+  font-variant: small-caps;
+}
+
+.kpi-label,
+.field-label,
+.bill-key,
+.fact dt {
+  font-family: var(--font-body);
+  color: var(--accent);
+}
+
+.kpi-value {
+  color: var(--head-ink);
+}
+
+.table th {
+  border-bottom: 1px solid var(--accent);
+  letter-spacing: 0.28em;
+}
+
+.table td {
+  border-bottom: 1px solid rgba(217, 180, 96, 0.22);
+}
+
+.badge {
+  border: 1px solid currentColor;
+  border-radius: 0;
+  padding: 2px 10px;
+  letter-spacing: 0.22em;
+  background-color: transparent;
+}
+
+.chip {
+  border-radius: 0;
+  border-color: rgba(217, 180, 96, 0.45);
+  background-color: transparent;
+}
+
+.bar-track,
+.spark {
+  border-radius: 0;
+}
+
+.bar-fill {
+  background-color: var(--accent);
+}
+
+.lane {
+  border-left-width: 2px;
+  border-left-color: var(--accent);
+}
+
+.btn,
+.theme-btn {
+  border-radius: 0;
+  letter-spacing: 0.24em;
+}
+
+.btn-primary {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent);
+}

@@ -1,0 +1,452 @@
+{
+ "ticket-stub": {
+  "theme": "ticket-stub",
+  "rowCount": 31,
+  "kpiCount": 12,
+  "badgeCount": 17,
+  "trackCount": 2,
+  "tabCount": 3,
+  "inlineScripts": 3,
+  "inlineStyles": 1,
+  "external": [],
+  "firstKpi": "¥1.55 万",
+  "firstBadge": "已揽收",
+  "firstTrack": "揽收#22026-09-26 08:05上海开发区营业点已揽收 1 件，称重比对通过",
+  "firstRow": "FY20260926-0005海图冷链SH-XA上海→西安 · 标快已揽收20.50 kg实际 10.01 kg1最重 3.34 kg¥68.45附加 ¥0.002026-09-28剩 48 小时2026-09-26 08:112 次打卡",
+  "shell": {
+   "fontFamily": "\"Avenir Next\", \"Helvetica Neue\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "color": "rgb(31, 36, 48)"
+  },
+  "brand": {
+   "fontFamily": "\"DIN Alternate\", \"Avenir Next Condensed\", Haettenschweiler, Impact, sans-serif",
+   "transform": "none",
+   "letterSpacing": "0.64px",
+   "fontSize": "32px",
+   "textTransform": "uppercase"
+  },
+  "kpi": {
+   "backgroundColor": "rgb(243, 236, 221)",
+   "backgroundImage": "radial-gradient(circle at 7px 26%, rgb(221, 211, 190) 0px, rgb(221, 211, 190) 4px, rgba(0, 0, 0, 0) 4.5px), radial-gradient(circle at 7px 52%, rgb(221, 211, 190) 0px, rgb(221, 211, 190) 4px, rgba(0, 0, 0, 0) 4.5px), radial-gradient(circle at 7px 78%, rgb(221, 211, 190) 0px, rgb(221, 211, 190) 4px, rgba(0, 0, 0, 0) 4.5px)",
+   "borderTopWidth": "3px",
+   "borderTopStyle": "solid",
+   "borderTopColor": "rgb(31, 95, 63)",
+   "borderTopLeftRadius": "3px",
+   "boxShadow": "rgba(31, 36, 48, 0.18) 2px 2px 0px 0px",
+   "paddingTop": "14px",
+   "transform": "none"
+  },
+  "label": {
+   "fontFamily": "\"Avenir Next\", \"Helvetica Neue\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+   "fontSize": "11px",
+   "letterSpacing": "1.98px",
+   "textTransform": "uppercase",
+   "fontStyle": "normal"
+  },
+  "value": {
+   "fontFamily": "\"DIN Alternate\", \"Avenir Next Condensed\", Haettenschweiler, Impact, sans-serif",
+   "fontSize": "38px",
+   "fontWeight": "700",
+   "color": "rgb(31, 36, 48)",
+   "fontStyle": "normal"
+  },
+  "head": {
+   "fontFamily": "SFMono-Regular, Menlo, Consolas, \"Courier New\", monospace",
+   "fontSize": "11px",
+   "color": "rgb(31, 36, 48)",
+   "backgroundColor": "rgb(222, 210, 185)",
+   "textTransform": "uppercase",
+   "borderBottomWidth": "2px",
+   "borderBottomStyle": "solid",
+   "letterSpacing": "1.54px"
+  },
+  "row": {
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "borderBottomStyle": "none",
+   "borderBottomWidth": "0px"
+  },
+  "btn": {
+   "backgroundColor": "rgb(251, 246, 234)",
+   "color": "rgb(31, 36, 48)",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "2px",
+   "textTransform": "uppercase",
+   "paddingTop": "4px",
+   "boxShadow": "rgba(31, 36, 48, 0.28) 2px 2px 0px 0px"
+  },
+  "input": {
+   "backgroundColor": "rgb(251, 246, 234)",
+   "color": "rgb(31, 36, 48)",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "2px"
+  },
+  "badge": {
+   "backgroundColor": "rgba(31, 95, 90, 0.12)",
+   "color": "rgb(31, 95, 90)",
+   "borderTopStyle": "double",
+   "borderTopLeftRadius": "2px",
+   "letterSpacing": "1.1px"
+  },
+  "gap": {
+   "columnGap": "14px",
+   "rowGap": "14px"
+  },
+  "bar": {
+   "backgroundColor": "rgb(207, 195, 168)",
+   "height": "9px",
+   "borderTopLeftRadius": "2px"
+  },
+  "fill": {
+   "backgroundColor": "rgb(168, 52, 28)",
+   "backgroundImage": "none",
+   "borderTopLeftRadius": "0px"
+  },
+  "status": {
+   "fontFamily": "\"Avenir Next\", \"Helvetica Neue\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+   "fontSize": "15px",
+   "backgroundColor": "rgb(232, 223, 202)",
+   "borderTopWidth": "1px"
+  },
+  "stamp": {
+   "fontFamily": "SFMono-Regular, Menlo, Consolas, \"Courier New\", monospace",
+   "transform": "none",
+   "borderTopStyle": "none",
+   "color": "rgb(124, 115, 97)"
+  },
+  "bill": {
+   "fontFamily": "\"Avenir Next\", \"Helvetica Neue\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "borderTopStyle": "solid",
+   "borderTopWidth": "2px",
+   "letterSpacing": "normal"
+  },
+  "track": {
+   "backgroundColor": "rgb(168, 52, 28)",
+   "borderTopLeftRadius": "0px",
+   "width": "11px",
+   "height": "11px",
+   "boxShadow": "rgb(243, 236, 221) 0px 0px 0px 2px, rgb(31, 36, 48) 0px 0px 0px 3px"
+  },
+  "chip": {
+   "backgroundColor": "rgb(232, 223, 202)",
+   "borderTopLeftRadius": "0px",
+   "borderStyle": "dashed",
+   "color": "rgb(69, 77, 92)"
+  },
+  "lane": {
+   "backgroundColor": "rgb(243, 236, 221)",
+   "borderLeftWidth": "5px",
+   "borderLeftColor": "rgb(31, 36, 48)",
+   "borderTopLeftRadius": "2px"
+  },
+  "identity": {
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "borderLeftColor": "rgb(31, 95, 63)",
+   "borderLeftWidth": "3px",
+   "boxShadow": "none"
+  },
+  "consoleErrors": []
+ },
+ "michelin-gilt": {
+  "theme": "michelin-gilt",
+  "rowCount": 31,
+  "kpiCount": 12,
+  "badgeCount": 17,
+  "trackCount": 2,
+  "tabCount": 3,
+  "inlineScripts": 3,
+  "inlineStyles": 1,
+  "external": [],
+  "firstKpi": "¥1.55 万",
+  "firstBadge": "已揽收",
+  "firstTrack": "揽收#22026-09-26 08:05上海开发区营业点已揽收 1 件，称重比对通过",
+  "firstRow": "FY20260926-0005海图冷链SH-XA上海→西安 · 标快已揽收20.50 kg实际 10.01 kg1最重 3.34 kg¥68.45附加 ¥0.002026-09-28剩 48 小时2026-09-26 08:112 次打卡",
+  "shell": {
+   "fontFamily": "Optima, Palatino, \"Songti SC\", STSong, \"PingFang SC\", serif",
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "color": "rgb(242, 234, 215)"
+  },
+  "brand": {
+   "fontFamily": "Didot, \"Palatino Linotype\", \"Songti SC\", \"Times New Roman\", serif",
+   "transform": "none",
+   "letterSpacing": "4.8px",
+   "fontSize": "30px",
+   "textTransform": "uppercase"
+  },
+  "kpi": {
+   "backgroundColor": "rgb(13, 42, 34)",
+   "backgroundImage": "none",
+   "borderTopWidth": "2px",
+   "borderTopStyle": "solid",
+   "borderTopColor": "rgba(217, 180, 96, 0.55)",
+   "borderTopLeftRadius": "0px",
+   "boxShadow": "rgba(0, 0, 0, 0.42) 0px 18px 40px 0px, rgb(13, 42, 34) 0px 0px 0px 1px inset, rgba(217, 180, 96, 0.5) 0px 0px 0px 2px inset",
+   "paddingTop": "18px",
+   "transform": "none"
+  },
+  "label": {
+   "fontFamily": "Optima, Palatino, \"Songti SC\", STSong, \"PingFang SC\", serif",
+   "fontSize": "10.5px",
+   "letterSpacing": "3.15px",
+   "textTransform": "uppercase",
+   "fontStyle": "normal"
+  },
+  "value": {
+   "fontFamily": "Didot, \"Palatino Linotype\", \"Songti SC\", \"Times New Roman\", serif",
+   "fontSize": "42px",
+   "fontWeight": "500",
+   "color": "rgb(232, 201, 114)",
+   "fontStyle": "normal"
+  },
+  "head": {
+   "fontFamily": "Optima, Palatino, \"Songti SC\", STSong, \"PingFang SC\", serif",
+   "fontSize": "10.5px",
+   "color": "rgb(232, 201, 114)",
+   "backgroundColor": "rgb(6, 26, 21)",
+   "textTransform": "uppercase",
+   "borderBottomWidth": "1px",
+   "borderBottomStyle": "solid",
+   "letterSpacing": "2.94px"
+  },
+  "row": {
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "borderBottomStyle": "none",
+   "borderBottomWidth": "0px"
+  },
+  "btn": {
+   "backgroundColor": "rgb(10, 36, 29)",
+   "color": "rgb(242, 234, 215)",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "0px",
+   "textTransform": "uppercase",
+   "paddingTop": "6px",
+   "boxShadow": "none"
+  },
+  "input": {
+   "backgroundColor": "rgb(10, 36, 29)",
+   "color": "rgb(242, 234, 215)",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "0px"
+  },
+  "badge": {
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "color": "rgb(184, 211, 193)",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "0px",
+   "letterSpacing": "2.42px"
+  },
+  "gap": {
+   "columnGap": "18px",
+   "rowGap": "18px"
+  },
+  "bar": {
+   "backgroundColor": "rgb(10, 36, 29)",
+   "height": "5px",
+   "borderTopLeftRadius": "0px"
+  },
+  "fill": {
+   "backgroundColor": "rgb(217, 180, 96)",
+   "backgroundImage": "none",
+   "borderTopLeftRadius": "0px"
+  },
+  "status": {
+   "fontFamily": "Optima, Palatino, \"Songti SC\", STSong, \"PingFang SC\", serif",
+   "fontSize": "15.5px",
+   "backgroundColor": "rgb(16, 48, 39)",
+   "borderTopWidth": "1px"
+  },
+  "stamp": {
+   "fontFamily": "SFMono-Regular, Menlo, \"Courier New\", monospace",
+   "transform": "none",
+   "borderTopStyle": "none",
+   "color": "rgb(150, 160, 142)"
+  },
+  "bill": {
+   "fontFamily": "Optima, Palatino, \"Songti SC\", STSong, \"PingFang SC\", serif",
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "borderTopStyle": "solid",
+   "borderTopWidth": "1px",
+   "letterSpacing": "normal"
+  },
+  "track": {
+   "backgroundColor": "rgb(217, 180, 96)",
+   "borderTopLeftRadius": "50%",
+   "width": "7px",
+   "height": "7px",
+   "boxShadow": "rgba(217, 180, 96, 0.28) 0px 0px 0px 3px"
+  },
+  "chip": {
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "borderTopLeftRadius": "0px",
+   "borderStyle": "solid",
+   "color": "rgb(207, 198, 173)"
+  },
+  "lane": {
+   "backgroundColor": "rgb(13, 42, 34)",
+   "borderLeftWidth": "2px",
+   "borderLeftColor": "rgb(217, 180, 96)",
+   "borderTopLeftRadius": "0px"
+  },
+  "identity": {
+   "backgroundColor": "rgb(18, 53, 39)",
+   "borderLeftColor": "rgb(159, 216, 168)",
+   "borderLeftWidth": "2px",
+   "boxShadow": "none"
+  },
+  "consoleErrors": []
+ },
+ "crackle-glaze": {
+  "theme": "crackle-glaze",
+  "rowCount": 31,
+  "kpiCount": 12,
+  "badgeCount": 17,
+  "trackCount": 2,
+  "tabCount": 3,
+  "inlineScripts": 3,
+  "inlineStyles": 1,
+  "external": [],
+  "firstKpi": "¥1.55 万",
+  "firstBadge": "已揽收",
+  "firstTrack": "揽收#22026-09-26 08:05上海开发区营业点已揽收 1 件，称重比对通过",
+  "firstRow": "FY20260926-0005海图冷链SH-XA上海→西安 · 标快已揽收20.50 kg实际 10.01 kg1最重 3.34 kg¥68.45附加 ¥0.002026-09-28剩 48 小时2026-09-26 08:112 次打卡",
+  "shell": {
+   "fontFamily": "\"Songti SC\", STSong, SimSun, \"PingFang SC\", serif",
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "color": "rgb(43, 58, 53)"
+  },
+  "brand": {
+   "fontFamily": "\"Songti SC\", STSong, Georgia, serif",
+   "transform": "none",
+   "letterSpacing": "2.7px",
+   "fontSize": "27px",
+   "textTransform": "none"
+  },
+  "kpi": {
+   "backgroundColor": "rgb(234, 241, 237)",
+   "backgroundImage": "repeating-linear-gradient(74deg, rgba(91, 118, 108, 0.09) 0px, rgba(91, 118, 108, 0.09) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 29px), repeating-linear-gradient(-31deg, rgba(91, 118, 108, 0.07) 0px, rgba(91, 118, 108, 0.07) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 41px)",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "borderTopColor": "rgb(61, 122, 88)",
+   "borderTopLeftRadius": "18px",
+   "boxShadow": "rgba(58, 82, 73, 0.16) 0px 10px 24px 0px, rgba(255, 255, 255, 0.9) 0px 1px 0px 0px inset",
+   "paddingTop": "16px",
+   "transform": "none"
+  },
+  "label": {
+   "fontFamily": "\"Songti SC\", STSong, SimSun, \"PingFang SC\", serif",
+   "fontSize": "11.5px",
+   "letterSpacing": "1.15px",
+   "textTransform": "none",
+   "fontStyle": "italic"
+  },
+  "value": {
+   "fontFamily": "\"Songti SC\", STSong, Georgia, serif",
+   "fontSize": "32px",
+   "fontWeight": "700",
+   "color": "rgb(43, 58, 53)",
+   "fontStyle": "normal"
+  },
+  "head": {
+   "fontFamily": "\"Songti SC\", STSong, Georgia, serif",
+   "fontSize": "11.5px",
+   "color": "rgb(61, 81, 71)",
+   "backgroundColor": "rgb(211, 224, 217)",
+   "textTransform": "none",
+   "borderBottomWidth": "3px",
+   "borderBottomStyle": "solid",
+   "letterSpacing": "1.38px"
+  },
+  "row": {
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "borderBottomStyle": "none",
+   "borderBottomWidth": "0px"
+  },
+  "btn": {
+   "backgroundColor": "rgb(245, 250, 247)",
+   "color": "rgb(43, 58, 53)",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "10px",
+   "textTransform": "none",
+   "paddingTop": "5px",
+   "boxShadow": "rgba(58, 82, 73, 0.2) 0px 2px 5px 0px"
+  },
+  "input": {
+   "backgroundColor": "rgb(245, 250, 247)",
+   "color": "rgb(43, 58, 53)",
+   "borderTopWidth": "1px",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "10px"
+  },
+  "badge": {
+   "backgroundColor": "rgba(79, 125, 109, 0.14)",
+   "color": "rgb(79, 125, 109)",
+   "borderTopStyle": "solid",
+   "borderTopLeftRadius": "999px",
+   "letterSpacing": "0.69px"
+  },
+  "gap": {
+   "columnGap": "16px",
+   "rowGap": "16px"
+  },
+  "bar": {
+   "backgroundColor": "rgb(195, 211, 203)",
+   "height": "12px",
+   "borderTopLeftRadius": "999px"
+  },
+  "fill": {
+   "backgroundColor": "rgb(140, 105, 74)",
+   "backgroundImage": "linear-gradient(90deg, rgb(79, 125, 109), rgb(140, 105, 74))",
+   "borderTopLeftRadius": "0px"
+  },
+  "status": {
+   "fontFamily": "\"Songti SC\", STSong, SimSun, \"PingFang SC\", serif",
+   "fontSize": "15.5px",
+   "backgroundColor": "rgb(223, 233, 227)",
+   "borderTopWidth": "1px"
+  },
+  "stamp": {
+   "fontFamily": "SFMono-Regular, Menlo, \"Courier New\", monospace",
+   "transform": "none",
+   "borderTopStyle": "none",
+   "color": "rgb(125, 143, 134)"
+  },
+  "bill": {
+   "fontFamily": "\"Songti SC\", STSong, SimSun, \"PingFang SC\", serif",
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "borderTopStyle": "solid",
+   "borderTopWidth": "3px",
+   "letterSpacing": "normal"
+  },
+  "track": {
+   "backgroundColor": "rgb(140, 105, 74)",
+   "borderTopLeftRadius": "3px",
+   "width": "10px",
+   "height": "10px",
+   "boxShadow": "rgba(140, 105, 74, 0.18) 0px 0px 0px 4px"
+  },
+  "chip": {
+   "backgroundColor": "rgb(223, 233, 227)",
+   "borderTopLeftRadius": "999px",
+   "borderStyle": "solid",
+   "color": "rgb(77, 96, 88)"
+  },
+  "lane": {
+   "backgroundColor": "rgb(234, 241, 237)",
+   "borderLeftWidth": "4px",
+   "borderLeftColor": "rgb(111, 138, 126)",
+   "borderTopLeftRadius": "9px"
+  },
+  "identity": {
+   "backgroundColor": "rgb(220, 236, 225)",
+   "borderLeftColor": "rgb(61, 122, 88)",
+   "borderLeftWidth": "4px",
+   "boxShadow": "none"
+  },
+  "consoleErrors": []
+ }
+}

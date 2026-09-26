@@ -1,0 +1,30 @@
+探针主题：crackle-glaze, michelin-gilt, ticket-stub；比较计算样式属性 72 项
+
+① 互斥性：每对主题至少 3 项计算样式不同
+ok   crackle-glaze vs michelin-gilt：52 项不同 -> shell.color, shell.fontFamily, brand.fontFamily, brand.fontSize, brand.letterSpacing, brand.textTransform, kpi.backgroundColor, kpi.backgroundImage, kpi.borderTopColor
+ok   crackle-glaze vs ticket-stub：54 项不同 -> shell.color, shell.fontFamily, brand.fontFamily, brand.fontSize, brand.letterSpacing, brand.textTransform, kpi.backgroundColor, kpi.backgroundImage, kpi.borderTopColor
+ok   michelin-gilt vs ticket-stub：49 项不同 -> shell.color, shell.fontFamily, brand.fontFamily, brand.fontSize, brand.letterSpacing, kpi.backgroundColor, kpi.backgroundImage, kpi.borderTopColor, kpi.borderTopLeftRadius
+
+② 同构性：结构字段必须全等（同一份 DOM + 同一份 JS，只换 CSS）
+ok   rowCount 全等：31
+ok   kpiCount 全等：12
+ok   badgeCount 全等：17
+ok   trackCount 全等：2
+ok   tabCount 全等：3
+ok   inlineScripts 全等：3
+ok   inlineStyles 全等：1
+ok   external 全等：[]
+ok   firstKpi 全等且非空：'¥1.55 万'
+ok   firstBadge 全等且非空：'已揽收'
+ok   firstTrack 全等且非空：'揽收#22026-09-26 08:05上海开发区营业点已揽收 1 件，称重比对通过'
+ok   firstRow 全等且非空：'FY20260926-0005海图冷链SH-XA上海→西安 · 标快已揽收20.50 kg实际 10.01 kg1最重 3.34 kg¥68.45附加 ¥0.002026-09-28剩 48 小时2026-09-26 08:112 次打卡'
+ok   crackle-glaze.consoleErrors 为空
+ok   michelin-gilt.consoleErrors 为空
+ok   ticket-stub.consoleErrors 为空
+
+③ 内容取样（页面确实从接口取到了数）
+  crackle-glaze: 行=31 KPI=12 徽标=17 首KPI='¥1.55 万' 首徽标='已揽收'
+  michelin-gilt: 行=31 KPI=12 徽标=17 首KPI='¥1.55 万' 首徽标='已揽收'
+  ticket-stub: 行=31 KPI=12 徽标=17 首KPI='¥1.55 万' 首徽标='已揽收'
+
+失败项：0

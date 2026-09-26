@@ -1,0 +1,302 @@
+· 构建后端…
+· 跑 api-smoke.sh（BASE=:18501，未配令牌实例=:18502）
+
+[1m⓪ 从接口反查测试样本（不猜常量）[0m
+  ok   样本 WB_DELIVERED — FY20260924-0011
+  ok   样本 WB_EXC — FY20260925-0008
+  ok   样本 WB_OPEN — FY20260925-0001
+  ok   样本 LANE_REMOTE — HZ-LZ
+  ok   加分样本 WB_BULKY — FY20260926-0006
+  ok   加分样本 WB_CAPPED — FY20260926-0007
+  ok   加分样本 LANE_OFF — NB-XN
+  ok   加分样本 RULE_INACTIVE — 5
+  ok   四类规则齐全：remote_pct — fragile_flat,heavy_piece,long_haul_flat,remote_pct
+  ok   四类规则齐全：heavy_piece — fragile_flat,heavy_piece,long_haul_flat,remote_pct
+  ok   四类规则齐全：fragile_flat — fragile_flat,heavy_piece,long_haul_flat,remote_pct
+  ok   四类规则齐全：long_haul_flat — fragile_flat,heavy_piece,long_haul_flat,remote_pct
+
+[1m① 读接口：信封键名、分页上限、排序回显、统计口径[0m
+  ok   GET /api/health 200 — 200
+  ok   health 含 status ok — {"status":"ok","time":"2026-09-26T00:25:49Z"}
+  ok   health 时间是 RFC3339 UTC — {"status":"ok","time":"2026-09-26T00:25:49Z"}
+  ok   lanes 用 items 信封 — {"items":[{"id":6,"code":"BJ-HB","origin":"北京","destination":"哈尔滨","tier":"expre
+  ok   lanes total 是整数 — total=8
+  ok   有停售线路时默认列表更短 — [[ 8 -lt 9 ]]
+  ok   停售线路只出现在 all=1 — {"items":[{"id":6,"code":"BJ-HB","origin":"北京","destination":"哈尔滨","tier":"expre
+  ok   默认列表不含停售线路 — 不含「NB-XN」
+  ok   page_size 封顶 100 — 100
+  ok   排序回显为键名 — {"items":[{"id":58,"code":"FY20260919-0007","lane_id":5,"status":"delivered","shipper_name
+  ok   排序回显不含内部列名 — 不含「"sort":"w.」
+  ok   方向回显 — {"items":[{"id":58,"code":"FY20260919-0007","lane_id":5,"status":"delivered","shipper_name
+  ok   page_size=0 回落默认 20 — 20
+  ok   page=0 回落第 1 页 — 1
+  ok   列表里没有未来下单时间 — OK
+  ok   排序 code 降序有效 — OK
+  ok   排序 total 降序有效 — OK
+  ok   排序 chargeable 降序有效 — OK
+  ok   排序 weight 降序有效 — OK
+  ok   排序 booked 降序有效 — OK
+  ok   排序 promised 降序有效 — OK
+  ok   排序 status 降序有效 — OK
+  ok   排序 lane 降序有效 — OK
+  ok   排序 pieces 降序有效 — OK
+  ok   排序 id 降序有效 — OK
+  ok   stats 含恒等式结论 — {"generated_at":"2026-09-26T00:25:49.966192Z","today":"2026-09-26","trend_days":14,"window
+  ok   stats 恒等式无告警 — []
+  ok   营收总额 — revenue_cents=1540758
+  ok   今日营收 — revenue_today_cents=95744
+  ok   轨迹打卡总数 — event_count=1076
+  ok   泡货单数 — bulky_count=64
+  ok   泡货单数 > 0（体积计费真的在生效） — [[ 64 -gt 0 ]]
+  ok   趋势按天稠密补齐 — 14
+  ok   口径说明写明剔除已退回 — {"generated_at":"2026-09-26T00:25:49.966192Z","today":"2026-09-26","trend_days":14,"window
+  ok   状态分布含 booked — [{"status": "arrived", "count": 3}, {"status": "booked", "count": 3}, {"status": "delivere
+  ok   状态分布含 picked_up — [{"status": "arrived", "count": 3}, {"status": "booked", "count": 3}, {"status": "delivere
+  ok   状态分布含 in_transit — [{"status": "arrived", "count": 3}, {"status": "booked", "count": 3}, {"status": "delivere
+  ok   状态分布含 arrived — [{"status": "arrived", "count": 3}, {"status": "booked", "count": 3}, {"status": "delivere
+  ok   状态分布含 out_for_delivery — [{"status": "arrived", "count": 3}, {"status": "booked", "count": 3}, {"status": "delivere
+  ok   状态分布含 delivered — [{"status": "arrived", "count": 3}, {"status": "booked", "count": 3}, {"status": "delivere
+  ok   状态分布含 exception — [{"status": "arrived", "count": 3}, {"status": "booked", "count": 3}, {"status": "delivere
+  ok   状态分布含 returned — [{"status": "arrived", "count": 3}, {"status": "booked", "count": 3}, {"status": "delivere
+  ok   准点率在 0-100 — 78.3
+  ok   days=0 被夹到合理区间 — [[ 200 == 200 && 7 -ge 7 && 7 -le 30 ]]
+  ok   days=-5 被夹到合理区间 — [[ 200 == 200 && 7 -ge 7 && 7 -le 30 ]]
+  ok   days=abc 被夹到合理区间 — [[ 200 == 200 && 7 -ge 7 && 7 -le 30 ]]
+  ok   days=99999 被夹到合理区间 — [[ 200 == 200 && 30 -ge 7 && 30 -le 30 ]]
+
+[1m② 手机号：只出掩码，原文永不出接口[0m
+  ok   列表不含 phone 字段 — 不含「"phone":」
+  ok   掩码形状正确 — 138****0413
+  ok   列表不给轨迹明细（那是另一个接口） — 不含「"events":」
+  ok   详情不含 phone 字段 — 不含「"phone":」
+  ok   详情含 events — {"id":150,"code":"FY20260926-0009","lane_id":8,"status":"picked_up","shipper_name":"雾川
+  ok   详情含掩码 — {"id":150,"code":"FY20260926-0009","lane_id":8,"status":"picked_up","shipper_name":"雾川
+
+[1m③ 报价与落库快照同源（单一定价引擎）[0m
+  ok   试算与快照一致：volumetric_grams — 1017
+  ok   试算与快照一致：chargeable_grams — 71500
+  ok   试算与快照一致：freight_cents — 15335
+  ok   试算与快照一致：fuel_cents — 2300
+  ok   试算与快照一致：insurance_cents — 0
+  ok   试算与快照一致：surcharge_cents — 5000
+  ok   试算与快照一致：total_cents — 22635
+  ok   恒等式：四项之和=总额 — 22635
+  ok   报价自带 identity_ok — True
+  ok   独立复算（体积重/取整/首重/续重/最低运费/燃油） — OK
+  ok   泡货体积重大于实际重 — (( 5300 > 2650 ))
+  ok   计费重按 500g 向上取整（余数为 0） — 0
+  ok   计费重不低于体积重 — (( 5500 >= 5300 ))
+  ok   泡货按体积重计费 — OK
+  ok   封顶单标记为已封顶 — True
+  ok   封顶单附加费不超运费 80%（1096 <= 1227） — [[ 1096 -le 1227 ]]
+  ok   低声明价值仍按 200 分保底 — 200
+  ok   高声明价值按 0.3% 计 — 3000
+  ok   无声明价值则无保价 — 0
+  ok   报价响应不含内部字段 — 不含「"surcharge_detail"」
+  ok   报价带泡重规则说明 — {"lane_code":"CD-XZ","route":"成都 → 拉萨","tier":"economy","promise_days":6,"volume
+  ok   fragile=1 与 fragile=true 同价 — 4499
+  ok   易碎比不易碎贵（3499 → 4499） — [[ 4499 -gt 3499 ]]
+  ok   偏远线路有附加费 — [[ 800 -ge 0 ]]
+  ok   易碎单附加费不低于普通单 — [[ 1565 -ge 800 ]]
+
+[1m④ 参数校验（逐字段回显，绝不 500）[0m
+  ok   缺 lane 报 invalid_request — {"code":"invalid_request","message":"参数校验未通过","fields":{"lane":"必须指定
+  ok   缺 lane 定位到字段 — {"code":"invalid_request","message":"参数校验未通过","fields":{"lane":"必须指定
+  ok   最重单件超总重被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"heaviest_g":"最重
+  ok   负重量被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"weight_g":"实际�
+  ok   天文数字重量被拒（不溢出） — {"code":"invalid_request","message":"参数校验未通过","fields":{"weight_g":"实际�
+  ok   小数克重被拒（单位必须整数） — {"code":"invalid_request","message":"参数校验未通过","fields":{"weight_g":"实际�
+  ok   非数字克重被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"weight_g":"实际�
+  ok   不存在的线路 404 — 404
+  ok   运单号注入被白名单挡下 — {"code":"invalid_code","message":"运单号需为 1-24 位字母、数字、- 或 _"}
+  ok   空运单号被归一化重定向（不 500） — 301
+
+[1m⑤ 鉴权：503 / 401 / 403 三层各就各位[0m
+  ok   服务端未配令牌 → 503 server_misconfigured — {"code":"server_misconfigured","message":"服务端未配置管理令牌"}
+  ok   503 状态码 — 503
+  ok   无 Authorization → 401 — 401
+  ok   只有方案名无令牌 → 401 — 401
+  ok   非 Bearer 方案 → 401 — 401
+  ok   Bearer 后为空 → 401 — 401
+  ok   Bearer 只有空格 → 401 — 401
+  ok   错令牌 → 403 — 403
+  ok   401 提示要 Bearer 形式 — {"code":"unauthorized","message":"Authorization 需为 Bearer \u003ctoken\u003e 形式"}
+  ok   403 说令牌无效 — {"code":"forbidden","message":"管理令牌无效"}
+  ok   被拒的写请求一张都没开成 — 150
+  ok   小写 bearer 方案名可用 — 201
+  ok   读接口不需要令牌 — 200
+
+[1m⑥ 开单与八态状态机正向链路[0m
+  ok   开单 201 — 201
+  ok   运单号前缀 FY — FY20260926-0010
+  ok   号段日期为业务日（UTC+8） — FY20260926-0010
+  ok   新单初始状态 booked — booked
+  ok   新单只有一条建单轨迹 — 1
+  ok   首条轨迹 seq=1 — 1
+  ok   开单响应不含手机号原文 — 不含「"phone":」
+  ok   开单响应含掩码 — {"id":151,"code":"FY20260926-0010","lane_id":6,"status":"booked","shipper_name":"冒烟测
+  ok   开单后的报价恒等式 — OK
+  ok   计费明细数组随单返回 — {"id":151,"code":"FY20260926-0010","lane_id":6,"status":"booked","shipper_name":"冒烟测
+  ok   开单价 == 试算价 — 12291
+  ok   推进到 picked_up — picked_up
+  ok   轨迹 seq 递增（picked_up） — seq=2
+  ok   打卡类型与目标状态一致 — picked_up
+  ok   推进到 in_transit — in_transit
+  ok   轨迹 seq 递增（in_transit） — seq=3
+  ok   打卡类型与目标状态一致 — in_transit
+  ok   推进到 arrived — arrived
+  ok   轨迹 seq 递增（arrived） — seq=4
+  ok   打卡类型与目标状态一致 — arrived
+  ok   推进到 out_for_delivery — out_for_delivery
+  ok   轨迹 seq 递增（out_for_delivery） — seq=5
+  ok   打卡类型与目标状态一致 — out_for_delivery
+  ok   推进到 delivered — delivered
+  ok   轨迹 seq 递增（delivered） — seq=6
+  ok   打卡类型与目标状态一致 — delivered
+  ok   签收落 delivered_at — 2026-09-26T00:25:54.
+  ok   全链共 6 条轨迹（建单+5 次推进） — 6
+  ok   轨迹 seq 连续唯一且时间不倒流（倒序返回） — OK
+  ok   开单让总数 +1 — 151
+  ok   新单出现在默认列表首页（按下单时间倒序） — FY20260926-0010
+  ok   已签收不能再推进 409 — 409
+  ok   非法跃迁回 invalid_transition — {"code":"invalid_transition","message":"不允许从「delivered」推进到「in_transit�
+  ok   非法跃迁不回显 SQL/驱动细节 — 不含「no such」
+  ok   已签收不能登记异常 409 — 409
+  ok   倒退跃迁同样被拒 — {"code":"invalid_transition","message":"不允许从「delivered」推进到「booked」"}
+  ok   不存在的运单号 404 — {"code":"not_found","message":"资源不存在"}
+
+[1m⑦ 异常挂起、恢复与退回[0m
+  ok   异常接口给出 message — {"message":"运单已登记异常","waybill":{"id":129,"code":"FY20260925-0001","lane_id":
+  ok   在途单可登记异常 — exception
+  ok   异常多一条轨迹 — 5
+  ok   异常原因进备注 — 异常：地址不详，收件人电话无法接通
+  ok   备注带异常前缀 — 异常：地址不详，收件人电话无法接通
+  ok   异常事件类型 — exception
+  ok   重复异常 409 — 409
+  ok   异常可恢复到派送中 — out_for_delivery
+  ok   在途单可退回 — returned
+  ok   退回为终态 409 — 409
+  ok   原状态可复核 — FY20260925-0001: in_transit
+  ok   统计里的退回单数 — returned=5
+  ok   种子异常单状态可读 — exception
+
+[1m⑧ 附加费规则：校验、新建、启停、对报价的即时影响[0m
+  ok   非法 kind 被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"kind":"kind 只能�
+  ok   超重门槛低于 10kg 被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"threshold_g":"单�
+  ok   缺固定金额被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"amount_cents":"易�
+  ok   费率型无费率无最低额被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"rate_pct":"偏远�
+  ok   priority=0 被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"priority":"优先�
+  ok   priority=100 被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"priority":"优先�
+  ok   超长 name 被拒 — {"code":"invalid_request","message":"参数校验未通过","fields":{"name":"规则名称
+  ok   非法 code 形状 → 400 — 400
+  ok   新建规则返回 id — id=7
+  ok   新规则默认启用 — True
+  ok   重复规则标识 → 409 — 409
+  ok   停用后 active=false — False
+  ok   停用规则立刻少收附加费（1237 → 1100） — [[ 1237 -gt 1100 ]]
+  ok   再启用 active=true — True
+  ok   启用后附加费回到原值 — 1237
+  ok   易碎费只加在易碎单上（普通=0 易碎=1237） — [[ 0 -le 1237 ]]
+  ok   默认列表长度 <= all 列表 — [[ 6 -le 7 ]]
+  ok   all=1 能看到刚启用的规则 — {"items":[{"id":7,"code":"smoke-fragile-1790382355","name":"冒烟易碎加固","kind":"fr
+  ok   规则 id=0 → 400 — 400
+  ok   规则 id 非数字 → 400 — 400
+  ok   不存在的规则 id → 404 — 404
+  ok   探针规则可停用于收尾 — 200
+
+[1m⑨ 注入、LIKE 转义与畸形输入[0m
+  ok   注入串查不到数据：' OR '1'='1 — 0
+  ok   注入响应不含 SQL 细节 — 不含「no such table」
+  ok   注入串查不到数据：%' UNION SELECT id,code FROM lanes-- — 0
+  ok   注入响应不含 SQL 细节 — 不含「no such table」
+  ok   注入串查不到数据：a;b=c — 0
+  ok   注入响应不含 SQL 细节 — 不含「no such table」
+  ok   注入串查不到数据：'-- — 0
+  ok   注入响应不含 SQL 细节 — 不含「no such table」
+  ok   注入串查不到数据：1' AND SLEEP(3)-- — 0
+  ok   注入响应不含 SQL 细节 — 不含「no such table」
+  ok   注入串查不到数据：<script>alert(1)</script> — 0
+  ok   注入响应不含 SQL 细节 — 不含「no such table」
+  ok   裸 % 作为字面量匹配（0 条） — 0
+  ok   下划线同样按字面量 — 0
+  ok   按寄件人中文检索命中新单 — {"items":[{"id":151,"code":"FY20260926-0010","lane_id":6,"status":"delivered","shipper_nam
+  ok   掩码不参与检索（原文列不出接口） — 0
+  ok   按运单号精确检索命中 — {"items":[{"id":151,"code":"FY20260926-0010","lane_id":6,"status":"delivered","shipper_nam
+  ok   超长搜索串不报错（服务端截断） — 200
+  ok   翻页越界返回空列表而非报错 — []
+  ok   未知排序键回落默认 — booked
+  ok   非法 status 被忽略（不过滤） — 20
+  ok   路径注入被拒 — FY%27%20OR%201%3D1 -> 400
+  ok   注入响应不含 SQL 细节 — 不含「SELECT」
+  ok   路径注入被拒 — ..%2f..%2fetc%2fpasswd -> 400
+  ok   注入响应不含 SQL 细节 — 不含「SELECT」
+  ok   路径注入被拒 — a%27b -> 400
+  ok   注入响应不含 SQL 细节 — 不含「SELECT」
+  ok   路径注入被拒 — a%22b -> 400
+  ok   注入响应不含 SQL 细节 — 不含「SELECT」
+  ok   路径注入被拒 — a%20b -> 400
+  ok   注入响应不含 SQL 细节 — 不含「SELECT」
+  ok   路径注入被拒 — a%27-- -> 400
+  ok   注入响应不含 SQL 细节 — 不含「SELECT」
+  ok   路径注入被拒 — xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -> 400
+  ok   注入响应不含 SQL 细节 — 不含「SELECT」
+  ok   超长请求体被拒（400） — [[ 400 == 413 || 400 == 400 ]]
+  ok   超长请求体的响应不泄露内部文案 — 不含「request body too large」
+  ok   坏 JSON → 400 — 400
+  ok   空 body → 400 — 400
+  ok   数组 body → 400 — 400
+  ok   逐字段回显：phone — {"code":"invalid_request","message":"参数校验未通过","fields":{"heaviest_piece_g":"
+  ok   逐字段回显：piece_count — {"code":"invalid_request","message":"参数校验未通过","fields":{"heaviest_piece_g":"
+  ok   逐字段回显：weight_grams — {"code":"invalid_request","message":"参数校验未通过","fields":{"heaviest_piece_g":"
+  ok   逐字段回显：volume_cm3 — {"code":"invalid_request","message":"参数校验未通过","fields":{"heaviest_piece_g":"
+  ok   逐字段回显：heaviest_piece_g — {"code":"invalid_request","message":"参数校验未通过","fields":{"heaviest_piece_g":"
+  ok   停售线路不能下单 — {"code":"lane_offline","message":"该线路已停售，不能新下运单"}
+  ok   非法代理对字符 → 400 — 400
+
+[1m⑩ 静态托管、安全响应头、CORS、404 形状[0m
+  ok   根路径给出 SPA — 200
+  ok   SPA 有 #root 挂载点 — <!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="
+  ok   SPA 不引外部资源 — 不含「https://」
+  ok   禁缓存头 — http/1.1 200 ok
+cache-control: no-store
+content-type: application/json; charset=utf-8
+p
+  ok   nosniff — http/1.1 200 ok
+cache-control: no-store
+content-type: application/json; charset=utf-8
+p
+  ok   frame deny — http/1.1 200 ok
+cache-control: no-store
+content-type: application/json; charset=utf-8
+p
+  ok   referrer policy — http/1.1 200 ok
+cache-control: no-store
+content-type: application/json; charset=utf-8
+p
+  ok   permissions policy — http/1.1 200 ok
+cache-control: no-store
+content-type: application/json; charset=utf-8
+p
+  ok   未知接口是 JSON 404 — {"code":"not_found","message":"接口不存在"}
+  ok   未知接口状态码 404 — 404
+  ok   穿越路径不给 passwd — 不含「root:」
+  ok   外部 Origin 仍能应答（只是不给 ACAO） — 200
+  ok   Origin=https://evil.example 不给 ACAO — 0
+  ok   Origin=null 不给 ACAO — 0
+  ok   Origin=http://127.0.0.1.evil.example 不给 ACAO — 0
+  ok   Origin= 不给 ACAO — 0
+  ok   本机 Origin 放行：http://127.0.0.1:18509 — 1
+  ok   本机 Origin 放行：http://localhost:5173 — 1
+  ok   本机 Origin 放行：http://[::1]:3000 — 1
+  ok   OPTIONS 预检 204 — 204
+  ok   前端深链回落 SPA — 200
+
+[1mpass=253 fail=0[0m
+· 库文件权限（应为 0600）
+    -rw------- /tmp/fwt-smoke/18501/api.db
+    -rw------- /tmp/fwt-smoke/18501/api.db-shm
+    -rw------- /tmp/fwt-smoke/18501/api.db-wal

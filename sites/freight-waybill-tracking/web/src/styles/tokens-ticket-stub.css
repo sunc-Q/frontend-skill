@@ -1,0 +1,201 @@
+/* ============================================================
+   风格一：老式登机牌 / 票证打孔风（boarding pass & punch stub）
+   主张：整页是一张夹在护照里的老登机牌——柴纸底、碳写复印的隔行深浅、
+   左侧一列打孔、虚线撕口把「存根」和「正文」分开；
+   数据一律打字机等宽，章戳式的斜置徽章盖在状态上。
+   ============================================================ */
+:root {
+  color-scheme: light;
+
+  --font-body: 'Avenir Next', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-head: 'DIN Alternate', 'Avenir Next Condensed', 'Haettenschweiler', 'Impact', sans-serif;
+  --font-mono: 'SFMono-Regular', Menlo, Consolas, 'Courier New', monospace;
+
+  --bg: #ddd3be;
+  --bg-texture:
+    repeating-linear-gradient(0deg, rgba(115, 96, 62, 0.05) 0 1px, transparent 1px 4px),
+    radial-gradient(circle at 12% 8%, rgba(255, 250, 235, 0.55), transparent 46%);
+  --bg-panel: #f3ecdd;
+  --bg-alt: #e8dfca;
+  --bg-input: #fbf6ea;
+  --bg-head: #ded2b9;
+
+  --ink: #1f2430;
+  --ink-soft: #454d5c;
+  --ink-faint: #7c7361;
+  --head-ink: #1f2430;
+
+  --accent: #a8341c;
+  --accent-2: #1f5f5a;
+  --accent-ink: #fdf7e6;
+
+  --line: #b9ac90;
+  --line-strong: #1f2430;
+  --border: 1px solid #9f937a;
+  --border-hair: 1px dashed #a79a80;
+  --border-dotted: 1px dotted #7d7157;
+  --border-bottom-strong: 2px solid #1f2430;
+  --edge-w: 1px;
+  --edge-w-lg: 3px;
+  --shadow: 2px 2px 0 rgba(31, 36, 48, 0.18);
+  --btn-shadow: 2px 2px 0 rgba(31, 36, 48, 0.28);
+
+  --zebra: rgba(159, 147, 122, 0.16);
+  --hover: rgba(31, 95, 90, 0.12);
+  --sel-bg: #d9e7e3;
+  --sel-ink: #14251f;
+  --track: #cfc3a8;
+  --idle: #6f6b5f;
+
+  --ok: #1f5f3f;
+  --ok-bg: #d7e7d5;
+  --warn: #8a5a06;
+  --warn-bg: #f0e0bb;
+  --bad: #a8341c;
+  --bad-bg: #f2dcd2;
+
+  --radius: 3px;
+  --radius-sm: 2px;
+  --chip-radius: 2px;
+
+  --fs-base: 15px;
+  --fs-small: 13px;
+  --fs-tiny: 11px;
+  --fs-label: 11px;
+  --fs-title: 26px;
+  --fs-brand: 32px;
+  --fs-kpi: 38px;
+  --fs-bill: 30px;
+  --lh: 1.45;
+
+  --fw-bold: 700;
+  --fw-normal: 500;
+  --fw-kpi: 700;
+
+  --head-tracking: 0.02em;
+  --head-transform: uppercase;
+  --label-tracking: 0.18em;
+  --label-transform: uppercase;
+  --label-style: normal;
+  --mono-tracking: 0.02em;
+
+  --maxw: 1240px;
+  --side-w: 350px;
+  --gap: 24px;
+  --gap-sm: 14px;
+  --pad: 14px;
+  --pad-sm: 10px;
+  --pad-xs: 4px;
+  --cell-pad: 8px 10px;
+  --field-min: 140px;
+  --kpi-min: 190px;
+  --form-min: 360px;
+  --fact-min: 180px;
+  --lede-w: 62ch;
+  --mark-size: 30px;
+  --icon-size: 16px;
+  --check-size: 15px;
+  --pager-w: 46px;
+  --bar-h: 9px;
+  --bar-h-sm: 7px;
+  --spark-w: 80px;
+  --focus-w: 2px;
+  --sticky-z: 2;
+  --t: 90ms ease;
+  --topbar-align: center;
+  --stamp-align: right;
+  --tilt-brand: none;
+  --tilt-title: none;
+  --tilt-kpi: none;
+
+  --bill-label-w: 10ch;
+  --bill-val-w: 12ch;
+  --dot-size: 11px;
+  --dot-radius: 0;
+  --dot-ring: 0 0 0 2px var(--bg-panel), 0 0 0 3px var(--line-strong);
+  --dot-pop: none;
+  --rail-w: 22px;
+  --rail-w-line: 2px;
+  --rail-dash: none;
+  --identity-bullet: square;
+  --off-strike: line-through;
+}
+
+/* 气质补丁：打孔与撕口——票面左缘一列圆孔、区块之间用虚线撕口、
+   状态章斜盖、明细行是碳写机打点的点引线。补丁段只用 token 取色。 */
+
+.kpi,
+.topbar,
+.panel-form,
+.statusline {
+  border-style: solid;
+}
+
+/* 左缘打孔：三个圆孔沿面板左边排布，像被检票钳打过 */
+.kpi {
+  padding-left: calc(var(--pad) + 14px);
+  background-image: radial-gradient(circle at 7px 26%, var(--bg) 0 4px, transparent 4.5px),
+    radial-gradient(circle at 7px 52%, var(--bg) 0 4px, transparent 4.5px),
+    radial-gradient(circle at 7px 78%, var(--bg) 0 4px, transparent 4.5px);
+}
+
+.section-head,
+.detail,
+.catalog,
+.pagefoot {
+  border-top: var(--border-hair);
+}
+
+.badge {
+  transform: rotate(-2.4deg);
+  border-width: 2px;
+  border-style: double;
+  padding: 2px 7px;
+  font-family: var(--font-head);
+  letter-spacing: 0.1em;
+}
+
+.brand-name {
+  font-family: var(--font-head);
+  border-bottom: var(--edge-w-lg) double var(--accent);
+}
+
+.input {
+  border-style: solid solid dashed;
+  border-bottom-color: var(--line-strong);
+}
+
+.table th {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.track-dot {
+  border: 2px solid var(--line-strong);
+  background-color: var(--bg-panel);
+}
+
+.track-item[data-current='true'] .track-dot {
+  background-color: var(--accent);
+}
+
+.bill-row {
+  font-family: var(--font-mono);
+}
+
+.identity {
+  border-style: double;
+  border-width: 3px;
+  background-color: transparent;
+}
+
+.chip {
+  border-style: dashed;
+  border-radius: 0;
+}
+
+.lane {
+  border-left-style: double;
+  border-left-width: 5px;
+}
