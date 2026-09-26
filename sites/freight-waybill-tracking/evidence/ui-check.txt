@@ -1,0 +1,209 @@
+
+[1m风格 ticket-stub[0m
+  ok   ticket-stub：data-theme 已切换 — ticket-stub
+  ok   ticket-stub：KPI 卡成片 — kpi=12
+  ok   ticket-stub：详情轨迹已渲染 — track=6
+  ok   ticket-stub：详情计费明细成表 — bill=4
+  ok   ticket-stub：令牌框是 password 输入 — 1
+  ok   ticket-stub：点表头切换排序并回写 aria-sort
+  ok   ticket-stub：空令牌下开单按钮禁用 — true
+  ok   ticket-stub：试算给出回执 — 试算完成：北京 → 哈尔滨 应收 ¥121.91
+  ok   ticket-stub：计费明细含体积重与续重档
+  ok   ticket-stub：非法试算回显字段错误 — 请求失败（400）
+  ok   ticket-stub：新单已进列表 — UI回归ticket-stub-n1jme
+  ok   ticket-stub：详情状态=已下单 — 已下单
+  ok   ticket-stub：电话只显示掩码 — 138****1234
+  ok   ticket-stub：页面文本不含手机号原文
+  ok   ticket-stub：连开两单号段递增 — FY20260926-0016 / FY20260926-0017
+  ok   ticket-stub：揽收后两条轨迹 — 2
+  ok   ticket-stub：最新轨迹带 UI 打卡网点 — 揽收
+#2
+2026-09-26 08:15
+
+UI揽收网点-ticket-stub
+  ok   ticket-stub：异常原因进最新轨迹 — 异常登记
+#4
+2026-09-26 08:15
+
+西安中转场
+
+异常：UI回归：收件人电话无法接通
+  ok   ticket-stub：异常单恢复推进成功
+  ok   ticket-stub：终态下推进选项清空 — true
+  ok   ticket-stub：终态下异常按钮禁用 — true
+  ok   ticket-stub：新规则已入库且默认启用 — UITICKET1JME
+  ok   ticket-stub：规则表徽标 = 启用中
+  ok   ticket-stub：规则表徽标 = 已停用
+  ok   ticket-stub：停用规则不进明细
+  ok   ticket-stub：规则表徽标 = 启用中
+  ok   ticket-stub：启用后附加费立刻回到报价（6000 → 7500）
+  ok   ticket-stub：搜索按单号收敛到一行 — 运单台账：点击行查看计费明细与轨迹
+运单号
+▲
+	
+线路
+·
+	
+状态
+·
+	
+计费重
+·
+	
+件数
+·
+	
+应收
+·
+	
+承诺时效
+·
+	
+下单 · 打卡
+·
+
+
+FY20260
+  ok   ticket-stub：搜索里的 % 不被当成通配符（0 命中）
+  ok   ticket-stub：无外部请求
+  ok   ticket-stub：控制台零报错
+
+[1m风格 michelin-gilt[0m
+  ok   michelin-gilt：data-theme 已切换 — michelin-gilt
+  ok   michelin-gilt：KPI 卡成片 — kpi=12
+  ok   michelin-gilt：详情轨迹已渲染 — track=6
+  ok   michelin-gilt：详情计费明细成表 — bill=4
+  ok   michelin-gilt：令牌框是 password 输入 — 1
+  ok   michelin-gilt：点表头切换排序并回写 aria-sort
+  ok   michelin-gilt：空令牌下开单按钮禁用 — true
+  ok   michelin-gilt：试算给出回执 — 试算完成：北京 → 哈尔滨 应收 ¥121.91
+  ok   michelin-gilt：计费明细含体积重与续重档
+  ok   michelin-gilt：非法试算回显字段错误 — 请求失败（400）
+  ok   michelin-gilt：新单已进列表 — UI回归michelin-gilt-n1jme
+  ok   michelin-gilt：详情状态=已下单 — 已下单
+  ok   michelin-gilt：电话只显示掩码 — 138****1234
+  ok   michelin-gilt：页面文本不含手机号原文
+  ok   michelin-gilt：连开两单号段递增 — FY20260926-0018 / FY20260926-0019
+  ok   michelin-gilt：揽收后两条轨迹 — 2
+  ok   michelin-gilt：最新轨迹带 UI 打卡网点 — 揽收
+#2
+2026-09-26 08:15
+
+UI揽收网点-michelin-gilt
+  ok   michelin-gilt：异常原因进最新轨迹 — 异常登记
+#4
+2026-09-26 08:15
+
+西安中转场
+
+异常：UI回归：收件人电话无法接通
+  ok   michelin-gilt：异常单恢复推进成功
+  ok   michelin-gilt：终态下推进选项清空 — true
+  ok   michelin-gilt：终态下异常按钮禁用 — true
+  ok   michelin-gilt：新规则已入库且默认启用 — UIMICHEL1JME
+  ok   michelin-gilt：规则表徽标 = 启用中
+  ok   michelin-gilt：规则表徽标 = 已停用
+  ok   michelin-gilt：停用规则不进明细
+  ok   michelin-gilt：规则表徽标 = 启用中
+  ok   michelin-gilt：启用后附加费立刻回到报价（7500 → 9000）
+  ok   michelin-gilt：搜索按单号收敛到一行 — 运单台账：点击行查看计费明细与轨迹
+运单号
+▲
+	
+线路
+·
+	
+状态
+·
+	
+计费重
+·
+	
+件数
+·
+	
+应收
+·
+	
+承诺时效
+·
+	
+下单 · 打卡
+·
+
+
+FY20260
+  ok   michelin-gilt：搜索里的 % 不被当成通配符（0 命中）
+  ok   michelin-gilt：无外部请求
+  ok   michelin-gilt：控制台零报错
+
+[1m风格 crackle-glaze[0m
+  ok   crackle-glaze：data-theme 已切换 — crackle-glaze
+  ok   crackle-glaze：KPI 卡成片 — kpi=12
+  ok   crackle-glaze：详情轨迹已渲染 — track=6
+  ok   crackle-glaze：详情计费明细成表 — bill=4
+  ok   crackle-glaze：令牌框是 password 输入 — 1
+  ok   crackle-glaze：点表头切换排序并回写 aria-sort
+  ok   crackle-glaze：空令牌下开单按钮禁用 — true
+  ok   crackle-glaze：试算给出回执 — 试算完成：北京 → 哈尔滨 应收 ¥121.91
+  ok   crackle-glaze：计费明细含体积重与续重档
+  ok   crackle-glaze：非法试算回显字段错误 — 请求失败（400）
+  ok   crackle-glaze：新单已进列表 — UI回归crackle-glaze-n1jme
+  ok   crackle-glaze：详情状态=已下单 — 已下单
+  ok   crackle-glaze：电话只显示掩码 — 138****1234
+  ok   crackle-glaze：页面文本不含手机号原文
+  ok   crackle-glaze：连开两单号段递增 — FY20260926-0020 / FY20260926-0021
+  ok   crackle-glaze：揽收后两条轨迹 — 2
+  ok   crackle-glaze：最新轨迹带 UI 打卡网点 — 揽收
+#2
+2026-09-26 08:15
+
+UI揽收网点-crackle-glaze
+  ok   crackle-glaze：异常原因进最新轨迹 — 异常登记
+#4
+2026-09-26 08:15
+
+西安中转场
+
+异常：UI回归：收件人电话无法接通
+  ok   crackle-glaze：异常单恢复推进成功
+  ok   crackle-glaze：终态下推进选项清空 — true
+  ok   crackle-glaze：终态下异常按钮禁用 — true
+  ok   crackle-glaze：新规则已入库且默认启用 — UICRACKL1JME
+  ok   crackle-glaze：规则表徽标 = 启用中
+  ok   crackle-glaze：规则表徽标 = 已停用
+  ok   crackle-glaze：停用规则不进明细
+  ok   crackle-glaze：规则表徽标 = 启用中
+  ok   crackle-glaze：启用后附加费立刻回到报价（9000 → 10500）
+  ok   crackle-glaze：搜索按单号收敛到一行 — 运单台账：点击行查看计费明细与轨迹
+运单号
+▲
+	
+线路
+·
+	
+状态
+·
+	
+计费重
+·
+	
+件数
+·
+	
+应收
+·
+	
+承诺时效
+·
+	
+下单 · 打卡
+·
+
+
+FY20260
+  ok   crackle-glaze：搜索里的 % 不被当成通配符（0 命中）
+  ok   crackle-glaze：无外部请求
+  ok   crackle-glaze：控制台零报错
+
+[1mpass=93 fail=0[0m

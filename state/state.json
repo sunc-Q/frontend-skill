@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26T06:36:00+08:00",
+  "updated": "2026-09-26T08:34:00+08:00",
   "tried": [
     {
       "time": "2026-09-25T18:15:00+08:00",
@@ -128,6 +128,19 @@
       "result": "成功：5 表 7 读 4 写（单 ADMIN_TOKEN，503/401/403 三层）+ 八态机与明细锁定 + FIFO 纯函数扣批 + 作废按原批次原量退料 + 工时费率取整 + 手机号只出掩码；go build/vet/test 全绿，api-smoke.sh pass=338 fail=0，style-diff 失败项 0（互斥 47/44/49 + 同构 8 字段全等 + 零外链零 console 错误），ui-check pass=153 fail=0（dist 与单文件 preview 两种托管各一遍，修掉竞态后同库连跑三次全绿）。抓出 2 处真前端缺陷：批次预填编码显示却不提交、自动批次号顶破 20 位上限",
       "code_dir": "sites/auto-repair-workorder/{backend,web,scripts}",
       "artifact_dir": "sites/auto-repair-workorder/{web/dist,preview,evidence}"
+    },
+    {
+      "time": "2026-09-26T08:30:00+08:00",
+      "scenario": "零担货运运单运营台（体积计费与路由轨迹）",
+      "slug": "freight-waybill-tracking",
+      "styles": [
+        "老式票证打孔风",
+        "指南烫金卡风",
+        "青瓷开片冰裂风"
+      ],
+      "result": "成功：4 表 + 6 读 5 写（单 ADMIN_TOKEN fail-closed 503/401/403）+ 八态机 + 单一报价引擎 QuoteOf（体积重/ceilTo500/燃油/保价/附加费仲裁封顶 80%）；go build/vet/gofmt/test 全绿（24 Test）；tsc 0 错、vite build 355,707B；api-smoke 11 节 pass=253 fail=0（库三件套 0600、日志零令牌）；style-diff 失败项 0（72 项计算样式互斥 54/52/49、同构 rowCount=31·kpiCount=12·badgeCount=17·外链 0）；ui-check pass=93 fail=0（×3 主题、脏库重跑仍绿）；抓出 6 处应用侧真缺陷（CORS 前缀匹配、SQLite 时间混偏移致文本排序、种子落在未来、排序回显泄漏列名、请求体无上限、表单默认值低于后端下限）",
+      "code_dir": "sites/freight-waybill-tracking/{backend,web,scripts}",
+      "artifact_dir": "sites/freight-waybill-tracking/{web/dist,preview,evidence}"
     }
   ],
   "used_scenarios": [
@@ -140,7 +153,8 @@
     "homestay-booking-calendar",
     "support-ticket-sla-desk",
     "library-circulation-desk",
-    "auto-repair-workorder"
+    "auto-repair-workorder",
+    "freight-waybill-tracking"
   ],
   "used_styles": [
     "瑞士网格",
@@ -172,7 +186,10 @@
     "解构主义拼版",
     "机车搪瓷牌照风",
     "高定时装屋排版",
-    "塔罗神谕卡牌风"
+    "塔罗神谕卡牌风",
+    "老式票证打孔风",
+    "指南烫金卡风",
+    "青瓷开片冰裂风"
   ],
   "runs": [
     {
@@ -547,6 +564,48 @@
         "range": "2f482ce..d049b84（普通 push，无 --force / 无 --no-verify / 未碰 main；提交身份走命令行内联 -c user.name/-c user.email，未改任何全局配置；SSH 推送，命令行与文件里无令牌）",
         "remote_head_after": "d049b8473c18956658bab4a567642e1200c56775"
       }
+    },
+    {
+      "id": "20260926-08",
+      "slug": "freight-waybill-tracking",
+      "started": "2026-09-26T06:36:00+08:00",
+      "finished": "2026-09-26T08:34:00+08:00",
+      "scenario": "零担货运运单运营台（体积计费与路由轨迹）",
+      "styles": [
+        "老式票证打孔风",
+        "指南烫金卡风",
+        "青瓷开片冰裂风"
+      ],
+      "template_created": false,
+      "disk": {
+        "df_k_avail_before": null,
+        "df_k_avail_after": 18221404,
+        "lab_total_bytes_human": "32M",
+        "scenario_dir_human": "2.6M / 63 文件",
+        "note": "开工未单独采样（沿用第 10 轮收工 18,551,596KB），收工实测见本字段；node_modules 64M 与全部 /tmp 临时库已删"
+      },
+      "volume": {
+        "go_files": 18,
+        "go_test_files": 3,
+        "test_packages_ok": 3,
+        "test_functions": 24,
+        "endpoints": 12,
+        "tables": 4,
+        "seed_rows": "9 lanes / 150 waybills(8 态全覆盖) / 1076 scan_events / 5 surcharge_rules",
+        "frontend_src_files": 9,
+        "theme_css_files": 3,
+        "dist_bundle_bytes": 355707,
+        "preview_files": 3,
+        "preview_each_bytes": 356290,
+        "api_smoke": "pass=253 fail=0 (11 节 ⓪~⑩)",
+        "ui_check": "pass=93 fail=0 (×3 主题)",
+        "style_diff": "互斥 54/52/49 项（72 项计算样式）·同构全等·失败项 0（dist + preview 两份探针）"
+      },
+      "push": {
+        "branch": "go-gin_react",
+        "result": "待推送",
+        "note": "场景提交 2508543（62 文件）；推送结果在收工审计提交里回填"
+      }
     }
   ],
   "environment_notes": [
@@ -604,11 +663,19 @@
     "第 10 轮：**冒烟样本必须服务端筛选，且缺样本就硬退出**。种子有 124 张单，在「第一页 100 条」里找 `settled`/`cancelled` 会拿空 → URL 塌成 `/api/work-orders/` → Gin 301 → 断言读到 `<a href=…Moved Permanently</a>`，10 条失败全指向同一个上游空值。改成 `?status=settled&page_size=5`，并在样本缺失时立刻 `exit 1`。",
     "第 10 轮：**UI 套件的读侧竞态只在重复跑时暴露**（同一实例连跑三种失败）：① `factWait('工单号','WO-')` 的等待条件用「含 WO-」——上一单本来就含，于是立刻返回旧值；② 出库后马上读流水表，拿到占位文案「库存流水 正在读取…」。规则：**等待条件必须用目标值本身**，并给套件加 `poll(read,test)`。另注意 `locator.isDisabled()` 返回 Promise，写 `String(…isDisabled())` 得到 `[object Promise]`，条件永不成立、只留一次超时。补好后同库连跑 3 遍 dist + 1 遍 preview 全 `pass=153 fail=0`。",
     "第 10 轮：**探针别量透明容器**：`.shell` 的背景画在 `body`/`.topbar` 上，量 `.shell` 三套主题都会拿到全等的 `rgba(0,0,0,0)`，误判「风格没生效」。改量 body 与 topbar。",
-    "第 10 轮：**工具输出把 `YYYY/MM/DD` 里的 `/` 渲染成 `-` 一事再次复现**（页面文案、断言输出都受影响）。别据此改代码；要判字节用 `python3 -c \"import binascii;print(binascii.hexlify(s.encode()))\"`（本机这个 python3 没有 `str.hex()`）。"
+    "第 10 轮：**工具输出把 `YYYY/MM/DD` 里的 `/` 渲染成 `-` 一事再次复现**（页面文案、断言输出都受影响）。别据此改代码；要判字节用 `python3 -c \"import binascii;print(binascii.hexlify(s.encode()))\"`（本机这个 python3 没有 `str.hex()`）。",
+    "第 11 轮：**SQLite 的 datetime 列是带偏移的文本，混着 +08:00 与 +00:00 时 ORDER BY 变成字符串排序**。种子用本机时区的 time.Now()、写路径用 UTC()，同一瞬刻的两个字符串分出先后 → 列表「最新下单」恒排在旧单后面，接口 200、go test 全绿，只有真 HTTP 冒烟抓得到。修法：Seed 入口 `now = now.UTC()` 归一（调用方传什么都一样），并加断言 `booked_at NOT LIKE '%+00:00'` 计数为 0。防复发：Go 测试若用固定 UTC 时刻就永远测不到这条，必须留一条「库里不存在非 UTC 时间」的仓库层断言。",
+    "第 11 轮：**确定性种子必须对「当前时钟」做边界检查**——今天那一档按 CST 8~18 点随机分布，清晨 7 点跑就整段落进未来：新开的真单被未来历史单压住、异常/签收落在明天。两道补：`dayOffset==0` 时把 booked_at 压回 `[当日零点, now]`；轨迹链越过 now 就按 `fitTrackWindow` 比例压缩（保序、留 1 分钟最小间距、签收时间跟着最后一条轨迹走，所以**必须在 Create 之前算轨迹**）。另注意「把时钟拨到 +8 再截断」得到的日界只用来取 Y/M/D，拿它做减法会得负数窗口。测试：`TestSeedTimelineNeverInFuture`。",
+    "第 11 轮：**CORS 的 Origin 判定用前缀匹配等于没判定**（`HasPrefix(host,\"127.0.0.1\")` 会放行 `http://127.0.0.1.evil.example`，那是真实可达域名）。固定写法：`url.Parse` → 主机名精确比对 `localhost`/`127.0.0.1`/`::1` → 再兜一层 `net.ParseIP(h).IsLoopback()`（覆盖 127.0.0.0/8），且 `Origin: null` 一律不放行。测试要把 `http://localhost:5173.evil.example`、`//localhost:5173`、`http://evil.example/?o=http://localhost` 三串列为必拒。",
+    "第 11 轮：**请求体上限要覆盖「谎报 Content-Length」这条路**：只判 `c.Request.ContentLength > N` 会在攻击者不声明长度时失效，必须同时挂 `http.MaxBytesReader`；两条路径分别断言 413 `body_too_large` 与 400 `invalid_request`，并断言响应体不含 `request body too large`/`unexpected EOF`/`json:`/`gorm`/`SQLITE`。另外 `TestBodySizeLimit` 这类「负向用例」原来只断言「状态码 <400 才算挂」，而畸形 JSON 本来也回 400 —— 假绿很久，改成断言具体状态码与错误码。",
+    "第 11 轮：**详情接口的列表排序约定要写进断言，否则冒烟会按直觉取值**：`events` 是 seq 倒序（最新在前，Go 测试早就锁死），冒烟写 `events.-1` 于是取到最旧那条建单轨迹，一次 6 连红且看起来像业务 bug。取值统一 `events.0`，不变量断言写成「seq 严格递减且唯一、时间不倒流」。同理：写接口返回 `{waybill,message}` 信封而开单返回详情本身，两条取值路径不同，忘了前缀一路 `<nil>`。",
+    "第 11 轮：**`grep -c \"…http://[::1]:3000\"` 恒为 0**（方括号被当字符类），本机 IPv6 放行用例永远「失败」。凡按字面计数一律 `grep -F`。",
+    "第 11 轮：**UI 提交回执必须认「新节点」**：`useAction` 与试算台在提交时会把 message 置空（节点卸载后重建），所以「等 `data-kind` 变成 ok」会从上一单的旧回执上读到假绿。做法：提交前给旧 `.form-msg` 打 `data-ui-stale`，只等 `.form-msg[data-kind=ok]:not([data-ui-stale])`。另：整块 `:has-text()` 定位会被 `<option>` 文案污染（找「固定额（分）」输入框时命中了「计费方式」的下拉 label，`fill` 干等 30 秒）→ 只按 `.field-label` 自身文案定位。",
+    "第 11 轮：**表单默认值可以是产品级缺陷**：新增附加费规则的 `heavy_piece` 门槛默认 5000 g，后端下限 10 000 g，照默认点提交必然 400——UI 套件抓到了它，但第一轮被误记成「脚本没等回执」。凡是「提交前不该失败」的默认值，都该在 UI 里跑一次裸提交。",
+    "第 11 轮：**Gin 的路径归一化会把 `/api/waybills/`（空 :code）变成 301**，不是 404。断言要写成「不进 handler、不 500」而不是猜一个 404；配合「缺样本就 exit 1」才不会让一条空值污染十条断言（第 10 轮同类）。"
   ],
   "next_candidates": [
     "医院门诊排班与挂号",
-    "物流运单跟踪",
     "房产租赁管理",
     "招聘 ATS 候选人流水线",
     "充电桩车队运营",
@@ -626,16 +693,21 @@
   "next_style_candidates": [
     "构成主义建筑海报",
     "苏式工程晒图纸",
-    "老式登机牌/票证打孔",
     "暗房相纸显影",
     "和纸浮世绘",
     "像素机街机 CRT",
     "包豪斯纺织样卡",
-    "米其林指南烫金卡",
     "航海图罗盘",
-    "陶瓷开片冰裂",
     "黑胶唱片封套",
-    "医用腕带标签"
+    "医用腕带标签",
+    "机场航班信息板",
+    "旧报纸分类广告栏",
+    "实验室玻璃器皿白板",
+    "丝绒影院售票亭",
+    "铸铁锅菜谱卡片",
+    "邮政邮戳与航空信封",
+    "植物标本图鉴版画",
+    "机械腕表表盘剖视"
   ],
   "backlog": [
     "fitness-studio-booking：bookings 目前无 (session_id,member_id) 复合唯一索引，查重依赖事务内 SELECT + 单写者；若放开多连接必须先补索引（confirmed/waitlist 用部分索引）。",
@@ -660,6 +732,11 @@
     "library-circulation-desk：种子仅 7 册非参考书在架，任何「借到配额上限」类断言天然依赖干净库；新增写接口时同步看种子饱和度，或把种子扩到 30+ 册可借复本。",
     "templates/go-gin-react：把 run-smoke.sh（全新库双实例 + 权限证据）与 style-diff.py 的「互斥+同构」双指标骨架回灌成模板通用件。",
     "auto-repair-workorder：在库/库存金额/批次成本全部由 stock_lots 与 stock_moves 实时聚合派生（parts 表刻意不放 on_hand 列），读放大随批次数线性增长；若要上量需加物化列或增量维护，并配一条「派生值 vs 聚合值」对账任务（现在只有 /api/stats 的 stock_issues 自检）。",
-    "auto-repair-workorder：FIFO 只在 service 层纯函数里挑批，`stock_lots.qty_remaining` 由触发器兜底非负，但同一配件并发领料靠 SetMaxOpenConns(1) 串行化保证；放开多连接前必须把扣批改成 `UPDATE … WHERE qty_remaining>=?` 的乐观条件或显式事务锁。"
+    "auto-repair-workorder：FIFO 只在 service 层纯函数里挑批，`stock_lots.qty_remaining` 由触发器兜底非负，但同一配件并发领料靠 SetMaxOpenConns(1) 串行化保证；放开多连接前必须把扣批改成 `UPDATE … WHERE qty_remaining>=?` 的乐观条件或显式事务锁。",
+    "freight-waybill-tracking：当日单号流水靠事务内 `code LIKE 'FY%<日>-%'` 计数 + 冲突重试，安全前提是 SetMaxOpenConns(1) 单写者；放开多连接或换 PG/MySQL 前必须改成序列表（INSERT…RETURNING）或按日行锁。",
+    "freight-waybill-tracking：/api/stats 每次全表聚合（营收/准点率/14 天趋势），150 单无感，上万单需要日汇总表 + 对账任务（与第 10 轮同类遗留合并）。",
+    "freight-waybill-tracking：种子轨迹链「按比例压缩到不超过 now」是交付物兜底（fitTrackWindow），真实系统应在扫码写入时落库；否则历史单时间跨度会被压缩失真，异常/签收时刻不可用作 SLA 复盘。",
+    "templates/go-gin-react：**第 5 次**现场重写同一批验证工具（style-probe/style-diff/style-shoot/api-smoke/run-smoke/ui-check/inline-preview/serve-static），已成熟到该回灌进 templates 骨架：下一轮开工应先把上一轮 scripts/ 拷进模板再改业务字段。",
+    "跨轮系统性风险：**带本地时区的 macOS 上，任何「把 time.Now() 直接写进 SQLite datetime 列」的种子都会埋文本排序雷**（第 11 轮复现：+08:00 与 +00:00 混排，ORDER BY 按字符串比较）。模板骨架应把「所有落库时间 .UTC()」写成 repository 层的强制 helper + 一条 `NOT LIKE '%+00:00'` 断言。"
   ]
 }
