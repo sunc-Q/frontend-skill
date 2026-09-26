@@ -15,7 +15,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LAB = path.resolve(ROOT, '..', '..');
-const { TRIED, RUN, ENV_NOTES, ROUND_ID, WORK_LOG_LINE, QUEUE_HINT } = await import(
+const { TRIED, RUN, ENV_NOTES, ROUND_ID, WORK_LOG_LINE, QUEUE_HINT, NEXT_CANDIDATES } = await import(
   pathToFileURL(path.join(ROOT, 'scripts', 'round-facts.mjs'))
 );
 const state = JSON.parse(readFileSync(path.join(LAB, 'state', 'state.json'), 'utf8'));
@@ -71,6 +71,10 @@ chk('V11 排队项已消费且未静默丢候选：写回前排在队里的这�
     snap.candidates.filter((c) => !c.includes(QUEUE_HINT)).every((c) => state.next_candidates.includes(c)) &&
     state.next_candidates.length >= snap.candidates.length - 1,
   `快照 ${snap.candidates.length} 条 → 现 ${state.next_candidates.length} 条（含 补记 后排入的新候选）`);
+chk('V12 报告 §14 承诺排队的候选真的在队里（下一轮只读台账也能看到，且没有重复排入）',
+  NEXT_CANDIDATES.every((c) => state.next_candidates.includes(c)) &&
+    new Set(state.next_candidates).size === state.next_candidates.length,
+  `${NEXT_CANDIDATES.length} 条候选，队内 ${state.next_candidates.length} 条，重复 ${state.next_candidates.length - new Set(state.next_candidates).size} 条`);
 
 const failed = rows.filter((r) => !r.cond);
 console.log(`verify-ledger: ${rows.length - failed.length}/${rows.length} assertions passed`);

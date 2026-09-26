@@ -21,8 +21,9 @@ node scripts/make-styles.mjs                                  # styles.html —�
 #   rm -rf node_modules dist dist-plain dist-split .tmp-check .tmp-* && node scripts/check-clean.mjs
 #   node scripts/verify-ledger.mjs        # 台账复查卡：只读 JSON/MD，清理与两次推送之后仍可复跑
 
-# 台账写回（一次性，快照先行）：
+# 台账写回（一次性，快照先行；收尾字段由回灌卡补写，不手改 JSON）：
 #   node scripts/ledger-snapshot.mjs                          # 写回前快照，I 组与 verify-ledger 都对着它比
 #   FD_LEDGER_UPDATED="$(date +%Y-%m-%dT%H:00+08:00)" FD_SEEN_STATUS='frontend-development（…第 3 次使用…）' node scripts/ledger-apply.mjs
+#   node scripts/ledger-refill.mjs      # 补记：artifact_size / cleanup / push 与 work-log 末行都从 round-facts.mjs 回灌
 
 echo "see reports/20260926-08-frontend-development-wizard.md in the lab root for the write-up"

@@ -61,6 +61,19 @@ const walkSrc = (dir) => {
 walkSrc(path.join(ROOT, 'src'));
 chk('C8 源码完整（35 个 .ts/.tsx，与 J1 的文件数一致）', srcTs.length === 35, `${srcTs.length} 个`);
 
+/* every script that survives cleanup must be reachable: either verify.sh names it (as a step or as
+   one of the post-cleanup / ledger cards) or another script imports it. This caught verify.sh's cards
+   lagging behind verify-ledger.mjs and ledger-refill.mjs — a round can only be reproduced if the
+   rebuild document lists every card, including the ones that cannot run in the same pass. */
+const verifySh = readFileSync(path.join(ROOT, 'scripts', 'verify.sh'), 'utf8');
+// verify.sh is the card itself; it cannot name itself
+const scriptFiles = readdirSync(path.join(ROOT, 'scripts')).filter((f) => /\.(mjs|sh)$/.test(f) && f !== 'verify.sh');
+const importedElsewhere = (f) =>
+  scriptFiles.some((g) => g !== f && readFileSync(path.join(ROOT, 'scripts', g), 'utf8').includes(`./${f}`));
+const orphans = scriptFiles.filter((f) => !verifySh.includes(`scripts/${f}`) && !importedElsewhere(f));
+chk('C9 无孤儿脚本（每个保留脚本都被 verify.sh 的某张卡点名或被其它脚本 import）', orphans.length === 0,
+  `共 ${scriptFiles.length} 个脚本，孤儿：${orphans.join(', ') || '无'}`);
+
 const failed = rows.filter((r) => !r.cond);
 console.log(`check-clean: ${rows.length - failed.length}/${rows.length} assertions passed`);
 if (failed.length) process.exit(1);

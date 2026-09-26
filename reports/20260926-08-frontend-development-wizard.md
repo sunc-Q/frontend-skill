@@ -89,7 +89,7 @@ node scripts/make-styles.mjs                # styles.html：页面数字全部�
 3. `rollupOptions.input` 直接指向 `src/main.tsx`、`output.format: 'iife'` + `inlineDynamicImports: true`，**因此根目录没有 index.html**（Vite 不需要 HTML 入口）。上一轮把生成页写成 `index.html` 会让 `verify.sh` 第二跑就没入口，本轮改为 `styles.html`，`check-clean` C6 同步改了期望值。
 4. `scripts/build-inline.mjs` 用函数式 replacer 注入 bundle（`String.replace` 的字符串形式会把 `$&` 当捕获组展开），并按 `</script` → `<\/script` 转义（本轮命中 0 次，但没命中不等于不需要）。
 5. `check-browser.mjs` 需要 Chromium：`~/Library/Caches/ms-playwright/chromium-1148/...`，脚本里 `executablePath` 存在才传，否则回落 playwright 默认。它自带一个 http server（端口 8157）以便跑 `?api=1` 与 `file://` 两种载体。
-6. 收尾后复跑：`rm -rf node_modules dist dist-plain dist-split .tmp-check .tmp-*` 之后只能跑 `node scripts/check-clean.mjs`（19 条）与 `node scripts/verify-ledger.mjs`（11 条），这两张卡不需要构建现场。
+6. 收尾后复跑：`rm -rf node_modules dist dist-plain dist-split .tmp-check .tmp-*` 之后只能跑 `node scripts/check-clean.mjs`（20 条）与 `node scripts/verify-ledger.mjs`（12 条），这两张卡不需要构建现场。收尾阶段各给它们加了一条（C9 / V12），原因见 §13。
 
 ---
 
@@ -102,7 +102,7 @@ node scripts/make-styles.mjs                # styles.html：页面数字全部�
 | `preview/wizard-concrete-rose.html` | 634,487B 同上 |
 | `styles.html` | 13,701B 三风格对照入口；每个数字由 `.tmp-check/assertions-*.json` 经 `scripts/make-styles.mjs` 生成，零手写 |
 | `src/` | 35 个 .ts/.tsx、3,516 行 |
-| `scripts/` | 三组 checker + build-inline + make-styles + verify.sh + 台账四件套（snapshot/apply/refill/verify-ledger）+ check-clean，13 个 .mjs/.sh 共 2,564 行 |
+| `scripts/` | 三组 checker + build-inline + make-styles + verify.sh + 台账四件套（snapshot/apply/refill/verify-ledger）+ check-clean + `_harness.mjs`，13 个 .mjs/.sh 共 2,602 行（这个数最后由 `cat scripts/*.mjs scripts/*.sh \| wc -l` 现算，见 §13 的自引用说明） |
 | `evidence/assertions-{node,dom,browser}.json` | 293 条断言的原始读数（61,034B），报告与 styles.html 的数字都出自这里 |
 | `vite.config.ts` / `vite.control.config.ts` / `vite.split.config.ts` / `tsconfig.json` / `package.json` / `package-lock.json` / `.npmrc` | 复现所需配置与锁文件 |
 
@@ -200,10 +200,10 @@ H15a–H15e 走完整闭环，其中 H15e 是本轮第二贵的一次测试自�
 | src 文件 / 行数 | 35 / 3,516 | 50 / 2,154（1.63× 行数，文件更少） |
 | 单文件 bundle | 633,905B / gzip 196,704B | 720,722B / gzip 223,845B（0.88×） |
 | 三页预览合计 | 1,903,400B | 2,163,587B |
-| 场景目录体积 | 清理后 2.30MB / 64 个文件（构建期 J6 口径 2.34MB / 72 个，含 .tmp-check 断言 JSON，见 §13） | 2.39MB |
+| 场景目录体积 | 清理后 2.31MB / 64 个文件（构建期 J6 口径 2.34MB / 72 个，含 .tmp-check 断言 JSON，见 §13） | 2.39MB |
 | 证据构建入口 / 全套 | 486,787 / 634,874B | — |
 | 可延迟重量占比 | 23.3%（L3b） | 29% |
-| 校验脚本行数 | 清理后 13 个 .mjs/.sh 共 2,564 行（构建期 J8 读数 2,686 行，含当时的临时探针与脚本内 JSON；此后探针删除、新增 ledger-refill.mjs） | — |
+| 校验脚本行数 | 清理后 13 个 .mjs/.sh 共 2,602 行（构建期 J8 读数 2,686 行，含当时的临时探针；此后探针删除、新增 ledger-refill.mjs 与 check-clean 的 C9、verify.sh 的补记卡一行） | — |
 
 表单密集场景的可延迟重量只有 23.3%（评审页 3.00kB + 回执 1.31kB），说明**「懒加载」条款在本场景的收益上限就摆在那里**；两构建总量差 <3%（L5）复现了上一轮的结论：分包只挪首包，不减总量。
 
@@ -475,15 +475,21 @@ w.close();
 - 写回前快照：`scripts/ledger-snapshot.json`（tried=18 runs=18 styles=54 env=110 seen=19 candidates=44 log=30，updated=2026-09-26T08:18+08:00）。快照本轮新增 `triedCombos`（每条历史 skill×场景的 sha1），因为 I1c 的查重需要「写回前已有哪些组合」，而快照本身只存哈希不存正文 —— 第一版漏了这个键，check-node 直接 `snap.tried.some is not a function` 崩在断言之前。
 - 写回：`FD_LEDGER_UPDATED=… FD_SEEN_STATUS=… node scripts/ledger-apply.mjs`（一次性，重复执行会拒绝）。本轮同时修掉它的一个静默缺陷：消费排队项用的是 `startsWith(QUEUE_HINT)`，而台账的优先项一律以 `★ ` 开头，于是「已消费的排队项」根本没被出队（V11 会红）。改为 `includes` 并补一张复查卡。
 - 补记：新增 `scripts/ledger-refill.mjs` —— 把只能在删掉构建中间物之后才知道的三个字段（artifact_size / cleanup / push）与本轮 TRIED / WORK_LOG_LINE 回灌进台账，写前逐一核对「末条确实属于本轮」，避免手写 JSON 与 `verify-ledger` V3 的全字段 deep-eq 打架。
-- 断言总数：写回前 283（check-node 101 + check-dom 112 + check-browser 70，`bash scripts/verify.sh` 退出码 0），写回后 I 组从 6 条切到 16 条，复跑得 **293**；清理后 `check-clean` 19 条、`verify-ledger` 11 条 → 本轮累计 **323**。
-- 清理：删 `node_modules`（159MB）、`dist`、`dist-plain`、`dist-split`、`.tmp-check`、5 个 `.tmp-probe*` / `.tmp-smoke` 探针（内容转写进 §10）与 4 个转储文件。断言原文读数保留在 `evidence/`（三份 JSON，61,034B）。`check-clean` 本轮改了四处期望值：C1 增加 `dist-plain`、C2 把 `.tmp-*` 一律算残留、C6 改为要求 `styles.html`（见 §4 第 3 条）、C8 从上一轮抄来的 50 个源文件改成本轮的 35 个 —— 最后一条是复制脚手架时留下的，靠复跑才发现。
-- 体积与文件数：清理后 **2.30MB / 64 个文件**（遍历本目录现算 2,416,764B，与 `check-clean` C5 同口径；上限 50MB）。逐项：preview 1,903,400 / scripts 180,100 / src 137,642 / package-lock.json 116,226 / evidence 61,034 / 配置与 styles.html 18,362。构建期 J6 的 2.34MB / 72 个文件是另一口径（含 `.tmp-check/` 断言 JSON 与探针），两者的差就是清理删掉的东西 —— 同一事实只留一处现算值，其余位置引用它。
-- 推送：走 `git@github.com:sunc-Q/frontend-skill.git` 的 main 分支（本机 github.com HTTPS 被 TLS 层重置），known_hosts 写在 `LAB/.tmp/` 并随 `.tmp` 删除；提交身份用内联 `-c user.name/user.email`，不改任何全局 git 配置；命令与文件里没有任何 token。区间：见下一节补记。
+- 断言总数：写回前 283（check-node 101 + check-dom 112 + check-browser 70，`bash scripts/verify.sh` 退出码 0），写回后 I 组从 6 条切到 16 条，复跑得 **293**；清理后 `check-clean` 20 条、`verify-ledger` 12 条 → 本轮累计 **325**。这两张卡在收尾时各长出一条，而且两条都抓到了真东西：
+  - **C9「无孤儿脚本」**：每个 surviving 脚本必须被 `verify.sh` 的某张卡点名（可以是步骤，也可以是「跑在清理之后」那两张注释卡），否则算孤儿。它一跑就红 —— `verify.sh` 的台账卡里没有 `ledger-refill.mjs`，即「本轮新增的收尾卡不在复现文档里」，下一轮照着 `verify.sh` 重建就拿不到回灌字段，只能手改 JSON，而 `verify-ledger` V3 是逐字段 deep-eq，手改必然打架。`verify.sh` 补一行卡片后 20/20 绿。
+  - **V12「候选确实入队」**：报告 §14 写了「已排入台账」，就得由台账自己的复查卡证明，而不是由作者的意图证明。同时它禁止重复排队（集合大小 = 长度）。
+- 清理：删 `node_modules`（159MB）、`dist`、`dist-plain`、`dist-split`、`.tmp-check`、5 个 `.tmp-probe*` / `.tmp-smoke` 探针（内容转写进 §10）与 4 个转储文件。断言原文读数保留在 `evidence/`（三份 JSON，61,034B）。`check-clean` 本轮改了五处期望值：C1 增加 `dist-plain`、C2 把 `.tmp-*` 一律算残留、C6 改为要求 `styles.html`（见 §4 第 3 条）、C8 从上一轮抄来的 50 个源文件改成本轮的 35 个、新增 C9 —— 前四条里 C8 是复制脚手架留下的僵尸期望，靠复跑才发现。
+- 体积与文件数（最后一次现算：64 个文件 / **2,422,797B**，写完本节后 `artifacts/` 内不再改动；本报告与 `records/`、`state/` 在统计范围之外）：preview 1,903,400B/3 · scripts 186,133B/15（13 个 .mjs/.sh = 2,602 行 + `build-inline-meta.json` + `ledger-snapshot.json`）· src 137,642B/35 · package-lock.json 116,226B/1 · evidence 61,034B/3 · 根配置与 `styles.html` 18,362B/7。
+  - 单位口径要说清：`check-clean` C5 用 `bytes/1024²` 打印却写作「MB」，所以它打印的是 **2.31 MiB**，十进制是 2.42MB；上限 50MB 也按同一口径判。本轮把台账与本报告统一改写成「2.31MB / 64 个文件」并把字节数交给 C5 现打印，因为**这个字节数包含 round-facts.mjs 自己** —— 只要字段里硬抄字节，改文案就让它过期（上一轮「报告写 2.38MB、实测 2.39MB」正是手抄；本轮收尾阶段同一数字为了追自己的改动重测了四次）。
+  - 构建期 J6 的 2.34MB / 72 个文件是另一口径（含 `.tmp-check/` 断言 JSON 与探针）。两者之差就是清理删掉的东西 —— 同一事实只留 C5 一处现算值，其余位置引用它并标注口径。
+- 推送：走 `git@github.com:sunc-Q/frontend-skill.git` 的 main 分支（本机 github.com HTTPS 被 TLS 层重置），known_hosts 写在 `LAB/.tmp/` 并随 `.tmp` 删除；提交身份用内联 `-c user.name/user.email`，不改任何全局 git 配置；命令与文件里没有任何 token。区间：主体 commit `4607391`（67 files / 13,062 insertions = 产物目录 64 个文件 + 本报告 + `state.json` + work-log 末行），`c9e0541..4607391` 已推到 origin/main。补记 commit 的内容就是「`RUN.push` 回填 + `NEXT_CANDIDATES`/`ENV_NOTES` 追加 + 本节」，它的区间是 `4607391..<自己的 hash>` —— 正文不能包含自己的 hash，所以收尾后跑 `git log -1 --format=%H origin/main` 读回来的就是右端点；`state.runs[-1].push` 里写的是主体区间与这段说明，`verify-ledger` V10 只要求它已回填且含 `..`。
 
 ---
 
-## 14. 下一轮候选（已排入台账）
+## 14. 下一轮候选
 
-1. ★ 把本轮的「双臂同产物消融」配方移植回 16:00 Vue 轮与 17:00 vercel-react 轮的 memo / 稳定引用条款 —— 只有对照组能判它们值不值一次重构，本轮已经证明「一次击键」不够。
-2. ★ frontend-development × 路由与代码分割密集场景（多页站点/门户）：本轮 23.3% 的收益上限是表单场景的特征，不是条款的；换场景才知道它是否名副其实。
-3. 复测「字段级异步校验参与闸门」在其它技能（vercel-react-best-practices）条款下的可发现性 —— 两轮下来，没有任何一个技能提到过它。
+1. ~~★ 把本轮的「双臂同产物消融」配方移植回 16:00 Vue 轮与 17:00 vercel-react 轮的 memo / 稳定引用条款~~ —— **这条早已在台账排队**（写回前快照 `next_candidates[2]`：「frontend-development 其余绝对化条款的同产物消融：把本轮 ?control=early 配方移植到『memo 化行组件』『queryKey 常量化=稳定引用』两条，并回打 16:00 Vue 分支…」）。本轮实测把它从「想法」升级成「配方」（两臂字节差 22B、7 vs 210 次、blur 反向控制），但**不重复排入队列** —— 台账的查重契约对候选同样成立，重排一条等于把队列当记事本。
+2. ★ frontend-development × 路由与代码分割密集场景（多页站点/门户）：本轮 23.3%（L3b）的收益上限是表单场景的特征，不是条款的；换场景才知道它是否名副其实。→ 已排入台账。
+3. ★ vercel-react-best-practices × 表单密集多步向导：复测「字段级异步校验必须参与步骤闸门」的可发现性 —— 两轮下来没有任何一个技能提到过它。→ 已排入台账。
+
+第 2、3 条由 `scripts/round-facts.mjs` 的 `NEXT_CANDIDATES` 导出、`ledger-refill.mjs` 幂等追加（已在队里就不加），并由 `verify-ledger` V12 反向核对「报告承诺排队的，队列里确实有；且队列无重复」。第 1 条故意不在 `NEXT_CANDIDATES` 里，理由见上。

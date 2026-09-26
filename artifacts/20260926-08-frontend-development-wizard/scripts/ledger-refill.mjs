@@ -13,7 +13,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { RUN, TRIED, WORK_LOG_LINE } from './round-facts.mjs';
+import { RUN, TRIED, WORK_LOG_LINE, NEXT_CANDIDATES, ENV_NOTES } from './round-facts.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LAB = path.resolve(ROOT, '..', '..');
@@ -32,6 +32,12 @@ if (state.tried[state.tried.length - 1].skill !== TRIED.skill) {
   process.exit(1);
 }
 state.tried[state.tried.length - 1] = TRIED;
+// report §14 promises these are queued; enqueue only what isn't already there so a re-run is a no-op
+const enqueued = NEXT_CANDIDATES.filter((c) => !state.next_candidates.includes(c));
+state.next_candidates.push(...enqueued);
+// lessons discovered during cleanup / 补记 (after ledger-apply already ran) are appended the same way
+const newNotes = ENV_NOTES.filter((e) => !state.environment_notes.includes(e));
+state.environment_notes.push(...newNotes);
 writeFileSync(STATE, JSON.stringify(state, null, 2) + '\n', 'utf8');
 
 const lines = readFileSync(LOG, 'utf8').replace(/\n+$/, '').split('\n');
@@ -42,5 +48,6 @@ if (!lines[lines.length - 1]?.includes(TRIED.artifacts)) {
 lines[lines.length - 1] = WORK_LOG_LINE;
 writeFileSync(LOG, lines.join('\n') + '\n', 'utf8');
 console.log(
-  `refilled: runs[-1] ← RUN (artifact_size/cleanup/push), tried[-1] ← TRIED, work-log last line rewritten (${WORK_LOG_LINE.split(' | ').length} segments)`,
+  `refilled: runs[-1] ← RUN (artifact_size/cleanup/push), tried[-1] ← TRIED, work-log last line rewritten (${WORK_LOG_LINE.split(' | ').length} segments), ` +
+    `candidates +${enqueued.length}, environment_notes +${newNotes.length}（幂等：已在台账里的不重复追加）`,
 );
