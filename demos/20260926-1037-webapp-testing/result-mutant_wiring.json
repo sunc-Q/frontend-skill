@@ -1,0 +1,116 @@
+{
+ "mode": "mutant_wiring",
+ "url": "http://127.0.0.1:8138/mutant_wiring.html",
+ "seconds": 31.2,
+ "passed": 12,
+ "failed": 4,
+ "defaults": {
+  "perLane": "1600",
+  "cadence": "0.55",
+  "noiseScale": "0.0035",
+  "flowSpeed": "1.2",
+  "passes": "120",
+  "color1": "#d97757",
+  "color2": "#6a9bcc",
+  "color3": "#788c5d",
+  "seed-input": "20260925"
+ },
+ "results": [
+  {
+   "id": "G1",
+   "name": "served over http + title",
+   "ok": true,
+   "detail": "status=200 title='Cron Organicism — 定时有机主义'"
+  },
+  {
+   "id": "G4",
+   "name": "element discovery (5 range/3 color/1 num)",
+   "ok": true,
+   "detail": "ranges=['perLane', 'cadence', 'noiseScale', 'flowSpeed', 'passes'] colors=['#d97757', '#6a9bcc', '#788c5d'] seed=20260925 buttons=['previousSeed', 'nextSeed', 'randomSeedAndUpdate', 'regenerate', 'resetParameters', 'downloadPNG']"
+  },
+  {
+   "id": "G5",
+   "name": "canvas 1200x1200 and non-blank",
+   "ok": true,
+   "detail": "{\"w\": 1200, \"h\": 1200, \"ink\": 17557, \"sum\": 41350993, \"uniq\": 243, \"red\": 0, \"blue\": 21}"
+  },
+  {
+   "id": "G11a",
+   "name": "wiring: perLane 1600->400 changes drawing",
+   "ok": false,
+   "detail": "ink 17557 -> 17557"
+  },
+  {
+   "id": "G7",
+   "name": "determinism: regenerate twice -> identical",
+   "ok": true,
+   "detail": "[5957, 42435187, 131, 0, 0] == [5957, 42435187, 131, 0, 0]"
+  },
+  {
+   "id": "G8",
+   "name": "nextSeed changes drawing + input",
+   "ok": true,
+   "detail": "seed=20260926 sig [5957, 42435187, 131, 0, 0] -> [6318, 42414382, 103, 0, 0]"
+  },
+  {
+   "id": "G9",
+   "name": "previousSeed restores exact state",
+   "ok": true,
+   "detail": "seed=20260925 sig==baseline-seed-sig: True"
+  },
+  {
+   "id": "G10",
+   "name": "invalid seed reverts, drawing untouched",
+   "ok": true,
+   "detail": "input=20260925 sig unchanged: True"
+  },
+  {
+   "id": "G11b",
+   "name": "wiring: passes 40 -> 220 monotonically inks more",
+   "ok": false,
+   "detail": "ink 5957 -> 5957, uniq 131 -> 131"
+  },
+  {
+   "id": "G12",
+   "name": "wiring: color1=#ff0000 raises strong-red pixels",
+   "ok": true,
+   "detail": "red 0 -> 36"
+  },
+  {
+   "id": "G14",
+   "name": "cadence 0 vs 1 produce different drawings",
+   "ok": false,
+   "detail": "[9788, 42020919, 211, 36, 7] vs [9788, 42020919, 211, 36, 7]"
+  },
+  {
+   "id": "G13",
+   "name": "resetParameters restores all 9 defaults",
+   "ok": true,
+   "detail": "mismatch={}"
+  },
+  {
+   "id": "G15",
+   "name": "downloadPNG -> real 1200x1200 PNG",
+   "ok": true,
+   "detail": "download-mutant_wiring.png 1200x1200 2023119B suggested='cron-organicism-seed-20260925.png'"
+  },
+  {
+   "id": "G2",
+   "name": "zero uncaught page errors",
+   "ok": true,
+   "detail": "0"
+  },
+  {
+   "id": "G3",
+   "name": "zero console errors",
+   "ok": false,
+   "detail": "console=['Failed to load resource: the server responded with a status of 404 (File not found)'] | http=[]"
+  },
+  {
+   "id": "G6",
+   "name": "all 1 requests stay same-origin",
+   "ok": true,
+   "detail": "urls=['127.0.0.1:8138/mutant_wiring.html'] offsite=none"
+  }
+ ]
+}

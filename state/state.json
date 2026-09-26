@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-26T10:26+08:00",
+ "updated": "2026-09-26T10:50+08:00",
  "tried": [
   {
    "skill": "drafter",
@@ -119,6 +119,17 @@
    "time": "2026-09-26T10:21+08:00",
    "artifact": "demos/20260926-1030-golang-testing/maze-solved.txt（1,312B ASCII 迷宫，24x12 格 / 49x25 网格 / 解 225 步）+ coverage.html（12,595B 逐行着色覆盖率页）+ output.log（9,943B）",
    "report": "reports/20260926-1030-golang-testing.md",
+   "installed_by_this_task": []
+  },
+  {
+   "skill": "webapp-testing",
+   "source": "来源②本地已有：git@github.com:anthropics/skills.git（第3轮 shallow+sparse clone）→ LAB/.skills/anthropic-skills/skills/webapp-testing —— 本轮技能包零下载零安装，未碰全局技能目录",
+   "skill_path": "LAB/.skills/anthropic-skills/skills/webapp-testing/SKILL.md（95 行 + scripts/with_server.py 105 行 + examples/ 3 个 .py）",
+   "task": "按它自己的决策树与 reconnaissance-then-action，用自带 scripts/with_server.py（先单服务、后双服务）把第3轮 algorithmic-art 产物 art-index.html 经 HTTP 打开做端到端回归：现场发现控件（5 range/3 color/1 number/6 button，断言不写死默认值）→ 16 条断言读画布像素五元组(ink/通道和/uniq/强红/强蓝) → 真按钮点击与 input/change 事件派发 → expect_download 捕获 p5 saveCanvas 的 PNG 落盘 → 双变异自证（nextSeed 算术清零 / updateParam 删 initializeSystem）",
+   "verdict": "留用（推荐）。前 10 轮反复踩「市场镜像只搬 SKILL.md、丢 scripts/references」，它是**第一个真带可用实现层脚本**的技能：with_server.py --help 黑盒照抄即跑通，单服务与双服务（--server/--port 重复）都可靠，就绪轮询真的挡在命令前，客户端脚本中途崩（SyntaxError）时 finally 仍把 2 个服务停干净（lsof 复核零残留）→ 值得直接吸收进后续任何「起本地服务再验」的轮次（golang-gin-api / pm-dashboard 候选）。16 断言里 golden 15 PASS / 1 FAIL，**唯一 FAIL 是一条只有 HTTP 服务路径才暴露、且前 10 轮 file:// 与纯代码审查看不见的真缺陷**：产物无 <link rel=\"icon\"> → Chrome 自取 /favicon.ico 吃 404（靠 http.server 自己的访问日志定位），一行 data: 修复已 A/B 验证；触发条件是**下载导航而非页面加载**（负对照只加载时 0 error）。两个变异体把故障**局限在正确断言**：mutant_seed 红 G8/G9（+G10 级联），mutant_wiring 红 G11a/G11b/G14 而 **G7/G8/G9 仍绿**；截图层铁证＝mutant_wiring 的 02→03 两张 PNG **sha256 完全相同**(82592a41…) 而 golden 两者不同 ⇒ 拖了滑杆画面根本没重绘。代价：(1) 100% 绑定 Python Playwright，无 Node 降级路径；(2) examples 三个样例（34/39/32 行）全是 file:// 或最小单页，**没有一个示范 console/网络卫生断言或截图比对**，断言层仍要自己补；(3) with_server.py 把服务器 stdout/stderr 接 PIPE 却**从不读取** → http.server 访问日志（本轮恰恰靠它定位 404）被吞，要拿日志只能另起服务自留。",
+   "time": "2026-09-26T10:50+08:00",
+   "artifact": "demos/20260926-1037-webapp-testing/download-golden.png（2,023,119B / 1200x1200 真 PNG，由页面自己的 downloadPNG() 经 Playwright 捕获落盘，sha256 9740465f…66e7513，四次运行同摘要）+ shots/ 4 张 golden 画布截图 + shots-mutant-wiring/ 2 张（同哈希铁证）+ output.log（三套 16 断言原文 + 服务端 404 日志 + A/B + 哈希对照）+ result-*.json ×3",
+   "report": "reports/20260926-1037-webapp-testing.md",
    "installed_by_this_task": []
   }
  ],
@@ -405,18 +416,33 @@
   },
   {
    "name": "anthropics/skills 的 webapp-testing / docx / canvas-design / theme-factory / brand-guidelines / mcp-builder",
-   "status": "candidate",
-   "note": "零 clone 成本（第 3 轮已 clone 在 LAB/.skills/anthropic-skills）。webapp-testing 有真实现层（Playwright 脚本），是「带脚本技能」的首选下一个；docx 需 python-docx（aliyun pip 镜像已两轮验证）、产物受本机无 LibreOffice 限制。"
+   "status": "candidate（webapp-testing 已于第11轮做完并留用；docx/canvas-design/theme-factory/brand-guidelines/mcp-builder 仍未试）",
+   "note": "零 clone 成本（第 3 轮已 clone 在 LAB/.skills/anthropic-skills）。webapp-testing 有真实现层（Playwright 脚本），是「带脚本技能」的首选下一个；docx 需 python-docx（aliyun pip 镜像已两轮验证）、产物受本机无 LibreOffice 限制。 | 第11轮已用 webapp-testing：它的 with_server.py 是历轮唯一开箱可用的技能脚本，Python Playwright 路线见 environment_notes 的 pip 条目。"
+  },
+  {
+   "name": "webapp-testing",
+   "source": "Qoder 官方扩展市场未搜 / 来源②：anthropics/skills 官方仓库（已 clone 在 LAB/.skills/，无需安装）",
+   "url": "github.com/anthropics/skills/tree/main/skills/webapp-testing",
+   "status": "installed_used — 第11轮已用并留用，勿再选",
+   "note": "**技能自带实现层且跑得通**（scripts/with_server.py 105 行 + examples 3 个）。后续若要做「起本地服务再验」的轮次（golang-gin-api、pm-dashboard、webapp 类产物回归），直接复用它的 helper，别自己写 server 生命周期。"
+  },
+  {
+   "name": "Python Playwright（本机可用运行时，非技能）",
+   "source": "pip --target + 系统 Chrome",
+   "url": "",
+   "status": "working_source",
+   "note": "**打开 Python 生态的门，推翻历轮「依赖 pip 的技能先当不可用」**：`python3 -m pip install --target LAB/.tmp/pylibs --no-cache-dir --index-url https://mirrors.aliyun.com/pypi/simple playwright` → playwright 1.63.0（含 greenlet/pyee）**6.1 秒**；随后 `chromium.launch(headless=True, executable_path='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', args=['--no-sandbox','--disable-gpu','--hide-scrollbars'])` —— **绝不要跑 `playwright install`**（浏览器 CDN 被 TLS 重置）。目录 140MB，收尾删。→ canvas-design / slack-gif-creator / pdf-* 全家桶 / docx 等候选全部重开。"
   }
  ],
  "in_progress": [],
  "next_candidates": [
-  "★anthropics/skills 的 webapp-testing（已在 LAB/.skills/anthropic-skills/skills/，零下载）× 给第 7 轮 frostlight-gather.html 跑端到端回归（playwright-core npmmirror + 系统 Chrome + swiftshader 配方已三轮验证）——它**带真实现层脚本**，是「脚本型技能」的第一个候选；沿用本轮双变异范式验证它的断言不是摆设",
-  "golang-gin-api（本机已装）× 最小 Gin REST 服务 + httptest 表驱动测试 —— 前提：先验证 `GOPROXY=https://goproxy.cn,direct go mod download github.com/gin-gonic/gin` 真的能拉下来（第 10 轮纯 stdlib，**goproxy.cn 通路至今未实测**）。产物=可 curl 的本地服务（端口按 lsof 找 PID 收尾 kill，限 LAB 内）",
-  "golangci-lint-strict（本机已装）—— 需 golangci-lint 二进制；Go 装二进制走 goproxy.cn（同上未实测），失败就记 blocked",
-  "diegosouzapw-2000s-visualization-expert（official_koPDvcdI，WebGL+Web Audio FFT 音乐可视化）—— 自造 WAV 喂 AnalyserNode + playwright swiftshader 真截图；产物是一类新东西（音频驱动视觉），但要过一遍第三方包安全闸门",
-  "市场未探词根：'maze' / 'labyrinth' / 'regex' / 'cron' / 'diff' / 'calendar' / 'font' / 'shader' / 'pixel-art'（search_extensions 参数名 query，单个英文词根最有效）",
-  "SQLite-Database-Expert 第 4 轮的 FTS5/trigram 结论可复用：若做「检索类」产物，直接用 node:sqlite，零安装"
+  "★来源②未试：anthropics/skills 的 **docx**（Word 文档生成，第5/9轮已验证 openpyxl/python-pptx 路线，本轮又打通 pip → 门槛大降）——产物 .docx 是一类新东西（办公文档第二形态），依赖 python-docx（纯 python 包，pip 镜像秒装）",
+  "★anthropics/skills 的 **canvas-design**（设计画布→PNG/PDF，需 Pillow）——第11轮 pip 路线打通后 Pillow 已不再是拦路虎；产物是视觉类，但注意与第6轮 GIF / 第3轮生成艺术同类",
+  "theme-factory（给既有产物套 10 套主题，纯提示词零依赖）——但产物类型会退化成 HTML，与第1/3轮同类，优先级低于 docx",
+  "diegosouzapw-2000s-visualization-expert（official_koPDvcdI，WebGL+Web Audio FFT 音乐可视化）——现在可用 Python Playwright + 系统 Chrome 真出帧，自造 WAV 喂 AnalyserNode；仍是「音频驱动视觉」这一类新产物",
+  "golang-gin-api（本机已装）× 最小 Gin REST 服务 + httptest 表驱动测试 —— goproxy.cn 通路至今未实测；**服务生命周期可直接借 webapp-testing 的 with_server.py 托管**（第11轮已验证）",
+  "市场未探词根：'maze' / 'regex' / 'cron' / 'diff' / 'calendar' / 'font' / 'shader' / 'pixel-art' / 'docx' / 'word'（search_extensions 参数名 query，单个英文词根最有效）",
+  "（方法学沿用）双变异自证 + 「侦察快照取期望值，别写死默认值」+ 「网络卫生断言必须同时看服务端访问日志」"
  ],
  "used_artifact_kinds": [
   "单文件自包含 HTML 图表（工程图纸）×1",
@@ -428,7 +454,8 @@
   "可交互 3D 网页游戏单文件 HTML（.html 750KB：three r160 + 5 pass 后处理链全内联，零外链零网络请求，file:// 双击即玩；23 条断言含「实测滞空 0.633s vs 理论 2v/g 0.662s」「改 vignette→像素 −26%」两级物理/渲染反证）×1",
   "分级安全审计报告 .md（OWASP 对齐，13 条有效发现/18 条误报分诊）+ findings.json 规则命中 + 3 组黑盒 PoC 前后对照 output.log + integrity-manifest.json（sha256 自证）+ 已回归的修复件 query.fixed.mjs ×1",
   "可重算 Excel 工作簿 .xlsx（15,360B：3 sheet / 98 个活公式 / 原生 chart1.xml 柱状图 / 25 条批注；用第三方公式引擎 formulas 重算并与 Python 独立重算逐格比对，49 断言全绿）×1",
-  "Go 测试工程产物：ASCII 迷宫 .txt（24x12 / 解 225 步，肉眼可核对）+ go test -v 真实日志 output.log（29 PASS / 4 故意 FAIL 的双变异）+ go tool cover 逐函数覆盖率 73.3% + coverage.html 可打开着色页 + 4 行基准数据 + 3 个 golden 文件 ×1"
+  "Go 测试工程产物：ASCII 迷宫 .txt（24x12 / 解 225 步，肉眼可核对）+ go test -v 真实日志 output.log（29 PASS / 4 故意 FAIL 的双变异）+ go tool cover 逐函数覆盖率 73.3% + coverage.html 可打开着色页 + 4 行基准数据 + 3 个 golden 文件 ×1",
+  "端到端回归测试产物：真 PNG 截图 4+2 张（含「两张同哈希＝滑杆失灵」的铁证）+ 16 条断言三套运行日志 + p5 downloadPNG() 捕获落盘的 1200×1200 / 2,023,119B 原始 PNG + 服务端访问日志证据链 ×1"
  ],
  "environment_notes": [
   "本任务运行在 Full Access 下：install_extension 不触发用户确认闸门，可直接自动安装官方市场技能（与兄弟实验室在 auto 模式下的结论相反）。installRef 约 60 秒过期，必须现搜现装。",
@@ -459,7 +486,7 @@
   "★ Python 依赖路线打通（第 5 轮，推翻第 4 轮结论）：pip3 的 shim 坏了（sandbox 里没有 realpath → `python3.14: No such file or directory`），但 `python3 -m pip install --target <LAB>/.tmp/pylibs --index-url https://pypi.tuna.tsinghua.edu.cn/simple <pkg>` 完全可用：清华源实测 HTTP 200，python-pptx(+lxml/Pillow，cp314 wheel) 32MB / 6.1s。用 PYTHONPATH=$LAB/.tmp/pylibs 运行，收尾删目录，全局 site-packages 不污染。→ 依赖 Pillow/openpyxl 的技能重新变成可选。",
   "★ extension-market 的 origin 标签不是可靠判据：origin:skillatlas 的 official_79e7IlJQ(svg-ppt-generator) 本轮一次装成，与前两轮『skillatlas/modelscope 高概率 EXTENSION_SKILL_FRONTMATTER_INVALID』的概括相反。只能逐条试，别按 origin 提前排除候选。",
   "SVG 类产物在本环境反而好验：viewport 0×0 不影响 SVG 用户坐标与 getBBox，量一次文本右端/柱高就是确定性证据，不需要前几轮的离屏容器与像素直方图。但 evaluate_script 仍 15s 超时——一次调用里别循环 30+ 次 getBBox 还塞 IIFE；先过滤再算，超时后补一次只读探针。",
-  "技能自带的『质量闸门』会给假通过：ppt-generator 的 svg_quality_checker.py 只查 §X 语法禁令，不查它 design_spec §II 自己定的 60px 边距（实测越界 28px 仍 [OK]）。凡是『跑它的 checker 全绿』都不算验完，必须再叠一层独立断言（本轮：PPTX 结构 13 条 + 浏览器 getBBox）。",
+  "技能自带的『质量闸门』会给假通过：ppt-generator 的 svg_quality_checker.py 只查 §X 语法禁令，不查它 design_spec §II 自己定的 60px 边距（实测越界 28px 仍 [OK]）。凡是『跑它的 checker 全绿』都不算验完，必须再叠一层独立断言（本轮：PPTX 结构 13 条 + 浏览器 getBBox）。 | **第11轮同类命中且更普遍**：Playwright 的 page.on('response') 对浏览器级 favicon 取回完全盲（本轮服务端日志有 404、监听器零记录）→ 只要产物经 HTTP 服务，网络/错误断言必须把**服务端访问日志**并进来收，不能只信自动化框架。",
   "磁盘开工水位：可用 20329292 KB ≈ 19.4 GiB（>1.5 GiB 阈值）。本轮 demos 100KB（限 5MB），LAB 约 18MB（含 .skills 16MB、.tmp/pylibs 32MB 均 gitignored，后者收尾已删）。",
   "★真截图能力打开（第 6 轮）：前五轮被『browser-use 面板 hidden / take_screenshot 不可用』限制成只用计算样式。实际上本机有 /Applications/Google Chrome.app，用 playwright-core（npm i --registry=https://registry.npmmirror.com playwright-core，纯 JS 包 2s，**不要装 playwright、不要下载浏览器**）+ chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', args:['--no-sandbox','--disable-gpu','--hide-scrollbars','--force-color-profile=srgb']}) + newPage({viewport:{width:800,height:800}}) 即可定宽逐帧截图；file:// 页面直接 page.goto 可用（截图不依赖 ESM）。48 帧 capture+screenshot+ffmpeg 编码 = 7 秒。",
   "ffmpeg 在 /Users/apple/.local/bin/ffmpeg（gifsicle/ImageMagick/rsvg-convert 均缺失）。CSS→GIF 两遍调色板命令：ffmpeg -y -framerate 12 -i frames/f%03d.png -vf 'scale=800:800:flags=lanczos,palettegen=stats_mode=diff' palette.png && ffmpeg -y -framerate 12 -i frames/f%03d.png -i palette.png -lavfi 'scale=800:800:flags=lanczos[x];[x][1:v]paletteuse=dither=bayer:bayer_scale=5' -loop 0 animation.gif",
@@ -497,7 +524,14 @@
   "★LAB 相对路径坑（本轮真实代价）：demo 目录是 LAB/demos/<run>，`cd ../../..` 会多退一层落到工作区上级，把 86MB GOCACHE 与 2.6MB 二进制写进 试验/.tmp。任何脚本求 LAB 一律 `LAB=$(cd ../.. && pwd)`（从 demos/<run> 起），收尾必须 `ls 上级目录` 确认没留下也没误删兄弟实验室的文件。",
   "表驱动断言先算例再写期望：迷宫类产物里「地板格数 = 2·cells−1、渲染再被 S/E 覆写 2 格 → '.' 数 = 2·cells−3」，凭直觉写 countOpen(cells) 会让 4 条断言全错。第一版就是这么错的（教训同第 9 轮「一个断言只比 3 列里的 2 列」）。",
   "磁盘开工水位：可用 17,919,900 KB ≈ 17.1 GiB（>1.5 GiB 阈值）。收尾本轮 demos 92KB（限 5MB）、LAB 约 22MB、磁盘可用 17,916,332 KB ≈ 17.1 GiB。清理：LAB/.tmp/{gocache,gopath,maze} 与误建的 试验/.tmp 全部删除，known_hosts 保留（gitignored）。**全局副作用 = 无**（零技能安装、零服务、零全局配置改动）。",
-  "宿主时钟：本轮 10:12 开工 → 10:21 记录，与第 9 轮（09:56）之间不足 30 分钟即被调度，轮次标识一律取开工时刻。"
+  "宿主时钟：本轮 10:12 开工 → 10:21 记录，与第 9 轮（09:56）之间不足 30 分钟即被调度，轮次标识一律取开工时刻。",
+  "★第11轮：Python Playwright 在本机可用且**不需要下载浏览器** —— pip 镜像装 playwright 1.63.0 到 LAB/.tmp/pylibs（6.1s，目录 140MB，收尾删），launch 时 executable_path 直指 /Applications/Google Chrome.app 即可。此前「无 pip / 无 PIL → 依赖 Python 的技能先当不可用」的限制作废（第5轮的 --target 路线本就通了，本轮补上浏览器这条腿）。",
+  "第11轮：Playwright 的 page.on('request'/'response') **看不到浏览器自己发起的 /favicon.ico 取回**（本轮 16 次事件里只有 1 条文档请求、零 >=400 响应，而服务端访问日志明明白白记着 GET /favicon.ico 404）。⇒ 任何「零外链/网络卫生」断言，只要产物经 HTTP 服务，就必须同时收 http.server 的访问日志；技能自带的 with_server.py 把该日志接成 PIPE 且从不读取，要自己起服务并重定向到文件。",
+  "第11轮：无 <link rel=\"icon\"> 的 HTML 产物，**404 只在被 HTTP 服务且发生下载导航时出现**（file:// 与纯加载都 0 error）→ 历轮 file:// 验收天然看不见这类缺陷。一行修复 `<link rel=\"icon\" href=\"data:,\">` 已 A/B 证验（ab_favicon_fix.py）。",
+  "第11轮：Playwright 三个 API 细节 —— (1) page.fill() 对 input[type=number] 抛 `Cannot type text into input[type=number]`，要改 el.value + dispatch_event('change')；(2) page.evaluate 里 JS 箭头函数**解构实参必须加括号** `([a,b]) => {}`，漏括号是 `Malformed arrow function parameter list` 且整轮中断；(3) locator().screenshot() 量的是 CSS 显示盒（≤1000px）而非 canvas 原始分辨率，原始分辨率要另走 download/save 捕获。",
+  "第11轮：**「同哈希截图」是判定「控件失灵/未重绘」的最硬证据**，比像素统计五元组更省话——本轮 mutant_wiring 的 02→03 两张 PNG sha256 完全相同，而 golden 两者不同。元素级截图（无侧栏噪声、单张 300-460KB）适合直接入 git 当证据。",
+  "第11轮：变异测试的「级联」要预告而非当 bug —— nextSeed 算术清零这一条变异同时让 G10（非法种子回滚）红，因为种子已漂移到别的值、断言的期望值不再成立。判故障范围看**哪些断言仍绿**（mutant_wiring 的 G7/G8/G9 全绿才是它定位成功的证据），不能只数红条。",
+  "磁盘开工水位：可用 17,907,872 KB ≈ 17.1 GiB（>1.5 GiB 阈值）；收尾 17,795,988 KB ≈ 17.0 GiB。本轮 demos 4.0MiB（限 5MB），LAB 收尾 26MB（含 .skills 16MB 与 .tmp 未入库）。"
  ],
  "runs": [
   {
@@ -635,6 +669,16 @@
    "cleanup": "已删 LAB/.tmp/{gocache(86MB),gopath(未生成),maze(2.6MB)} 与因路径 bug 误建在工作区上级的 试验/.tmp/{gocache,maze}（先 ls 核对 owner 与 mtime 再删）；demos 内保留源码+产物+日志，无 node_modules、无二进制、无临时文件；全局 ~/Library/Caches/go-build 未动；本轮未起任何监听端口（lsof 复核）",
    "push": "已推送：`git push origin skill-showcase` 成功（f5b2515..e6dab0f，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 f5b2515 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(c9e0541) / go-gin_react(b8fe3fd) / crypto-forecast(不存在，未创建) 均未触碰；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token（staged diff 先按凭据形状扫过：ghp_/AKIA/sk-/PRIVATE KEY/password=/token= 零命中）",
    "notes": "第 10 轮零安装、零下载、零网络（纯 stdlib Go）、零服务、零全局配置改动。最大方法学增量：把「双变异测试」（值变异 + 结构变异）当成规范型技能的验收闸门——实测证明值变异只有 golden 抓到、结构变异被 3 条不变量同时抓到，二者缺一即假通过。踩坑 5 条已写进 environment_notes（反引号被 sh 命令替换导致基准静默空跑、cover -html 是文字色非背景色、LAB 相对路径退多一层把 86MB 缓存写到工作区上级、表驱动期望值要先手推 5x5 小图、go vet 不检查 build-tag 文件）。"
+  },
+  {
+   "time": "2026-09-26T10:50+08:00",
+   "skill": "webapp-testing",
+   "result": "PASS（golden 15/16；1 FAIL 是真缺陷已定位+一行修复A/B验证；mutant_seed 红3条、mutant_wiring 红3条且定位正确）",
+   "seconds": 780,
+   "artifact_size": "4,292,608 B（du -sk 4192）",
+   "cleanup": "删 .tmp/pylibs(140MB playwright) + .tmp/serve(5.7MB 变异副本) + 4 个重复下载的 PNG + shots-mutants 冗余；技能包零安装（clone 早在第3轮）；未起任何常驻服务，8137/8138/8139/8141/8142/8151/8152 全部回收（lsof 复核零监听）；全局缓存未动",
+   "push": "pending",
+   "notes": "第11轮=第一个自带可用实现层脚本的技能（with_server.py 单/双服务都可靠，客户端崩了也清理干净）。最大环境增量：Python Playwright + 系统 Chrome 路线打通（不需下载浏览器）→ 依赖 pip/Pillow 的候选重新变为可选。最大方法学增量：Playwright 看不见 favicon 类浏览器级请求，网络卫生断言必须收服务端访问日志。"
   }
  ]
 }

@@ -1,0 +1,451 @@
+[PASS] G1    served over http + title                       status=200 title='Cron Organicism — 定时有机主义'
+[PASS] G4    element discovery (5 range/3 color/1 num)      ranges=['perLane', 'cadence', 'noiseScale', 'flowSpeed', 'passes'] colors=['#d97757', '#6a9bcc', '#788c5d'] seed=20260925 buttons=['previousSeed', 'nextSeed', 'randomSeedAndUpdate', 'regenerate', 'resetParameters', 'downloadPNG']
+[PASS] G5    canvas 1200x1200 and non-blank                 {"w": 1200, "h": 1200, "ink": 17557, "sum": 41350993, "uniq": 243, "red": 0, "blue": 21}
+[PASS] G11a  wiring: perLane 1600->400 changes drawing      ink 17557 -> 5957
+[PASS] G7    determinism: regenerate twice -> identical     [5957, 42435187, 131, 0, 0] == [5957, 42435187, 131, 0, 0]
+[PASS] G8    nextSeed changes drawing + input               seed=20260926 sig [5957, 42435187, 131, 0, 0] -> [6318, 42414382, 103, 0, 0]
+[PASS] G9    previousSeed restores exact state              seed=20260925 sig==baseline-seed-sig: True
+[PASS] G10   invalid seed reverts, drawing untouched        input=20260925 sig unchanged: True
+[PASS] G11b  wiring: passes 40 -> 220 monotonically inks more ink 2212 -> 9218, uniq 59 -> 209
+[PASS] G12   wiring: color1=#ff0000 raises strong-red pixels red 0 -> 36
+[PASS] G14   cadence 0 vs 1 produce different drawings      [9173, 42058400, 233, 65, 5] vs [10408, 41986329, 223, 24, 0]
+[PASS] G13   resetParameters restores all 9 defaults        mismatch={}
+[PASS] G15   downloadPNG -> real 1200x1200 PNG              download-golden.png 1200x1200 2023119B suggested='cron-organicism-seed-20260925.png'
+[PASS] G2    zero uncaught page errors                      0
+[FAIL] G3    zero console errors                            console=['Failed to load resource: the server responded with a status of 404 (File not found)'] | http=[]
+[PASS] G6    all 1 requests stay same-origin                urls=['127.0.0.1:8137/art-index.html'] offsite=none
+{
+ "mode": "golden",
+ "url": "http://127.0.0.1:8137/art-index.html",
+ "seconds": 36.4,
+ "passed": 15,
+ "failed": 1,
+ "defaults": {
+  "perLane": "1600",
+  "cadence": "0.55",
+  "noiseScale": "0.0035",
+  "flowSpeed": "1.2",
+  "passes": "120",
+  "color1": "#d97757",
+  "color2": "#6a9bcc",
+  "color3": "#788c5d",
+  "seed-input": "20260925"
+ },
+ "results": [
+  {
+   "id": "G1",
+   "name": "served over http + title",
+   "ok": true,
+   "detail": "status=200 title='Cron Organicism — 定时有机主义'"
+  },
+  {
+   "id": "G4",
+   "name": "element discovery (5 range/3 color/1 num)",
+   "ok": true,
+   "detail": "ranges=['perLane', 'cadence', 'noiseScale', 'flowSpeed', 'passes'] colors=['#d97757', '#6a9bcc', '#788c5d'] seed=20260925 buttons=['previousSeed', 'nextSeed', 'randomSeedAndUpdate', 'regenerate', 'resetParameters', 'downloadPNG']"
+  },
+  {
+   "id": "G5",
+   "name": "canvas 1200x1200 and non-blank",
+   "ok": true,
+   "detail": "{\"w\": 1200, \"h\": 1200, \"ink\": 17557, \"sum\": 41350993, \"uniq\": 243, \"red\": 0, \"blue\": 21}"
+  },
+  {
+   "id": "G11a",
+   "name": "wiring: perLane 1600->400 changes drawing",
+   "ok": true,
+   "detail": "ink 17557 -> 5957"
+  },
+  {
+   "id": "G7",
+   "name": "determinism: regenerate twice -> identical",
+   "ok": true,
+   "detail": "[5957, 42435187, 131, 0, 0] == [5957, 42435187, 131, 0, 0]"
+  },
+  {
+   "id": "G8",
+   "name": "nextSeed changes drawing + input",
+   "ok": true,
+   "detail": "seed=20260926 sig [5957, 42435187, 131, 0, 0] -> [6318, 42414382, 103, 0, 0]"
+  },
+  {
+   "id": "G9",
+   "name": "previousSeed restores exact state",
+   "ok": true,
+   "detail": "seed=20260925 sig==baseline-seed-sig: True"
+  },
+  {
+   "id": "G10",
+   "name": "invalid seed reverts, drawing untouched",
+   "ok": true,
+   "detail": "input=20260925 sig unchanged: True"
+  },
+  {
+   "id": "G11b",
+   "name": "wiring: passes 40 -> 220 monotonically inks more",
+   "ok": true,
+   "detail": "ink 2212 -> 9218, uniq 59 -> 209"
+  },
+  {
+   "id": "G12",
+   "name": "wiring: color1=#ff0000 raises strong-red pixels",
+   "ok": true,
+   "detail": "red 0 -> 36"
+  },
+  {
+   "id": "G14",
+   "name": "cadence 0 vs 1 produce different drawings",
+   "ok": true,
+   "detail": "[9173, 42058400, 233, 65, 5] vs [10408, 41986329, 223, 24, 0]"
+  },
+  {
+   "id": "G13",
+   "name": "resetParameters restores all 9 defaults",
+   "ok": true,
+   "detail": "mismatch={}"
+  },
+  {
+   "id": "G15",
+   "name": "downloadPNG -> real 1200x1200 PNG",
+   "ok": true,
+   "detail": "download-golden.png 1200x1200 2023119B suggested='cron-organicism-seed-20260925.png'"
+  },
+  {
+   "id": "G2",
+   "name": "zero uncaught page errors",
+   "ok": true,
+   "detail": "0"
+  },
+  {
+   "id": "G3",
+   "name": "zero console errors",
+   "ok": false,
+   "detail": "console=['Failed to load resource: the server responded with a status of 404 (File not found)'] | http=[]"
+  },
+  {
+   "id": "G6",
+   "name": "all 1 requests stay same-origin",
+   "ok": true,
+   "detail": "urls=['127.0.0.1:8137/art-index.html'] offsite=none"
+  }
+ ]
+}
+[PASS] G1    served over http + title                       status=200 title='Cron Organicism — 定时有机主义'
+[PASS] G4    element discovery (5 range/3 color/1 num)      ranges=['perLane', 'cadence', 'noiseScale', 'flowSpeed', 'passes'] colors=['#d97757', '#6a9bcc', '#788c5d'] seed=20260925 buttons=['previousSeed', 'nextSeed', 'randomSeedAndUpdate', 'regenerate', 'resetParameters', 'downloadPNG']
+[PASS] G5    canvas 1200x1200 and non-blank                 {"w": 1200, "h": 1200, "ink": 17557, "sum": 41350993, "uniq": 243, "red": 0, "blue": 21}
+[PASS] G11a  wiring: perLane 1600->400 changes drawing      ink 17557 -> 5957
+[PASS] G7    determinism: regenerate twice -> identical     [5957, 42435187, 131, 0, 0] == [5957, 42435187, 131, 0, 0]
+[FAIL] G8    nextSeed changes drawing + input               seed=20260925 sig [5957, 42435187, 131, 0, 0] -> [5957, 42435187, 131, 0, 0]
+[FAIL] G9    previousSeed restores exact state              seed=20260924 sig==baseline-seed-sig: False
+[FAIL] G10   invalid seed reverts, drawing untouched        input=20260924 sig unchanged: False
+[PASS] G11b  wiring: passes 40 -> 220 monotonically inks more ink 2183 -> 9442, uniq 54 -> 192
+[PASS] G12   wiring: color1=#ff0000 raises strong-red pixels red 0 -> 34
+[PASS] G14   cadence 0 vs 1 produce different drawings      [9038, 42083233, 211, 68, 2] vs [10135, 42001177, 213, 19, 1]
+[PASS] G13   resetParameters restores all 9 defaults        mismatch={}
+[PASS] G15   downloadPNG -> real 1200x1200 PNG              download-mutant_seed.png 1200x1200 2023119B suggested='cron-organicism-seed-20260925.png'
+[PASS] G2    zero uncaught page errors                      0
+[FAIL] G3    zero console errors                            console=['Failed to load resource: the server responded with a status of 404 (File not found)'] | http=[]
+[PASS] G6    all 1 requests stay same-origin                urls=['127.0.0.1:8138/mutant_seed.html'] offsite=none
+{
+ "mode": "mutant_seed",
+ "url": "http://127.0.0.1:8138/mutant_seed.html",
+ "seconds": 36.8,
+ "passed": 12,
+ "failed": 4,
+ "defaults": {
+  "perLane": "1600",
+  "cadence": "0.55",
+  "noiseScale": "0.0035",
+  "flowSpeed": "1.2",
+  "passes": "120",
+  "color1": "#d97757",
+  "color2": "#6a9bcc",
+  "color3": "#788c5d",
+  "seed-input": "20260925"
+ },
+ "results": [
+  {
+   "id": "G1",
+   "name": "served over http + title",
+   "ok": true,
+   "detail": "status=200 title='Cron Organicism — 定时有机主义'"
+  },
+  {
+   "id": "G4",
+   "name": "element discovery (5 range/3 color/1 num)",
+   "ok": true,
+   "detail": "ranges=['perLane', 'cadence', 'noiseScale', 'flowSpeed', 'passes'] colors=['#d97757', '#6a9bcc', '#788c5d'] seed=20260925 buttons=['previousSeed', 'nextSeed', 'randomSeedAndUpdate', 'regenerate', 'resetParameters', 'downloadPNG']"
+  },
+  {
+   "id": "G5",
+   "name": "canvas 1200x1200 and non-blank",
+   "ok": true,
+   "detail": "{\"w\": 1200, \"h\": 1200, \"ink\": 17557, \"sum\": 41350993, \"uniq\": 243, \"red\": 0, \"blue\": 21}"
+  },
+  {
+   "id": "G11a",
+   "name": "wiring: perLane 1600->400 changes drawing",
+   "ok": true,
+   "detail": "ink 17557 -> 5957"
+  },
+  {
+   "id": "G7",
+   "name": "determinism: regenerate twice -> identical",
+   "ok": true,
+   "detail": "[5957, 42435187, 131, 0, 0] == [5957, 42435187, 131, 0, 0]"
+  },
+  {
+   "id": "G8",
+   "name": "nextSeed changes drawing + input",
+   "ok": false,
+   "detail": "seed=20260925 sig [5957, 42435187, 131, 0, 0] -> [5957, 42435187, 131, 0, 0]"
+  },
+  {
+   "id": "G9",
+   "name": "previousSeed restores exact state",
+   "ok": false,
+   "detail": "seed=20260924 sig==baseline-seed-sig: False"
+  },
+  {
+   "id": "G10",
+   "name": "invalid seed reverts, drawing untouched",
+   "ok": false,
+   "detail": "input=20260924 sig unchanged: False"
+  },
+  {
+   "id": "G11b",
+   "name": "wiring: passes 40 -> 220 monotonically inks more",
+   "ok": true,
+   "detail": "ink 2183 -> 9442, uniq 54 -> 192"
+  },
+  {
+   "id": "G12",
+   "name": "wiring: color1=#ff0000 raises strong-red pixels",
+   "ok": true,
+   "detail": "red 0 -> 34"
+  },
+  {
+   "id": "G14",
+   "name": "cadence 0 vs 1 produce different drawings",
+   "ok": true,
+   "detail": "[9038, 42083233, 211, 68, 2] vs [10135, 42001177, 213, 19, 1]"
+  },
+  {
+   "id": "G13",
+   "name": "resetParameters restores all 9 defaults",
+   "ok": true,
+   "detail": "mismatch={}"
+  },
+  {
+   "id": "G15",
+   "name": "downloadPNG -> real 1200x1200 PNG",
+   "ok": true,
+   "detail": "download-mutant_seed.png 1200x1200 2023119B suggested='cron-organicism-seed-20260925.png'"
+  },
+  {
+   "id": "G2",
+   "name": "zero uncaught page errors",
+   "ok": true,
+   "detail": "0"
+  },
+  {
+   "id": "G3",
+   "name": "zero console errors",
+   "ok": false,
+   "detail": "console=['Failed to load resource: the server responded with a status of 404 (File not found)'] | http=[]"
+  },
+  {
+   "id": "G6",
+   "name": "all 1 requests stay same-origin",
+   "ok": true,
+   "detail": "urls=['127.0.0.1:8138/mutant_seed.html'] offsite=none"
+  }
+ ]
+}
+[PASS] G1    served over http + title                       status=200 title='Cron Organicism — 定时有机主义'
+[PASS] G4    element discovery (5 range/3 color/1 num)      ranges=['perLane', 'cadence', 'noiseScale', 'flowSpeed', 'passes'] colors=['#d97757', '#6a9bcc', '#788c5d'] seed=20260925 buttons=['previousSeed', 'nextSeed', 'randomSeedAndUpdate', 'regenerate', 'resetParameters', 'downloadPNG']
+[PASS] G5    canvas 1200x1200 and non-blank                 {"w": 1200, "h": 1200, "ink": 17557, "sum": 41350993, "uniq": 243, "red": 0, "blue": 21}
+[FAIL] G11a  wiring: perLane 1600->400 changes drawing      ink 17557 -> 17557
+[PASS] G7    determinism: regenerate twice -> identical     [5957, 42435187, 131, 0, 0] == [5957, 42435187, 131, 0, 0]
+[PASS] G8    nextSeed changes drawing + input               seed=20260926 sig [5957, 42435187, 131, 0, 0] -> [6318, 42414382, 103, 0, 0]
+[PASS] G9    previousSeed restores exact state              seed=20260925 sig==baseline-seed-sig: True
+[PASS] G10   invalid seed reverts, drawing untouched        input=20260925 sig unchanged: True
+[FAIL] G11b  wiring: passes 40 -> 220 monotonically inks more ink 5957 -> 5957, uniq 131 -> 131
+[PASS] G12   wiring: color1=#ff0000 raises strong-red pixels red 0 -> 36
+[FAIL] G14   cadence 0 vs 1 produce different drawings      [9788, 42020919, 211, 36, 7] vs [9788, 42020919, 211, 36, 7]
+[PASS] G13   resetParameters restores all 9 defaults        mismatch={}
+[PASS] G15   downloadPNG -> real 1200x1200 PNG              download-mutant_wiring.png 1200x1200 2023119B suggested='cron-organicism-seed-20260925.png'
+[PASS] G2    zero uncaught page errors                      0
+[FAIL] G3    zero console errors                            console=['Failed to load resource: the server responded with a status of 404 (File not found)'] | http=[]
+[PASS] G6    all 1 requests stay same-origin                urls=['127.0.0.1:8138/mutant_wiring.html'] offsite=none
+{
+ "mode": "mutant_wiring",
+ "url": "http://127.0.0.1:8138/mutant_wiring.html",
+ "seconds": 31.2,
+ "passed": 12,
+ "failed": 4,
+ "defaults": {
+  "perLane": "1600",
+  "cadence": "0.55",
+  "noiseScale": "0.0035",
+  "flowSpeed": "1.2",
+  "passes": "120",
+  "color1": "#d97757",
+  "color2": "#6a9bcc",
+  "color3": "#788c5d",
+  "seed-input": "20260925"
+ },
+ "results": [
+  {
+   "id": "G1",
+   "name": "served over http + title",
+   "ok": true,
+   "detail": "status=200 title='Cron Organicism — 定时有机主义'"
+  },
+  {
+   "id": "G4",
+   "name": "element discovery (5 range/3 color/1 num)",
+   "ok": true,
+   "detail": "ranges=['perLane', 'cadence', 'noiseScale', 'flowSpeed', 'passes'] colors=['#d97757', '#6a9bcc', '#788c5d'] seed=20260925 buttons=['previousSeed', 'nextSeed', 'randomSeedAndUpdate', 'regenerate', 'resetParameters', 'downloadPNG']"
+  },
+  {
+   "id": "G5",
+   "name": "canvas 1200x1200 and non-blank",
+   "ok": true,
+   "detail": "{\"w\": 1200, \"h\": 1200, \"ink\": 17557, \"sum\": 41350993, \"uniq\": 243, \"red\": 0, \"blue\": 21}"
+  },
+  {
+   "id": "G11a",
+   "name": "wiring: perLane 1600->400 changes drawing",
+   "ok": false,
+   "detail": "ink 17557 -> 17557"
+  },
+  {
+   "id": "G7",
+   "name": "determinism: regenerate twice -> identical",
+   "ok": true,
+   "detail": "[5957, 42435187, 131, 0, 0] == [5957, 42435187, 131, 0, 0]"
+  },
+  {
+   "id": "G8",
+   "name": "nextSeed changes drawing + input",
+   "ok": true,
+   "detail": "seed=20260926 sig [5957, 42435187, 131, 0, 0] -> [6318, 42414382, 103, 0, 0]"
+  },
+  {
+   "id": "G9",
+   "name": "previousSeed restores exact state",
+   "ok": true,
+   "detail": "seed=20260925 sig==baseline-seed-sig: True"
+  },
+  {
+   "id": "G10",
+   "name": "invalid seed reverts, drawing untouched",
+   "ok": true,
+   "detail": "input=20260925 sig unchanged: True"
+  },
+  {
+   "id": "G11b",
+   "name": "wiring: passes 40 -> 220 monotonically inks more",
+   "ok": false,
+   "detail": "ink 5957 -> 5957, uniq 131 -> 131"
+  },
+  {
+   "id": "G12",
+   "name": "wiring: color1=#ff0000 raises strong-red pixels",
+   "ok": true,
+   "detail": "red 0 -> 36"
+  },
+  {
+   "id": "G14",
+   "name": "cadence 0 vs 1 produce different drawings",
+   "ok": false,
+   "detail": "[9788, 42020919, 211, 36, 7] vs [9788, 42020919, 211, 36, 7]"
+  },
+  {
+   "id": "G13",
+   "name": "resetParameters restores all 9 defaults",
+   "ok": true,
+   "detail": "mismatch={}"
+  },
+  {
+   "id": "G15",
+   "name": "downloadPNG -> real 1200x1200 PNG",
+   "ok": true,
+   "detail": "download-mutant_wiring.png 1200x1200 2023119B suggested='cron-organicism-seed-20260925.png'"
+  },
+  {
+   "id": "G2",
+   "name": "zero uncaught page errors",
+   "ok": true,
+   "detail": "0"
+  },
+  {
+   "id": "G3",
+   "name": "zero console errors",
+   "ok": false,
+   "detail": "console=['Failed to load resource: the server responded with a status of 404 (File not found)'] | http=[]"
+  },
+  {
+   "id": "G6",
+   "name": "all 1 requests stay same-origin",
+   "ok": true,
+   "detail": "urls=['127.0.0.1:8138/mutant_wiring.html'] offsite=none"
+  }
+ ]
+}
+Starting server 1/2: python3 -m http.server 8137 --bind 127.0.0.1 --directory demos/20260925-1810-algorithmic-art
+Waiting for server on port 8137...
+Server ready on port 8137
+Starting server 2/2: python3 -m http.server 8138 --bind 127.0.0.1 --directory .tmp/serve
+Waiting for server on port 8138...
+Server ready on port 8138
+
+All 2 server(s) ready
+Running: sh demos/20260926-1037-webapp-testing/run_all.sh
+
+
+Stopping 2 server(s)...
+Server 1 stopped
+Server 2 stopped
+All servers stopped
+
+═══ EXTRA EVIDENCE (appended after the 3-suite run) ═══
+
+-- 1. Decisive proof the single golden FAIL (G3) is /favicon.ico, from http.server's own access log
+   (demos/.../favicon404-access.log):
+     "GET /art-index.html HTTP/1.1" 200 -
+     code 404, message File not found
+     "GET /favicon.ico HTTP/1.1" 404 -
+   Playwright page.on('request'|'response') saw only the 1 document request and zero >=400 responses:
+   the favicon fetch is browser-level and invisible to page instrumentation.
+
+-- 2. A/B of the one-line fix (ab_favicon_fix.py; copies only, round-3 artefact untouched):
+     ab-plain   download=cron-organicism-seed-20260925.png  console_errors=1  server: "GET /favicon.ico" 404
+     ab-fixed   download=cron-organicism-seed-20260925.png  console_errors=0  server: only "GET /index.html" 200
+   Fix = <link rel="icon" href="data:,">  (NOT applied to the round-3 artefact: out of this round's scope)
+   Negative control probe_favicon.py (load only, no download): console_errors=0 in BOTH dirs ->
+   the 404 is triggered by the download navigation, not by page load.
+
+-- 3. Byte-level determinism cross-check: sha256 of the PNG produced by downloadPNG()
+   9740465f90cdf2c09b134d094baf67517e7964e21d23818988228c0e866e7513  download-golden.png  (1200x1200, 2023119B)
+   The same digest was produced by all four runs (golden / mutant_seed / mutant_wiring / rerun-log),
+   each taken right after resetParameters() -> file-level proof that reset restores the exact default drawing.
+
+-- 4. Screenshot signatures proving the mutants localize (element screenshots of the canvas):
+   golden:          02-color1-red.png 82592a41…  vs  03-cadence0.png 2200f418…   -> DIFFERENT (cadence live)
+   mutant_wiring:   02-color1-red.png 82592a41…  vs  03-cadence0.png 82592a41…   -> IDENTICAL (cadence inert)
+   baseline 01-baseline.png 29a5f43c… is identical in golden and mutant_wiring (mutation is elsewhere).
+   Kept: shots/ (golden 01-04), shots-mutant-wiring/ (01,03).
+download-golden.png                    1200x1200    2023119B chunks=496(IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT) crc_fail=0 sha=9740465f
+shots/01-baseline.png                  620x621      464059B chunks=116(IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT) crc_fail=0 sha=29a5f43c
+shots/02-color1-red.png                620x621      312030B chunks=79 (IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT) crc_fail=0 sha=82592a41
+shots/03-cadence0.png                  620x621      308623B chunks=79 (IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT) crc_fail=0 sha=2200f418
+shots/04-cadence1.png                  620x621      314814B chunks=80 (IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT) crc_fail=0 sha=a373dfde
+shots-mutant-wiring/01-baseline.png    620x621      464059B chunks=116(IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT) crc_fail=0 sha=29a5f43c
+shots-mutant-wiring/03-cadence0.png    620x621      312030B chunks=79 (IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT,IDAT) crc_fail=0 sha=82592a41
+[PASS] golden cadence0 differs from colour1-red (redraw happened)
+[PASS] mutant_wiring cadence0 == golden colour1-red (redraw was inert)
+[PASS] baseline identical across golden and mutant (mutation is elsewhere)
+[PASS] download PNG sha256 matches the 4-run digest 9740465f..
+PNG integrity + 4 cross-run facts: ALL PASS
