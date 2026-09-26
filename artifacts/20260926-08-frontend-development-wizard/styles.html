@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>潮汐社开店向导 · frontend-development × 表单密集多步向导 · 三风格对照</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; padding: 40px 24px 72px; font: 15px/1.7 -apple-system, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; background: #f4f4f6; color: #1b1b1f; }
+  .wrap { max-width: 960px; margin: 0 auto; }
+  h1 { font-size: 24px; margin: 0 0 6px; letter-spacing: .01em; }
+  h2 { font-size: 17px; margin: 34px 0 12px; }
+  .lead { color: #66666e; margin: 0 0 26px; }
+  .card { display: block; text-decoration: none; color: inherit; background: #fff; border: 1px solid #e2e2e7; border-radius: 12px; padding: 18px 20px; margin-bottom: 14px; }
+  .card:hover { border-color: #2f4e83; box-shadow: 0 6px 20px rgba(20,20,30,.07); }
+  .row { display: flex; align-items: baseline; gap: 12px; }
+  .idx { font-size: 12px; color: #8a8a92; font-variant-numeric: tabular-nums; }
+  .name { font-size: 17px; font-weight: 650; }
+  .mid { font-weight: 400; color: #8a8a92; font-family: ui-monospace, Menlo, monospace; font-size: 12px; margin-left: 6px; }
+  .sw { display: inline-flex; gap: 4px; margin-left: auto; }
+  .sw i { width: 22px; height: 22px; border-radius: 5px; border: 1px solid rgba(0,0,0,.12); display: block; }
+  .card p { margin: 8px 0 0; color: #55555c; font-size: 14px; }
+  .facts { display: grid; grid-template-columns: 250px 1fr; gap: 2px 14px; margin: 12px 0 0; font-size: 12.5px; }
+  .facts dt { color: #7c7c85; }
+  .facts dd { margin: 0; color: #2c2c33; }
+  .mono, td.mono { font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #e2e2e7; border-radius: 12px; overflow: hidden; margin: 0 0 8px; }
+  caption { caption-side: top; text-align: left; font-size: 13px; color: #7c7c85; padding: 10px 12px 6px; }
+  th, td { text-align: left; padding: 9px 12px; border-top: 1px solid #ececf0; vertical-align: top; }
+  th { font-weight: 550; color: #3a3a42; width: 46%; }
+  ol.steps { padding-left: 20px; }
+  .ok { color: #1f7a44; } .bad { color: #a8322f; }
+  .note { margin-top: 30px; font-size: 13px; color: #66666e; border-top: 1px dashed #dcdce0; padding-top: 16px; }
+  code { font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; background: #ececef; padding: 1px 5px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>潮汐社 · 手作订阅开店向导</h1>
+  <p class="lead">第 19 轮：skill <code>frontend-development</code> × 场景「表单密集多步向导」（4 步 22 字段 / 双异步唯一性校验 / 草稿持久化 / 幂等提交）。三份预览共用同一个逐字节相同的构建产物，风格差异只来自 <code>data-fd-style</code> 与令牌块；本页所有数字由 <code>.tmp-check/assertions-*.json</code> 经 <code>scripts/make-styles.mjs</code> 生成，不手写。</p>
+
+  
+  <a class="card" href="preview/wizard-paper-grid.html">
+    <span class="row"><span class="idx">1</span><span class="name">方格信笺
+      <span class="mid">paper-grid</span></span>
+      <span class="sw"><i style="background:#f2efe6"></i><i style="background:#fffdf6"></i><i style="background:#e6e1d3"></i><i style="background:#22314a"></i><i style="background:#5a6278"></i><i style="background:#2f4e83"></i></span></span>
+    <p>5mm 方格纸底纹 + 墨蓝衬线标题 + 小号等宽标签 + 2px 虚线焦点框，零阴影</p>
+    <dl class="facts">
+      <dt>计算样式指纹</dt><dd class="mono">rgb(242, 239, 230) · r=3px · bw=1px · ruled/无阴影</dd>
+      <dt>对比度（正文 / 次要，WCAG AA ≥4.5）</dt><dd class="mono">11.37:1 · 5.29:1</dd>
+      <dt>外链与溢出</dt><dd class="mono">零跨源请求 · 1440px 无横向滚动</dd>
+      <dt>预览文件</dt><dd class="mono">preview/wizard-paper-grid.html · 634,448 B</dd>
+    </dl>
+  </a>
+
+  <a class="card" href="preview/wizard-pcb-green.html">
+    <span class="row"><span class="idx">2</span><span class="name">PCB 阻焊绿
+      <span class="mid">pcb-green</span></span>
+      <span class="sw"><i style="background:#0a2419"></i><i style="background:#0e2f21"></i><i style="background:#143828"></i><i style="background:#dcefdc"></i><i style="background:#7fae91"></i><i style="background:#e8b04b"></i></span></span>
+    <p>深绿阻焊底 + 45° 走线条纹 + 白色丝印等宽字 + 金色焊盘强调，零圆角、发光滑环</p>
+    <dl class="facts">
+      <dt>计算样式指纹</dt><dd class="mono">rgb(10, 36, 25) · r=0px · bw=1px · silk/无阴影</dd>
+      <dt>对比度（正文 / 次要，WCAG AA ≥4.5）</dt><dd class="mono">13.62:1 · 6.54:1</dd>
+      <dt>外链与溢出</dt><dd class="mono">零跨源请求 · 1440px 无横向滚动</dd>
+      <dt>预览文件</dt><dd class="mono">preview/wizard-pcb-green.html · 634,465 B</dd>
+    </dl>
+  </a>
+
+  <a class="card" href="preview/wizard-concrete-rose.html">
+    <span class="row"><span class="idx">3</span><span class="name">清水混凝土玫瑰金
+      <span class="mid">concrete-rose</span></span>
+      <span class="sw"><i style="background:#c0beb9"></i><i style="background:#d5d3ce"></i><i style="background:#b1afaa"></i><i style="background:#1f1c1a"></i><i style="background:#46423e"></i><i style="background:#a35a5f"></i></span></span>
+    <p>中灰现浇面 + 模板对拉孔 + 900 字重大写标题 + 玫瑰金衬线数字 + 6px 硬投影</p>
+    <dl class="facts">
+      <dt>计算样式指纹</dt><dd class="mono">rgb(192, 190, 185) · r=0px · bw=5px · dot/有阴影</dd>
+      <dt>对比度（正文 / 次要，WCAG AA ≥4.5）</dt><dd class="mono">9.12:1 · 5.36:1</dd>
+      <dt>外链与溢出</dt><dd class="mono">零跨源请求 · 1440px 无横向滚动</dd>
+      <dt>预览文件</dt><dd class="mono">preview/wizard-concrete-rose.html · 634,487 B</dd>
+    </dl>
+  </a>
+
+  <h2>断言汇总</h2>
+  <table>
+    <caption>三组校验脚本：node 侧静态与事实源 / jsdom 交互与双臂消融 / 真实 Chromium 计算样式与逐帧采样</caption>
+    <tbody>
+      <tr><th>scripts/check-node.mjs</th><td class="mono ok">111/111 通过</td></tr><tr><th>scripts/check-dom.mjs</th><td class="mono ok">112/112 通过</td></tr><tr><th>scripts/check-browser.mjs</th><td class="mono ok">70/70 通过</td></tr>
+      <tr><th>合计</th><td class="mono ok">293/293 通过 · 全绿</td></tr>
+    </tbody>
+  </table>
+  
+
+  <h2>三套手法各自的构造（互斥性由 D9/D10/D11 实测）</h2>
+  
+  <table>
+    <caption>分隔手法 / 焦点环 / 圆角 / 描边 / 标题变形 / 字族，全部读自同一份令牌对象</caption>
+    <tbody><tr><th>方格信笺（paper-grid）</th><td class="mono">分隔=ruled-grid · 焦点=dashed-outline · 圆角=3px · 描边=1px · 标题=none/1.9rem · 字族 UI='Iowan Old Style'</td></tr><tr><th>PCB 阻焊绿（pcb-green）</th><td class="mono">分隔=silkscreen-hairline · 焦点=glow-shadow · 圆角=0px · 描边=1px · 标题=uppercase/1.45rem · 字族 UI=ui-monospace</td></tr><tr><th>清水混凝土玫瑰金（concrete-rose）</th><td class="mono">分隔=formwork-shadow · 焦点=hard-offset · 圆角=0px · 描边=1px · 标题=uppercase/2.2rem · 字族 UI=-apple-system</td></tr></tbody>
+  </table>
+  
+  <table>
+    <caption>「换皮肤不换 DOM」这组主张的实测结果</caption>
+    <tbody><tr><th>12 项计算样式指纹的两两差异（阈值 ≥7）</th><td class="mono">paper-grid↔pcb-green → 9/12（appBg,appImage,textColor,mutedColor,uiFont,brandCase,radius,tracking,bodySize） ｜ paper-grid↔concrete-rose → 12/12（appBg,appImage,textColor,mutedColor,uiFont,numFont,brandCase,radius,borderW,panelShadow,tracking,bodySize） ｜ pcb-green↔concrete-rose → 10/12（appBg,appImage,textColor,mutedColor,uiFont,numFont,borderW,panelShadow,tracking,bodySize）</td></tr><tr><th>三种分隔手法实测互斥</th><td class="mono">正交细网 / 45° 斜纹 / 圆点孔，互不出现</td></tr><tr><th>阴影手法实测互斥</th><td class="mono">两风格零阴影、一风格 6px 硬投影</td></tr><tr><th>数字字体是否随风格变化</th><td class="mono">是（三页不全同）</td></tr><tr><th>三页 &lt;script&gt; 载荷</th><td class="mono">逐字节相同（风格不复制运行时）</td></tr><tr><th>结构层字面颜色</th><td class="mono">零处（删掉令牌块后无颜色可换）</td></tr></tbody>
+  </table>
+
+  <h2>memo 条款的双臂消融（同一份源码，只换 <code>__FD_MEMO__</code>）</h2>
+  <p class="lead">技能原文只有一句「用 React.memo / useCallback / useMemo」。两臂是同一份源码的两次构建（633905B 对 633927B），渲染计数与墙钟由 jsdom 里的字段级计数器量出。</p>
+  
+  <table>
+    <caption>连续输入时的渲染次数与耗时（N 组）</caption>
+    <tbody><tr><th>两臂 bundle 字节（同源码，只差 define）</th><td class="mono">633905 / 196704B / 消融臂 633927B</td></tr><tr><th>两臂归一化 DOM 是否相同</th><td class="mono">相同（消融只换实现不换结果）</td></tr><tr><th>一次击键的字段渲染次数 memo / plain</th><td class="mono">7 / 7 次</td></tr><tr><th>30 次击键（字符数不变）memo / plain</th><td class="mono">7 / 210 次</td></tr><tr><th>30 次击键（长度逐次变化）memo / plain</th><td class="mono">7 / 210 次</td></tr><tr><th>被输入的那个字段是否也命中浅比较</th><td class="mono">是——值不经过 props（uncontrolled register）</td></tr><tr><th>墙钟合计（两种情形各 30 击）memo / plain</th><td class="mono">214 ms / 350 ms</td></tr><tr><th>反向控制：props 真变时 memo 是否跟上</th><td class="mono">跟上（blur 后 dirty 标记与 plain 臂一致）</td></tr></tbody>
+  </table>
+
+  <h2>延迟接口的可见代价（同一份产物，mock ↔ <code>?api=1</code> 真 fetch）</h2>
+  <p class="lead">G 组在 Chromium 里以 8ms 步长逐帧采样占位与骨架，度量「等待期是否空窗」「数据到达时是否位移」。路由级边界预留 520px，字段级边界预留 176px。</p>
+  
+  <table>
+    <caption>两种传输下的骨架、请求与位移（G 组）</caption>
+    <tbody><tr><th>bootstrap 请求次数（mock / ?api=1）</th><td class="mono">mock=0 api=1</td></tr><tr><th>等待期是否出现过空窗帧（mock / api）</th><td class="mono">无空窗 / 无空窗</td></tr><tr><th>两级骨架时长（路由 / 字段，mock）</th><td class="mono">302 / 0ms（路由/字段）</td></tr><tr><th>两级骨架时长（路由 / 字段，api 2.2s）</th><td class="mono">2157 / 1752ms（路由/字段）</td></tr><tr><th>骨架总时长 mock / api</th><td class="mono">302 / 3909ms</td></tr><tr><th>占位下方按钮位移（api，骨架→内容）</th><td class="mono">909 → 909</td></tr><tr><th>占位下方说明文字位移（api）</th><td class="mono">877 → 877</td></tr><tr><th>字段级占位实测高度（api）</th><td class="mono">176px</td></tr><tr><th>慢接口期间整页是否仍可用</th><td class="mono">标题/步骤条/草稿面板都在场 · 挂载后帧 291，路由等待帧 215</td></tr></tbody>
+  </table>
+
+  <h2>成本与规模（对照 07:00 轮同 skill 的管理后台）</h2>
+  
+  <table>
+    <caption>本轮与上一轮的磁盘现算值</caption>
+    <tbody><tr><th>本轮 src 文件数 / 行数</th><td class="mono">35 / 3516</td></tr><tr><th>07:00 轮（同 skill × 管理后台）src 文件数 / 行数</th><td class="mono">50 / 2154</td></tr><tr><th>行数比（向导 ÷ 后台）</th><td class="mono">1.63×</td></tr><tr><th>单文件 bundle 字节 / gzip</th><td class="mono">633905 / 196704B</td></tr><tr><th>三页预览合计字节</th><td class="mono">1903400B</td></tr><tr><th>进入 artifacts 的目录体积（排除 node_modules/dist*）</th><td class="mono">2.34MB</td></tr><tr><th>证据构建入口 / 全套字节</th><td class="mono">486787 / 634874B</td></tr><tr><th>本场景可延迟的重量占比</th><td class="mono">23.3%</td></tr><tr><th>技能契约缺失的引用文件数</th><td class="mono">10 个</td></tr><tr><th>本轮把一行摘要变成判据的条款数</th><td class="mono">14 条</td></tr></tbody>
+  </table>
+
+  <h2>预览与复现</h2>
+  <ol class="steps">
+    <li>直接双击任一 <code>preview/wizard-*.html</code>（<code>file://</code> 下可完整交互，页面零外链；M 组已对两种载体各跑一遍）。</li>
+    <li>慢接口对照：<code>python3 -m http.server 8157</code> 后访问 <code>/preview/wizard-paper-grid.html?api=1</code>，可肉眼看到两级骨架与 2.2s 等待。</li>
+    <li>渲染双臂：主产物显示 <code>当前臂 memo</code>，消融臂由 <code>vite.control.config.ts</code> 单独构建，两臂比对在 <code>scripts/check-dom.mjs</code> 的 N 组。</li>
+    <li>全量复现：<code>bash scripts/verify.sh</code>（npm install → tsc → 三套 vite 构建 → 内联 → 三个 checker → 本页）。</li>
+  </ol>
+  <div class="note">
+    三页共用同一组件树与同一事实源：4 步（身份 / 套餐 / 主体与开票 / 确认）22 字段，含 subdomain 与 supportEmail 两个异步唯一性校验、18 组分支联动、报价双实现互校、version=3 草稿信封与敌意输入消毒、内容派生的幂等提交令牌。<br />
+    技能 <code>frontend-development</code> 的 SKILL.md 引用的 resources/*.md 与 ../../vite.config.ts 共 10 个在本机不存在，因此页面上的每个数字都来自本轮自建判据，而不是技能文档。
+  </div>
+</div>
+</body>
+</html>

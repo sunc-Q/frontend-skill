@@ -1,0 +1,668 @@
+[
+ {
+  "group": "A 技能条款：契约有资产吗",
+  "id": "A0 SKILL.md 存在且非空",
+  "pass": true,
+  "detail": "30628B"
+ },
+ {
+  "group": "A 技能条款：契约有资产吗",
+  "id": "A1 SKILL.md 引用的 resources/*.md 全部不存在（上一轮已报，本轮复跑确认未被修复）",
+  "pass": true,
+  "detail": "10/10 缺失：resources/component-patterns.md, resources/data-fetching.md, resources/file-organization.md…"
+ },
+ {
+  "group": "A 技能条款：契约有资产吗",
+  "id": "A1b 缺失引用文件数",
+  "pass": true,
+  "printed": "10 个"
+ },
+ {
+  "group": "A 技能条款：契约有资产吗",
+  "id": "A2 SKILL.md 指向的 ../../vite.config.ts 是技能目录之外的不存在路径",
+  "pass": true,
+  "detail": "alias 表只能靠摘要重建"
+ },
+ {
+  "group": "A 技能条款：契约有资产吗",
+  "id": "A2b 本轮把一行摘要变成可判据的条款数（A3-A18）",
+  "pass": true,
+  "printed": "14 条"
+ },
+ {
+  "group": "A 技能条款：本产物是否真按摘要做",
+  "id": "A3 四个导入别名（@/ ~types ~components ~features）在构建配置里定义",
+  "pass": true,
+  "detail": "vite.config.ts alias"
+ },
+ {
+  "group": "A 技能条款：本产物是否真按摘要做",
+  "id": "A3b 源码里真的用到了这四种别名",
+  "pass": true,
+  "detail": "@=14 ~types=23 ~components=2 ~features=4"
+ },
+ {
+  "group": "A 技能条款：本产物是否真按摘要做",
+  "id": "A4 特性目录含 api/components/hooks/helpers/types + index.ts 公共出口",
+  "pass": true,
+  "detail": "features/wizard/* + 两个 index.ts"
+ },
+ {
+  "group": "A 技能条款：本产物是否真按摘要做",
+  "id": "A4b 路由分区是 routes/{feature}/index.tsx 且组件走 lazy()",
+  "pass": true,
+  "detail": "routes/wizard/index.tsx"
+ },
+ {
+  "group": "A 技能条款：本产物是否真按摘要做",
+  "id": "A4c createFileRoute 需要技能未提供的 codegen 插件：本产物用手写 RouteSpec 描述符替代并留注",
+  "pass": true,
+  "detail": "见 routes/router.ts 顶部注释"
+ },
+ {
+  "group": "A 技能条款：本产物是否真按摘要做",
+  "id": "A5 组件统一 React.FC<Props>（含 props 接口的组件 ≥6 个）",
+  "pass": true,
+  "detail": "20 处 React.FC"
+ },
+ {
+  "group": "A 技能条款：本产物是否真按摘要做",
+  "id": "A6 组件文件底部有 default export（懒加载要求 default 或映射）",
+  "pass": true,
+  "detail": "10 个文件"
+ },
+ {
+  "group": "A 技能条款：本产物是否真按摘要做",
+  "id": "A7 数据获取以 useSuspenseQuery 为主，且没有 isLoading 早退",
+  "pass": true,
+  "detail": "useSuspenseQuery=6 早退=0"
+ },
+ {
+  "group": "A 技能条款：本产物是否真按摘要做",
+  "id": "A8 通知只用 MUI Snackbar，零 react-toastify 依赖（技能明文禁止，注释里的除外）",
+  "pass": true,
+  "detail": "toastify 依赖=0，snackbar 调用 2 处"
+ },
+ {
+  "group": "A 技能条款：本产物是否真按摘要做",
+  "id": "A9 接口路径是 /wizard/... 而不是技能点名的 /api/... 前缀",
+  "pass": true,
+  "detail": "/wizard/check-subdomain,/wizard/check-email,/wizard/submit,/wizard/audit"
+ },
+ {
+  "group": "A 技能条款：本产物是否真按摘要做",
+  "id": "A10 防抖在技能给的 300–500ms 区间内，且卸载时取消",
+  "pass": true,
+  "detail": "350ms + cancel"
+ },
+ {
+  "group": "A 技能条款：本产物是否真按摘要做",
+  "id": "A11 useCallback/useMemo/React.memo 三类都被用到（条款字面执行，效果交给 N 组实测）",
+  "pass": true,
+  "detail": "useCallback=11 useMemo=5 memo=2"
+ },
+ {
+  "group": "A 技能条款：本产物是否真按摘要做",
+  "id": "A12 TS 严格模式：strict + noUncheckedIndexedAccess + noUnusedLocals，源码零 : any",
+  "pass": true,
+  "detail": "any=0/0"
+ },
+ {
+  "group": "A 技能条款：本产物是否真按摘要做",
+  "id": "A13 显式返回类型：导出函数带返回类型标注（≥12 处）",
+  "pass": true,
+  "detail": "109 处"
+ },
+ {
+  "group": "A 技能条款：本产物是否真按摘要做",
+  "id": "A14 样式规模条款（>100 行独立文件）成立：结构化 CSS 与三份令牌在同一独立模块，组件里几乎不写内联颜色",
+  "pass": true,
+  "detail": "registry 296 行，组件内联十六进制色=0"
+ },
+ {
+  "group": "A 技能条款：本产物是否真按摘要做",
+  "id": "A15 与技能「颜色一律走 theme.palette + sx」的张力已被记录并给出解法（三风格共用一份 DOM，颜色只能来自令牌层）",
+  "pass": true,
+  "detail": "theme.ts 顶部注释记录了该张力"
+ },
+ {
+  "group": "B 自包含与三页一致性",
+  "id": "B1 预览目录恰好三份 HTML",
+  "pass": true,
+  "detail": "wizard-concrete-rose.html,wizard-paper-grid.html,wizard-pcb-green.html"
+ },
+ {
+  "group": "B 自包含与三页一致性",
+  "id": "B2 三页 <script> 载荷逐字节相同（风格差异只来自 html 属性与令牌块）",
+  "pass": true,
+  "detail": "bd6541281fc38026 · 633907B"
+ },
+ {
+  "group": "B 自包含与三页一致性",
+  "id": "B3 内联载荷 = dist/assets/main.js 本体（除换行与 </script 转义外零加工）",
+  "pass": true,
+  "detail": "633905B"
+ },
+ {
+  "group": "B 自包含与三页一致性",
+  "id": "B4 单文件、零外链：外壳无 <link>/@import/远程 url()（打包源码里的 @import 字面量不算）",
+  "pass": true,
+  "detail": "外壳零外部资源"
+ },
+ {
+  "group": "B 自包含与三页一致性",
+  "id": "B5 每页只声明自己的风格：外壳里 data-fd-style 出现一次且与文件名一致",
+  "pass": true,
+  "detail": "wizard-concrete-rose.html,wizard-paper-grid.html,wizard-pcb-green.html"
+ },
+ {
+  "group": "B 自包含与三页一致性",
+  "id": "B6 无运行时动态 import / XHR：产物是离线单文件",
+  "pass": true,
+  "detail": "import(=0"
+ },
+ {
+  "group": "B 自包含与三页一致性",
+  "id": "B7 消融臂产物存在且与主臂不同字节（同源码、只换 __FD_MEMO__）",
+  "pass": true,
+  "detail": "memo 633905B vs plain 633927B"
+ },
+ {
+  "group": "B 自包含与三页一致性",
+  "id": "B8 三页共用同一事实源字符串（品牌/域名/客服号在源码里各只有一处定义）",
+  "pass": true,
+  "detail": "facts.ts 内 BRAND 定义 1 处，全库出现 4 次"
+ },
+ {
+  "group": "C 三风格主张是否互斥",
+  "id": "C1 三个风格 id 与设计一致",
+  "pass": true,
+  "detail": "paper-grid,pcb-green,concrete-rose"
+ },
+ {
+  "group": "C 三风格主张是否互斥",
+  "id": "C2 三种分隔手法互不相同（ruled-grid / silkscreen-hairline / formwork-shadow）",
+  "pass": true,
+  "detail": "ruled-grid,silkscreen-hairline,formwork-shadow"
+ },
+ {
+  "group": "C 三风格主张是否互斥",
+  "id": "C3 三种焦点环互不相同",
+  "pass": true,
+  "detail": "dashed-outline,glow-shadow,hard-offset"
+ },
+ {
+  "group": "C 三风格主张是否互斥",
+  "id": "C4 十二维指纹两两距离 ≥5（不是换色皮）",
+  "pass": true,
+  "detail": "paper-grid~pcb-green=9 paper-grid~concrete-rose=10 pcb-green~concrete-rose=8"
+ },
+ {
+  "group": "C 三风格主张是否互斥",
+  "id": "C5 结构层零字面颜色：删掉令牌块后不再有颜色可换",
+  "pass": true,
+  "detail": "结构段 7396B，var() 93 处，字面色=0"
+ },
+ {
+  "group": "C 三风格主张是否互斥",
+  "id": "C6 每个风格 14 个颜色令牌齐备且至少 9 个不同值",
+  "pass": true,
+  "detail": "14/14/14"
+ },
+ {
+  "group": "C 三风格主张是否互斥",
+  "id": "C7 三份 CSS 文本互不为子串，且各自只含自己的选择器前缀",
+  "pass": true,
+  "detail": "8728B 8619B 8770B"
+ },
+ {
+  "group": "C 三风格主张是否互斥",
+  "id": "C8 至少一个深底一个浅底（明暗互斥，不是同明度微调）",
+  "pass": true,
+  "detail": "深底：pcb-green"
+ },
+ {
+  "group": "E1 金额：两条独立聚合必须相遇",
+  "id": "E1 行内累加式 quote() 与闭式 quoteDirect() 在全部组合格点上分毫不差",
+  "pass": true,
+  "detail": "2304 个组合，0 处不一致"
+ },
+ {
+  "group": "E1 金额：两条独立聚合必须相遇",
+  "id": "E2 明细行合计（按分）= 小计：明细可加性",
+  "pass": true,
+  "detail": "2304 组，0 例外"
+ },
+ {
+  "group": "E1 金额：两条独立聚合必须相遇",
+  "id": "E3 折扣口径统一为「分位 half-up」，且折后月费不高于小计",
+  "pass": true,
+  "detail": "halfUpCents 是两条路径共享的取整契约"
+ },
+ {
+  "group": "E1 金额：两条独立聚合必须相遇",
+  "id": "E3b 示例报价（studio×14 席·年付·两扩展）账期总额",
+  "pass": true,
+  "printed": "14157.6 元"
+ },
+ {
+  "group": "E1 金额：两条独立聚合必须相遇",
+  "id": "E3c 账期总额 = 折后月费 ×（年付 12 / 月付 1），全组合只有这一条口径",
+  "pass": true,
+  "detail": "periodTotal 与 monthly 关系在 2304 个组合上成立"
+ },
+ {
+  "group": "E1 金额：两条独立聚合必须相遇",
+  "id": "E4 年付省钱额非负且随席数单调不减（三个套餐各抽 4 档席位）",
+  "pass": true,
+  "detail": "saving = 原价账期 − 折后账期"
+ },
+ {
+  "group": "E1 金额：两条独立聚合必须相遇",
+  "id": "E5 席位钳制：任何输入都落回套餐区间（含负数/0/小数/超上限/NaN）",
+  "pass": true,
+  "detail": "clampSeats(studio,99999)=200"
+ },
+ {
+  "group": "E2 USCC 校验位：第二实现",
+  "id": "E6 2000 个随机前缀：主实现与表查找实现校验位全等",
+  "pass": true,
+  "detail": "2000/2000"
+ },
+ {
+  "group": "E2 USCC 校验位：第二实现",
+  "id": "E7 合法码自检通过；改动任意一位即被拒",
+  "pass": true,
+  "detail": "91310115MA1K3X7L08"
+ },
+ {
+  "group": "E2 USCC 校验位：第二实现",
+  "id": "E8 字集排除 I/O/S/V/Z（GB 32100 规定），含这些字符的 18 位串一律拒绝",
+  "pass": true,
+  "detail": "字集 31 位"
+ },
+ {
+  "group": "E2 USCC 校验位：第二实现",
+  "id": "E8b 长度/大小写/非字集字符的边界：17 位拒绝、小写接受、全角拒绝",
+  "pass": true,
+  "detail": "长度 18 才算数"
+ },
+ {
+  "group": "E3 校验闸门：schema 与纯函数两条路",
+  "id": "E9 空表单被拒且错误路径全部落在 22 个字段名内",
+  "pass": true,
+  "detail": "8 条问题：storeName,subdomain,tagline"
+ },
+ {
+  "group": "E3 校验闸门：schema 与纯函数两条路",
+  "id": "E9b 示例数据零问题、四个步骤全绿",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "group": "E3 校验闸门：schema 与纯函数两条路",
+  "id": "E10 分支规则：开票=专用发票 强制企业；企业开票税号必须等于统一社会信用代码",
+  "pass": true,
+  "detail": "special⇒enterprise；taxNo≠uscc 时报 taxNo"
+ },
+ {
+  "group": "E3 校验闸门：schema 与纯函数两条路",
+  "id": "E10b 扩展依赖：多站点必须先有库存；数据导出要求 studio 及以上",
+  "pass": true,
+  "detail": "requires + minPlan"
+ },
+ {
+  "group": "E3 校验闸门：schema 与纯函数两条路",
+  "id": "E10c 席位数越界、客服电话必填分支、勾选协议缺失各自定位到正确字段",
+  "pass": true,
+  "detail": "seats / supportPhone（仅非 email 分支）/ agree"
+ },
+ {
+  "group": "E3 校验闸门：schema 与纯函数两条路",
+  "id": "E10d 身份证后四位接受 x 结尾、拒绝字母混入",
+  "pass": true,
+  "detail": "123x 通过 / 12ab 拒绝"
+ },
+ {
+  "group": "E3 校验闸门：schema 与纯函数两条路",
+  "id": "E11 四个步骤的字段并集 = 22 字段且互不重叠（无孤儿字段、无两步共用）",
+  "pass": true,
+  "detail": "22/22"
+ },
+ {
+  "group": "E3 校验闸门：schema 与纯函数两条路",
+  "id": "E11b schema 的 22 个键与 SAMPLE_VALUES/字段表/标签表完全同集合",
+  "pass": true,
+  "detail": "22 字段四处同名"
+ },
+ {
+  "group": "E3 校验闸门：schema 与纯函数两条路",
+  "id": "E11c 字段表里每个 select 字段的选项非空、每个字段有 kind 与 label",
+  "pass": true,
+  "detail": "17 个字段描述符"
+ },
+ {
+  "group": "E4 步骤闸门与提交闸门",
+  "id": "E12 空表单只能停在第 1 步；示例数据可直达第 4 步",
+  "pass": true,
+  "detail": "forward-only-if-previous-valid"
+ },
+ {
+  "group": "E4 步骤闸门与提交闸门",
+  "id": "E12b 回退永远开放（哪怕中途数据已失效）",
+  "pass": true,
+  "detail": "backwards always open"
+ },
+ {
+  "group": "E4 步骤闸门与提交闸门",
+  "id": "E12c 中间步骤坏掉时，第 4 步不可达但第 3 步仍可达",
+  "pass": true,
+  "detail": "gate is per-step, not global"
+ },
+ {
+  "group": "E4 步骤闸门与提交闸门",
+  "id": "E12d hash 解析：合法/未知步骤/缺参/前缀混淆各得其果",
+  "pass": true,
+  "detail": "readStepFromHash"
+ },
+ {
+  "group": "E4 步骤闸门与提交闸门",
+  "id": "E13 异步闸门独立于 setError：未校验/校验中/占用/保留/失败四种状态都必须拦住提交",
+  "pass": true,
+  "detail": "未校验即拦截"
+ },
+ {
+  "group": "E4 步骤闸门与提交闸门",
+  "id": "E13b 令牌对不上当前值（乱序回写）也算未校验",
+  "pass": true,
+  "detail": "forValue 与当前值不符 ⇒ 拦截"
+ },
+ {
+  "group": "E4 步骤闸门与提交闸门",
+  "id": "E14 提交令牌由内容决定：同数据同令牌，改席位/改扩展即变（幂等重放的前提）",
+  "pass": true,
+  "detail": "chaoxi|studio|14|annual|CNY|"
+ },
+ {
+  "group": "E5 分支字段与草稿的敌意输入",
+  "id": "E15 18 个分支组合：payload 键集合与允许集合完全相等（旧凭证无法泄漏）",
+  "pass": true,
+  "detail": "0 例外"
+ },
+ {
+  "group": "E5 分支字段与草稿的敌意输入",
+  "id": "E15b 个人分支不含 companyName/uscc；企业分支不含 realName/idLast4；notify=email 不含 supportPhone",
+  "pass": true,
+  "detail": "buildPayload 三分支"
+ },
+ {
+  "group": "E5 分支字段与草稿的敌意输入",
+  "id": "E15c 邮箱大小写归一、去空白后进入 payload（同一邮箱两种写法 ⇒ 同一令牌）",
+  "pass": true,
+  "detail": "trim + toLowerCase"
+ },
+ {
+  "group": "E5 分支字段与草稿的敌意输入",
+  "id": "E16 草稿四种结局：missing/corrupt/version/restored 各自命中，坏数据一律退回默认值而不是半应用",
+  "pass": true,
+  "detail": "missing:missing corrupt-json:corrupt not-object:corrupt version:version bad-step:restored ok:restored"
+ },
+ {
+  "group": "E5 分支字段与草稿的敌意输入",
+  "id": "E16b 未知键丢弃并记录；类型不符的字段逐字段回默认（不是整体作废）",
+  "pass": true,
+  "detail": "seats/addons/tagline 回默认，storeName 保留"
+ },
+ {
+  "group": "E5 分支字段与草稿的敌意输入",
+  "id": "E16c 存取往返：saveDraft → loadDraft 值与步骤一致，clearDraft 后回到 missing",
+  "pass": true,
+  "detail": "round-trip"
+ },
+ {
+  "group": "E6 事实源内部一致性",
+  "id": "E17 延迟表刻意非单调：fast 比 default 快、slow 比 default 慢，为乱序回写测试提供土壤",
+  "pass": true,
+  "detail": "fast=60 default=220 slow=900"
+ },
+ {
+  "group": "E6 事实源内部一致性",
+  "id": "E18 已占用域名/保留名/已占用邮箱三张表互不重叠且不含示例值（示例必须能提交）",
+  "pass": true,
+  "detail": "3+3"
+ },
+ {
+  "group": "E6 事实源内部一致性",
+  "id": "E19 套餐/扩展的事实自洽：席位区间有序、单价与折扣在合理区间、扩展计价模式二选一",
+  "pass": true,
+  "detail": "3 套餐 / 6 扩展"
+ },
+ {
+  "group": "E6 事实源内部一致性",
+  "id": "E20 选项表与 schema 枚举一致：四个 select 字段的可选值都能通过校验",
+  "pass": true,
+  "detail": "品类 6 项"
+ },
+ {
+  "group": "E6 事实源内部一致性",
+  "id": "E21 选项字段装配：给 bootstrap 数据与字段名，产出描述符数量与名称一致",
+  "pass": true,
+  "detail": "optionFieldsFrom"
+ },
+ {
+  "group": "E6 事实源内部一致性",
+  "id": "E22 默认值是「未填」而不是「已填」：DEFAULT_VALUES 过不了校验，SAMPLE 能",
+  "pass": true,
+  "detail": "8 条"
+ },
+ {
+  "group": "J 成本（磁盘现算，不抄报告）",
+  "id": "J1 本轮 src 文件数 / 行数",
+  "pass": true,
+  "printed": "35 / 3516"
+ },
+ {
+  "group": "J 成本（磁盘现算，不抄报告）",
+  "id": "J2 上一轮（07:00 同 skill × 管理后台）src 文件数 / 行数",
+  "pass": true,
+  "printed": "50 / 2154"
+ },
+ {
+  "group": "J 成本（磁盘现算，不抄报告）",
+  "id": "J2b 同 skill 不同场景的行数比（向导 ÷ 后台）",
+  "pass": true,
+  "printed": "1.63×"
+ },
+ {
+  "group": "J 成本（磁盘现算，不抄报告）",
+  "id": "J3 三页预览合计字节",
+  "pass": true,
+  "printed": "1903400B"
+ },
+ {
+  "group": "J 成本（磁盘现算，不抄报告）",
+  "id": "J4 单文件 bundle 字节 / gzip",
+  "pass": true,
+  "printed": "633905 / 196704B"
+ },
+ {
+  "group": "J 成本（磁盘现算，不抄报告）",
+  "id": "J4b 消融臂 bundle 字节（同源码，__FD_MEMO__=false）",
+  "pass": true,
+  "printed": "633927B"
+ },
+ {
+  "group": "J 成本（磁盘现算，不抄报告）",
+  "id": "J5 三页脚本载荷哈希相同 ⇒ 风格不复制运行时",
+  "pass": true,
+  "detail": "bd6541281fc38026"
+ },
+ {
+  "group": "J 成本（磁盘现算，不抄报告）",
+  "id": "J6 进入 artifacts 的目录体积（排除 node_modules/dist*/.tmp-check）",
+  "pass": true,
+  "printed": "2.34MB"
+ },
+ {
+  "group": "J 成本（磁盘现算，不抄报告）",
+  "id": "J6b 体积 ≤ 50MB",
+  "pass": true,
+  "detail": "2.34MB"
+ },
+ {
+  "group": "J 成本（磁盘现算，不抄报告）",
+  "id": "J6c 参与统计的文件数",
+  "pass": true,
+  "printed": "72 个"
+ },
+ {
+  "group": "J 成本（磁盘现算，不抄报告）",
+  "id": "J7 预览目录无 node_modules / dist 痕迹",
+  "pass": true,
+  "detail": "clean"
+ },
+ {
+  "group": "J 成本（磁盘现算，不抄报告）",
+  "id": "J8 校验脚本自身行数（三组 checker + make-styles + 复用件）",
+  "pass": true,
+  "printed": "2686 行"
+ },
+ {
+  "group": "L 懒加载证据构建（vite.split.config.ts）",
+  "id": "L1 两个懒块（评审页 + 回执）在证据构建里真实存在",
+  "pass": true,
+  "detail": "ReceiptCard.js,StepReview.js,index.js,main.js"
+ },
+ {
+  "group": "L 懒加载证据构建（vite.split.config.ts）",
+  "id": "L2 入口 chunk 不含只属于懒块的文案（真拆开了）",
+  "pass": true,
+  "detail": "回执编号,纸质回执,receipt-serial"
+ },
+ {
+  "group": "L 懒加载证据构建（vite.split.config.ts）",
+  "id": "L2b 第二层懒块只在自身 chunk 内（评审页里再嵌一层 dynamic import）",
+  "pass": true,
+  "detail": "ReceiptCard 深度 2"
+ },
+ {
+  "group": "L 懒加载证据构建（vite.split.config.ts）",
+  "id": "L3 证据构建：入口字节 / 全套字节",
+  "pass": true,
+  "printed": "486787 / 634874B"
+ },
+ {
+  "group": "L 懒加载证据构建（vite.split.config.ts）",
+  "id": "L3b 懒块合计占全套字节比例（表单页几乎没有可延迟重量）",
+  "pass": true,
+  "printed": "23.3%"
+ },
+ {
+  "group": "L 懒加载证据构建（vite.split.config.ts）",
+  "id": "L4 单文件预览把懒块并回了首包（两构建并存的意义）",
+  "pass": true,
+  "detail": "单文件无首包收益"
+ },
+ {
+  "group": "L 懒加载证据构建（vite.split.config.ts）",
+  "id": "L5 两构建总量差 < 3%（分包挪首包，不减总量）",
+  "pass": true,
+  "detail": "split 634874B vs iife 633905B"
+ },
+ {
+  "group": "I 台账幂等锁",
+  "id": "I1 本轮在 tried 中至多出现一次（重复写回在这里失败）",
+  "pass": true,
+  "detail": "出现 1 次"
+ },
+ {
+  "group": "I 台账幂等锁",
+  "id": "I1b 选题依据可追溯：写回前的 next_candidates 里确实排着这条组合",
+  "pass": true,
+  "detail": "44 条候选"
+ },
+ {
+  "group": "I 台账幂等锁",
+  "id": "I1c 严禁重复：本轮 skill×场景在快照（写回前）里不存在",
+  "pass": true,
+  "detail": "18 条历史组合"
+ },
+ {
+  "group": "I 台账幂等锁",
+  "id": "I2 写回是追加：tried/runs/used_styles/environment_notes 的历史前缀逐字节未变",
+  "pass": true,
+  "detail": "tried 18→19，styles 54→57"
+ },
+ {
+  "group": "I 台账幂等锁",
+  "id": "I2b tried 末条 = round-facts 的 TRIED（同一来源，不是手抄）",
+  "pass": true,
+  "detail": "frontend-development（用户 "
+ },
+ {
+  "group": "I 台账幂等锁",
+  "id": "I2c runs 末条与 RUN 逐字段一致（cleanup/push 允许写回后补记，故只比已定字段）",
+  "pass": true,
+  "detail": "runs 18→19"
+ },
+ {
+  "group": "I 台账幂等锁",
+  "id": "I2d used_styles = 快照 + 本轮 3 个新风格，全表无重复",
+  "pass": true,
+  "detail": "54→57"
+ },
+ {
+  "group": "I 台账幂等锁",
+  "id": "I2e environment_notes 只增不减、无重复，新增条数 = round-facts",
+  "pass": true,
+  "detail": "110→119"
+ },
+ {
+  "group": "I 台账幂等锁",
+  "id": "I2f skills_seen 条目数不减，且本轮技能使用次数已在 note 里递增",
+  "pass": true,
+  "detail": "19→19 条"
+ },
+ {
+  "group": "I 台账幂等锁",
+  "id": "I3 work-log 行数 = 快照 + 1（一次写回只加一行）",
+  "pass": true,
+  "detail": "30→31"
+ },
+ {
+  "group": "I 台账幂等锁",
+  "id": "I3b work-log 历史部分逐字节未变（append-only）",
+  "pass": true,
+  "detail": "前 30 行哈希"
+ },
+ {
+  "group": "I 台账幂等锁",
+  "id": "I3c work-log 末行 = round-facts 的 WORK_LOG_LINE，且 6 段齐全",
+  "pass": true,
+  "detail": "6 段"
+ },
+ {
+  "group": "I 台账幂等锁",
+  "id": "I3d 末行写到的产物目录与报告文件真实存在",
+  "pass": true,
+  "detail": "20260926-08-frontend-development-wizard"
+ },
+ {
+  "group": "I 台账幂等锁",
+  "id": "I4 updated 时间戳已推进",
+  "pass": true,
+  "detail": "2026-09-26T08:18+08:00 → 2026-09-26T11:00+08:00"
+ },
+ {
+  "group": "I 台账幂等锁",
+  "id": "I4b 本轮三个风格与历史 used_styles 不撞车",
+  "pass": true,
+  "detail": "方格信笺 paper-grid,PCB 阻焊绿 pcb-green,清水混凝土玫瑰金 concrete-rose"
+ },
+ {
+  "group": "I 台账幂等锁",
+  "id": "I5 预览目录形态正确：恰好 3 个 HTML、无子目录",
+  "pass": true,
+  "detail": "wizard-concrete-rose.html,wizard-paper-grid.html,wizard-pcb-green.html"
+ }
+]

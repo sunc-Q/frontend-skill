@@ -1,0 +1,22 @@
+{
+  "bundleBytes": 633905,
+  "plainBundleBytes": 633927,
+  "scriptEscapes": 0,
+  "pages": [
+    {
+      "id": "paper-grid",
+      "file": "preview/wizard-paper-grid.html",
+      "bytes": 634448
+    },
+    {
+      "id": "pcb-green",
+      "file": "preview/wizard-pcb-green.html",
+      "bytes": 634465
+    },
+    {
+      "id": "concrete-rose",
+      "file": "preview/wizard-concrete-rose.html",
+      "bytes": 634487
+    }
+  ]
+}

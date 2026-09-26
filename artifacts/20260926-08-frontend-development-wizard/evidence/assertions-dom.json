@@ -1,0 +1,674 @@
+[
+ {
+  "group": "F · paper-grid",
+  "id": "F1 paper-grid：内联 bundle 无需模块系统即可挂载（.fd-app 出现）",
+  "pass": true,
+  "detail": "arm=memo"
+ },
+ {
+  "group": "F · paper-grid",
+  "id": "F2 paper-grid：路由 loader 预取 + 页面 useSuspenseQuery 共用一次请求（single-flight）",
+  "pass": true,
+  "detail": "bootstrap 请求 1 次"
+ },
+ {
+  "group": "F · paper-grid",
+  "id": "F2b paper-grid：静态 mock 下没有任何请求走 fetch（传输层收口在一处）",
+  "pass": true,
+  "detail": "/wizard/bootstrap"
+ },
+ {
+  "group": "F · paper-grid",
+  "id": "F3 paper-grid：运行时只注入本风格的令牌块，另外两套一个字都没有",
+  "pass": true,
+  "detail": "注入 8728 字节，其它风格出现 0 次"
+ },
+ {
+  "group": "F · paper-grid",
+  "id": "F4 paper-grid：选项区的 Suspense 宿主按 176px 预留空间（占位靠高度，不靠内容）",
+  "pass": true,
+  "detail": "minHeight=176px"
+ },
+ {
+  "group": "F · paper-grid",
+  "id": "F5 paper-grid：数据未达期间不空屏——已挂载的外壳里只有一个带尺寸的骨架宿主",
+  "pass": true,
+  "detail": "窗口 17 帧，重空 0，骨架 16，宿主高度=520px"
+ },
+ {
+  "group": "F · paper-grid",
+  "id": "F5b paper-grid：数据到达后路由宿主节点被复用而不是重建，且全场只有一个字段区占位宿主",
+  "pass": true,
+  "detail": "节点同一=true，520 宿主 1 个，176 宿主 1 个"
+ },
+ {
+  "group": "F · paper-grid",
+  "id": "F6 paper-grid：select 选项来自服务端 bootstrap（含一个空占位，其余逐项对齐事实表）",
+  "pass": true,
+  "detail": "7 项，首项「（未选择）」"
+ },
+ {
+  "group": "F · paper-grid",
+  "id": "F7 paper-grid：无重复 id",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "group": "F · paper-grid",
+  "id": "F8 paper-grid：控制台无 error/warn",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "group": "F · pcb-green",
+  "id": "F1 pcb-green：内联 bundle 无需模块系统即可挂载（.fd-app 出现）",
+  "pass": true,
+  "detail": "arm=memo"
+ },
+ {
+  "group": "F · pcb-green",
+  "id": "F2 pcb-green：路由 loader 预取 + 页面 useSuspenseQuery 共用一次请求（single-flight）",
+  "pass": true,
+  "detail": "bootstrap 请求 1 次"
+ },
+ {
+  "group": "F · pcb-green",
+  "id": "F2b pcb-green：静态 mock 下没有任何请求走 fetch（传输层收口在一处）",
+  "pass": true,
+  "detail": "/wizard/bootstrap"
+ },
+ {
+  "group": "F · pcb-green",
+  "id": "F3 pcb-green：运行时只注入本风格的令牌块，另外两套一个字都没有",
+  "pass": true,
+  "detail": "注入 8619 字节，其它风格出现 0 次"
+ },
+ {
+  "group": "F · pcb-green",
+  "id": "F4 pcb-green：选项区的 Suspense 宿主按 176px 预留空间（占位靠高度，不靠内容）",
+  "pass": true,
+  "detail": "minHeight=176px"
+ },
+ {
+  "group": "F · pcb-green",
+  "id": "F5 pcb-green：数据未达期间不空屏——已挂载的外壳里只有一个带尺寸的骨架宿主",
+  "pass": true,
+  "detail": "窗口 18 帧，重空 0，骨架 17，宿主高度=520px"
+ },
+ {
+  "group": "F · pcb-green",
+  "id": "F5b pcb-green：数据到达后路由宿主节点被复用而不是重建，且全场只有一个字段区占位宿主",
+  "pass": true,
+  "detail": "节点同一=true，520 宿主 1 个，176 宿主 1 个"
+ },
+ {
+  "group": "F · pcb-green",
+  "id": "F6 pcb-green：select 选项来自服务端 bootstrap（含一个空占位，其余逐项对齐事实表）",
+  "pass": true,
+  "detail": "7 项，首项「（未选择）」"
+ },
+ {
+  "group": "F · pcb-green",
+  "id": "F7 pcb-green：无重复 id",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "group": "F · pcb-green",
+  "id": "F8 pcb-green：控制台无 error/warn",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "group": "F · pcb-green",
+  "id": "F9 三风格共用同一 DOM：paper-grid 与 pcb-green 归一化 innerHTML 完全相同",
+  "pass": true,
+  "detail": "归一化后 10006B，差异字符=-1"
+ },
+ {
+  "group": "F · concrete-rose",
+  "id": "F1 concrete-rose：内联 bundle 无需模块系统即可挂载（.fd-app 出现）",
+  "pass": true,
+  "detail": "arm=memo"
+ },
+ {
+  "group": "F · concrete-rose",
+  "id": "F2 concrete-rose：路由 loader 预取 + 页面 useSuspenseQuery 共用一次请求（single-flight）",
+  "pass": true,
+  "detail": "bootstrap 请求 1 次"
+ },
+ {
+  "group": "F · concrete-rose",
+  "id": "F2b concrete-rose：静态 mock 下没有任何请求走 fetch（传输层收口在一处）",
+  "pass": true,
+  "detail": "/wizard/bootstrap"
+ },
+ {
+  "group": "F · concrete-rose",
+  "id": "F3 concrete-rose：运行时只注入本风格的令牌块，另外两套一个字都没有",
+  "pass": true,
+  "detail": "注入 8770 字节，其它风格出现 0 次"
+ },
+ {
+  "group": "F · concrete-rose",
+  "id": "F4 concrete-rose：选项区的 Suspense 宿主按 176px 预留空间（占位靠高度，不靠内容）",
+  "pass": true,
+  "detail": "minHeight=176px"
+ },
+ {
+  "group": "F · concrete-rose",
+  "id": "F5 concrete-rose：数据未达期间不空屏——已挂载的外壳里只有一个带尺寸的骨架宿主",
+  "pass": true,
+  "detail": "窗口 19 帧，重空 0，骨架 18，宿主高度=520px"
+ },
+ {
+  "group": "F · concrete-rose",
+  "id": "F5b concrete-rose：数据到达后路由宿主节点被复用而不是重建，且全场只有一个字段区占位宿主",
+  "pass": true,
+  "detail": "节点同一=true，520 宿主 1 个，176 宿主 1 个"
+ },
+ {
+  "group": "F · concrete-rose",
+  "id": "F6 concrete-rose：select 选项来自服务端 bootstrap（含一个空占位，其余逐项对齐事实表）",
+  "pass": true,
+  "detail": "7 项，首项「（未选择）」"
+ },
+ {
+  "group": "F · concrete-rose",
+  "id": "F7 concrete-rose：无重复 id",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "group": "F · concrete-rose",
+  "id": "F8 concrete-rose：控制台无 error/warn",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "group": "F · concrete-rose",
+  "id": "F9b 第三风格同样共用同一 DOM",
+  "pass": true,
+  "detail": "10006B"
+ },
+ {
+  "group": "H 闸门与前进",
+  "id": "H1 打开即第 1 步，身份步 7 个字段一个不少地摆出来（含服务端选项那 3 个）",
+  "pass": true,
+  "detail": "STEP 1/4，控件 7 个"
+ },
+ {
+  "group": "H 闸门与前进",
+  "id": "H2 空表单点「下一步」被挡：仍在第 1 步 + 就地出现错误 chip + 焦点落在第一个未通过字段",
+  "pass": true,
+  "detail": "错误 chip 4 个，焦点=storeName"
+ },
+ {
+  "group": "H 闸门与前进",
+  "id": "H2b 被挡时给出 Snackbar 提示而不是静默",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "group": "H 闸门与前进",
+  "id": "H2c 被挡不跳步：hash 没有被写成下一步（未走通就不留地址）",
+  "pass": true,
+  "detail": "hash=（空）"
+ },
+ {
+  "group": "H 闸门与前进",
+  "id": "H3 身份步补齐后可前进到第 2 步，hash 同步为 #step=plan",
+  "pass": true,
+  "detail": "STEP 2/4 hash=#step=plan"
+ },
+ {
+  "group": "H 闸门与前进",
+  "id": "H3b 第 1 步在步骤条上标记为已完成（data-done=1）",
+  "pass": true,
+  "detail": "1"
+ },
+ {
+  "group": "H 闸门与前进",
+  "id": "H4 深链/手输 hash 不能绕过闸门：#step=review 被拒，hash 改写成闸门真正允许的那一步",
+  "pass": true,
+  "detail": "hash=#step=plan STEP 2/4"
+ },
+ {
+  "group": "H 闸门与前进",
+  "id": "H4b 前进被拒同样给 Snackbar（不是悄悄吞掉）",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "group": "H 闸门与前进",
+  "id": "H4c 向后跳转永远开放：#step=identity 立刻生效（改前面的字段不必重走闸门）",
+  "pass": true,
+  "detail": "STEP 1/4"
+ },
+ {
+  "group": "H 深链冷启动",
+  "id": "H5 空草稿 + #step=review 冷启动：闸门把它留在第 1 步（深链不是免检通行证）",
+  "pass": true,
+  "detail": "STEP 1/4 hash=#step=identity"
+ },
+ {
+  "group": "H 深链冷启动",
+  "id": "H5b 无法识别的 hash 值被忽略而不是崩溃（readStepFromHash 白名单）",
+  "pass": true,
+  "detail": "STEP 1/4"
+ },
+ {
+  "group": "H 异步校验：乱序回写",
+  "id": "H6 先发的慢请求后到达，被令牌单调性丢弃（staleDropped ≥ 1）",
+  "pass": true,
+  "detail": "{\"requests\":3,\"applied\":1,\"staleDropped\":1,\"errorWrites\":0,\"errorClears\":2}"
+ },
+ {
+  "group": "H 异步校验：乱序回写",
+  "id": "H6b 界面停留在最后一次的结论上（forValue=fast 而非 slow）",
+  "pass": true,
+  "detail": "子域名：available（fast）"
+ },
+ {
+  "group": "H 异步校验：乱序回写",
+  "id": "H6c 校验结论 chip 出现在字段下方且标为「可用」",
+  "pass": true,
+  "detail": "可用"
+ },
+ {
+  "group": "H 异步校验：乱序回写",
+  "id": "H6c2 可用的结论把字段边框从 neutral 提到 ok（结论不只在文字里）",
+  "pass": true,
+  "detail": "ok"
+ },
+ {
+  "group": "H 异步校验：乱序回写",
+  "id": "H6d 已占用名：字段边框转 error 态、chip 文案为「已占用」",
+  "pass": true,
+  "detail": "error / 已占用"
+ },
+ {
+  "group": "H 异步校验：乱序回写",
+  "id": "H6d2 这条 error 不来自 setError：resolver 重跑会冲掉注入错误，所以 [data-error-for] 是空的",
+  "pass": true,
+  "detail": "清单行=跳至子域名：subdomain 已被占用"
+ },
+ {
+  "group": "H 异步校验：乱序回写",
+  "id": "H6e 回到同一取值时命中查询缓存，不再打服务端（fetchQuery 按 key 复用）",
+  "pass": true,
+  "detail": "sub:fast 请求 1→1"
+ },
+ {
+  "group": "H 异步校验：乱序回写",
+  "id": "H6f 换到新取值时确实又打了一次服务端（缓存不是万能挡箭牌）",
+  "pass": true,
+  "detail": "sub:shop 1 次"
+ },
+ {
+  "group": "H 异步校验：乱序回写",
+  "id": "H6g reserved：chip 为「保留名」",
+  "pass": true,
+  "detail": "保留名"
+ },
+ {
+  "group": "H 字段级 dirty / 计数 / 报价联动",
+  "id": "H7 dirty 标记是字段级的：只有被改过的字段出现「已修改」chip",
+  "pass": true,
+  "detail": "storeName"
+ },
+ {
+  "group": "H 字段级 dirty / 计数 / 报价联动",
+  "id": "H7b 头部计数与 chip 数一致",
+  "pass": true,
+  "detail": "1 项已改"
+ },
+ {
+  "group": "H 字段级 dirty / 计数 / 报价联动",
+  "id": "H7c 字符计数按码点（emoji 记 1，不按 UTF-16 的 2）",
+  "pass": true,
+  "detail": "计数=6/40，UTF-16 长度=9"
+ },
+ {
+  "group": "H 字段级 dirty / 计数 / 报价联动",
+  "id": "H8 换套餐时席位重新钳制（market 下限 20 → starter 上限 50 内）",
+  "pass": true,
+  "detail": "market 时 20 席 → starter 时 20 席"
+ },
+ {
+  "group": "H 字段级 dirty / 计数 / 报价联动",
+  "id": "H8b 侧栏明细行之和 = 小计（UI 里印出来的钱也能按分加回来）",
+  "pass": true,
+  "detail": "2 行 · 合计 104000 分 vs 小计 104000 分"
+ },
+ {
+  "group": "H 字段级 dirty / 计数 / 报价联动",
+  "id": "H8c 总额 = (小计 + 折扣) ×（年付 12 个月 / 月付 1）·折扣只在年付出现",
+  "pass": true,
+  "detail": "月付：(104000 0)×1 = 104000 分，总额印为 ¥1,040.00"
+ },
+ {
+  "group": "H 扩展依赖与分支残留",
+  "id": "H9a 默认已含「库存同步」，此时加勾「多仓发货」合法（依赖满足）",
+  "pass": true,
+  "detail": "stock=1 multisite=1"
+ },
+ {
+  "group": "H 扩展依赖与分支残留",
+  "id": "H9 撤掉前置的「库存同步」后：错误就地出现在 addons 字段下，并点名两个模块",
+  "pass": true,
+  "detail": "「多仓发货」需要先启用「库存同步」"
+ },
+ {
+  "group": "H 扩展依赖与分支残留",
+  "id": "H9b 补齐前置依赖后错误自动消失",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "group": "H 扩展依赖与分支残留",
+  "id": "H9c 信用代码只改末位（校验位）就被拦下：错误 chip 点名校验位，字段边框转 error",
+  "pass": true,
+  "detail": "统一社会信用代码校验位不正确 state=error"
+ },
+ {
+  "group": "H 扩展依赖与分支残留",
+  "id": "H9d 换成合法校验位后错误消失（同一字段，两处校验都跟着改）",
+  "pass": true,
+  "detail": "91310115MA1K3X7L08"
+ },
+ {
+  "group": "H 扩展依赖与分支残留",
+  "id": "H10 切回个人后企业证件字段从界面消失",
+  "pass": true,
+  "detail": "在场控件 5 个"
+ },
+ {
+  "group": "H 扩展依赖与分支残留",
+  "id": "H10b 消失的字段不能悄悄进入提交体：个人分支 payload 里没有 uscc/companyName",
+  "pass": true,
+  "detail": "个人 24 键 / 企业 24 键"
+ },
+ {
+  "group": "H 扩展依赖与分支残留",
+  "id": "H10c allowedKeys 与 payload 键集合逐一相等（分支白名单不是事后补的）",
+  "pass": true,
+  "detail": "24 键"
+ },
+ {
+  "group": "H 草稿：自动保存 / 恢复 / 敌意输入 / 清理",
+  "id": "H11 改动后自动落盘（带版本号与所在步骤）",
+  "pass": true,
+  "detail": "version=3 step=identity"
+ },
+ {
+  "group": "H 草稿：自动保存 / 恢复 / 敌意输入 / 清理",
+  "id": "H11b 手动保存给出时间戳反馈",
+  "pass": true,
+  "detail": "最近保存 2026-09-26T02:42:57.816Z"
+ },
+ {
+  "group": "H 草稿：自动保存 / 恢复 / 敌意输入 / 清理",
+  "id": "H11c 清空草稿后存储里确实没有残留",
+  "pass": true,
+  "detail": "dirty=6 个字段已修改"
+ },
+ {
+  "group": "H 草稿：自动保存 / 恢复 / 敌意输入 / 清理",
+  "id": "H12 有草稿时冷启动落在保存的那一步，并说明恢复来源与时间",
+  "pass": true,
+  "detail": "已恢复上次草稿（2026-09-25T10:00:00.000Z，丢弃 1 个未知字段，3 个字段类型不符已回落） · STEP 2/4"
+ },
+ {
+  "group": "H 草稿：自动保存 / 恢复 / 敌意输入 / 清理",
+  "id": "H12b 未知键被丢弃并写进提示，类型不符的字段逐个回落",
+  "pass": true,
+  "detail": "已恢复上次草稿（2026-09-25T10:00:00.000Z，丢弃 1 个未知字段，3 个字段类型不符已回落）"
+ },
+ {
+  "group": "H 草稿：自动保存 / 恢复 / 敌意输入 / 清理",
+  "id": "H12c 回落是逐字段的：非法的 addons 回到默认（侧栏只剩库存同步行），合法的 billing 保留 annual",
+  "pass": true,
+  "detail": "hint=工坊 · 12 席 · 年付 · 分项现算 lines=platform,seats,addon:stock,subtotal,discount"
+ },
+ {
+  "group": "H 草稿：自动保存 / 恢复 / 敌意输入 / 清理",
+  "id": "H12b2 回落不是放弃整份：合法字段原样回到第 1 步（后退永远开放）",
+  "pass": true,
+  "detail": "storeName=潮汐社 subdomain=chaoxi"
+ },
+ {
+  "group": "H 草稿：自动保存 / 恢复 / 敌意输入 / 清理",
+  "id": "H12d 坏 JSON 不炸页面：从默认值开始并说明原因",
+  "pass": true,
+  "detail": "草稿无法解析，已从默认值开始"
+ },
+ {
+  "group": "H 草稿：自动保存 / 恢复 / 敌意输入 / 清理",
+  "id": "H12e 版本不匹配 ⇒ 整份作废（不半应用），字段回到默认",
+  "pass": true,
+  "detail": "草稿版本与当前表单不一致，已从默认值开始 storeName="
+ },
+ {
+  "group": "H 草稿：自动保存 / 恢复 / 敌意输入 / 清理",
+  "id": "H12f 草稿里非法的 step 回落 identity，但合法字段照常恢复",
+  "pass": true,
+  "detail": "STEP 1/4 / 步骤名也是敌意输入"
+ },
+ {
+  "group": "H 提交：闸门、幂等、清草稿",
+  "id": "H13 四步全通过 + 异步校验齐 ⇒ 抵达评审步且看到总额",
+  "pass": true,
+  "detail": "STEP 4/4 ¥13,137.60"
+ },
+ {
+  "group": "H 提交：闸门、幂等、清草稿",
+  "id": "H13b 评审页把全部数据字段逐项列出来，每项都带「改」的回跳按钮",
+  "pass": true,
+  "detail": "22 行 / 事实表 22 个字段"
+ },
+ {
+  "group": "H 提交：闸门、幂等、清草稿",
+  "id": "H13c 此时完整性清单为「全部通过」",
+  "pass": true,
+  "detail": "全部通过，可以提交"
+ },
+ {
+  "group": "H 提交：闸门、幂等、清草稿",
+  "id": "H14 提交成功并给出订单号",
+  "pass": true,
+  "detail": "已受理 / TD-CHAOXI-0001"
+ },
+ {
+  "group": "H 提交：闸门、幂等、清草稿",
+  "id": "H14b 连点两次：只发出一次真实提交（in-flight 锁）",
+  "pass": true,
+  "detail": "submit 请求 1 次"
+ },
+ {
+  "group": "H 提交：闸门、幂等、清草稿",
+  "id": "H14c 成功后草稿被清除，并且 900ms 后也没被自动保存复活（在途定时器也要认账）",
+  "pass": true,
+  "detail": "null"
+ },
+ {
+  "group": "H 提交：闸门、幂等、清草稿",
+  "id": "H14d 提交与审计并发发出（审计不串在主链路上）",
+  "pass": true,
+  "detail": "路径集合 /wizard/bootstrap,/wizard/check-subdomain,/wizard/check-email,/wizard/submit,/wizard/audit"
+ },
+ {
+  "group": "H 提交：闸门、幂等、清草稿",
+  "id": "H14e 回执在提交后才出现，且金额与评审页一致",
+  "pass": true,
+  "detail": "开通回执回执编号 TD-CHAOXI-0001 · 纸质回执可在后台补打站点潮汐社 · 手作订阅 · chaoxi.ti"
+ },
+ {
+  "group": "H 异步闸门：已占用名把评审步关掉",
+  "id": "H15a 先正常抵达评审步（后面要拆的就是这道门）",
+  "pass": true,
+  "detail": "STEP 4/4"
+ },
+ {
+  "group": "H 异步闸门：已占用名把评审步关掉",
+  "id": "H15a2 评审页的「改」把用户带回对应步骤，而不是只印个链接",
+  "pass": true,
+  "detail": "STEP 1/4 subdomain=[object HTMLInputElement]"
+ },
+ {
+  "group": "H 异步闸门：已占用名把评审步关掉",
+  "id": "H15b 改成已占用名后：schema 本身通过（shop 是合法子域名），拦下前进的只有异步结论",
+  "pass": true,
+  "detail": "state=error schema 错误=无 taken=true"
+ },
+ {
+  "group": "H 异步闸门：已占用名把评审步关掉",
+  "id": "H15c 清单里点名「已被占用」，步骤条把评审步标为不可达",
+  "pass": true,
+  "detail": "issue=跳至子域名：subdomain 已被占用 reachable=0"
+ },
+ {
+  "group": "H 异步闸门：已占用名把评审步关掉",
+  "id": "H15d 闸门没开时提交请求一次都没发出",
+  "pass": true,
+  "detail": "submit 0→0"
+ },
+ {
+  "group": "H 异步闸门：已占用名把评审步关掉",
+  "id": "H15e 换回可用名后闸门重新打开（拦的不是这一次失败，而是当前结论）",
+  "pass": true,
+  "detail": "STEP 4/4 第一步就放行=true reachable=1"
+ },
+ {
+  "group": "H 服务端二次校验（客户端漏网时）",
+  "id": "H16 服务端 audit 独立拒同一份数据（客户端不是唯一防线）",
+  "pass": true,
+  "detail": "退回字段：storeName,subdomain,agree,uscc"
+ },
+ {
+  "group": "H 服务端二次校验（客户端漏网时）",
+  "id": "H16b 示例 payload 过服务端审计",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "group": "H 服务端二次校验（客户端漏网时）",
+  "id": "H16c 审计与提交都是 /wizard/* 而不是 /api/wizard/*（技能里的路由格式条款）",
+  "pass": true,
+  "detail": "/wizard/bootstrap,/wizard/check-subdomain,/wizard/audit"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N0 两臂确实是同一份源码的两个构建：臂名不同、DOM 相同",
+  "pass": true,
+  "detail": "arm=memo / plain"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N1 两臂归一化 DOM 完全相同（消融只换实现不换结果）",
+  "pass": true,
+  "detail": "10074B vs 10074B"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N1b 两臂都发生了字段渲染（计数器不是空的）",
+  "pass": true,
+  "detail": "memo=7 plain=7"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N2 一次击键后两臂重渲染了同样多的字段叶子（第一次提交谁都省不下来）",
+  "pass": true,
+  "detail": "计数叶子 7 vs 7，在场控件 7 个"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N2b 单击键字段渲染总次数：memo 臂 / 无 memo 臂",
+  "pass": true,
+  "printed": "7 / 7 次"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N3 单击键两臂渲染次数相等 —— 这正是只看一次击键会得出的错误结论",
+  "pass": true,
+  "detail": "差值 0"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N4 每个叶子都在第一击键时渲染过（脏标记 / 计数字符串都要重算）",
+  "pass": true,
+  "detail": "最高 1 次，共 7 个叶子"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N4b 每键成本 ≈ 在场字段数（本场景 O(n) 而非 O(1)）",
+  "pass": true,
+  "printed": "7 次 / 7 个被计数字段"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N5 30 次击键（字符数不变 ⇒ 派生 props 不变）：渲染次数 memo / plain",
+  "pass": true,
+  "printed": "7 / 210 次"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N5b 无 memo 臂的渲染次数随击键成倍增长，memo 臂不增长",
+  "pass": true,
+  "detail": "memo=7 plain=210（30 击）"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N5c memo 臂把 30 次击键压回第一次提交的量（后续全部浅比较命中）",
+  "pass": true,
+  "detail": "memo=7 plain=210"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N6 30 次击键（长度逐次变化）：渲染次数 memo / plain",
+  "pass": true,
+  "printed": "7 / 210 次"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N6b 输入值根本不经过 props：uncontrolled register 让被输入的那个叶子也命中浅比较",
+  "pass": true,
+  "detail": "长度变化模式 7 次 = 稳定模式 7 次，plain 两模式同为 210/210"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N6c 省下的比例 ≈ 在场字段数（n 个字段省 n-1 个）",
+  "pass": true,
+  "detail": "30.0× 渲染量差"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N6d props 真变时 memo 臂立刻跟上（省下的不是被冻住的旧界面）",
+  "pass": true,
+  "detail": "blur 后新增 14 次渲染，dirty 角标=true"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N6e memo 臂在 blur 前后 DOM 一致地出现 dirty 标记（与 plain 臂同一结论）",
+  "pass": true,
+  "detail": "plain 新增 14 次渲染"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N7 两臂墙钟合计（稳定 + 变化两种 props 情形各 30 击）：memo / plain",
+  "pass": true,
+  "printed": "214 ms / 350 ms"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N7b memo 的收益在墙钟上同样可测（不是只省了计数器数字）",
+  "pass": true,
+  "detail": "memo 214ms vs plain 350ms"
+ },
+ {
+  "group": "N 渲染消融：React.memo 在 useFormContext 消费者上值多少",
+  "id": "N7c 反向检查：memo 没有把页面拖慢（上限 1.25×）",
+  "pass": true,
+  "detail": "差 136 ms"
+ }
+]

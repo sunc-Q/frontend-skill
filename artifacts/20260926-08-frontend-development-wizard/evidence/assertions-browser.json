@@ -1,0 +1,422 @@
+[
+ {
+  "group": "D 渲染真实样式 · paper-grid",
+  "id": "D0 paper-grid 全流程零跨源请求（含字体/图片/埋点）",
+  "pass": true,
+  "detail": "仅 1 个同源请求"
+ },
+ {
+  "group": "D 渲染真实样式 · paper-grid",
+  "id": "D1 paper-grid 1440px 下无横向滚动",
+  "pass": true,
+  "detail": "1440 ≤ 1440"
+ },
+ {
+  "group": "D 渲染真实样式 · paper-grid",
+  "id": "D2 paper-grid 结构层用 minmax(0,1fr)/min(100%,…) 夹住宽度（不是靠固定像素）",
+  "pass": true,
+  "detail": "scrollWidth=1440"
+ },
+ {
+  "group": "D 渲染真实样式 · paper-grid",
+  "id": "D3 paper-grid 正文对页面底色对比度 ≥4.5（WCAG AA）",
+  "pass": true,
+  "detail": "11.37:1 rgb(34, 49, 74) on rgb(242, 239, 230)"
+ },
+ {
+  "group": "D 渲染真实样式 · paper-grid",
+  "id": "D3b paper-grid 正文对比度",
+  "pass": true,
+  "printed": "11.37:1"
+ },
+ {
+  "group": "D 渲染真实样式 · paper-grid",
+  "id": "D4 paper-grid 次要文字对比度 ≥4.5",
+  "pass": true,
+  "detail": "5.29:1"
+ },
+ {
+  "group": "D 渲染真实样式 · paper-grid",
+  "id": "D4b paper-grid 次要文字对比度",
+  "pass": true,
+  "printed": "5.29:1"
+ },
+ {
+  "group": "D 渲染真实样式 · paper-grid",
+  "id": "D4c paper-grid 手法指纹（底色/圆角/描边/分隔手法）",
+  "pass": true,
+  "printed": "rgb(242, 239, 230) · r=3px · bw=1px · ruled/无阴影"
+ },
+ {
+  "group": "D 渲染真实样式 · paper-grid",
+  "id": "D6 paper-grid 是正交细网（两道 repeating-linear-gradient）且无阴影",
+  "pass": true,
+  "detail": "repeating-linear-gradient(0deg, rgb(220, 223, "
+ },
+ {
+  "group": "D 渲染真实样式 · paper-grid",
+  "id": "D6b paper-grid 品牌标题保留原大小写（text-transform:none）",
+  "pass": true,
+  "detail": "none"
+ },
+ {
+  "group": "D 渲染真实样式 · pcb-green",
+  "id": "D0 pcb-green 全流程零跨源请求（含字体/图片/埋点）",
+  "pass": true,
+  "detail": "仅 1 个同源请求"
+ },
+ {
+  "group": "D 渲染真实样式 · pcb-green",
+  "id": "D1 pcb-green 1440px 下无横向滚动",
+  "pass": true,
+  "detail": "1440 ≤ 1440"
+ },
+ {
+  "group": "D 渲染真实样式 · pcb-green",
+  "id": "D2 pcb-green 结构层用 minmax(0,1fr)/min(100%,…) 夹住宽度（不是靠固定像素）",
+  "pass": true,
+  "detail": "scrollWidth=1440"
+ },
+ {
+  "group": "D 渲染真实样式 · pcb-green",
+  "id": "D3 pcb-green 正文对页面底色对比度 ≥4.5（WCAG AA）",
+  "pass": true,
+  "detail": "13.62:1 rgb(220, 239, 220) on rgb(10, 36, 25)"
+ },
+ {
+  "group": "D 渲染真实样式 · pcb-green",
+  "id": "D3b pcb-green 正文对比度",
+  "pass": true,
+  "printed": "13.62:1"
+ },
+ {
+  "group": "D 渲染真实样式 · pcb-green",
+  "id": "D4 pcb-green 次要文字对比度 ≥4.5",
+  "pass": true,
+  "detail": "6.54:1"
+ },
+ {
+  "group": "D 渲染真实样式 · pcb-green",
+  "id": "D4b pcb-green 次要文字对比度",
+  "pass": true,
+  "printed": "6.54:1"
+ },
+ {
+  "group": "D 渲染真实样式 · pcb-green",
+  "id": "D4c pcb-green 手法指纹（底色/圆角/描边/分隔手法）",
+  "pass": true,
+  "printed": "rgb(10, 36, 25) · r=0px · bw=1px · silk/无阴影"
+ },
+ {
+  "group": "D 渲染真实样式 · pcb-green",
+  "id": "D5 pcb-green 为暗色底（亮度 <0.06）且斜向丝网纹",
+  "pass": true,
+  "detail": "lum=0.0140"
+ },
+ {
+  "group": "D 渲染真实样式 · pcb-green",
+  "id": "D5b pcb-green 无面板阴影、等宽数字字体",
+  "pass": true,
+  "detail": "none / ui-monospace, SFMono-R"
+ },
+ {
+  "group": "D 渲染真实样式 · concrete-rose",
+  "id": "D0 concrete-rose 全流程零跨源请求（含字体/图片/埋点）",
+  "pass": true,
+  "detail": "仅 1 个同源请求"
+ },
+ {
+  "group": "D 渲染真实样式 · concrete-rose",
+  "id": "D1 concrete-rose 1440px 下无横向滚动",
+  "pass": true,
+  "detail": "1440 ≤ 1440"
+ },
+ {
+  "group": "D 渲染真实样式 · concrete-rose",
+  "id": "D2 concrete-rose 结构层用 minmax(0,1fr)/min(100%,…) 夹住宽度（不是靠固定像素）",
+  "pass": true,
+  "detail": "scrollWidth=1440"
+ },
+ {
+  "group": "D 渲染真实样式 · concrete-rose",
+  "id": "D3 concrete-rose 正文对页面底色对比度 ≥4.5（WCAG AA）",
+  "pass": true,
+  "detail": "9.12:1 rgb(31, 28, 26) on rgb(192, 190, 185)"
+ },
+ {
+  "group": "D 渲染真实样式 · concrete-rose",
+  "id": "D3b concrete-rose 正文对比度",
+  "pass": true,
+  "printed": "9.12:1"
+ },
+ {
+  "group": "D 渲染真实样式 · concrete-rose",
+  "id": "D4 concrete-rose 次要文字对比度 ≥4.5",
+  "pass": true,
+  "detail": "5.36:1"
+ },
+ {
+  "group": "D 渲染真实样式 · concrete-rose",
+  "id": "D4b concrete-rose 次要文字对比度",
+  "pass": true,
+  "printed": "5.36:1"
+ },
+ {
+  "group": "D 渲染真实样式 · concrete-rose",
+  "id": "D4c concrete-rose 手法指纹（底色/圆角/描边/分隔手法）",
+  "pass": true,
+  "printed": "rgb(192, 190, 185) · r=0px · bw=5px · dot/有阴影"
+ },
+ {
+  "group": "D 渲染真实样式 · concrete-rose",
+  "id": "D7 concrete-rose 用硬位移阴影作分隔（box-shadow 含 6px 6px 0）且为圆点纹",
+  "pass": true,
+  "detail": "rgb(143, 141, 136) 6px 6px 0px 0px | radial-gradient(circle a"
+ },
+ {
+  "group": "D 渲染真实样式 · concrete-rose",
+  "id": "D7b concrete-rose 粗描边（≥3px）+ 大写标题",
+  "pass": true,
+  "detail": "5px / uppercase"
+ },
+ {
+  "group": "D 三风格互异（计算样式层）",
+  "id": "D8 paper-grid↔pcb-green 十二项指纹差异 ≥7",
+  "pass": true,
+  "detail": "9/12（appBg,appImage,textColor,mutedColor,uiFont,brandCase,radius,tracking,bodySize）"
+ },
+ {
+  "group": "D 三风格互异（计算样式层）",
+  "id": "D8 paper-grid↔concrete-rose 十二项指纹差异 ≥7",
+  "pass": true,
+  "detail": "12/12（appBg,appImage,textColor,mutedColor,uiFont,numFont,brandCase,radius,borderW,panelShadow,tracking,bodySize）"
+ },
+ {
+  "group": "D 三风格互异（计算样式层）",
+  "id": "D8 pcb-green↔concrete-rose 十二项指纹差异 ≥7",
+  "pass": true,
+  "detail": "10/12（appBg,appImage,textColor,mutedColor,uiFont,numFont,borderW,panelShadow,tracking,bodySize）"
+ },
+ {
+  "group": "D 三风格互异（计算样式层）",
+  "id": "D9 三种分隔手法在浏览器里实测互斥（正交网 / 斜纹 / 圆点）",
+  "pass": true,
+  "detail": "ruled,silk,dot ← repeating-linear-gra | repeating-linear-gra | radial-gradient(circ"
+ },
+ {
+  "group": "D 三风格互异（计算样式层）",
+  "id": "D10 阴影手法也互斥：两风格无阴影、一风格硬阴影",
+  "pass": true,
+  "detail": "none,none,shadow"
+ },
+ {
+  "group": "D 三风格互异（计算样式层）",
+  "id": "D11 数字字体并非三页同一（字体是风格的一部分）",
+  "pass": true,
+  "detail": "ui-monospace, SFMo | ui-monospace, SFMo | \"Iowan Old Style\","
+ },
+ {
+  "group": "D 三风格互异（计算样式层）",
+  "id": "D12 三页底色两两不同",
+  "pass": true,
+  "detail": "rgb(242, 239, 230) | rgb(10, 36, 25) | rgb(192, 190, 185)"
+ },
+ {
+  "group": "G 延迟真接口的骨架与位移（?api=1）",
+  "id": "G0 事实源可从产物内取到（fixture 不抄第二份表）",
+  "pass": true,
+  "detail": "1119B，6 个品类"
+ },
+ {
+  "group": "G 延迟真接口的骨架与位移（?api=1）",
+  "id": "G1 mock 载体不发网络请求，?api=1 载体恰好发 1 次 bootstrap（同一产物两种传输）",
+  "pass": true,
+  "detail": "mock=0 api=1"
+ },
+ {
+  "group": "G 延迟真接口的骨架与位移（?api=1）",
+  "id": "G2 mock：等待期始终有可见占位（路由级或字段级），从未空窗",
+  "pass": true,
+  "detail": "路由骨架 29 帧(302ms)，字段骨架 0 帧(0ms)，共 130 帧"
+ },
+ {
+  "group": "G 延迟真接口的骨架与位移（?api=1）",
+  "id": "G2b mock 两级骨架时长",
+  "pass": true,
+  "printed": "302 / 0ms（路由/字段）"
+ },
+ {
+  "group": "G 延迟真接口的骨架与位移（?api=1）",
+  "id": "G3 mock：字段级骨架本次未被采到（等待期被路由级边界吃掉），位移改由挂载后帧序列度量",
+  "pass": true,
+  "printed": "0帧"
+ },
+ {
+  "group": "G 延迟真接口的骨架与位移（?api=1）",
+  "id": "G3b mock：内容就绪后按钮不再移动（就绪→稳定位移 ≤2px）",
+  "pass": true,
+  "detail": "drift=0px over 100 帧"
+ },
+ {
+  "group": "G 延迟真接口的骨架与位移（?api=1）",
+  "id": "G4 mock：页面挂载后没有「既无骨架也无内容」的空窗帧",
+  "pass": true,
+  "detail": "100 帧挂载期内均有着落"
+ },
+ {
+  "group": "G 延迟真接口的骨架与位移（?api=1）",
+  "id": "G2 api：等待期始终有可见占位（路由级或字段级），从未空窗",
+  "pass": true,
+  "detail": "路由骨架 215 帧(2157ms)，字段骨架 185 帧(1752ms)，共 322 帧"
+ },
+ {
+  "group": "G 延迟真接口的骨架与位移（?api=1）",
+  "id": "G2b api 两级骨架时长",
+  "pass": true,
+  "printed": "2157 / 1752ms（路由/字段）"
+ },
+ {
+  "group": "G 延迟真接口的骨架与位移（?api=1）",
+  "id": "G3 api：字段骨架→内容之间「下一步」按钮位移 ≤2px",
+  "pass": true,
+  "detail": "909 → 909"
+ },
+ {
+  "group": "G 延迟真接口的骨架与位移（?api=1）",
+  "id": "G3a api：占位下方说明文字同样不位移",
+  "pass": true,
+  "detail": "877 → 877"
+ },
+ {
+  "group": "G 延迟真接口的骨架与位移（?api=1）",
+  "id": "G3c api：占位高度实测 ≥170px",
+  "pass": true,
+  "detail": "176px"
+ },
+ {
+  "group": "G 延迟真接口的骨架与位移（?api=1）",
+  "id": "G4 api：页面挂载后没有「既无骨架也无内容」的空窗帧",
+  "pass": true,
+  "detail": "291 帧挂载期内均有着落"
+ },
+ {
+  "group": "G 延迟真接口的骨架与位移（?api=1）",
+  "id": "G5 真接口慢 2.2s 期间整页仍可用：标题、步骤条、草稿面板都在场（早期返回会把它们一起抹掉）",
+  "pass": true,
+  "detail": "挂载后帧 291，路由等待帧 215"
+ },
+ {
+  "group": "G 延迟真接口的骨架与位移（?api=1）",
+  "id": "G5b ?api=1 的总等待窗口明显长于 mock（延迟可见，而不是被同步假数据抹平）",
+  "pass": true,
+  "detail": "api≈3909ms vs mock≈302ms"
+ },
+ {
+  "group": "G 延迟真接口的骨架与位移（?api=1）",
+  "id": "G6 骨架总时长：mock / api（延迟接口的可见代价）",
+  "pass": true,
+  "printed": "302 / 3909ms"
+ },
+ {
+  "group": "K 真浏览器点完整条提交链路",
+  "id": "K1 载入示例后异步校验自己跑完（不是靠手点输入框）",
+  "pass": true,
+  "detail": "子域名角标已变「可用」"
+ },
+ {
+  "group": "K 真浏览器点完整条提交链路",
+  "id": "K2 三次「下一步」到达第 4 步（真浏览器里的步骤闸门与 jsdom 结论一致）",
+  "pass": true,
+  "detail": "STEP 4/4"
+ },
+ {
+  "group": "K 真浏览器点完整条提交链路",
+  "id": "K3 提交拿到回执号（真点击，不需要合成 submit 事件）",
+  "pass": true,
+  "detail": "回执=TD-CHAOXI-0001 合计=¥19,053.60"
+ },
+ {
+  "group": "K 真浏览器点完整条提交链路",
+  "id": "K4 提交成功即清草稿（真浏览器里 localStorage 确实为空）",
+  "pass": true,
+  "detail": "null"
+ },
+ {
+  "group": "K 真浏览器点完整条提交链路",
+  "id": "K5 再点一次提交得到「重复提交已并入同一订单」（幂等令牌在真浏览器里成立）",
+  "pass": true,
+  "detail": "重复提交已并入同一订单"
+ },
+ {
+  "group": "K 真浏览器点完整条提交链路",
+  "id": "K5b 重复提交不换回执号",
+  "pass": true,
+  "detail": "TD-CHAOXI-0001 → TD-CHAOXI-0001"
+ },
+ {
+  "group": "M 草稿跨载体与跨刷新（http:// 与 file:// 是两个 origin）",
+  "id": "M1 http:// 载体可冷启动且起始无草稿（新 context 不串存储，页面零报错）",
+  "pass": true,
+  "detail": "storage=0 err= pageerrors="
+ },
+ {
+  "group": "M 草稿跨载体与跨刷新（http:// 与 file:// 是两个 origin）",
+  "id": "M2 http:// 初始提示为「尚无草稿」而不是残留文案",
+  "pass": true,
+  "detail": "尚无草稿"
+ },
+ {
+  "group": "M 草稿跨载体与跨刷新（http:// 与 file:// 是两个 origin）",
+  "id": "M3 http:// 手动保存写入版本化信封（version=3，字段与输入一致，未知字段不会进来）",
+  "pass": true,
+  "detail": "{\"version\":3,\"step\":\"identity\",\"values\":{\"storeName\":\"载体验证店名"
+ },
+ {
+  "group": "M 草稿跨载体与跨刷新（http:// 与 file:// 是两个 origin）",
+  "id": "M4 http:// 刷新后草稿回填且提示「已恢复」",
+  "pass": true,
+  "detail": "{\"store\":\"载体验证店名\",\"sub\":\"carrier-probe\",\"draft\":\"已恢复上次草稿（2026-09-26T02:43:35.102Z）\",\"step\":\"STEP 1/4\"}"
+ },
+ {
+  "group": "M 草稿跨载体与跨刷新（http:// 与 file:// 是两个 origin）",
+  "id": "M5 http:// 敌意草稿被逐项消毒：未知键丢弃、类型不符回落、非法步骤回第一步",
+  "pass": true,
+  "detail": "{\"store\":\"\",\"sub\":\"ok-name\",\"step\":\"STEP 1/4\",\"draft\":\"已恢复上次草稿（2020-01-01T00:00:00.000Z，丢弃 1 个未知字段，1 个字段类型不符已回落）\"}"
+ },
+ {
+  "group": "M 草稿跨载体与跨刷新（http:// 与 file:// 是两个 origin）",
+  "id": "M1 file:// 载体可冷启动且起始无草稿（新 context 不串存储，页面零报错）",
+  "pass": true,
+  "detail": "storage=0 err= pageerrors="
+ },
+ {
+  "group": "M 草稿跨载体与跨刷新（http:// 与 file:// 是两个 origin）",
+  "id": "M2 file:// 初始提示为「尚无草稿」而不是残留文案",
+  "pass": true,
+  "detail": "尚无草稿"
+ },
+ {
+  "group": "M 草稿跨载体与跨刷新（http:// 与 file:// 是两个 origin）",
+  "id": "M3 file:// 手动保存写入版本化信封（version=3，字段与输入一致，未知字段不会进来）",
+  "pass": true,
+  "detail": "{\"version\":3,\"step\":\"identity\",\"values\":{\"storeName\":\"载体验证店名"
+ },
+ {
+  "group": "M 草稿跨载体与跨刷新（http:// 与 file:// 是两个 origin）",
+  "id": "M4 file:// 刷新后草稿回填且提示「已恢复」",
+  "pass": true,
+  "detail": "{\"store\":\"载体验证店名\",\"sub\":\"carrier-probe\",\"draft\":\"已恢复上次草稿（2026-09-26T02:43:38.217Z）\",\"step\":\"STEP 1/4\"}"
+ },
+ {
+  "group": "M 草稿跨载体与跨刷新（http:// 与 file:// 是两个 origin）",
+  "id": "M5 file:// 敌意草稿被逐项消毒：未知键丢弃、类型不符回落、非法步骤回第一步",
+  "pass": true,
+  "detail": "{\"store\":\"\",\"sub\":\"ok-name\",\"step\":\"STEP 1/4\",\"draft\":\"已恢复上次草稿（2020-01-01T00:00:00.000Z，丢弃 1 个未知字段，1 个字段类型不符已回落）\"}"
+ },
+ {
+  "group": "M 草稿跨载体与跨刷新（http:// 与 file:// 是两个 origin）",
+  "id": "M6 两种载体各自写入成功且互不相通（file:// 与 http:// 是不同 origin）",
+  "pass": true,
+  "detail": "各自 localStorage 独立写入"
+ }
+]
