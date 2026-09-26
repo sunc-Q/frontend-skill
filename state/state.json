@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-26T10:50+08:00",
+ "updated": "2026-09-26T10:54+08:00",
  "tried": [
   {
    "skill": "drafter",
@@ -675,9 +675,9 @@
    "skill": "webapp-testing",
    "result": "PASS（golden 15/16；1 FAIL 是真缺陷已定位+一行修复A/B验证；mutant_seed 红3条、mutant_wiring 红3条且定位正确）",
    "seconds": 780,
-   "artifact_size": "4,292,608 B（du -sk 4192）",
+   "artifact_size": "4,204 KiB（du -sk 4204，含 download-golden.png 2,023,119B + 6 张 300-464KB 截图）",
    "cleanup": "删 .tmp/pylibs(140MB playwright) + .tmp/serve(5.7MB 变异副本) + 4 个重复下载的 PNG + shots-mutants 冗余；技能包零安装（clone 早在第3轮）；未起任何常驻服务，8137/8138/8139/8141/8142/8151/8152 全部回收（lsof 复核零监听）；全局缓存未动",
-   "push": "pending",
+   "push": "已推送：git push origin skill-showcase 成功（ce59cc4..0e7a685，普通推送，无 --force / 无 --no-verify）；fetch 确认远端 ce59cc4 正是本地 HEAD 父提交 → 无需 rebase；git ls-remote 复核 main(c9e0541) / go-gin_react(b8fe3fd) 未触碰（与第10轮记录的同值），crypto-forecast 远端不存在（未创建）；走 git@github.com SSH + LAB/.tmp/known_hosts，命令行与文件内容均无 token（staged diff 按凭据形状 ghp_/github_pat_/AKIA/sk-/PRIVATE KEY/password=/token= 扫过，2 处命中全是历史 work-log 里描述该扫描手法的散文，非凭据）",
    "notes": "第11轮=第一个自带可用实现层脚本的技能（with_server.py 单/双服务都可靠，客户端崩了也清理干净）。最大环境增量：Python Playwright + 系统 Chrome 路线打通（不需下载浏览器）→ 依赖 pip/Pillow 的候选重新变为可选。最大方法学增量：Playwright 看不见 favicon 类浏览器级请求，网络卫生断言必须收服务端访问日志。"
   }
  ]
