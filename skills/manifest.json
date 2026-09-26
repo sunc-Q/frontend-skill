@@ -21,6 +21,39 @@
       ]
     },
     {
+      "skill": "pixel-art",
+      "files": 5,
+      "total_bytes": 53297,
+      "read_only": true,
+      "manifest": [
+        {
+          "path": "SKILL.md",
+          "bytes": 3524,
+          "sha256": "39a74c9f0510ea91"
+        },
+        {
+          "path": "metadata.json",
+          "bytes": 270,
+          "sha256": "9c690d4baccedcf8"
+        },
+        {
+          "path": "references/patterns.md",
+          "bytes": 22317,
+          "sha256": "7e16677e9f8f1d1d"
+        },
+        {
+          "path": "references/sharp_edges.md",
+          "bytes": 19292,
+          "sha256": "58c6978d901aa9d2"
+        },
+        {
+          "path": "references/validations.md",
+          "bytes": 7894,
+          "sha256": "bb532cd24540b74b"
+        }
+      ]
+    },
+    {
       "skill": "qrcode-skills",
       "files": 16,
       "total_bytes": 69080,
@@ -137,9 +170,10 @@
       ]
     }
   ],
-  "rounds_recorded": 22,
+  "rounds_recorded": 23,
   "skills_with_snapshot": [
     "audio-editing-automation",
+    "pixel-art",
     "qrcode-skills",
     "terminal-session-replay"
   ],
